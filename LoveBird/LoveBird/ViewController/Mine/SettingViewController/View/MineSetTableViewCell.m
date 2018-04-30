@@ -36,7 +36,6 @@
         _iconImageView.backgroundColor = [UIColor orangeColor];
         _iconImageView.contentMode = UIViewContentModeCenter;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
-        _iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -53,12 +52,11 @@
         
         _arrowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(17), 0, AutoSize(7), AutoSize(47))];
         _arrowImageView.contentMode = UIViewContentModeCenter;
-        _arrowImageView.image = [UIImage imageNamed:@""];
+        _arrowImageView.image = [UIImage imageNamed:@"left_arrow"];
         _arrowImageView.clipsToBounds = YES;
-        _arrowImageView.backgroundColor = [UIColor orangeColor];
         [self.contentView addSubview:_arrowImageView];
         
-        _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(57), 0, AutoSize(47), AutoSize(47))];
+        _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(57), AutoSize(9), AutoSize(47), AutoSize(30))];
         [self.contentView addSubview:_switchView];
     }
     return self;
@@ -77,6 +75,8 @@
         
         [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:[UIImage imageNamed:@""]];
         _iconImageView.frame = CGRectMake(AutoSize(10), AutoSize(5), AutoSize(35), AutoSize(35));
+        _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
+
         _titleLabel.frame = CGRectMake(_iconImageView.right + AutoSize(5), 0, SCREEN_WIDTH / 2, self.height);
         
     } else {

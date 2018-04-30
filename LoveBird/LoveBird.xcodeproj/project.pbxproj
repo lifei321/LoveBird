@@ -102,6 +102,7 @@
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
+		1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7FC2096073900665561 /* MineHeaderView.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -305,6 +306,8 @@
 		1F6EB7F2209363E900665561 /* WKWebViewJavascriptBridge+LF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebViewJavascriptBridge+LF.h"; sourceTree = "<group>"; };
 		1F6EB7F52093643000665561 /* LFWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFWKWebView.h; sourceTree = "<group>"; };
 		1F6EB7F62093643000665561 /* LFWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LFWKWebView.m; sourceTree = "<group>"; };
+		1F6EB7FB2096073900665561 /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
+		1F6EB7FC2096073900665561 /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -450,6 +453,8 @@
 			children = (
 				0B702E151F16299100E39FAF /* MineTableViewCell.h */,
 				0B702E161F16299100E39FAF /* MineTableViewCell.m */,
+				1F6EB7FB2096073900665561 /* MineHeaderView.h */,
+				1F6EB7FC2096073900665561 /* MineHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1351,6 +1356,7 @@
 				1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */,
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
 				0BA41920201DADFB002C6335 /* DiscoverDataSource.m in Sources */,
+				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,

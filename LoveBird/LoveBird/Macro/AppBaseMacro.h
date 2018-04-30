@@ -79,5 +79,16 @@
 #define AutoSizeScale (iPhone6PlusScale ? (1.17) : iPhone6Plus ? (1.29375) : (iPhone6 ? (1.17) : 1))
 #define AutoSize(size) rint(AutoSizeScale*size)
 
+#define AutoSizeScale6 (SCREEN_WIDTH / 750)
+#define AutoSize6(size) rint(AutoSizeScale6 * size)
+
 //当前是否是wifi
 #define is_wifi (([Reachability reachabilityWithHostname:@"www.baidu.com"]).currentReachabilityStatus == ReachableViaWiFi ? YES:NO)
+
+
+
+
+
+
+
+

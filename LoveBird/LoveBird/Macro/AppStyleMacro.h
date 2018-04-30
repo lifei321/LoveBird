@@ -11,6 +11,8 @@
 //自定义字体
 #define kFont(F) [UIFont fontWithName:@"Helvetica-Light" size:AutoSize(F)]
 
+#define kFont6(F) [UIFont fontWithName:@"Helvetica-Light" size:AutoSize6(F)]
+
 //
 #define kFontSysBold(F) [UIFont systemFontOfSize:AutoSize(F)]
 

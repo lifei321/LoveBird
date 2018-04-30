@@ -57,6 +57,8 @@
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, AutoSize(175), self.width, AutoSize(137)) collectionViewLayout:self.flowLayout];
         _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.scrollEnabled = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
         [_collectionView registerClass:[DiscoverHeaderCell class] forCellWithReuseIdentifier:NSStringFromClass([DiscoverHeaderCell class])];
     }
     return _collectionView;
