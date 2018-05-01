@@ -99,6 +99,9 @@
 		1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1425205D2E520066F790 /* FindSelectModel.m */; };
 		1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */; };
 		1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F142D205E4D060066F790 /* ClassifyModel.m */; };
+		1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */; };
+		1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E882096FFEE002F71B4 /* BodyBirdModel.m */; };
+		1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8B2097080F002F71B4 /* BodyBirdCell.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -300,6 +303,12 @@
 		1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyBirdViewController.m; sourceTree = "<group>"; };
 		1F4F142C205E4D060066F790 /* ClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassifyModel.h; sourceTree = "<group>"; };
 		1F4F142D205E4D060066F790 /* ClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyModel.m; sourceTree = "<group>"; };
+		1F676E842096FFBB002F71B4 /* BodyBirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdViewController.h; sourceTree = "<group>"; };
+		1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdViewController.m; sourceTree = "<group>"; };
+		1F676E872096FFEE002F71B4 /* BodyBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdModel.h; sourceTree = "<group>"; };
+		1F676E882096FFEE002F71B4 /* BodyBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdModel.m; sourceTree = "<group>"; };
+		1F676E8A2097080F002F71B4 /* BodyBirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdCell.h; sourceTree = "<group>"; };
+		1F676E8B2097080F002F71B4 /* BodyBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdCell.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -819,6 +828,7 @@
 		0BA4190F201C675D002C6335 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				1F676E812096FF9F002F71B4 /* BodyBirdViewController */,
 				1F4F1427205E3B220066F790 /* ClassifyBirdViewController */,
 				1F4F141C205D29920066F790 /* Model */,
 				1F4F141D205D29920066F790 /* View */,
@@ -1097,6 +1107,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1F676E812096FF9F002F71B4 /* BodyBirdViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676E822096FF9F002F71B4 /* Model */,
+				1F676E832096FF9F002F71B4 /* View */,
+				1F676E842096FFBB002F71B4 /* BodyBirdViewController.h */,
+				1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */,
+			);
+			path = BodyBirdViewController;
+			sourceTree = "<group>";
+		};
+		1F676E822096FF9F002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F676E872096FFEE002F71B4 /* BodyBirdModel.h */,
+				1F676E882096FFEE002F71B4 /* BodyBirdModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F676E832096FF9F002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676E8A2097080F002F71B4 /* BodyBirdCell.h */,
+				1F676E8B2097080F002F71B4 /* BodyBirdCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1302,6 +1341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
+				1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
@@ -1322,6 +1362,7 @@
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
+				1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */,
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
 				1F4F13FD204BC81B0066F790 /* TalentCollectionViewCell.m in Sources */,
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
@@ -1362,6 +1403,7 @@
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
 				0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */,
+				1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */,
 				1F306236204AA29000784C62 /* TimeLineLayoutModel.m in Sources */,
 				0B75D5A51FBEC434008D7AE6 /* NSDate+Extension.m in Sources */,
 				0B75D5781FBD9D8B008D7AE6 /* UIFactory.m in Sources */,

@@ -87,6 +87,7 @@
     } else if (tapView.tag == 200) {
         // 体型查鸟
         
+        
     } else if (tapView.tag == 300) {
         
         //分类查鸟
