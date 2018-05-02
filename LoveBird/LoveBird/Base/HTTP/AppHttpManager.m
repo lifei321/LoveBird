@@ -14,8 +14,8 @@
 + (NSURLSessionDataTask *)GET:(NSString *)url
                    parameters:(NSDictionary *)parameters
                 jsonModelName:(Class)jsonModelName
-                      success:(CardRequestSuccess)success
-                      failure:(CardRequestFail)failure {
+                      success:(LFRequestSuccess)success
+                      failure:(LFRequestFail)failure {
     
     return [BJXYHTTPManager GET:url
                      parameters:parameters
@@ -37,9 +37,9 @@
                     parameters:(NSDictionary *)parameters
                      fileArray:(NSArray *)fileArray
                  jsonModelName:(Class)jsonModelName
-                       success:(CardRequestSuccess)success
+                       success:(LFRequestSuccess)success
                 uploadProgress:(BdRequestProgress)uploadProgress
-                       failure:(CardRequestFail)failure {
+                       failure:(LFRequestFail)failure {
     
     return [BJXYHTTPManager POST:url
                       parameters:parameters
@@ -65,8 +65,8 @@
 + (NSURLSessionDataTask *)POST:(NSString *)url
                     parameters:(NSDictionary *)parameters
                  jsonModelName:(Class)jsonModelName
-                       success:(CardRequestSuccess)success
-                       failure:(CardRequestFail)failure {
+                       success:(LFRequestSuccess)success
+                       failure:(LFRequestFail)failure {
     
     return [BJXYHTTPManager POST:url
                       parameters:parameters

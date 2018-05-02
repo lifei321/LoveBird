@@ -14,8 +14,66 @@
 
 #define kAPI_CUSTOM_SERVER_VERSION(PATH, VERSION) [NSString stringWithFormat:@"%@/%@%@", kAPI_USER_SERVER, VERSION, PATH]
 
+#pragma mark-- 用户相关
+
+/**
+ *  添加关注
+ */
+#define kAPI_User_Follow kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=follow")
+
+/**
+ *  关注列表
+ */
+#define kAPI_User_FollowList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=followList")
+
+/**
+ *  用户基本信息
+ */
+#define kAPI_User_PersonInfo kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=personalInfo")
+
+/**
+ *  我的朋友圈列表（文章）
+ */
+#define kAPI_User_FollowContentList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=followArticleList")
+
+/**
+ *  收藏列表
+ */
+#define kAPI_User_CollectionList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=collectionList")
+
+/**
+ *  我的日志列表
+ */
+#define kAPI_User_LogList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=articleList")
+
+/**
+ *  我的鸟种列表
+ */
+#define kAPI_User_BirdList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=obBirdList")
+
+/**
+ *  我的相册
+ */
+#define kAPI_User_Photos kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=album")
+
+/**
+ *  我的粉丝列表
+ */
+#define kAPI_User_FansList kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=fansList")
 
 
+/**
+ *  用户基本信息
+ */
+#define kAPI_User_MyInfo kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=myInfo")
+
+/**
+ *  获取通知列表
+ */
+#define kAPI_User_MessageNotify kAPI_USER_SERVER_VERSION(@"user/message.php")
+
+
+#pragma mark-- 首页
 
 /**
  *  首页banner
@@ -36,6 +94,9 @@
  *  达人
  */
 #define kAPI_Discover_Talent kAPI_USER_SERVER_VERSION(@"master/index.php")
+
+
+#pragma mark-- 查鸟
 
 /**
  *  查鸟首页

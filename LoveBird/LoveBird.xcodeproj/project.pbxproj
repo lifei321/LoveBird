@@ -102,6 +102,13 @@
 		1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */; };
 		1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E882096FFEE002F71B4 /* BodyBirdModel.m */; };
 		1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8B2097080F002F71B4 /* BodyBirdCell.m */; };
+		1F676E902099F924002F71B4 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8F2099F924002F71B4 /* UserDao.m */; };
+		1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E93209A0335002F71B4 /* UserFollowModel.m */; };
+		1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E96209A045A002F71B4 /* UserInfoModel.m */; };
+		1F676E9A209A05BE002F71B4 /* UserFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E99209A05BE002F71B4 /* UserFriendModel.m */; };
+		1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9C209A0774002F71B4 /* UserBirdModel.m */; };
+		1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9F209A095D002F71B4 /* UserFansModel.m */; };
+		1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EA2209A0AC7002F71B4 /* UserModel.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -309,6 +316,20 @@
 		1F676E882096FFEE002F71B4 /* BodyBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdModel.m; sourceTree = "<group>"; };
 		1F676E8A2097080F002F71B4 /* BodyBirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdCell.h; sourceTree = "<group>"; };
 		1F676E8B2097080F002F71B4 /* BodyBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdCell.m; sourceTree = "<group>"; };
+		1F676E8E2099F924002F71B4 /* UserDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
+		1F676E8F2099F924002F71B4 /* UserDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
+		1F676E92209A0335002F71B4 /* UserFollowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFollowModel.h; sourceTree = "<group>"; };
+		1F676E93209A0335002F71B4 /* UserFollowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFollowModel.m; sourceTree = "<group>"; };
+		1F676E95209A045A002F71B4 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		1F676E96209A045A002F71B4 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		1F676E98209A05BE002F71B4 /* UserFriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFriendModel.h; sourceTree = "<group>"; };
+		1F676E99209A05BE002F71B4 /* UserFriendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFriendModel.m; sourceTree = "<group>"; };
+		1F676E9B209A0774002F71B4 /* UserBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserBirdModel.h; sourceTree = "<group>"; };
+		1F676E9C209A0774002F71B4 /* UserBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserBirdModel.m; sourceTree = "<group>"; };
+		1F676E9E209A095D002F71B4 /* UserFansModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFansModel.h; sourceTree = "<group>"; };
+		1F676E9F209A095D002F71B4 /* UserFansModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFansModel.m; sourceTree = "<group>"; };
+		1F676EA1209A0AC7002F71B4 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		1F676EA2209A0AC7002F71B4 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -861,6 +882,7 @@
 		0BA41924201DB78E002C6335 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1F676E8D2099F910002F71B4 /* Dao */,
 				0BA41925201DB80F002C6335 /* Model */,
 			);
 			path = Data;
@@ -869,6 +891,7 @@
 		0BA41925201DB80F002C6335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F676E91209A02BB002F71B4 /* User */,
 				0BA41926201DB80F002C6335 /* Discover */,
 			);
 			path = Model;
@@ -1136,6 +1159,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F676E8D2099F910002F71B4 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				1F676E8E2099F924002F71B4 /* UserDao.h */,
+				1F676E8F2099F924002F71B4 /* UserDao.m */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		1F676E91209A02BB002F71B4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1F676E92209A0335002F71B4 /* UserFollowModel.h */,
+				1F676E93209A0335002F71B4 /* UserFollowModel.m */,
+				1F676E95209A045A002F71B4 /* UserInfoModel.h */,
+				1F676E96209A045A002F71B4 /* UserInfoModel.m */,
+				1F676E98209A05BE002F71B4 /* UserFriendModel.h */,
+				1F676E99209A05BE002F71B4 /* UserFriendModel.m */,
+				1F676E9B209A0774002F71B4 /* UserBirdModel.h */,
+				1F676E9C209A0774002F71B4 /* UserBirdModel.m */,
+				1F676E9E209A095D002F71B4 /* UserFansModel.h */,
+				1F676E9F209A095D002F71B4 /* UserFansModel.m */,
+				1F676EA1209A0AC7002F71B4 /* UserModel.h */,
+				1F676EA2209A0AC7002F71B4 /* UserModel.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1345,6 +1396,7 @@
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
+				1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */,
 				0BA41915201C67FA002C6335 /* FindViewController.m in Sources */,
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
@@ -1372,6 +1424,7 @@
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
+				1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */,
 				0B71CF092018748D006D29B7 /* AppShareSDK.m in Sources */,
 				0BDE653D1FBEE3B900C2C76F /* NSMutableDictionary+from.m in Sources */,
 				0B317CA51F0F778300B01DDA /* MineViewController.m in Sources */,
@@ -1407,6 +1460,7 @@
 				1F306236204AA29000784C62 /* TimeLineLayoutModel.m in Sources */,
 				0B75D5A51FBEC434008D7AE6 /* NSDate+Extension.m in Sources */,
 				0B75D5781FBD9D8B008D7AE6 /* UIFactory.m in Sources */,
+				1F676E9A209A05BE002F71B4 /* UserFriendModel.m in Sources */,
 				0B75D5C51FBECED6008D7AE6 /* AppBaseModel.m in Sources */,
 				0B75D5661FBD9D8B008D7AE6 /* NSURL+QueryDictionary.m in Sources */,
 				0B72932B1EFA556A00D1B1EB /* AppBaseViewController.m in Sources */,
@@ -1415,6 +1469,7 @@
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,
+				1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */,
 				0B75D5671FBD9D8B008D7AE6 /* UIButton+HQCustomIcon.m in Sources */,
 				0B75D5A31FBEC434008D7AE6 /* NSString+APP.m in Sources */,
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
@@ -1422,10 +1477,12 @@
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
+				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
+				1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */,
 				0BA41918201C6835002C6335 /* GuideViewController.m in Sources */,
 				0B75D5691FBD9D8B008D7AE6 /* UIImage+Addition.m in Sources */,
 				0B7293061EFA4F1100D1B1EB /* main.m in Sources */,
@@ -1434,6 +1491,7 @@
 				0B75D5AA1FBEC563008D7AE6 /* UIView+Frame.m in Sources */,
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
 				1F4F141B205030980066F790 /* FinishMessageViewController.m in Sources */,
+				1F676E902099F924002F71B4 /* UserDao.m in Sources */,
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
 				0B317C8A1F0F6E9100B01DDA /* AppButton.m in Sources */,

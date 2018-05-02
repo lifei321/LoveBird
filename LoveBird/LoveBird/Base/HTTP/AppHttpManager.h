@@ -13,8 +13,8 @@
 #define EMPTY_STRING_IF_NIL(a)  (((a)==nil)?@"":(a))
 
 
-typedef void(^CardRequestSuccess)(__kindof AppBaseModel *responseObject);
-typedef void(^CardRequestFail)(__kindof AppBaseModel *error);
+typedef void(^LFRequestSuccess)(__kindof AppBaseModel *responseObject);
+typedef void(^LFRequestFail)(__kindof AppBaseModel *error);
 
 @interface AppHttpManager : NSObject
 
@@ -22,21 +22,21 @@ typedef void(^CardRequestFail)(__kindof AppBaseModel *error);
 + (NSURLSessionDataTask *)GET:(NSString *)url
                    parameters:(NSDictionary *)parameters
                 jsonModelName:(Class)jsonModelName
-                      success:(CardRequestSuccess)success
-                      failure:(CardRequestFail)failure;
+                      success:(LFRequestSuccess)success
+                      failure:(LFRequestFail)failure;
 
 + (NSURLSessionDataTask *)POST:(NSString *)url
                     parameters:(NSDictionary *)parameters
                      fileArray:(NSArray *)fileArray
                  jsonModelName:(Class)jsonModelName
-                       success:(CardRequestSuccess)success
+                       success:(LFRequestSuccess)success
                 uploadProgress:(BdRequestProgress)uploadProgress
-                       failure:(CardRequestFail)failure;
+                       failure:(LFRequestFail)failure;
 
 
 + (NSURLSessionDataTask *)POST:(NSString *)url
                     parameters:(NSDictionary *)parameters
                  jsonModelName:(Class)jsonModelName
-                       success:(CardRequestSuccess)success
-                       failure:(CardRequestFail)failure;
+                       success:(LFRequestSuccess)success
+                       failure:(LFRequestFail)failure;
 @end
