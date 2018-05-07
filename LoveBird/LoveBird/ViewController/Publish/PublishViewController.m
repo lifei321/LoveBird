@@ -13,6 +13,9 @@
 #import "PublishDetailModel.h"
 #import "PublishFooterView.h"
 #import "PublishDao.h"
+#import "PublishCell.h"
+#import "PublishEditModel.h"
+#import "PublishContenController.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -34,7 +37,7 @@
 }
 
 - (void)setNavigation {
-    self.title = @"编辑";
+    self.navigationItem.title = @"编辑";
     self.rightButton.title = @"完成";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(36)} forState:UIControlStateNormal];
 }
@@ -48,6 +51,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[PublishSelectCell class] forCellReuseIdentifier:NSStringFromClass([PublishSelectCell class])];
     [self.tableView registerClass:[PublishDetailCell class] forCellReuseIdentifier:NSStringFromClass([PublishDetailCell class])];
+    [self.tableView registerClass:[PublishCell class] forCellReuseIdentifier:NSStringFromClass([PublishCell class])];
 
     self.headerView = [[PublishHeaderView alloc] init];
     self.tableView.tableHeaderView = self.headerView;
@@ -101,11 +105,17 @@
         PublishDetailCell *dcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishDetailCell class]) forIndexPath:indexPath];
         dcell.detailModel = self.dataArray[indexPath.section][indexPath.row];
         cell = dcell;
+    } else {
+        PublishCell *dcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishCell class]) forIndexPath:indexPath];
+        dcell.editModel = self.dataArray[indexPath.section][indexPath.row];
+        cell = dcell;
     }
     
-    
-    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,12 +127,25 @@
         return AutoSize6(95);
     }
     
-    return 0.01f;
+    return AutoSize6(274);
 }
 
 #pragma mark-- footerview 代理
 - (void)textViewClickDelegate {
-    
+    PublishContenController *contentvc = [[PublishContenController alloc] init];
+    @weakify(self);
+    contentvc.contentblock = ^(NSString *contentString) {
+        @strongify(self);
+        
+        // 设置数据
+        PublishEditModel *model = [[PublishEditModel alloc] init];
+        model.title = contentString;
+        model.imageSelect = [UIImage imageNamed:@"pub_textImage"];
+        [self.dataArray addObject:@[model]];
+        [self.tableView reloadData];
+    };
+    contentvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:contentvc animated:YES];
 }
 
 - (void)imageViewClickDelegate {
@@ -190,10 +213,21 @@
     @weakify(self);
     [PublishDao upLoad:iamge successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        self.headerView.headerImageView.image = iamge;
+        if (self.headerView.headerImageView.image == nil) {
+            self.headerView.headerImageView.image = iamge;
+        }
+        
+        // 设置数据
+        PublishEditModel *model = [[PublishEditModel alloc] init];
+        model.imageSelect = iamge;
+        model.upModel = (PublishUpModel *)responseObject;
+        [self.dataArray addObject:@[model]];
+        [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
-        
+        @strongify(self);
+
+        [AppBaseHud showHud:error.errstr view:self.view];
     }];
 }
 

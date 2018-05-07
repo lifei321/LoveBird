@@ -118,6 +118,8 @@
 		1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EBC20A09545002F71B4 /* PublishDao.m */; };
 		1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EBF20A09A21002F71B4 /* PublishUpModel.m */; };
 		1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC220A0A0DF002F71B4 /* PublishCell.m */; };
+		1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */; };
+		1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC920A0B26E002F71B4 /* PublishContenController.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -357,6 +359,10 @@
 		1F676EBF20A09A21002F71B4 /* PublishUpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishUpModel.m; sourceTree = "<group>"; };
 		1F676EC120A0A0DF002F71B4 /* PublishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishCell.h; sourceTree = "<group>"; };
 		1F676EC220A0A0DF002F71B4 /* PublishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishCell.m; sourceTree = "<group>"; };
+		1F676EC420A0AB1E002F71B4 /* PublishEditModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishEditModel.h; sourceTree = "<group>"; };
+		1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishEditModel.m; sourceTree = "<group>"; };
+		1F676EC820A0B26E002F71B4 /* PublishContenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishContenController.h; sourceTree = "<group>"; };
+		1F676EC920A0B26E002F71B4 /* PublishContenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishContenController.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -858,6 +864,7 @@
 		0BA4190D201C675D002C6335 /* Publish */ = {
 			isa = PBXGroup;
 			children = (
+				1F676EC720A0B24D002F71B4 /* Controller */,
 				1F676EA5209F34C9002F71B4 /* Model */,
 				1F676EA4209F34C9002F71B4 /* View */,
 				0BA41919201C6854002C6335 /* PublishViewController.h */,
@@ -1244,8 +1251,19 @@
 				1F676EB320A08579002F71B4 /* PublishDetailModel.m */,
 				1F676EBE20A09A21002F71B4 /* PublishUpModel.h */,
 				1F676EBF20A09A21002F71B4 /* PublishUpModel.m */,
+				1F676EC420A0AB1E002F71B4 /* PublishEditModel.h */,
+				1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1F676EC720A0B24D002F71B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F676EC820A0B26E002F71B4 /* PublishContenController.h */,
+				1F676EC920A0B26E002F71B4 /* PublishContenController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1452,6 +1470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
@@ -1513,6 +1532,7 @@
 				0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */,
 				1F4F1423205D2AEB0066F790 /* FindSelectCell.m in Sources */,
 				1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */,
+				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
 				1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */,
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
