@@ -53,8 +53,7 @@
     self.isNavigationTransparent = YES;
     self.isCustomNavigation = YES;
     [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationBar setShadowImage:nil];
-//    self.navigationBar.translucent = NO;
+
 }
 
 - (void)setTableView {

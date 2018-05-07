@@ -109,6 +109,15 @@
 		1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9C209A0774002F71B4 /* UserBirdModel.m */; };
 		1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9F209A095D002F71B4 /* UserFansModel.m */; };
 		1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EA2209A0AC7002F71B4 /* UserModel.m */; };
+		1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EA7209F34F7002F71B4 /* PublishHeaderView.m */; };
+		1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EAA209F3CC2002F71B4 /* PublishSelectCell.m */; };
+		1F676EAE209F3D39002F71B4 /* PublishSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EAD209F3D39002F71B4 /* PublishSelectView.m */; };
+		1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EB020A08395002F71B4 /* PublishDetailCell.m */; };
+		1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EB320A08579002F71B4 /* PublishDetailModel.m */; };
+		1F676EBA20A08AAC002F71B4 /* PublishFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EB920A08AAC002F71B4 /* PublishFooterView.m */; };
+		1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EBC20A09545002F71B4 /* PublishDao.m */; };
+		1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EBF20A09A21002F71B4 /* PublishUpModel.m */; };
+		1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC220A0A0DF002F71B4 /* PublishCell.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -330,6 +339,24 @@
 		1F676E9F209A095D002F71B4 /* UserFansModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFansModel.m; sourceTree = "<group>"; };
 		1F676EA1209A0AC7002F71B4 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1F676EA2209A0AC7002F71B4 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		1F676EA6209F34F7002F71B4 /* PublishHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishHeaderView.h; sourceTree = "<group>"; };
+		1F676EA7209F34F7002F71B4 /* PublishHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishHeaderView.m; sourceTree = "<group>"; };
+		1F676EA9209F3CC2002F71B4 /* PublishSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectCell.h; sourceTree = "<group>"; };
+		1F676EAA209F3CC2002F71B4 /* PublishSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectCell.m; sourceTree = "<group>"; };
+		1F676EAC209F3D39002F71B4 /* PublishSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectView.h; sourceTree = "<group>"; };
+		1F676EAD209F3D39002F71B4 /* PublishSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectView.m; sourceTree = "<group>"; };
+		1F676EAF20A08395002F71B4 /* PublishDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishDetailCell.h; sourceTree = "<group>"; };
+		1F676EB020A08395002F71B4 /* PublishDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishDetailCell.m; sourceTree = "<group>"; };
+		1F676EB220A08579002F71B4 /* PublishDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishDetailModel.h; sourceTree = "<group>"; };
+		1F676EB320A08579002F71B4 /* PublishDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishDetailModel.m; sourceTree = "<group>"; };
+		1F676EB820A08AAC002F71B4 /* PublishFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishFooterView.h; sourceTree = "<group>"; };
+		1F676EB920A08AAC002F71B4 /* PublishFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishFooterView.m; sourceTree = "<group>"; };
+		1F676EBB20A09545002F71B4 /* PublishDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishDao.h; sourceTree = "<group>"; };
+		1F676EBC20A09545002F71B4 /* PublishDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishDao.m; sourceTree = "<group>"; };
+		1F676EBE20A09A21002F71B4 /* PublishUpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishUpModel.h; sourceTree = "<group>"; };
+		1F676EBF20A09A21002F71B4 /* PublishUpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishUpModel.m; sourceTree = "<group>"; };
+		1F676EC120A0A0DF002F71B4 /* PublishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishCell.h; sourceTree = "<group>"; };
+		1F676EC220A0A0DF002F71B4 /* PublishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishCell.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -831,6 +858,8 @@
 		0BA4190D201C675D002C6335 /* Publish */ = {
 			isa = PBXGroup;
 			children = (
+				1F676EA5209F34C9002F71B4 /* Model */,
+				1F676EA4209F34C9002F71B4 /* View */,
 				0BA41919201C6854002C6335 /* PublishViewController.h */,
 				0BA4191A201C6854002C6335 /* PublishViewController.m */,
 			);
@@ -1164,6 +1193,8 @@
 			children = (
 				1F676E8E2099F924002F71B4 /* UserDao.h */,
 				1F676E8F2099F924002F71B4 /* UserDao.m */,
+				1F676EBB20A09545002F71B4 /* PublishDao.h */,
+				1F676EBC20A09545002F71B4 /* PublishDao.m */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -1185,6 +1216,36 @@
 				1F676EA2209A0AC7002F71B4 /* UserModel.m */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		1F676EA4209F34C9002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676EA6209F34F7002F71B4 /* PublishHeaderView.h */,
+				1F676EA7209F34F7002F71B4 /* PublishHeaderView.m */,
+				1F676EA9209F3CC2002F71B4 /* PublishSelectCell.h */,
+				1F676EAA209F3CC2002F71B4 /* PublishSelectCell.m */,
+				1F676EAC209F3D39002F71B4 /* PublishSelectView.h */,
+				1F676EAD209F3D39002F71B4 /* PublishSelectView.m */,
+				1F676EAF20A08395002F71B4 /* PublishDetailCell.h */,
+				1F676EB020A08395002F71B4 /* PublishDetailCell.m */,
+				1F676EB820A08AAC002F71B4 /* PublishFooterView.h */,
+				1F676EB920A08AAC002F71B4 /* PublishFooterView.m */,
+				1F676EC120A0A0DF002F71B4 /* PublishCell.h */,
+				1F676EC220A0A0DF002F71B4 /* PublishCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F676EA5209F34C9002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F676EB220A08579002F71B4 /* PublishDetailModel.h */,
+				1F676EB320A08579002F71B4 /* PublishDetailModel.m */,
+				1F676EBE20A09A21002F71B4 /* PublishUpModel.h */,
+				1F676EBF20A09A21002F71B4 /* PublishUpModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1393,6 +1454,7 @@
 			files = (
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */,
+				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
@@ -1401,10 +1463,12 @@
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
+				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,
+				1F676EBA20A08AAC002F71B4 /* PublishFooterView.m in Sources */,
 				0B317CAE1F0F829300B01DDA /* QuestionViewController.m in Sources */,
 				0B75D5751FBD9D8B008D7AE6 /* KeychainWrapper.m in Sources */,
 				0B75D5941FBEBB46008D7AE6 /* AppLaunchAdManager.m in Sources */,
@@ -1412,6 +1476,7 @@
 				0B75D5B51FBEC5C5008D7AE6 /* AppTextField.m in Sources */,
 				0B75D56C1FBD9D8B008D7AE6 /* UIViewController+Utils.m in Sources */,
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
+				1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */,
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
 				1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */,
@@ -1432,6 +1497,7 @@
 				0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */,
 				1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
+				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				1F4F1400204BDEDC0066F790 /* TalentModel.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
@@ -1441,6 +1507,7 @@
 				0BA41912201C67CD002C6335 /* DiscoverViewController.m in Sources */,
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
+				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,
 				0B75D5B71FBEC5C5008D7AE6 /* PhoneTextField.m in Sources */,
 				1F306245204BAF5900784C62 /* AppCache.m in Sources */,
 				0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */,
@@ -1453,6 +1520,7 @@
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
+				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
 				0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */,
@@ -1482,6 +1550,7 @@
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
+				1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */,
 				1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */,
 				0BA41918201C6835002C6335 /* GuideViewController.m in Sources */,
 				0B75D5691FBD9D8B008D7AE6 /* UIImage+Addition.m in Sources */,
@@ -1489,6 +1558,7 @@
 				0B26F0481FBEF06700464F41 /* AppBaseTableViewController+From.m in Sources */,
 				1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */,
 				0B75D5AA1FBEC563008D7AE6 /* UIView+Frame.m in Sources */,
+				1F676EAE209F3D39002F71B4 /* PublishSelectView.m in Sources */,
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
 				1F4F141B205030980066F790 /* FinishMessageViewController.m in Sources */,
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,

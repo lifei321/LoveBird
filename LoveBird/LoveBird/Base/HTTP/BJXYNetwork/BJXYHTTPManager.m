@@ -199,7 +199,8 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
                         fileName = [dict objectForKey:@"fileName"];
                     }
                     
-                    [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/jpg/file"];
+                    
+                    [formData appendPartWithFileData:data name:fileName fileName:[NSString stringWithFormat:@"%@.jpg", fileName] mimeType:@"image/jpg/file"];
                 }
             }
         }

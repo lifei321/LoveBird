@@ -108,6 +108,15 @@
  */
 #define kAPI_Find_Bird_family kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchFamily")
 
+#pragma mark-- 发布
+
+/**
+ *  上传图片
+ */
+#define kAPI_Publish_UpLoad kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upload")
+
+
+
 
 
 
