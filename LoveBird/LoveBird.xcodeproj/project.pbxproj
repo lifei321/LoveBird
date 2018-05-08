@@ -120,6 +120,8 @@
 		1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC220A0A0DF002F71B4 /* PublishCell.m */; };
 		1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */; };
 		1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC920A0B26E002F71B4 /* PublishContenController.m */; };
+		1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECC20A1E563002F71B4 /* PublishAddView.m */; };
+		1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -363,6 +365,10 @@
 		1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishEditModel.m; sourceTree = "<group>"; };
 		1F676EC820A0B26E002F71B4 /* PublishContenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishContenController.h; sourceTree = "<group>"; };
 		1F676EC920A0B26E002F71B4 /* PublishContenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishContenController.m; sourceTree = "<group>"; };
+		1F676ECB20A1E563002F71B4 /* PublishAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishAddView.h; sourceTree = "<group>"; };
+		1F676ECC20A1E563002F71B4 /* PublishAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddView.m; sourceTree = "<group>"; };
+		1F676ECE20A1EF04002F71B4 /* PublishAddTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishAddTypeView.h; sourceTree = "<group>"; };
+		1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddTypeView.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1240,6 +1246,10 @@
 				1F676EB920A08AAC002F71B4 /* PublishFooterView.m */,
 				1F676EC120A0A0DF002F71B4 /* PublishCell.h */,
 				1F676EC220A0A0DF002F71B4 /* PublishCell.m */,
+				1F676ECB20A1E563002F71B4 /* PublishAddView.h */,
+				1F676ECC20A1E563002F71B4 /* PublishAddView.m */,
+				1F676ECE20A1EF04002F71B4 /* PublishAddTypeView.h */,
+				1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1320,6 +1330,7 @@
 				TargetAttributes = {
 					0B7293001EFA4F1100D1B1EB = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = BEWPSDX7W7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1554,6 +1565,7 @@
 				0B72932B1EFA556A00D1B1EB /* AppBaseViewController.m in Sources */,
 				0B317C821F0F6AFA00B01DDA /* AppBaseTableViewController.m in Sources */,
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
+				1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */,
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,
@@ -1570,6 +1582,7 @@
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
+				1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */,
 				1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */,
 				1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */,
 				0BA41918201C6835002C6335 /* GuideViewController.m in Sources */,
@@ -1688,6 +1701,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BEWPSDX7W7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
@@ -1738,6 +1752,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BEWPSDX7W7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (

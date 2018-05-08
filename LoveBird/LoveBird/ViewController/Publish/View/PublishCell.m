@@ -8,6 +8,8 @@
 
 #import "PublishCell.h"
 #import "NSString+APP.h"
+#import "PublishAddView.h"
+#import "PublishAddTypeView.h"
 
 @interface PublishCell ()
 
@@ -23,6 +25,9 @@
 
 @property (nonatomic, strong) UIButton *downButton;
 
+@property (nonatomic, strong) PublishAddView *addView;
+
+@property (nonatomic, strong) PublishAddTypeView *addTypeView;
 
 @end
 
@@ -49,7 +54,7 @@
         [backView addSubview:upButton];
         self.upButton = upButton;
         
-        UIButton *downButton = [[UIButton alloc] initWithFrame:CGRectMake(upButton.left, AutoSize6(274) - AutoSize6(36), AutoSize6(26), AutoSize6(14))];
+        UIButton *downButton = [[UIButton alloc] initWithFrame:CGRectMake(upButton.left, AutoSize6(274) - AutoSize6(40), AutoSize6(26), AutoSize6(14))];
         [downButton setImage:[UIImage imageNamed:@"pub_down"] forState:UIControlStateNormal];
         [downButton addTarget:self action:@selector(downDidClilck) forControlEvents:UIControlEventTouchUpInside];
         [backView addSubview:downButton];
@@ -58,6 +63,7 @@
         
         self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(35), AutoSize6(288), AutoSize6(194))];
         self.iconView.contentMode = UIViewContentModeScaleAspectFill;
+        self.iconView.clipsToBounds = YES;
         [backView addSubview:self.iconView];
         
         self.titleLabe = [[UILabel alloc] initWithFrame:CGRectMake(self.iconView.right + AutoSize6(20), self.iconView.top, AutoSize6(286), AutoSize6(132))];
@@ -75,21 +81,55 @@
         [self.birdButton setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateNormal];
         self.birdButton.titleLabel.font = kFont6(20);
         [backView addSubview:self.birdButton];
+        
+        self.addView = [[PublishAddView alloc] initWithFrame:CGRectMake(0, backView.bottom, SCREEN_WIDTH, AutoSize6(84))];
+        @weakify(self);
+        self.addView.textblock = ^{
+            @strongify(self);
+            if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellTextDelegate:)]) {
+                [self.delegate publishCellTextDelegate:self];
+            }
+        };
+        self.addView.imageblock = ^{
+            @strongify(self);
+            if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellImageDelegate:)]) {
+                [self.delegate publishCellImageDelegate:self];
+            }
+        };
+        [self.contentView addSubview:self.addView];
+        
+        //加号 按钮
+        self.addTypeView = [[PublishAddTypeView alloc] initWithFrame:CGRectMake(0, self.addView.bottom, SCREEN_WIDTH, AutoSize6(70))];
+        self.addTypeView.addblock = ^{
+            @strongify(self);
+            if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellAddDelegate:)]) {
+                [self.delegate publishCellAddDelegate:self];
+            }
+        };
+        [self.contentView addSubview:self.addTypeView];
     }
     return self;
 }
 
 - (void)closeDidClilck {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellCloseDelegate:)]) {
+        [self.delegate publishCellCloseDelegate:self];
+    }
 }
 
 - (void)upDidClilck {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellUpDelegate:)]) {
+        [self.delegate publishCellUpDelegate:self];
+    }
 }
 
 - (void)downDidClilck {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellDownDelegate:)]) {
+        [self.delegate publishCellDownDelegate:self];
+    }
 }
+
+
 
 - (void)setEditModel:(PublishEditModel *)editModel {
     _editModel = editModel;
@@ -110,6 +150,8 @@
         self.birdButton.hidden = NO;
     }
     
+    self.addView.hidden = !editModel.isShow;
+    self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);
 }
 
 @end

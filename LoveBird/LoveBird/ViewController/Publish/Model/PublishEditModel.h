@@ -19,5 +19,6 @@
 
 @property (nonatomic, strong) PublishUpModel *upModel;
 
+@property (nonatomic, assign) BOOL isShow;
 
 @end

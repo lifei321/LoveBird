@@ -17,7 +17,7 @@
 #import "PublishEditModel.h"
 #import "PublishContenController.h"
 
-@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -56,7 +56,7 @@
     self.headerView = [[PublishHeaderView alloc] init];
     self.tableView.tableHeaderView = self.headerView;
     
-    self.footerView = [[PublishFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(166))];
+    self.footerView = [[PublishFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
     self.footerView.delegate = self;
     self.tableView.tableFooterView = self.footerView;
 }
@@ -108,6 +108,7 @@
     } else {
         PublishCell *dcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishCell class]) forIndexPath:indexPath];
         dcell.editModel = self.dataArray[indexPath.section][indexPath.row];
+        dcell.delegate = self;
         cell = dcell;
     }
     
@@ -127,8 +128,44 @@
         return AutoSize6(95);
     }
     
-    return AutoSize6(274);
+    PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
+    if (model.isShow) {
+        return AutoSize6(428);
+    } else {
+        return AutoSize6(344);
+    }
 }
+
+#pragma mark-- cell代理
+- (void)publishCellCloseDelegate:(PublishCell *)cell  {
+    
+}
+
+- (void)publishCellUpDelegate:(PublishCell *)cell {
+    
+}
+
+- (void)publishCellDownDelegate:(PublishCell *)cell {
+    
+}
+
+- (void)publishCellTextDelegate:(PublishCell *)cell {
+    [self textViewClickDelegate];
+}
+
+- (void)publishCellImageDelegate:(PublishCell *)cell {
+    [self imageViewClickDelegate];
+}
+
+- (void)publishCellAddDelegate:(PublishCell *)cell {
+    PublishEditModel *model = cell.editModel;
+    if (model.isShow) {
+        return;
+    }
+    model.isShow = YES;
+    [self.tableView reloadData];
+}
+
 
 #pragma mark-- footerview 代理
 - (void)textViewClickDelegate {
@@ -141,7 +178,9 @@
         PublishEditModel *model = [[PublishEditModel alloc] init];
         model.title = contentString;
         model.imageSelect = [UIImage imageNamed:@"pub_textImage"];
+        model.isShow = NO;
         [self.dataArray addObject:@[model]];
+        [self reloadFooterView];
         [self.tableView reloadData];
     };
     contentvc.hidesBottomBarWhenPushed = YES;
@@ -190,6 +229,7 @@
 
 //跳转到imagePicker里
 - (void)makePhoto {
+    
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     pickerController.delegate = self;
@@ -209,7 +249,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         
     }];
-    UIImage *iamge = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
     @weakify(self);
     [PublishDao upLoad:iamge successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
@@ -220,8 +260,11 @@
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
         model.imageSelect = iamge;
+        model.isShow = NO;
         model.upModel = (PublishUpModel *)responseObject;
         [self.dataArray addObject:@[model]];
+        
+        [self reloadFooterView];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -229,6 +272,12 @@
 
         [AppBaseHud showHud:error.errstr view:self.view];
     }];
+}
+
+#pragma mark-- 刷新footer
+- (void)reloadFooterView {
+    self.footerView = nil;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
 }
 
 @end
