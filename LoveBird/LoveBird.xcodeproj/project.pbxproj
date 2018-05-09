@@ -71,6 +71,8 @@
 		0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA419DA202357E2002C6335 /* DiscoverHeaderCell.m */; };
 		0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA419DD20235A76002C6335 /* DiscoverListModel.m */; };
 		0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA748B71F025F8200A8B33A /* AppWebViewController.m */; };
+		0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39020A2F5D7003283D1 /* ApplyTimePickerView.m */; };
+		0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39420A2F82E003283D1 /* AppDateManager.m */; };
 		0BDE653D1FBEE3B900C2C76F /* NSMutableDictionary+from.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */; };
 		0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653F1FBEE44D00C2C76F /* AppBaseTextField.m */; };
 		0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE65451FBEE5E900C2C76F /* AppBaseTableDataSource.m */; };
@@ -266,6 +268,10 @@
 		0BA419DD20235A76002C6335 /* DiscoverListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverListModel.m; sourceTree = "<group>"; };
 		0BA748B61F025F8200A8B33A /* AppWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWebViewController.h; sourceTree = "<group>"; };
 		0BA748B71F025F8200A8B33A /* AppWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWebViewController.m; sourceTree = "<group>"; };
+		0BC2B39020A2F5D7003283D1 /* ApplyTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyTimePickerView.m; sourceTree = "<group>"; };
+		0BC2B39120A2F5D7003283D1 /* ApplyTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyTimePickerView.h; sourceTree = "<group>"; };
+		0BC2B39320A2F82E003283D1 /* AppDateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDateManager.h; sourceTree = "<group>"; };
+		0BC2B39420A2F82E003283D1 /* AppDateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDateManager.m; sourceTree = "<group>"; };
 		0BDE653B1FBEE3B800C2C76F /* NSMutableDictionary+from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+from.h"; sourceTree = "<group>"; };
 		0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+from.m"; sourceTree = "<group>"; };
 		0BDE653E1FBEE44D00C2C76F /* AppBaseTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBaseTextField.h; sourceTree = "<group>"; };
@@ -650,6 +656,7 @@
 				0B75D5461FBD9D8B008D7AE6 /* HTTP */,
 				0B75D5501FBD9D8B008D7AE6 /* Lib */,
 				0B75D5581FBD9D8B008D7AE6 /* Tool */,
+				0BC2B38F20A2F5CB003283D1 /* CustomView */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -814,6 +821,8 @@
 				0B75D5A01FBEC434008D7AE6 /* NSDate+Extension.m */,
 				0B75D5A11FBEC434008D7AE6 /* NSDateFormatter+Category.h */,
 				0B75D5A21FBEC434008D7AE6 /* NSDateFormatter+Category.m */,
+				0BC2B39320A2F82E003283D1 /* AppDateManager.h */,
+				0BC2B39420A2F82E003283D1 /* AppDateManager.m */,
 			);
 			path = NSDate;
 			sourceTree = "<group>";
@@ -958,6 +967,15 @@
 				0BA748B71F025F8200A8B33A /* AppWebViewController.m */,
 			);
 			path = AppWebViewController;
+			sourceTree = "<group>";
+		};
+		0BC2B38F20A2F5CB003283D1 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				0BC2B39120A2F5D7003283D1 /* ApplyTimePickerView.h */,
+				0BC2B39020A2F5D7003283D1 /* ApplyTimePickerView.m */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		0BF29A431F1371F600CBE2CB /* AppLoginController */ = {
@@ -1529,6 +1547,7 @@
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				1F4F1400204BDEDC0066F790 /* TalentModel.m in Sources */,
+				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
@@ -1549,6 +1568,7 @@
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
 				0BA41920201DADFB002C6335 /* DiscoverDataSource.m in Sources */,
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
+				0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,

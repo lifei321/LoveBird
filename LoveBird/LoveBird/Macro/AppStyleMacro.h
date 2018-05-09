@@ -51,6 +51,8 @@
 
 #define kColorDefaultBackgroudColorE5E5E5 UIColorFromRGB(0xe5e5e5)
 
+#define kBackGroundColorEDEDED UIColorFromRGB(0xededed)
+
 
 // 默认线的颜色
 #define kLineColoreDefaultd4d7dd  UIColorFromRGB(0xd4d7dd)

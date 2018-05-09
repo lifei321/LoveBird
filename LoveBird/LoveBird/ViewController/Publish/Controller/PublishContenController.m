@@ -7,10 +7,11 @@
 //
 
 #import "PublishContenController.h"
+#import "AppPlaceHolderTextView.h"
 
 @interface PublishContenController ()
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) AppPlaceHolderTextView *textView;
 
 @end
 
@@ -21,7 +22,9 @@
 
     [self setNavigation];
     
-    self.textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+    self.textView = [[AppPlaceHolderTextView alloc] initWithFrame:self.view.bounds];
+    self.textView.placeholder = @"请输入描述内容";
+    self.textView.limitCount = 100000;
     [self.view addSubview:self.textView];
     
 }
@@ -29,7 +32,7 @@
 - (void)setNavigation {
     self.title = @"编辑";
     self.rightButton.title = @"完成";
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(36)} forState:UIControlStateNormal];
+    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
 }
 
 - (void)rightButtonAction {

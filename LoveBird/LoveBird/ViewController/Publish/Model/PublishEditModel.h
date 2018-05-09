@@ -19,6 +19,12 @@
 
 @property (nonatomic, strong) PublishUpModel *upModel;
 
+// 是否显示添加图片和文字
 @property (nonatomic, assign) BOOL isShow;
+
+@property (nonatomic, assign) BOOL isFirst;
+
+@property (nonatomic, assign) BOOL isLast;
+
 
 @end

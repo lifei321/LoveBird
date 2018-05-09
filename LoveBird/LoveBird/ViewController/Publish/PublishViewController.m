@@ -16,10 +16,13 @@
 #import "PublishCell.h"
 #import "PublishEditModel.h"
 #import "PublishContenController.h"
+#import "ApplyTimePickerView.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *dataModelArray;
 
 @property (nonatomic, strong) PublishHeaderView *headerView;
 
@@ -36,56 +39,8 @@
     [self setModels];
 }
 
-- (void)setNavigation {
-    self.navigationItem.title = @"编辑";
-    self.rightButton.title = @"完成";
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(36)} forState:UIControlStateNormal];
-}
 
-- (void)setTableView {
-    
-    self.tableView.top = total_topView_height;
-    self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[PublishSelectCell class] forCellReuseIdentifier:NSStringFromClass([PublishSelectCell class])];
-    [self.tableView registerClass:[PublishDetailCell class] forCellReuseIdentifier:NSStringFromClass([PublishDetailCell class])];
-    [self.tableView registerClass:[PublishCell class] forCellReuseIdentifier:NSStringFromClass([PublishCell class])];
-
-    self.headerView = [[PublishHeaderView alloc] init];
-    self.tableView.tableHeaderView = self.headerView;
-    
-    self.footerView = [[PublishFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
-    self.footerView.delegate = self;
-    self.tableView.tableFooterView = self.footerView;
-}
-
-- (void)setModels {
-    self.dataArray = [[NSMutableArray alloc] init];
-    
-    NSArray *array1 = @[@"选择鸟种"];
-    [self.dataArray addObject:array1];
-    
-    //
-    NSMutableArray *array2 = [[NSMutableArray alloc] init];
-    PublishDetailModel *model1 = [[PublishDetailModel alloc] init];
-    model1.title = @"时间";
-    model1.detailString = @"2017-09-13";
-    [array2 addObject:model1];
-    
-    PublishDetailModel *model2 = [[PublishDetailModel alloc] init];
-    model2.title = @"位置";
-    model2.detailString = @"北京市海淀区";
-    [array2 addObject:model2];
-    
-    PublishDetailModel *model3 = [[PublishDetailModel alloc] init];
-    model3.title = @"生境";
-    model3.detailString = @"选择";
-    [array2 addObject:model3];
-    [self.dataArray addObject:array2];
-}
-
+#pragma mark-- tableview代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArray.count;
 }
@@ -107,7 +62,23 @@
         cell = dcell;
     } else {
         PublishCell *dcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishCell class]) forIndexPath:indexPath];
-        dcell.editModel = self.dataArray[indexPath.section][indexPath.row];
+        PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
+        
+        model.isLast = NO;
+        model.isFirst = NO;
+        if (self.dataModelArray.count == 1) {
+            model.isFirst = YES;
+            model.isLast = YES;
+        } else {
+            if (indexPath.row == 0) {
+                model.isFirst = YES;
+                model.isLast = NO;
+            }  else if (indexPath.row == (self.dataModelArray.count - 1)) {
+                model.isLast = YES;
+                model.isFirst = NO;
+            }
+        }
+        dcell.editModel = model;
         dcell.delegate = self;
         cell = dcell;
     }
@@ -117,6 +88,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if ((indexPath.section == 1) && (indexPath.row == 0)) {
+        ApplyTimePickerView *pickerView = [[ApplyTimePickerView alloc] initWithFrame:self.view.bounds];
+        @weakify(self)
+        pickerView.handler = ^(ApplyTimePickerView *timePickerView, NSString *date) {
+            @strongify(self)
+            [timePickerView removeFromSuperview];
+            timePickerView = nil;
+            if (date.length) {
+                PublishDetailModel *model = self.dataArray[indexPath.section][indexPath.row];
+                model.detailString = date;
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        };
+        [self.view addSubview:pickerView];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -136,17 +122,49 @@
     }
 }
 
-#pragma mark-- cell代理
+#pragma mark-- PublishCell 代理
 - (void)publishCellCloseDelegate:(PublishCell *)cell  {
+    [self.dataModelArray removeObject:cell.editModel];
     
+    if (self.dataModelArray.count == 0) {
+        [self reloadFooterView:NO];
+    }
+    [self.tableView reloadData];
 }
 
 - (void)publishCellUpDelegate:(PublishCell *)cell {
     
+    if (self.dataModelArray.count < 2) return;
+    
+    for (int i = 0; i < self.dataModelArray.count; i++) {
+        PublishEditModel *model = self.dataModelArray[i];
+        if ([cell.editModel isEqual:model]) {
+            
+            if (i > 0) {
+                [self.dataModelArray removeObject:model];
+                [self.dataModelArray insertObject:model atIndex:(i - 1)];
+                [self.tableView reloadData];
+            }
+            break;
+        }
+    }
 }
 
 - (void)publishCellDownDelegate:(PublishCell *)cell {
+    if (self.dataModelArray.count < 2) return;
     
+    for (int i = 0; i < self.dataModelArray.count; i++) {
+        PublishEditModel *model = self.dataModelArray[i];
+        if ([cell.editModel isEqual:model]) {
+            
+            if (i < (self.dataModelArray.count - 1)) {
+                [self.dataModelArray removeObject:model];
+                [self.dataModelArray insertObject:model atIndex:(i + 1)];
+                [self.tableView reloadData];
+            }
+            break;
+        }
+    }
 }
 
 - (void)publishCellTextDelegate:(PublishCell *)cell {
@@ -167,7 +185,7 @@
 }
 
 
-#pragma mark-- footerview 代理
+#pragma mark-- footerview 选择图片 添加文字 代理
 - (void)textViewClickDelegate {
     PublishContenController *contentvc = [[PublishContenController alloc] init];
     @weakify(self);
@@ -179,8 +197,8 @@
         model.title = contentString;
         model.imageSelect = [UIImage imageNamed:@"pub_textImage"];
         model.isShow = NO;
-        [self.dataArray addObject:@[model]];
-        [self reloadFooterView];
+        [self.dataModelArray addObject:model];
+        [self reloadFooterView:YES];
         [self.tableView reloadData];
     };
     contentvc.hidesBottomBarWhenPushed = YES;
@@ -198,33 +216,26 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     if (buttonIndex == 0) {//相机
-        
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
             [self makePhoto];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请在设置-->隐私-->相机，中开启本应用的相机访问权限！！" delegate:self
-                                                 cancelButtonTitle:@"取消"
-                                                 otherButtonTitles:@"我知道了", nil];
-            [alert show];
+            [self showAlert];
         }
     } else if (buttonIndex == 1) {//相片
-            
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-                
             [self choosePicture];
         } else {
-                
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"请在设置-->隐私-->照片，中开启本应用的相机访问权限！！"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                                  otherButtonTitles:@"我知道了", nil];
-                [alert show];
+            [self showAlert];
         }
     }
+}
+
+- (void)showAlert {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请在设置-->隐私-->相机，中开启本应用的相机访问权限！！" delegate:self
+                                         cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"我知道了", nil];
+    [alert show];
 }
 
 //跳转到imagePicker里
@@ -262,9 +273,9 @@
         model.imageSelect = iamge;
         model.isShow = NO;
         model.upModel = (PublishUpModel *)responseObject;
-        [self.dataArray addObject:@[model]];
+        [self.dataModelArray addObject:model];
         
-        [self reloadFooterView];
+        [self reloadFooterView:YES];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -275,9 +286,67 @@
 }
 
 #pragma mark-- 刷新footer
-- (void)reloadFooterView {
-    self.footerView = nil;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
+- (void)reloadFooterView:(BOOL)isHide {
+    if (isHide) {
+        self.footerView = nil;
+        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
+    } else {
+        self.footerView = [[PublishFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
+        self.footerView.delegate = self;
+        self.tableView.tableFooterView = self.footerView;
+    }
+}
+
+
+#pragma mark-- UI
+- (void)setNavigation {
+    self.navigationItem.title = @"编辑";
+    self.rightButton.title = @"完成";
+    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+}
+
+- (void)setTableView {
+    
+    self.tableView.top = total_topView_height;
+    self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[PublishSelectCell class] forCellReuseIdentifier:NSStringFromClass([PublishSelectCell class])];
+    [self.tableView registerClass:[PublishDetailCell class] forCellReuseIdentifier:NSStringFromClass([PublishDetailCell class])];
+    [self.tableView registerClass:[PublishCell class] forCellReuseIdentifier:NSStringFromClass([PublishCell class])];
+    
+    self.headerView = [[PublishHeaderView alloc] init];
+    self.tableView.tableHeaderView = self.headerView;
+    [self reloadFooterView:NO];
+}
+
+- (void)setModels {
+    self.dataArray = [[NSMutableArray alloc] init];
+    
+    NSArray *array1 = @[@"选择鸟种"];
+    [self.dataArray addObject:array1];
+    
+    //
+    NSMutableArray *array2 = [[NSMutableArray alloc] init];
+    PublishDetailModel *model1 = [[PublishDetailModel alloc] init];
+    model1.title = @"时间";
+    model1.detailString = @"2017-09-13";
+    [array2 addObject:model1];
+    
+    PublishDetailModel *model2 = [[PublishDetailModel alloc] init];
+    model2.title = @"位置";
+    model2.detailString = @"北京市海淀区";
+    [array2 addObject:model2];
+    
+    PublishDetailModel *model3 = [[PublishDetailModel alloc] init];
+    model3.title = @"生境";
+    model3.detailString = @"选择";
+    [array2 addObject:model3];
+    [self.dataArray addObject:array2];
+    
+    self.dataModelArray = [[NSMutableArray alloc] init];
+    [self.dataArray addObject:self.dataModelArray];
 }
 
 @end

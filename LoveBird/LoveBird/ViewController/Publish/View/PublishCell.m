@@ -150,6 +150,9 @@
         self.birdButton.hidden = NO;
     }
     
+    self.upButton.selected = editModel.isFirst;
+    self.downButton.selected = editModel.isLast;
+    
     self.addView.hidden = !editModel.isShow;
     self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);
 }

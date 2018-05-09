@@ -15,7 +15,7 @@
 // 当前taberController
 #define kTabBarController                   [[UIApplication sharedApplication].delegate window].rootViewController
 
-// 当前NavigationController
+// 当前NavigationControllerr
 #define KNavigationController               ((UINavigationController *)((UITabBarController *)kTabBarController).selectedViewController)
 
 // 当前ViewController
