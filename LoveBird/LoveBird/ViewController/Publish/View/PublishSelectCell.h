@@ -7,9 +7,24 @@
 //
 
 #import "AppBaseTableViewCell.h"
+#import "PublishSelectModel.h"
+
+@class PublishSelectCell;
+@protocol PublishSelectDelegate<NSObject>
+
+- (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell;
+
+- (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell;
+
+- (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell;
+
+@end
+
 
 @interface PublishSelectCell : AppBaseTableViewCell
 
-@property (nonatomic, copy) NSString *titleText;
+@property (nonatomic, strong) PublishSelectModel *selectModel;
+
+@property (nonatomic, weak) id<PublishSelectDelegate>delegate;
 
 @end

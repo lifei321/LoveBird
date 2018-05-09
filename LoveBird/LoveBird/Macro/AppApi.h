@@ -116,7 +116,10 @@
 #define kAPI_Publish_UpLoad kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upload")
 
 
-
+/**
+ *  发布
+ */
+#define kAPI_Publish_Publish kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=saveBirdArticle")
 
 
 

@@ -136,11 +136,11 @@
     
     self.iconView.image = editModel.imageSelect;
 
-    if (editModel.title.length) {
+    if (editModel.message.length) {
         self.birdButton.hidden = YES;
-        self.titleLabe.text = editModel.title;
+        self.titleLabe.text = editModel.message;
 
-        CGFloat height = [editModel.title getTextHeightWithFont:self.titleLabe.font withWidth:AutoSize6(286)];
+        CGFloat height = [editModel.message getTextHeightWithFont:self.titleLabe.font withWidth:AutoSize6(286)];
         if (height > AutoSize6(132)) {
             height = AutoSize6(132);
         }

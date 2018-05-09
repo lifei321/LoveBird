@@ -11,13 +11,22 @@
 
 @interface PublishEditModel : JSONModel
 
-@property (nonatomic, copy) NSString *title;
-
 @property (nonatomic, copy) NSString *birdClass;
 
 @property (nonatomic, strong) UIImage *imageSelect;
 
-@property (nonatomic, strong) PublishUpModel *upModel;
+@property (nonatomic, assign) BOOL isImg;
+
+@property (nonatomic, copy) NSString *aid;
+
+@property (nonatomic, copy) NSString *imgUrl;
+
+// 文本内容
+@property (nonatomic, copy) NSString *message;
+
+@property (nonatomic, copy) NSString *tag;
+
+
 
 // 是否显示添加图片和文字
 @property (nonatomic, assign) BOOL isShow;

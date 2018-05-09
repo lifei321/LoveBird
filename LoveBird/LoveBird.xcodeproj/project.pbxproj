@@ -124,6 +124,7 @@
 		1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC920A0B26E002F71B4 /* PublishContenController.m */; };
 		1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECC20A1E563002F71B4 /* PublishAddView.m */; };
 		1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */; };
+		1F676ED320A32F1B002F71B4 /* PublishSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -375,6 +376,8 @@
 		1F676ECC20A1E563002F71B4 /* PublishAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddView.m; sourceTree = "<group>"; };
 		1F676ECE20A1EF04002F71B4 /* PublishAddTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishAddTypeView.h; sourceTree = "<group>"; };
 		1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddTypeView.m; sourceTree = "<group>"; };
+		1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectModel.h; sourceTree = "<group>"; };
+		1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectModel.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1281,6 +1284,8 @@
 				1F676EBF20A09A21002F71B4 /* PublishUpModel.m */,
 				1F676EC420A0AB1E002F71B4 /* PublishEditModel.h */,
 				1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */,
+				1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */,
+				1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1513,6 +1518,7 @@
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
+				1F676ED320A32F1B002F71B4 /* PublishSelectModel.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,

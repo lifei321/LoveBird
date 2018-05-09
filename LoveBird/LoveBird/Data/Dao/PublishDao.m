@@ -39,4 +39,29 @@
                  }];
 }
 
++ (void)publish:(NSArray *)editModelArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:editModelArray forKey:@"postList"];
+    [dic setObject:@"483887" forKey:@"birdInfo"];
+    [dic setObject:@"483887" forKey:@"environmentId"];
+    [dic setObject:@"483887" forKey:@"lat"];
+    [dic setObject:@"483887" forKey:@"lng"];
+    [dic setObject:@"483887" forKey:@"locale"];
+    [dic setObject:@"483887" forKey:@"observeTime"];
+    [dic setObject:@"483887" forKey:@"status"];
+    [dic setObject:@"483887" forKey:@"tid"];
+    [dic setObject:@"483887" forKey:@"uid"];
+    NSDictionary *params = @{@"articleBody": dic};
+
+    [AppHttpManager POST:kAPI_Publish_Publish parameters:params jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 @end

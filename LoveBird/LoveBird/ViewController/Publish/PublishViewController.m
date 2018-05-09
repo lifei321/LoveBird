@@ -17,8 +17,9 @@
 #import "PublishEditModel.h"
 #import "PublishContenController.h"
 #import "ApplyTimePickerView.h"
+#import "PublishSelectModel.h"
 
-@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate>
+@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -39,6 +40,28 @@
     [self setModels];
 }
 
+#pragma mark-- 发布
+
+- (void)rightButtonAction {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [PublishDao publish:self.dataModelArray successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
+        [self.dataArray removeAllObjects];
+        self.dataArray = nil;
+        [self.dataModelArray removeAllObjects];
+        self.dataModelArray = nil;
+        [self reloadHeaderView];
+        [self reloadFooterView:NO];
+        [self setModels];
+        [self.tableView reloadData];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
 
 #pragma mark-- tableview代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -54,7 +77,8 @@
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
         PublishSelectCell *scell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishSelectCell class]) forIndexPath:indexPath];
-        scell.titleText = self.dataArray[indexPath.section][indexPath.row];
+        scell.selectModel = self.dataArray[indexPath.section][indexPath.row];
+        scell.delegate = self;
         cell = scell;
     } else if (indexPath.section == 1) {
         PublishDetailCell *dcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PublishDetailCell class]) forIndexPath:indexPath];
@@ -184,6 +208,29 @@
     [self.tableView reloadData];
 }
 
+- (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
+
+    
+}
+
+- (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell {
+    
+    if (cell.selectModel.isSelect) {
+        NSMutableArray *tempArray = self.dataArray[0];
+        PublishSelectModel *model = [[PublishSelectModel alloc] init];
+        model.title = @"选择鸟种";
+        model.isSelect = NO;
+        [tempArray insertObject:model atIndex:0];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
+    NSMutableArray *tempArray = self.dataArray[0];
+    [tempArray removeObject:cell.selectModel];
+    [self.tableView reloadData];
+
+}
 
 #pragma mark-- footerview 选择图片 添加文字 代理
 - (void)textViewClickDelegate {
@@ -194,9 +241,10 @@
         
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.title = contentString;
+        model.message = contentString;
         model.imageSelect = [UIImage imageNamed:@"pub_textImage"];
         model.isShow = NO;
+        model.isImg = NO;
         [self.dataModelArray addObject:model];
         [self reloadFooterView:YES];
         [self.tableView reloadData];
@@ -267,12 +315,15 @@
         if (self.headerView.headerImageView.image == nil) {
             self.headerView.headerImageView.image = iamge;
         }
+        PublishUpModel *upModel = (PublishUpModel *)responseObject;
         
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
         model.imageSelect = iamge;
         model.isShow = NO;
-        model.upModel = (PublishUpModel *)responseObject;
+        model.isImg = YES;
+        model.imgUrl = upModel.imgUrl;
+        model.aid = upModel.aid;
         [self.dataModelArray addObject:model];
         
         [self reloadFooterView:YES];
@@ -297,6 +348,13 @@
     }
 }
 
+- (void)reloadHeaderView {
+    self.headerView = nil;
+    self.headerView = [[PublishHeaderView alloc] init];
+    self.tableView.tableHeaderView = nil;
+    self.tableView.tableHeaderView = self.headerView;
+}
+
 
 #pragma mark-- UI
 - (void)setNavigation {
@@ -316,15 +374,18 @@
     [self.tableView registerClass:[PublishDetailCell class] forCellReuseIdentifier:NSStringFromClass([PublishDetailCell class])];
     [self.tableView registerClass:[PublishCell class] forCellReuseIdentifier:NSStringFromClass([PublishCell class])];
     
-    self.headerView = [[PublishHeaderView alloc] init];
-    self.tableView.tableHeaderView = self.headerView;
+    [self reloadHeaderView];
     [self reloadFooterView:NO];
 }
 
 - (void)setModels {
     self.dataArray = [[NSMutableArray alloc] init];
     
-    NSArray *array1 = @[@"选择鸟种"];
+    NSMutableArray *array1 = [[NSMutableArray alloc] init];
+    PublishSelectModel *model01 = [[PublishSelectModel alloc] init];
+    model01.title = @"选择鸟种";
+    model01.isSelect = YES;
+    [array1 addObject:model01];
     [self.dataArray addObject:array1];
     
     //

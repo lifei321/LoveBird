@@ -22,6 +22,7 @@
         
         UIButton *lessButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(52), AutoSize6(52))];
         lessButton.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
+        [lessButton setImage:[UIImage imageNamed:@"pub_less_image"] forState:UIControlStateNormal];
         lessButton.layer.borderWidth = 1;
         lessButton.layer.cornerRadius = 3;
         [lessButton addTarget:self action:@selector(lessButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -31,7 +32,7 @@
         self.countLable.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
         self.countLable.layer.borderWidth = 1;
         self.countLable.layer.cornerRadius = 3;
-        self.countLable.text = @"1";
+        self.countLable.text = @"0";
         self.countLable.textAlignment = NSTextAlignmentCenter;
         self.countLable.textColor = [UIColor blackColor];
         self.countLable.font = kFont6(28);
@@ -39,6 +40,7 @@
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.countLable.right + AutoSize6(5), 0, AutoSize6(50), lessButton.height)];
         addButton.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
+        [addButton setImage:[UIImage imageNamed:@"pub_add_image"] forState:UIControlStateNormal];
         addButton.layer.borderWidth = 1;
         addButton.layer.cornerRadius = 3;
         [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -49,10 +51,26 @@
 
 - (void)lessButtonClick {
     
+    NSInteger count = self.countLable.text.integerValue;
+    if (count == 0) {
+        return;
+    }
+    count--;
+    self.countLable.text = [NSString stringWithFormat:@"%ld", count];
+    
+    if (self.lessblock) {
+        self.lessblock();
+    }
 }
 
 - (void)addButtonClick {
+    NSInteger count = self.countLable.text.integerValue;
     
+    count++;
+    self.countLable.text = [NSString stringWithFormat:@"%ld", count];
+    if (self.addblock) {
+        self.addblock();
+    }
 }
 
 @end

@@ -40,23 +40,42 @@
         [self.lessButton setImage:[UIImage imageNamed:@"pub_less_yes"] forState:UIControlStateSelected];
         [self.contentView addSubview:self.lessButton];
         
+        pview.lessblock = ^{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(publishSelectCellLessDelegate:)]) {
+                [self.delegate publishSelectCellLessDelegate:self];
+            }
+        };
         
+        pview.addblock = ^{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(publishSelectCellAddDelegate:)]) {
+                [self.delegate publishSelectCellAddDelegate:self];
+            }
+        };
     }
     return self;
 }
 
-- (void)setTitleText:(NSString *)titleText {
+- (void)setSelectModel:(PublishSelectModel *)selectModel {
+    _selectModel = selectModel;
     self.accessoryType = UITableViewCellStyleDefault;
-    if ([titleText isEqualToString:@"选择鸟种"]) {
+
+    if (selectModel.isSelect) {
         self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;
         self.lessButton.selected = YES;
+    } else {
+        self.lessButton.selected = NO;
     }
-    self.titleLabe.text = titleText;
+    self.titleLabe.text = selectModel.title;
 }
+
 
 - (void)lessButtonClick:(UIButton *)button {
     if (button.selected) {
         return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(publishSelectCellDeleteDelegate:)]) {
+        [self.delegate publishSelectCellDeleteDelegate:self];
     }
 }
 
