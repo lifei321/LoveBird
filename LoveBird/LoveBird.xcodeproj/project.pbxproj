@@ -73,6 +73,7 @@
 		0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA748B71F025F8200A8B33A /* AppWebViewController.m */; };
 		0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39020A2F5D7003283D1 /* ApplyTimePickerView.m */; };
 		0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39420A2F82E003283D1 /* AppDateManager.m */; };
+		0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */; };
 		0BDE653D1FBEE3B900C2C76F /* NSMutableDictionary+from.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */; };
 		0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653F1FBEE44D00C2C76F /* AppBaseTextField.m */; };
 		0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE65451FBEE5E900C2C76F /* AppBaseTableDataSource.m */; };
@@ -273,6 +274,8 @@
 		0BC2B39120A2F5D7003283D1 /* ApplyTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyTimePickerView.h; sourceTree = "<group>"; };
 		0BC2B39320A2F82E003283D1 /* AppDateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDateManager.h; sourceTree = "<group>"; };
 		0BC2B39420A2F82E003283D1 /* AppDateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDateManager.m; sourceTree = "<group>"; };
+		0BC2B39620A3F0DF003283D1 /* PublishBirdInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishBirdInfoModel.h; sourceTree = "<group>"; };
+		0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishBirdInfoModel.m; sourceTree = "<group>"; };
 		0BDE653B1FBEE3B800C2C76F /* NSMutableDictionary+from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+from.h"; sourceTree = "<group>"; };
 		0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+from.m"; sourceTree = "<group>"; };
 		0BDE653E1FBEE44D00C2C76F /* AppBaseTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBaseTextField.h; sourceTree = "<group>"; };
@@ -1286,6 +1289,8 @@
 				1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */,
 				1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */,
 				1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */,
+				0BC2B39620A3F0DF003283D1 /* PublishBirdInfoModel.h */,
+				0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1592,6 +1597,7 @@
 				0B317C821F0F6AFA00B01DDA /* AppBaseTableViewController.m in Sources */,
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
 				1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */,
+				0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */,
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,

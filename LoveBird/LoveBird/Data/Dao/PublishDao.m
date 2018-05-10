@@ -40,22 +40,25 @@
                  }];
 }
 
-+ (void)publish:(NSArray *)editModelArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)publish:(NSArray *)editModelArray
+       birdInfo:(NSArray *)birdArray
+   successBlock:(LFRequestSuccess)successBlock
+   failureBlock:(LFRequestFail)failureBlock {
+    
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    NSMutableArray *tempArray = [NSMutableArray new];
-    for (PublishEditModel *model in editModelArray) {
-        [tempArray addObject:[model toDictionary]];
-    }
-    [dic setObject:tempArray forKey:@"postList"];
-    [dic setObject:@"483887" forKey:@"birdInfo"];
-    [dic setObject:@"483887" forKey:@"environmentId"];
-    [dic setObject:@"483887" forKey:@"lat"];
-    [dic setObject:@"483887" forKey:@"lng"];
-    [dic setObject:@"483887" forKey:@"locale"];
-    [dic setObject:@"483887" forKey:@"observeTime"];
-    [dic setObject:@"483887" forKey:@"status"];
-    [dic setObject:@"483887" forKey:@"uid"];
-    NSDictionary *params = @{@"articleBody": @[dic]};
+    NSMutableDictionary *params = [NSMutableDictionary new];
+
+    [dic setObject:[JSONModel arrayOfDictionariesFromModels:editModelArray] forKey:@"postList"];
+    [params setObject:[@[dic] JSONString]forKey:@"articleBody"];
+    
+    [params setObject:[[JSONModel arrayOfDictionariesFromModels:birdArray] JSONString]forKey:@"birdInfo"];
+    [params setObject:@"483887" forKey:@"environmentId"];
+    [params setObject:@"483887" forKey:@"lat"];
+    [params setObject:@"483887" forKey:@"lng"];
+    [params setObject:@"483887" forKey:@"locale"];
+    [params setObject:@"483887" forKey:@"observeTime"];
+    [params setObject:@"483887" forKey:@"status"];
+    [params setObject:@"483887" forKey:@"uid"];
 
     [AppHttpManager POST:kAPI_Publish_Publish parameters:params jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {

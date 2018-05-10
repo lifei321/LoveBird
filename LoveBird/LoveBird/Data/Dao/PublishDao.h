@@ -17,7 +17,7 @@
 + (void)upLoad:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 
-+ (void)publish:(NSArray *)editModelArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)publish:(NSArray *)editModelArray birdInfo:(NSArray *)birdArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 
 @end

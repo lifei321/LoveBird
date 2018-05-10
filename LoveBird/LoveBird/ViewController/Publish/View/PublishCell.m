@@ -10,6 +10,8 @@
 #import "NSString+APP.h"
 #import "PublishAddView.h"
 #import "PublishAddTypeView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface PublishCell ()
 
@@ -134,8 +136,6 @@
 - (void)setEditModel:(PublishEditModel *)editModel {
     _editModel = editModel;
     
-    self.iconView.image = editModel.imageSelect;
-
     if (editModel.message.length) {
         self.birdButton.hidden = YES;
         self.titleLabe.text = editModel.message;
@@ -145,9 +145,11 @@
             height = AutoSize6(132);
         }
         self.titleLabe.height = height;
-        
+        self.iconView.image = [UIImage imageNamed:@"pub_textImage"];
+
     } else {
         self.birdButton.hidden = NO;
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:editModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_textImage"]];
     }
     
     self.upButton.selected = editModel.isFirst;

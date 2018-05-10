@@ -13,9 +13,9 @@
 
 @property (nonatomic, copy) NSString *birdClass;
 
-@property (nonatomic, strong) UIImage *imageSelect;
-
 @property (nonatomic, assign) BOOL isImg;
+
+@property (nonatomic, assign) BOOL isNewAid;
 
 @property (nonatomic, copy) NSString *aid;
 

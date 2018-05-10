@@ -18,12 +18,18 @@
 #import "PublishContenController.h"
 #import "ApplyTimePickerView.h"
 #import "PublishSelectModel.h"
+#import "PublishBirdInfoModel.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
+// tableview数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+// 保存选择的图片或者文字
 @property (nonatomic, strong) NSMutableArray *dataModelArray;
+
+// 鸟种
+@property (nonatomic, strong) NSMutableArray *birdInfoArray;
 
 @property (nonatomic, strong) PublishHeaderView *headerView;
 
@@ -45,13 +51,16 @@
 - (void)rightButtonAction {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [PublishDao publish:self.dataModelArray successBlock:^(__kindof AppBaseModel *responseObject) {
+    [PublishDao publish:self.dataModelArray birdInfo:self.birdInfoArray successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
         [self.dataArray removeAllObjects];
         self.dataArray = nil;
         [self.dataModelArray removeAllObjects];
         self.dataModelArray = nil;
+        [self.birdInfoArray removeAllObjects];
+        self.birdInfoArray = nil;
+        
         [self reloadHeaderView];
         [self reloadFooterView:NO];
         [self setModels];
@@ -147,6 +156,8 @@
 }
 
 #pragma mark-- PublishCell 代理
+
+// 关闭这一行
 - (void)publishCellCloseDelegate:(PublishCell *)cell  {
     [self.dataModelArray removeObject:cell.editModel];
     
@@ -156,6 +167,7 @@
     [self.tableView reloadData];
 }
 
+// 上移
 - (void)publishCellUpDelegate:(PublishCell *)cell {
     
     if (self.dataModelArray.count < 2) return;
@@ -174,6 +186,7 @@
     }
 }
 
+// 下移
 - (void)publishCellDownDelegate:(PublishCell *)cell {
     if (self.dataModelArray.count < 2) return;
     
@@ -191,14 +204,17 @@
     }
 }
 
+// 添加文字
 - (void)publishCellTextDelegate:(PublishCell *)cell {
     [self textViewClickDelegate];
 }
 
+// 添加图片
 - (void)publishCellImageDelegate:(PublishCell *)cell {
     [self imageViewClickDelegate];
 }
 
+// 显示 添加文字和图片
 - (void)publishCellAddDelegate:(PublishCell *)cell {
     PublishEditModel *model = cell.editModel;
     if (model.isShow) {
@@ -208,26 +224,27 @@
     [self.tableView reloadData];
 }
 
+// 删除鸟种
 - (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
-
+    
     
 }
 
+// 添加鸟种
 - (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell {
     
     if (cell.selectModel.isSelect) {
-        NSMutableArray *tempArray = self.dataArray[0];
         PublishSelectModel *model = [[PublishSelectModel alloc] init];
         model.title = @"选择鸟种";
         model.isSelect = NO;
-        [tempArray insertObject:model atIndex:0];
+        [self.birdInfoArray insertObject:model atIndex:0];
         [self.tableView reloadData];
     }
 }
 
+// 删除鸟种 这一行
 - (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
-    NSMutableArray *tempArray = self.dataArray[0];
-    [tempArray removeObject:cell.selectModel];
+    [self.birdInfoArray removeObject:cell.selectModel];
     [self.tableView reloadData];
 
 }
@@ -242,7 +259,6 @@
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
         model.message = contentString;
-        model.imageSelect = [UIImage imageNamed:@"pub_textImage"];
         model.isShow = NO;
         model.isImg = NO;
         [self.dataModelArray addObject:model];
@@ -319,11 +335,11 @@
         
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.imageSelect = iamge;
         model.isShow = NO;
         model.isImg = YES;
         model.imgUrl = upModel.imgUrl;
         model.aid = upModel.aid;
+        model.isNewAid = YES;
         [self.dataModelArray addObject:model];
         
         [self reloadFooterView:YES];
@@ -381,12 +397,12 @@
 - (void)setModels {
     self.dataArray = [[NSMutableArray alloc] init];
     
-    NSMutableArray *array1 = [[NSMutableArray alloc] init];
+    self.birdInfoArray = [[NSMutableArray alloc] init];
     PublishSelectModel *model01 = [[PublishSelectModel alloc] init];
     model01.title = @"选择鸟种";
     model01.isSelect = YES;
-    [array1 addObject:model01];
-    [self.dataArray addObject:array1];
+    [self.birdInfoArray addObject:model01];
+    [self.dataArray addObject:self.birdInfoArray];
     
     //
     NSMutableArray *array2 = [[NSMutableArray alloc] init];
