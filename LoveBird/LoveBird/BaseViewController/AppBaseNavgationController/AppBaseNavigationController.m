@@ -34,7 +34,7 @@
     [super viewDidLoad];
 }
 
--(id)initWithRootViewController:(UIViewController *)rootViewController{
+-(id)initWithRootViewController:(UIViewController *)rootViewController {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
         [self.navigationBar setBackgroundImage:kLFNavigationBarBackgroundImageBlue forBarMetrics:UIBarMetricsDefault];

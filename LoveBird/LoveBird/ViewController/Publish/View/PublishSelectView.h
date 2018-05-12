@@ -15,5 +15,10 @@
 
 @property (nonatomic, strong) PublishCellBlock addblock;
 
+@property (nonatomic, assign) BOOL isSelect;
+
+@property (nonatomic, strong) UILabel *countLable;
+
+
 
 @end

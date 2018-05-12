@@ -27,6 +27,10 @@
     self.textView.limitCount = 100000;
     [self.view addSubview:self.textView];
     
+    if (self.text.length) {
+        self.textView.text = self.text;
+    }
+    
 }
 
 - (void)setNavigation {

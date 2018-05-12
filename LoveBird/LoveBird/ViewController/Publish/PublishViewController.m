@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) PublishFooterView *footerView;
 
+// 显示添加 的model
+@property (nonatomic, strong) PublishEditModel *selectEditModel;
 @end
 
 @implementation PublishViewController
@@ -121,6 +123,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // 选择鸟种
+    if (indexPath.section == 0) {
+        
+        return;
+    }
+    
     if ((indexPath.section == 1) && (indexPath.row == 0)) {
         ApplyTimePickerView *pickerView = [[ApplyTimePickerView alloc] initWithFrame:self.view.bounds];
         @weakify(self)
@@ -135,6 +143,18 @@
             }
         };
         [self.view addSubview:pickerView];
+        return;
+    }
+    
+    if (indexPath.section == 2) {
+        PublishEditModel *model = self.dataModelArray[indexPath.row];
+        if (model.message.length) { // 如果是文字类型的可编辑
+            PublishContenController *contentVC = [[PublishContenController alloc] init];
+            contentVC.text = model.message;
+            [self.navigationController pushViewController:contentVC animated:YES];
+        }
+        
+        return;
     }
 }
 
@@ -206,12 +226,12 @@
 
 // 添加文字
 - (void)publishCellTextDelegate:(PublishCell *)cell {
-    [self textViewClickDelegate];
+    [self textViewClickDelegate:cell.editModel];
 }
 
 // 添加图片
 - (void)publishCellImageDelegate:(PublishCell *)cell {
-    [self imageViewClickDelegate];
+    [self imageViewClickDelegate:cell.editModel];
 }
 
 // 显示 添加文字和图片
@@ -224,44 +244,59 @@
     [self.tableView reloadData];
 }
 
-// 删除鸟种
+// 减少鸟的数量
 - (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
     
-    
+    PublishSelectModel *model = cell.selectModel;
+    model.count --;
 }
 
-// 添加鸟种
+// 添加鸟种 添加鸟的数量
 - (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell {
     
     if (cell.selectModel.isSelect) {
-        PublishSelectModel *model = [[PublishSelectModel alloc] init];
-        model.title = @"选择鸟种";
-        model.isSelect = NO;
-        [self.birdInfoArray insertObject:model atIndex:0];
+        PublishSelectModel *model = self.birdInfoArray.lastObject;
+        model.count++;
+        
+        PublishSelectModel *modeladd = [[PublishSelectModel alloc] init];
+        modeladd.title = @"选择鸟种";
+        modeladd.isSelect = NO;
+        modeladd.count = 1;
+        [self.birdInfoArray insertObject:modeladd atIndex:0];
         [self.tableView reloadData];
+    } else {
+        PublishSelectModel *model = cell.selectModel;
+        model.count ++;
     }
 }
 
 // 删除鸟种 这一行
 - (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
+    
+    PublishSelectModel *model = self.birdInfoArray.lastObject;
+    model.count--;
+    
     [self.birdInfoArray removeObject:cell.selectModel];
     [self.tableView reloadData];
 
 }
 
 #pragma mark-- footerview 选择图片 添加文字 代理
-- (void)textViewClickDelegate {
+- (void)textViewClickDelegate:(PublishEditModel *)model {
     PublishContenController *contentvc = [[PublishContenController alloc] init];
     @weakify(self);
+    @weakify(model);
     contentvc.contentblock = ^(NSString *contentString) {
         @strongify(self);
-        
+        @strongify(model);
         // 设置数据
-        PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.message = contentString;
+        PublishEditModel *modeladd = [[PublishEditModel alloc] init];
+        modeladd.message = contentString;
+        modeladd.isShow = NO;
+        modeladd.isImg = NO;
+        [self.dataModelArray addObject:modeladd];
+        
         model.isShow = NO;
-        model.isImg = NO;
-        [self.dataModelArray addObject:model];
         [self reloadFooterView:YES];
         [self.tableView reloadData];
     };
@@ -269,8 +304,8 @@
     [self.navigationController pushViewController:contentvc animated:YES];
 }
 
-- (void)imageViewClickDelegate {
-    
+- (void)imageViewClickDelegate:(PublishEditModel *)model {
+    self.selectEditModel = model;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择照片"
                                                             delegate:self
                                                    cancelButtonTitle:@"取消"
@@ -331,6 +366,8 @@
         if (self.headerView.headerImageView.image == nil) {
             self.headerView.headerImageView.image = iamge;
         }
+        
+        self.selectEditModel.isShow = NO;
         PublishUpModel *upModel = (PublishUpModel *)responseObject;
         
         // 设置数据
@@ -377,11 +414,21 @@
     self.navigationItem.title = @"编辑";
     self.rightButton.title = @"完成";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+    
+    [self.leftButton setImage:[UIImage imageNamed:@"nav_close_black"]];
 }
 
+- (void)leftButtonAction {
+    if (self.viewControllerActionBlock) {
+        self.viewControllerActionBlock(self, nil);
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
 - (void)setTableView {
     
     self.tableView.top = total_topView_height;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -401,6 +448,7 @@
     PublishSelectModel *model01 = [[PublishSelectModel alloc] init];
     model01.title = @"选择鸟种";
     model01.isSelect = YES;
+    model01.count = 0;
     [self.birdInfoArray addObject:model01];
     [self.dataArray addObject:self.birdInfoArray];
     

@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) UIButton *lessButton;
 
+@property (nonatomic, strong) PublishSelectView *selectView;
+
+
 @end
 
 @implementation PublishSelectCell
@@ -31,22 +34,25 @@
         [self.contentView addSubview:self.titleLabe];
         
         
-        PublishSelectView *pview = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(310), AutoSize6(30), AutoSize6(220), AutoSize6(112))];
-        [self.contentView addSubview:pview];
+        _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(310), AutoSize6(30), AutoSize6(220), AutoSize6(112))];
+        [self.contentView addSubview:_selectView];
         
-        self.lessButton = [[UIButton alloc] initWithFrame:CGRectMake(pview.right, AutoSize6(30), AutoSize6(52), AutoSize6(52))];
+        self.lessButton = [[UIButton alloc] initWithFrame:CGRectMake(_selectView.right, AutoSize6(30), AutoSize6(52), AutoSize6(52))];
         [self.lessButton addTarget:self action:@selector(lessButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.lessButton setImage:[UIImage imageNamed:@"pub_less_no"] forState:UIControlStateNormal];
         [self.lessButton setImage:[UIImage imageNamed:@"pub_less_yes"] forState:UIControlStateSelected];
         [self.contentView addSubview:self.lessButton];
         
-        pview.lessblock = ^{
+        @weakify(self);
+        _selectView.lessblock = ^{
+            @strongify(self);
             if (self.delegate && [self.delegate respondsToSelector:@selector(publishSelectCellLessDelegate:)]) {
                 [self.delegate publishSelectCellLessDelegate:self];
             }
         };
         
-        pview.addblock = ^{
+        _selectView.addblock = ^{
+            @strongify(self);
             if (self.delegate && [self.delegate respondsToSelector:@selector(publishSelectCellAddDelegate:)]) {
                 [self.delegate publishSelectCellAddDelegate:self];
             }
@@ -58,6 +64,8 @@
 - (void)setSelectModel:(PublishSelectModel *)selectModel {
     _selectModel = selectModel;
     self.accessoryType = UITableViewCellStyleDefault;
+    _selectView.isSelect = selectModel.isSelect;
+    _selectView.countLable.text = [NSString stringWithFormat:@"%ld", selectModel.count];
 
     if (selectModel.isSelect) {
         self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;

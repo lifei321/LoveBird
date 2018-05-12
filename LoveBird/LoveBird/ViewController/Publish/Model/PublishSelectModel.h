@@ -15,4 +15,8 @@
 // 是否是 选择
 @property (nonatomic, assign) BOOL isSelect;
 
+// 数量
+@property (nonatomic, assign) NSInteger count;
+
+
 @end

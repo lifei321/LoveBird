@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PublishEditModel.h"
+
 
 @protocol PublishFooterViewDelegate<NSObject>
 
-- (void)textViewClickDelegate;
+- (void)textViewClickDelegate:(PublishEditModel *)model;
 
-- (void)imageViewClickDelegate;
+- (void)imageViewClickDelegate:(PublishEditModel *)model;
 
 
 @end

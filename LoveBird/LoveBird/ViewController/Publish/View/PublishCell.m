@@ -152,8 +152,8 @@
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:editModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_textImage"]];
     }
     
-    self.upButton.selected = editModel.isFirst;
-    self.downButton.selected = editModel.isLast;
+    self.upButton.hidden = editModel.isFirst;
+    self.downButton.hidden = editModel.isLast;
     
     self.addView.hidden = !editModel.isShow;
     self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);

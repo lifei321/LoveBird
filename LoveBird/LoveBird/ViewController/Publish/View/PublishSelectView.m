@@ -10,7 +10,6 @@
 
 @interface PublishSelectView ()
 
-@property (nonatomic, strong) UILabel *countLable;
 
 @end
 
@@ -20,6 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        _isSelect = NO;
         UIButton *lessButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(52), AutoSize6(52))];
         lessButton.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
         [lessButton setImage:[UIImage imageNamed:@"pub_less_image"] forState:UIControlStateNormal];
@@ -32,7 +32,7 @@
         self.countLable.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
         self.countLable.layer.borderWidth = 1;
         self.countLable.layer.cornerRadius = 3;
-        self.countLable.text = @"0";
+        self.countLable.text = @"1";
         self.countLable.textAlignment = NSTextAlignmentCenter;
         self.countLable.textColor = [UIColor blackColor];
         self.countLable.font = kFont6(28);
@@ -52,9 +52,16 @@
 - (void)lessButtonClick {
     
     NSInteger count = self.countLable.text.integerValue;
-    if (count == 0) {
-        return;
+    if (_isSelect) {
+        if (count == 0) {
+            return;
+        }
+    } else {
+        if (count == 1) {
+            return;
+        }
     }
+
     count--;
     self.countLable.text = [NSString stringWithFormat:@"%ld", count];
     

@@ -126,6 +126,7 @@
 		1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECC20A1E563002F71B4 /* PublishAddView.m */; };
 		1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */; };
 		1F676ED320A32F1B002F71B4 /* PublishSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */; };
+		1F676ED920A72440002F71B4 /* AppTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ED820A72440002F71B4 /* AppTabBar.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -381,6 +382,8 @@
 		1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddTypeView.m; sourceTree = "<group>"; };
 		1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectModel.h; sourceTree = "<group>"; };
 		1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectModel.m; sourceTree = "<group>"; };
+		1F676ED720A72440002F71B4 /* AppTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTabBar.h; sourceTree = "<group>"; };
+		1F676ED820A72440002F71B4 /* AppTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTabBar.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 			children = (
 				0B317C7A1F0F5C1800B01DDA /* AppTabBarController.h */,
 				0B317C7B1F0F5C1800B01DDA /* AppTabBarController.m */,
+				1F676ED720A72440002F71B4 /* AppTabBar.h */,
+				1F676ED820A72440002F71B4 /* AppTabBar.m */,
 			);
 			path = AppTabBarController;
 			sourceTree = "<group>";
@@ -1596,6 +1601,7 @@
 				0B72932B1EFA556A00D1B1EB /* AppBaseViewController.m in Sources */,
 				0B317C821F0F6AFA00B01DDA /* AppBaseTableViewController.m in Sources */,
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
+				1F676ED920A72440002F71B4 /* AppTabBar.m in Sources */,
 				1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */,
 				0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */,
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,

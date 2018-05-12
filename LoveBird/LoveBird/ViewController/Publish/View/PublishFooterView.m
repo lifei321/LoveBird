@@ -23,14 +23,14 @@
 }
 
 - (void)textViewDidClick {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(textViewClickDelegate)]) {
-        [self.delegate textViewClickDelegate];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(textViewClickDelegate:)]) {
+        [self.delegate textViewClickDelegate:nil];
     }
 }
 
 - (void)imageViewDidClick {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewClickDelegate)]) {
-        [self.delegate imageViewClickDelegate];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewClickDelegate:)]) {
+        [self.delegate imageViewClickDelegate:nil];
     }
 }
 

@@ -13,4 +13,6 @@ typedef void(^PublishContentBlock)(NSString *contentString);
 
 @property (nonatomic, strong) PublishContentBlock contentblock;
 
+@property (nonatomic, copy) NSString *text;
+
 @end

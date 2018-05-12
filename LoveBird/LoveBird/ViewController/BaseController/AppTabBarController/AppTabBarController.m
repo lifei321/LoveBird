@@ -8,6 +8,7 @@
 
 #import "AppTabBarController.h"
 #import "AppBaseNavigationController.h"
+#import "AppTabBar.h"
 
 #import "DiscoverViewController.h"
 #import "MineViewController.h"
@@ -18,6 +19,8 @@
 
 
 @interface AppTabBarController ()<UITabBarControllerDelegate>
+
+@property (nonatomic, assign) NSInteger selectedItem;
 
 @end
 
@@ -36,6 +39,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.selectedItem = 0;
     
     //公共的导航控制器
     self.commonNavControllerClass = [AppBaseNavigationController class];
@@ -81,13 +86,30 @@
 
 #pragma mark --UITabBarControllerDelegate
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+
+    if (tabBarController.selectedIndex == 2) {
+        PublishViewController *pubvc = [[PublishViewController alloc] init];
+        @weakify(self);
+        pubvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            @strongify(self);
+            self.selectedIndex = self.selectedItem;
+        };
+        [kViewController presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:pubvc] animated:NO completion:nil];
+        return;
+    } else {
+        self.selectedItem = self.selectedIndex;
+    }
+}
+
 /**
  *  在点击tabbarButton的时候调用
  */
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(nonnull UIViewController *)viewController {
-    
-//    LoginViewController *loginVC = [[LoginViewController alloc] init];
-//    [kViewController presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:loginVC] animated:YES completion:nil];
+    if (tabBarController.selectedIndex == 2) {
+        return NO;
+    }
+
     return YES;
 }
 
