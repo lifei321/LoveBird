@@ -35,5 +35,7 @@
 
 @property (nonatomic, assign) BOOL isLast;
 
+// 首行
+@property (nonatomic, assign) BOOL isZero;
 
 @end

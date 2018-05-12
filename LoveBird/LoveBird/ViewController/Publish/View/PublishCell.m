@@ -15,6 +15,9 @@
 
 @interface PublishCell ()
 
+@property (nonatomic, strong) UIView *backView;
+
+
 @property (nonatomic, strong) UIImageView *iconView;
 
 @property (nonatomic, strong) UILabel *titleLabe;
@@ -44,6 +47,7 @@
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(20), AutoSize6(14), SCREEN_WIDTH - AutoSize6(40), AutoSize6(260))];
         backView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:backView];
+        self.backView = backView;
         
         UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(-AutoSize6(12), -AutoSize6(12), AutoSize6(42), AutoSize6(42))];
         [closeButton setImage:[UIImage imageNamed:@"pub_close"] forState:UIControlStateNormal];
@@ -136,7 +140,7 @@
 - (void)setEditModel:(PublishEditModel *)editModel {
     _editModel = editModel;
     
-    if (editModel.message.length) {
+    if (editModel.message.length) { // 文本信息
         self.birdButton.hidden = YES;
         self.titleLabe.text = editModel.message;
 
@@ -147,7 +151,7 @@
         self.titleLabe.height = height;
         self.iconView.image = [UIImage imageNamed:@"pub_textImage"];
 
-    } else {
+    } else { // 图片信息
         self.birdButton.hidden = NO;
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:editModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_textImage"]];
     }
@@ -155,8 +159,16 @@
     self.upButton.hidden = editModel.isFirst;
     self.downButton.hidden = editModel.isLast;
     
+    self.backView.hidden = editModel.isZero;
     self.addView.hidden = !editModel.isShow;
-    self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);
+    
+    if (editModel.isZero) {
+        self.addView.top = (editModel.isShow) ? 0 : 0;
+        self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : 0;
+    } else {
+        self.addView.top = self.backView.bottom;
+        self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);
+    }
 }
 
 @end

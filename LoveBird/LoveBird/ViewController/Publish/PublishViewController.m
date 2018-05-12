@@ -101,11 +101,17 @@
         
         model.isLast = NO;
         model.isFirst = NO;
-        if (self.dataModelArray.count == 1) {
-            model.isFirst = YES;
-            model.isLast = YES;
+        
+        // 判断首行 和 尾行
+        if (self.dataModelArray.count <= 2) {
+            if (indexPath.row == 1) {
+                model.isFirst = YES;
+                model.isLast = YES;
+            } else if (indexPath.row == 0) {
+                model.isZero = YES;
+            }
         } else {
-            if (indexPath.row == 0) {
+            if (indexPath.row == 1) {
                 model.isFirst = YES;
                 model.isLast = NO;
             }  else if (indexPath.row == (self.dataModelArray.count - 1)) {
@@ -168,10 +174,10 @@
     }
     
     PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
-    if (model.isShow) {
-        return AutoSize6(428);
+    if (indexPath.row == 0) {
+        return model.isShow ? AutoSize6(154) : AutoSize6(74);
     } else {
-        return AutoSize6(344);
+        return model.isShow ? AutoSize6(428): AutoSize6(344);
     }
 }
 
@@ -181,7 +187,8 @@
 - (void)publishCellCloseDelegate:(PublishCell *)cell  {
     [self.dataModelArray removeObject:cell.editModel];
     
-    if (self.dataModelArray.count == 0) {
+    if (self.dataModelArray.count == 1) {
+        [self.dataModelArray removeAllObjects];
         [self reloadFooterView:NO];
     }
     [self.tableView reloadData];
@@ -290,6 +297,10 @@
         @strongify(self);
         @strongify(model);
         // 设置数据
+        
+        // 添加第一行
+        [self adFirstObject];
+        
         PublishEditModel *modeladd = [[PublishEditModel alloc] init];
         modeladd.message = contentString;
         modeladd.isShow = NO;
@@ -327,6 +338,16 @@
         [self.dataModelArray addObject:model];
     } else {
         [self.dataModelArray insertObject:model atIndex:(index + 1)];
+    }
+}
+
+- (void)adFirstObject {
+    if (self.dataModelArray.count == 0) {
+        PublishEditModel *modeladd = [[PublishEditModel alloc] init];
+        modeladd.isShow = NO;
+        modeladd.isImg = NO;
+        modeladd.isZero = YES;
+        [self.dataModelArray addObject:modeladd];
     }
 }
 
@@ -385,6 +406,9 @@
         
         self.selectEditModel.isShow = NO;
         PublishUpModel *upModel = (PublishUpModel *)responseObject;
+        
+        // 添加第一行
+        [self adFirstObject];
         
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
