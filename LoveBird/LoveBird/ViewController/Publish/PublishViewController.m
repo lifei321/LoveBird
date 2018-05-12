@@ -294,7 +294,7 @@
         modeladd.message = contentString;
         modeladd.isShow = NO;
         modeladd.isImg = NO;
-        [self.dataModelArray addObject:modeladd];
+        [self getIndex:modeladd selectModel:model];
         
         model.isShow = NO;
         [self reloadFooterView:YES];
@@ -312,6 +312,22 @@
                                               destructiveButtonTitle:nil
                                                    otherButtonTitles:@"拍照", @"相册", nil];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+// 获得在数组中次序
+- (void)getIndex:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
+    NSInteger index = 0;
+    for (int i = 0; i < self.dataModelArray.count; i++ ) {
+        if (selectModel == self.dataModelArray[i]) {
+            index = i;
+            break;
+        }
+    }
+    if ((self.dataModelArray.count == 0) || (index == (self.dataModelArray.count - 1))) {
+        [self.dataModelArray addObject:model];
+    } else {
+        [self.dataModelArray insertObject:model atIndex:(index + 1)];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -377,8 +393,8 @@
         model.imgUrl = upModel.imgUrl;
         model.aid = upModel.aid;
         model.isNewAid = YES;
-        [self.dataModelArray addObject:model];
-        
+        [self getIndex:model selectModel:self.selectEditModel];
+
         [self reloadFooterView:YES];
         [self.tableView reloadData];
         
