@@ -16,8 +16,9 @@
 // 上传图片
 + (void)upLoad:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-
+// 发布
 + (void)publish:(NSArray *)editModelArray birdInfo:(NSArray *)birdArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-
+// 获取生态环境
++ (void)getEVSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

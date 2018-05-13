@@ -10,6 +10,7 @@
 #import "AppApi.h"
 #import "PublishUpModel.h"
 #import <JSONKit_NoWarning/JSONKit.h>
+#import "PublishEVModel.h"
 
 @implementation PublishDao
 
@@ -71,4 +72,22 @@
         }
     }];
 }
+
+
+// 获取生态环境
++ (void)getEVSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    
+    [AppHttpManager GET:kAPI_Publish_GetEV parameters:dic jsonModelName:[PublishEVDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 @end

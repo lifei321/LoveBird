@@ -67,7 +67,7 @@
         
         self.fromDateString = @"1900-01-01";
         self.toDateString = [[AppDateManager shareManager] getDateWithNSDate:[NSDate date] formatSytle:DateFormatYMD];
-        self.currentDateString = @"2010-01-01";
+        self.currentDateString = self.toDateString;
         
         self.fromDate = [self dateFromString:self.fromDateString];
         self.toDate = [self dateFromString:self.toDateString];
@@ -86,19 +86,20 @@
     NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents * conponent = [cal components:unitFlags fromDate:[self dateFromString:self.currentDateString]];
     NSInteger month = [conponent month];
-    
+    NSInteger day = [conponent day];
+
     NSDateComponents * comCenter = [cal components:unitFlags fromDate:self.fromDate toDate:[self dateFromString:self.currentDateString] options:0];
     
     [self.pickerView selectRow:comCenter.year inComponent:0 animated:YES];
     [self.pickerView selectRow:month - 1 inComponent:1 animated:YES];
-//    [self.pickerView selectRow:day - 1 inComponent:2 animated:YES];
+    [self.pickerView selectRow:day - 1 inComponent:2 animated:YES];
 }
 
 
 - (void)DoneClick {
     if (self.handler) {
         if (self.selectDateString.length == 0) {
-            self.selectDateString = @"2010-01";
+            self.selectDateString = self.toDateString;
         }
         self.handler(self, self.selectDateString);
     }
@@ -111,7 +112,8 @@
 
 #pragma mark -- UIPickerViewDelegate,UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
+//    return 2;
+    return 3;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -158,7 +160,8 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     
-    return AutoSize(295) / 2;
+//    return AutoSize(295) / 2;
+    return AutoSize(295) / 3;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
@@ -217,7 +220,9 @@
         [self.pickerView selectRow:comEnd.month-1 inComponent:1 animated:YES];
     }
     
-    self.selectDateString  = [NSString stringWithFormat:@"%ld-%02ld",(long)comFrom.year + (long)[self.pickerView selectedRowInComponent:0],(long)[self.pickerView selectedRowInComponent:1] + 1];
+//    self.selectDateString  = [NSString stringWithFormat:@"%ld-%02ld",(long)comFrom.year + (long)[self.pickerView selectedRowInComponent:0],(long)[self.pickerView selectedRowInComponent:1] + 1];
+    self.selectDateString  = [NSString stringWithFormat:@"%ld-%02ld-%02ld",(long)comFrom.year + (long)[self.pickerView selectedRowInComponent:0],(long)[self.pickerView selectedRowInComponent:1] + 1, (long)[self.pickerView selectedRowInComponent:2] + 1];
+    
     self.selectYearString = [NSString stringWithFormat:@"%ld", (long)comFrom.year + (long)[self.pickerView selectedRowInComponent:0]];
     [pickerView reloadAllComponents];
 }

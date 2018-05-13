@@ -121,6 +121,9 @@
  */
 #define kAPI_Publish_Publish kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=saveBirdArticle")
 
-
+/**
+ *  获取升天环境
+ */
+#define kAPI_Publish_GetEV kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=environmentList")
 
 #endif /* AppApi_h */

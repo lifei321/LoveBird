@@ -19,6 +19,8 @@
 #import "ApplyTimePickerView.h"
 #import "PublishSelectModel.h"
 #import "PublishBirdInfoModel.h"
+#import "PublishEVController.h"
+#import "PublishEVModel.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
@@ -37,6 +39,10 @@
 
 // 显示添加 的model
 @property (nonatomic, strong) PublishEditModel *selectEditModel;
+
+// 生态环境
+@property (nonatomic, strong) PublishEVModel *selectEVModel;
+
 @end
 
 @implementation PublishViewController
@@ -149,6 +155,23 @@
             }
         };
         [self.view addSubview:pickerView];
+        return;
+    }
+    
+    // 生态环境
+    if ((indexPath.section == 1) && (indexPath.row == 2)) {
+        PublishEVController *evvc = [[PublishEVController alloc] init];
+        evvc.selectEVModel = self.selectEVModel;
+        @weakify(self);
+        evvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            @strongify(self);
+            self.selectEVModel = (PublishEVModel *)userInfo;
+            
+            PublishDetailModel *model = self.dataArray[indexPath.section][indexPath.row];
+            model.detailString = self.selectEVModel.name;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:evvc animated:YES];
         return;
     }
     
@@ -454,7 +477,8 @@
     self.navigationItem.title = @"编辑";
     self.rightButton.title = @"完成";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
-    
+    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
+
     [self.leftButton setImage:[UIImage imageNamed:@"nav_close_black"]];
 }
 
