@@ -22,6 +22,7 @@
 #import "PublishEVModel.h"
 #import "PublishSelectBirdController.h"
 #import "FindSelectBirdModel.h"
+#import "AppDateManager.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
@@ -154,6 +155,9 @@
             @weakify(self);
             selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
                 @strongify(self);
+                FindSelectBirdModel *model = self.birdInfoArray.lastObject;
+                model.count++;
+                
                 FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
                 birdModel.isSelect = NO;
                 birdModel.count = 1;
@@ -574,6 +578,9 @@
     
     self.dataModelArray = [[NSMutableArray alloc] init];
     [self.dataArray addObject:self.dataModelArray];
+    
+    self.selectTime = [[AppDateManager shareManager] getDateWithNSDate:[NSDate date] formatSytle:DateFormatYMD];
+
 }
 
 @end

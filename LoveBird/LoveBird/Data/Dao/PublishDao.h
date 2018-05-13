@@ -18,7 +18,7 @@
 
 // 发布
 + (void)publish:(NSArray *)editModelArray
-       birdInfo:(NSArray *)birdArray
+       birdInfo:(NSMutableArray *)birdArray
            evId:(NSString *)evId
        loaction:(NSString *)location
            time:(NSString *)time

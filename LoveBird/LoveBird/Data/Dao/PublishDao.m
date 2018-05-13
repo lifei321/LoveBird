@@ -42,7 +42,7 @@
 }
 
 + (void)publish:(NSArray *)editModelArray
-       birdInfo:(NSArray *)birdArray
+       birdInfo:(NSMutableArray *)birdArray
            evId:(NSString *)evId
        loaction:(NSString *)location
            time:(NSString *)time
@@ -56,7 +56,8 @@
 
     [dic setObject:[JSONModel arrayOfDictionariesFromModels:editModelArray] forKey:@"postList"];
     [params setObject:[@[dic] JSONString]forKey:@"articleBody"];
-    
+
+    [birdArray removeLastObject];
     [params setObject:[[JSONModel arrayOfDictionariesFromModels:birdArray] JSONString]forKey:@"birdInfo"];
     [params setObject:EMPTY_STRING_IF_NIL(evId) forKey:@"environmentId"];
     [params setObject:@"483887" forKey:@"lat"];
@@ -64,8 +65,8 @@
     [params setObject:@"483887" forKey:@"locale"];
     [params setObject:EMPTY_STRING_IF_NIL(time) forKey:@"observeTime"];
     [params setObject:EMPTY_STRING_IF_NIL(status) forKey:@"status"];
-    [params setObject:@"483887" forKey:@"uid"];
     [params setObject:EMPTY_STRING_IF_NIL(title) forKey:@"title"];
+    [params setObject:@"483887" forKey:@"uid"];
 
     [AppHttpManager POST:kAPI_Publish_Publish parameters:params jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {

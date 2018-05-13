@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "547914273.4681849"
+            timestampString = "547914750.500841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "314"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "547914273.4684989"
+            timestampString = "547914750.5015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "547914273.4685611"
+            timestampString = "547914750.501707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "281"
@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "547914273.46861"
+            timestampString = "547914750.501842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -83,14 +83,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/ViewController/Publish/Controller/PublishSelectBirdController.m"
-            timestampString = "547914273.46866"
+            filePath = "LoveBird/LoveBird/Data/Dao/PublishDao.m"
+            timestampString = "547914750.502005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-rightButtonAction"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "+publish:birdInfo:evId:loaction:time:status:title:successBlock:failureBlock:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[PublishDao publish:birdInfo:evId:loaction:time:status:title:successBlock:failureBlock:]"
+                  moduleName = "LoveBird"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
+                  timestampString = "547914750.6357909"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__89+[PublishDao publish:birdInfo:evId:loaction:time:status:title:successBlock:failureBlock:]_block_invoke"
+                  moduleName = "LoveBird"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
+                  timestampString = "547914750.6381249"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.70"
+                  moduleName = "LoveBird"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
+                  timestampString = "547914750.64034"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
