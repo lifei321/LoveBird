@@ -108,6 +108,13 @@
  */
 #define kAPI_Find_Bird_family kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchFamily")
 
+/**
+ *  查鸟 关键字
+ */
+#define kAPI_Find_Bird_SearchBird kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchBird")
+
+
+
 #pragma mark-- 发布
 
 /**

@@ -17,8 +17,17 @@
 + (void)upLoad:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 发布
-+ (void)publish:(NSArray *)editModelArray birdInfo:(NSArray *)birdArray successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)publish:(NSArray *)editModelArray
+       birdInfo:(NSArray *)birdArray
+           evId:(NSString *)evId
+       loaction:(NSString *)location
+           time:(NSString *)time
+         status:(NSString *)status
+          title:(NSString *)title
+   successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 获取生态环境
 + (void)getEVSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
 @end

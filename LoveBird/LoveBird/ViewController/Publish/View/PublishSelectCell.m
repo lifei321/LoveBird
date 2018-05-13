@@ -27,12 +27,11 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        self.titleLabe = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(150), AutoSize6(112))];
+        self.titleLabe = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(300), AutoSize6(112))];
         self.titleLabe.textColor = [UIColor blackColor];
         self.titleLabe.textAlignment = NSTextAlignmentLeft;
         self.titleLabe.font = kFont6(30);
         [self.contentView addSubview:self.titleLabe];
-        
         
         _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(310), AutoSize6(30), AutoSize6(220), AutoSize6(112))];
         [self.contentView addSubview:_selectView];
@@ -61,7 +60,7 @@
     return self;
 }
 
-- (void)setSelectModel:(PublishSelectModel *)selectModel {
+- (void)setSelectModel:(FindSelectBirdModel *)selectModel {
     _selectModel = selectModel;
     self.accessoryType = UITableViewCellStyleDefault;
     _selectView.isSelect = selectModel.isSelect;
@@ -72,8 +71,13 @@
         self.lessButton.selected = YES;
     } else {
         self.lessButton.selected = NO;
+        if ([selectModel.name isEqualToString:@"选择鸟种"]) {
+            self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;
+        } else {
+            self.titleLabe.textColor = [UIColor blackColor];
+        }
     }
-    self.titleLabe.text = selectModel.title;
+    self.titleLabe.text = selectModel.name;
 }
 
 

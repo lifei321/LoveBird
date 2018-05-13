@@ -7,7 +7,7 @@
 //
 
 #import "AppBaseTableViewCell.h"
-#import "PublishSelectModel.h"
+#import "FindSelectBirdModel.h"
 
 @class PublishSelectCell;
 @protocol PublishSelectDelegate<NSObject>
@@ -23,7 +23,7 @@
 
 @interface PublishSelectCell : AppBaseTableViewCell
 
-@property (nonatomic, strong) PublishSelectModel *selectModel;
+@property (nonatomic, strong) FindSelectBirdModel *selectModel;
 
 @property (nonatomic, weak) id<PublishSelectDelegate>delegate;
 

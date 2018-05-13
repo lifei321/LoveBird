@@ -10,7 +10,7 @@
 
 @interface UserFriendListModel : AppBaseModel
 
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, copy) NSArray *data;
 
 @end
 

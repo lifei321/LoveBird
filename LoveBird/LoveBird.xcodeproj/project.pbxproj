@@ -125,11 +125,14 @@
 		1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EC920A0B26E002F71B4 /* PublishContenController.m */; };
 		1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECC20A1E563002F71B4 /* PublishAddView.m */; };
 		1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */; };
-		1F676ED320A32F1B002F71B4 /* PublishSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */; };
 		1F676ED920A72440002F71B4 /* AppTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676ED820A72440002F71B4 /* AppTabBar.m */; };
 		1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EDB20A7D994002F71B4 /* AppTagsView.m */; };
 		1F676EDF20A7DAE7002F71B4 /* PublishEVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EDE20A7DAE7002F71B4 /* PublishEVController.m */; };
 		1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EE220A7DC6F002F71B4 /* PublishEVModel.m */; };
+		1F676EE620A8046D002F71B4 /* PublishSelectBirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EE520A8046D002F71B4 /* PublishSelectBirdController.m */; };
+		1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EE920A80910002F71B4 /* PublishSelectBirdCell.m */; };
+		1F676EED20A85E2C002F71B4 /* FindDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EEC20A85E2C002F71B4 /* FindDao.m */; };
+		1F676EF120A85F8F002F71B4 /* FindSelectBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EF020A85F8F002F71B4 /* FindSelectBirdModel.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -383,8 +386,6 @@
 		1F676ECC20A1E563002F71B4 /* PublishAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddView.m; sourceTree = "<group>"; };
 		1F676ECE20A1EF04002F71B4 /* PublishAddTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishAddTypeView.h; sourceTree = "<group>"; };
 		1F676ECF20A1EF04002F71B4 /* PublishAddTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishAddTypeView.m; sourceTree = "<group>"; };
-		1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectModel.h; sourceTree = "<group>"; };
-		1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectModel.m; sourceTree = "<group>"; };
 		1F676ED720A72440002F71B4 /* AppTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTabBar.h; sourceTree = "<group>"; };
 		1F676ED820A72440002F71B4 /* AppTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTabBar.m; sourceTree = "<group>"; };
 		1F676EDA20A7D994002F71B4 /* AppTagsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTagsView.h; sourceTree = "<group>"; };
@@ -393,6 +394,14 @@
 		1F676EDE20A7DAE7002F71B4 /* PublishEVController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishEVController.m; sourceTree = "<group>"; };
 		1F676EE120A7DC6F002F71B4 /* PublishEVModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishEVModel.h; sourceTree = "<group>"; };
 		1F676EE220A7DC6F002F71B4 /* PublishEVModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishEVModel.m; sourceTree = "<group>"; };
+		1F676EE420A8046D002F71B4 /* PublishSelectBirdController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectBirdController.h; sourceTree = "<group>"; };
+		1F676EE520A8046D002F71B4 /* PublishSelectBirdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectBirdController.m; sourceTree = "<group>"; };
+		1F676EE820A80910002F71B4 /* PublishSelectBirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishSelectBirdCell.h; sourceTree = "<group>"; };
+		1F676EE920A80910002F71B4 /* PublishSelectBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishSelectBirdCell.m; sourceTree = "<group>"; };
+		1F676EEB20A85E2C002F71B4 /* FindDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindDao.h; sourceTree = "<group>"; };
+		1F676EEC20A85E2C002F71B4 /* FindDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindDao.m; sourceTree = "<group>"; };
+		1F676EEF20A85F8F002F71B4 /* FindSelectBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindSelectBirdModel.h; sourceTree = "<group>"; };
+		1F676EF020A85F8F002F71B4 /* FindSelectBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindSelectBirdModel.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -962,6 +971,7 @@
 		0BA41925201DB80F002C6335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F676EEE20A85F6A002F71B4 /* Find */,
 				1F676EE020A7DC4A002F71B4 /* Publish */,
 				1F676E91209A02BB002F71B4 /* User */,
 				0BA41926201DB80F002C6335 /* Discover */,
@@ -1249,6 +1259,8 @@
 				1F676E8F2099F924002F71B4 /* UserDao.m */,
 				1F676EBB20A09545002F71B4 /* PublishDao.h */,
 				1F676EBC20A09545002F71B4 /* PublishDao.m */,
+				1F676EEB20A85E2C002F71B4 /* FindDao.h */,
+				1F676EEC20A85E2C002F71B4 /* FindDao.m */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -1304,8 +1316,6 @@
 				1F676EBF20A09A21002F71B4 /* PublishUpModel.m */,
 				1F676EC420A0AB1E002F71B4 /* PublishEditModel.h */,
 				1F676EC520A0AB1E002F71B4 /* PublishEditModel.m */,
-				1F676ED120A32F1B002F71B4 /* PublishSelectModel.h */,
-				1F676ED220A32F1B002F71B4 /* PublishSelectModel.m */,
 				0BC2B39620A3F0DF003283D1 /* PublishBirdInfoModel.h */,
 				0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */,
 			);
@@ -1315,10 +1325,13 @@
 		1F676EC720A0B24D002F71B4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F676EE720A80519002F71B4 /* View */,
 				1F676EC820A0B26E002F71B4 /* PublishContenController.h */,
 				1F676EC920A0B26E002F71B4 /* PublishContenController.m */,
 				1F676EDD20A7DAE7002F71B4 /* PublishEVController.h */,
 				1F676EDE20A7DAE7002F71B4 /* PublishEVController.m */,
+				1F676EE420A8046D002F71B4 /* PublishSelectBirdController.h */,
+				1F676EE520A8046D002F71B4 /* PublishSelectBirdController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1330,6 +1343,24 @@
 				1F676EE220A7DC6F002F71B4 /* PublishEVModel.m */,
 			);
 			path = Publish;
+			sourceTree = "<group>";
+		};
+		1F676EE720A80519002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676EE820A80910002F71B4 /* PublishSelectBirdCell.h */,
+				1F676EE920A80910002F71B4 /* PublishSelectBirdCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F676EEE20A85F6A002F71B4 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				1F676EEF20A85F8F002F71B4 /* FindSelectBirdModel.h */,
+				1F676EF020A85F8F002F71B4 /* FindSelectBirdModel.m */,
+			);
+			path = Find;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1551,7 +1582,6 @@
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
-				1F676ED320A32F1B002F71B4 /* PublishSelectModel.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,
@@ -1560,6 +1590,7 @@
 				0B75D5751FBD9D8B008D7AE6 /* KeychainWrapper.m in Sources */,
 				0B75D5941FBEBB46008D7AE6 /* AppLaunchAdManager.m in Sources */,
 				0B317C7C1F0F5C1800B01DDA /* AppTabBarController.m in Sources */,
+				1F676EF120A85F8F002F71B4 /* FindSelectBirdModel.m in Sources */,
 				0B75D5B51FBEC5C5008D7AE6 /* AppTextField.m in Sources */,
 				0B75D56C1FBD9D8B008D7AE6 /* UIViewController+Utils.m in Sources */,
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
@@ -1598,6 +1629,7 @@
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
 				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,
+				1F676EED20A85E2C002F71B4 /* FindDao.m in Sources */,
 				0B75D5B71FBEC5C5008D7AE6 /* PhoneTextField.m in Sources */,
 				1F306245204BAF5900784C62 /* AppCache.m in Sources */,
 				0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */,
@@ -1643,6 +1675,7 @@
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */,
+				1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
@@ -1658,6 +1691,7 @@
 				1F676EAE209F3D39002F71B4 /* PublishSelectView.m in Sources */,
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
 				1F4F141B205030980066F790 /* FinishMessageViewController.m in Sources */,
+				1F676EE620A8046D002F71B4 /* PublishSelectBirdController.m in Sources */,
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,

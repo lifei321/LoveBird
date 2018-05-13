@@ -84,6 +84,10 @@ typedef void (^LFConstraintDataBlock) (AppBaseCellModel *cellModel);
  */
 @property (nonatomic, assign) BOOL hidden;
 
+// 是否选中
+@property (nonatomic, assign) BOOL isSelect;
+
+
 /**
  *  cell 样式
  */

@@ -11,4 +11,6 @@
 @interface PublishHeaderView : UIView
 
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UITextField *textField;
+
 @end

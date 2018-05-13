@@ -17,10 +17,11 @@
 #import "PublishEditModel.h"
 #import "PublishContenController.h"
 #import "ApplyTimePickerView.h"
-#import "PublishSelectModel.h"
 #import "PublishBirdInfoModel.h"
 #import "PublishEVController.h"
 #import "PublishEVModel.h"
+#import "PublishSelectBirdController.h"
+#import "FindSelectBirdModel.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
@@ -43,6 +44,9 @@
 // 生态环境
 @property (nonatomic, strong) PublishEVModel *selectEVModel;
 
+// 选择的时间
+@property (nonatomic, copy) NSString *selectTime;
+
 @end
 
 @implementation PublishViewController
@@ -59,7 +63,14 @@
 - (void)rightButtonAction {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [PublishDao publish:self.dataModelArray birdInfo:self.birdInfoArray successBlock:^(__kindof AppBaseModel *responseObject) {
+    [PublishDao publish:self.dataModelArray
+               birdInfo:self.birdInfoArray
+                   evId:self.selectEVModel.evId
+               loaction:@""
+                   time:self.selectTime
+                 status:@""
+                  title:self.headerView.textField.text
+           successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
         [self.dataArray removeAllObjects];
@@ -137,10 +148,36 @@
     
     // 选择鸟种
     if (indexPath.section == 0) {
-        
+        PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+
+        if (indexPath.row == (self.birdInfoArray.count - 1)) { // 添加鸟种
+            @weakify(self);
+            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+                @strongify(self);
+                FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
+                birdModel.isSelect = NO;
+                birdModel.count = 1;
+                [self.birdInfoArray insertObject:birdModel atIndex:0];
+                [self.tableView reloadData];
+            };
+        } else { // 选择鸟名
+            @weakify(self);
+            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+                @strongify(self);
+                FindSelectBirdModel *birdSeleModel = (FindSelectBirdModel *)userInfo;
+
+                FindSelectBirdModel *birdModel = self.birdInfoArray[indexPath.row];
+                birdSeleModel.isSelect = birdModel.isSelect;
+                birdSeleModel.count = birdModel.count;
+                birdModel = birdSeleModel;
+                [self.tableView reloadData];
+            };
+        }
+        [self.navigationController pushViewController:selvc animated:YES];
         return;
     }
     
+    // 选择日期
     if ((indexPath.section == 1) && (indexPath.row == 0)) {
         ApplyTimePickerView *pickerView = [[ApplyTimePickerView alloc] initWithFrame:self.view.bounds];
         @weakify(self)
@@ -149,6 +186,7 @@
             [timePickerView removeFromSuperview];
             timePickerView = nil;
             if (date.length) {
+                self.selectTime = date;
                 PublishDetailModel *model = self.dataArray[indexPath.section][indexPath.row];
                 model.detailString = date;
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
@@ -277,7 +315,7 @@
 // 减少鸟的数量
 - (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
     
-    PublishSelectModel *model = cell.selectModel;
+    FindSelectBirdModel *model = cell.selectModel;
     model.count --;
 }
 
@@ -285,17 +323,17 @@
 - (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell {
     
     if (cell.selectModel.isSelect) {
-        PublishSelectModel *model = self.birdInfoArray.lastObject;
+        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
         model.count++;
         
-        PublishSelectModel *modeladd = [[PublishSelectModel alloc] init];
-        modeladd.title = @"选择鸟种";
+        FindSelectBirdModel *modeladd = [[FindSelectBirdModel alloc] init];
+        modeladd.name = @"选择鸟种";
         modeladd.isSelect = NO;
         modeladd.count = 1;
         [self.birdInfoArray insertObject:modeladd atIndex:0];
         [self.tableView reloadData];
     } else {
-        PublishSelectModel *model = cell.selectModel;
+        FindSelectBirdModel *model = cell.selectModel;
         model.count ++;
     }
 }
@@ -303,7 +341,7 @@
 // 删除鸟种 这一行
 - (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
     
-    PublishSelectModel *model = self.birdInfoArray.lastObject;
+    FindSelectBirdModel *model = self.birdInfoArray.lastObject;
     model.count--;
     
     [self.birdInfoArray removeObject:cell.selectModel];
@@ -509,8 +547,8 @@
     self.dataArray = [[NSMutableArray alloc] init];
     
     self.birdInfoArray = [[NSMutableArray alloc] init];
-    PublishSelectModel *model01 = [[PublishSelectModel alloc] init];
-    model01.title = @"选择鸟种";
+    FindSelectBirdModel *model01 = [[FindSelectBirdModel alloc] init];
+    model01.name = @"选择鸟种";
     model01.isSelect = YES;
     model01.count = 0;
     [self.birdInfoArray addObject:model01];
