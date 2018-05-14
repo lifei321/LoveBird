@@ -88,9 +88,6 @@
 		1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623C204AB1BF00784C62 /* DiscoverContentModel.m */; };
 		1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623F204AD16100784C62 /* TimeLineBottomView.m */; };
 		1F306245204BAF5900784C62 /* AppCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F306243204BAF5900784C62 /* AppCache.m */; };
-		1F4F13F8204BC70E0066F790 /* TalentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F13F7204BC70E0066F790 /* TalentViewController.m */; };
-		1F4F13FD204BC81B0066F790 /* TalentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F13FC204BC81B0066F790 /* TalentCollectionViewCell.m */; };
-		1F4F1400204BDEDC0066F790 /* TalentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F13FF204BDEDC0066F790 /* TalentModel.m */; };
 		1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1405204D80910066F790 /* MineSetViewController.m */; };
 		1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1408204D81B70066F790 /* MineSetTableViewCell.m */; };
 		1F4F140C204D85010066F790 /* MineSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F140B204D85010066F790 /* MineSetModel.m */; };
@@ -141,6 +138,12 @@
 		1F676F0720A9C4F3002F71B4 /* wphoto_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F676EF920A9C4F2002F71B4 /* wphoto_back@2x.png */; };
 		1F676F0820A9C4F3002F71B4 /* WPFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F0020A9C4F2002F71B4 /* WPFunctionView.m */; };
 		1F676F0920A9C4F3002F71B4 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F0120A9C4F2002F71B4 /* UIImage+fixOrientation.m */; };
+		1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1020A9CAC5002F71B4 /* TalentModel.m */; };
+		1F676F1620A9CAC5002F71B4 /* TalentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1320A9CAC5002F71B4 /* TalentCollectionViewCell.m */; };
+		1F676F1720A9CAC5002F71B4 /* TalentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1420A9CAC5002F71B4 /* TalentViewController.m */; };
+		1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1920A9CAE7002F71B4 /* ShequViewController.m */; };
+		1F676F1F20A9D32C002F71B4 /* ShequCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1E20A9D32C002F71B4 /* ShequCell.m */; };
+		1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -320,12 +323,6 @@
 		1F30623F204AD16100784C62 /* TimeLineBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineBottomView.m; sourceTree = "<group>"; };
 		1F306243204BAF5900784C62 /* AppCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCache.m; sourceTree = "<group>"; };
 		1F306244204BAF5900784C62 /* AppCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCache.h; sourceTree = "<group>"; };
-		1F4F13F6204BC70E0066F790 /* TalentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TalentViewController.h; sourceTree = "<group>"; };
-		1F4F13F7204BC70E0066F790 /* TalentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TalentViewController.m; sourceTree = "<group>"; };
-		1F4F13FB204BC81B0066F790 /* TalentCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TalentCollectionViewCell.h; sourceTree = "<group>"; };
-		1F4F13FC204BC81B0066F790 /* TalentCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TalentCollectionViewCell.m; sourceTree = "<group>"; };
-		1F4F13FE204BDEDC0066F790 /* TalentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TalentModel.h; sourceTree = "<group>"; };
-		1F4F13FF204BDEDC0066F790 /* TalentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TalentModel.m; sourceTree = "<group>"; };
 		1F4F1404204D80910066F790 /* MineSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSetViewController.h; sourceTree = "<group>"; };
 		1F4F1405204D80910066F790 /* MineSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineSetViewController.m; sourceTree = "<group>"; };
 		1F4F1407204D81B70066F790 /* MineSetTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSetTableViewCell.h; sourceTree = "<group>"; };
@@ -424,6 +421,18 @@
 		1F676EFF20A9C4F2002F71B4 /* WPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPhotoViewController.h; sourceTree = "<group>"; };
 		1F676F0020A9C4F2002F71B4 /* WPFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFunctionView.m; sourceTree = "<group>"; };
 		1F676F0120A9C4F2002F71B4 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		1F676F0D20A9CAC5002F71B4 /* TalentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalentViewController.h; sourceTree = "<group>"; };
+		1F676F0F20A9CAC5002F71B4 /* TalentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalentModel.h; sourceTree = "<group>"; };
+		1F676F1020A9CAC5002F71B4 /* TalentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TalentModel.m; sourceTree = "<group>"; };
+		1F676F1220A9CAC5002F71B4 /* TalentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalentCollectionViewCell.h; sourceTree = "<group>"; };
+		1F676F1320A9CAC5002F71B4 /* TalentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TalentCollectionViewCell.m; sourceTree = "<group>"; };
+		1F676F1420A9CAC5002F71B4 /* TalentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TalentViewController.m; sourceTree = "<group>"; };
+		1F676F1820A9CAE7002F71B4 /* ShequViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequViewController.h; sourceTree = "<group>"; };
+		1F676F1920A9CAE7002F71B4 /* ShequViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequViewController.m; sourceTree = "<group>"; };
+		1F676F1D20A9D32C002F71B4 /* ShequCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequCell.h; sourceTree = "<group>"; };
+		1F676F1E20A9D32C002F71B4 /* ShequCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequCell.m; sourceTree = "<group>"; };
+		1F676F2020A9D3D1002F71B4 /* ShequCellHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequCellHeadView.h; sourceTree = "<group>"; };
+		1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequCellHeadView.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -916,7 +925,7 @@
 		0BA4190C201C675D002C6335 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				1F4F13F5204BC6DE0066F790 /* TalentController */,
+				1F676F0A20A9CAC5002F71B4 /* ViewController */,
 				1F306225204AA29000784C62 /* TimeLine */,
 				0BA4191C201DAD34002C6335 /* ViewModel */,
 				0BA4191D201DAD34002C6335 /* View */,
@@ -1118,35 +1127,6 @@
 				1F306243204BAF5900784C62 /* AppCache.m */,
 			);
 			path = AppCache;
-			sourceTree = "<group>";
-		};
-		1F4F13F5204BC6DE0066F790 /* TalentController */ = {
-			isa = PBXGroup;
-			children = (
-				1F4F13FA204BC7B20066F790 /* Model */,
-				1F4F13F9204BC7B20066F790 /* View */,
-				1F4F13F6204BC70E0066F790 /* TalentViewController.h */,
-				1F4F13F7204BC70E0066F790 /* TalentViewController.m */,
-			);
-			path = TalentController;
-			sourceTree = "<group>";
-		};
-		1F4F13F9204BC7B20066F790 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1F4F13FB204BC81B0066F790 /* TalentCollectionViewCell.h */,
-				1F4F13FC204BC81B0066F790 /* TalentCollectionViewCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1F4F13FA204BC7B20066F790 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1F4F13FE204BDEDC0066F790 /* TalentModel.h */,
-				1F4F13FF204BDEDC0066F790 /* TalentModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1F4F1401204D805C0066F790 /* SettingViewController */ = {
@@ -1415,6 +1395,73 @@
 			path = WPhotoImage;
 			sourceTree = "<group>";
 		};
+		1F676F0A20A9CAC5002F71B4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F0B20A9CAC5002F71B4 /* ShequController */,
+				1F676F0C20A9CAC5002F71B4 /* TalentController */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1F676F0B20A9CAC5002F71B4 /* ShequController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F1B20A9D309002F71B4 /* Model */,
+				1F676F1C20A9D309002F71B4 /* View */,
+				1F676F1820A9CAE7002F71B4 /* ShequViewController.h */,
+				1F676F1920A9CAE7002F71B4 /* ShequViewController.m */,
+			);
+			path = ShequController;
+			sourceTree = "<group>";
+		};
+		1F676F0C20A9CAC5002F71B4 /* TalentController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F0D20A9CAC5002F71B4 /* TalentViewController.h */,
+				1F676F0E20A9CAC5002F71B4 /* Model */,
+				1F676F1120A9CAC5002F71B4 /* View */,
+				1F676F1420A9CAC5002F71B4 /* TalentViewController.m */,
+			);
+			path = TalentController;
+			sourceTree = "<group>";
+		};
+		1F676F0E20A9CAC5002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F0F20A9CAC5002F71B4 /* TalentModel.h */,
+				1F676F1020A9CAC5002F71B4 /* TalentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F676F1120A9CAC5002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F1220A9CAC5002F71B4 /* TalentCollectionViewCell.h */,
+				1F676F1320A9CAC5002F71B4 /* TalentCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F676F1B20A9D309002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F676F1C20A9D309002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F1D20A9D32C002F71B4 /* ShequCell.h */,
+				1F676F1E20A9D32C002F71B4 /* ShequCell.m */,
+				1F676F2020A9D3D1002F71B4 /* ShequCellHeadView.h */,
+				1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,7 +1675,9 @@
 				1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
+				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
+				1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
 				1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */,
 				0BA41915201C67FA002C6335 /* FindViewController.m in Sources */,
@@ -1646,6 +1695,7 @@
 				0B75D5941FBEBB46008D7AE6 /* AppLaunchAdManager.m in Sources */,
 				0B317C7C1F0F5C1800B01DDA /* AppTabBarController.m in Sources */,
 				1F676EF120A85F8F002F71B4 /* FindSelectBirdModel.m in Sources */,
+				1F676F1620A9CAC5002F71B4 /* TalentCollectionViewCell.m in Sources */,
 				0B75D5B51FBEC5C5008D7AE6 /* AppTextField.m in Sources */,
 				0B75D56C1FBD9D8B008D7AE6 /* UIViewController+Utils.m in Sources */,
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
@@ -1654,11 +1704,9 @@
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
 				1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */,
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
-				1F4F13FD204BC81B0066F790 /* TalentCollectionViewCell.m in Sources */,
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
 				0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */,
-				1F4F13F8204BC70E0066F790 /* TalentViewController.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
@@ -1671,12 +1719,12 @@
 				1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
-				1F4F1400204BDEDC0066F790 /* TalentModel.m in Sources */,
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				1F676EDF20A7DAE7002F71B4 /* PublishEVController.m in Sources */,
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
+				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
 				0B75D5841FBE9752008D7AE6 /* AppPush.m in Sources */,
 				1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */,
 				1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */,
@@ -1746,6 +1794,8 @@
 				0B7293061EFA4F1100D1B1EB /* main.m in Sources */,
 				0B26F0481FBEF06700464F41 /* AppBaseTableViewController+From.m in Sources */,
 				1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */,
+				1F676F1720A9CAC5002F71B4 /* TalentViewController.m in Sources */,
+				1F676F1F20A9D32C002F71B4 /* ShequCell.m in Sources */,
 				0B75D5AA1FBEC563008D7AE6 /* UIView+Frame.m in Sources */,
 				1F676EAE209F3D39002F71B4 /* PublishSelectView.m in Sources */,
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,

@@ -14,6 +14,7 @@
 #import "AppHttpManager.h"
 #import "MJRefresh.h"
 #import "TalentViewController.h"
+#import "ShequViewController.h"
 
 
 #define kStringForBanner @"kStringForBanner"
@@ -219,31 +220,46 @@
     
     switch (indexPath.row) {
         case 0:
-            
+        { // 附近
+
+        }
             break;
         case 1:
-            
+        {// 社区
+            ShequViewController *shequvc = [[ShequViewController alloc] init];
+            [self.navigationController pushViewController:shequvc animated:YES];
+        }
             break;
         case 2:
-                {
-                    TalentViewController *talentVC = [[TalentViewController alloc] init];
-                    [self.navigationController pushViewController:talentVC animated:YES];
-                }
+        {// 达人
+            TalentViewController *talentVC = [[TalentViewController alloc] init];
+            [self.navigationController pushViewController:talentVC animated:YES];
+        }
             break;
         case 3:
+        {// 作品
             
+        }
             break;
         case 4:
+        {// 咨询
             
+        }
             break;
         case 5:
+        {// 装备
             
+        }
             break;
         case 6:
+        {// 大赛
             
+        }
             break;
         case 7:
+        {// 排行
             
+        }
             break;
         default:
             break;
