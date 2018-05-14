@@ -23,6 +23,7 @@
 #import "PublishSelectBirdController.h"
 #import "FindSelectBirdModel.h"
 #import "AppDateManager.h"
+#import "WPhotoViewController.h"
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
@@ -89,6 +90,42 @@
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+// 上传照片
+- (void)upLoadImage:(UIImage *)image {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [PublishDao upLoad:image successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        if (self.headerView.headerImageView.image == nil) {
+            self.headerView.headerImageView.image = image;
+        }
+        
+        self.selectEditModel.isShow = NO;
+        PublishUpModel *upModel = (PublishUpModel *)responseObject;
+        
+        // 添加第一行
+        [self adFirstObject];
+        
+        // 设置数据
+        PublishEditModel *model = [[PublishEditModel alloc] init];
+        model.isShow = NO;
+        model.isImg = YES;
+        model.imgUrl = upModel.imgUrl;
+        model.aid = upModel.aid;
+        model.isNewAid = YES;
+        [self getIndex:model selectModel:self.selectEditModel];
+        
+        [self reloadFooterView:YES];
+        [self.tableView reloadData];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        
+        [AppBaseHud showHud:error.errstr view:self.view];
     }];
 }
 
@@ -353,6 +390,32 @@
 
 }
 
+// 获得在数组中次序
+- (void)getIndex:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
+    NSInteger index = 0;
+    for (int i = 0; i < self.dataModelArray.count; i++ ) {
+        if (selectModel == self.dataModelArray[i]) {
+            index = i;
+            break;
+        }
+    }
+    if ((self.dataModelArray.count == 0) || (index == (self.dataModelArray.count - 1))) {
+        [self.dataModelArray addObject:model];
+    } else {
+        [self.dataModelArray insertObject:model atIndex:(index + 1)];
+    }
+}
+
+- (void)adFirstObject {
+    if (self.dataModelArray.count == 0) {
+        PublishEditModel *modeladd = [[PublishEditModel alloc] init];
+        modeladd.isShow = NO;
+        modeladd.isImg = NO;
+        modeladd.isZero = YES;
+        [self.dataModelArray addObject:modeladd];
+    }
+}
+
 #pragma mark-- footerview 选择图片 添加文字 代理
 - (void)textViewClickDelegate:(PublishEditModel *)model {
     PublishContenController *contentvc = [[PublishContenController alloc] init];
@@ -390,31 +453,7 @@
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
-// 获得在数组中次序
-- (void)getIndex:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
-    NSInteger index = 0;
-    for (int i = 0; i < self.dataModelArray.count; i++ ) {
-        if (selectModel == self.dataModelArray[i]) {
-            index = i;
-            break;
-        }
-    }
-    if ((self.dataModelArray.count == 0) || (index == (self.dataModelArray.count - 1))) {
-        [self.dataModelArray addObject:model];
-    } else {
-        [self.dataModelArray insertObject:model atIndex:(index + 1)];
-    }
-}
 
-- (void)adFirstObject {
-    if (self.dataModelArray.count == 0) {
-        PublishEditModel *modeladd = [[PublishEditModel alloc] init];
-        modeladd.isShow = NO;
-        modeladd.isImg = NO;
-        modeladd.isZero = YES;
-        [self.dataModelArray addObject:modeladd];
-    }
-}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {//相机
@@ -450,11 +489,17 @@
         
 //跳转到相册
 - (void)choosePicture {
-    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
-    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    pickerController.delegate = self;
-    pickerController.allowsEditing = YES;
-    [self presentViewController:pickerController animated:YES completion:nil];
+    WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+    //选择图片的最大数
+    WphotoVC.selectPhotoOfMax = 8;
+    @weakify(self);
+    [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+        @strongify(self);
+        for (NSDictionary *dic in phostsArr) {
+            [self upLoadImage:[dic objectForKey:@"image"]];
+        }
+    }];
+    [self presentViewController:WphotoVC animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -462,36 +507,7 @@
         
     }];
     UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
-    @weakify(self);
-    [PublishDao upLoad:iamge successBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        if (self.headerView.headerImageView.image == nil) {
-            self.headerView.headerImageView.image = iamge;
-        }
-        
-        self.selectEditModel.isShow = NO;
-        PublishUpModel *upModel = (PublishUpModel *)responseObject;
-        
-        // 添加第一行
-        [self adFirstObject];
-        
-        // 设置数据
-        PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.isShow = NO;
-        model.isImg = YES;
-        model.imgUrl = upModel.imgUrl;
-        model.aid = upModel.aid;
-        model.isNewAid = YES;
-        [self getIndex:model selectModel:self.selectEditModel];
-
-        [self reloadFooterView:YES];
-        [self.tableView reloadData];
-        
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-
-        [AppBaseHud showHud:error.errstr view:self.view];
-    }];
+    [self upLoadImage:iamge];
 }
 
 #pragma mark-- 刷新footer
