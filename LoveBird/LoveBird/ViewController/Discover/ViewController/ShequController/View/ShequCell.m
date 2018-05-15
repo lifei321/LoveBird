@@ -61,5 +61,12 @@
     return self;
 }
 
+- (void)setShequModel:(ShequModel *)shequModel {
+    self.accessoryType = UITableViewCellStyleDefault;
 
+    _shequModel = shequModel;
+    self.headView.shequModel = shequModel;
+    
+    
+}
 @end

@@ -144,6 +144,9 @@
 		1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1920A9CAE7002F71B4 /* ShequViewController.m */; };
 		1F676F1F20A9D32C002F71B4 /* ShequCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1E20A9D32C002F71B4 /* ShequCell.m */; };
 		1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */; };
+		1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2420AB18ED002F71B4 /* ShequModel.m */; };
+		1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2720AB2077002F71B4 /* DiscoverDao.m */; };
+		1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -433,6 +436,12 @@
 		1F676F1E20A9D32C002F71B4 /* ShequCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequCell.m; sourceTree = "<group>"; };
 		1F676F2020A9D3D1002F71B4 /* ShequCellHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequCellHeadView.h; sourceTree = "<group>"; };
 		1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequCellHeadView.m; sourceTree = "<group>"; };
+		1F676F2320AB18ED002F71B4 /* ShequModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequModel.h; sourceTree = "<group>"; };
+		1F676F2420AB18ED002F71B4 /* ShequModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequModel.m; sourceTree = "<group>"; };
+		1F676F2620AB2077002F71B4 /* DiscoverDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverDao.h; sourceTree = "<group>"; };
+		1F676F2720AB2077002F71B4 /* DiscoverDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverDao.m; sourceTree = "<group>"; };
+		1F676F2920AB27BE002F71B4 /* ShequFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequFrameModel.h; sourceTree = "<group>"; };
+		1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequFrameModel.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1264,6 +1273,8 @@
 				1F676EBC20A09545002F71B4 /* PublishDao.m */,
 				1F676EEB20A85E2C002F71B4 /* FindDao.h */,
 				1F676EEC20A85E2C002F71B4 /* FindDao.m */,
+				1F676F2620AB2077002F71B4 /* DiscoverDao.h */,
+				1F676F2720AB2077002F71B4 /* DiscoverDao.m */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -1447,6 +1458,10 @@
 		1F676F1B20A9D309002F71B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F676F2320AB18ED002F71B4 /* ShequModel.h */,
+				1F676F2420AB18ED002F71B4 /* ShequModel.m */,
+				1F676F2920AB27BE002F71B4 /* ShequFrameModel.h */,
+				1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1682,6 +1697,7 @@
 				1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */,
 				0BA41915201C67FA002C6335 /* FindViewController.m in Sources */,
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
+				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
@@ -1701,6 +1717,7 @@
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
 				1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */,
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
+				1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */,
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
 				1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */,
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
@@ -1746,6 +1763,7 @@
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
 				0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,
+				1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,

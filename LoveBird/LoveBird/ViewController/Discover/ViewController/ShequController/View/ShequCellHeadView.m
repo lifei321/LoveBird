@@ -7,6 +7,8 @@
 //
 
 #import "ShequCellHeadView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface ShequCellHeadView()
 
@@ -54,7 +56,7 @@
         [self addSubview:self.gradeLabel];
         
         // 关注
-        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), 0, AutoSize(40), AutoSize(60))];
+        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), self.headIcon.top, AutoSize(40), self.headIcon.height)];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         self.followButton.titleLabel.font = kFont(13);
@@ -70,6 +72,18 @@
 - (void)followButtonDidClick:(UIButton *)button {
     
 
+}
+
+- (void)setShequModel:(ShequModel *)shequModel {
+    _shequModel = shequModel;
+    
+    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:shequModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    self.nickNameLabel.text = shequModel.author;
+    self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];
+
+    CGFloat width = [shequModel.author getTextWightWithFont:self.nickNameLabel.font];
+    self.nickNameLabel.width = width + AutoSize6(10);
+    self.gradeLabel.left = self.nickNameLabel.right;
 }
 
 @end

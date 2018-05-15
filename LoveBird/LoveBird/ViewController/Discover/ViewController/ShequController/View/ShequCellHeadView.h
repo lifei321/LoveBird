@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShequModel.h"
+
 
 @interface ShequCellHeadView : UIView
+
+@property (nonatomic, strong) ShequModel *shequModel;
 
 @end

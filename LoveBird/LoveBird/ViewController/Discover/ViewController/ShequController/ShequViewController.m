@@ -8,13 +8,16 @@
 
 #import "ShequViewController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "DiscoverDao.h"
+#import "ShequModel.h"
+#import "ShequCell.h"
 
-@interface ShequViewController ()<SDCycleScrollViewDelegate>
+@interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 // 轮播图
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -24,6 +27,7 @@
     self = [super init];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
+        _dataArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -34,10 +38,41 @@
     [self setNavigation];
     [self setTableView];
     
+    [self netforData];
+}
+
+- (void)netforData {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DiscoverDao getShequList:1 successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        ShequDataModel *dataModel = (ShequDataModel *)responseObject;
+        [self.dataArray addObjectsFromArray:dataModel.data];
+        [self.tableView reloadData];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
     
 }
 
 #pragma mark-- tableview 代理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ShequCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ShequCell class]) forIndexPath:indexPath];
+    cell.shequModel = self.dataArray[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return AutoSize6(75);
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return AutoSize6(20);
@@ -72,11 +107,11 @@
     self.tableView.top = total_topView_height;
     self.tableView.height = SCREEN_HEIGHT - total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
-
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.tableView registerClass:[PublishSelectCell class] forCellReuseIdentifier:NSStringFromClass([PublishSelectCell class])];
-//    [self.tableView registerClass:[PublishDetailCell class] forCellReuseIdentifier:NSStringFromClass([PublishDetailCell class])];
-//    [self.tableView registerClass:[PublishCell class] forCellReuseIdentifier:NSStringFromClass([PublishCell class])];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerClass:[ShequCell class] forCellReuseIdentifier:NSStringFromClass([ShequCell class])];
     
     self.cycleScrollView.delegate = self;
     self.tableView.tableHeaderView = self.cycleScrollView;

@@ -7,7 +7,10 @@
 //
 
 #import "AppBaseTableViewCell.h"
+#import "ShequModel.h"
 
 @interface ShequCell : AppBaseTableViewCell
+
+@property (nonatomic, strong) ShequModel *shequModel;
 
 @end

@@ -95,6 +95,12 @@
  */
 #define kAPI_Discover_Talent kAPI_USER_SERVER_VERSION(@"master/index.php")
 
+/**
+ *  社区
+ */
+#define kAPI_Discover_ShequList kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=articleList")
+
+
 
 #pragma mark-- 查鸟
 
