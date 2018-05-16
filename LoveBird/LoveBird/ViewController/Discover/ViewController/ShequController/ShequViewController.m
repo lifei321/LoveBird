@@ -11,6 +11,7 @@
 #import "DiscoverDao.h"
 #import "ShequModel.h"
 #import "ShequCell.h"
+#import "ShequFrameModel.h"
 
 @interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -48,7 +49,11 @@
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
-        [self.dataArray addObjectsFromArray:dataModel.data];
+        for (ShequModel *model in dataModel.data) {
+            ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
+            frameModel.shequModel = model;
+            [self.dataArray addObject:frameModel];
+        }
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -65,12 +70,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShequCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ShequCell class]) forIndexPath:indexPath];
-    cell.shequModel = self.dataArray[indexPath.row];
+    ShequFrameModel *model = self.dataArray[indexPath.row];
+    cell.shequFrameModel = model;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return AutoSize6(75);
+    ShequFrameModel *model = self.dataArray[indexPath.row];
+    return model.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

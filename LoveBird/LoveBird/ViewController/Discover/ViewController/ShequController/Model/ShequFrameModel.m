@@ -8,6 +8,38 @@
 
 #import "ShequFrameModel.h"
 
+#define kWidthForBackView (SCREEN_WIDTH - AutoSize6(30) - AutoSize6(95))
+
 @implementation ShequFrameModel
+
+
+- (void)setShequModel:(ShequModel *)shequModel {
+    _shequModel = shequModel;
+    
+    CGFloat height = 0;
+    self.headViewFrame = CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(65));
+    height = CGRectGetMaxY(self.headViewFrame);
+    
+    
+    CGFloat backViewHeight = 0;
+    if (shequModel.subject.length) {
+        
+        CGFloat titleHeight = [shequModel.subject getTextHeightWithFont:kFontDiscoverTitle withWidth:(kWidthForBackView - AutoSize6(40))];
+        self.titleLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(25), kWidthForBackView - AutoSize6(40), titleHeight);
+        backViewHeight = CGRectGetMaxY(self.titleLabelFrame);
+    }
+    
+    if (shequModel.imgUrl.length) {
+        CGFloat imageHeight = (shequModel.imgHeight) * (AutoSize6(585) / shequModel.imgWidth);
+        self.contentImageViewFrame  = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(20), AutoSize6(585), imageHeight);
+        backViewHeight = CGRectGetMaxY(self.contentImageViewFrame);
+    }
+    
+    self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(10), kWidthForBackView, backViewHeight);
+    
+    self.height = CGRectGetMaxY(self.backViewFrame) + AutoSize6(30);
+
+    self.lineViewFrame = CGRectMake(AutoSize6(62.5), AutoSize6(65), 1, self.height - AutoSize6(65));
+}
 
 @end

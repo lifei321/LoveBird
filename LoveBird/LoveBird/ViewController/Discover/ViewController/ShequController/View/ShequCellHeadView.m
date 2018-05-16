@@ -32,7 +32,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         // 头像
-        self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(5), AutoSize6(30), AutoSize6(65), AutoSize6(65))];
+        self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), AutoSize6(65), AutoSize6(65))];
         self.headIcon.contentMode = UIViewContentModeCenter;
         self.headIcon.clipsToBounds = YES;
         self.headIcon.layer.cornerRadius = self.headIcon.width / 2;
@@ -43,6 +43,7 @@
         // 昵称
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top, SCREEN_WIDTH / 2, self.headIcon.height)];
         self.nickNameLabel.textColor = [UIColor blackColor];
+        self.nickNameLabel.centerY -= AutoSize6(3);
         self.nickNameLabel.font = kFont(13);
         self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.nickNameLabel];
@@ -56,7 +57,9 @@
         [self addSubview:self.gradeLabel];
         
         // 关注
-        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), self.headIcon.top, AutoSize(40), self.headIcon.height)];
+        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), self.headIcon.top, AutoSize6(70), self.headIcon.height)];
+        self.followButton.centerY = self.nickNameLabel.centerY - AutoSize6(2);
+        self.followButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         self.followButton.titleLabel.font = kFont(13);

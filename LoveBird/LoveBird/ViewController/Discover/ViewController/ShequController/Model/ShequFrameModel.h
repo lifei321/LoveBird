@@ -19,16 +19,14 @@
 
 @property (nonatomic, assign) CGRect headViewFrame;
 
-@property (nonatomic, assign) CGRect titleViewFrame;
-
-@property (nonatomic, assign) CGRect contentImageViewFrame;
+@property (nonatomic, assign) CGRect backViewFrame;
 
 @property (nonatomic, assign) CGRect titleLabelFrame;
 
-@property (nonatomic, assign) CGRect contentLabelFrame;
+@property (nonatomic, assign) CGRect lineViewFrame;
 
-@property (nonatomic, assign) CGRect toolViewFrame;
+@property (nonatomic, assign) CGRect contentImageViewFrame;
 
-@property (nonatomic, assign) CGRect bottomViewFrame;
+@property (nonatomic, assign) CGRect timeLabelFrame;
 
 @end
