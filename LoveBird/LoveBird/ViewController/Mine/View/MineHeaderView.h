@@ -14,4 +14,6 @@ typedef void(^MineHeaderViewBlock)(NSInteger tag);
 
 @property (nonatomic, strong) MineHeaderViewBlock headerBlock;
 
+- (void)reloadData;
+
 @end

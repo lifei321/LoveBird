@@ -12,9 +12,13 @@
 #import "MineSetViewController.h"
 #import "NotifycationViewController.h"
 #import "MineHeaderView.h"
-
+#import "UserDao.h"
+#import "MJRefresh.h"
+#import "UserModel.h"
 
 @interface MineViewController ()
+
+@property (nonatomic, strong) MineHeaderView *headerView;
 
 @end
 
@@ -34,6 +38,20 @@
     [self setNavigation];
 }
 
+- (void)netForMyInfo {
+
+    @weakify(self);
+    [UserDao userMyInfoSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView reloadData];
+        [self.headerView reloadData];
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
 
 - (void)notificationButton:(UIButton *)button {
     NotifycationViewController *vc = [[NotifycationViewController alloc] init];
@@ -63,7 +81,8 @@
     
     MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
     self.tableView.tableHeaderView = headerView;
-
+    self.headerView = headerView;
+    
     @weakify(self);
     headerView.headerBlock = ^(NSInteger tag) {
         @strongify(self);
@@ -98,8 +117,11 @@
             default:
                 break;
         }
-        
     };
+    
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForMyInfo)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setNavigation {
@@ -139,7 +161,7 @@
     
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
     UIBarButtonItem *setItem = [[UIBarButtonItem alloc] initWithCustomView:setButton];
-    [self.navigationBarItem setRightBarButtonItems:[NSArray arrayWithObjects: shareItem, setItem,nil]];
+    [self.navigationBarItem setRightBarButtonItems:[NSArray arrayWithObjects: setItem, shareItem, nil]];
     
 }
 @end

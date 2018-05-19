@@ -98,7 +98,7 @@
 }
 
 - (void)reloadFooterHeight {
-    CGFloat count = (_dataArray.count % 2) ? (_dataArray.count / 2 + 1) : _dataArray.count / 2;
+    CGFloat count = (_dataArray.count / 2) + 1;
     self.collectionView.height = count * AutoSize(145) + AutoSize(20);
     [self.collectionView reloadData];
 }

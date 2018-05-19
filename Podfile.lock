@@ -23,7 +23,7 @@ PODS:
   - IQKeyboardManager (5.0.4)
   - JLRoutes (1.6.4)
   - JSONKit-NoWarning (1.2)
-  - JSONModel (1.2.0)
+  - JSONModel (1.7.0)
   - MBProgressHUD (0.9.2)
   - MBProgressHUD+BWMExtension (1.0.1):
     - MBProgressHUD (~> 0.9.1)
@@ -79,7 +79,7 @@ DEPENDENCIES:
   - IQKeyboardManager (= 5.0.4)
   - JLRoutes (= 1.6.4)
   - JSONKit-NoWarning (= 1.2)
-  - JSONModel (= 1.2.0)
+  - JSONModel (= 1.7.0)
   - MBProgressHUD+BWMExtension (= 1.0.1)
   - MJRefresh (= 3.1.12)
   - MLeaksFinder
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
   JLRoutes: a2e6efb1b1070feccb6dc68e1646ca870f42115b
   JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
-  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MBProgressHUD+BWMExtension: d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -130,6 +130,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 27294d8c029f72dca8a593c0bbe78d1a6bf3771e
+PODFILE CHECKSUM: e228ed2ca83cb8509f5b0bd6d9101746315a3747
 
 COCOAPODS: 1.4.0

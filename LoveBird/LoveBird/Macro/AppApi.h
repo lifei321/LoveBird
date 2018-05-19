@@ -100,7 +100,10 @@
  */
 #define kAPI_Discover_ShequList kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=articleList")
 
-
+/**
+ *  社区模块
+ */
+#define kAPI_Discover_ShequSection kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=section")
 
 #pragma mark-- 查鸟
 

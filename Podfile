@@ -10,7 +10,7 @@ xcodeproj 'LoveBird/LoveBird.xcodeproj'
 target 'LoveBird' do
 
 #必须的库
-pod 'JSONModel', '1.2.0'
+pod 'JSONModel', '1.7.0'
 pod 'JSONKit-NoWarning', '1.2'
 
 pod 'MJRefresh', '3.1.12'

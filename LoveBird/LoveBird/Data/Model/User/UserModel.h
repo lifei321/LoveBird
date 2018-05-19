@@ -8,13 +8,21 @@
 
 #import "AppBaseModel.h"
 
+@class UserModel;
+@interface UserPage : NSObject
+
++ (UserPage *)sharedInstance;
+
+@property (nonatomic, strong) UserModel *userModel;
+
+
+@end
+
 @interface UserModel : AppBaseModel
 
-@property (nonatomic, assign) NSInteger gender;
+//@property (nonatomic, copy) NSString *birthday;
 
-@property (nonatomic, copy) NSString *birthday;
-
-@property (nonatomic, copy) NSString *mobile;
+//@property (nonatomic, copy) NSString *mobile;
 
 @property (nonatomic, copy) NSString *head;
 
@@ -32,17 +40,44 @@
 
 @property (nonatomic, copy) NSString *weibo;
 
+@property (nonatomic, copy) NSString *articleNum;
 
-//birthday    生日    string    @mock=1976-09-09
-//gender    性别 1:男；2：女；0：保密    number    @mock=1
-//head    头像url    string    @mock=http://bbs.photofans.cn/uc_server/avatar.php?uid=483887&size=large
+@property (nonatomic, copy) NSString *birdspeciesNum;
+
+@property (nonatomic, copy) NSString *credit;
+
+@property (nonatomic, copy) NSString *fansNum;
+
+@property (nonatomic, copy) NSString *followNum;
+
+@property (nonatomic, assign) BOOL hasCollection;
+
+@property (nonatomic, assign) BOOL hasFriends;
+
+@property (nonatomic, assign) BOOL hasMessage;
+
+@property (nonatomic, assign) BOOL isFollow;
+
+@property (nonatomic, copy) NSString *level;
+
+
+//articleNum    日志数    number    @mock=24
+//birdspeciesNum    鸟种数    number    @mock=289
+//credit    积分    number    @mock=56782
+//fansNum    粉丝数    number    @mock=268
+//followNum    关注数    number    @mock=344
+//hasCollection    是否有收藏文章    number    @mock=1看别人时无此项
+//hasFriends    是否有好友圈文章    number    @mock=1看别人时无此项
+//hasMessage    是否有消息    number    @mock=1看别人时无此项
+//head    头像
+//isFollow    该用户是否被关注    number    @mock=1
+//level    用户级别    number    @mock=4
 //location    地域    string    @mock=北京
-//mobile    手机    number    @mock=13311321077
-//qq        number    @mock=723300952
+//qq
 //sign    签名    string    @mock=自古英雄如美人，不许人现白头
-//uid        string    @mock=483887
-//username    昵称    string    @mock=旭伟
-//wechat    微信    string    @mock=shuiyu2009
-//weibo    微博    string    @mock=mysinablog2017
+//uid    uid    number    @mock=483887
+//username    用户名    string    @mock=旭伟
+//wechat    微信号    string    @mock=shuiyu2009
+//weibo    微博号    string    @mock=mysinablog2017
 
 @end

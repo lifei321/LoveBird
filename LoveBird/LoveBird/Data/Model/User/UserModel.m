@@ -7,9 +7,29 @@
 //
 
 #import "UserModel.h"
+#import <JSONModel/JSONModel.h>
+
+@implementation UserPage
+
+
++ (UserPage *)sharedInstance {
+    static UserPage *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+@end
 
 @implementation UserModel
 
 
-
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+        return [NSString stringWithFormat:@"data.%@", keyName];
+    }];
+}
 @end

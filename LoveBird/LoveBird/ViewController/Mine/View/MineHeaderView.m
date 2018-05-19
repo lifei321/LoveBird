@@ -7,6 +7,9 @@
 //
 
 #import "MineHeaderView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UserModel.h"
+
 
 @interface MineHeaderView()
 
@@ -50,6 +53,7 @@
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.layer.borderWidth = AutoSize6(4);
         self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.iconImageView.layer.masksToBounds = YES;
         [self addSubview:self.iconImageView];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.iconImageView.bottom + AutoSize6(22), SCREEN_HEIGHT, AutoSize6(28))];
@@ -158,4 +162,15 @@
     return button;
 }
 
+- (void)reloadData {
+    
+    UserModel *model = [UserPage sharedInstance].userModel;
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[UserPage sharedInstance].userModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    self.nameLabel.text = model.username;
+    self.followLabel.text = model.followNum;
+    self.fansLabel.text = model.fansNum;
+    self.scorleLabel.text = model.credit;
+    self.gradeLabel.text = model.level;
+}
 @end
