@@ -18,25 +18,25 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "5757.png",
+      "filename" : "WechatIMG75.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "8787.png",
+      "filename" : "WechatIMG77.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "80-80.png",
+      "filename" : "WechatIMG76.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "120-120.png",
+      "filename" : "WechatIMG78.png",
       "scale" : "3x"
     },
     {
@@ -52,18 +52,19 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120-121.png",
+      "filename" : "WechatIMG78-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "180-180.png",
+      "filename" : "WechatIMG74.png",
       "scale" : "3x"
     },
     {
-      "idiom" : "ios-marketing",
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "10241024.png",
       "scale" : "1x"
     }
   ],

@@ -11,6 +11,7 @@
 #import "AppHttpManager.h"
 #import "ClassifyBirdViewController.h"
 #import "MJRefresh.h"
+#import "FindSizeViewController.h"
 
 
 
@@ -86,7 +87,8 @@
         
     } else if (tapView.tag == 200) {
         // 体型查鸟
-        
+        FindSizeViewController *bodyvc = [[FindSizeViewController alloc] init];
+        [self.navigationController pushViewController:bodyvc animated:YES];
         
     } else if (tapView.tag == 300) {
         

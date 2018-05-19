@@ -8,7 +8,7 @@
 
 #import "BodyBirdViewController.h"
 #import "BodyBirdModel.h"
-
+#import "BodyBirdCell.h"
 
 @interface BodyBirdViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -28,6 +28,14 @@
 @end
 
 @implementation BodyBirdViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,7 +90,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
-//    [_collectionView registerClass:[DiscoverHeaderCell class] forCellWithReuseIdentifier:NSStringFromClass([DiscoverHeaderCell class])];
+    [_collectionView registerClass:[BodyBirdCell class] forCellWithReuseIdentifier:NSStringFromClass([BodyBirdCell class])];
 }
 
 
@@ -99,6 +107,26 @@
     BodyBirdModel *model15 = [[BodyBirdModel alloc] initWithString:@"step_1_5" imageId:@"405" title:@">3\1"];
     self.dataArrayOne = @[model11, model12, model13, model14, model15];
 
+    BodyBirdModel *model21 = [[BodyBirdModel alloc] initWithString:@"step_1_1" imageId:@"401" title:@"≤1\3"];
+    BodyBirdModel *model22 = [[BodyBirdModel alloc] initWithString:@"step_1_2" imageId:@"402" title:@"≤1\1"];
+    BodyBirdModel *model23 = [[BodyBirdModel alloc] initWithString:@"step_1_3" imageId:@"403" title:@"≤2\1"];
+    BodyBirdModel *model24 = [[BodyBirdModel alloc] initWithString:@"step_1_4" imageId:@"404" title:@">2\1"];
+    BodyBirdModel *model25 = [[BodyBirdModel alloc] initWithString:@"step_1_5" imageId:@"405" title:@">3\1"];
+    self.dataArrayTwo = @[model11, model12, model13, model14, model15];
+    
+    BodyBirdModel *model31 = [[BodyBirdModel alloc] initWithString:@"step_1_1" imageId:@"401" title:@"≤1\3"];
+    BodyBirdModel *model32 = [[BodyBirdModel alloc] initWithString:@"step_1_2" imageId:@"402" title:@"≤1\1"];
+    BodyBirdModel *model33 = [[BodyBirdModel alloc] initWithString:@"step_1_3" imageId:@"403" title:@"≤2\1"];
+    BodyBirdModel *model34 = [[BodyBirdModel alloc] initWithString:@"step_1_4" imageId:@"404" title:@">2\1"];
+    BodyBirdModel *model35 = [[BodyBirdModel alloc] initWithString:@"step_1_5" imageId:@"405" title:@">3\1"];
+    self.dataArrayOne = @[model11, model12, model13, model14, model15];
+    
+    BodyBirdModel *model41 = [[BodyBirdModel alloc] initWithString:@"step_1_1" imageId:@"401" title:@"≤1\3"];
+    BodyBirdModel *model42 = [[BodyBirdModel alloc] initWithString:@"step_1_2" imageId:@"402" title:@"≤1\1"];
+    BodyBirdModel *model43 = [[BodyBirdModel alloc] initWithString:@"step_1_3" imageId:@"403" title:@"≤2\1"];
+    BodyBirdModel *model44 = [[BodyBirdModel alloc] initWithString:@"step_1_4" imageId:@"404" title:@">2\1"];
+    BodyBirdModel *model45 = [[BodyBirdModel alloc] initWithString:@"step_1_5" imageId:@"405" title:@">3\1"];
+    self.dataArrayOne = @[model11, model12, model13, model14, model15];
     
 }
 

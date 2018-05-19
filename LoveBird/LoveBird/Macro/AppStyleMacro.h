@@ -19,6 +19,9 @@
 //粗体
 #define kFontBold(F) [UIFont boldSystemFontOfSize:AutoSize(F)]
 
+#define kFontBold6(F) [UIFont boldSystemFontOfSize:AutoSize6(F)]
+
+
 //默认字体
 #define kFontDefault kFont(13)
 

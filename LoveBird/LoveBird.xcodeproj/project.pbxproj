@@ -148,6 +148,7 @@
 		1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2720AB2077002F71B4 /* DiscoverDao.m */; };
 		1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */; };
 		1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F6B20AC769C002F71B4 /* ShequBottomView.m */; };
+		1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -445,6 +446,8 @@
 		1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequFrameModel.m; sourceTree = "<group>"; };
 		1F676F6A20AC769C002F71B4 /* ShequBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequBottomView.h; sourceTree = "<group>"; };
 		1F676F6B20AC769C002F71B4 /* ShequBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequBottomView.m; sourceTree = "<group>"; };
+		1F676F6D20B00A9E002F71B4 /* FindSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindSizeViewController.h; sourceTree = "<group>"; };
+		1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindSizeViewController.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1245,6 +1248,8 @@
 				1F676E832096FF9F002F71B4 /* View */,
 				1F676E842096FFBB002F71B4 /* BodyBirdViewController.h */,
 				1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */,
+				1F676F6D20B00A9E002F71B4 /* FindSizeViewController.h */,
+				1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */,
 			);
 			path = BodyBirdViewController;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
 				1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
+				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */,
