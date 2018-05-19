@@ -147,6 +147,7 @@
 		1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2420AB18ED002F71B4 /* ShequModel.m */; };
 		1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2720AB2077002F71B4 /* DiscoverDao.m */; };
 		1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */; };
+		1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F6B20AC769C002F71B4 /* ShequBottomView.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -442,6 +443,8 @@
 		1F676F2720AB2077002F71B4 /* DiscoverDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverDao.m; sourceTree = "<group>"; };
 		1F676F2920AB27BE002F71B4 /* ShequFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequFrameModel.h; sourceTree = "<group>"; };
 		1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequFrameModel.m; sourceTree = "<group>"; };
+		1F676F6A20AC769C002F71B4 /* ShequBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequBottomView.h; sourceTree = "<group>"; };
+		1F676F6B20AC769C002F71B4 /* ShequBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequBottomView.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1473,6 +1476,8 @@
 				1F676F1E20A9D32C002F71B4 /* ShequCell.m */,
 				1F676F2020A9D3D1002F71B4 /* ShequCellHeadView.h */,
 				1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */,
+				1F676F6A20AC769C002F71B4 /* ShequBottomView.h */,
+				1F676F6B20AC769C002F71B4 /* ShequBottomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1812,6 +1817,7 @@
 				0B7293061EFA4F1100D1B1EB /* main.m in Sources */,
 				0B26F0481FBEF06700464F41 /* AppBaseTableViewController+From.m in Sources */,
 				1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */,
+				1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */,
 				1F676F1720A9CAC5002F71B4 /* TalentViewController.m in Sources */,
 				1F676F1F20A9D32C002F71B4 /* ShequCell.m in Sources */,
 				0B75D5AA1FBEC563008D7AE6 /* UIView+Frame.m in Sources */,

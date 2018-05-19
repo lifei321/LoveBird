@@ -27,6 +27,8 @@
 
 @property (nonatomic, assign) CGRect contentImageViewFrame;
 
+@property (nonatomic, assign) CGRect bottomViewFrame;
+
 @property (nonatomic, assign) CGRect timeLabelFrame;
 
 @end

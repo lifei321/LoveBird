@@ -82,7 +82,11 @@
     
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:shequModel.head] placeholderImage:[UIImage imageNamed:@""]];
     self.nickNameLabel.text = shequModel.author;
-    self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];
+    if (shequModel.authorlv.length) {
+        self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];
+        CGFloat width = [self.gradeLabel.text getTextWightWithFont:self.gradeLabel.font];
+        self.gradeLabel.width = width + AutoSize6(15);
+    }
 
     CGFloat width = [shequModel.author getTextWightWithFont:self.nickNameLabel.font];
     self.nickNameLabel.width = width + AutoSize6(10);

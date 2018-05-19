@@ -9,6 +9,7 @@
 #import "ShequCell.h"
 #import "ShequCellHeadView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ShequBottomView.h"
 
 
 @interface ShequCell()
@@ -29,6 +30,9 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+@property (nonatomic, strong) ShequBottomView *bottomView;
+
+
 @end
 
 @implementation ShequCell
@@ -38,7 +42,7 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor clearColor];
-        
+        self.clipsToBounds = YES;
         self.headView = [[ShequCellHeadView alloc] init];
         [self.contentView addSubview:self.headView];
         
@@ -67,6 +71,9 @@
         self.timeLabel.textAlignment = NSTextAlignmentRight;
         [self.backView addSubview:self.timeLabel];
         
+        self.bottomView = [[ShequBottomView alloc] initWithFrame:CGRectZero];
+        [self.backView addSubview:self.bottomView];
+        
     }
     return self;
 }
@@ -80,9 +87,13 @@
     self.titleLable.frame = shequFrameModel.titleLabelFrame;
     self.contentImageView.frame = shequFrameModel.contentImageViewFrame;
     self.lineView.frame = shequFrameModel.lineViewFrame;
+    self.bottomView.frame = shequFrameModel.bottomViewFrame;
+    self.timeLabel.frame = shequFrameModel.timeLabelFrame;
     
     self.titleLable.text = shequFrameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:shequFrameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    self.timeLabel.text = shequFrameModel.shequModel.datelien;
+    self.bottomView.model = shequFrameModel.shequModel;
 }
 
 
