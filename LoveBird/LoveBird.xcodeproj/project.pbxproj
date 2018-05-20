@@ -99,9 +99,7 @@
 		1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1425205D2E520066F790 /* FindSelectModel.m */; };
 		1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */; };
 		1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F142D205E4D060066F790 /* ClassifyModel.m */; };
-		1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */; };
 		1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E882096FFEE002F71B4 /* BodyBirdModel.m */; };
-		1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8B2097080F002F71B4 /* BodyBirdCell.m */; };
 		1F676E902099F924002F71B4 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8F2099F924002F71B4 /* UserDao.m */; };
 		1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E93209A0335002F71B4 /* UserFollowModel.m */; };
 		1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E96209A045A002F71B4 /* UserInfoModel.m */; };
@@ -149,6 +147,9 @@
 		1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F2A20AB27BE002F71B4 /* ShequFrameModel.m */; };
 		1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F6B20AC769C002F71B4 /* ShequBottomView.m */; };
 		1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */; };
+		1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7120B050E6002F71B4 /* FindHeadViewController.m */; };
+		1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */; };
+		1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7720B13C1E002F71B4 /* FindColorViewController.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -350,12 +351,8 @@
 		1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyBirdViewController.m; sourceTree = "<group>"; };
 		1F4F142C205E4D060066F790 /* ClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassifyModel.h; sourceTree = "<group>"; };
 		1F4F142D205E4D060066F790 /* ClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyModel.m; sourceTree = "<group>"; };
-		1F676E842096FFBB002F71B4 /* BodyBirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdViewController.h; sourceTree = "<group>"; };
-		1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdViewController.m; sourceTree = "<group>"; };
 		1F676E872096FFEE002F71B4 /* BodyBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdModel.h; sourceTree = "<group>"; };
 		1F676E882096FFEE002F71B4 /* BodyBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdModel.m; sourceTree = "<group>"; };
-		1F676E8A2097080F002F71B4 /* BodyBirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdCell.h; sourceTree = "<group>"; };
-		1F676E8B2097080F002F71B4 /* BodyBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdCell.m; sourceTree = "<group>"; };
 		1F676E8E2099F924002F71B4 /* UserDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
 		1F676E8F2099F924002F71B4 /* UserDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
 		1F676E92209A0335002F71B4 /* UserFollowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFollowModel.h; sourceTree = "<group>"; };
@@ -448,6 +445,12 @@
 		1F676F6B20AC769C002F71B4 /* ShequBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequBottomView.m; sourceTree = "<group>"; };
 		1F676F6D20B00A9E002F71B4 /* FindSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindSizeViewController.h; sourceTree = "<group>"; };
 		1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindSizeViewController.m; sourceTree = "<group>"; };
+		1F676F7020B050E6002F71B4 /* FindHeadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindHeadViewController.h; sourceTree = "<group>"; };
+		1F676F7120B050E6002F71B4 /* FindHeadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindHeadViewController.m; sourceTree = "<group>"; };
+		1F676F7320B05FEE002F71B4 /* FindBodyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindBodyViewController.h; sourceTree = "<group>"; };
+		1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindBodyViewController.m; sourceTree = "<group>"; };
+		1F676F7620B13C1E002F71B4 /* FindColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindColorViewController.h; sourceTree = "<group>"; };
+		1F676F7720B13C1E002F71B4 /* FindColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindColorViewController.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1246,10 +1249,14 @@
 			children = (
 				1F676E822096FF9F002F71B4 /* Model */,
 				1F676E832096FF9F002F71B4 /* View */,
-				1F676E842096FFBB002F71B4 /* BodyBirdViewController.h */,
-				1F676E852096FFBB002F71B4 /* BodyBirdViewController.m */,
 				1F676F6D20B00A9E002F71B4 /* FindSizeViewController.h */,
 				1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */,
+				1F676F7020B050E6002F71B4 /* FindHeadViewController.h */,
+				1F676F7120B050E6002F71B4 /* FindHeadViewController.m */,
+				1F676F7320B05FEE002F71B4 /* FindBodyViewController.h */,
+				1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */,
+				1F676F7620B13C1E002F71B4 /* FindColorViewController.h */,
+				1F676F7720B13C1E002F71B4 /* FindColorViewController.m */,
 			);
 			path = BodyBirdViewController;
 			sourceTree = "<group>";
@@ -1266,8 +1273,6 @@
 		1F676E832096FF9F002F71B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F676E8A2097080F002F71B4 /* BodyBirdCell.h */,
-				1F676E8B2097080F002F71B4 /* BodyBirdCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1696,8 +1701,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */,
+				1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
-				1F676E862096FFBB002F71B4 /* BodyBirdViewController.m in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
@@ -1729,7 +1734,6 @@
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
 				1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */,
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
-				1F676E8C2097080F002F71B4 /* BodyBirdCell.m in Sources */,
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
@@ -1744,6 +1748,7 @@
 				1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */,
 				0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */,
 				1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */,
+				1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
@@ -1756,6 +1761,7 @@
 				1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */,
 				1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */,
 				0BA41912201C67CD002C6335 /* DiscoverViewController.m in Sources */,
+				1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */,
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
 				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,

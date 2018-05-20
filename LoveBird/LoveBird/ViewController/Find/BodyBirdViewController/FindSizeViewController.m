@@ -7,6 +7,7 @@
 //
 
 #import "FindSizeViewController.h"
+#import "FindHeadViewController.h"
 
 @interface FindSizeViewController ()
 
@@ -101,7 +102,8 @@
 }
 
 - (void)footButtonDidClick {
-    
+    FindHeadViewController *headvc = [[FindHeadViewController alloc] init];
+    [self.navigationController pushViewController:headvc animated:YES];
 }
 
 - (UIButton *)makeButton:(CGRect)frame image:(NSString *)image selectImage:(NSString *)selectImage sel:(SEL)action {
