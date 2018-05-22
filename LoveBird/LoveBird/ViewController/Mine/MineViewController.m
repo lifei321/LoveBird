@@ -53,6 +53,10 @@
     }];
 }
 
+- (void)netForLog {
+    
+}
+
 - (void)notificationButton:(UIButton *)button {
     NotifycationViewController *vc = [[NotifycationViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];

@@ -105,6 +105,16 @@
  */
 #define kAPI_Discover_ShequSection kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=section")
 
+/**
+ *  大赛列表
+ */
+#define kAPI_Discover_MatchList kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchArticleList")
+
+/**
+ *  大赛详情 基本信息
+ */
+#define kAPI_Discover_MatchDetail kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchDetail")
+
 #pragma mark-- 查鸟
 
 /**

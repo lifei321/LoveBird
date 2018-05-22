@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "TalentViewController.h"
 #import "ShequViewController.h"
+#import "DasaiViewController.h"
 
 
 #define kStringForBanner @"kStringForBanner"
@@ -253,7 +254,8 @@
             break;
         case 6:
         {// 大赛
-            
+            DasaiViewController *dasaivc = [[DasaiViewController alloc] init];
+            [self.navigationController pushViewController:dasaivc animated:YES];
         }
             break;
         case 7:

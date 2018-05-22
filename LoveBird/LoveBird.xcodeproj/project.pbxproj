@@ -150,6 +150,9 @@
 		1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7120B050E6002F71B4 /* FindHeadViewController.m */; };
 		1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */; };
 		1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7720B13C1E002F71B4 /* FindColorViewController.m */; };
+		1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7B20B16705002F71B4 /* DasaiViewController.m */; };
+		1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8020B1679E002F71B4 /* MatchModel.m */; };
+		1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8320B16986002F71B4 /* MatchListCell.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -451,6 +454,12 @@
 		1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindBodyViewController.m; sourceTree = "<group>"; };
 		1F676F7620B13C1E002F71B4 /* FindColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindColorViewController.h; sourceTree = "<group>"; };
 		1F676F7720B13C1E002F71B4 /* FindColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindColorViewController.m; sourceTree = "<group>"; };
+		1F676F7A20B16705002F71B4 /* DasaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DasaiViewController.h; sourceTree = "<group>"; };
+		1F676F7B20B16705002F71B4 /* DasaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DasaiViewController.m; sourceTree = "<group>"; };
+		1F676F7F20B1679E002F71B4 /* MatchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchModel.h; sourceTree = "<group>"; };
+		1F676F8020B1679E002F71B4 /* MatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchModel.m; sourceTree = "<group>"; };
+		1F676F8220B16986002F71B4 /* MatchListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchListCell.h; sourceTree = "<group>"; };
+		1F676F8320B16986002F71B4 /* MatchListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchListCell.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1422,6 +1431,7 @@
 		1F676F0A20A9CAC5002F71B4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F676F7920B166CE002F71B4 /* DasaiController */,
 				1F676F0B20A9CAC5002F71B4 /* ShequController */,
 				1F676F0C20A9CAC5002F71B4 /* TalentController */,
 			);
@@ -1490,6 +1500,35 @@
 				1F676F6B20AC769C002F71B4 /* ShequBottomView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1F676F7920B166CE002F71B4 /* DasaiController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F7E20B1671F002F71B4 /* Model */,
+				1F676F7D20B1671F002F71B4 /* View */,
+				1F676F7A20B16705002F71B4 /* DasaiViewController.h */,
+				1F676F7B20B16705002F71B4 /* DasaiViewController.m */,
+			);
+			path = DasaiController;
+			sourceTree = "<group>";
+		};
+		1F676F7D20B1671F002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F8220B16986002F71B4 /* MatchListCell.h */,
+				1F676F8320B16986002F71B4 /* MatchListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F676F7E20B1671F002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F7F20B1679E002F71B4 /* MatchModel.h */,
+				1F676F8020B1679E002F71B4 /* MatchModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1717,6 +1756,7 @@
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
+				1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,
@@ -1730,6 +1770,7 @@
 				0B75D5B51FBEC5C5008D7AE6 /* AppTextField.m in Sources */,
 				0B75D56C1FBD9D8B008D7AE6 /* UIViewController+Utils.m in Sources */,
 				0B317C8B1F0F6E9100B01DDA /* AppEmptyView.m in Sources */,
+				1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */,
 				1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */,
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
 				1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */,
@@ -1764,6 +1805,7 @@
 				1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */,
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
+				1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */,
 				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,
 				1F676EED20A85E2C002F71B4 /* FindDao.m in Sources */,
 				0B75D5B71FBEC5C5008D7AE6 /* PhoneTextField.m in Sources */,
