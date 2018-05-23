@@ -50,6 +50,8 @@
 @property (nonatomic, copy) NSString * upNum;
 
 
+
+
 //author    作者名    string
 //authorid    作者id    string
 //authorlv    作者级别    number

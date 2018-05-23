@@ -15,7 +15,7 @@
 #import "UserBirdModel.h"
 #import "UserFansModel.h"
 #import "UserModel.h"
-
+#import "ShequModel.h"
 
 @implementation UserDao
 
@@ -97,7 +97,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"uid"];
     
-    [AppHttpManager POST:kAPI_User_FollowContentList parameters:dic jsonModelName:[UserFriendListModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_FollowContentList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -115,7 +115,7 @@
     [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
 
-    [AppHttpManager POST:kAPI_User_CollectionList parameters:dic jsonModelName:[UserFriendListModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_CollectionList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -137,10 +137,10 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"uid"];
+    [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchId) forKey:@"matchid"];
 
-    [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[UserFriendListModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

@@ -16,9 +16,25 @@
 #import "MJRefresh.h"
 #import "UserModel.h"
 
+#import "MineLogViewController.h"
+#import "MineCollectViewController.h"
+#import "MineBirdViewController.h"
+#import "MinePhotoViewController.h"
+#import "MineFriendViewController.h"
+
 @interface MineViewController ()
 
 @property (nonatomic, strong) MineHeaderView *headerView;
+
+@property (nonatomic, strong) MineLogViewController *logController;
+
+@property (nonatomic, strong) MineCollectViewController *collectController;
+
+@property (nonatomic, strong) MineBirdViewController *birdController;
+
+@property (nonatomic, strong) MinePhotoViewController *photoController;
+
+@property (nonatomic, strong) MineFriendViewController *friendController;
 
 @end
 
@@ -53,10 +69,6 @@
     }];
 }
 
-- (void)netForLog {
-    
-}
-
 - (void)notificationButton:(UIButton *)button {
     NotifycationViewController *vc = [[NotifycationViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -77,44 +89,78 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 - (void)setTableView {
     
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kTabBarHeight);
-    self.dataSourceArray =  [MineDataSourceManager DataSource];
-    [self registerClass:[MineTableViewCell class] forCellReuseIdentifier:NSStringFromClass([MineTableViewCell class]) dataSource:nil];
     
     MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
     self.tableView.tableHeaderView = headerView;
     self.headerView = headerView;
     
-    @weakify(self);
+    UIScrollView *footerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.height - self.headerView.height)];
+    footerView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 0);
+    footerView.showsVerticalScrollIndicator = NO;
+    footerView.backgroundColor = [UIColor blueColor];
+    self.tableView.tableFooterView = footerView;
+
+    MineLogViewController *logController = [[MineLogViewController  alloc] init];
+    [self addChildViewController:logController];
+    logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
+    [footerView addSubview:logController.view];
+
+    MineCollectViewController *collectController = [[MineCollectViewController alloc] init];
+    [self addChildViewController:collectController];
+    collectController.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, footerView.height);
+    [footerView addSubview:collectController.view];
+
+    MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
+    [self addChildViewController:birdController];
+    birdController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
+    [footerView addSubview:birdController.view];
+
+    MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
+    [self addChildViewController:photoController];
+    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, footerView.height);
+    [footerView addSubview:photoController.view];
+
+    MineFriendViewController *friendController = [[MineFriendViewController alloc] init];
+    [self addChildViewController:friendController];
+    friendController.view.frame = CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, footerView.height);
+    [footerView addSubview:friendController.view];
+
+    
+    @weakify(footerView);
     headerView.headerBlock = ^(NSInteger tag) {
-        @strongify(self);
-        
+        @strongify(footerView);
         switch (tag) {
             case 100:
             {
-                
+                footerView.contentOffset = CGPointMake(0, 0);
             }
                 break;
             case 200:
             {
-                
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
             }
                 break;
             case 300:
             {
-                
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
             }
                 break;
             case 400:
             {
-                
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 3, 0);
+
             }
                 break;
             case 500:
             {
-                
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 4, 0);
             }
                 break;
                 

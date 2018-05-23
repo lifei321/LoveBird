@@ -153,6 +153,11 @@
 		1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7B20B16705002F71B4 /* DasaiViewController.m */; };
 		1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8020B1679E002F71B4 /* MatchModel.m */; };
 		1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8320B16986002F71B4 /* MatchListCell.m */; };
+		1F676F8820B5AA82002F71B4 /* MineLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8720B5AA82002F71B4 /* MineLogViewController.m */; };
+		1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */; };
+		1F676F8E20B5AAB7002F71B4 /* MineBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8D20B5AAB7002F71B4 /* MineBirdViewController.m */; };
+		1F676F9120B5AAD9002F71B4 /* MinePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */; };
+		1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -460,6 +465,16 @@
 		1F676F8020B1679E002F71B4 /* MatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchModel.m; sourceTree = "<group>"; };
 		1F676F8220B16986002F71B4 /* MatchListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchListCell.h; sourceTree = "<group>"; };
 		1F676F8320B16986002F71B4 /* MatchListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchListCell.m; sourceTree = "<group>"; };
+		1F676F8620B5AA82002F71B4 /* MineLogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogViewController.h; sourceTree = "<group>"; };
+		1F676F8720B5AA82002F71B4 /* MineLogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogViewController.m; sourceTree = "<group>"; };
+		1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineCollectViewController.h; sourceTree = "<group>"; };
+		1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCollectViewController.m; sourceTree = "<group>"; };
+		1F676F8C20B5AAB7002F71B4 /* MineBirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineBirdViewController.h; sourceTree = "<group>"; };
+		1F676F8D20B5AAB7002F71B4 /* MineBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineBirdViewController.m; sourceTree = "<group>"; };
+		1F676F8F20B5AAD9002F71B4 /* MinePhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePhotoViewController.h; sourceTree = "<group>"; };
+		1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePhotoViewController.m; sourceTree = "<group>"; };
+		1F676F9220B5AAF4002F71B4 /* MineFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFriendViewController.h; sourceTree = "<group>"; };
+		1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFriendViewController.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -531,6 +546,7 @@
 		0B317C7E1F0F608B00B01DDA /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				1F676F8520B5AA6C002F71B4 /* ChildViewController */,
 				1F4F141420502D7E0066F790 /* NotifyCationController */,
 				1F4F1401204D805C0066F790 /* SettingViewController */,
 				0B317CAB1F0F826B00B01DDA /* MoreViewController */,
@@ -1531,6 +1547,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1F676F8520B5AA6C002F71B4 /* ChildViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F8620B5AA82002F71B4 /* MineLogViewController.h */,
+				1F676F8720B5AA82002F71B4 /* MineLogViewController.m */,
+				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,
+				1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */,
+				1F676F8C20B5AAB7002F71B4 /* MineBirdViewController.h */,
+				1F676F8D20B5AAB7002F71B4 /* MineBirdViewController.m */,
+				1F676F8F20B5AAD9002F71B4 /* MinePhotoViewController.h */,
+				1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */,
+				1F676F9220B5AAF4002F71B4 /* MineFriendViewController.h */,
+				1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */,
+			);
+			path = ChildViewController;
+			sourceTree = "<group>";
+		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1756,6 +1789,7 @@
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
+				1F676F8E20B5AAB7002F71B4 /* MineBirdViewController.m in Sources */,
 				1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
@@ -1779,6 +1813,7 @@
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
 				0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */,
+				1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
@@ -1798,6 +1833,7 @@
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
 				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
+				1F676F8820B5AA82002F71B4 /* MineLogViewController.m in Sources */,
 				0B75D5841FBE9752008D7AE6 /* AppPush.m in Sources */,
 				1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */,
 				1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */,
@@ -1856,6 +1892,7 @@
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
+				1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */,
 				1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */,
 				1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
@@ -1874,6 +1911,7 @@
 				1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */,
 				1F676F1720A9CAC5002F71B4 /* TalentViewController.m in Sources */,
 				1F676F1F20A9D32C002F71B4 /* ShequCell.m in Sources */,
+				1F676F9120B5AAD9002F71B4 /* MinePhotoViewController.m in Sources */,
 				0B75D5AA1FBEC563008D7AE6 /* UIView+Frame.m in Sources */,
 				1F676EAE209F3D39002F71B4 /* PublishSelectView.m in Sources */,
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
