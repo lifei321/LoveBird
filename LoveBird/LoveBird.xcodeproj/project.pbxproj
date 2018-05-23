@@ -23,6 +23,7 @@
 		0B317CAE1F0F829300B01DDA /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B317CAD1F0F829300B01DDA /* QuestionViewController.m */; };
 		0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B317CB01F0F82D900B01DDA /* FeedBackViewController.m */; };
 		0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B317CBB1F0F972200B01DDA /* AboutUsViewController.m */; };
+		0B58EC1D20B5604800DB0DC5 /* MineLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B58EC1C20B5604800DB0DC5 /* MineLogViewController.m */; };
 		0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702DF71F14CE3E00E39FAF /* UINavigationItem+CustomItem.m */; };
 		0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702DFD1F1602AF00E39FAF /* RegViewController.m */; };
 		0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E061F16172E00E39FAF /* RegInfoViewController.m */; };
@@ -194,6 +195,8 @@
 		0B317CB01F0F82D900B01DDA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		0B317CBA1F0F972200B01DDA /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		0B317CBB1F0F972200B01DDA /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		0B58EC1B20B5604800DB0DC5 /* MineLogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogViewController.h; sourceTree = "<group>"; };
+		0B58EC1C20B5604800DB0DC5 /* MineLogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogViewController.m; sourceTree = "<group>"; };
 		0B702DF61F14CE3E00E39FAF /* UINavigationItem+CustomItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CustomItem.h"; sourceTree = "<group>"; };
 		0B702DF71F14CE3E00E39FAF /* UINavigationItem+CustomItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CustomItem.m"; sourceTree = "<group>"; };
 		0B702DFC1F1602AF00E39FAF /* RegViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegViewController.h; sourceTree = "<group>"; };
@@ -531,6 +534,7 @@
 		0B317C7E1F0F608B00B01DDA /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				0B58EC1A20B5602C00DB0DC5 /* ViewController */,
 				1F4F141420502D7E0066F790 /* NotifyCationController */,
 				1F4F1401204D805C0066F790 /* SettingViewController */,
 				0B317CAB1F0F826B00B01DDA /* MoreViewController */,
@@ -640,6 +644,15 @@
 				0B317CBB1F0F972200B01DDA /* AboutUsViewController.m */,
 			);
 			path = AboutUsController;
+			sourceTree = "<group>";
+		};
+		0B58EC1A20B5602C00DB0DC5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B58EC1B20B5604800DB0DC5 /* MineLogViewController.h */,
+				0B58EC1C20B5604800DB0DC5 /* MineLogViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		0B702E0B1F16214800E39FAF /* View */ = {
@@ -1639,6 +1652,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/INTULocationManager/INTULocationManager.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/JLRoutes/JLRoutes.framework",
@@ -1666,6 +1680,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/INTULocationManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JLRoutes.framework",
@@ -1798,6 +1813,7 @@
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
 				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
+				0B58EC1D20B5604800DB0DC5 /* MineLogViewController.m in Sources */,
 				0B75D5841FBE9752008D7AE6 /* AppPush.m in Sources */,
 				1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */,
 				1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */,

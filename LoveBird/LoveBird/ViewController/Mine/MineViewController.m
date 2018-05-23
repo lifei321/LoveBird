@@ -15,8 +15,15 @@
 #import "UserDao.h"
 #import "MJRefresh.h"
 #import "UserModel.h"
+#import <HMSegmentedControl/HMSegmentedControl.h>
+#import "MineLogViewController.h"
 
-@interface MineViewController ()
+@interface MineViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@property (nonatomic, strong) HMSegmentedControl *segmented;
+@property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic, assign) NSInteger currentSelectIndex;
+@property (nonatomic, strong) NSArray <UIViewController *> *VCArray;
+
 
 @property (nonatomic, strong) MineHeaderView *headerView;
 
@@ -30,6 +37,7 @@
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
     
+    [self setData];
     [self setTableView];
 }
 
@@ -77,56 +85,111 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01f;
+}
+
+#pragma mark - UIPageViewControllerDelegate
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    NSInteger index = [self.VCArray indexOfObject:viewController];
+    if(index == 0 || index == NSNotFound) {
+        return nil;
+    }
+    return (UIViewController *)[self.VCArray objectAtIndex:index - 1];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    NSInteger index = [self.VCArray indexOfObject:viewController];
+    if(index == NSNotFound || index == self.VCArray.count - 1) {
+        return nil;
+    }
+    return (UIViewController *)[self.VCArray objectAtIndex:index + 1];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(nonnull NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    UIViewController *viewController = self.pageVC.viewControllers[0];
+    NSUInteger index = [self.VCArray indexOfObject:viewController];
+    self.currentSelectIndex = index;
+    [self.segmented setSelectedSegmentIndex:index animated:YES];
+}
+
+- (void)segmentedControlChangedValue:(UISegmentedControl *)segment {
+    long index = segment.selectedSegmentIndex;
+    [self navigationDidSelectedControllerIndex:index];
+}
+
+- (void)navigationDidSelectedControllerIndex:(NSInteger)index {
+    if (index == 0) {
+        [self.pageVC setViewControllers:@[[self.VCArray objectAtIndex:index]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+    }
+    else {
+        [self.pageVC setViewControllers:@[[self.VCArray objectAtIndex:index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    }
+}
+
+
+#pragma mark-- UI
+
+- (void)setData {
+    
+    MineLogViewController *logVC = [[MineLogViewController alloc] init];
+    
+    self.VCArray = @[logVC, logVC, logVC, logVC, logVC];
+}
+
+
 - (void)setTableView {
     
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kTabBarHeight);
-    self.dataSourceArray =  [MineDataSourceManager DataSource];
-    [self registerClass:[MineTableViewCell class] forCellReuseIdentifier:NSStringFromClass([MineTableViewCell class]) dataSource:nil];
     
     MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
     self.tableView.tableHeaderView = headerView;
     self.headerView = headerView;
     
-    @weakify(self);
-    headerView.headerBlock = ^(NSInteger tag) {
-        @strongify(self);
-        
-        switch (tag) {
-            case 100:
-            {
-                
-            }
-                break;
-            case 200:
-            {
-                
-            }
-                break;
-            case 300:
-            {
-                
-            }
-                break;
-            case 400:
-            {
-                
-            }
-                break;
-            case 500:
-            {
-                
-            }
-                break;
-                
-            default:
-                break;
-        }
-    };
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - kTabBarHeight - self.headerView.height)];
+    footerView.backgroundColor = [UIColor whiteColor];
+    self.segmented.sectionTitles = @[@"日志", @"收藏", @"鸟种", @"相册", @"朋友圈"];
+    [footerView addSubview:self.segmented];
+
+    [self.pageVC setViewControllers:@[self.VCArray.firstObject] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    self.pageVC.view.frame = CGRectMake(0, self.segmented.bottom, SCREEN_WIDTH, footerView.height - self.segmented.height);
+    [self addChildViewController:self.pageVC];
+    [footerView addSubview:self.pageVC.view];
     
-    //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForMyInfo)];
-    [self.tableView.mj_header beginRefreshing];
+    self.tableView.tableFooterView = footerView;
 }
+
+- (UIPageViewController *)pageVC {
+    if (!_pageVC) {
+        NSDictionary *options = @{UIPageViewControllerOptionSpineLocationKey : @(UIPageViewControllerSpineLocationMin)};
+        _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                options:options];
+        _pageVC.delegate = self;
+        _pageVC.dataSource = self;
+    }
+    return _pageVC;
+}
+
+- (HMSegmentedControl *)segmented {
+    if (!_segmented) {
+        _segmented = [[HMSegmentedControl alloc] init];
+        _segmented.selectionIndicatorHeight = 4.0f;
+        _segmented.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        _segmented.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+        _segmented.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor greenColor]};
+        _currentSelectIndex = 0;
+        _segmented.selectedSegmentIndex = _currentSelectIndex;
+        _segmented.frame = CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(142));
+        [_segmented addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _segmented;
+}
+
 
 - (void)setNavigation {
     
