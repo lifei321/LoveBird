@@ -1550,6 +1550,7 @@
 		1F676F8520B5AA6C002F71B4 /* ChildViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F676F9520B86182002F71B4 /* LogView */,
 				1F676F8620B5AA82002F71B4 /* MineLogViewController.h */,
 				1F676F8720B5AA82002F71B4 /* MineLogViewController.m */,
 				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,
@@ -1562,6 +1563,13 @@
 				1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */,
 			);
 			path = ChildViewController;
+			sourceTree = "<group>";
+		};
+		1F676F9520B86182002F71B4 /* LogView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LogView;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {

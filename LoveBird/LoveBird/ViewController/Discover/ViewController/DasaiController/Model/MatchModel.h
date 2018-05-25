@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSArray <MatchModel> *data;
 @end
 
-@interface MatchModel : JSONModel
+@interface MatchModel : AppBaseModel
 
 @property (nonatomic, copy) NSString *imgUrl;
 

@@ -218,7 +218,7 @@
 //    [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:@"483887" forKey:@"uid"];
 
-    [AppHttpManager POST:kAPI_User_MyInfo parameters:dic jsonModelName:[UserModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_PersonInfo parameters:dic jsonModelName:[UserModel class] success:^(__kindof AppBaseModel *responseObject) {
         [UserPage sharedInstance].userModel = (UserModel *)responseObject;
         if (successBlock) {
             successBlock(responseObject);

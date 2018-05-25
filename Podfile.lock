@@ -30,24 +30,24 @@ PODS:
   - MJRefresh (3.1.12)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
-  - mob_sharesdk (4.1.1):
-    - mob_sharesdk/ShareSDK (= 4.1.1)
+  - mob_sharesdk (4.1.2):
+    - mob_sharesdk/ShareSDK (= 4.1.2)
     - MOBFoundation
-  - mob_sharesdk/ShareSDK (4.1.1):
+  - mob_sharesdk/ShareSDK (4.1.2):
     - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/QQ (4.1.1):
+  - mob_sharesdk/ShareSDKPlatforms/QQ (4.1.2):
     - mob_sharesdk/ShareSDK
     - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.1.1):
+  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.1.2):
     - mob_sharesdk/ShareSDK
     - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/WeChat (4.1.1):
+  - mob_sharesdk/ShareSDKPlatforms/WeChat (4.1.2):
     - mob_sharesdk/ShareSDK
     - MOBFoundation
-  - mob_sharesdk/ShareSDKUI (4.1.1):
+  - mob_sharesdk/ShareSDKUI (4.1.2):
     - mob_sharesdk/ShareSDK
     - MOBFoundation
-  - MOBFoundation (3.1.5)
+  - MOBFoundation (3.1.6)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -116,8 +116,8 @@ SPEC CHECKSUMS:
   MBProgressHUD+BWMExtension: d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
-  mob_sharesdk: 6cb2159a5205d79c0f3e2d5a10ae63362c8e09d3
-  MOBFoundation: d961251ce6de54917f678dc711962d1385ae7ee1
+  mob_sharesdk: e859de6ace7542f3395ce055682f7cd40efdfaa1
+  MOBFoundation: a87c5f11fb87f873337189c3ec0add4d3ec6221a
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
@@ -130,6 +130,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e228ed2ca83cb8509f5b0bd6d9101746315a3747
+PODFILE CHECKSUM: 8c93abbcea9aabc56ce9e1378254c41a57cf05cb
 
 COCOAPODS: 1.4.0

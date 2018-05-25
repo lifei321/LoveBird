@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '729894BCB85145C24D5DB35E7EAB73C8'
-               BlueprintName = 'WebViewJavascriptBridge'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'WebViewJavascriptBridge.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AEA18AFA043D3924ECA27FE9CB263227"
+               BlueprintName = "WebViewJavascriptBridge"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "WebViewJavascriptBridge.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

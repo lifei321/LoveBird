@@ -41,6 +41,7 @@
     @weakify(self);
     [DiscoverDao getMatchListSuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
+        [AppBaseHud hideHud:self.view];
         MatchListModel *listModel = (MatchListModel *)responseObject;
         NSMutableArray *tempArray = [NSMutableArray new];
         for (MatchModel *model in listModel.data) {

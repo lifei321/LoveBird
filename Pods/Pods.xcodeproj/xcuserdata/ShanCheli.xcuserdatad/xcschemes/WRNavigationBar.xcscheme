@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6500E4675AE589DEDE5DF01775DF50BD'
-               BlueprintName = 'WRNavigationBar'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'WRNavigationBar.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA6F7237408A4A29C2B65E4C61887162"
+               BlueprintName = "WRNavigationBar"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "WRNavigationBar.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

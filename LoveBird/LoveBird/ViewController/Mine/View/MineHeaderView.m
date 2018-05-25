@@ -56,7 +56,7 @@
         self.iconImageView.layer.masksToBounds = YES;
         [self addSubview:self.iconImageView];
         
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.iconImageView.bottom + AutoSize6(22), SCREEN_HEIGHT, AutoSize6(28))];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.iconImageView.bottom + AutoSize6(22), SCREEN_WIDTH, AutoSize6(28))];
         self.nameLabel.textAlignment = NSTextAlignmentCenter;
         self.nameLabel.textColor = [UIColor whiteColor];
         self.nameLabel.font = kFont6(30);
@@ -168,9 +168,9 @@
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[UserPage sharedInstance].userModel.head] placeholderImage:[UIImage imageNamed:@""]];
     self.nameLabel.text = model.username;
-    self.followLabel.text = model.followNum;
-    self.fansLabel.text = model.fansNum;
-    self.scorleLabel.text = model.credit;
-    self.gradeLabel.text = model.level;
+    self.followLabel.text = [NSString stringWithFormat:@"关注 %@", model.followNum];
+    self.fansLabel.text = [NSString stringWithFormat:@"粉丝 %@", model.fansNum];
+    self.scorleLabel.text = [NSString stringWithFormat:@"积分 %@", model.credit];
+    self.gradeLabel.text = [NSString stringWithFormat:@"菜鸟 Lv.%@", model.level];
 }
 @end

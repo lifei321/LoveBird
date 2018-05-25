@@ -15,7 +15,6 @@
 #import "UserDao.h"
 #import "MJRefresh.h"
 #import "UserModel.h"
-
 #import "MineLogViewController.h"
 #import "MineCollectViewController.h"
 #import "MineBirdViewController.h"
@@ -89,9 +88,17 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 0.01f;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01f;
 }
+
+
+#pragma mark-- UI
+
 
 - (void)setTableView {
     
@@ -172,7 +179,9 @@
     //默认【下拉刷新】
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForMyInfo)];
     [self.tableView.mj_header beginRefreshing];
+    
 }
+
 
 - (void)setNavigation {
     

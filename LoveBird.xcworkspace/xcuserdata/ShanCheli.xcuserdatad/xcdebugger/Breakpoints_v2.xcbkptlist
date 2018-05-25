@@ -25,40 +25,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "+publish:birdInfo:successBlock:failureBlock:"
+            landmarkName = "+publish:birdInfo:evId:loaction:time:status:title:successBlock:failureBlock:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[PublishDao publish:birdInfo:successBlock:failureBlock:]"
-                  moduleName = "LoveBird"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ShanCheli/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "547626169.355425"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "921">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__57+[PublishDao publish:birdInfo:successBlock:failureBlock:]_block_invoke"
-                  moduleName = "LoveBird"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ShanCheli/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "547626169.357977"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
