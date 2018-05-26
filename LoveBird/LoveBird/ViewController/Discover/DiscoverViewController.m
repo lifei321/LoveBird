@@ -16,6 +16,7 @@
 #import "TalentViewController.h"
 #import "ShequViewController.h"
 #import "DasaiViewController.h"
+#import "ZhuangbeiViewController.h"
 
 
 #define kStringForBanner @"kStringForBanner"
@@ -136,7 +137,7 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"uid" forKey:@"483887"];
-    [dic setObject:@"page" forKey:[NSString stringWithFormat:@"%ld", pageNum]];
+    [dic setObject:@"page" forKey:[NSString stringWithFormat:@"%ld", (long)pageNum]];
 
     @weakify(self);
     [AppHttpManager POST:kAPI_Discover_Content parameters:dic jsonModelName:[DiscoverContentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -244,12 +245,16 @@
             break;
         case 4:
         {// 咨询
-            
+            ZhuangbeiViewController *zbvc = [[ZhuangbeiViewController alloc] init];
+            zbvc.cid = @"2";
+            [self.navigationController pushViewController:zbvc animated:YES];
         }
             break;
         case 5:
         {// 装备
-            
+            ZhuangbeiViewController *zbvc = [[ZhuangbeiViewController alloc] init];
+            zbvc.cid = @"1";
+            [self.navigationController pushViewController:zbvc animated:YES];
         }
             break;
         case 6:

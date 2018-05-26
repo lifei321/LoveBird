@@ -115,6 +115,11 @@
  */
 #define kAPI_Discover_MatchDetail kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchDetail")
 
+/**
+ * 装备 咨询
+ */
+#define kAPI_Discover_articleList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=articleList")
+
 #pragma mark-- 查鸟
 
 /**

@@ -164,6 +164,7 @@
 		1F676FAD20B972EC002F71B4 /* MineBirdLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FAC20B972EC002F71B4 /* MineBirdLeftCell.m */; };
 		1F676FB020B97300002F71B4 /* MineBirdRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FAF20B97300002F71B4 /* MineBirdRightCell.m */; };
 		1F676FB320B97608002F71B4 /* MineBirdLeftBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FB220B97608002F71B4 /* MineBirdLeftBackView.m */; };
+		1F676FB820B9BD69002F71B4 /* ZhuangbeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FB720B9BD69002F71B4 /* ZhuangbeiViewController.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -493,6 +494,8 @@
 		1F676FAF20B97300002F71B4 /* MineBirdRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineBirdRightCell.m; sourceTree = "<group>"; };
 		1F676FB120B97608002F71B4 /* MineBirdLeftBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineBirdLeftBackView.h; sourceTree = "<group>"; };
 		1F676FB220B97608002F71B4 /* MineBirdLeftBackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineBirdLeftBackView.m; sourceTree = "<group>"; };
+		1F676FB620B9BD69002F71B4 /* ZhuangbeiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuangbeiViewController.h; sourceTree = "<group>"; };
+		1F676FB720B9BD69002F71B4 /* ZhuangbeiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuangbeiViewController.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1465,6 +1468,7 @@
 		1F676F0A20A9CAC5002F71B4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F676FB520B9BD47002F71B4 /* ZhuangbeiController */,
 				1F676F7920B166CE002F71B4 /* DasaiController */,
 				1F676F0B20A9CAC5002F71B4 /* ShequController */,
 				1F676F0C20A9CAC5002F71B4 /* TalentController */,
@@ -1640,6 +1644,15 @@
 				1F676FB220B97608002F71B4 /* MineBirdLeftBackView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1F676FB520B9BD47002F71B4 /* ZhuangbeiController */ = {
+			isa = PBXGroup;
+			children = (
+				1F676FB620B9BD69002F71B4 /* ZhuangbeiViewController.h */,
+				1F676FB720B9BD69002F71B4 /* ZhuangbeiViewController.m */,
+			);
+			path = ZhuangbeiController;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1902,6 +1915,7 @@
 				1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */,
 				0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */,
 				1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */,
+				1F676FB820B9BD69002F71B4 /* ZhuangbeiViewController.m in Sources */,
 				1F676F9920B9119F002F71B4 /* MineLogViewController.m in Sources */,
 				1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
