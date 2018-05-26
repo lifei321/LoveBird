@@ -153,11 +153,14 @@
 		1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F7B20B16705002F71B4 /* DasaiViewController.m */; };
 		1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8020B1679E002F71B4 /* MatchModel.m */; };
 		1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8320B16986002F71B4 /* MatchListCell.m */; };
-		1F676F8820B5AA82002F71B4 /* MineLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8720B5AA82002F71B4 /* MineLogViewController.m */; };
 		1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */; };
 		1F676F8E20B5AAB7002F71B4 /* MineBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F8D20B5AAB7002F71B4 /* MineBirdViewController.m */; };
 		1F676F9120B5AAD9002F71B4 /* MinePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */; };
 		1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */; };
+		1F676F9920B9119F002F71B4 /* MineLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9820B9119E002F71B4 /* MineLogViewController.m */; };
+		1F676F9E20B911CF002F71B4 /* MineLogFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F9D20B911CF002F71B4 /* MineLogFrameModel.m */; };
+		1F676FA120B9120E002F71B4 /* MineLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FA020B9120E002F71B4 /* MineLogCell.m */; };
+		1F676FA420B94FE6002F71B4 /* MineLogLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676FA320B94FE6002F71B4 /* MineLogLineView.m */; };
 		1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */; };
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
@@ -465,8 +468,6 @@
 		1F676F8020B1679E002F71B4 /* MatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchModel.m; sourceTree = "<group>"; };
 		1F676F8220B16986002F71B4 /* MatchListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchListCell.h; sourceTree = "<group>"; };
 		1F676F8320B16986002F71B4 /* MatchListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchListCell.m; sourceTree = "<group>"; };
-		1F676F8620B5AA82002F71B4 /* MineLogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogViewController.h; sourceTree = "<group>"; };
-		1F676F8720B5AA82002F71B4 /* MineLogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogViewController.m; sourceTree = "<group>"; };
 		1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineCollectViewController.h; sourceTree = "<group>"; };
 		1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCollectViewController.m; sourceTree = "<group>"; };
 		1F676F8C20B5AAB7002F71B4 /* MineBirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineBirdViewController.h; sourceTree = "<group>"; };
@@ -475,6 +476,14 @@
 		1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePhotoViewController.m; sourceTree = "<group>"; };
 		1F676F9220B5AAF4002F71B4 /* MineFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFriendViewController.h; sourceTree = "<group>"; };
 		1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFriendViewController.m; sourceTree = "<group>"; };
+		1F676F9720B9119E002F71B4 /* MineLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineLogViewController.h; sourceTree = "<group>"; };
+		1F676F9820B9119E002F71B4 /* MineLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineLogViewController.m; sourceTree = "<group>"; };
+		1F676F9C20B911CF002F71B4 /* MineLogFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogFrameModel.h; sourceTree = "<group>"; };
+		1F676F9D20B911CF002F71B4 /* MineLogFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogFrameModel.m; sourceTree = "<group>"; };
+		1F676F9F20B9120E002F71B4 /* MineLogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogCell.h; sourceTree = "<group>"; };
+		1F676FA020B9120E002F71B4 /* MineLogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogCell.m; sourceTree = "<group>"; };
+		1F676FA220B94FE6002F71B4 /* MineLogLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLogLineView.h; sourceTree = "<group>"; };
+		1F676FA320B94FE6002F71B4 /* MineLogLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineLogLineView.m; sourceTree = "<group>"; };
 		1F6EB7E820935FD400665561 /* UIDevice+LFAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LFAddition.h"; sourceTree = "<group>"; };
 		1F6EB7E920935FD400665561 /* UIDevice+LFAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LFAddition.m"; sourceTree = "<group>"; };
 		1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewJavascriptBridge+LF.m"; sourceTree = "<group>"; };
@@ -1550,9 +1559,7 @@
 		1F676F8520B5AA6C002F71B4 /* ChildViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1F676F9520B86182002F71B4 /* LogView */,
-				1F676F8620B5AA82002F71B4 /* MineLogViewController.h */,
-				1F676F8720B5AA82002F71B4 /* MineLogViewController.m */,
+				1F676F9620B9119E002F71B4 /* LogController */,
 				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,
 				1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */,
 				1F676F8C20B5AAB7002F71B4 /* MineBirdViewController.h */,
@@ -1565,11 +1572,35 @@
 			path = ChildViewController;
 			sourceTree = "<group>";
 		};
-		1F676F9520B86182002F71B4 /* LogView */ = {
+		1F676F9620B9119E002F71B4 /* LogController */ = {
 			isa = PBXGroup;
 			children = (
+				1F676F9B20B911B7002F71B4 /* Model */,
+				1F676F9A20B911B7002F71B4 /* View */,
+				1F676F9720B9119E002F71B4 /* MineLogViewController.h */,
+				1F676F9820B9119E002F71B4 /* MineLogViewController.m */,
 			);
-			path = LogView;
+			path = LogController;
+			sourceTree = "<group>";
+		};
+		1F676F9A20B911B7002F71B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F9F20B9120E002F71B4 /* MineLogCell.h */,
+				1F676FA020B9120E002F71B4 /* MineLogCell.m */,
+				1F676FA220B94FE6002F71B4 /* MineLogLineView.h */,
+				1F676FA320B94FE6002F71B4 /* MineLogLineView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F676F9B20B911B7002F71B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F676F9C20B911CF002F71B4 /* MineLogFrameModel.h */,
+				1F676F9D20B911CF002F71B4 /* MineLogFrameModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F6EB7EE209363E900665561 /* LFWebview */ = {
@@ -1832,6 +1863,7 @@
 				1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */,
 				0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */,
 				1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */,
+				1F676F9920B9119F002F71B4 /* MineLogViewController.m in Sources */,
 				1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
@@ -1841,7 +1873,6 @@
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
 				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
-				1F676F8820B5AA82002F71B4 /* MineLogViewController.m in Sources */,
 				0B75D5841FBE9752008D7AE6 /* AppPush.m in Sources */,
 				1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */,
 				1F676EE320A7DC6F002F71B4 /* PublishEVModel.m in Sources */,
@@ -1860,6 +1891,7 @@
 				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
 				1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */,
+				1F676FA420B94FE6002F71B4 /* MineLogLineView.m in Sources */,
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
 				0BA41920201DADFB002C6335 /* DiscoverDataSource.m in Sources */,
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
@@ -1868,6 +1900,7 @@
 				1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,
+				1F676FA120B9120E002F71B4 /* MineLogCell.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
 				0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */,
@@ -1905,6 +1938,7 @@
 				1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				1F676F0820A9C4F3002F71B4 /* WPFunctionView.m in Sources */,
+				1F676F9E20B911CF002F71B4 /* MineLogFrameModel.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
 				1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */,
