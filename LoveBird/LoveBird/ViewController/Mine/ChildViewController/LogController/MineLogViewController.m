@@ -77,10 +77,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return AutoSize6(20);
-    }
-    
     return 0.01f;
 }
 
@@ -93,7 +89,28 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerClass:[MineLogCell class] forCellReuseIdentifier:NSStringFromClass([MineLogCell class])];
+    self.tableView.tableHeaderView = [self makeHeaderView];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
+}
+
+- (UIView *)makeHeaderView {
+    UIView *headview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(70))];
     
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, AutoSize6(30), SCREEN_WIDTH, AutoSize6(40))];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    
+    NSString *placeString = @"3";
+    NSString *textString = [NSString stringWithFormat:@"您还有%@篇草稿没有完成 ->", placeString];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
+    [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColor7f7f7f range:NSMakeRange(0, 3)];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, placeString.length)];
+    [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColor7f7f7f range:NSMakeRange(3 + placeString.length, 10)];
+
+    [attrString addAttribute:NSFontAttributeName value:kFont6(24) range:NSMakeRange(0, textString.length)];
+    tipLabel.attributedText = attrString;
+    [headview addSubview:tipLabel];
+    
+    return headview;
 }
 
 @end
