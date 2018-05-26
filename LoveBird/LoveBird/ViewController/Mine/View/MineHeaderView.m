@@ -31,6 +31,10 @@
 
 @property (nonatomic, strong) UIButton *birdButton;
 
+@property (nonatomic, strong) UIButton *friendButton;
+
+@property (nonatomic, strong) UIView *redView;
+
 @property (nonatomic, strong) UIButton *selectedButton;
 
 
@@ -101,6 +105,17 @@
         
         UIButton *friendButton = [self makeButton:pictureButton.right image:@"mine_header_friend_no" selectImage:@"mine_header_friend_yes" title:@"朋友圈" tag:500];
         [bottomView addSubview:friendButton];
+        self.friendButton = friendButton;
+        
+        self.redView = [[UIView alloc] initWithFrame:CGRectMake(friendButton.width - AutoSize6(40), AutoSize6(20), AutoSize6(7), AutoSize6(7))];
+        self.redView.backgroundColor = [UIColor redColor];
+        self.redView.layer.cornerRadius = self.redView.width / 2;
+        [friendButton addSubview:self.redView];
+        self.redView.hidden = YES;
+        
+        UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, bottomView.bottom - 0.5, SCREEN_WIDTH, 0.5)];
+        lineview.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self addSubview:lineview];
         
         // 进来选中日志
         [self bottomButtonDidClick:self.logButton];
@@ -110,12 +125,18 @@
 
 
 - (void)bottomButtonDidClick:(UIButton *)button {
+    if (button.tag == self.friendButton.tag) {
+        self.redView.hidden = YES;
+    }
+    
     if (self.selectedButton.tag == button.tag) {
         return;
     }
     self.selectedButton.selected = NO;
     button.selected = YES;
     self.selectedButton = button;
+    
+
     
     if (self.headerBlock) {
         self.headerBlock(button.tag);
@@ -146,6 +167,12 @@
     [button addTarget:self action:@selector(bottomButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = tag;
     
+    [self reloadButton:button];
+
+    return button;
+}
+
+- (void)reloadButton:(UIButton *)button {
     CGSize imgViewSize,titleSize,btnSize;
     UIEdgeInsets imageViewEdge,titleEdge;
     CGFloat heightSpace = AutoSize6(28);
@@ -159,7 +186,6 @@
     [button setImageEdgeInsets:imageViewEdge];
     titleEdge = UIEdgeInsetsMake(imgViewSize.height +heightSpace, - imgViewSize.width, 0.0, 0.0);
     [button setTitleEdgeInsets:titleEdge];
-    return button;
 }
 
 - (void)reloadData {
@@ -172,5 +198,12 @@
     self.fansLabel.text = [NSString stringWithFormat:@"粉丝 %@", model.fansNum];
     self.scorleLabel.text = [NSString stringWithFormat:@"积分 %@", model.credit];
     self.gradeLabel.text = [NSString stringWithFormat:@"菜鸟 Lv.%@", model.level];
+    
+    [self.logButton setTitle:[NSString stringWithFormat:@"日志 %@", model.articleNum] forState:UIControlStateNormal];
+    [self reloadButton:self.logButton];
+    [self.birdButton setTitle:[NSString stringWithFormat:@"鸟种 %@", model.birdspeciesNum] forState:UIControlStateNormal];
+    [self reloadButton:self.birdButton];
+    self.redView.hidden = (model.hasMessage) ? NO : YES;
+
 }
 @end
