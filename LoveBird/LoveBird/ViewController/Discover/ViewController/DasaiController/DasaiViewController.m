@@ -59,7 +59,23 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return AutoSize6(576);
+    return [self getHeight:indexPath.row];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
+- (CGFloat)getHeight:(NSInteger)row {
+    CGFloat height = 0;
+    
+    AppBaseCellModel *cellModel = self.dataSource.tableListArray[0][row];
+    
+    MatchModel *model = (MatchModel *)cellModel.userInfo;
+    
+    height = model.imgHeight * (SCREEN_WIDTH / model.imgWidth);
+    
+    return  height + AutoSize6(115) + AutoSize6(20);
 }
 
 #pragma mark-- UI

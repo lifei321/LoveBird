@@ -108,7 +108,7 @@
 /**
  *  大赛列表
  */
-#define kAPI_Discover_MatchList kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchArticleList")
+#define kAPI_Discover_MatchList kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchList")
 
 /**
  *  大赛详情 基本信息
