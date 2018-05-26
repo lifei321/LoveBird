@@ -8,9 +8,10 @@
 
 #import "AppBaseModel.h"
 
+@protocol UserBirdModel;
 @interface UserBirdDataModel : AppBaseModel
 
-@property (nonatomic, strong) NSArray *birdInfo;
+@property (nonatomic, strong) NSArray <UserBirdModel>*birdInfo;
 
 @property (nonatomic, assign) NSInteger birdNum;
 

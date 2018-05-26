@@ -19,38 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "549015064.549096"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "+success:responseObject:success:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "549015064.549162"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
-            landmarkName = "+success:responseObject:success:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Data/Dao/PublishDao.m"
             timestampString = "548951493.215674"
             startingColumnNumber = "9223372036854775807"
@@ -68,7 +36,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "549023755.027001"
+                  timestampString = "549040169.88789"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -83,7 +51,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "549023755.030162"
+                  timestampString = "549040169.891156"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -98,7 +66,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "549023755.033675"
+                  timestampString = "549040169.894073"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -121,6 +89,22 @@
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "-netForLog"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
+            timestampString = "549029350.53131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "+success:responseObject:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

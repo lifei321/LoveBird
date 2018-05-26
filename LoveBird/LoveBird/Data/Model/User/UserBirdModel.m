@@ -23,5 +23,16 @@
 @end
 
 @implementation UserBirdModel
++(JSONKeyMapper*)keyMapper {
+    
+    NSDictionary *dict = @{
+                           @"bird_head": @"birdHead",
+                           @"dateline": @"dateline",
+                           @"csp_code": @"cspCode",
+                           @"name": @"name",
+                           };
+    
+    return [[JSONKeyMapper alloc] initWithDictionary:dict];
+}
 
 @end

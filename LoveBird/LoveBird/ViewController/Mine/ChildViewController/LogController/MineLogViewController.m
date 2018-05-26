@@ -11,6 +11,7 @@
 #import "ShequModel.h"
 #import "MineLogFrameModel.h"
 #import "MineLogCell.h"
+#import "MJRefresh.h"
 
 @interface MineLogViewController ()<UITableViewDataSource>
 
@@ -44,7 +45,8 @@
     [UserDao userLogList:1 matchId:nil fid:nil successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
-        
+        [self.tableView.mj_header endRefreshing];
+
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
         for (int i = 0; i < dataModel.data.count; i++) {
             ShequModel *model = dataModel.data[i];
@@ -58,6 +60,8 @@
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        [self.tableView.mj_header endRefreshing];
+
     }];
 }
 
@@ -93,6 +97,11 @@
     [self.tableView registerClass:[MineLogCell class] forCellReuseIdentifier:NSStringFromClass([MineLogCell class])];
     self.tableView.tableHeaderView = [self makeHeaderView];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
+    
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }
 
 - (UIView *)makeHeaderView {

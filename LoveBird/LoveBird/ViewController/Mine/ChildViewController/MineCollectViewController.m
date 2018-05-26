@@ -11,6 +11,7 @@
 #import "ShequModel.h"
 #import "ShequFrameModel.h"
 #import "ShequCell.h"
+#import "MJRefresh.h"
 
 
 @interface MineCollectViewController ()<UITableViewDataSource>
@@ -43,6 +44,7 @@
     [UserDao userCollectList:1 successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        [self.tableView.mj_header endRefreshing];
 
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
         for (ShequModel *model in dataModel.data) {
@@ -54,6 +56,8 @@
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        [self.tableView.mj_header endRefreshing];
+
     }];
 }
 
@@ -93,6 +97,10 @@
 
     [self.tableView registerClass:[ShequCell class] forCellReuseIdentifier:NSStringFromClass([ShequCell class])];
     
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }
 
 

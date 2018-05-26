@@ -159,9 +159,9 @@
         failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
+    [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"iuid"];
     
     [AppHttpManager POST:kAPI_User_BirdList parameters:dic jsonModelName:[UserBirdDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
