@@ -86,6 +86,8 @@
         self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];
         CGFloat width = [self.gradeLabel.text getTextWightWithFont:self.gradeLabel.font];
         self.gradeLabel.width = width + AutoSize6(15);
+    } else {
+        self.gradeLabel.hidden = YES;
     }
 
     CGFloat width = [shequModel.author getTextWightWithFont:self.nickNameLabel.font];
