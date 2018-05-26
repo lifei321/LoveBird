@@ -66,6 +66,9 @@
     return 0.01f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01f;
+}
 - (CGFloat)getHeight:(NSInteger)row {
     CGFloat height = 0;
     

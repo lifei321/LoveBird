@@ -25,6 +25,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         
         _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize6(20), SCREEN_WIDTH, AutoSize6(442))];
         _iconImageView.contentMode = UIViewContentModeScaleToFill;
@@ -34,6 +35,7 @@
         self.titleLable.font = kFont6(32);
         self.titleLable.textColor = UIColorFromRGB(0x333333);
         self.titleLable.textAlignment = NSTextAlignmentCenter;
+        self.titleLable.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.titleLable];
         
     }
