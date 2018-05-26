@@ -37,10 +37,13 @@
 }
 
 - (void)netForLog {
-    
+    [AppBaseHud showHudWithLoding:self.view];
+
     @weakify(self);
     [UserDao userCollectList:1 successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
+        [AppBaseHud hideHud:self.view];
+
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
         for (ShequModel *model in dataModel.data) {
             ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];

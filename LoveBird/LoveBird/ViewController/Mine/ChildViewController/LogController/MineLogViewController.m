@@ -39,9 +39,11 @@
 
 - (void)netForLog {
     
+    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [UserDao userLogList:1 matchId:nil fid:nil successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
+        [AppBaseHud hideHud:self.view];
         
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
         for (int i = 0; i < dataModel.data.count; i++) {
