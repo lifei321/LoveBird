@@ -44,7 +44,6 @@
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - AutoSize6(40) - AutoSize6(74) - AutoSize6(5), AutoSize6(5), AutoSize6(74), AutoSize6(74))];
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.contentMode = UIViewContentModeCenter;
-        self.iconImageView.backgroundColor = [UIColor redColor];
         [self.backView addSubview:self.iconImageView];
         
         self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.backView.width - self.iconImageView.width - AutoSize6(20), AutoSize6(84))];
@@ -78,7 +77,7 @@
 - (void)setBirdModel:(UserBirdModel *)birdModel {
     _birdModel = birdModel;
     
-    self.timeLabel.text = _birdModel.dateline;
+    self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:birdModel.dateline formatSytle:DateFormatYMD];
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_birdModel.birdHead] placeholderImage:[UIImage imageNamed:@""]];
     self.titleLable.text = _birdModel.name;
 }

@@ -77,5 +77,14 @@ static NSString *DateFormatMD = @"MM-dd";
                                                startTime:(NSTimeInterval)startTime
                                              formatSytle:(NSString *)formatSytle;
 
+/**
+ *  根据时间戳获取一定格式的日期
+ *
+ *  @param timeString  时间戳
+ *  @param formatSytle 格式 eg: yyMMdd
+ *
+ *  @return 日期
+ */
+- (NSString *)getDateWithTime:(NSString *)time formatSytle:(NSString *)formatSytle;
 
 @end

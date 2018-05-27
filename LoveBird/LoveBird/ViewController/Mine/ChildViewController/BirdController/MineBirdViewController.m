@@ -70,11 +70,11 @@
     UITableViewCell *cell;
     if (indexPath.row % 2 == 0) {
         MineBirdLeftCell *leftcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MineBirdLeftCell class]) forIndexPath:indexPath];
-        leftcell.birdModel = self.dataArray[indexPath.row];
+        leftcell.birdModel = (UserBirdModel *)self.dataArray[indexPath.row];
         cell = leftcell;
     } else {
         MineBirdRightCell *rightcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MineBirdRightCell class]) forIndexPath:indexPath];
-        rightcell.birdModel = self.dataArray[indexPath.row];
+        rightcell.birdModel = (UserBirdModel *)self.dataArray[indexPath.row];
         cell = rightcell;
     }
     return cell;

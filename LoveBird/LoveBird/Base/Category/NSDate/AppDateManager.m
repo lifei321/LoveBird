@@ -91,4 +91,22 @@ static AppDateManager *share = nil;
     return haveTime;
 }
 
+/**
+ *  根据时间戳获取一定格式的日期
+ *
+ *  @param time  时间戳
+ *  @param formatSytle 格式 eg: yyMMdd
+ *
+ *  @return 日期
+ */
+- (NSString *)getDateWithTime:(NSString *)time formatSytle:(NSString *)formatSytle {
+    
+    NSTimeInterval timeint = [time doubleValue];//传入的时间戳str如果是精确到毫秒的记得要/1000
+    NSDate *detailDate = [NSDate dateWithTimeIntervalSince1970:timeint];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //实例化一个NSDateFormatter对象
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:formatSytle];
+    NSString *currentDateStr = [dateFormatter stringFromDate: detailDate];
+    return currentDateStr;
+}
 @end
