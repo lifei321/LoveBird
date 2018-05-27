@@ -113,9 +113,9 @@
     lineleft.backgroundColor = kColorTextColord2d2d2;
     [backView addSubview:lineleft];
     
-//    UIView *lineright = [[UIView alloc] initWithFrame:CGRectMake(backView.width - 0.5, 0, 0.5, backView.height)];
-//    lineright.backgroundColor = kColorTextColord2d2d2;
-//    [backView addSubview:lineright];
+    UIView *lineright = [[UIView alloc] initWithFrame:CGRectMake(backView.width, 0, 0.5, backView.height)];
+    lineright.backgroundColor = kColorTextColord2d2d2;
+    [backView addSubview:lineright];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.5, AutoSize6(24), backView.width - 0.5, AutoSize6(126))];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateNormal];
