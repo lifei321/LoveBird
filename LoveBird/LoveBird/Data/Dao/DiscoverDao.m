@@ -10,6 +10,7 @@
 #import "ShequModel.h"
 #import "MatchModel.h"
 #import "DiscoverContentModel.h"
+#import "ZhuangbeiModel.h"
 
 
 
@@ -72,7 +73,7 @@
     [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(cid) forKey:@"cid"];
 
-    [AppHttpManager POST:kAPI_Discover_articleList parameters:dic jsonModelName:[DiscoverContentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_Discover_articleList parameters:dic jsonModelName:[ZhuangbeiDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -82,7 +83,6 @@
             failureBlock(error);
         }
     }];
-    
 }
 
 @end

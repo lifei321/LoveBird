@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DiscoverContentModel.h"
 
+
 @protocol FollowButtonDidClickDelegate <NSObject>
 
 - (void)followButtonClickDelegate:(UIButton *)button;

@@ -11,6 +11,7 @@
 #import "AppHttpManager.h"
 #import "MJRefresh.h"
 #import "DiscoverDao.h"
+#import "ZhuangbeiModel.h"
 
 @interface ZhuangbeiViewController ()<UITableViewDelegate, UITableViewDataSource, TimeLineClickDelegate>
 
@@ -62,11 +63,11 @@
             [self.tableView.mj_footer endRefreshing];
         }
         [AppBaseHud hideHud:self.view];
-        DiscoverContentDataModel *dataModel = (DiscoverContentDataModel *)responseObject;
+        ZhuangbeiDataModel *dataModel = (ZhuangbeiDataModel *)responseObject;
         
-        for (DiscoverContentModel *model in dataModel.data) {
+        for (ZhuangbeiModel *model in dataModel.data) {
             TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
-            lineModel.contentModel = model;
+            lineModel.zhuangbeiModel = model;
             if (header) {
                 [self.dataArray removeAllObjects];
             }

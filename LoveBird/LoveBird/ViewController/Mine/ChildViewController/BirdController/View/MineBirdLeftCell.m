@@ -44,6 +44,7 @@
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(5), AutoSize6(5), AutoSize6(74), AutoSize6(74))];
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.contentMode = UIViewContentModeCenter;
+        self.iconImageView.clipsToBounds = YES;
         [self.backView addSubview:self.iconImageView];
         
         self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(20), 0, AutoSize6(300), AutoSize6(84))];
@@ -81,9 +82,10 @@
     _birdModel = birdModel;
     
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:birdModel.dateline formatSytle:DateFormatYMD];
-    NSURL *url = [NSURL URLWithString:_birdModel.birdHead];
+    NSString *utString = [birdModel.birdHead stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSURL *url = [NSURL URLWithString:utString];
     [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""]];
-    self.titleLable.text = _birdModel.name;
+    self.titleLable.text = birdModel.name;
 }
 
 

@@ -45,7 +45,8 @@
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.contentMode = UIViewContentModeCenter;
         [self.backView addSubview:self.iconImageView];
-        
+        self.iconImageView.clipsToBounds = YES;
+
         self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.backView.width - self.iconImageView.width - AutoSize6(20), AutoSize6(84))];
         self.titleLable.font = kFont6(26);
         self.titleLable.textColor = UIColorFromRGB(0x666666);
@@ -78,7 +79,9 @@
     _birdModel = birdModel;
     
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:birdModel.dateline formatSytle:DateFormatYMD];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_birdModel.birdHead] placeholderImage:[UIImage imageNamed:@""]];
+    NSString *utString = [birdModel.birdHead stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSURL *url = [NSURL URLWithString:utString];
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""]];
     self.titleLable.text = _birdModel.name;
 }
 

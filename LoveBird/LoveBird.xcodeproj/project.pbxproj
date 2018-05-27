@@ -80,6 +80,7 @@
 		0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF29A481F137CD700CBE2CB /* LoginViewController.m */; };
 		0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BE2E1F1CA060000046FF /* AppDelegate.m */; };
 		0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BE341F1CBA7D000046FF /* NotificationModel.m */; };
+		1F0FDF4820BA87F30041E73B /* ZhuangbeiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF4720BA87F30041E73B /* ZhuangbeiModel.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -328,6 +329,8 @@
 		0BF9BE331F1CBA7D000046FF /* NotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
 		0BF9BE341F1CBA7D000046FF /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
 		16B993EDAAC133BF0CB770BB /* Pods-LoveBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.debug.xcconfig"; sourceTree = "<group>"; };
+		1F0FDF4620BA87F30041E73B /* ZhuangbeiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuangbeiModel.h; sourceTree = "<group>"; };
+		1F0FDF4720BA87F30041E73B /* ZhuangbeiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuangbeiModel.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1140,6 +1143,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1F0FDF4520BA87DC0041E73B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF4620BA87F30041E73B /* ZhuangbeiModel.h */,
+				1F0FDF4720BA87F30041E73B /* ZhuangbeiModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1573,6 +1585,8 @@
 			isa = PBXGroup;
 			children = (
 				1F676FA520B97199002F71B4 /* BirdController */,
+				1F676FA720B97199002F71B4 /* MineBirdViewController.h */,
+				1F676FA620B97199002F71B4 /* MineBirdViewController.m */,
 				1F676F9620B9119E002F71B4 /* LogController */,
 				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,
 				1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */,
@@ -1618,8 +1632,6 @@
 		1F676FA520B97199002F71B4 /* BirdController */ = {
 			isa = PBXGroup;
 			children = (
-				1F676FA720B97199002F71B4 /* MineBirdViewController.h */,
-				1F676FA620B97199002F71B4 /* MineBirdViewController.m */,
 				1F676FA820B97199002F71B4 /* Model */,
 				1F676FA920B97199002F71B4 /* View */,
 			);
@@ -1649,6 +1661,7 @@
 		1F676FB520B9BD47002F71B4 /* ZhuangbeiController */ = {
 			isa = PBXGroup;
 			children = (
+				1F0FDF4520BA87DC0041E73B /* Model */,
 				1F676FB620B9BD69002F71B4 /* ZhuangbeiViewController.h */,
 				1F676FB720B9BD69002F71B4 /* ZhuangbeiViewController.m */,
 			);
@@ -1934,6 +1947,7 @@
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
 				1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */,
+				1F0FDF4820BA87F30041E73B /* ZhuangbeiModel.m in Sources */,
 				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,
 				1F676EED20A85E2C002F71B4 /* FindDao.m in Sources */,
 				0B75D5B71FBEC5C5008D7AE6 /* PhoneTextField.m in Sources */,

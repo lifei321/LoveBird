@@ -103,11 +103,23 @@
     _bottomView.frame = cellLayoutModel.bottomViewFrame;
     _toolView.frame = cellLayoutModel.toolViewFrame;
     
-    _titleView.contentModel = cellLayoutModel.contentModel;
-    [_contentImageView sd_setImageWithURL:[NSURL URLWithString:cellLayoutModel.contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@"holder"]];
-    _titleLabel.text = cellLayoutModel.contentModel.subject;
-    _contentLabel.text = cellLayoutModel.contentModel.summary;
-    
+    if (cellLayoutModel.contentModel) {
+        
+        _titleView.contentModel = cellLayoutModel.contentModel;
+        NSString *utString = [cellLayoutModel.contentModel.imgUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSURL *url = [NSURL URLWithString:utString];
+        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"holder"]];
+        _titleLabel.text = cellLayoutModel.contentModel.subject;
+        _contentLabel.text = cellLayoutModel.contentModel.summary;
+        
+    } else if (cellLayoutModel.zhuangbeiModel) {
+        
+        NSString *utString = [cellLayoutModel.zhuangbeiModel.img stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSURL *url = [NSURL URLWithString:utString];
+        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"holder"]];
+        _titleLabel.text = cellLayoutModel.zhuangbeiModel.title;
+        _contentLabel.text = cellLayoutModel.zhuangbeiModel.summary;
+    }
 }
 
 - (void)followButtonClickDelegate:(UIButton *)button {

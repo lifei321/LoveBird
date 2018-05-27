@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DiscoverContentModel.h"
+#import "ZhuangbeiModel.h"
 
 @interface TimeLineLayoutModel : NSObject
 
@@ -29,6 +30,12 @@
 @property (nonatomic, assign) CGRect toolViewFrame;
 
 @property (nonatomic, assign) CGRect bottomViewFrame;
+
+
+//  装备 咨询
+
+@property (nonatomic, strong) ZhuangbeiModel *zhuangbeiModel;
+
 
 
 @end
