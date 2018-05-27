@@ -12,6 +12,8 @@
 #import "ShequModel.h"
 #import "ShequCell.h"
 #import "ShequFrameModel.h"
+#import "BannerModel.h"
+
 
 @interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -39,7 +41,31 @@
     [self setNavigation];
     [self setTableView];
     
+    [self netForBanner];
     [self netforData];
+}
+
+- (void)netForBanner {
+    NSDictionary *dic = @{
+                          @"cmd":@"homeNavigation",
+                          @"bid":@"200",
+                          };
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [AppHttpManager GET:kAPI_Discover_Banner parameters:dic jsonModelName:[BannerDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        BannerDataModel *dataModel = (BannerDataModel *)responseObject;
+        
+        NSMutableArray *temp = [NSMutableArray new];
+        for (BannerModel *model in dataModel.data) {
+            [temp addObject:model.img];
+        }
+        self.cycleScrollView.imageURLStringsGroup = [temp mutableCopy];
+    } failure:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 - (void)netforData {
@@ -131,7 +157,6 @@
     
     if (_cycleScrollView == nil) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(400)) delegate:self placeholderImage:[UIImage imageNamed:@""]];
-        _cycleScrollView.backgroundColor = [UIColor orangeColor];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     }
     return _cycleScrollView;

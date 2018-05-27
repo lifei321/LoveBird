@@ -20,7 +20,7 @@
 #import "DasaiViewController.h"
 #import "ZhuangbeiViewController.h"
 #import "WorksViewController.h"
-
+#import "RankViewController.h"
 
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
@@ -275,7 +275,9 @@
             break;
         case 7:
         {// 排行
-            
+            RankViewController *dasaivc = [[RankViewController alloc] init];
+            dasaivc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:dasaivc animated:YES];
         }
             break;
         default:

@@ -27,5 +27,6 @@
 // 作品列表
 + (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-
+// 排行
++ (void)getRankList:(NSString *)matchid  type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

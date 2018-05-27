@@ -168,5 +168,10 @@
  */
 #define kAPI_Article_zuopinList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=photographyList")
 
+/**
+ *  排行
+ */
+#define kAPI_Article_rankingList kAPI_USER_SERVER_VERSION(@"birdapi/ranking/index.php?cmd=ranking")
+
 
 #endif /* AppApi_h */

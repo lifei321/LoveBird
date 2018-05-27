@@ -12,6 +12,7 @@
 #import "DiscoverContentModel.h"
 #import "ZhuangbeiModel.h"
 #import "WorksModel.h"
+#import "RankModel.h"
 
 
 
@@ -108,4 +109,23 @@
     }];
 }
 
+// 排行
++ (void)getRankList:(NSString *)matchid  type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(type) forKey:@"type"];
+    
+    
+    [AppHttpManager POST:kAPI_Article_rankingList parameters:dic jsonModelName:[RankDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 @end

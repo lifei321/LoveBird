@@ -85,6 +85,9 @@
 		1F0FDF5420BA959E0041E73B /* WorksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5320BA959E0041E73B /* WorksViewController.m */; };
 		1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5620BA97330041E73B /* WorkTableViewCell.m */; };
 		1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5920BA9AE60041E73B /* WorksImageView.m */; };
+		1F0FDF6020BABC010041E73B /* RankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5F20BABC010041E73B /* RankViewController.m */; };
+		1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6220BABDC20041E73B /* RankModel.m */; };
+		1F0FDF6620BABF9F0041E73B /* RankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -343,6 +346,12 @@
 		1F0FDF5620BA97330041E73B /* WorkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewCell.m; sourceTree = "<group>"; };
 		1F0FDF5820BA9AE60041E73B /* WorksImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorksImageView.h; sourceTree = "<group>"; };
 		1F0FDF5920BA9AE60041E73B /* WorksImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorksImageView.m; sourceTree = "<group>"; };
+		1F0FDF5E20BABC010041E73B /* RankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankViewController.h; sourceTree = "<group>"; };
+		1F0FDF5F20BABC010041E73B /* RankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankViewController.m; sourceTree = "<group>"; };
+		1F0FDF6120BABDC20041E73B /* RankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankModel.h; sourceTree = "<group>"; };
+		1F0FDF6220BABDC20041E73B /* RankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankModel.m; sourceTree = "<group>"; };
+		1F0FDF6420BABF9F0041E73B /* RankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankTableViewCell.h; sourceTree = "<group>"; };
+		1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankTableViewCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1195,6 +1204,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F0FDF5B20BABBD50041E73B /* RankController */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF5C20BABBD50041E73B /* Model */,
+				1F0FDF5D20BABBD50041E73B /* View */,
+				1F0FDF5E20BABC010041E73B /* RankViewController.h */,
+				1F0FDF5F20BABC010041E73B /* RankViewController.m */,
+			);
+			path = RankController;
+			sourceTree = "<group>";
+		};
+		1F0FDF5C20BABBD50041E73B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF6120BABDC20041E73B /* RankModel.h */,
+				1F0FDF6220BABDC20041E73B /* RankModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F0FDF5D20BABBD50041E73B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF6420BABF9F0041E73B /* RankTableViewCell.h */,
+				1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1523,6 +1561,7 @@
 		1F676F0A20A9CAC5002F71B4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F0FDF5B20BABBD50041E73B /* RankController */,
 				1F0FDF4C20BA90C70041E73B /* WorksController */,
 				1F676FB520B9BD47002F71B4 /* ZhuangbeiController */,
 				1F676F7920B166CE002F71B4 /* DasaiController */,
@@ -1546,9 +1585,9 @@
 		1F676F0C20A9CAC5002F71B4 /* TalentController */ = {
 			isa = PBXGroup;
 			children = (
-				1F676F0D20A9CAC5002F71B4 /* TalentViewController.h */,
 				1F676F0E20A9CAC5002F71B4 /* Model */,
 				1F676F1120A9CAC5002F71B4 /* View */,
+				1F676F0D20A9CAC5002F71B4 /* TalentViewController.h */,
 				1F676F1420A9CAC5002F71B4 /* TalentViewController.m */,
 			);
 			path = TalentController;
@@ -2015,6 +2054,7 @@
 				1F676FB020B97300002F71B4 /* MineBirdRightCell.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,
 				1F676F2B20AB27BE002F71B4 /* ShequFrameModel.m in Sources */,
+				1F0FDF6620BABF9F0041E73B /* RankTableViewCell.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,
 				1F676FA120B9120E002F71B4 /* MineLogCell.m in Sources */,
@@ -2030,6 +2070,7 @@
 				0B75D5661FBD9D8B008D7AE6 /* NSURL+QueryDictionary.m in Sources */,
 				0B72932B1EFA556A00D1B1EB /* AppBaseViewController.m in Sources */,
 				1F676F0320A9C4F3002F71B4 /* WPhotoViewController.m in Sources */,
+				1F0FDF6020BABC010041E73B /* RankViewController.m in Sources */,
 				1F676F0220A9C4F3002F71B4 /* myPhotoCell.m in Sources */,
 				0B317C821F0F6AFA00B01DDA /* AppBaseTableViewController.m in Sources */,
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
@@ -2045,6 +2086,7 @@
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
+				1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */,
 				1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
