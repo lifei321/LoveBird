@@ -157,4 +157,16 @@
  */
 #define kAPI_Publish_GetEV kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=environmentList")
 
+
+
+
+
+#pragma mark-- 文章
+
+/**
+ *  作品
+ */
+#define kAPI_Article_zuopinList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=photographyList")
+
+
 #endif /* AppApi_h */

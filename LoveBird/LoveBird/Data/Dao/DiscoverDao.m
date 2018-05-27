@@ -11,6 +11,7 @@
 #import "MatchModel.h"
 #import "DiscoverContentModel.h"
 #import "ZhuangbeiModel.h"
+#import "WorksModel.h"
 
 
 
@@ -74,6 +75,28 @@
     [dic setObject:EMPTY_STRING_IF_NIL(cid) forKey:@"cid"];
 
     [AppHttpManager POST:kAPI_Discover_articleList parameters:dic jsonModelName:[ZhuangbeiDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 作品列表
++ (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(authorid) forKey:@"authorid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(minAid) forKey:@"minAid"];
+
+    
+    [AppHttpManager POST:kAPI_Article_zuopinList parameters:dic jsonModelName:[WorksDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

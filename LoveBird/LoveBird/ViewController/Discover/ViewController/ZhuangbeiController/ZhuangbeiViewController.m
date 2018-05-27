@@ -130,13 +130,14 @@
     if ([self.cid isEqualToString:@"1"]) {
         self.title = @"装备";
     } else {
-        self.title = @"咨询";
+        self.title = @"资讯";
     }
 }
 
 - (void)setTableView {
     
     self.tableView.top = total_topView_height;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

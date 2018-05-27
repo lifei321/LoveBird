@@ -81,6 +81,10 @@
 		0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BE2E1F1CA060000046FF /* AppDelegate.m */; };
 		0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BE341F1CBA7D000046FF /* NotificationModel.m */; };
 		1F0FDF4820BA87F30041E73B /* ZhuangbeiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF4720BA87F30041E73B /* ZhuangbeiModel.m */; };
+		1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5020BA90ED0041E73B /* WorksModel.m */; };
+		1F0FDF5420BA959E0041E73B /* WorksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5320BA959E0041E73B /* WorksViewController.m */; };
+		1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5620BA97330041E73B /* WorkTableViewCell.m */; };
+		1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5920BA9AE60041E73B /* WorksImageView.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -331,6 +335,14 @@
 		16B993EDAAC133BF0CB770BB /* Pods-LoveBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.debug.xcconfig"; sourceTree = "<group>"; };
 		1F0FDF4620BA87F30041E73B /* ZhuangbeiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuangbeiModel.h; sourceTree = "<group>"; };
 		1F0FDF4720BA87F30041E73B /* ZhuangbeiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuangbeiModel.m; sourceTree = "<group>"; };
+		1F0FDF4F20BA90ED0041E73B /* WorksModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorksModel.h; sourceTree = "<group>"; };
+		1F0FDF5020BA90ED0041E73B /* WorksModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorksModel.m; sourceTree = "<group>"; };
+		1F0FDF5220BA959E0041E73B /* WorksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorksViewController.h; sourceTree = "<group>"; };
+		1F0FDF5320BA959E0041E73B /* WorksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorksViewController.m; sourceTree = "<group>"; };
+		1F0FDF5520BA97330041E73B /* WorkTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkTableViewCell.h; sourceTree = "<group>"; };
+		1F0FDF5620BA97330041E73B /* WorkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewCell.m; sourceTree = "<group>"; };
+		1F0FDF5820BA9AE60041E73B /* WorksImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorksImageView.h; sourceTree = "<group>"; };
+		1F0FDF5920BA9AE60041E73B /* WorksImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorksImageView.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1152,6 +1164,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1F0FDF4C20BA90C70041E73B /* WorksController */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF4D20BA90C70041E73B /* Model */,
+				1F0FDF4E20BA90C70041E73B /* View */,
+				1F0FDF5220BA959E0041E73B /* WorksViewController.h */,
+				1F0FDF5320BA959E0041E73B /* WorksViewController.m */,
+			);
+			path = WorksController;
+			sourceTree = "<group>";
+		};
+		1F0FDF4D20BA90C70041E73B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF4F20BA90ED0041E73B /* WorksModel.h */,
+				1F0FDF5020BA90ED0041E73B /* WorksModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F0FDF4E20BA90C70041E73B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F0FDF5520BA97330041E73B /* WorkTableViewCell.h */,
+				1F0FDF5620BA97330041E73B /* WorkTableViewCell.m */,
+				1F0FDF5820BA9AE60041E73B /* WorksImageView.h */,
+				1F0FDF5920BA9AE60041E73B /* WorksImageView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1480,6 +1523,7 @@
 		1F676F0A20A9CAC5002F71B4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F0FDF4C20BA90C70041E73B /* WorksController */,
 				1F676FB520B9BD47002F71B4 /* ZhuangbeiController */,
 				1F676F7920B166CE002F71B4 /* DasaiController */,
 				1F676F0B20A9CAC5002F71B4 /* ShequController */,
@@ -1880,6 +1924,7 @@
 				1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
+				1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
@@ -1890,7 +1935,9 @@
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
 				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
+				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
+				1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
 				1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */,
@@ -2004,6 +2051,7 @@
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */,
+				1F0FDF5420BA959E0041E73B /* WorksViewController.m in Sources */,
 				1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */,
 				1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,

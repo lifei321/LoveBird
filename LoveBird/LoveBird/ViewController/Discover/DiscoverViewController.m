@@ -13,10 +13,13 @@
 #import "TimeLineCell.h"
 #import "AppHttpManager.h"
 #import "MJRefresh.h"
+
+
 #import "TalentViewController.h"
 #import "ShequViewController.h"
 #import "DasaiViewController.h"
 #import "ZhuangbeiViewController.h"
+#import "WorksViewController.h"
 
 
 #define kStringForBanner @"kStringForBanner"
@@ -229,23 +232,28 @@
         case 1:
         {// 社区
             ShequViewController *shequvc = [[ShequViewController alloc] init];
+            shequvc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:shequvc animated:YES];
         }
             break;
         case 2:
         {// 达人
             TalentViewController *talentVC = [[TalentViewController alloc] init];
+            talentVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:talentVC animated:YES];
         }
             break;
         case 3:
         {// 作品
-            
+            WorksViewController *workvc = [[WorksViewController alloc] init];
+            workvc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:workvc animated:YES];
         }
             break;
         case 4:
         {// 咨询
             ZhuangbeiViewController *zbvc = [[ZhuangbeiViewController alloc] init];
+            zbvc.hidesBottomBarWhenPushed = YES;
             zbvc.cid = @"2";
             [self.navigationController pushViewController:zbvc animated:YES];
         }
@@ -253,6 +261,7 @@
         case 5:
         {// 装备
             ZhuangbeiViewController *zbvc = [[ZhuangbeiViewController alloc] init];
+            zbvc.hidesBottomBarWhenPushed = YES;
             zbvc.cid = @"1";
             [self.navigationController pushViewController:zbvc animated:YES];
         }
@@ -260,6 +269,7 @@
         case 6:
         {// 大赛
             DasaiViewController *dasaivc = [[DasaiViewController alloc] init];
+            dasaivc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:dasaivc animated:YES];
         }
             break;
