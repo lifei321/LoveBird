@@ -7,7 +7,11 @@
 //
 
 #import "FindSizeViewController.h"
-#import "FindHeadViewController.h"
+#import "FindBodyViewController.h"
+#import "FindDao.h"
+#import "FindBodyResultController.h"
+#import "FindDisplayShapeModel.h"
+
 
 @interface FindSizeViewController ()
 
@@ -45,7 +49,7 @@
     
     UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), total_topView_height + AutoSize6(37), AutoSize6(40), AutoSize6(40))];
     stepLabel.text = @"1";
-    stepLabel.font = kFont6(36);
+    stepLabel.font = kFont6(30);
     stepLabel.textColor = [UIColor whiteColor];
     stepLabel.textAlignment = NSTextAlignmentCenter;
     stepLabel.backgroundColor = kColorDefaultColor;
@@ -54,7 +58,7 @@
     [self.view addSubview:stepLabel];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(stepLabel.right + AutoSize6(10), stepLabel.top, SCREEN_WIDTH - AutoSize6(100), AutoSize6(40))];
-    titleLabel.text = @"它的大小？";
+    titleLabel.text = @"它的体长（cm）？";
     titleLabel.font = kFontBold6(36);
     titleLabel.textColor = kColorTextColor333333;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -66,27 +70,27 @@
     self.buttonOne = [self makeButton:CGRectMake(AutoSize6(108), height - AutoSize6(56), AutoSize6(136), AutoSize6(56)) image:@"0-30_black" selectImage:@"0-30_green" sel:@selector(buttonOneDidClick:)];
     [self.view addSubview:self.buttonOne];
     [self.view addSubview: [self creatLineView:self.buttonOne.left]];
-    self.buttonOne.tag = 100;
+    self.buttonOne.tag = 101;
     [self.view addSubview:[self makeLabel:self.buttonOne.left text:@"0-30"]];
     
     self.buttonTwo = [self makeButton:CGRectMake(self.buttonOne.right, height - AutoSize6(84), AutoSize6(136), AutoSize6(84)) image:@"30-60_black" selectImage:@"30-60_green" sel:@selector(buttonOneDidClick:)];
     [self.view addSubview:self.buttonTwo];
     [self.view addSubview: [self creatLineView:self.buttonTwo.left]];
-    self.buttonTwo.tag = 200;
+    self.buttonTwo.tag = 102;
     [self.view addSubview:[self makeLabel:self.buttonTwo.left text:@"30-60"]];
 
     
     self.buttonThree = [self makeButton:CGRectMake(self.buttonTwo.right, height - AutoSize6(124), AutoSize6(136), AutoSize6(124)) image:@"60-90_black" selectImage:@"60-90_green" sel:@selector(buttonOneDidClick:)];
     [self.view addSubview:self.buttonThree];
     [self.view addSubview: [self creatLineView:self.buttonThree.left]];
-    self.buttonThree.tag = 300;
+    self.buttonThree.tag = 103;
     [self.view addSubview:[self makeLabel:self.buttonThree.left text:@"60-90"]];
 
     
     self.buttonFoure = [self makeButton:CGRectMake(self.buttonThree.right, height - AutoSize6(178), AutoSize6(136), AutoSize6(178)) image:@"90_black" selectImage:@"90_green" sel:@selector(buttonOneDidClick:)];
     [self.view addSubview:self.buttonFoure];
     [self.view addSubview: [self creatLineView:self.buttonFoure.left]];
-    self.buttonFoure.tag = 400;
+    self.buttonFoure.tag = 104;
     [self.view addSubview:[self makeLabel:self.buttonFoure.left text:@">90"]];
 
     self.hightLightView = [self creatHightLineView:-1000];
@@ -101,9 +105,69 @@
 
 }
 
+- (void)rightButtonAction {
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdBillCode:nil
+                       color:nil
+                      length:[self getKeyLength]
+                       shape:nil
+                        page:@"1"
+                successBlock:^(__kindof AppBaseModel *responseObject) {
+                    @strongify(self);
+                    [AppBaseHud hideHud:self.view];
+                    
+                    FindBodyResultController *resultVC = [[FindBodyResultController alloc] init];
+                    resultVC.dataModel = (FindSelectBirdDataModel *)responseObject;
+                    [self.navigationController pushViewController:resultVC animated:YES];
+                    
+                } failureBlock:^(__kindof AppBaseModel *error) {
+                    @strongify(self);
+
+                    [AppBaseHud showHudWithfail:error.errstr view:self.view];
+                }];
+}
+
+- (NSString *)getKeyLength {
+    UIButton *selectButton = [self getButtonSelected];
+    
+    NSString *length;
+    if (!selectButton) {
+        length = @"0";
+    } else {
+        length = [NSString stringWithFormat:@"%ld", selectButton.tag];
+    }
+    
+    return length;
+}
+
 - (void)footButtonDidClick {
-    FindHeadViewController *headvc = [[FindHeadViewController alloc] init];
-    [self.navigationController pushViewController:headvc animated:YES];
+    
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdDisplayShape:[self getKeyLength] successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        FindBodyViewController *headvc = [[FindBodyViewController alloc] init];
+        headvc.length = [self getKeyLength];
+        
+        NSMutableArray *temp = [NSMutableArray new];
+        for (id object in ((FindDisplayShapeModel *)responseObject).shape_code) {
+            [temp addObject:[NSString stringWithFormat:@"%@", object]];
+        }
+        headvc.shapeArray = [NSArray arrayWithArray:temp];
+        [self.navigationController pushViewController:headvc animated:YES];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+    
+
 }
 
 - (UIButton *)makeButton:(CGRect)frame image:(NSString *)image selectImage:(NSString *)selectImage sel:(SEL)action {

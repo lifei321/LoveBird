@@ -16,7 +16,6 @@
 
 @interface RankViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-// 刷新页数
 @property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -60,10 +59,10 @@
             RankModel *model = dataModel.user[i];
             model.second = i + 1;
         }
-        
+        [self.dataArray removeAllObjects];
         self.tableView.tableHeaderView = self.headerView;
-        self.firstLabel.text = dataModel.titleFirst;
-        self.secondLabel.text = dataModel.titleSecond;
+        self.firstLabel.text = dataModel.title_first;
+        self.secondLabel.text = dataModel.title_second;
         
         [self.dataArray addObjectsFromArray:dataModel.user];
         [self.tableView reloadData];
@@ -103,6 +102,10 @@
     self.selectButton.selected = NO;
     button.selected = YES;
     self.selectButton = button;
+    self.type = [NSString stringWithFormat:@"%ld", button.tag];
+    [self netForContent];
+    [self.dataArray removeAllObjects];
+    [self.tableView reloadData];
 }
 
 - (void)setNavigation {
@@ -124,7 +127,9 @@
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     leftButton.selected = YES;
     self.selectButton = leftButton;
+    leftButton.tag = 100;
     [titleView addSubview:leftButton];
+    self.type = @"100";
     
     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(leftButton.right, 0, 1, titleView.height)];
     line1.backgroundColor = kColorDefaultColor;
@@ -139,6 +144,8 @@
     rightButton.titleLabel.font = kFont6(24);
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    rightButton.tag = 200;
+
     [titleView addSubview:rightButton];
     
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(rightButton.right, 0, 1, titleView.height)];
@@ -154,6 +161,8 @@
     scolreButton.titleLabel.font = kFont6(24);
     [scolreButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [scolreButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    scolreButton.tag = 300;
+
     [titleView addSubview:scolreButton];
     
     self.navigationItem.titleView = titleView;
@@ -170,7 +179,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[RankTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RankTableViewCell class])];
-    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
+
 }
 
 - (UIImageView *)headerView {
@@ -183,16 +193,16 @@
         self.firstLabel.textAlignment = NSTextAlignmentCenter;
         self.firstLabel.textColor = [UIColor whiteColor];
         self.firstLabel.backgroundColor = [UIColor blackColor];
-        self.firstLabel.alpha = 0.8;
-        self.firstLabel.font = kFont6(32);
+        self.firstLabel.alpha = 0.6;
+        self.firstLabel.font = kFont6(26);
         [_headerView addSubview:self.firstLabel];
         
         self.secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(95), self.firstLabel.bottom + AutoSize6(26),SCREEN_WIDTH - AutoSize6(190), AutoSize6(65))];
         self.secondLabel.textAlignment = NSTextAlignmentCenter;
         self.secondLabel.textColor = [UIColor whiteColor];
-        self.secondLabel.font = kFont6(48);
+        self.secondLabel.font = kFont6(40);
         self.secondLabel.backgroundColor = [UIColor blackColor];
-        self.secondLabel.alpha = 0.8;
+        self.secondLabel.alpha = 0.6;
         [_headerView addSubview:self.secondLabel];
     }
     return _headerView;

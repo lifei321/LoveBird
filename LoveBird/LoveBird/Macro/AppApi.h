@@ -137,6 +137,16 @@
  */
 #define kAPI_Find_Bird_SearchBird kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchBird")
 
+/**
+ *  查鸟 体型
+ */
+#define kAPI_Find_Bird_shape kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchBirdByShape")
+
+/**
+ *  查鸟 体型可选项
+ */
+#define kAPI_Find_Bird_displayshape kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=displayShape")
+
 
 
 #pragma mark-- 发布

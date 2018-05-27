@@ -14,12 +14,9 @@
 @property (nonatomic, strong) NSArray <RankModel>*user;
 
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *title_first;
 
-
-@property (nonatomic, copy) NSString *titleFirst;
-
-@property (nonatomic, copy) NSString *titleSecond;
+@property (nonatomic, copy) NSString *title_second;
 
 
 
@@ -33,7 +30,7 @@
 
 @property (nonatomic, copy) NSString *credit;
 
-@property (nonatomic, copy) NSString *genusNum;
+@property (nonatomic, copy) NSString *birdNum;
 
 
 @property (nonatomic, copy) NSString *head;

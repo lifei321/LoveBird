@@ -42,8 +42,7 @@
     
     //默认【下拉刷新】
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForFind)];
-    
-    
+
     [self netForData];
 }
 - (void)netForData {

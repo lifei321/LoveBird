@@ -14,6 +14,17 @@
 // 关键字查鸟
 + (void)getBird:(NSString *)text genus:(NSString *)genus successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 体型查鸟
++ (void)getBirdBillCode:(NSString *)bill
+                  color:(NSString *)color
+                 length:(NSString *)length
+                  shape:(NSString *)shape
+                   page:(NSString *)page
+           successBlock:(LFRequestSuccess)successBlock
+           failureBlock:(LFRequestFail)failureBlock;
+
+// 体型可选项
++ (void)getBirdDisplayShape:(NSString *)text successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 
 @end

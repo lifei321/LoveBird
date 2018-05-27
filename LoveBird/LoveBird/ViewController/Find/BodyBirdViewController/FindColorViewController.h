@@ -10,4 +10,6 @@
 
 @interface FindColorViewController : AppBaseViewController
 
+@property (nonatomic, copy) NSString *shape;
+
 @end

@@ -76,6 +76,10 @@
     return self;
 }
 
+- (void)followButtonDidClick:(UIButton *)button {
+    
+}
+
 - (void)setRankModel:(RankModel *)rankModel {
     _rankModel = rankModel;
     self.rankLabel.text = [NSString stringWithFormat:@"%ld", rankModel.second];
@@ -88,16 +92,37 @@
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:rankModel.head] placeholderImage:[UIImage imageNamed:@""]];
     self.topLabel.text = rankModel.username;
     
-    if (rankModel.genusNum.length) {
-        NSString *textString = [NSString stringWithFormat:@"%@种", rankModel.genusNum];
+    if (rankModel.birdNum.length) {
+        NSString *textString = [NSString stringWithFormat:@"%@ 种", rankModel.birdNum];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
-        [attrString addAttribute:NSForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, rankModel.genusNum.length)];
-        [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColorLightGraya2a2a2 range:NSMakeRange(rankModel.genusNum.length, 1)];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, rankModel.birdNum.length)];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColorLightGraya2a2a2 range:NSMakeRange(rankModel.birdNum.length, 2)];
         
-        [attrString addAttribute:NSFontAttributeName value:kFont6(36) range:NSMakeRange(0, rankModel.genusNum.length)];
-        [attrString addAttribute:NSFontAttributeName value:kFont6(30) range:NSMakeRange(rankModel.genusNum.length, 1)];
+        [attrString addAttribute:NSFontAttributeName value:kFont6(36) range:NSMakeRange(0, rankModel.birdNum.length)];
+        [attrString addAttribute:NSFontAttributeName value:kFont6(23) range:NSMakeRange(rankModel.birdNum.length, 2)];
+        self.bottomLabel.attributedText = attrString;
+    } else if (rankModel.articleNum.length) {
+        NSString *textString = [NSString stringWithFormat:@"%@ 篇", rankModel.articleNum];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, rankModel.articleNum.length)];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColorLightGraya2a2a2 range:NSMakeRange(rankModel.articleNum.length, 2)];
+        
+        [attrString addAttribute:NSFontAttributeName value:kFont6(36) range:NSMakeRange(0, rankModel.articleNum.length)];
+        [attrString addAttribute:NSFontAttributeName value:kFont6(23) range:NSMakeRange(rankModel.articleNum.length, 2)];
+        self.bottomLabel.attributedText = attrString;
+    } else if (rankModel.credit.length) {
+        NSString *textString = [NSString stringWithFormat:@"%@ 分", rankModel.credit];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, rankModel.credit.length)];
+        [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColorLightGraya2a2a2 range:NSMakeRange(rankModel.credit.length, 2)];
+        
+        [attrString addAttribute:NSFontAttributeName value:kFont6(36) range:NSMakeRange(0, rankModel.credit.length)];
+        [attrString addAttribute:NSFontAttributeName value:kFont6(23) range:NSMakeRange(rankModel.credit.length, 2)];
         self.bottomLabel.attributedText = attrString;
     }
+    
+    
+    
 }
 
 @end

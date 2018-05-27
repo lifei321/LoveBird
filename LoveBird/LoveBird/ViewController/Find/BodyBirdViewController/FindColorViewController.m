@@ -7,8 +7,12 @@
 //
 
 #import "FindColorViewController.h"
+#import "FindHeadViewController.h"
+#import "FindBodyResultController.h"
+#import "FindDao.h"
 
 @interface FindColorViewController ()
+@property (nonatomic, strong) UIButton *selectButton;
 
 @end
 
@@ -24,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), total_topView_height + AutoSize6(37), AutoSize6(40), AutoSize6(40))];
-    stepLabel.text = @"4";
+    stepLabel.text = @"3";
     stepLabel.font = kFont6(30);
     stepLabel.textColor = [UIColor whiteColor];
     stepLabel.textAlignment = NSTextAlignmentCenter;
@@ -40,15 +44,15 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:titleLabel];
     
-    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"黑色" image:@"step_4_1"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"灰色" image:@"step_4_2"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"白色" image:@"step_4_3"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(172) + titleLabel.bottom  + AutoSize6(37)) text:@"红色" image:@"step_4_4"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(172) +  titleLabel.bottom  + AutoSize6(37)) text:@"橙色" image:@"step_4_5"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/ 3, AutoSize6(172) + titleLabel.bottom + AutoSize6(37)) text:@"黄色" image:@"step_4_6"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"褐色" image:@"step_4_7"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"绿色" image:@"step_4_8"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH *2 / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"蓝色" image:@"step_4_9"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"黑色" image:@"step_4_1" tag:301]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"灰色" image:@"step_4_2" tag:302]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"白色" image:@"step_4_3" tag:303]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(172) + titleLabel.bottom  + AutoSize6(37)) text:@"红色" image:@"step_4_4" tag:304]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(172) +  titleLabel.bottom  + AutoSize6(37)) text:@"橙色" image:@"step_4_5" tag:305]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/ 3, AutoSize6(172) + titleLabel.bottom + AutoSize6(37)) text:@"黄色" image:@"step_4_6" tag:306]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"褐色" image:@"step_4_7" tag:307]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"绿色" image:@"step_4_8" tag:308]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH *2 / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"蓝色" image:@"step_4_9" tag:309]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -59,12 +63,48 @@
     
 }
 
-- (void)footButtonDidClick {
-//    FindBodyViewController *headvc = [[FindBodyViewController alloc] init];
-//    [self.navigationController pushViewController:headvc animated:YES];
+- (void)rightButtonAction {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdBillCode:nil
+                       color:[self getKeyColor]
+                      length:nil
+                       shape:self.shape
+                        page:@"1"
+                successBlock:^(__kindof AppBaseModel *responseObject) {
+                    @strongify(self);
+                    [AppBaseHud hideHud:self.view];
+                    
+                    FindBodyResultController *resultVC = [[FindBodyResultController alloc] init];
+                    resultVC.dataModel = (FindSelectBirdDataModel *)responseObject;
+                    [self.navigationController pushViewController:resultVC animated:YES];
+                    
+                } failureBlock:^(__kindof AppBaseModel *error) {
+                    @strongify(self);
+                    
+                    [AppBaseHud showHudWithfail:error.errstr view:self.view];
+                }];
 }
 
-- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image {
+- (NSString *)getKeyColor {
+    NSString *length;
+    if (!self.selectButton) {
+        length = @"0";
+    } else {
+        length = [NSString stringWithFormat:@"%ld", self.selectButton.tag];
+    }
+    
+    return length;
+}
+
+- (void)footButtonDidClick {
+    FindHeadViewController *headvc = [[FindHeadViewController alloc] init];
+    headvc.shape = self.shape;
+    headvc.color = [self getKeyColor];
+    [self.navigationController pushViewController:headvc animated:YES];
+}
+
+- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image tag:(NSInteger)tag {
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, SCREEN_WIDTH / 3, AutoSize6(172))];
     backView.backgroundColor = [UIColor whiteColor];
@@ -85,13 +125,21 @@
     lineright.backgroundColor = kColorTextColord2d2d2;
     [backView addSubview:lineright];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
-//    imageView.centerX = backView.centerX;
-    imageView.image = [UIImage imageNamed:image];
-    imageView.contentMode = UIViewContentModeCenter;
-    [backView addSubview:imageView];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateSelected];
+    button.backgroundColor = [UIColor whiteColor];
+    [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = tag;
+    [backView addSubview:button];
     
-    UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom, backView.width, AutoSize6(70))];
+    
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
+//    imageView.image = [UIImage imageNamed:image];
+//    imageView.contentMode = UIViewContentModeCenter;
+//    [backView addSubview:imageView];
+    
+    UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, button.bottom, backView.width, AutoSize6(70))];
     stepLabel.text = text;
     stepLabel.font = kFont6(22);
     stepLabel.textColor = kColorTextColor333333;
@@ -102,6 +150,20 @@
     
 }
 
+- (void)buttonDidClick:(UIButton *)button {
+    
+    if (button.tag == self.selectButton.tag) {
+        return;
+    }
+    self.selectButton.selected = NO;
+    self.selectButton.layer.borderWidth = 0;
+    self.selectButton.layer.borderColor = kColorDefaultColor.CGColor;
 
+    
+    button.selected = YES;
+    self.selectButton = button;
+    self.selectButton.layer.borderWidth = 2;
+    self.selectButton.layer.borderColor = kColorDefaultColor.CGColor;
+}
 
 @end

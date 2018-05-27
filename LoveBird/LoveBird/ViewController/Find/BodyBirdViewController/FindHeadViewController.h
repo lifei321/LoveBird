@@ -9,5 +9,6 @@
 #import "AppBaseViewController.h"
 
 @interface FindHeadViewController : AppBaseViewController
-
+@property (nonatomic, copy) NSString *shape;
+@property (nonatomic, copy) NSString *color;
 @end

@@ -10,4 +10,8 @@
 
 @interface FindBodyViewController : AppBaseViewController
 
+@property (nonatomic, copy) NSString *length;
+
+@property (nonatomic, strong) NSArray *shapeArray;
+
 @end

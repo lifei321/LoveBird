@@ -7,7 +7,8 @@
 //
 
 #import "FindHeadViewController.h"
-#import "FindBodyViewController.h"
+#import "FindBodyResultController.h"
+#import "FindDao.h"
 
 @interface FindHeadViewController ()
 
@@ -27,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), total_topView_height + AutoSize6(37), AutoSize6(40), AutoSize6(40))];
-    stepLabel.text = @"2";
+    stepLabel.text = @"4";
     stepLabel.font = kFont6(30);
     stepLabel.textColor = [UIColor whiteColor];
     stepLabel.textAlignment = NSTextAlignmentCenter;
@@ -43,11 +44,11 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:titleLabel];
     
-    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1/3" image:@"step_1_1" selectImage:@"step_no_1_1" tag:101]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1/1" image:@"step_1_2" selectImage:@"step_no_1_2" tag:102]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤2/1" image:@"step_1_3" selectImage:@"step_no_1_3" tag:103]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@">2/1" image:@"step_1_4" selectImage:@"step_no_1_4" tag:104]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">3/1" image:@"step_1_5" selectImage:@"step_no_1_5" tag:105]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1/3" image:@"step_1_1" selectImage:@"step_no_1_1" tag:401]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1/2" image:@"step_1_2" selectImage:@"step_no_1_2" tag:402]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1/1" image:@"step_1_3" selectImage:@"step_no_1_3" tag:403]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@">2/1" image:@"step_1_4" selectImage:@"step_no_1_4" tag:404]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">3/1" image:@"step_1_5" selectImage:@"step_no_1_5" tag:405]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -58,11 +59,43 @@
     
 }
 
-- (void)footButtonDidClick {
-    FindBodyViewController *headvc = [[FindBodyViewController alloc] init];
-    [self.navigationController pushViewController:headvc animated:YES];
+- (void)rightButtonAction {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdBillCode:[self getKeyBill]
+                       color:self.color
+                      length:nil
+                       shape:self.shape
+                        page:@"1"
+                successBlock:^(__kindof AppBaseModel *responseObject) {
+                    @strongify(self);
+                    [AppBaseHud hideHud:self.view];
+                    
+                    FindBodyResultController *resultVC = [[FindBodyResultController alloc] init];
+                    resultVC.dataModel = (FindSelectBirdDataModel *)responseObject;
+                    [self.navigationController pushViewController:resultVC animated:YES];
+                    
+                } failureBlock:^(__kindof AppBaseModel *error) {
+                    @strongify(self);
+                    
+                    [AppBaseHud showHudWithfail:error.errstr view:self.view];
+                }];
 }
 
+- (void)footButtonDidClick {
+    [self rightButtonAction];
+}
+
+- (NSString *)getKeyBill {
+    NSString *length;
+    if (!self.selectButton) {
+        length = @"0";
+    } else {
+        length = [NSString stringWithFormat:@"%ld", self.selectButton.tag];
+    }
+    
+    return length;
+}
 - (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image selectImage:(NSString *)selectImage tag:(NSInteger)tag {
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, SCREEN_WIDTH / 3, AutoSize6(208))];
@@ -80,11 +113,11 @@
     lineleft.backgroundColor = kColorTextColord2d2d2;
     [backView addSubview:lineleft];
     
-    UIView *lineright = [[UIView alloc] initWithFrame:CGRectMake(backView.width - 0.5, 0, 0.5, backView.height)];
-    lineright.backgroundColor = kColorTextColord2d2d2;
-    [backView addSubview:lineright];
+//    UIView *lineright = [[UIView alloc] initWithFrame:CGRectMake(backView.width - 0.5, 0, 0.5, backView.height)];
+//    lineright.backgroundColor = kColorTextColord2d2d2;
+//    [backView addSubview:lineright];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, AutoSize6(24), backView.width, AutoSize6(126))];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.5, AutoSize6(24), backView.width - 0.5, AutoSize6(126))];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateSelected];
     button.backgroundColor = [UIColor whiteColor];

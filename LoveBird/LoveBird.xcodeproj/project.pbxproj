@@ -88,6 +88,9 @@
 		1F0FDF6020BABC010041E73B /* RankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF5F20BABC010041E73B /* RankViewController.m */; };
 		1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6220BABDC20041E73B /* RankModel.m */; };
 		1F0FDF6620BABF9F0041E73B /* RankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */; };
+		1F0FDF6920BB03F30041E73B /* FindBodyResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6820BB03F30041E73B /* FindBodyResultController.m */; };
+		1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6B20BB055A0041E73B /* FindResultCell.m */; };
+		1F0FDF6F20BB19D90041E73B /* FindDisplayShapeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF6E20BB19D90041E73B /* FindDisplayShapeModel.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -352,6 +355,12 @@
 		1F0FDF6220BABDC20041E73B /* RankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankModel.m; sourceTree = "<group>"; };
 		1F0FDF6420BABF9F0041E73B /* RankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankTableViewCell.h; sourceTree = "<group>"; };
 		1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankTableViewCell.m; sourceTree = "<group>"; };
+		1F0FDF6720BB03F30041E73B /* FindBodyResultController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindBodyResultController.h; sourceTree = "<group>"; };
+		1F0FDF6820BB03F30041E73B /* FindBodyResultController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindBodyResultController.m; sourceTree = "<group>"; };
+		1F0FDF6A20BB055A0041E73B /* FindResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindResultCell.h; sourceTree = "<group>"; };
+		1F0FDF6B20BB055A0041E73B /* FindResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindResultCell.m; sourceTree = "<group>"; };
+		1F0FDF6D20BB19D90041E73B /* FindDisplayShapeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindDisplayShapeModel.h; sourceTree = "<group>"; };
+		1F0FDF6E20BB19D90041E73B /* FindDisplayShapeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindDisplayShapeModel.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1390,12 +1399,14 @@
 				1F676E832096FF9F002F71B4 /* View */,
 				1F676F6D20B00A9E002F71B4 /* FindSizeViewController.h */,
 				1F676F6E20B00A9E002F71B4 /* FindSizeViewController.m */,
-				1F676F7020B050E6002F71B4 /* FindHeadViewController.h */,
-				1F676F7120B050E6002F71B4 /* FindHeadViewController.m */,
 				1F676F7320B05FEE002F71B4 /* FindBodyViewController.h */,
 				1F676F7420B05FEE002F71B4 /* FindBodyViewController.m */,
 				1F676F7620B13C1E002F71B4 /* FindColorViewController.h */,
 				1F676F7720B13C1E002F71B4 /* FindColorViewController.m */,
+				1F676F7020B050E6002F71B4 /* FindHeadViewController.h */,
+				1F676F7120B050E6002F71B4 /* FindHeadViewController.m */,
+				1F0FDF6720BB03F30041E73B /* FindBodyResultController.h */,
+				1F0FDF6820BB03F30041E73B /* FindBodyResultController.m */,
 			);
 			path = BodyBirdViewController;
 			sourceTree = "<group>";
@@ -1405,6 +1416,8 @@
 			children = (
 				1F676E872096FFEE002F71B4 /* BodyBirdModel.h */,
 				1F676E882096FFEE002F71B4 /* BodyBirdModel.m */,
+				1F0FDF6D20BB19D90041E73B /* FindDisplayShapeModel.h */,
+				1F0FDF6E20BB19D90041E73B /* FindDisplayShapeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1412,6 +1425,8 @@
 		1F676E832096FF9F002F71B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F0FDF6A20BB055A0041E73B /* FindResultCell.h */,
+				1F0FDF6B20BB055A0041E73B /* FindResultCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2004,6 +2019,8 @@
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
 				0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */,
 				1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */,
+				1F0FDF6F20BB19D90041E73B /* FindDisplayShapeModel.m in Sources */,
+				1F0FDF6920BB03F30041E73B /* FindBodyResultController.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
@@ -2121,6 +2138,7 @@
 				1F676EE620A8046D002F71B4 /* PublishSelectBirdController.m in Sources */,
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
+				1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
 				0B317C8A1F0F6E9100B01DDA /* AppButton.m in Sources */,
 				1F676F0920A9C4F3002F71B4 /* UIImage+fixOrientation.m in Sources */,
