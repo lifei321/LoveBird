@@ -37,7 +37,7 @@
         [self addSubview:self.headIcon];
         
         // 昵称
-        self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), AutoSize(12), SCREEN_WIDTH / 2, AutoSize(25))];
+        self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top, SCREEN_WIDTH / 2, AutoSize(20))];
         self.nickNameLabel.textColor = [UIColor blackColor];
         self.nickNameLabel.font = kFont(13);
         self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -75,9 +75,9 @@
 - (void)setContentModel:(DiscoverContentModel *)contentModel {
     _contentModel = contentModel;
     self.nickNameLabel.text = contentModel.author;
-    self.timeLabel.text = contentModel.datelien;
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:contentModel.head] placeholderImage:nil];
     self.followButton.selected = contentModel.isFollow;
+    self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
 }
 
 

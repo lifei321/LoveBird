@@ -171,7 +171,7 @@
 /**
  *  排行
  */
-#define kAPI_Article_rankingList kAPI_USER_SERVER_VERSION(@"birdapi/ranking/index.php?cmd=ranking")
+#define kAPI_Article_rankingList kAPI_USER_SERVER_VERSION(@"ranking/index.php?cmd=ranking")
 
 
 #endif /* AppApi_h */

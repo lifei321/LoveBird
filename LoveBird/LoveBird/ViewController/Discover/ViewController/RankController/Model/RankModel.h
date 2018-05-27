@@ -17,6 +17,12 @@
 @property (nonatomic, copy) NSString *title;
 
 
+@property (nonatomic, copy) NSString *titleFirst;
+
+@property (nonatomic, copy) NSString *titleSecond;
+
+
+
 @end
 
 
@@ -38,6 +44,9 @@
 @property (nonatomic, copy) NSString *uid;
 
 @property (nonatomic, assign) BOOL isFollow;
+
+@property (nonatomic, assign) NSInteger second;
+
 
 @end
 

@@ -27,7 +27,7 @@
 @property (nonatomic, copy) NSString *commentNum;
 
 // 发表时间
-@property (nonatomic, copy) NSString *datelien;
+@property (nonatomic, copy) NSString *dateline;
 
 // 作者头像
 @property (nonatomic, copy) NSString *head;

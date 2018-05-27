@@ -23,6 +23,12 @@
 
 @property (nonatomic, strong) UIButton *selectButton;
 
+@property (nonatomic, strong) UIImageView *headerView;
+
+@property (nonatomic, strong) UILabel *firstLabel;
+
+@property (nonatomic, strong) UILabel *secondLabel;
+
 @end
 
 @implementation RankViewController
@@ -37,42 +43,33 @@
     // 设置UI
     [self setTableView];
     
-    [self netForContentHeader];
+    [self netForContent];
 }
 
-- (void)netForContentHeader {
-    self.type = @"100";
+
+- (void)netForContent {
     
-    [self netForContentWithPageNum:self.type header:YES];
-}
-- (void)netForContentFooter {
-    [self netForContentWithPageNum:self.type header:NO];
-}
-- (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
-    
+    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [DiscoverDao getRankList:@"" type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        if (header) {
-            [self.tableView.mj_header endRefreshing];
-        } else {
-            [self.tableView.mj_footer endRefreshing];
-        }
+        
+        [AppBaseHud hideHud:self.view];
         RankDataModel *dataModel = (RankDataModel *)responseObject;
-        if (header) {
-            [self.dataArray removeAllObjects];
+        for (int i = 0; i < dataModel.user.count; i++) {
+            RankModel *model = dataModel.user[i];
+            model.second = i + 1;
         }
+        
+        self.tableView.tableHeaderView = self.headerView;
+        self.firstLabel.text = dataModel.titleFirst;
+        self.secondLabel.text = dataModel.titleSecond;
         
         [self.dataArray addObjectsFromArray:dataModel.user];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
-        if (header) {
-            [self.tableView.mj_header endRefreshing];
-        } else {
-            [self.tableView.mj_footer endRefreshing];
-        }
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }
@@ -116,7 +113,7 @@
     titleView.layer.cornerRadius = 5;
     titleView.clipsToBounds = YES;
     
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, titleView.width / 3, titleView.height)];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, titleView.width / 3 - 1, titleView.height)];
     [leftButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
     [leftButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -129,7 +126,11 @@
     self.selectButton = leftButton;
     [titleView addSubview:leftButton];
     
-    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(leftButton.right, 0, titleView.width / 3, titleView.height)];
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(leftButton.right, 0, 1, titleView.height)];
+    line1.backgroundColor = kColorDefaultColor;
+    [titleView addSubview:line1];
+    
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(leftButton.right + 1, 0, titleView.width / 3 - 1, titleView.height)];
     [rightButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
     [rightButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -140,7 +141,11 @@
     [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [titleView addSubview:rightButton];
     
-    UIButton *scolreButton = [[UIButton alloc] initWithFrame:CGRectMake(rightButton.right, 0, titleView.width / 3, titleView.height)];
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(rightButton.right, 0, 1, titleView.height)];
+    line2.backgroundColor = kColorDefaultColor;
+    [titleView addSubview:line2];
+    
+    UIButton *scolreButton = [[UIButton alloc] initWithFrame:CGRectMake(rightButton.right + 1, 0, titleView.width / 3 - 1, titleView.height)];
     [scolreButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
     [scolreButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
     [scolreButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -166,12 +171,32 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[RankTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RankTableViewCell class])];
     
-    //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
-    //默认【上拉加载】
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
 }
 
+- (UIImageView *)headerView {
+    if (!_headerView) {
+        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(375))];
+        _headerView.image = [UIImage imageNamed:@"mine_header_back"];
+        _headerView.contentMode = UIViewContentModeScaleToFill;
+
+        self.firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(140), AutoSize6(100), SCREEN_WIDTH - AutoSize6(280), AutoSize6(54))];
+        self.firstLabel.textAlignment = NSTextAlignmentCenter;
+        self.firstLabel.textColor = [UIColor whiteColor];
+        self.firstLabel.backgroundColor = [UIColor blackColor];
+        self.firstLabel.alpha = 0.8;
+        self.firstLabel.font = kFont6(32);
+        [_headerView addSubview:self.firstLabel];
+        
+        self.secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(95), self.firstLabel.bottom + AutoSize6(26),SCREEN_WIDTH - AutoSize6(190), AutoSize6(65))];
+        self.secondLabel.textAlignment = NSTextAlignmentCenter;
+        self.secondLabel.textColor = [UIColor whiteColor];
+        self.secondLabel.font = kFont6(48);
+        self.secondLabel.backgroundColor = [UIColor blackColor];
+        self.secondLabel.alpha = 0.8;
+        [_headerView addSubview:self.secondLabel];
+    }
+    return _headerView;
+}
 
 
 @end
