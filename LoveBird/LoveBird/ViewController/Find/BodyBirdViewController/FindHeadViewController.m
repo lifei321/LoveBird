@@ -91,7 +91,7 @@
     if (!self.selectButton) {
         length = @"0";
     } else {
-        length = [NSString stringWithFormat:@"%ld", self.selectButton.tag];
+        length = [NSString stringWithFormat:@"%ld", (long)self.selectButton.tag];
     }
     
     return length;

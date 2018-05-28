@@ -184,4 +184,12 @@
 #define kAPI_Article_rankingList kAPI_USER_SERVER_VERSION(@"ranking/index.php?cmd=ranking")
 
 
+
+#pragma mark-- 详情
+
+/**
+ *  日志详情
+ */
+#define kAPI_Detail_birdArticle kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleDetail")
+
 #endif /* AppApi_h */

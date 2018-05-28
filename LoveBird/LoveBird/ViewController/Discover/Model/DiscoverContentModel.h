@@ -60,4 +60,12 @@
 // 点赞数量
 @property (nonatomic, assign) NSInteger upNum;
 
+@property (nonatomic, copy) NSString *aid;
+
+@property (nonatomic, copy) NSString *tid;
+
+@property (nonatomic, copy) NSString *webView;
+
+
+
 @end

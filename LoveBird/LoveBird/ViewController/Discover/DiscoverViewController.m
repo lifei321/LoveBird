@@ -22,6 +22,9 @@
 #import "WorksViewController.h"
 #import "RankViewController.h"
 
+#import "LogDetailController.h"
+#import "AppWebViewController.h"
+
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
 
@@ -307,6 +310,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    TimeLineLayoutModel *layoutModel = self.viewModel.dataSourceArray[indexPath.row];
+    
+    if (layoutModel.contentModel.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = layoutModel.contentModel.tid;
+        [self.navigationController pushViewController:detailController animated:YES];
+    } else if (layoutModel.contentModel.aid.length) {
+        
+    } else if (layoutModel.contentModel.webView.length) {
+        AppWebViewController *web = [[AppWebViewController alloc] init];
+        web.hidesBottomBarWhenPushed = YES;
+        web.startupUrlString = layoutModel.contentModel.webView;
+        [self.navigationController pushViewController:web animated:YES];
+    }
 }
 
 #pragma mark-- cell点击代理
