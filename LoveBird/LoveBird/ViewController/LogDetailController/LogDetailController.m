@@ -10,6 +10,7 @@
 #import "DetailDao.h"
 #import "LogDetailHeadView.h"
 #import "LogDetailBirdCell.h"
+#import "LogContentCell.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -42,7 +43,7 @@
 
 #pragma mark-- tabelView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -51,7 +52,7 @@
         return 3;
     }
     if (section == 1) {
-        return 0;
+        return self.detailModel.postBody.count;
     }
     
     return 0;
@@ -70,6 +71,10 @@
         } else if (row == 2) {
             birdcell.time = [[AppDateManager shareManager] getDateWithTime:self.detailModel.publishTime formatSytle:DateFormatYMD];
         }
+        cell = birdcell;
+    } else if (section == 1) {
+        LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
+        birdcell.bodyModel = self.detailModel.postBody[row];
         cell = birdcell;
     }
 
@@ -96,7 +101,7 @@
     }
 
     if (section == 1) {
-        return 0;
+        return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
     }
     
     return AutoSize6(0);
@@ -149,7 +154,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[LogDetailBirdCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailBirdCell class])];
-    
+    [self.tableView registerClass:[LogContentCell class] forCellReuseIdentifier:NSStringFromClass([LogContentCell class])];
+
     //默认【下拉刷新】
 //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
 //    //默认【上拉加载】

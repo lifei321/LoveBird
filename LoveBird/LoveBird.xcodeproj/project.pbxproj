@@ -97,6 +97,7 @@
 		1F0FDF8120BC537A0041E73B /* LogDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF8020BC537A0041E73B /* LogDetailHeadView.m */; };
 		1F0FDF8420BC542D0041E73B /* LogDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF8320BC542D0041E73B /* LogDetailTitleView.m */; };
 		1F0FDF8820BD97A40041E73B /* LogDetailBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */; };
+		1F0FDF9120BDA9A30041E73B /* LogContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF9020BDA9A20041E73B /* LogContentCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -379,6 +380,8 @@
 		1F0FDF8320BC542D0041E73B /* LogDetailTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailTitleView.m; sourceTree = "<group>"; };
 		1F0FDF8620BD97A40041E73B /* LogDetailBirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailBirdCell.h; sourceTree = "<group>"; };
 		1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailBirdCell.m; sourceTree = "<group>"; };
+		1F0FDF8F20BDA9A20041E73B /* LogContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogContentCell.h; sourceTree = "<group>"; };
+		1F0FDF9020BDA9A20041E73B /* LogContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogContentCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1291,6 +1294,8 @@
 				1F0FDF8320BC542D0041E73B /* LogDetailTitleView.m */,
 				1F0FDF8620BD97A40041E73B /* LogDetailBirdCell.h */,
 				1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */,
+				1F0FDF8F20BDA9A20041E73B /* LogContentCell.h */,
+				1F0FDF9020BDA9A20041E73B /* LogContentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2172,6 +2177,7 @@
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
 				1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */,
+				1F0FDF9120BDA9A30041E73B /* LogContentCell.m in Sources */,
 				1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
