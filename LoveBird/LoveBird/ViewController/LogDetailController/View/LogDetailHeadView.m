@@ -45,7 +45,7 @@
         [self addSubview:self.titleLabel];
         
         // 昵称
-        self.titleView = [[LogDetailTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize(60))];
+        self.titleView = [[LogDetailTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(115))];
         //        self.titleView.followDelegate = self;
         [self addSubview:self.titleView];
     }
@@ -55,16 +55,20 @@
 - (void)setDetailModel:(LogDetailModel *)detailModel {
     _detailModel = detailModel;
     
-    CGFloat imageHeight = (detailModel.coverImgHeight) * (SCREEN_WIDTH / detailModel.coverImgWidth);
-    self.contentImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.coverImgUrl] placeholderImage:[UIImage imageNamed:@" "]];
+    if (detailModel.coverImgWidth > 0) {
+        CGFloat imageHeight = (detailModel.coverImgHeight) * (SCREEN_WIDTH / detailModel.coverImgWidth);
+        self.contentImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.coverImgUrl] placeholderImage:[UIImage imageNamed:@" "]];
+    } else {
+        self.contentImageView.frame = CGRectZero;
+    }
 
     CGFloat titleHeight = [detailModel.title getTextHeightWithFont:self.titleLabel.font withWidth:self.titleLabel.width];
     self.titleLabel.text = detailModel.title;
     self.titleLabel.top = self.contentImageView.bottom + AutoSize6(30);
     self.titleLabel.height = titleHeight;
     
-    self.titleView.top = self.titleLabel.bottom + AutoSize6(30);
+    self.titleView.top = self.titleLabel.bottom + AutoSize6(20);
     self.titleView.detailModel = detailModel;
     
 }

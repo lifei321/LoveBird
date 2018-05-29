@@ -9,10 +9,12 @@
 #import "LogDetailController.h"
 #import "DetailDao.h"
 #import "LogDetailHeadView.h"
+#import "LogDetailBirdCell.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) LogDetailModel *detailModel;
 
 
 @property (nonatomic, strong) LogDetailHeadView *headerView;
@@ -39,21 +41,65 @@
 }
 
 #pragma mark-- tabelView 代理
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    
+    if (section == 0) {
+        return 3;
+    }
+    if (section == 1) {
+        return 0;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    RankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RankTableViewCell class]) forIndexPath:indexPath];
-//    cell.rankModel = self.dataArray[indexPath.row];
-//    return cell;
-    return nil;
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    UITableViewCell *cell;
+    if (section == 0) {
+        LogDetailBirdCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailBirdCell class]) forIndexPath:indexPath];
+        if (row == 0) {
+            birdcell.birdArray = self.detailModel.birdInfo;
+        } else if (row == 1) {
+            birdcell.location = self.detailModel.locale;
+        } else if (row == 2) {
+            birdcell.time = [[AppDateManager shareManager] getDateWithTime:self.detailModel.publishTime formatSytle:DateFormatYMD];
+        }
+        cell = birdcell;
+    }
+
+    return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
-    return AutoSize6(136);
+    if (section == 0) {
+        if (row == 0) {
+            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0;
+        }
+        
+        if (row == 1) {
+            return self.detailModel.locale.length ? AutoSize6(94) : 0;
+        }
+        
+        if (row == 2) {
+            return self.detailModel.publishTime.length ? AutoSize6(94) : 0;
+        }
+    }
+
+    if (section == 1) {
+        return 0;
+    }
+    
+    return AutoSize6(0);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,6 +118,9 @@
         self.tableView.tableHeaderView = self.headerView;
         self.headerView.detailModel = detailModel;
         self.headerView.height = [self.headerView getHeight];
+
+        self.detailModel = detailModel;
+        [self.tableView reloadData];
         
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -94,12 +143,12 @@
 - (void)setTableView {
     
     self.tableView.top = total_topView_height;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.tableView registerClass:[TimeLineCell class] forCellReuseIdentifier:NSStringFromClass([TimeLineCell class])];
-//    self.viewModel = [[DiscoverDataSource alloc] init];
+    [self.tableView registerClass:[LogDetailBirdCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailBirdCell class])];
     
     //默认【下拉刷新】
 //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];

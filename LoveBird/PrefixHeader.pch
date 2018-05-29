@@ -35,6 +35,7 @@
 #import "AppBaseHud.h"
 #import "UIFactory.h"
 #import "AppCache.h"
+#import "UIImage+Addition.h"
 
 
 
