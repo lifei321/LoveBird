@@ -8,6 +8,7 @@
 
 #import "DetailDao.h"
 #import "LogDetailModel.h"
+#import "LogDetailTalkModel.h"
 
 
 @implementation DetailDao
@@ -21,6 +22,27 @@
     
     
     [AppHttpManager POST:kAPI_Detail_birdArticle parameters:dic jsonModelName:[LogDetailModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+
+// 获取日志评论列表
++ (void)getLogDetail:(NSString *)tid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
+
+    
+    [AppHttpManager POST:kAPI_Detail_talkList parameters:dic jsonModelName:[LogDetailTalkDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

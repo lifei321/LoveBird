@@ -98,6 +98,9 @@
 		1F0FDF8420BC542D0041E73B /* LogDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF8320BC542D0041E73B /* LogDetailTitleView.m */; };
 		1F0FDF8820BD97A40041E73B /* LogDetailBirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */; };
 		1F0FDF9120BDA9A30041E73B /* LogContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF9020BDA9A20041E73B /* LogContentCell.m */; };
+		1F0FDF9720BEE9B60041E73B /* LogDeatilTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF9620BEE9B60041E73B /* LogDeatilTalkCell.m */; };
+		1F0FDF9A20BEED100041E73B /* LogDetailTalkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF9920BEED100041E73B /* LogDetailTalkModel.m */; };
+		1F0FDF9D20BEFCE40041E73B /* LogDetailHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDF9C20BEFCE40041E73B /* LogDetailHeadCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -382,6 +385,12 @@
 		1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailBirdCell.m; sourceTree = "<group>"; };
 		1F0FDF8F20BDA9A20041E73B /* LogContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogContentCell.h; sourceTree = "<group>"; };
 		1F0FDF9020BDA9A20041E73B /* LogContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogContentCell.m; sourceTree = "<group>"; };
+		1F0FDF9520BEE9B60041E73B /* LogDeatilTalkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDeatilTalkCell.h; sourceTree = "<group>"; };
+		1F0FDF9620BEE9B60041E73B /* LogDeatilTalkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDeatilTalkCell.m; sourceTree = "<group>"; };
+		1F0FDF9820BEED100041E73B /* LogDetailTalkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailTalkModel.h; sourceTree = "<group>"; };
+		1F0FDF9920BEED100041E73B /* LogDetailTalkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailTalkModel.m; sourceTree = "<group>"; };
+		1F0FDF9B20BEFCE40041E73B /* LogDetailHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailHeadCell.h; sourceTree = "<group>"; };
+		1F0FDF9C20BEFCE40041E73B /* LogDetailHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailHeadCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1281,6 +1290,8 @@
 			children = (
 				1F0FDF7C20BC4DE10041E73B /* LogDetailModel.h */,
 				1F0FDF7D20BC4DE10041E73B /* LogDetailModel.m */,
+				1F0FDF9820BEED100041E73B /* LogDetailTalkModel.h */,
+				1F0FDF9920BEED100041E73B /* LogDetailTalkModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1296,6 +1307,10 @@
 				1F0FDF8720BD97A40041E73B /* LogDetailBirdCell.m */,
 				1F0FDF8F20BDA9A20041E73B /* LogContentCell.h */,
 				1F0FDF9020BDA9A20041E73B /* LogContentCell.m */,
+				1F0FDF9520BEE9B60041E73B /* LogDeatilTalkCell.h */,
+				1F0FDF9620BEE9B60041E73B /* LogDeatilTalkCell.m */,
+				1F0FDF9B20BEFCE40041E73B /* LogDetailHeadCell.h */,
+				1F0FDF9C20BEFCE40041E73B /* LogDetailHeadCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2047,6 +2062,7 @@
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
+				1F0FDF9D20BEFCE40041E73B /* LogDetailHeadCell.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */,
@@ -2085,6 +2101,7 @@
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
 				1F676F2820AB2077002F71B4 /* DiscoverDao.m in Sources */,
 				0B317C6B1F0F591B00B01DDA /* AppBaseTabBarController.m in Sources */,
+				1F0FDF9720BEE9B60041E73B /* LogDeatilTalkCell.m in Sources */,
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
@@ -2189,6 +2206,7 @@
 				1F676EEA20A80910002F71B4 /* PublishSelectBirdCell.m in Sources */,
 				0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */,
 				1F676F0820A9C4F3002F71B4 /* WPFunctionView.m in Sources */,
+				1F0FDF9A20BEED100041E73B /* LogDetailTalkModel.m in Sources */,
 				1F676F9E20B911CF002F71B4 /* MineLogFrameModel.m in Sources */,
 				0B75D58D1FBEBB01008D7AE6 /* AppGuideManager.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,

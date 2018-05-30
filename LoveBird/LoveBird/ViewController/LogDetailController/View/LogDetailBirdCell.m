@@ -71,8 +71,8 @@
     _iconImageView.image = [UIImage imageNamed:@"date_record"];
 
     self.birdLabel.text = time;
-    self.lineView.hidden = YES;
-    
+    self.lineView.hidden = NO;
+    self.lineView.frame = CGRectMake(AutoSize6(0), AutoSize6(93), SCREEN_WIDTH, 0.5);
 }
 
 

@@ -192,4 +192,11 @@
  */
 #define kAPI_Detail_birdArticle kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleDetail")
 
+/**
+ *  日志评论列表
+ */
+#define kAPI_Detail_talkList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleCommentList")
+
+
+
 #endif /* AppApi_h */
