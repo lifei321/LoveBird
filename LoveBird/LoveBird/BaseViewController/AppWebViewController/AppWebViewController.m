@@ -150,7 +150,7 @@
     }
     
     
-    self.leftButton.image = (self.blackImage)?self.blackImage:[UIImage imageNamed:@"nav_back"];
+    self.leftButton.image = (self.blackImage)?self.blackImage:[UIImage imageNamed:@"nav_back_black"];
     if ([self.webView canGoBack]) {
         [itemsArray addObject:self.closeButton];
     }

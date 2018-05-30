@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) UILabel *birdLabel;
 
+@property (nonatomic, strong) UILabel *tagLabel;
+
+
 @end
 
 @implementation LogContentCell
@@ -27,7 +30,7 @@
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
         
-        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
         self.birdLabel.textAlignment = NSTextAlignmentLeft;
         self.birdLabel.textColor = kColorTextColor333333;
         self.birdLabel.font = kFont6(26);
@@ -35,10 +38,18 @@
         [self.contentView addSubview:self.birdLabel];
         
         
-        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
         _iconImageView.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:_iconImageView];
         
+        self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        self.tagLabel.textAlignment = NSTextAlignmentCenter;
+        self.tagLabel.textColor = kColorTextColor333333;
+        self.tagLabel.font = kFont6(22);
+        self.tagLabel.backgroundColor = UIColorFromRGB(0xececec);
+        self.tagLabel.layer.cornerRadius = 3;
+        self.tagLabel.clipsToBounds = YES;
+        [self.contentView addSubview:self.tagLabel];
 
         
     }
@@ -52,15 +63,28 @@
     CGFloat height = [bodyModel.message getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60))];
     self.birdLabel.height = height;
     
-    CGFloat imageHeight = (bodyModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / bodyModel.imgWidth);
-    _iconImageView.height = imageHeight;
-    
-    if (bodyModel.message.length) {
-        _iconImageView.top = self.birdLabel.bottom + AutoSize6(30);
+    if (bodyModel.isImg) {
+        CGFloat imageHeight = (bodyModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / bodyModel.imgWidth);
+        _iconImageView.height = imageHeight;
+        
+        if (bodyModel.message.length) {
+            _iconImageView.top = self.birdLabel.bottom + AutoSize6(30);
+        } else {
+            _iconImageView.top = self.birdLabel.bottom;
+        }
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        
+        if (bodyModel.imgTag.length) {
+            self.tagLabel.text = bodyModel.imgTag;
+            CGFloat width = [bodyModel.imgTag getTextWightWithFont:self.tagLabel.font];
+            self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(40) , _iconImageView.bottom + AutoSize6(20), width + AutoSize6(40), AutoSize6(40));
+        }
+        
     } else {
-        _iconImageView.top = self.birdLabel.bottom;
+        _iconImageView.height = 0;
+        self.tagLabel.height = 0;
     }
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+
 }
 
 + (CGFloat)getHeightWithModel:(LogPostBodyModel *)model {
@@ -69,12 +93,23 @@
     height = [model.message getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
     
     if (model.message.length) {
-        height += AutoSize6(30);
+        if (model.isImg) {
+            height += AutoSize6(20);
+        } else {
+            height += AutoSize6(40);
+        }
     }
     
-    height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
-    height += AutoSize6(30);
-    
+    if (model.isImg) {
+        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
+        height += AutoSize6(30);
+        
+        if (model.imgTag.length) {
+            height += AutoSize6(60);
+        }
+        
+    }
+
     return height;
 
 }

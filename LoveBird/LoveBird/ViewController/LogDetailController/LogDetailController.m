@@ -74,7 +74,9 @@
         cell = birdcell;
     } else if (section == 1) {
         LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
-        birdcell.bodyModel = self.detailModel.postBody[row];
+        if (self.detailModel.postBody.count > row) {
+            birdcell.bodyModel = self.detailModel.postBody[row];
+        }
         cell = birdcell;
     }
 
@@ -88,20 +90,22 @@
     
     if (section == 0) {
         if (row == 0) {
-            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0;
+            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0.0f;
         }
         
         if (row == 1) {
-            return self.detailModel.locale.length ? AutoSize6(94) : 0;
+            return self.detailModel.locale.length ? AutoSize6(94) : 0.0f;
         }
         
         if (row == 2) {
-            return self.detailModel.publishTime.length ? AutoSize6(94) : 0;
+            return self.detailModel.publishTime.length ? AutoSize6(94) : 0.0f;
         }
     }
 
     if (section == 1) {
-        return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
+        if (self.detailModel.postBody.count > row) {
+            return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
+        }
     }
     
     return AutoSize6(0);
