@@ -40,7 +40,6 @@
 }
 
 - (void)netForLog {
-    [AppBaseHud showHudWithLoding:self.view];
 
     @weakify(self);
     [UserDao userContenSuccessBlock:^(__kindof AppBaseModel *responseObject) {

@@ -12,6 +12,7 @@
 #import "MineBirdRightCell.h"
 #import "UserBirdModel.h"
 #import "MJRefresh.h"
+#import "BirdDetailController.h"
 
 
 @interface MineBirdViewController ()<UITableViewDataSource>
@@ -41,7 +42,6 @@
 
 - (void)netForLog {
     
-    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [UserDao userBirdList:1 fid:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
@@ -90,6 +90,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UserBirdModel *model = (UserBirdModel *)self.dataArray[indexPath.row];
+    BirdDetailController *detailvc = [[BirdDetailController alloc] init];
+    detailvc.cspCode = model.cspCode;
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 }
 
 

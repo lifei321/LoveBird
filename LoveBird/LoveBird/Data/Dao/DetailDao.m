@@ -9,6 +9,7 @@
 #import "DetailDao.h"
 #import "LogDetailModel.h"
 #import "LogDetailTalkModel.h"
+#import "BirdDetailModel.h"
 
 
 @implementation DetailDao
@@ -43,6 +44,25 @@
 
     
     [AppHttpManager POST:kAPI_Detail_talkList parameters:dic jsonModelName:[LogDetailTalkDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 鸟种详情
++ (void)getBirdDetail:(NSString *)code successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(code) forKey:@"csp_code"];
+    
+    
+    [AppHttpManager POST:kAPI_Detail_BirdDetail parameters:dic jsonModelName:[BirdDetailModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

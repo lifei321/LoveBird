@@ -17,4 +17,7 @@
 
 // 获取日志评论列表
 + (void)getLogDetail:(NSString *)tid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 鸟种详情
++ (void)getBirdDetail:(NSString *)code successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

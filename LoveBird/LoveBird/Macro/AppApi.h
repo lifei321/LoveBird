@@ -198,5 +198,10 @@
 #define kAPI_Detail_talkList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleCommentList")
 
 
+/**
+ *  鸟种详情
+ */
+#define kAPI_Detail_BirdDetail kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdDetail")
+
 
 #endif /* AppApi_h */

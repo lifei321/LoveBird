@@ -40,7 +40,6 @@
 
 - (void)netForLog {
     
-    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [UserDao userLogList:1 matchId:nil fid:nil successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
