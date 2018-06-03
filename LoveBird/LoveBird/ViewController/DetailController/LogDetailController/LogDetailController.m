@@ -197,8 +197,8 @@
             if (row == 0 || row == (self.contentModel.articleList.count + 1)) {
                 return AutoSize6(80);
             }
-            if (self.contentModel.articleList.count > row) {
-                return [LogContentCell getHeightWithContentModel:self.contentModel.articleList[row]];
+            if (self.contentModel.articleList.count + 1 > row) {
+                return [LogContentCell getHeightWithContentModel:self.contentModel.articleList[row -1]];
             }
         }
 
