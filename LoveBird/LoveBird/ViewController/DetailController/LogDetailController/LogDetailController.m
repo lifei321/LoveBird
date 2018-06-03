@@ -289,8 +289,10 @@
     if (!_footerView) {
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(400))];
         _footerView.backgroundColor = [UIColor whiteColor];
-        UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(274), _footerView.height)];
-        icon.image = [UIImage imageNamed:@""];
+        
+        UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), AutoSize6(78), AutoSize6(174), AutoSize6(115))];
+        icon.image = [UIImage imageNamed:@"detail_no_talk"];
+        icon.contentMode = UIViewContentModeCenter;
         [_footerView addSubview:icon];
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(icon.right + AutoSize6(15), AutoSize6(78), AutoSize6(400), AutoSize6(50))];

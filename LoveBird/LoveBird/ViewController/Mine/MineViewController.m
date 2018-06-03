@@ -20,6 +20,7 @@
 #import "MineBirdViewController.h"
 #import "MinePhotoViewController.h"
 #import "MineFriendViewController.h"
+#import "MineFollowController.h"
 
 @interface MineViewController ()
 

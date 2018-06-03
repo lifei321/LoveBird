@@ -13,13 +13,14 @@
 #import "MJRefresh.h"
 #import "FindSizeViewController.h"
 #import "BirdDetailController.h"
-
-
+#import "FindDao.h"
+#import "ClassifyModel.h"
+#import "FindBodyResultController.h"
 
 #define kStringForFind @"kStringForFind"
 
 
-@interface FindViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface FindViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 
@@ -76,7 +77,24 @@
     } failure:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
+    }];
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
+    [AppBaseHud showHudWithLoding:self.view];
+    
+    @weakify(self)
+    [FindDao getBird:textField.text genus:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        FindSelectBirdDataModel *dataModel = (FindSelectBirdDataModel *)responseObject;
+        FindBodyResultController *bodyvc = [[FindBodyResultController alloc] init];
+        bodyvc.dataModel = dataModel;
+        [self.navigationController pushViewController:bodyvc animated:YES];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }
 
@@ -166,6 +184,7 @@
     _searchField.placeholder = @"输入鸟名";
     _searchField.layer.cornerRadius = _searchField.height / 2;
     _searchField.backgroundColor = [UIColor whiteColor];
+    _searchField.delegate = self;
     
     CGRect frame = _searchField.frame;
     frame.size.width = AutoSize(15);// 距离左侧的距离
@@ -181,6 +200,9 @@
     _searchField.rightViewMode = UITextFieldViewModeAlways;
     _searchField.rightView = rightview;
     [lineView addSubview:_searchField];
+    
+    rightview.userInteractionEnabled = YES;
+    
     
     [headerView addSubview:lineView];
     

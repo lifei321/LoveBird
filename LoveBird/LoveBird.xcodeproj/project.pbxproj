@@ -112,6 +112,8 @@
 		1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */; };
 		1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */; };
 		1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */; };
+		1F16D8B020C411E700A6C11D /* MineFollowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AF20C411E700A6C11D /* MineFollowController.m */; };
+		1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B420C4127D00A6C11D /* MineFollowCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -137,7 +139,6 @@
 		1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E96209A045A002F71B4 /* UserInfoModel.m */; };
 		1F676E9A209A05BE002F71B4 /* UserFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E99209A05BE002F71B4 /* UserFriendModel.m */; };
 		1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9C209A0774002F71B4 /* UserBirdModel.m */; };
-		1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E9F209A095D002F71B4 /* UserFansModel.m */; };
 		1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EA2209A0AC7002F71B4 /* UserModel.m */; };
 		1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EA7209F34F7002F71B4 /* PublishHeaderView.m */; };
 		1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EAA209F3CC2002F71B4 /* PublishSelectCell.m */; };
@@ -424,6 +425,10 @@
 		1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioController.m; sourceTree = "<group>"; };
 		1F16D8AB20C407AB00A6C11D /* BirdDetailVedioCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailVedioCell.h; sourceTree = "<group>"; };
 		1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioCell.m; sourceTree = "<group>"; };
+		1F16D8AE20C411E700A6C11D /* MineFollowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFollowController.h; sourceTree = "<group>"; };
+		1F16D8AF20C411E700A6C11D /* MineFollowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFollowController.m; sourceTree = "<group>"; };
+		1F16D8B320C4127D00A6C11D /* MineFollowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFollowCell.h; sourceTree = "<group>"; };
+		1F16D8B420C4127D00A6C11D /* MineFollowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFollowCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -474,8 +479,6 @@
 		1F676E99209A05BE002F71B4 /* UserFriendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFriendModel.m; sourceTree = "<group>"; };
 		1F676E9B209A0774002F71B4 /* UserBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserBirdModel.h; sourceTree = "<group>"; };
 		1F676E9C209A0774002F71B4 /* UserBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserBirdModel.m; sourceTree = "<group>"; };
-		1F676E9E209A095D002F71B4 /* UserFansModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFansModel.h; sourceTree = "<group>"; };
-		1F676E9F209A095D002F71B4 /* UserFansModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFansModel.m; sourceTree = "<group>"; };
 		1F676EA1209A0AC7002F71B4 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1F676EA2209A0AC7002F71B4 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		1F676EA6209F34F7002F71B4 /* PublishHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishHeaderView.h; sourceTree = "<group>"; };
@@ -1416,6 +1419,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F16D8B120C4126600A6C11D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F16D8B220C4126600A6C11D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8B320C4127D00A6C11D /* MineFollowCell.h */,
+				1F16D8B420C4127D00A6C11D /* MineFollowCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1634,8 +1653,6 @@
 				1F676E99209A05BE002F71B4 /* UserFriendModel.m */,
 				1F676E9B209A0774002F71B4 /* UserBirdModel.h */,
 				1F676E9C209A0774002F71B4 /* UserBirdModel.m */,
-				1F676E9E209A095D002F71B4 /* UserFansModel.h */,
-				1F676E9F209A095D002F71B4 /* UserFansModel.m */,
 				1F676EA1209A0AC7002F71B4 /* UserModel.h */,
 				1F676EA2209A0AC7002F71B4 /* UserModel.m */,
 			);
@@ -1859,16 +1876,20 @@
 		1F676F8520B5AA6C002F71B4 /* ChildViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D8B120C4126600A6C11D /* Model */,
+				1F16D8B220C4126600A6C11D /* View */,
 				1F676FA520B97199002F71B4 /* BirdController */,
+				1F676F9620B9119E002F71B4 /* LogController */,
 				1F676FA720B97199002F71B4 /* MineBirdViewController.h */,
 				1F676FA620B97199002F71B4 /* MineBirdViewController.m */,
-				1F676F9620B9119E002F71B4 /* LogController */,
 				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,
 				1F676F8A20B5AA9D002F71B4 /* MineCollectViewController.m */,
 				1F676F8F20B5AAD9002F71B4 /* MinePhotoViewController.h */,
 				1F676F9020B5AAD9002F71B4 /* MinePhotoViewController.m */,
 				1F676F9220B5AAF4002F71B4 /* MineFriendViewController.h */,
 				1F676F9320B5AAF4002F71B4 /* MineFriendViewController.m */,
+				1F16D8AE20C411E700A6C11D /* MineFollowController.h */,
+				1F16D8AF20C411E700A6C11D /* MineFollowController.m */,
 			);
 			path = ChildViewController;
 			sourceTree = "<group>";
@@ -2267,6 +2288,7 @@
 				1F676FA120B9120E002F71B4 /* MineLogCell.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
+				1F16D8B020C411E700A6C11D /* MineFollowController.m in Sources */,
 				0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */,
 				1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */,
 				1F306236204AA29000784C62 /* TimeLineLayoutModel.m in Sources */,
@@ -2316,7 +2338,7 @@
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
 				1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */,
 				1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */,
-				1F676EA0209A095E002F71B4 /* UserFansModel.m in Sources */,
+				1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */,
 				1F676F0420A9C4F3002F71B4 /* NavView.m in Sources */,
 				0BA41918201C6835002C6335 /* GuideViewController.m in Sources */,
 				0B75D5691FBD9D8B008D7AE6 /* UIImage+Addition.m in Sources */,

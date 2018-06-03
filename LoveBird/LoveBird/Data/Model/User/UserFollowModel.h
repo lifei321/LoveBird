@@ -8,10 +8,10 @@
 
 #import "AppBaseModel.h"
 
+@protocol UserFollowModel;
+@interface UserFollowListModel : AppBaseModel
 
-@interface UserFollowListModel : JSONModel
-
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSArray <UserFollowModel>*data;
 
 @end
 

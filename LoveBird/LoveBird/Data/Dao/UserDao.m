@@ -13,7 +13,6 @@
 #import "UserInfoModel.h"
 #import "UserFriendModel.h"
 #import "UserBirdModel.h"
-#import "UserFansModel.h"
 #import "UserModel.h"
 #import "ShequModel.h"
 
@@ -60,7 +59,7 @@
 + (void)userFollowList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
+    [dic setObject:@"483887" forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_User_FollowList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -198,9 +197,9 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
+    [dic setObject:@"483887" forKey:@"uid"];
     
-    [AppHttpManager POST:kAPI_User_FansList parameters:dic jsonModelName:[UserFansListModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_FansList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

@@ -8,12 +8,14 @@
 
 #import "UserFollowModel.h"
 
+
+@implementation UserFollowListModel
+
+@end
+
 @implementation UserFollowModel
 
 @end
 
 
 
-@implementation UserFollowListModel
-
-@end

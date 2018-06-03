@@ -9,6 +9,7 @@
 #import "MineHeaderView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UserModel.h"
+#import "MineFollowController.h"
 
 
 @interface MineHeaderView()
@@ -67,12 +68,19 @@
         [self addSubview:self.nameLabel];
         
         self.followLabel = [self makeLabel:AutoSize6(46)];
+        self.followLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(followLabelDidClick)];
+        [self.followLabel addGestureRecognizer:tap];
         
         UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(self.followLabel.right, self.followLabel.top, 1, self.followLabel.height)];
         line1.backgroundColor = [UIColor whiteColor];
         [self addSubview:line1];
         
         self.fansLabel = [self makeLabel:self.followLabel.right];
+        self.fansLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapfans = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fansLabelDidClick)];
+        [self.fansLabel addGestureRecognizer:tapfans];
+        
         
         UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(self.fansLabel.right, self.followLabel.top, 1, self.followLabel.height)];
         line2.backgroundColor = [UIColor whiteColor];
@@ -141,6 +149,18 @@
     if (self.headerBlock) {
         self.headerBlock(button.tag);
     }
+}
+
+- (void)followLabelDidClick {
+    MineFollowController *followvc = [[MineFollowController alloc] init];
+    followvc.type = 1;
+    [[UIViewController currentViewController].navigationController pushViewController:followvc animated:YES];
+}
+
+- (void)fansLabelDidClick {
+    MineFollowController *followvc = [[MineFollowController alloc] init];
+    followvc.type = 2;
+    [[UIViewController currentViewController].navigationController pushViewController:followvc animated:YES];
 }
 
 - (UILabel *)makeLabel:(CGFloat)x {
