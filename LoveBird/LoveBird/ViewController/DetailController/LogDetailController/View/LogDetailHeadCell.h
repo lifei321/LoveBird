@@ -12,7 +12,4 @@
 
 @property (nonatomic, strong) NSArray *dataArray;
 
-// 评论总数
-@property (nonatomic, copy) NSString *count;
-
 @end

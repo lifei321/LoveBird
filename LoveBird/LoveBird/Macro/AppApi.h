@@ -209,6 +209,12 @@
  */
 #define kAPI_Detail_talkList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleCommentList")
 
+/**
+ *  日志点赞列表
+ */
+#define kAPI_Detail_uplist kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleUpList")
+
+
 
 /**
  *  鸟种详情

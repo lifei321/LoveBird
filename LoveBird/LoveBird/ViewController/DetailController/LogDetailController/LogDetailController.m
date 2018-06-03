@@ -15,7 +15,7 @@
 #import "LogDetailTalkModel.h"
 #import "LogDeatilTalkCell.h"
 #import "LogDetailHeadCell.h"
-
+#import "LogDetailUpModel.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -32,6 +32,9 @@
 
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *headArray;
+
 
 // 评论总数
 @property (nonatomic, copy) NSString *count;
@@ -55,6 +58,8 @@
     [self setTableView];
     [self netForLogDetail];
     [self netForTalkList];
+    [self netforUplist];
+
 }
 
 #pragma mark-- tabelView 代理
@@ -105,8 +110,7 @@
     } else if (section == 2) {
         
         LogDetailHeadCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailHeadCell class]) forIndexPath:indexPath];
-        birdcell.count = self.count;
-        birdcell.dataArray = self.dataArray;
+        birdcell.dataArray = self.headArray;
         cell = birdcell;
 
     } else if (section == 3) {
@@ -146,7 +150,7 @@
     }
     
     if (section == 2) {
-        if (self.dataArray.count) {
+        if (self.headArray.count) {
             return AutoSize6(138);
         }
     }
@@ -224,7 +228,7 @@
 
 - (void)netForTalkList {
     @weakify(self);
-    [DetailDao getLogDetail:self.tid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogDetail:self.tid aid:@"" page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_footer endRefreshing];
         self.page ++;
@@ -245,6 +249,26 @@
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
         [self.tableView.mj_footer endRefreshing];
 
+    }];
+}
+
+- (void)netforUplist {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DetailDao getLogUPDetail:self.tid aid:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        LogDetailUpDataModel *dataModel = (LogDetailUpDataModel *)responseObject;
+        
+        self.headArray = [NSMutableArray new];
+        
+        [self.headArray addObjectsFromArray:dataModel.data];
+        [self.tableView reloadData];
+        
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }
 

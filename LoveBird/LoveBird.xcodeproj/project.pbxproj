@@ -114,6 +114,7 @@
 		1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */; };
 		1F16D8B020C411E700A6C11D /* MineFollowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AF20C411E700A6C11D /* MineFollowController.m */; };
 		1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B420C4127D00A6C11D /* MineFollowCell.m */; };
+		1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B720C4304E00A6C11D /* LogDetailUpModel.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -429,6 +430,8 @@
 		1F16D8AF20C411E700A6C11D /* MineFollowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFollowController.m; sourceTree = "<group>"; };
 		1F16D8B320C4127D00A6C11D /* MineFollowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFollowCell.h; sourceTree = "<group>"; };
 		1F16D8B420C4127D00A6C11D /* MineFollowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFollowCell.m; sourceTree = "<group>"; };
+		1F16D8B620C4304E00A6C11D /* LogDetailUpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailUpModel.h; sourceTree = "<group>"; };
+		1F16D8B720C4304E00A6C11D /* LogDetailUpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailUpModel.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1344,6 +1347,8 @@
 				1F0FDFA720C23B250041E73B /* LogDetailModel.m */,
 				1F0FDFA820C23B250041E73B /* LogDetailTalkModel.h */,
 				1F0FDFA520C23B250041E73B /* LogDetailTalkModel.m */,
+				1F16D8B620C4304E00A6C11D /* LogDetailUpModel.h */,
+				1F16D8B720C4304E00A6C11D /* LogDetailUpModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2196,6 +2201,7 @@
 				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */,
+				1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
 				1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */,

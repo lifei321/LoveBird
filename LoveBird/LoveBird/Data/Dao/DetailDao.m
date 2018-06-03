@@ -10,6 +10,7 @@
 #import "LogDetailModel.h"
 #import "LogDetailTalkModel.h"
 #import "BirdDetailModel.h"
+#import "LogDetailUpModel.h"
 
 
 @implementation DetailDao
@@ -36,14 +37,36 @@
 
 
 // 获取日志评论列表
-+ (void)getLogDetail:(NSString *)tid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getLogDetail:(NSString *)tid aid:(NSString *)aid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
+    [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
 
     
     [AppHttpManager POST:kAPI_Detail_talkList parameters:dic jsonModelName:[LogDetailTalkDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 获取日志点赞列表
++ (void)getLogUPDetail:(NSString *)tid aid:(NSString *)aid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
+
+    
+    [AppHttpManager POST:kAPI_Detail_uplist parameters:dic jsonModelName:[LogDetailUpDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

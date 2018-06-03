@@ -8,7 +8,7 @@
 
 #import "LogDetailHeadCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "LogDetailTalkModel.h"
+#import "LogDetailUpModel.h"
 
 @interface LogDetailHeadCell()
 
@@ -40,16 +40,13 @@
     return self;
 }
 
-- (void)setCount:(NSString *)count {
-    _count = [count copy];
-    self.birdLabel.text = [NSString stringWithFormat:@"已有%@人赞过", count];
-}
-
 - (void)setDataArray:(NSArray *)dataArray {
     _dataArray = [dataArray copy];
     
+    self.birdLabel.text = [NSString stringWithFormat:@"已有%ld人赞过", dataArray.count];
+
     for (int i = 0; i < dataArray.count; i ++) {
-        LogDetailTalkModel *model = self.dataArray[i];
+        LogDetailUpModel *model = self.dataArray[i];
         CGFloat left;
         if (i == 0) {
             left = AutoSize6(30);
