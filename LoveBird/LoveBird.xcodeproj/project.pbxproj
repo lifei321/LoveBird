@@ -104,6 +104,9 @@
 		1F0FDFC520C23BC50041E73B /* BirdDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFC420C23BC50041E73B /* BirdDetailController.m */; };
 		1F0FDFC820C242180041E73B /* BirdDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFC720C242180041E73B /* BirdDetailModel.m */; };
 		1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */; };
+		1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */; };
+		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
+		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -400,6 +403,12 @@
 		1F0FDFC720C242180041E73B /* BirdDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailModel.m; sourceTree = "<group>"; };
 		1F0FDFC920C25C8E0041E73B /* BirdDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailTextCell.h; sourceTree = "<group>"; };
 		1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailTextCell.m; sourceTree = "<group>"; };
+		1F16D89220C2DB4800A6C11D /* BirdDetailClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailClassCell.h; sourceTree = "<group>"; };
+		1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailClassCell.m; sourceTree = "<group>"; };
+		1F16D89520C2E21A00A6C11D /* BirdDetailGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailGradeCell.h; sourceTree = "<group>"; };
+		1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailGradeCell.m; sourceTree = "<group>"; };
+		1F16D89820C2EBD600A6C11D /* BirdDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailCell.h; sourceTree = "<group>"; };
+		1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1365,6 +1374,12 @@
 			children = (
 				1F0FDFC920C25C8E0041E73B /* BirdDetailTextCell.h */,
 				1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */,
+				1F16D89220C2DB4800A6C11D /* BirdDetailClassCell.h */,
+				1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */,
+				1F16D89520C2E21A00A6C11D /* BirdDetailGradeCell.h */,
+				1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */,
+				1F16D89820C2EBD600A6C11D /* BirdDetailCell.h */,
+				1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2103,6 +2118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */,
 				1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */,
 				1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
@@ -2238,6 +2254,7 @@
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,
 				1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */,
+				1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */,
 				0B75D5671FBD9D8B008D7AE6 /* UIButton+HQCustomIcon.m in Sources */,
 				0B75D5A31FBEC434008D7AE6 /* NSString+APP.m in Sources */,
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
@@ -2246,6 +2263,7 @@
 				1F0FDFBA20C23B250041E73B /* LogDetailController.m in Sources */,
 				1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */,
 				1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */,
+				1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
