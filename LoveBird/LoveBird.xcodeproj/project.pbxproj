@@ -108,6 +108,10 @@
 		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
 		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
 		1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89D20C3D80600A6C11D /* FindClassCell.m */; };
+		1F16D8A120C3FCE600A6C11D /* BirdDetailSongController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */; };
+		1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */; };
+		1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */; };
+		1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -412,6 +416,14 @@
 		1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailCell.m; sourceTree = "<group>"; };
 		1F16D89C20C3D80600A6C11D /* FindClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindClassCell.h; sourceTree = "<group>"; };
 		1F16D89D20C3D80600A6C11D /* FindClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindClassCell.m; sourceTree = "<group>"; };
+		1F16D89F20C3FCE600A6C11D /* BirdDetailSongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailSongController.h; sourceTree = "<group>"; };
+		1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailSongController.m; sourceTree = "<group>"; };
+		1F16D8A220C3FE6F00A6C11D /* BirdDetailSongCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailSongCell.h; sourceTree = "<group>"; };
+		1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailSongCell.m; sourceTree = "<group>"; };
+		1F16D8A820C4072900A6C11D /* BirdDetailVedioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailVedioController.h; sourceTree = "<group>"; };
+		1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioController.m; sourceTree = "<group>"; };
+		1F16D8AB20C407AB00A6C11D /* BirdDetailVedioCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailVedioCell.h; sourceTree = "<group>"; };
+		1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1359,6 +1371,10 @@
 				1F0FDFB920C23B250041E73B /* View */,
 				1F0FDFC320C23BC50041E73B /* BirdDetailController.h */,
 				1F0FDFC420C23BC50041E73B /* BirdDetailController.m */,
+				1F16D89F20C3FCE600A6C11D /* BirdDetailSongController.h */,
+				1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */,
+				1F16D8A820C4072900A6C11D /* BirdDetailVedioController.h */,
+				1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */,
 			);
 			path = BirdDetailControler;
 			sourceTree = "<group>";
@@ -1383,6 +1399,10 @@
 				1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */,
 				1F16D89820C2EBD600A6C11D /* BirdDetailCell.h */,
 				1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */,
+				1F16D8A220C3FE6F00A6C11D /* BirdDetailSongCell.h */,
+				1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */,
+				1F16D8AB20C407AB00A6C11D /* BirdDetailVedioCell.h */,
+				1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2141,6 +2161,7 @@
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F0FDFBF20C23B250041E73B /* LogDetailHeadView.m in Sources */,
+				1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
@@ -2161,6 +2182,7 @@
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,
 				1F0FDF7B20BC4CB90041E73B /* DetailDao.m in Sources */,
+				1F16D8A120C3FCE600A6C11D /* BirdDetailSongController.m in Sources */,
 				1F676EBA20A08AAC002F71B4 /* PublishFooterView.m in Sources */,
 				0B317CAE1F0F829300B01DDA /* QuestionViewController.m in Sources */,
 				0B75D5751FBD9D8B008D7AE6 /* KeychainWrapper.m in Sources */,
@@ -2226,6 +2248,7 @@
 				1F676FAA20B97199002F71B4 /* MineBirdViewController.m in Sources */,
 				1F4F1423205D2AEB0066F790 /* FindSelectCell.m in Sources */,
 				1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */,
+				1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */,
 				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F676FAD20B972EC002F71B4 /* MineBirdLeftCell.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
@@ -2312,6 +2335,7 @@
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
 				1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */,
+				1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
 				0B317C8A1F0F6E9100B01DDA /* AppButton.m in Sources */,
 				1F0FDFBB20C23B250041E73B /* LogDetailTalkModel.m in Sources */,

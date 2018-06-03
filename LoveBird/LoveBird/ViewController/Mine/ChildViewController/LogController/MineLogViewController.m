@@ -12,6 +12,7 @@
 #import "MineLogFrameModel.h"
 #import "MineLogCell.h"
 #import "MJRefresh.h"
+#import "LogDetailController.h"
 
 @interface MineLogViewController ()<UITableViewDataSource>
 
@@ -83,6 +84,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MineLogFrameModel *layoutModel = self.dataArray[indexPath.row];
+    
+    if (layoutModel.shequModel.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = layoutModel.shequModel.tid;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
 }
 
 - (void)setTableView {

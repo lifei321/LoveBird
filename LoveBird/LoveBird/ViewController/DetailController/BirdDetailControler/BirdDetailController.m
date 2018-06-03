@@ -15,6 +15,7 @@
 #import "BirdDetailClassCell.h"
 #import "BirdDetailGradeCell.h"
 #import "BirdDetailCell.h"
+#import "BirdDetailSongController.h"
 
 
 @interface BirdDetailController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -365,6 +366,9 @@
     
     if (section == 1) {
         if (row == 0) { // 叫声
+            BirdDetailSongController *songvc = [[BirdDetailSongController alloc] init];
+            songvc.dataArray = [NSArray arrayWithArray: self.detailModel.song];
+            [self.navigationController pushViewController:songvc animated:YES];
             
         } else if (row == 1) { // 视频
             

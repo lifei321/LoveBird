@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UILabel *birdLabel;
 
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
@@ -33,6 +34,12 @@
         _iconImageView.clipsToBounds = YES;
         _iconImageView.layer.cornerRadius = AutoSize6(5);
         [self.contentView addSubview:_iconImageView];
+        
+        self.titleLabel = [[UILabel alloc] initWithFrame:_iconImageView.bounds];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.font = kFont6(40);
+        [_iconImageView addSubview:self.titleLabel];
         
         self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(150), AutoSize6(104))];
         self.birdLabel.textAlignment = NSTextAlignmentLeft;
@@ -66,8 +73,8 @@
     } else if (model.genus.length) {
         self.birdLabel.text = model.genus;
     }
-    
-    
+    NSString *first = [self.birdLabel.text substringToIndex:1];//字符串开始
+    self.titleLabel.text = first;
     
 }
 @end

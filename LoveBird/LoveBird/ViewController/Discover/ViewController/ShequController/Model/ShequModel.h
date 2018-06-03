@@ -17,6 +17,9 @@
 
 @interface ShequModel : AppBaseModel
 
+@property (nonatomic, copy) NSString * tid;
+
+
 @property (nonatomic, copy) NSString * author;
 
 @property (nonatomic, copy) NSString * authorid;
