@@ -172,6 +172,10 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     
+    if (!self.detailModel) {
+        return AutoSize(0);
+    }
+    
     if (section == 0) {
         if (row == 0) {
             if (self.detailModel.alias.length) {
@@ -281,6 +285,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (!self.detailModel) {
+        return 0.01f;
+    }
     
     if (section == 0) {
         return 0.01f;
@@ -297,6 +304,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (!self.detailModel) {
+        return 0.01f;
+    }
+    
     if (section == 0) {
         return 0.01f;
     }
@@ -308,9 +319,15 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    if (!self.detailModel) {
+        return [[UIView alloc] init];
+    }
+    
     if (section == 2) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(92))];
         backView.backgroundColor = [UIColor whiteColor];
+        backView.clipsToBounds = YES;
         
         // 详细内容文字
         UILabel *detailTextLable = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(0), AutoSize6(18), AutoSize6(200), AutoSize6(56))];

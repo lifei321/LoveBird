@@ -12,6 +12,7 @@
 #import "ClassifyBirdViewController.h"
 #import "MJRefresh.h"
 #import "FindSizeViewController.h"
+#import "BirdDetailController.h"
 
 
 
@@ -93,13 +94,19 @@
         
         //分类查鸟
         ClassifyBirdViewController *vc = [[ClassifyBirdViewController alloc] init];
+        vc.type = FindClassTypeMu;
         [self.navigationController pushViewController:vc animated:YES];
     }
     
 }
 
 - (void)reloadFooterHeight {
-    CGFloat count = (_dataArray.count / 2) + 1;
+    CGFloat count;
+    if (_dataArray.count % 2) {
+        count = (_dataArray.count / 2) + 1;
+    } else {
+        count = (_dataArray.count / 2);
+    }
     self.collectionView.height = count * AutoSize(145) + AutoSize(20);
     [self.collectionView reloadData];
 }
@@ -127,6 +134,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    FindSelectModel *model = self.dataArray[indexPath.row];
+    
+    BirdDetailController *detailvc = [[BirdDetailController alloc] init];
+    detailvc.cspCode = model.csp_code;
+    [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 

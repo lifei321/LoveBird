@@ -27,5 +27,9 @@
 + (void)getBirdDisplayShape:(NSString *)text successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 类别查鸟
-+ (void)getBirdClassSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)getBirdClass:(NSInteger)type
+              family:(NSString *)family
+             subject:(NSString *)subject
+        successBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock;
 @end

@@ -8,6 +8,18 @@
 
 #import "AppBaseTableViewController.h"
 
+typedef NS_ENUM(NSInteger, FindClassType) {
+    FindClassTypeMu = 1,
+    FindClassTypeKe,
+    FindClassTypeShu,
+};
+
 @interface ClassifyBirdViewController : AppBaseTableViewController
+
+@property (nonatomic, assign) FindClassType type;
+
+@property (nonatomic, copy) NSString *family;
+
+@property (nonatomic, copy) NSString *subject;
 
 @end

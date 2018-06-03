@@ -23,6 +23,10 @@
 
 @property (nonatomic, copy) NSString *subject;
 
+@property (nonatomic, copy) NSString *family;
+
+@property (nonatomic, copy) NSString *genus;
+
 
 
 @end

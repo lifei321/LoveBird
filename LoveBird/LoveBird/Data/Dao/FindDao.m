@@ -79,10 +79,26 @@
 }
 
 // 类别查鸟
-+ (void)getBirdClassSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
-    NSMutableDictionary *dic = [NSMutableDictionary new];
++ (void)getBirdClass:(NSInteger)type
+              family:(NSString *)family
+             subject:(NSString *)subject
+        successBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock {
     
-    [AppHttpManager POST:kAPI_Find_Bird_subject parameters:dic jsonModelName:[ClassifyDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(family) forKey:@"family"];
+    [dic setObject:EMPTY_STRING_IF_NIL(subject) forKey:@"subject"];
+
+    NSString *url;
+    if (type == 1) {
+        url = kAPI_Find_Bird_subject;
+    } else if (type == 2) {
+        url = kAPI_Find_Bird_family;
+    } else if (type == 3) {
+        url = kAPI_Find_Bird_genus;
+    }
+    
+    [AppHttpManager POST:url parameters:dic jsonModelName:[ClassifyDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

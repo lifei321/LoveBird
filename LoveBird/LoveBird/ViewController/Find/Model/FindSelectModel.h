@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSString *author;
 
 // 鸟编号
-@property (nonatomic, strong) NSString *cspCode;
+@property (nonatomic, strong) NSString *csp_code;
 
 @property (nonatomic, strong) NSString *img;
 

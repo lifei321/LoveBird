@@ -58,6 +58,16 @@
 - (void)setModel:(ClassifyModel *)model {
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.nameBgImg] placeholderImage:[UIImage imageNamed:@""]];
-    self.birdLabel.text = model.subject;
+    
+    if (model.subject.length) {
+        self.birdLabel.text = model.subject;
+    } else if (model.family.length) {
+        self.birdLabel.text = model.family;
+    } else if (model.genus.length) {
+        self.birdLabel.text = model.genus;
+    }
+    
+    
+    
 }
 @end
