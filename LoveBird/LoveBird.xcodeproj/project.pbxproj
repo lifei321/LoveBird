@@ -107,6 +107,7 @@
 		1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */; };
 		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
 		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
+		1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89D20C3D80600A6C11D /* FindClassCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -409,6 +410,8 @@
 		1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailGradeCell.m; sourceTree = "<group>"; };
 		1F16D89820C2EBD600A6C11D /* BirdDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailCell.h; sourceTree = "<group>"; };
 		1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailCell.m; sourceTree = "<group>"; };
+		1F16D89C20C3D80600A6C11D /* FindClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindClassCell.h; sourceTree = "<group>"; };
+		1F16D89D20C3D80600A6C11D /* FindClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindClassCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1384,6 +1387,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F16D89B20C3D7EF00A6C11D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D89C20C3D80600A6C11D /* FindClassCell.h */,
+				1F16D89D20C3D80600A6C11D /* FindClassCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1518,6 +1530,7 @@
 		1F4F1427205E3B220066F790 /* ClassifyBirdViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D89B20C3D7EF00A6C11D /* View */,
 				1F4F142B205E4CED0066F790 /* Model */,
 				1F4F1428205E3B430066F790 /* ClassifyBirdViewController.h */,
 				1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */,
@@ -2135,6 +2148,7 @@
 				1F0FDFBE20C23B250041E73B /* LogDetailBirdCell.m in Sources */,
 				0BA41915201C67FA002C6335 /* FindViewController.m in Sources */,
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
+				1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */,
 				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
 				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,

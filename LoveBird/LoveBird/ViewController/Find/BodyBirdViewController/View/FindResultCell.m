@@ -27,8 +27,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.clipsToBounds = YES;
         
-        self.iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(200), AutoSize6(129))];
+        self.iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(200), AutoSize6(130))];
         self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.iconImageView.image = [UIImage imageNamed:@"pub_select_place"];
         [self.contentView addSubview:self.iconImageView];
@@ -45,7 +46,7 @@
         self.contentLabel.font = kFont6(28);
         [self.contentView addSubview:self.contentLabel];
         
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(129), SCREEN_WIDTH - AutoSize6(30), 1)];
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(130) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:self.lineView];
         

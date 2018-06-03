@@ -343,7 +343,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
+    if (section == 1) {
+        if (row == 0) { // 叫声
+            
+        } else if (row == 1) { // 视频
+            
+        }
+    }
 }
 
 - (void)netForBirdDetail {
@@ -385,13 +394,15 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = self.cycleScrollView;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
     [self.tableView registerClass:[BirdDetailTextCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailTextCell class])];
     [self.tableView registerClass:[BirdDetailClassCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailClassCell class])];
     [self.tableView registerClass:[BirdDetailGradeCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailGradeCell class])];
     [self.tableView registerClass:[BirdDetailCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailCell class])];
 
-    
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
+    footerView.backgroundColor = [UIColor whiteColor];
+    self.tableView.tableFooterView = footerView;
+
     //默认【上拉加载】
 //    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];
 }

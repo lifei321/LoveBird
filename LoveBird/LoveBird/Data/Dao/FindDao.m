@@ -9,6 +9,7 @@
 #import "FindDao.h"
 #import "FindSelectBirdModel.h"
 #import "FindDisplayShapeModel.h"
+#import "ClassifyModel.h"
 
 @implementation FindDao
 
@@ -66,6 +67,22 @@
     [dic setObject:EMPTY_STRING_IF_NIL(text) forKey:@"length_code"];
     
     [AppHttpManager POST:kAPI_Find_Bird_displayshape parameters:dic jsonModelName:[FindDisplayShapeModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 类别查鸟
++ (void)getBirdClassSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    
+    [AppHttpManager POST:kAPI_Find_Bird_subject parameters:dic jsonModelName:[ClassifyDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

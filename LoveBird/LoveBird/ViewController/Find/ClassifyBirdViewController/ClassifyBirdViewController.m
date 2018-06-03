@@ -8,7 +8,8 @@
 
 #import "ClassifyBirdViewController.h"
 #import "ClassifyModel.h"
-#import "AppHttpManager.h"
+#import "FindDao.h"
+#import "FindClassCell.h"
 
 @interface ClassifyBirdViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -40,24 +41,18 @@
 
 - (void)netForClassBird {
     
-    NSDictionary *dic = @{
-                          
-                          };
+    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [AppHttpManager POST:kAPI_Find_Bird_family parameters:dic jsonModelName:[ClassifyDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [FindDao getBirdClassSuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        ClassifyDataModel *dataModel = (ClassifyDataModel *)responseObject;
+        [self.dataArray addObjectsFromArray:dataModel.data];
+        [self.tableView reloadData];
         
-        [self.dataArray removeAllObjects];
-        
-//        FindSelectDataModel *dataModel = (FindSelectDataModel *)responseObject;
-//        [self.dataArray addObjectsFromArray:dataModel.data];
-//        [self reloadFooterHeight];
-//
-//        [AppCache setObject:dataModel forKey:kStringForFind];
-        
-    } failure:^(__kindof AppBaseModel *error) {
+    } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
-        
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }
 
@@ -82,10 +77,10 @@
 
 - (void)setTabelview {
     self.tableView.top = AutoSize(44) + topView_height;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    [self.tableView registerClass:[FindClassCell class] forCellReuseIdentifier:NSStringFromClass([FindClassCell class])];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -93,22 +88,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.layer.cornerRadius = 3;
-    ClassifyModel *model = _dataArray[indexPath.row];
-    cell.textLabel.text = model.family;
+    FindClassCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FindClassCell class]) forIndexPath:indexPath];
+    cell.model = self.dataArray[indexPath.row];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return AutoSize(41);
+    return AutoSize6(104);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+}
 
 @end

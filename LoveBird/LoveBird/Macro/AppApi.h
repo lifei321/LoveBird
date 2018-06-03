@@ -127,10 +127,6 @@
  */
 #define kAPI_Find_Bird kAPI_USER_SERVER_VERSION(@"bird/index.php")
 
-/**
- *  查鸟 类别
- */
-#define kAPI_Find_Bird_family kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchFamily")
 
 /**
  *  查鸟 关键字
@@ -146,6 +142,22 @@
  *  查鸟 体型可选项
  */
 #define kAPI_Find_Bird_displayshape kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=displayShape")
+
+/**
+ *  类目
+ */
+#define kAPI_Find_Bird_subject kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchSubject")
+
+/**
+ *  属类
+ */
+#define kAPI_Find_Bird_genus kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchGenus")
+
+/**
+ *  查鸟 科类
+ */
+#define kAPI_Find_Bird_family kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchFamily")
+
 
 
 

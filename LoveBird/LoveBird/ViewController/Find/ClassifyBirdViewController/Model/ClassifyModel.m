@@ -8,11 +8,20 @@
 
 #import "ClassifyModel.h"
 
-@implementation ClassifyModel
-
-@end
-
-
 @implementation ClassifyDataModel
 
+
+
 @end
+
+
+@implementation ClassifyModel
+
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
+
+@end
+
+

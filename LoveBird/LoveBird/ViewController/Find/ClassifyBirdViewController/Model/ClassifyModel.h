@@ -17,11 +17,11 @@
 @end
 
 
-@interface ClassifyModel : AppBaseModel
+@interface ClassifyModel : JSONModel
 
-@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *nameBgImg;
 
-@property (nonatomic, copy) NSString *family;
+@property (nonatomic, copy) NSString *subject;
 
 
 
