@@ -73,6 +73,26 @@
     
 }
 
+- (void)setContentModel:(LogContentModel *)contentModel {
+    _contentModel = contentModel;
+    
+    if (contentModel.coverImgUrl.length) {
+        CGFloat imageHeight = (contentModel.coverImgHeight) * (SCREEN_WIDTH / contentModel.coverImgWidth);
+        self.contentImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.coverImgUrl] placeholderImage:[UIImage imageNamed:@" "]];
+    } else {
+        self.contentImageView.frame = CGRectZero;
+    }
+    
+    CGFloat titleHeight = [contentModel.title getTextHeightWithFont:self.titleLabel.font withWidth:self.titleLabel.width];
+    self.titleLabel.text = contentModel.title;
+    self.titleLabel.top = self.contentImageView.bottom + AutoSize6(30);
+    self.titleLabel.height = titleHeight;
+    
+    self.titleView.top = self.titleLabel.bottom + AutoSize6(20);
+    self.titleView.contentModel = contentModel;
+}
+
 - (CGFloat)getHeight {
     
     return self.titleView.bottom;

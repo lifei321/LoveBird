@@ -55,10 +55,12 @@
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize6(90), AutoSize6(32.5), AutoSize6(90), AutoSize6(50))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
-        self.followButton.titleLabel.font = kFont6(26);
+        self.followButton.titleLabel.font = kFont6(24);
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.followButton setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateSelected];
+
         [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:self.followButton.frame.size] forState:UIControlStateNormal];
-        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorTextColorLightGraya2a2a2 withSize:self.followButton.frame.size] forState:UIControlStateSelected];
+        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kLineColoreLightGrayECECEC withSize:self.followButton.frame.size] forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
         self.followButton.layer.cornerRadius = AutoSize6(3);
         self.followButton.clipsToBounds = YES;
@@ -82,6 +84,15 @@
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:detailModel.authorHead] placeholderImage:nil];
     self.followButton.selected = detailModel.isFollow;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:detailModel.publishTime formatSytle:DateFormatYMD];
+}
+
+- (void)setContentModel:(LogContentModel *)contentModel {
+    _contentModel = contentModel;
+    
+    self.nickNameLabel.text = contentModel.author;
+    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:contentModel.head] placeholderImage:nil];
+    self.followButton.selected = contentModel.isFollow;
+    self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
 }
 
 @end

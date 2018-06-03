@@ -16,23 +16,30 @@
 #import "LogDeatilTalkCell.h"
 #import "LogDetailHeadCell.h"
 #import "LogDetailUpModel.h"
+#import "LogContentModel.h"
+#import "LogContentSubjectCell.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
-
+// 日志
 @property (nonatomic, strong) LogDetailModel *detailModel;
+
+// 文章
+@property (nonatomic, strong) LogContentModel *contentModel;
 
 
 @property (nonatomic, strong) LogDetailHeadView *headerView;
+
 
 @property (nonatomic, strong) UIView *footerView;
 
 
 @property (nonatomic, assign) NSInteger page;
 
-
+// 评论
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+// 赞
 @property (nonatomic, strong) NSMutableArray *headArray;
 
 
@@ -56,7 +63,14 @@
     
     [self setNavigation];
     [self setTableView];
-    [self netForLogDetail];
+    
+    if (self.tid.length) {
+        [self netForLogDetail];
+        
+    } else if (self.aid.length) {
+        [self netForLogContent];
+    }
+    
     [self netForTalkList];
     [self netforUplist];
 
@@ -73,7 +87,11 @@
         return 3;
     }
     if (section == 1) {
-        return self.detailModel.postBody.count;
+        if (self.tid.length) {
+            return self.detailModel.postBody.count;
+        } else if (self.aid.length) {
+            return self.contentModel.articleList.count + 2;
+        }
     }
     
     if (section == 2) { // 头像列表
@@ -102,11 +120,38 @@
         }
         cell = birdcell;
     } else if (section == 1) {
-        LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
-        if (self.detailModel.postBody.count > row) {
-            birdcell.bodyModel = self.detailModel.postBody[row];
+        if (self.aid.length) {
+            if (row == 0) {
+                LogContentSubjectCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentSubjectCell class]) forIndexPath:indexPath];
+                birdcell.title = [NSString stringWithFormat:@"责任编辑:%@", self.contentModel.author];
+                birdcell.detail = [NSString stringWithFormat:@"作者：%@", self.contentModel.author];
+                cell = birdcell;
+            } else if (row == (self.contentModel.articleList.count + 1)) {
+                LogContentSubjectCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentSubjectCell class]) forIndexPath:indexPath];
+                birdcell.title = [NSString stringWithFormat:@"来源:%@", self.contentModel.from];
+                birdcell.detail = @"";
+                cell = birdcell;
+            } else {
+                LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
+
+                if (self.contentModel.articleList.count + 1 > row) {
+                    birdcell.contentModel = self.contentModel.articleList[row - 1];
+                }
+                cell = birdcell;
+            }
+        } else {
+            LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
+            if (self.tid.length) {
+                if (self.detailModel.postBody.count > row) {
+                    birdcell.bodyModel = self.detailModel.postBody[row];
+                }
+            } else if (self.aid.length) {
+                if (self.contentModel.articleList.count > row) {
+                    birdcell.contentModel = self.contentModel.articleList[row];
+                }
+            }
+            cell = birdcell;
         }
-        cell = birdcell;
     } else if (section == 2) {
         
         LogDetailHeadCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailHeadCell class]) forIndexPath:indexPath];
@@ -144,9 +189,19 @@
     }
 
     if (section == 1) {
-        if (self.detailModel.postBody.count > row) {
-            return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
+        if (self.tid.length) {
+            if (self.detailModel.postBody.count > row) {
+                return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
+            }
+        } else if (self.aid.length) {
+            if (row == 0 || row == (self.contentModel.articleList.count + 1)) {
+                return AutoSize6(80);
+            }
+            if (self.contentModel.articleList.count > row) {
+                return [LogContentCell getHeightWithContentModel:self.contentModel.articleList[row]];
+            }
         }
+
     }
     
     if (section == 2) {
@@ -225,10 +280,33 @@
     }];
 }
 
+- (void)netForLogContent {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DetailDao getLogContent:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        LogContentModel *contentModel = (LogContentModel *)responseObject;
+        
+        self.tableView.tableHeaderView = self.headerView;
+        self.headerView.contentModel = contentModel;
+        self.headerView.height = [self.headerView getHeight];
+        
+        self.contentModel = contentModel;
+        [self.tableView reloadData];
+        
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
 
 - (void)netForTalkList {
     @weakify(self);
-    [DetailDao getLogDetail:self.tid aid:@"" page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogDetail:self.tid aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_footer endRefreshing];
         self.page ++;
@@ -255,7 +333,7 @@
 - (void)netforUplist {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DetailDao getLogUPDetail:self.tid aid:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogUPDetail:self.tid aid:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         LogDetailUpDataModel *dataModel = (LogDetailUpDataModel *)responseObject;
@@ -276,7 +354,11 @@
 
 - (void)setNavigation {
     
-    self.title = @"日志详情";
+    if (self.tid.length) {
+        self.title = @"日志详情";
+    } else {
+        self.title = @"文章详情";
+    }
     self.rightButton.title = @"操作";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
@@ -297,6 +379,7 @@
     [self.tableView registerClass:[LogContentCell class] forCellReuseIdentifier:NSStringFromClass([LogContentCell class])];
     [self.tableView registerClass:[LogDeatilTalkCell class] forCellReuseIdentifier:NSStringFromClass([LogDeatilTalkCell class])];
     [self.tableView registerClass:[LogDetailHeadCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailHeadCell class])];
+    [self.tableView registerClass:[LogContentSubjectCell class] forCellReuseIdentifier:NSStringFromClass([LogContentSubjectCell class])];
 
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];

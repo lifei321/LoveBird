@@ -13,5 +13,7 @@
 // 帖子的id
 @property (nonatomic, copy) NSString *tid;
 
+// 文章id
+@property (nonatomic, copy) NSString *aid;
 
 @end

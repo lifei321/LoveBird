@@ -12,6 +12,11 @@
 @interface LogContentCell : UITableViewCell
 @property (nonatomic, strong) LogPostBodyModel *bodyModel;
 
+@property (nonatomic, strong) LogPostBodyModel *contentModel;
+
 
 + (CGFloat)getHeightWithModel:(LogPostBodyModel *)model ;
+
++ (CGFloat)getHeightWithContentModel:(LogPostBodyModel *)model ;
+
 @end

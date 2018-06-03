@@ -11,6 +11,7 @@
 #import "LogDetailTalkModel.h"
 #import "BirdDetailModel.h"
 #import "LogDetailUpModel.h"
+#import "LogContentModel.h"
 
 
 @implementation DetailDao
@@ -35,6 +36,25 @@
     }];
 }
 
+// 获取文章详情
++ (void)getLogContent:(NSString *)aid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
+    
+    
+    [AppHttpManager POST:kAPI_Detail_contentDetail parameters:dic jsonModelName:[LogContentModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 
 // 获取日志评论列表
 + (void)getLogDetail:(NSString *)tid aid:(NSString *)aid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {

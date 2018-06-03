@@ -316,9 +316,13 @@
         LogDetailController *detailController = [[LogDetailController alloc] init];
         detailController.tid = layoutModel.contentModel.tid;
         [self.navigationController pushViewController:detailController animated:YES];
-    } else if (layoutModel.contentModel.aid.length) {
         
+    } else if (layoutModel.contentModel.aid.length) {
+        LogDetailController *detailvc = [[LogDetailController alloc] init];
+        detailvc.aid = layoutModel.contentModel.aid;
+        [self.navigationController pushViewController:detailvc animated:YES];
     } else if (layoutModel.contentModel.webView.length) {
+        
         AppWebViewController *web = [[AppWebViewController alloc] init];
         web.hidesBottomBarWhenPushed = YES;
         web.startupUrlString = layoutModel.contentModel.webView;

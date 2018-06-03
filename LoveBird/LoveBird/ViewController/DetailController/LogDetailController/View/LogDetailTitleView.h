@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LogDetailModel.h"
+#import "LogContentModel.h"
 
 @interface LogDetailTitleView : UIView
 @property (nonatomic, strong) LogDetailModel *detailModel;
 
+@property (nonatomic, strong) LogContentModel *contentModel;
 
 @end

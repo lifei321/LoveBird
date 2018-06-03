@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 #import "DiscoverDao.h"
 #import "ZhuangbeiModel.h"
+#import "LogDetailController.h"
 
 @interface ZhuangbeiViewController ()<UITableViewDelegate, UITableViewDataSource, TimeLineClickDelegate>
 
@@ -64,15 +65,14 @@
         }
         [AppBaseHud hideHud:self.view];
         ZhuangbeiDataModel *dataModel = (ZhuangbeiDataModel *)responseObject;
+        if (header) {
+            [self.dataArray removeAllObjects];
+        }
         
         for (ZhuangbeiModel *model in dataModel.data) {
             TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
             lineModel.zhuangbeiModel = model;
-            if (header) {
-                [self.dataArray removeAllObjects];
-            }
             [self.dataArray addObject:lineModel];
-            
         }
         [self.tableView reloadData];
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -108,6 +108,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    TimeLineLayoutModel *cellLayoutModel = self.dataArray[indexPath.row];
+    LogDetailController *detailvc = [[LogDetailController alloc] init];
+    detailvc.aid = cellLayoutModel.zhuangbeiModel.aid;
+    [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 #pragma mark-- cell点击代理

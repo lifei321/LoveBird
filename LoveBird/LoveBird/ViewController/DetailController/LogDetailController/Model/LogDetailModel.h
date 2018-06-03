@@ -83,7 +83,13 @@
 
 @property (nonatomic, assign) BOOL isImg;
 
+@property (nonatomic, copy) NSString *content;
 
+@property (nonatomic, copy) NSString *imgExifModel;
+
+@property (nonatomic, copy) NSString *imgExifLen;
+
+@property (nonatomic, copy) NSString *imgExifParameter;
 
 @end
 

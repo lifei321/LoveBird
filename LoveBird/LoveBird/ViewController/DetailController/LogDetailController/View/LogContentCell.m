@@ -84,7 +84,6 @@
         _iconImageView.height = 0;
         self.tagLabel.height = 0;
     }
-
 }
 
 + (CGFloat)getHeightWithModel:(LogPostBodyModel *)model {
@@ -107,11 +106,69 @@
         if (model.imgTag.length) {
             height += AutoSize6(60);
         }
-        
     }
-
     return height;
+}
 
+
+
+
+
+- (void)setContentModel:(LogPostBodyModel *)contentModel {
+    _contentModel = contentModel;
+    
+    self.birdLabel.text = contentModel.content;
+    CGFloat height = [contentModel.content getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60))];
+    self.birdLabel.height = height;
+    
+    if (contentModel.isImg) {
+        CGFloat imageHeight = (contentModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / contentModel.imgWidth);
+        _iconImageView.height = imageHeight;
+        
+        if (contentModel.content.length) {
+            _iconImageView.top = self.birdLabel.bottom + AutoSize6(30);
+        } else {
+            _iconImageView.top = self.birdLabel.bottom;
+        }
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        
+        self.tagLabel.frame = CGRectZero;
+//        if (contentModel.imgTag.length) {
+//            self.tagLabel.text = contentModel.imgTag;
+//            CGFloat width = [contentModel.imgTag getTextWightWithFont:self.tagLabel.font];
+//            self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(40) , _iconImageView.bottom + AutoSize6(20), width + AutoSize6(40), AutoSize6(40));
+//        }
+        
+    } else {
+        _iconImageView.height = 0;
+        self.tagLabel.height = 0;
+    }
+}
+
+
+
++ (CGFloat)getHeightWithContentModel:(LogPostBodyModel *)model {
+    CGFloat height = 0;
+    
+    height = [model.content getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
+    
+    if (model.content.length) {
+        if (model.isImg) {
+            height += AutoSize6(20);
+        } else {
+            height += AutoSize6(40);
+        }
+    }
+    
+    if (model.isImg) {
+        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
+        height += AutoSize6(30);
+        
+//        if (model.imgTag.length) {
+//            height += AutoSize6(60);
+//        }
+    }
+    return height;
 }
 
 @end

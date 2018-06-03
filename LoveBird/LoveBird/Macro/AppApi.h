@@ -204,6 +204,13 @@
  */
 #define kAPI_Detail_birdArticle kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleDetail")
 
+
+/**
+ *  文章详情
+ */
+#define kAPI_Detail_contentDetail kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=articleDetail")
+
+
 /**
  *  日志评论列表
  */
