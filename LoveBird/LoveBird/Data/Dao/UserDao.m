@@ -139,7 +139,7 @@
     [dic setObject:@"483887" forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchId) forKey:@"matchid"];
 
-    [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[ShequLogModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

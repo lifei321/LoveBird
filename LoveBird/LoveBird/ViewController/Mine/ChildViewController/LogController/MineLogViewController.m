@@ -18,6 +18,10 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+@property (nonatomic, copy) NSString * count;
+
+@property (nonatomic, strong) UILabel *countLabel;
+
 
 @end
 
@@ -47,14 +51,17 @@
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
 
-        ShequDataModel *dataModel = (ShequDataModel *)responseObject;
-        for (int i = 0; i < dataModel.data.count; i++) {
-            ShequModel *model = dataModel.data[i];
+        ShequLogModel *dataModel = (ShequLogModel *)responseObject;
+        for (int i = 0; i < dataModel.articleList.count; i++) {
+            ShequModel *model = dataModel.articleList[i];
             MineLogFrameModel *frameModel = [[MineLogFrameModel alloc] init];
             frameModel.isFirst = (i == 0) ? YES : NO;
             frameModel.shequModel = model;
             [self.dataArray addObject:frameModel];
         }
+        self.count = dataModel.draftNum;
+        self.tableView.tableHeaderView = [self makeHeaderView];
+
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -105,7 +112,6 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerClass:[MineLogCell class] forCellReuseIdentifier:NSStringFromClass([MineLogCell class])];
-    self.tableView.tableHeaderView = [self makeHeaderView];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
     
     //默认【下拉刷新】
@@ -119,8 +125,9 @@
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, AutoSize6(30), SCREEN_WIDTH, AutoSize6(40))];
     tipLabel.textAlignment = NSTextAlignmentCenter;
+    self.countLabel = tipLabel;
     
-    NSString *placeString = @"3";
+    NSString *placeString = self.count;
     NSString *textString = [NSString stringWithFormat:@"您还有%@篇草稿没有完成 ->", placeString];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
     [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColor7f7f7f range:NSMakeRange(0, 3)];

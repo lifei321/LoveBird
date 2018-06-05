@@ -92,7 +92,7 @@
     
     self.titleLable.text = shequFrameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:shequFrameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
-    self.timeLabel.text = shequFrameModel.shequModel.datelien;
+    self.timeLabel.text = shequFrameModel.shequModel.dateline;
     self.bottomView.model = shequFrameModel.shequModel;
 }
 

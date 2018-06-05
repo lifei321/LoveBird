@@ -113,7 +113,7 @@
     
     self.titleLable.text = frameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
-    self.timeLabel.text = frameModel.shequModel.datelien;
+    self.timeLabel.text = frameModel.shequModel.dateline;
     self.subjectLable.text = frameModel.shequModel.summary;
     self.dayLable.text = @"28";
     self.monthLable.text = @"九月";

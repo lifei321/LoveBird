@@ -8,11 +8,34 @@
 
 #import "ShequModel.h"
 
+@implementation ShequLogModel
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+        return [NSString stringWithFormat:@"data.%@", keyName];
+    }];
+}
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
+
+@end
+
 @implementation ShequDataModel
 
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
 @end
 
 
 @implementation ShequModel
+
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
 
 @end

@@ -15,7 +15,14 @@
 
 @end
 
-@interface ShequModel : AppBaseModel
+@interface ShequLogModel : AppBaseModel
+
+@property (nonatomic, strong) NSArray <ShequModel>*articleList;
+@property (nonatomic, copy) NSString * draftNum;
+
+@end
+
+@interface ShequModel : JSONModel
 
 @property (nonatomic, copy) NSString * tid;
 
@@ -28,7 +35,7 @@
 
 @property (nonatomic, copy) NSString * commentNum;
 
-@property (nonatomic, copy) NSString * datelien;
+@property (nonatomic, copy) NSString * dateline;
 
 @property (nonatomic, copy) NSString * head;
 
