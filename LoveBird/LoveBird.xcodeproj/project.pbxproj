@@ -117,6 +117,8 @@
 		1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B720C4304E00A6C11D /* LogDetailUpModel.m */; };
 		1F16D8BB20C4377900A6C11D /* LogContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8BA20C4377900A6C11D /* LogContentModel.m */; };
 		1F16D8BE20C446F600A6C11D /* LogContentSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8BD20C446F600A6C11D /* LogContentSubjectCell.m */; };
+		1F16D8C120C6DB8C00A6C11D /* MatchDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8C020C6DB8C00A6C11D /* MatchDetailModel.m */; };
+		1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8C320C6DC1600A6C11D /* MatchArticleModel.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -438,6 +440,10 @@
 		1F16D8BA20C4377900A6C11D /* LogContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogContentModel.m; sourceTree = "<group>"; };
 		1F16D8BC20C446F600A6C11D /* LogContentSubjectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogContentSubjectCell.h; sourceTree = "<group>"; };
 		1F16D8BD20C446F600A6C11D /* LogContentSubjectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogContentSubjectCell.m; sourceTree = "<group>"; };
+		1F16D8BF20C6DB8C00A6C11D /* MatchDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchDetailModel.h; sourceTree = "<group>"; };
+		1F16D8C020C6DB8C00A6C11D /* MatchDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDetailModel.m; sourceTree = "<group>"; };
+		1F16D8C220C6DC1600A6C11D /* MatchArticleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchArticleModel.h; sourceTree = "<group>"; };
+		1F16D8C320C6DC1600A6C11D /* MatchArticleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchArticleModel.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1884,6 +1890,10 @@
 			children = (
 				1F676F7F20B1679E002F71B4 /* MatchModel.h */,
 				1F676F8020B1679E002F71B4 /* MatchModel.m */,
+				1F16D8BF20C6DB8C00A6C11D /* MatchDetailModel.h */,
+				1F16D8C020C6DB8C00A6C11D /* MatchDetailModel.m */,
+				1F16D8C220C6DC1600A6C11D /* MatchArticleModel.h */,
+				1F16D8C320C6DC1600A6C11D /* MatchArticleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2302,6 +2312,7 @@
 				1F0FDF6620BABF9F0041E73B /* RankTableViewCell.m in Sources */,
 				1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */,
 				1F676EC020A09A21002F71B4 /* PublishUpModel.m in Sources */,
+				1F16D8C120C6DB8C00A6C11D /* MatchDetailModel.m in Sources */,
 				1F676FA120B9120E002F71B4 /* MineLogCell.m in Sources */,
 				0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */,
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
@@ -2334,6 +2345,7 @@
 				0B75D5671FBD9D8B008D7AE6 /* UIButton+HQCustomIcon.m in Sources */,
 				0B75D5A31FBEC434008D7AE6 /* NSString+APP.m in Sources */,
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
+				1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
 				1F0FDFBA20C23B250041E73B /* LogDetailController.m in Sources */,

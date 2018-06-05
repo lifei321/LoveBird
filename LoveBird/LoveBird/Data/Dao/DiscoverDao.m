@@ -13,6 +13,8 @@
 #import "ZhuangbeiModel.h"
 #import "WorksModel.h"
 #import "RankModel.h"
+#import "MatchDetailModel.h"
+#import "MatchArticleModel.h"
 
 
 
@@ -67,6 +69,43 @@
         }
     }];
 }
+
+// 大赛详情
++ (void)getMatchDetail:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+    
+    [AppHttpManager POST:kAPI_Discover_MatchDetail parameters:dic jsonModelName:[MatchDetailModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 大赛记录列表
++ (void)getMatchArctleList:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+    
+    
+    [AppHttpManager POST:kAPI_Discover_MatchArticleList parameters:dic jsonModelName:[MatchArticleDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+
 
 // 装备咨询列表
 + (void)getWordList:(NSString *)cid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {

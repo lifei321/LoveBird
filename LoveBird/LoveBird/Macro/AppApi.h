@@ -111,6 +111,17 @@
 #define kAPI_Discover_MatchList kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchList")
 
 /**
+ *  大赛详情
+ */
+#define kAPI_Discover_MatchDetail kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchDetail")
+
+/**
+ *  大赛记录
+ */
+#define kAPI_Discover_MatchArticleList kAPI_USER_SERVER_VERSION(@"/match/index.php?cmd=matchArticleList")
+
+
+/**
  *  大赛详情 基本信息
  */
 #define kAPI_Discover_MatchDetail kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchDetail")
