@@ -112,7 +112,8 @@
     UIScrollView *footerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.height - self.headerView.height)];
     footerView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 0);
     footerView.showsVerticalScrollIndicator = NO;
-    footerView.backgroundColor = [UIColor blueColor];
+    footerView.bounces = NO;
+    footerView.pagingEnabled = YES;
     self.tableView.tableFooterView = footerView;
 
     MineLogViewController *logController = [[MineLogViewController  alloc] init];

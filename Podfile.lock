@@ -60,6 +60,7 @@ PODS:
   - SDWebImage (4.2.2):
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
+  - SPPageMenu (2.5.5)
   - TMCache (2.1.0)
   - TTTAttributedLabel (1.13.4)
   - WebViewJavascriptBridge (5.0.5)
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - ReactiveObjC (= 3.0.0)
   - SDCycleScrollView (= 1.74)
   - SDWebImage (= 4.2.2)
+  - SPPageMenu (~> 2.5.5)
   - TMCache (= 2.1.0)
   - TTTAttributedLabel (= 1.13.4)
   - WebViewJavascriptBridge (= 5.0.5)
@@ -123,6 +125,7 @@ SPEC CHECKSUMS:
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   SDCycleScrollView: f821215226f6146a35470721a9d6e83ec5cfb04b
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
+  SPPageMenu: 703108c321bb4658b3cea440bdf81b1cd61936c2
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
@@ -130,6 +133,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8c93abbcea9aabc56ce9e1378254c41a57cf05cb
+PODFILE CHECKSUM: 7a27f58acb8b374e22123f6ba7ea858b859521bb
 
 COCOAPODS: 1.4.0

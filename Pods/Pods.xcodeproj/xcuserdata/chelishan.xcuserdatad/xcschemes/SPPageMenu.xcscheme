@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "01BB00E30FDE4F3E75A73A0E92AFEFFC"
-               BlueprintName = "YYKit"
+               BlueprintIdentifier = "2750F9E25B0C7178A9E3C40ED759CED0"
+               BlueprintName = "SPPageMenu"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "YYKit.framework">
+               BuildableName = "SPPageMenu.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

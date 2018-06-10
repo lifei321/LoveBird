@@ -99,6 +99,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SPPageMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TMCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>

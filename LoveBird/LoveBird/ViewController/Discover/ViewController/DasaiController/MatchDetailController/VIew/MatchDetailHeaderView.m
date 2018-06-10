@@ -105,6 +105,12 @@
     //    }
 }
 
+- (void)setMatchid:(NSString *)matchid {
+    _matchid = [matchid copy];
+    self.titleView.matchid = matchid;
+    
+}
+
 - (void)setDetailModel:(MatchDetailModel *)detailModel {
     _detailModel = detailModel;
     

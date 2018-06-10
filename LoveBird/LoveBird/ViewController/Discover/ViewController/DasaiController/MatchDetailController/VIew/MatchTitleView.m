@@ -7,6 +7,7 @@
 //
 
 #import "MatchTitleView.h"
+#import "MatchNoteViewController.h"
 
 @interface MatchTitleView()
 
@@ -61,10 +62,15 @@
 }
 
 - (void)followButtonDidClick:(UIButton *)button {
+
+    MatchNoteViewController *matchvc = [[MatchNoteViewController alloc] init];
+    matchvc.matchid = self.matchid;
+    [[UIViewController currentViewController].navigationController pushViewController:matchvc animated:YES];
+}
+
+- (void)setMatchid:(NSString *)matchid {
+    _matchid = [matchid copy];
     
-    //    if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(followButtonDidClick:)]) {
-    //        [self.followDelegate followButtonClickDelegate:button];
-    //    }
 }
 
 - (void)setDetailModel:(MatchDetailModel *)detailModel {

@@ -41,6 +41,13 @@
     [self netForContentHeader];
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    if (self.from.length) {
+        self.tableView.frame = self.view.bounds;
+    }
+}
+
 - (void)netForContentHeader {
     self.pageNum = @"";
     
@@ -52,7 +59,7 @@
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
     
     @weakify(self);
-    [DiscoverDao getWorksList:@"" matchid:@"" minAid:pageNum successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:pageNum successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         if (header) {
             [self.tableView.mj_header endRefreshing];
@@ -116,6 +123,13 @@
     }
     
     return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.from.length) {
+        return 0.01f;
+    }
+    return AutoSize6(20);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

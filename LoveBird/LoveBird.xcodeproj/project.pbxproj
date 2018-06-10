@@ -124,6 +124,8 @@
 		1F16D8D320C826A700A6C11D /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D220C826A700A6C11D /* MessageModel.m */; };
 		1F16D8D620C96C0B00A6C11D /* MatchDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D420C96C0B00A6C11D /* MatchDetailHeaderView.m */; };
 		1F16D8D920CD0E4600A6C11D /* MatchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */; };
+		1F16D8DC20CD343700A6C11D /* MatchSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8DB20CD343700A6C11D /* MatchSelectView.m */; };
+		1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -459,6 +461,10 @@
 		1F16D8D520C96C0B00A6C11D /* MatchDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchDetailHeaderView.h; sourceTree = "<group>"; };
 		1F16D8D720CD0E4600A6C11D /* MatchTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchTitleView.h; sourceTree = "<group>"; };
 		1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchTitleView.m; sourceTree = "<group>"; };
+		1F16D8DA20CD343700A6C11D /* MatchSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchSelectView.h; sourceTree = "<group>"; };
+		1F16D8DB20CD343700A6C11D /* MatchSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchSelectView.m; sourceTree = "<group>"; };
+		1F16D8DE20CD38DD00A6C11D /* MatchNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchNoteViewController.h; sourceTree = "<group>"; };
+		1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchNoteViewController.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1489,6 +1495,8 @@
 				1F16D8D420C96C0B00A6C11D /* MatchDetailHeaderView.m */,
 				1F16D8D720CD0E4600A6C11D /* MatchTitleView.h */,
 				1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */,
+				1F16D8DA20CD343700A6C11D /* MatchSelectView.h */,
+				1F16D8DB20CD343700A6C11D /* MatchSelectView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1500,6 +1508,15 @@
 				1F16D8D220C826A700A6C11D /* MessageModel.m */,
 			);
 			path = Set;
+			sourceTree = "<group>";
+		};
+		1F16D8DD20CD38BF00A6C11D /* MatchNoteController */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8DE20CD38DD00A6C11D /* MatchNoteViewController.h */,
+				1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */,
+			);
+			path = MatchNoteController;
 			sourceTree = "<group>";
 		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
@@ -1916,6 +1933,7 @@
 		1F676F7920B166CE002F71B4 /* DasaiController */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D8DD20CD38BF00A6C11D /* MatchNoteController */,
 				1F16D8C520C8143800A6C11D /* MatchDetailController */,
 				1F676F7E20B1671F002F71B4 /* Model */,
 				1F676F7D20B1671F002F71B4 /* View */,
@@ -2160,6 +2178,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SPPageMenu/SPPageMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/TMCache/TMCache.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/WRNavigationBar/WRNavigationBar.framework",
@@ -2187,6 +2206,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SPPageMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WRNavigationBar.framework",
@@ -2286,6 +2306,7 @@
 				0B75D5941FBEBB46008D7AE6 /* AppLaunchAdManager.m in Sources */,
 				0B317C7C1F0F5C1800B01DDA /* AppTabBarController.m in Sources */,
 				1F676EF120A85F8F002F71B4 /* FindSelectBirdModel.m in Sources */,
+				1F16D8DC20CD343700A6C11D /* MatchSelectView.m in Sources */,
 				1F676F1620A9CAC5002F71B4 /* TalentCollectionViewCell.m in Sources */,
 				0B75D5B51FBEC5C5008D7AE6 /* AppTextField.m in Sources */,
 				0B75D56C1FBD9D8B008D7AE6 /* UIViewController+Utils.m in Sources */,
@@ -2308,6 +2329,7 @@
 				1F0FDF6920BB03F30041E73B /* FindBodyResultController.m in Sources */,
 				1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
+				1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
 				1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */,

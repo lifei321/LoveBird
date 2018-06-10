@@ -15,5 +15,8 @@
 
 @property (nonatomic, strong) MatchDetailModel *detailModel;
 
+@property (nonatomic, copy) NSString *matchid;
+
+
 - (CGFloat)getHeight;
 @end

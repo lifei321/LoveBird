@@ -76,6 +76,7 @@ pod 'WRNavigationBar','1.0.3'
 #启动广告
 pod 'XHLaunchAd', '3.8.4'
 
-
+#滚动栏
+pod 'SPPageMenu', '~> 2.5.5'
 
 end

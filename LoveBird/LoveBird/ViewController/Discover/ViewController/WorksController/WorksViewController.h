@@ -10,4 +10,9 @@
 
 @interface WorksViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *from;
+
+@property (nonatomic, copy) NSString *matchid;
+
+
 @end
