@@ -20,9 +20,14 @@
 // 大赛列表
 + (void)getMatchListSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 大赛详情
++ (void)getMatchDetail:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 大赛记录列表
++ (void)getMatchArctleList:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
+
 // 装备咨询列表
 + (void)getWordList:(NSString *)cid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
-
 
 // 作品列表
 + (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;

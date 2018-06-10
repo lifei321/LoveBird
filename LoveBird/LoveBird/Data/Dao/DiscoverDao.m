@@ -92,7 +92,6 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     
-    
     [AppHttpManager POST:kAPI_Discover_MatchArticleList parameters:dic jsonModelName:[MatchArticleDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);

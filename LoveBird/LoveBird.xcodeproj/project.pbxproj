@@ -119,6 +119,11 @@
 		1F16D8BE20C446F600A6C11D /* LogContentSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8BD20C446F600A6C11D /* LogContentSubjectCell.m */; };
 		1F16D8C120C6DB8C00A6C11D /* MatchDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8C020C6DB8C00A6C11D /* MatchDetailModel.m */; };
 		1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8C320C6DC1600A6C11D /* MatchArticleModel.m */; };
+		1F16D8C920C8145900A6C11D /* MatchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8C820C8145900A6C11D /* MatchDetailController.m */; };
+		1F16D8CF20C8252600A6C11D /* SetDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8CE20C8252600A6C11D /* SetDao.m */; };
+		1F16D8D320C826A700A6C11D /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D220C826A700A6C11D /* MessageModel.m */; };
+		1F16D8D620C96C0B00A6C11D /* MatchDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D420C96C0B00A6C11D /* MatchDetailHeaderView.m */; };
+		1F16D8D920CD0E4600A6C11D /* MatchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -444,6 +449,16 @@
 		1F16D8C020C6DB8C00A6C11D /* MatchDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDetailModel.m; sourceTree = "<group>"; };
 		1F16D8C220C6DC1600A6C11D /* MatchArticleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchArticleModel.h; sourceTree = "<group>"; };
 		1F16D8C320C6DC1600A6C11D /* MatchArticleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchArticleModel.m; sourceTree = "<group>"; };
+		1F16D8C720C8145900A6C11D /* MatchDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchDetailController.h; sourceTree = "<group>"; };
+		1F16D8C820C8145900A6C11D /* MatchDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDetailController.m; sourceTree = "<group>"; };
+		1F16D8CD20C8252600A6C11D /* SetDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDao.h; sourceTree = "<group>"; };
+		1F16D8CE20C8252600A6C11D /* SetDao.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetDao.m; sourceTree = "<group>"; };
+		1F16D8D120C826A700A6C11D /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		1F16D8D220C826A700A6C11D /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		1F16D8D420C96C0B00A6C11D /* MatchDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchDetailHeaderView.m; sourceTree = "<group>"; };
+		1F16D8D520C96C0B00A6C11D /* MatchDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchDetailHeaderView.h; sourceTree = "<group>"; };
+		1F16D8D720CD0E4600A6C11D /* MatchTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchTitleView.h; sourceTree = "<group>"; };
+		1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchTitleView.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1182,6 +1197,7 @@
 		0BA41925201DB80F002C6335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D8D020C8267100A6C11D /* Set */,
 				1F676EEE20A85F6A002F71B4 /* Find */,
 				1F676EE020A7DC4A002F71B4 /* Publish */,
 				1F676E91209A02BB002F71B4 /* User */,
@@ -1456,6 +1472,36 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F16D8C520C8143800A6C11D /* MatchDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8C620C8143800A6C11D /* VIew */,
+				1F16D8C720C8145900A6C11D /* MatchDetailController.h */,
+				1F16D8C820C8145900A6C11D /* MatchDetailController.m */,
+			);
+			path = MatchDetailController;
+			sourceTree = "<group>";
+		};
+		1F16D8C620C8143800A6C11D /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8D520C96C0B00A6C11D /* MatchDetailHeaderView.h */,
+				1F16D8D420C96C0B00A6C11D /* MatchDetailHeaderView.m */,
+				1F16D8D720CD0E4600A6C11D /* MatchTitleView.h */,
+				1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		1F16D8D020C8267100A6C11D /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8D120C826A700A6C11D /* MessageModel.h */,
+				1F16D8D220C826A700A6C11D /* MessageModel.m */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1659,6 +1705,8 @@
 				1F676F2720AB2077002F71B4 /* DiscoverDao.m */,
 				1F0FDF7920BC4CB90041E73B /* DetailDao.h */,
 				1F0FDF7A20BC4CB90041E73B /* DetailDao.m */,
+				1F16D8CD20C8252600A6C11D /* SetDao.h */,
+				1F16D8CE20C8252600A6C11D /* SetDao.m */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -1868,6 +1916,7 @@
 		1F676F7920B166CE002F71B4 /* DasaiController */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D8C520C8143800A6C11D /* MatchDetailController */,
 				1F676F7E20B1671F002F71B4 /* Model */,
 				1F676F7D20B1671F002F71B4 /* View */,
 				1F676F7A20B16705002F71B4 /* DasaiViewController.h */,
@@ -2202,6 +2251,7 @@
 				1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
+				1F16D8C920C8145900A6C11D /* MatchDetailController.m in Sources */,
 				1F0FDFC120C23B250041E73B /* LogContentCell.m in Sources */,
 				1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
@@ -2243,6 +2293,7 @@
 				1F16D8BE20C446F600A6C11D /* LogContentSubjectCell.m in Sources */,
 				1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */,
 				1F676FB320B97608002F71B4 /* MineBirdLeftBackView.m in Sources */,
+				1F16D8D320C826A700A6C11D /* MessageModel.m in Sources */,
 				1F0FDFBD20C23B250041E73B /* LogDeatilTalkCell.m in Sources */,
 				1F676EAB209F3CC2002F71B4 /* PublishSelectCell.m in Sources */,
 				0B317CAA1F0F7B0200B01DDA /* MineDataSourceManager.m in Sources */,
@@ -2275,7 +2326,9 @@
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				1F676EDF20A7DAE7002F71B4 /* PublishEVController.m in Sources */,
+				1F16D8CF20C8252600A6C11D /* SetDao.m in Sources */,
 				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
+				1F16D8D920CD0E4600A6C11D /* MatchTitleView.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
 				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
 				0B75D5841FBE9752008D7AE6 /* AppPush.m in Sources */,
@@ -2348,6 +2401,7 @@
 				1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
+				1F16D8D620C96C0B00A6C11D /* MatchDetailHeaderView.m in Sources */,
 				1F0FDFBA20C23B250041E73B /* LogDetailController.m in Sources */,
 				1F0FDF6320BABDC20041E73B /* RankModel.m in Sources */,
 				1F676EDC20A7D994002F71B4 /* AppTagsView.m in Sources */,

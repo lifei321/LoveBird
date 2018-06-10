@@ -10,6 +10,7 @@
 #import "MatchModel.h"
 #import "MatchListCell.h"
 #import "DiscoverDao.h"
+#import "MatchDetailController.h"
 
 
 @interface DasaiViewController ()
@@ -69,6 +70,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01f;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    AppBaseCellModel *cellModel = self.dataSource.tableListArray[indexPath.section][indexPath.row];
+    MatchDetailController *detailvc = [[MatchDetailController alloc] init];
+    detailvc.matchid = ((MatchModel *)cellModel.userInfo).matchid;
+    [self.navigationController pushViewController:detailvc animated:YES];
+}
+
 - (CGFloat)getHeight:(NSInteger)row {
     CGFloat height = 0;
     

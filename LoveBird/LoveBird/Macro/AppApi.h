@@ -232,12 +232,18 @@
  */
 #define kAPI_Detail_uplist kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleUpList")
 
-
-
 /**
  *  鸟种详情
  */
 #define kAPI_Detail_BirdDetail kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdDetail")
 
+
+
+#pragma mark-- 设置
+
+/**
+ *  获取设置
+ */
+#define kAPI_Set_message kAPI_USER_SERVER_VERSION(@"user/message.php")
 
 #endif /* AppApi_h */
