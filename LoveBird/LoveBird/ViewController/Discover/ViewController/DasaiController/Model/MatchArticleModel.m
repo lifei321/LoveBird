@@ -10,11 +10,11 @@
 
 
 @implementation MatchArticleDataModel
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
-        return [NSString stringWithFormat:@"data.%@", keyName];
-    }];
-}
+//+ (JSONKeyMapper *)keyMapper {
+//    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+//        return [NSString stringWithFormat:@"data.%@", keyName];
+//    }];
+//}
 @end
 
 @implementation MatchArticleModel

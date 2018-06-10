@@ -126,6 +126,8 @@
 		1F16D8D920CD0E4600A6C11D /* MatchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */; };
 		1F16D8DC20CD343700A6C11D /* MatchSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8DB20CD343700A6C11D /* MatchSelectView.m */; };
 		1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */; };
+		1F16D8E320CD6C5700A6C11D /* MatchDetaiNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8E220CD6C5700A6C11D /* MatchDetaiNoteViewController.m */; };
+		1F16D8E820CD73CC00A6C11D /* MatchNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8E720CD73CC00A6C11D /* MatchNoteCell.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -465,6 +467,10 @@
 		1F16D8DB20CD343700A6C11D /* MatchSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchSelectView.m; sourceTree = "<group>"; };
 		1F16D8DE20CD38DD00A6C11D /* MatchNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchNoteViewController.h; sourceTree = "<group>"; };
 		1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchNoteViewController.m; sourceTree = "<group>"; };
+		1F16D8E120CD6C5700A6C11D /* MatchDetaiNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchDetaiNoteViewController.h; sourceTree = "<group>"; };
+		1F16D8E220CD6C5700A6C11D /* MatchDetaiNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDetaiNoteViewController.m; sourceTree = "<group>"; };
+		1F16D8E620CD73CC00A6C11D /* MatchNoteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchNoteCell.h; sourceTree = "<group>"; };
+		1F16D8E720CD73CC00A6C11D /* MatchNoteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchNoteCell.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1513,10 +1519,30 @@
 		1F16D8DD20CD38BF00A6C11D /* MatchNoteController */ = {
 			isa = PBXGroup;
 			children = (
+				1F16D8E520CD725D00A6C11D /* Model */,
+				1F16D8E420CD725D00A6C11D /* View */,
 				1F16D8DE20CD38DD00A6C11D /* MatchNoteViewController.h */,
 				1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */,
+				1F16D8E120CD6C5700A6C11D /* MatchDetaiNoteViewController.h */,
+				1F16D8E220CD6C5700A6C11D /* MatchDetaiNoteViewController.m */,
 			);
 			path = MatchNoteController;
+			sourceTree = "<group>";
+		};
+		1F16D8E420CD725D00A6C11D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F16D8E620CD73CC00A6C11D /* MatchNoteCell.h */,
+				1F16D8E720CD73CC00A6C11D /* MatchNoteCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F16D8E520CD725D00A6C11D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
@@ -2360,6 +2386,7 @@
 				0BA41912201C67CD002C6335 /* DiscoverViewController.m in Sources */,
 				1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */,
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
+				1F16D8E320CD6C5700A6C11D /* MatchDetaiNoteViewController.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
 				1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */,
 				1F0FDF4820BA87F30041E73B /* ZhuangbeiModel.m in Sources */,
@@ -2431,6 +2458,7 @@
 				1F16D8BB20C4377900A6C11D /* LogContentModel.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
+				1F16D8E820CD73CC00A6C11D /* MatchNoteCell.m in Sources */,
 				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */,

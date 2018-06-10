@@ -102,17 +102,17 @@
 }
 
 
-- (void)selectButtonClick:(UIButton *)button {
-    NSInteger tag = button.tag;
-    if (tag == 100) {
-        self.scrollView.contentOffset = CGPointMake(0, 0);
-    } else if (tag == 200) {
-        self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-    } else if (tag == 300) {
-        self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
-
-    }
-}
+//- (void)selectButtonClick:(UIButton *)button {
+//    NSInteger tag = button.tag;
+//    if (tag == 100) {
+//        self.scrollView.contentOffset = CGPointMake(0, 0);
+//    } else if (tag == 200) {
+//        self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
+//    } else if (tag == 300) {
+//        self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
+//
+//    }
+//}
 
 - (NSMutableArray *)myChildViewControllers {
     

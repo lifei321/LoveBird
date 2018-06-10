@@ -11,7 +11,7 @@
 @protocol MatchArticleModel;
 @interface MatchArticleDataModel : AppBaseModel
 
-@property (nonatomic, strong) NSArray <MatchArticleModel>*user;
+@property (nonatomic, strong) NSArray <MatchArticleModel>*data;
 
 @end
 
