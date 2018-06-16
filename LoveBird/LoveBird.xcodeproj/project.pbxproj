@@ -216,6 +216,9 @@
 		1F6EB7F4209363E900665561 /* WKWebViewJavascriptBridge+LF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F0209363E900665561 /* WKWebViewJavascriptBridge+LF.m */; };
 		1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7F62093643000665561 /* LFWKWebView.m */; };
 		1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EB7FC2096073900665561 /* MineHeaderView.m */; };
+		1F94DFAC20D509290095DFC5 /* MineNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFAB20D509290095DFC5 /* MineNotifyCell.m */; };
+		1F94DFB020D50EC90095DFC5 /* MineNotifyFollowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFAF20D50EC90095DFC5 /* MineNotifyFollowController.m */; };
+		1F94DFB320D50F210095DFC5 /* NotifyFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -645,6 +648,12 @@
 		1F6EB7F62093643000665561 /* LFWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LFWKWebView.m; sourceTree = "<group>"; };
 		1F6EB7FB2096073900665561 /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1F6EB7FC2096073900665561 /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
+		1F94DFAA20D509290095DFC5 /* MineNotifyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineNotifyCell.h; sourceTree = "<group>"; };
+		1F94DFAB20D509290095DFC5 /* MineNotifyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineNotifyCell.m; sourceTree = "<group>"; };
+		1F94DFAE20D50EC90095DFC5 /* MineNotifyFollowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineNotifyFollowController.h; sourceTree = "<group>"; };
+		1F94DFAF20D50EC90095DFC5 /* MineNotifyFollowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineNotifyFollowController.m; sourceTree = "<group>"; };
+		1F94DFB120D50F210095DFC5 /* NotifyFollowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyFollowCell.h; sourceTree = "<group>"; };
+		1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotifyFollowCell.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1643,6 +1652,8 @@
 		1F4F141420502D7E0066F790 /* NotifyCationController */ = {
 			isa = PBXGroup;
 			children = (
+				1F94DFAD20D50EAA0095DFC5 /* Controller */,
+				1F94DFA920D509100095DFC5 /* View */,
 				1F4F141520502D9C0066F790 /* NotifycationViewController.h */,
 				1F4F141620502D9C0066F790 /* NotifycationViewController.m */,
 			);
@@ -2093,6 +2104,26 @@
 			path = LFWebview;
 			sourceTree = "<group>";
 		};
+		1F94DFA920D509100095DFC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFAA20D509290095DFC5 /* MineNotifyCell.h */,
+				1F94DFAB20D509290095DFC5 /* MineNotifyCell.m */,
+				1F94DFB120D50F210095DFC5 /* NotifyFollowCell.h */,
+				1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F94DFAD20D50EAA0095DFC5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFAE20D50EC90095DFC5 /* MineNotifyFollowController.h */,
+				1F94DFAF20D50EC90095DFC5 /* MineNotifyFollowController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2301,6 +2332,7 @@
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				1F16D8C920C8145900A6C11D /* MatchDetailController.m in Sources */,
 				1F0FDFC120C23B250041E73B /* LogContentCell.m in Sources */,
+				1F94DFAC20D509290095DFC5 /* MineNotifyCell.m in Sources */,
 				1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
@@ -2371,6 +2403,7 @@
 				1F676F9920B9119F002F71B4 /* MineLogViewController.m in Sources */,
 				1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */,
 				1F0FDFC520C23BC50041E73B /* BirdDetailController.m in Sources */,
+				1F94DFB020D50EC90095DFC5 /* MineNotifyFollowController.m in Sources */,
 				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
@@ -2477,6 +2510,7 @@
 				1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */,
 				1F676F0420A9C4F3002F71B4 /* NavView.m in Sources */,
 				0BA41918201C6835002C6335 /* GuideViewController.m in Sources */,
+				1F94DFB320D50F210095DFC5 /* NotifyFollowCell.m in Sources */,
 				0B75D5691FBD9D8B008D7AE6 /* UIImage+Addition.m in Sources */,
 				0B7293061EFA4F1100D1B1EB /* main.m in Sources */,
 				0B26F0481FBEF06700464F41 /* AppBaseTableViewController+From.m in Sources */,

@@ -21,4 +21,7 @@
 @property (nonatomic, assign) BOOL isShowSwitch;
 
 @property (nonatomic, copy) NSString *pushViewController;
+
+@property (nonatomic, copy) NSString *type;
+
 @end

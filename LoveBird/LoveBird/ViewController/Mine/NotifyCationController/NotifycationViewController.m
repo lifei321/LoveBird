@@ -8,6 +8,10 @@
 
 #import "NotifycationViewController.h"
 #import "MineSetModel.h"
+#import "MineNotifyCell.h"
+#import "MineNotifyFollowController.h"
+
+
 
 @interface NotifycationViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -30,11 +34,12 @@
     
     self.title = @"通知";
     self.tableView.top = total_topView_height;
-    self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    [self.tableView registerClass:[MineNotifyCell class] forCellReuseIdentifier:NSStringFromClass([MineNotifyCell class])];
     [self makeData];
 }
 
@@ -44,25 +49,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    MineSetModel *model = _dataArray[indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:model.iconUrl];
-    cell.textLabel.text = model.title;
-    cell.detailTextLabel.text = model.detailText;
+
+    MineNotifyCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MineNotifyCell class]) forIndexPath:indexPath];
+    cell.model = _dataArray[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return AutoSize(47);
+    return AutoSize6(98);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    MineSetModel *model = self.dataArray[indexPath.row];
+    MineNotifyFollowController *vc = [[MineNotifyFollowController alloc] init];
+    vc.type = model.type;
+    vc.title = model.title;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -74,6 +77,7 @@
     model.isShowContent = NO;
     model.isShowSwitch = NO;
     model.title = @"系统消息";
+    model.type = @"100";
     [_dataArray addObject:model];
     
     MineSetModel *model1 = [[MineSetModel alloc] init];
@@ -81,6 +85,8 @@
     model1.isShowContent = NO;
     model1.isShowSwitch = NO;
     model1.title = @"评论";
+    model1.type = @"200";
+
     [_dataArray addObject:model1];
     
     MineSetModel *model2 = [[MineSetModel alloc] init];
@@ -88,6 +94,8 @@
     model2.isShowContent = NO;
     model2.isShowSwitch = NO;
     model2.title = @"关注";
+    model2.type = @"300";
+
     [_dataArray addObject:model2];
     
     MineSetModel *model10 = [[MineSetModel alloc] init];
@@ -95,8 +103,18 @@
     model10.isShowContent = NO;
     model10.isShowSwitch = YES;
     model10.title = @"赞";
+    model10.type = @"400";
+
     [_dataArray addObject:model10];
     
+    MineSetModel *model101 = [[MineSetModel alloc] init];
+    model101.iconUrl = @"mine_sixin";
+    model101.isShowContent = NO;
+    model101.isShowSwitch = NO;
+    model101.title = @"私信";
+    model101.type = @"500";
+
+    [_dataArray addObject:model101];
 }
 
 @end
