@@ -79,4 +79,7 @@ pod 'XHLaunchAd', '3.8.4'
 #滚动栏
 pod 'SPPageMenu', '~> 2.5.5'
 
+#百度地图SDK
+pod 'BaiduMapKit'
+
 end

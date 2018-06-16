@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BaiduMapKit (4.1.1)
   - Bugly (2.4.8)
   - DZNEmptyDataSet (1.8.1)
   - FBRetainCycleDetector (0.1.4)
@@ -73,6 +74,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
+  - BaiduMapKit
   - Bugly (= 2.4.8)
   - DZNEmptyDataSet
   - GTSDK (= 2.1.0.0)
@@ -104,6 +106,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaiduMapKit: 51bba432a28316680676b4d453a70e5031f3a7eb
   Bugly: da3c02408c14838d498429320545a8e439392978
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
@@ -133,6 +136,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 7a27f58acb8b374e22123f6ba7ea858b859521bb
+PODFILE CHECKSUM: 9932bda9f777f3f9cda949a5187e16facd48aa1a
 
 COCOAPODS: 1.4.0
