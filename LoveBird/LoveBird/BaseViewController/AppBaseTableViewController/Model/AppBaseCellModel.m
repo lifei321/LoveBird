@@ -31,11 +31,11 @@
 }
 
 
-- (AppBaseTextField *)rightTextFile {
+- (AppTextField *)rightTextFile {
     
     if (_rightTextFile == nil) {
         
-        _rightTextFile = [[AppBaseTextField alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _rightTextFile = [[AppTextField alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         _rightTextFile.isTransparent = YES;
         _rightTextFile.borderStyle = UITextBorderStyleNone;
         _rightTextFile.font = kFont(13.);

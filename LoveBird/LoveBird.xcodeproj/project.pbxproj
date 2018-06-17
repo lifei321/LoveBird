@@ -75,7 +75,6 @@
 		0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39420A2F82E003283D1 /* AppDateManager.m */; };
 		0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */; };
 		0BDE653D1FBEE3B900C2C76F /* NSMutableDictionary+from.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */; };
-		0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE653F1FBEE44D00C2C76F /* AppBaseTextField.m */; };
 		0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE65451FBEE5E900C2C76F /* AppBaseTableDataSource.m */; };
 		0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF29A481F137CD700CBE2CB /* LoginViewController.m */; };
 		0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BE2E1F1CA060000046FF /* AppDelegate.m */; };
@@ -219,6 +218,8 @@
 		1F94DFAC20D509290095DFC5 /* MineNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFAB20D509290095DFC5 /* MineNotifyCell.m */; };
 		1F94DFB020D50EC90095DFC5 /* MineNotifyFollowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFAF20D50EC90095DFC5 /* MineNotifyFollowController.m */; };
 		1F94DFB320D50F210095DFC5 /* NotifyFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */; };
+		1F94DFB720D6262E0095DFC5 /* FinishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB620D6262E0095DFC5 /* FinishHeaderView.m */; };
+		1F94DFBA20D62DDC0095DFC5 /* FinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB920D62DDC0095DFC5 /* FinishCell.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -367,8 +368,6 @@
 		0BC2B39720A3F0DF003283D1 /* PublishBirdInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishBirdInfoModel.m; sourceTree = "<group>"; };
 		0BDE653B1FBEE3B800C2C76F /* NSMutableDictionary+from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+from.h"; sourceTree = "<group>"; };
 		0BDE653C1FBEE3B800C2C76F /* NSMutableDictionary+from.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+from.m"; sourceTree = "<group>"; };
-		0BDE653E1FBEE44D00C2C76F /* AppBaseTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBaseTextField.h; sourceTree = "<group>"; };
-		0BDE653F1FBEE44D00C2C76F /* AppBaseTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBaseTextField.m; sourceTree = "<group>"; };
 		0BDE65441FBEE5E900C2C76F /* AppBaseTableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBaseTableDataSource.h; sourceTree = "<group>"; };
 		0BDE65451FBEE5E900C2C76F /* AppBaseTableDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBaseTableDataSource.m; sourceTree = "<group>"; };
 		0BF29A471F137CD700CBE2CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -654,6 +653,10 @@
 		1F94DFAF20D50EC90095DFC5 /* MineNotifyFollowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineNotifyFollowController.m; sourceTree = "<group>"; };
 		1F94DFB120D50F210095DFC5 /* NotifyFollowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyFollowCell.h; sourceTree = "<group>"; };
 		1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotifyFollowCell.m; sourceTree = "<group>"; };
+		1F94DFB520D6262E0095DFC5 /* FinishHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishHeaderView.h; sourceTree = "<group>"; };
+		1F94DFB620D6262E0095DFC5 /* FinishHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishHeaderView.m; sourceTree = "<group>"; };
+		1F94DFB820D62DDC0095DFC5 /* FinishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishCell.h; sourceTree = "<group>"; };
+		1F94DFB920D62DDC0095DFC5 /* FinishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishCell.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -751,8 +754,6 @@
 				0B317C871F0F6E9100B01DDA /* AppEmptyView.m */,
 				0B317C881F0F6E9100B01DDA /* ZBaseBarButtonItem.h */,
 				0B317C891F0F6E9100B01DDA /* ZBaseBarButtonItem.m */,
-				0BDE653E1FBEE44D00C2C76F /* AppBaseTextField.h */,
-				0BDE653F1FBEE44D00C2C76F /* AppBaseTextField.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1663,6 +1664,7 @@
 		1F4F1418205030670066F790 /* FinishMessageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1F94DFB420D625F50095DFC5 /* View */,
 				1F4F1419205030980066F790 /* FinishMessageViewController.h */,
 				1F4F141A205030980066F790 /* FinishMessageViewController.m */,
 			);
@@ -2124,6 +2126,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1F94DFB420D625F50095DFC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFB520D6262E0095DFC5 /* FinishHeaderView.h */,
+				1F94DFB620D6262E0095DFC5 /* FinishHeaderView.m */,
+				1F94DFB820D62DDC0095DFC5 /* FinishCell.h */,
+				1F94DFB920D62DDC0095DFC5 /* FinishCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2339,6 +2352,7 @@
 				1F0FDFBF20C23B250041E73B /* LogDetailHeadView.m in Sources */,
 				1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
+				1F94DFBA20D62DDC0095DFC5 /* FinishCell.m in Sources */,
 				1F676F1A20A9CAE7002F71B4 /* ShequViewController.m in Sources */,
 				0B317CA21F0F758700B01DDA /* AppBaseCellModel.m in Sources */,
 				1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */,
@@ -2410,7 +2424,6 @@
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				1F676EDF20A7DAE7002F71B4 /* PublishEVController.m in Sources */,
 				1F16D8CF20C8252600A6C11D /* SetDao.m in Sources */,
-				0BDE65401FBEE44D00C2C76F /* AppBaseTextField.m in Sources */,
 				1F16D8D920CD0E4600A6C11D /* MatchTitleView.m in Sources */,
 				0B317C9B1F0F737C00B01DDA /* AppBaseTableViewCell.m in Sources */,
 				1F676F2220A9D3D1002F71B4 /* ShequCellHeadView.m in Sources */,
@@ -2529,6 +2542,7 @@
 				1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */,
 				1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
+				1F94DFB720D6262E0095DFC5 /* FinishHeaderView.m in Sources */,
 				0B317C8A1F0F6E9100B01DDA /* AppButton.m in Sources */,
 				1F0FDFBB20C23B250041E73B /* LogDetailTalkModel.m in Sources */,
 				1F676F0920A9C4F3002F71B4 /* UIImage+fixOrientation.m in Sources */,

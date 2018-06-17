@@ -30,5 +30,8 @@
  */
 @property (nonatomic, assign) BOOL isDisplayCleanButton;
 
+@property (nonatomic, strong)     UIButton *clearButton;
+
+
 
 @end

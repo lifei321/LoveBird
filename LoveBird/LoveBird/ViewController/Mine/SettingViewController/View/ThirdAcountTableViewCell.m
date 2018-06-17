@@ -56,6 +56,10 @@
         
         _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(57), 0, AutoSize(47), AutoSize(47))];
         [self.contentView addSubview:_switchView];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(94) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
+        line.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self.contentView addSubview:line];
     }
     return self;
 }

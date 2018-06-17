@@ -73,6 +73,18 @@
 #define kAPI_User_MessageNotify kAPI_USER_SERVER_VERSION(@"user/message.php")
 
 
+/**
+ *  注册
+ */
+#define kAPI_User_register kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=register")
+
+
+/**
+ *  登录
+ */
+#define kAPI_User_login kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=login")
+
+
 #pragma mark-- 首页
 
 /**

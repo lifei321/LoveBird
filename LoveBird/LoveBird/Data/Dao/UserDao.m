@@ -230,6 +230,54 @@
     }];
 }
 
+// 注册
++ (void)userRegister:(NSString *)mobile
+            password:(NSString *)password
+                name:(NSString *)name
+                code:(NSString *)code
+        SuccessBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"mobile"];
+    [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
+    [dic setObject:EMPTY_STRING_IF_NIL(name) forKey:@"userName"];
+    [dic setObject:EMPTY_STRING_IF_NIL(code) forKey:@"vCode"];
 
+    [AppHttpManager POST:kAPI_User_register parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 登录
++ (void)userLogin:(NSString *)mobile
+         password:(NSString *)password
+     SuccessBlock:(LFRequestSuccess)successBlock
+     failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"username"];
+    [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
+    
+    [AppHttpManager POST:kAPI_User_login parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 
 @end

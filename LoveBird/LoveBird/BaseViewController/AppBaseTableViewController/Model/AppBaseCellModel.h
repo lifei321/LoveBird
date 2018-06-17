@@ -7,7 +7,7 @@
 //
 
 #import "AppBaseModel.h"
-#import "AppBaseTextField.h"
+#import "AppTextField.h"
 
 @class AppBaseCellModel;
 
@@ -96,7 +96,7 @@ typedef void (^LFConstraintDataBlock) (AppBaseCellModel *cellModel);
 /**
  *  右侧表格 textfile, 会自动计算宽度, 只需指定 left 即可
  */
-@property (nonatomic, strong) AppBaseTextField *rightTextFile;
+@property (nonatomic, strong) AppTextField *rightTextFile;
 
 /**
  *  cell title 提示图标

@@ -20,9 +20,9 @@
 
 @interface UserModel : AppBaseModel
 
-//@property (nonatomic, copy) NSString *birthday;
+@property (nonatomic, copy) NSString *birthday;
 
-//@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *mobile;
 
 @property (nonatomic, copy) NSString *head;
 
@@ -59,6 +59,8 @@
 @property (nonatomic, assign) BOOL isFollow;
 
 @property (nonatomic, copy) NSString *level;
+
+@property (nonatomic, copy) NSString *zuzhi;
 
 
 //articleNum    日志数    number    @mock=24

@@ -8,10 +8,8 @@
 
 #import "AppTextField.h"
 
-@implementation AppTextField {
-    
-    UIButton *_clearButton;
-}
+@implementation AppTextField
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -91,7 +89,7 @@
         
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, kLoginDefaultPlaceholderColor.CGColor);
-        CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) - 0.5, CGRectGetWidth(self.frame), 0.5));
+        CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) - 0.5, CGRectGetWidth(self.frame), 0));
     }
     
 }

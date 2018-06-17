@@ -106,8 +106,10 @@
  *  在点击tabbarButton的时候调用
  */
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(nonnull UIViewController *)viewController {
-    if (tabBarController.selectedIndex == 2) {
-        return NO;
+    if (tabBarController.selectedIndex == 3) {
+
+        LoginViewController *logvc = [[LoginViewController alloc] init];
+        [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
     }
 
     return YES;

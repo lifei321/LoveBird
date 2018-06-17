@@ -60,7 +60,20 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 我的个人信息
 + (void)userMyInfoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 注册
++ (void)userRegister:(NSString *)mobile
+            password:(NSString *)password
+                name:(NSString *)name
+                code:(NSString *)code
+        SuccessBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock;
 
+
+// 登录
++ (void)userLogin:(NSString *)mobile
+         password:(NSString *)password
+     SuccessBlock:(LFRequestSuccess)successBlock
+     failureBlock:(LFRequestFail)failureBlock;
 
 
 @end

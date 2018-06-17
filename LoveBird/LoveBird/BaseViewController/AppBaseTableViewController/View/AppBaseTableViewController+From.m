@@ -9,7 +9,7 @@
 #import "AppBaseTableViewController+From.h"
 #import <objc/runtime.h>
 #import "AppBaseCellModel.h"
-#import "AppBaseTextField.h"
+#import "AppTextField.h"
 
 char* const LEFTSPACING = "leftSpacing";
 
@@ -429,7 +429,7 @@ char* const TEXTFILED = "textFiledCount";
     @weakify(self);
     [self.textFieldDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         @strongify(self); if (!self) return;
-        AppBaseTextField *textFiled = obj;
+        AppTextField *textFiled = obj;
         if (![textFiled.text isBlankString] && [self.validityArray objectAtIndex:textFiled.tag]) {
             
             [self.validityArray replaceObjectAtIndex:textFiled.tag withObject:@(0)];
@@ -450,11 +450,11 @@ char* const TEXTFILED = "textFiledCount";
 }
 
 #pragma mark 监控 textfile 输入
-- (void)textFieldDidChange:(AppBaseTextField *)textFile {
+- (void)textFieldDidChange:(AppTextField *)textFile {
     
     if ([textFile isKindOfClass:[UIButton class]]) {
         
-        textFile = (AppBaseTextField *)textFile.superview;
+        textFile = (AppTextField *)textFile.superview;
     }
     
     if (![textFile.text isBlankString]) {

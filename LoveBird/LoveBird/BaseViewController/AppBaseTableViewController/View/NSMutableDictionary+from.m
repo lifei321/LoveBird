@@ -7,7 +7,7 @@
 //
 
 #import "NSMutableDictionary+from.h"
-#import "AppBaseTextField.h"
+#import "AppTextField.h"
 
 @implementation NSMutableDictionary (from)
 
@@ -19,9 +19,9 @@
         return nil;
     }
     
-    if ([self[key] isKindOfClass:[AppBaseTextField class]]) {
+    if ([self[key] isKindOfClass:[AppTextField class]]) {
         
-        return ((AppBaseTextField *)self[key]).text;
+        return ((AppTextField *)self[key]).text;
     }
     
     return self[key];

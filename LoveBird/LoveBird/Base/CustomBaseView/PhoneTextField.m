@@ -31,6 +31,14 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect {
+    self.backgroundColor = [UIColor clearColor];
+    self.borderStyle = UITextBorderStyleNone;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, kLoginDefaultPlaceholderColor.CGColor);
+    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) - 0.5, CGRectGetWidth(self.frame), 0));
+}
 
 /**
  *  进行字符校验

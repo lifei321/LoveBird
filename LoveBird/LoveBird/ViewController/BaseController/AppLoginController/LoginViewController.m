@@ -15,6 +15,7 @@
 #import "PasswordTextField.h"
 #import "UIDevice+LFAddition.h"
 #import "RegViewController.h"
+#import "UserDao.h"
 
 
 @interface LoginViewController ()<UITextFieldDelegate,TTTAttributedLabelDelegate>
@@ -78,9 +79,8 @@
     [inputView addSubview:closeButton];
     
     //logo图标
-    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize(20), AutoSize(38), AutoSize(28), AutoSize(28))];
-    logo.image = [UIImage imageNamed:@""];
-    logo.backgroundColor = kColorDefaultColor;
+    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize(20), AutoSize6(70), AutoSize6(220), AutoSize6(84))];
+    logo.image = [UIImage imageNamed:@"log_icon"];
     [inputView addSubview:logo];
     
     //提示语句
@@ -106,7 +106,7 @@
                                                  isShow:NO];
     [inputView addSubview:phoneView];
     
-    UIView *linePhone = [[UIView alloc] initWithFrame:CGRectMake(AutoSize(13), phoneView.bottom, inputView.width - AutoSize(26), 1)];
+    UIView *linePhone = [[UIView alloc] initWithFrame:CGRectMake(AutoSize(13), phoneView.bottom, inputView.width - AutoSize(26), 0.5)];
     linePhone.backgroundColor = kColorTarBarTitleHighlightColor;
     [inputView addSubview:linePhone];
     
@@ -117,13 +117,13 @@
                                                     isShow:YES];
     [inputView addSubview:passWordView];
     
-    UIView *linePass = [[UIView alloc] initWithFrame:CGRectMake(AutoSize(13), passWordView.bottom, inputView.width - AutoSize(26), 1)];
+    UIView *linePass = [[UIView alloc] initWithFrame:CGRectMake(AutoSize(13), passWordView.bottom, inputView.width - AutoSize(26), 0.5)];
     linePass.backgroundColor = kLineColoreLightGrayECECEC;
     [inputView addSubview:linePass];
     
     // 免费注册
     UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize(13), linePass.bottom + AutoSize(10), AutoSize(60), AutoSize(30))];
-    [registButton setTitle:@"免费注册" forState: UIControlStateNormal];
+    [registButton setTitle:@"立即注册" forState: UIControlStateNormal];
     [registButton setTitleColor:kColorDefaultColor forState:UIControlStateNormal];
     registButton.titleLabel.font = kFont(12);
     [registButton addTarget:self action:@selector(gotoRegist) forControlEvents:UIControlEventTouchUpInside];
@@ -310,9 +310,24 @@
         return;
     }
     
-    [AppBaseHud showHudWithLoding:self.view];
-
+    if ([EMPTY_STRING_IF_NIL(self.passwordTextField.text) isBlankString]) {
+        [AppBaseHud showHudWithfail:@"请输入密码" view:self.view];
+        return;
+    }
     
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [UserDao userLogin:_phoneTextField.text
+                 password:_passwordTextField.text
+             SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+                 @strongify(self);
+                 [AppBaseHud hideHud:self.view];
+                 
+                 
+             } failureBlock:^(__kindof AppBaseModel *error) {
+                 @strongify(self);
+                 [AppBaseHud showHudWithfail:error.errstr view:self.view];
+             }];
 }
 
 #pragma mark-- 去注册

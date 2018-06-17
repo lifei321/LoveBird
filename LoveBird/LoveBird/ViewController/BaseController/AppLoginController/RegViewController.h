@@ -6,14 +6,14 @@
 //  Copyright © 2017年 shancheli. All rights reserved.
 //
 
-#import "AppBaseTableViewController.h"
+#import "AppBaseViewController.h"
 
 typedef NS_ENUM(NSInteger, RegViewControllerType) {
     RegViewControllerTypeReg, // 注册
     RegViewControllerTypeForgetPassword, // 找回密码
 };
 
-@interface RegViewController : AppBaseTableViewController
+@interface RegViewController : AppBaseViewController
 
 
 /**

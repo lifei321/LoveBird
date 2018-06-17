@@ -33,9 +33,9 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _iconImageView.backgroundColor = [UIColor orangeColor];
         _iconImageView.contentMode = UIViewContentModeCenter;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
+        _iconImageView.layer.masksToBounds = YES;
         [self.contentView addSubview:_iconImageView];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -44,20 +44,24 @@
         _titleLabel.font = kFont(14);
         [self.contentView addSubview:_titleLabel];
         
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(77), 0, AutoSize(60), AutoSize(47))];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(77), 0, AutoSize(60), AutoSize6(94))];
         _contentLabel.textAlignment = NSTextAlignmentRight;
         _contentLabel.textColor = [UIColor blackColor];
         _contentLabel.font = kFont(14);
         [self.contentView addSubview:_contentLabel];
         
-        _arrowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(17), 0, AutoSize(7), AutoSize(47))];
+        _arrowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(17), 0, AutoSize(7), AutoSize6(94))];
         _arrowImageView.contentMode = UIViewContentModeCenter;
         _arrowImageView.image = [UIImage imageNamed:@"left_arrow"];
         _arrowImageView.clipsToBounds = YES;
         [self.contentView addSubview:_arrowImageView];
         
-        _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(57), AutoSize(9), AutoSize(47), AutoSize(30))];
+        _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(124), AutoSize6(18), AutoSize6(94), AutoSize6(58))];
         [self.contentView addSubview:_switchView];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(94) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
+        line.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self.contentView addSubview:line];
     }
     return self;
 }
@@ -74,14 +78,14 @@
         _switchView.hidden = YES;
         
         [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:[UIImage imageNamed:@""]];
-        _iconImageView.frame = CGRectMake(AutoSize(10), AutoSize(5), AutoSize(35), AutoSize(35));
+        _iconImageView.frame = CGRectMake(AutoSize6(30), AutoSize6(10), AutoSize6(74), AutoSize6(74));
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
 
         _titleLabel.frame = CGRectMake(_iconImageView.right + AutoSize(5), 0, SCREEN_WIDTH / 2, self.height);
         
     } else {
         _iconImageView.hidden = YES;
-        _titleLabel.frame = CGRectMake(AutoSize(12), 0, SCREEN_WIDTH / 2, self.height);
+        _titleLabel.frame = CGRectMake(AutoSize6(30), 0, SCREEN_WIDTH / 2, self.height);
 
         if (model.isShowSwitch) {
             _arrowImageView.hidden = YES;

@@ -29,6 +29,16 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect {
+    self.backgroundColor = [UIColor clearColor];
+    self.borderStyle = UITextBorderStyleNone;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, kLoginDefaultPlaceholderColor.CGColor);
+    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) - 0.5, CGRectGetWidth(self.frame), 0));
+}
+
+
 #pragma mark - UITextFieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (range.location == 0 && [string isBlankString]) {
