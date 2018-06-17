@@ -7,16 +7,15 @@
 //
 
 #import "RegViewController.h"
-#import "PhoneTextField.h"
 #import "AppButton.h"
 #import "LoginViewController.h"
 #import "UIDevice+LFAddition.h"
-#import "RegInfoViewController.h"
-#import "ModifyPasswordViewController.h"
 #import "PhoneTextField.h"
 #import "PasswordTextField.h"
 #import "TTTAttributedLabel.h"
 #import "UserDao.h"
+#import "RegisterModel.h"
+
 
 @interface RegViewController ()<UITextFieldDelegate, TTTAttributedLabelDelegate>
 
@@ -130,45 +129,6 @@
     [self.view addSubview:readLabel];
 }
 
-- (void)registerButtonClick {
-    
-    if (!_phoneTextField.text.length) {
-        [AppBaseHud showHudWithfail:@"请输入手机号" view:self.view];
-        return;
-    }
-    
-    if (!_passwordTextField.text.length) {
-        [AppBaseHud showHudWithfail:@"请输入密码" view:self.view];
-        return;
-    }
-    
-    if (!_nameTextField.text.length) {
-        [AppBaseHud showHudWithfail:@"请输入昵称" view:self.view];
-        return;
-    }
-    
-    if (!_codeTextField.text.length) {
-        [AppBaseHud showHudWithfail:@"请输入手机验证码" view:self.view];
-        return;
-    }
-    
-    [AppBaseHud showHudWithLoding:self.view];
-    @weakify(self);
-    [UserDao userRegister:_phoneTextField.text
-                 password:_passwordTextField.text
-                     name:_nameTextField.text
-                     code:_codeTextField.text
-             SuccessBlock:^(__kindof AppBaseModel *responseObject) {
-                 @strongify(self);
-                 [AppBaseHud hideHud:self.view];
-                 
-                 
-                 
-             } failureBlock:^(__kindof AppBaseModel *error) {
-                 @strongify(self);
-                 [AppBaseHud showHudWithfail:error.errstr view:self.view];
-             }];
-}
 
 - (UIView *)makeTextBackViewWithImage:(NSString *)image
                                 frame:(CGRect)frame
@@ -247,70 +207,50 @@
     }
 }
 
-
-#pragma mark-- 去登录
-
-- (void)goToLogin {
-    [self hideKeyboard];
+- (void)registerButtonClick {
     
-    //将之前的登录页面移除
-    NSMutableArray *viewController1 = [self.navigationController.viewControllers mutableCopy];
-    for(int i =0; i<[viewController1 count]; i++) {
-        UIViewController *ctr = viewController1[i];
-        if ([ctr isKindOfClass:[LoginViewController class]]) {
-            [viewController1 removeObject:ctr];
-        }
-    }
-    [self.navigationController setViewControllers:[viewController1 copy]];
-    
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    //再将注册页面移除
-    NSMutableArray *viewController2 = [self.navigationController.viewControllers mutableCopy];
-    for(int i =0; i<[viewController2 count]; i++) {
-        UIViewController *ctr = viewController2[i];
-        if ([ctr isKindOfClass:[RegViewController class]]) {
-            [viewController2 removeObject:ctr];
-        }
-    }
-    [self.navigationController setViewControllers:[viewController2 copy]];
-}
-
-#pragma mark- 去注册 或者 重置密码
-
-- (void)goToReg {
-    
-    [self hideKeyboard];
-    
-    NSString *mobile = [_phoneTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    
-    if ([mobile isBlankString]) {
-        
+    if (!_phoneTextField.text.length) {
         [AppBaseHud showHudWithfail:@"请输入手机号" view:self.view];
         return;
     }
     
-    if ([mobile validateMobile] == NO) {
-        
-        [AppBaseHud showHudWithfail:@"请输入正确的手机号" view:self.view];
+    if (!_passwordTextField.text.length) {
+        [AppBaseHud showHudWithfail:@"请输入密码" view:self.view];
         return;
     }
     
-    if (_controllerType == RegViewControllerTypeForgetPassword) {
-        
-        ModifyPasswordViewController *modifypassword =[[ModifyPasswordViewController alloc] init];
-        modifypassword.mobile = _phoneTextField.text;
-        [self.navigationController pushViewController:modifypassword animated:YES];
-        
-    } else {
-        
-        RegInfoViewController *regInfoVC =[[RegInfoViewController alloc] init];
-        regInfoVC.phoneText = _phoneTextField;
-        [self.navigationController pushViewController:regInfoVC animated:YES];
-
+    if (!_nameTextField.text.length) {
+        [AppBaseHud showHudWithfail:@"请输入昵称" view:self.view];
+        return;
     }
+    
+    if (!_codeTextField.text.length) {
+        [AppBaseHud showHudWithfail:@"请输入手机验证码" view:self.view];
+        return;
+    }
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [UserDao userRegister:_phoneTextField.text
+                 password:[_passwordTextField.text md5HexDigest]
+                     name:_nameTextField.text
+                     code:_codeTextField.text
+             SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+                 @strongify(self);
+                 [AppBaseHud hideHud:self.view];
+                 
+                 RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
+                 [UserPage sharedInstance].userModel.token = dataModel.userInfo.token;
+                 [UserPage sharedInstance].userModel.uid = dataModel.userInfo.uid;
+                 
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
+                 [self dismissViewControllerAnimated:YES completion:nil];
+                 
+             } failureBlock:^(__kindof AppBaseModel *error) {
+                 @strongify(self);
+                 [AppBaseHud showHudWithfail:error.errstr view:self.view];
+             }];
 }
+
 
 @end

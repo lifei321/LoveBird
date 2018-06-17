@@ -52,14 +52,22 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavigation];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForUserInfo) name:kLoginSuccessNotification object:nil];
+}
+
+- (void)netForUserInfo {
+    [AppBaseHud showHudWithLoding:self.view];
+    [self netForMyInfo];
 }
 
 - (void)netForMyInfo {
-
     @weakify(self);
     [UserDao userMyInfoSuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
+        [AppBaseHud hideHud:self.view];
+        
         [self.tableView reloadData];
         [self.headerView reloadData];
     } failureBlock:^(__kindof AppBaseModel *error) {

@@ -62,6 +62,8 @@
 
 @property (nonatomic, copy) NSString *zuzhi;
 
+@property (nonatomic, copy) NSString *token;
+
 
 //articleNum    日志数    number    @mock=24
 //birdspeciesNum    鸟种数    number    @mock=289

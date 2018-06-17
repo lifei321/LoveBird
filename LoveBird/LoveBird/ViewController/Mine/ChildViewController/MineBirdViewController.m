@@ -47,6 +47,8 @@
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+
         UserBirdDataModel *dataModel = (UserBirdDataModel *)responseObject;
         [self.dataArray addObjectsFromArray:dataModel.birdInfo];
         
@@ -57,6 +59,8 @@
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
         [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+
     }];
 }
 

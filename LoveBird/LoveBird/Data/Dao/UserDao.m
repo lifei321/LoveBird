@@ -15,6 +15,7 @@
 #import "UserBirdModel.h"
 #import "UserModel.h"
 #import "ShequModel.h"
+#import "RegisterModel.h"
 
 @implementation UserDao
 
@@ -22,7 +23,8 @@
 + (void)userMessageType:(UserMessageType)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    
     [dic setObject:[NSString stringWithFormat:@"%ld", type] forKey:@"type"];
     
     [AppHttpManager POST:kAPI_User_MessageNotify parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -40,7 +42,7 @@
 // 关注
 + (void)userFollow:(NSString *)fid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"fuid"];
     
     [AppHttpManager POST:kAPI_User_Follow parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -59,7 +61,7 @@
 + (void)userFollowList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_User_FollowList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -94,7 +96,7 @@
 // 我的朋友圈 文章列表
 + (void)userContenSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_User_FollowContentList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -111,7 +113,7 @@
 // 我的收藏列表
 + (void)userCollectList:(NSInteger)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
 
     [AppHttpManager POST:kAPI_User_CollectionList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -136,7 +138,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchId) forKey:@"matchid"];
 
     [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[ShequLogModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -158,7 +160,7 @@
         failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
     [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"iuid"];
     
@@ -197,7 +199,7 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_User_FansList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -214,8 +216,7 @@
 // 我的个人信息
 + (void)userMyInfoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-//    [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
 
     [AppHttpManager POST:kAPI_User_PersonInfo parameters:dic jsonModelName:[UserModel class] success:^(__kindof AppBaseModel *responseObject) {
         [UserPage sharedInstance].userModel = (UserModel *)responseObject;
@@ -244,8 +245,7 @@
     [dic setObject:EMPTY_STRING_IF_NIL(name) forKey:@"userName"];
     [dic setObject:EMPTY_STRING_IF_NIL(code) forKey:@"vCode"];
 
-    [AppHttpManager POST:kAPI_User_register parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
-        [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+    [AppHttpManager POST:kAPI_User_register parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -267,8 +267,7 @@
     [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"username"];
     [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
     
-    [AppHttpManager POST:kAPI_User_login parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
-        [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+    [AppHttpManager POST:kAPI_User_login parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

@@ -16,6 +16,8 @@
 #import "UIDevice+LFAddition.h"
 #import "RegViewController.h"
 #import "UserDao.h"
+#import "ResetWordController.h"
+#import "RegisterModel.h"
 
 
 @interface LoginViewController ()<UITextFieldDelegate,TTTAttributedLabelDelegate>
@@ -318,11 +320,16 @@
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [UserDao userLogin:_phoneTextField.text
-                 password:_passwordTextField.text
+                 password:[_passwordTextField.text md5HexDigest]
              SuccessBlock:^(__kindof AppBaseModel *responseObject) {
                  @strongify(self);
                  [AppBaseHud hideHud:self.view];
+                 RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
+                 [UserPage sharedInstance].userModel.token = dataModel.userInfo.token;
+                 [UserPage sharedInstance].userModel.uid = dataModel.userInfo.uid;
                  
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
+                 [self dismissViewControllerAnimated:YES completion:nil];
                  
              } failureBlock:^(__kindof AppBaseModel *error) {
                  @strongify(self);
@@ -345,8 +352,8 @@
 - (void)goToModifyPassword {
     [self hideKeyboard];
 
-    RegViewController *modifyPassword = [[RegViewController alloc] init];
-    modifyPassword.controllerType = RegViewControllerTypeForgetPassword;
+    ResetWordController *modifyPassword = [[ResetWordController alloc] init];
+    modifyPassword.type = @"1";
     [self.navigationController pushViewController:modifyPassword animated:YES];
 }
 

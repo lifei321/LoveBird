@@ -17,7 +17,7 @@
 // 上传图片
 + (void)upLoad:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
     NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
     NSDictionary *fileDic = @{@"file": data,

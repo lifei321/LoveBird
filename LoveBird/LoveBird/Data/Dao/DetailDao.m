@@ -20,7 +20,7 @@
 + (void)getLogDetail:(NSString *)tid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     
     
@@ -40,7 +40,7 @@
 + (void)getLogContent:(NSString *)aid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
     
     
@@ -60,7 +60,7 @@
 + (void)getLogDetail:(NSString *)tid aid:(NSString *)aid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
     [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
@@ -81,7 +81,7 @@
 // 获取日志点赞列表
 + (void)getLogUPDetail:(NSString *)tid aid:(NSString *)aid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
 

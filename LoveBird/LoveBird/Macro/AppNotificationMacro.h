@@ -15,6 +15,8 @@
 //网络可用
 #define kNetWorkAvailableNotification               @"kNetWorkAvailableNotification"
 
+#define kLoginSuccessNotification               @"kLoginSuccessNotification"
 
+#define kLogoutSuccessNotification               @"kLogoutSuccessNotification"
 
 #endif /* AppNotificationMacro_h */

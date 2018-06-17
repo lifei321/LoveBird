@@ -24,7 +24,7 @@
 + (void)getShequList:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:[NSString stringWithFormat:@"%ld", (long)page] forKey:@"page"];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
 
     [AppHttpManager POST:kAPI_Discover_ShequList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -41,7 +41,7 @@
 // 社区模块
 + (void)getShequSectionSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_Discover_ShequSection parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -110,7 +110,7 @@
 + (void)getWordList:(NSString *)cid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(cid) forKey:@"cid"];
 
     [AppHttpManager POST:kAPI_Discover_articleList parameters:dic jsonModelName:[ZhuangbeiDataModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -129,7 +129,7 @@
 + (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(authorid) forKey:@"authorid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(minAid) forKey:@"minAid"];
@@ -150,7 +150,7 @@
 // 排行
 + (void)getRankList:(NSString *)matchid  type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(type) forKey:@"type"];
     

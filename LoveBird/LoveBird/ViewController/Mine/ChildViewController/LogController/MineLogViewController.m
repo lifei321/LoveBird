@@ -50,7 +50,8 @@
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
-
+        [self.tableView.mj_footer endRefreshing];
+        
         ShequLogModel *dataModel = (ShequLogModel *)responseObject;
         for (int i = 0; i < dataModel.articleList.count; i++) {
             ShequModel *model = dataModel.articleList[i];
@@ -68,6 +69,7 @@
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
         [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
 
     }];
 }

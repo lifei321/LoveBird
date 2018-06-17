@@ -25,10 +25,8 @@
 		0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B317CBB1F0F972200B01DDA /* AboutUsViewController.m */; };
 		0B702DF81F14CE3E00E39FAF /* UINavigationItem+CustomItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702DF71F14CE3E00E39FAF /* UINavigationItem+CustomItem.m */; };
 		0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702DFD1F1602AF00E39FAF /* RegViewController.m */; };
-		0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E061F16172E00E39FAF /* RegInfoViewController.m */; };
 		0B702E0E1F16214800E39FAF /* VerifiCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E0D1F16214800E39FAF /* VerifiCodeView.m */; };
 		0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E101F16217E00E39FAF /* RegInfoTableViewCell.m */; };
-		0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E131F16254E00E39FAF /* ModifyPasswordViewController.m */; };
 		0B702E171F16299100E39FAF /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B702E161F16299100E39FAF /* MineTableViewCell.m */; };
 		0B71CF092018748D006D29B7 /* AppShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B71CF082018748D006D29B7 /* AppShareSDK.m */; };
 		0B7293061EFA4F1100D1B1EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7293051EFA4F1100D1B1EB /* main.m */; };
@@ -220,6 +218,8 @@
 		1F94DFB320D50F210095DFC5 /* NotifyFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB220D50F210095DFC5 /* NotifyFollowCell.m */; };
 		1F94DFB720D6262E0095DFC5 /* FinishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB620D6262E0095DFC5 /* FinishHeaderView.m */; };
 		1F94DFBA20D62DDC0095DFC5 /* FinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB920D62DDC0095DFC5 /* FinishCell.m */; };
+		1F94DFBD20D6C60F0095DFC5 /* ResetWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFBC20D6C60F0095DFC5 /* ResetWordController.m */; };
+		1F94DFC120D6CB9C0095DFC5 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFC020D6CB9C0095DFC5 /* RegisterModel.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -261,14 +261,10 @@
 		0B702DF71F14CE3E00E39FAF /* UINavigationItem+CustomItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CustomItem.m"; sourceTree = "<group>"; };
 		0B702DFC1F1602AF00E39FAF /* RegViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegViewController.h; sourceTree = "<group>"; };
 		0B702DFD1F1602AF00E39FAF /* RegViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegViewController.m; sourceTree = "<group>"; };
-		0B702E051F16172E00E39FAF /* RegInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegInfoViewController.h; sourceTree = "<group>"; };
-		0B702E061F16172E00E39FAF /* RegInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegInfoViewController.m; sourceTree = "<group>"; };
 		0B702E0C1F16214800E39FAF /* VerifiCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifiCodeView.h; sourceTree = "<group>"; };
 		0B702E0D1F16214800E39FAF /* VerifiCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifiCodeView.m; sourceTree = "<group>"; };
 		0B702E0F1F16217E00E39FAF /* RegInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegInfoTableViewCell.h; sourceTree = "<group>"; };
 		0B702E101F16217E00E39FAF /* RegInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegInfoTableViewCell.m; sourceTree = "<group>"; };
-		0B702E121F16254E00E39FAF /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
-		0B702E131F16254E00E39FAF /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
 		0B702E151F16299100E39FAF /* MineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
 		0B702E161F16299100E39FAF /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		0B71CF072018748D006D29B7 /* AppShareSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppShareSDK.h; sourceTree = "<group>"; };
@@ -657,6 +653,10 @@
 		1F94DFB620D6262E0095DFC5 /* FinishHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishHeaderView.m; sourceTree = "<group>"; };
 		1F94DFB820D62DDC0095DFC5 /* FinishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishCell.h; sourceTree = "<group>"; };
 		1F94DFB920D62DDC0095DFC5 /* FinishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishCell.m; sourceTree = "<group>"; };
+		1F94DFBB20D6C60F0095DFC5 /* ResetWordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetWordController.h; sourceTree = "<group>"; };
+		1F94DFBC20D6C60F0095DFC5 /* ResetWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetWordController.m; sourceTree = "<group>"; };
+		1F94DFBF20D6CB9C0095DFC5 /* RegisterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
+		1F94DFC020D6CB9C0095DFC5 /* RegisterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterModel.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1264,15 +1264,14 @@
 		0BF29A431F1371F600CBE2CB /* AppLoginController */ = {
 			isa = PBXGroup;
 			children = (
+				1F94DFBE20D6CB7C0095DFC5 /* Model */,
 				0B702E0B1F16214800E39FAF /* View */,
 				0BF29A471F137CD700CBE2CB /* LoginViewController.h */,
 				0BF29A481F137CD700CBE2CB /* LoginViewController.m */,
 				0B702DFC1F1602AF00E39FAF /* RegViewController.h */,
 				0B702DFD1F1602AF00E39FAF /* RegViewController.m */,
-				0B702E051F16172E00E39FAF /* RegInfoViewController.h */,
-				0B702E061F16172E00E39FAF /* RegInfoViewController.m */,
-				0B702E121F16254E00E39FAF /* ModifyPasswordViewController.h */,
-				0B702E131F16254E00E39FAF /* ModifyPasswordViewController.m */,
+				1F94DFBB20D6C60F0095DFC5 /* ResetWordController.h */,
+				1F94DFBC20D6C60F0095DFC5 /* ResetWordController.m */,
 			);
 			path = AppLoginController;
 			sourceTree = "<group>";
@@ -2137,6 +2136,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F94DFBE20D6CB7C0095DFC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFBF20D6CB9C0095DFC5 /* RegisterModel.h */,
+				1F94DFC020D6CB9C0095DFC5 /* RegisterModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2341,6 +2349,7 @@
 				1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */,
 				1F676EC620A0AB1E002F71B4 /* PublishEditModel.m in Sources */,
 				1F676F7820B13C1E002F71B4 /* FindColorViewController.m in Sources */,
+				1F94DFBD20D6C60F0095DFC5 /* ResetWordController.m in Sources */,
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				1F16D8C920C8145900A6C11D /* MatchDetailController.m in Sources */,
@@ -2369,6 +2378,7 @@
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F30623A204AA85D00784C62 /* BannerModel.m in Sources */,
 				1F676F7C20B16705002F71B4 /* DasaiViewController.m in Sources */,
+				1F94DFC120D6CB9C0095DFC5 /* RegisterModel.m in Sources */,
 				0B317CB11F0F82D900B01DDA /* FeedBackViewController.m in Sources */,
 				1F306233204AA29000784C62 /* TimeLineCell.m in Sources */,
 				0B75D5851FBE9752008D7AE6 /* AppRoutine.m in Sources */,
@@ -2418,7 +2428,6 @@
 				1F676F7520B05FEE002F71B4 /* FindBodyViewController.m in Sources */,
 				1F0FDFC520C23BC50041E73B /* BirdDetailController.m in Sources */,
 				1F94DFB020D50EC90095DFC5 /* MineNotifyFollowController.m in Sources */,
-				0B702E071F16172E00E39FAF /* RegInfoViewController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
@@ -2507,7 +2516,6 @@
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
 				1F16D8E820CD73CC00A6C11D /* MatchNoteCell.m in Sources */,
-				0B702E141F16254E00E39FAF /* ModifyPasswordViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,
 				1F676F9420B5AAF4002F71B4 /* MineFriendViewController.m in Sources */,
 				1F0FDF5420BA959E0041E73B /* WorksViewController.m in Sources */,
