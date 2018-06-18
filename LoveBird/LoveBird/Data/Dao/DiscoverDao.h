@@ -34,4 +34,7 @@
 
 // 排行
 + (void)getRankList:(NSString *)matchid  type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 附近鸟
++ (void)getNearBird:(NSString *)lat  type:(NSString *)lng radius:(NSString *)radius successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

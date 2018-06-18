@@ -89,13 +89,16 @@
     return [GuideCell getHeight:self.dataArray[indexPath.row]];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (void)setTableView {
     
     self.title = @"鸟导";
     [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
     
     self.tableView.top = total_topView_height;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

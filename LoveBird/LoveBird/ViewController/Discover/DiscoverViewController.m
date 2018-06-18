@@ -24,6 +24,7 @@
 
 #import "LogDetailController.h"
 #import "AppWebViewController.h"
+#import "NearController.h"
 
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
@@ -229,7 +230,8 @@
     switch (indexPath.row) {
         case 0:
         { // 附近
-
+            NearController *nearvc = [[NearController alloc] init];
+            [self.navigationController pushViewController:nearvc animated:YES];
         }
             break;
         case 1:

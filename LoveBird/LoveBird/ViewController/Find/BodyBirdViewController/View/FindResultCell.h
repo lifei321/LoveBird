@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FindSelectBirdModel.h"
+#import "MapDiscoverModel.h"
 
 @interface FindResultCell : UITableViewCell
 
 @property (nonatomic, strong) FindSelectBirdModel *birdModel;
 
+@property (nonatomic, strong) MapDiscoverInfoModel *infoModel;
 
 @end

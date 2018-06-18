@@ -69,4 +69,18 @@
     
 }
 
+- (void)setInfoModel:(MapDiscoverInfoModel *)infoModel {
+    _infoModel = infoModel;
+    self.accessoryType = UITableViewCellAccessoryNone;
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    self.titleLabel.text = infoModel.name;
+    self.contentLabel.text = infoModel.name_la;
+    
+    self.titleLabel.textColor = (infoModel.isSelect) ? kColorDefaultColor : [UIColor blackColor];
+    self.contentLabel.textColor = (infoModel.isSelect) ? kColorDefaultColor : [UIColor blackColor];
+    self.lineView.backgroundColor = (infoModel.isSelect) ? kColorDefaultColor : kLineColoreDefaultd4d7dd;
+    
+}
+
 @end
