@@ -6,8 +6,8 @@
 //  Copyright © 2018年 shancheli. All rights reserved.
 //
 
-#import "AppBaseViewController.h"
+#import "AppBaseTableViewController.h"
 
-@interface GuideViewController : AppBaseViewController
+@interface GuideViewController : AppBaseTableViewController
 
 @end

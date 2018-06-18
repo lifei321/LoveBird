@@ -54,6 +54,8 @@
     [self setNavigation];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForUserInfo) name:kLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOutNotifycation) name:kLogoutSuccessNotification object:nil];
+
 }
 
 - (void)netForUserInfo {
@@ -75,6 +77,11 @@
         [self.tableView.mj_header endRefreshing];
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
+}
+
+// 退出登录
+- (void)logOutNotifycation {
+    
 }
 
 - (void)notificationButton:(UIButton *)button {

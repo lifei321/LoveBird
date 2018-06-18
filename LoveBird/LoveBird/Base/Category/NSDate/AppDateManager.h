@@ -22,6 +22,9 @@ static NSString *DateFormatYMD2 = @"yyyy/MM/dd";
 
 static NSString *DateFormatMD = @"MM-dd";
 
+static NSString *DateFormatMD2 = @"MM/dd";
+
+
 
 @interface AppDateManager : NSObject
 

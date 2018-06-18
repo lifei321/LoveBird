@@ -220,6 +220,9 @@
 		1F94DFBA20D62DDC0095DFC5 /* FinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFB920D62DDC0095DFC5 /* FinishCell.m */; };
 		1F94DFBD20D6C60F0095DFC5 /* ResetWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFBC20D6C60F0095DFC5 /* ResetWordController.m */; };
 		1F94DFC120D6CB9C0095DFC5 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFC020D6CB9C0095DFC5 /* RegisterModel.m */; };
+		1F94DFC620D764FF0095DFC5 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFC520D764FF0095DFC5 /* GuideCell.m */; };
+		1F94DFC920D768D60095DFC5 /* GuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFC820D768D60095DFC5 /* GuideModel.m */; };
+		1F94DFCC20D798FB0095DFC5 /* GuideHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F94DFCB20D798FB0095DFC5 /* GuideHeadView.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -657,6 +660,12 @@
 		1F94DFBC20D6C60F0095DFC5 /* ResetWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetWordController.m; sourceTree = "<group>"; };
 		1F94DFBF20D6CB9C0095DFC5 /* RegisterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
 		1F94DFC020D6CB9C0095DFC5 /* RegisterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterModel.m; sourceTree = "<group>"; };
+		1F94DFC420D764FF0095DFC5 /* GuideCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
+		1F94DFC520D764FF0095DFC5 /* GuideCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
+		1F94DFC720D768D60095DFC5 /* GuideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideModel.h; sourceTree = "<group>"; };
+		1F94DFC820D768D60095DFC5 /* GuideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideModel.m; sourceTree = "<group>"; };
+		1F94DFCA20D798FB0095DFC5 /* GuideHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideHeadView.h; sourceTree = "<group>"; };
+		1F94DFCB20D798FB0095DFC5 /* GuideHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideHeadView.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1168,6 +1177,8 @@
 		0BA4190E201C675D002C6335 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				1F94DFC320D764BA0095DFC5 /* Model */,
+				1F94DFC220D764B90095DFC5 /* View */,
 				0BA41916201C6835002C6335 /* GuideViewController.h */,
 				0BA41917201C6835002C6335 /* GuideViewController.m */,
 			);
@@ -2145,6 +2156,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1F94DFC220D764B90095DFC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFC420D764FF0095DFC5 /* GuideCell.h */,
+				1F94DFC520D764FF0095DFC5 /* GuideCell.m */,
+				1F94DFCA20D798FB0095DFC5 /* GuideHeadView.h */,
+				1F94DFCB20D798FB0095DFC5 /* GuideHeadView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F94DFC320D764BA0095DFC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F94DFC720D768D60095DFC5 /* GuideModel.h */,
+				1F94DFC820D768D60095DFC5 /* GuideModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2373,6 +2404,7 @@
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
 				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
+				1F94DFC920D768D60095DFC5 /* GuideModel.m in Sources */,
 				1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */,
 				1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
@@ -2430,6 +2462,7 @@
 				1F94DFB020D50EC90095DFC5 /* MineNotifyFollowController.m in Sources */,
 				1F676EC320A0A0DF002F71B4 /* PublishCell.m in Sources */,
 				0BC2B39220A2F5D7003283D1 /* ApplyTimePickerView.m in Sources */,
+				1F94DFC620D764FF0095DFC5 /* GuideCell.m in Sources */,
 				0B75D5B61FBEC5C5008D7AE6 /* PasswordTextField.m in Sources */,
 				1F676EDF20A7DAE7002F71B4 /* PublishEVController.m in Sources */,
 				1F16D8CF20C8252600A6C11D /* SetDao.m in Sources */,
@@ -2445,6 +2478,7 @@
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F16D8E320CD6C5700A6C11D /* MatchDetaiNoteViewController.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
+				1F94DFCC20D798FB0095DFC5 /* GuideHeadView.m in Sources */,
 				1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */,
 				1F0FDF4820BA87F30041E73B /* ZhuangbeiModel.m in Sources */,
 				1F676EB420A08579002F71B4 /* PublishDetailModel.m in Sources */,

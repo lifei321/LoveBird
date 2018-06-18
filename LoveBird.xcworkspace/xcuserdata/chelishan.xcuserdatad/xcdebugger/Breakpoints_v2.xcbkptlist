@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Data/Dao/PublishDao.m"
-            timestampString = "550952246.286839"
+            timestampString = "551004528.533692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -36,7 +36,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "550952246.4405"
+                  timestampString = "551004528.76104"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -51,7 +51,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "550952246.444689"
+                  timestampString = "551004528.764516"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -62,11 +62,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.91"
+                  symbolName = "__destroy_helper_block_.93"
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Data/Dao/PublishDao.m"
-                  timestampString = "550952246.4477479"
+                  timestampString = "551004528.774166"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -99,12 +99,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "550951442.04722"
+            timestampString = "551004528.534266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "+success:responseObject:success:failure:"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "+POST:parameters:fileArray:jsonModelName:success:uploadProgress:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,12 +115,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "550951442.047587"
+            timestampString = "551004528.534658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "+POST:parameters:fileArray:jsonModelName:success:uploadProgress:failure:"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "+success:responseObject:success:failure:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[BJXYHTTPManager success:responseObject:success:failure:]"
+                  moduleName = "LoveBird"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
+                  timestampString = "551004528.7942179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "289"
+                  endingLineNumber = "289"
+                  offsetFromSymbolStart = "525">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__58+[BJXYHTTPManager success:responseObject:success:failure:]_block_invoke"
+                  moduleName = "LoveBird"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
+                  timestampString = "551004528.796973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "291"
+                  endingLineNumber = "291"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
+            timestampString = "551004528.534761"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "+success:responseObject:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

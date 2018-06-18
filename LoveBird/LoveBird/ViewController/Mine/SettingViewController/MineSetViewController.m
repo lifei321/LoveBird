@@ -52,7 +52,9 @@
 }
 
 - (void)logoutButtonDidClick {
-    
+    [UserPage logoutBlock:^{
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

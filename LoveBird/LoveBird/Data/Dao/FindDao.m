@@ -10,6 +10,7 @@
 #import "FindSelectBirdModel.h"
 #import "FindDisplayShapeModel.h"
 #import "ClassifyModel.h"
+#import "GuideModel.h"
 
 @implementation FindDao
 
@@ -99,6 +100,25 @@
     }
     
     [AppHttpManager POST:url parameters:dic jsonModelName:[ClassifyDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 鸟岛列表
++ (void)getGuide:(NSString *)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(pageNum) forKey:@"page"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    
+    [AppHttpManager POST:kAPI_Find_Bird_travelList parameters:dic jsonModelName:[GuideDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

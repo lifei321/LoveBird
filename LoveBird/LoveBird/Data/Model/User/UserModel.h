@@ -8,13 +8,19 @@
 
 #import "AppBaseModel.h"
 
+typedef void(^UserModelBlock)(void);
+
 @class UserModel;
 @interface UserPage : NSObject
 
-+ (UserPage *)sharedInstance;
 
 @property (nonatomic, strong) UserModel *userModel;
 
++ (UserPage *)sharedInstance;
+
++ (void)logoutBlock:(UserModelBlock)block;
+
++ (void)gotoLoinBlock:(UserModelBlock)block;
 
 @end
 

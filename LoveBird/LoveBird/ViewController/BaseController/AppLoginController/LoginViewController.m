@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong) PasswordTextField *passwordTextField;
 
-@property (nonatomic, strong) PhoneTextField *phoneTextField;
+@property (nonatomic, strong) AppTextField *phoneTextField;
 
 
 @end
@@ -198,11 +198,12 @@
         [backView addSubview:seeButton];
         self.passwordTextField = textField;
     } else {
-        PhoneTextField *phoneTextField = [[PhoneTextField alloc] initWithFrame:CGRectMake(icon.right + AutoSize(13), 0, frame.size.width - icon.right - AutoSize(26), frame.size.height)];
+        AppTextField *phoneTextField = [[AppTextField alloc] initWithFrame:CGRectMake(icon.right + AutoSize(13), 0, frame.size.width - icon.right - AutoSize(26), frame.size.height)];
         phoneTextField.placeholder = placeHolder;
         phoneTextField.textColor = [UIColor blackColor];
         phoneTextField.font = kFont(14);
         [backView addSubview:phoneTextField];
+        phoneTextField.isTransparent = YES;
         self.phoneTextField = phoneTextField;
     }
     return backView;

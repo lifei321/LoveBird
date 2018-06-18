@@ -8,6 +8,7 @@
 
 #import "UserModel.h"
 #import <JSONModel/JSONModel.h>
+#import "LoginViewController.h"
 
 @implementation UserPage
 
@@ -28,6 +29,25 @@
         self.userModel = [self getUserModel];
     }
     return self;
+}
+
++ (void)logoutBlock:(UserModelBlock)block {
+    [AppCache removeObjectForKey:@"token"];
+    [AppCache removeObjectForKey:@"uid"];
+    [UserPage sharedInstance].userModel.token = nil;
+    [UserPage sharedInstance].userModel.uid = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:nil];
+    if (block) {
+        block();
+    }
+}
+
++ (void)gotoLoinBlock:(UserModelBlock)block {
+    LoginViewController *logvc = [[LoginViewController alloc] init];
+    [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
+    if (block) {
+        block();
+    }
 }
 
 - (void)setUserModel:(UserModel *)userModel {

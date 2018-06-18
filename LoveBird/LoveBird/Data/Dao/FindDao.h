@@ -32,4 +32,9 @@
              subject:(NSString *)subject
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock;
+
+// 鸟岛列表
++ (void)getGuide:(NSString *)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
 @end

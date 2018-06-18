@@ -181,7 +181,10 @@
  */
 #define kAPI_Find_Bird_family kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchFamily")
 
-
+/**
+ *  查鸟 科类
+ */
+#define kAPI_Find_Bird_travelList kAPI_USER_SERVER_VERSION(@"travel/index.php?cmd=travelList")
 
 
 #pragma mark-- 发布
