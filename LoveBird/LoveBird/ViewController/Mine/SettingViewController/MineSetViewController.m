@@ -123,6 +123,22 @@
     if (model.pushViewController.length) {
         UIViewController *vc = [[NSClassFromString(model.pushViewController) alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        
+
+        if (indexPath.section == 3) {
+            AppWebViewController *webvc = [[AppWebViewController alloc] init];
+            NSString *url;
+            
+            if (indexPath.row == 0) {
+                url = [UserPage sharedInstance].userModel.aboutUrl;
+            } else if (indexPath.row == 1) {
+                url = [UserPage sharedInstance].userModel.helpUrl;
+            } else if (indexPath.row == 2) {
+                url = [UserPage sharedInstance].userModel.feedbackUrl;
+            }
+            [self.navigationController pushViewController:webvc animated:YES];
+        }
     }
 }
 

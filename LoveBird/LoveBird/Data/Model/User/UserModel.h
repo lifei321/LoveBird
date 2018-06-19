@@ -70,6 +70,13 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, copy) NSString *token;
 
+@property (nonatomic, copy) NSString *aboutUrl;
+
+@property (nonatomic, copy) NSString *helpUrl;
+
+@property (nonatomic, copy) NSString *feedbackUrl;
+
+
 
 //articleNum    日志数    number    @mock=24
 //birdspeciesNum    鸟种数    number    @mock=289
