@@ -43,7 +43,8 @@
 //    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     self.dataArray = [NSMutableArray new];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForFollowList) name:kLoginSuccessNotification object:nil];
+
     [self setTableView];
     
     if (self.type == 1) {
@@ -54,7 +55,9 @@
     }
     
 }
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)netForFollowList {
     
     [AppBaseHud showHudWithLoding:self.view];

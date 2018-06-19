@@ -264,7 +264,7 @@
      failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"username"];
+    [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"userName"];
     [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
     
     [AppHttpManager POST:kAPI_User_login parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {

@@ -33,7 +33,8 @@
     self.pageNum = @"";
     
     _dataArray = [NSMutableArray new];
-        
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
+
     // 设置UI
     [self setTableView];
     
@@ -43,6 +44,12 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     self.tableView.frame = self.view.bounds;
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)notify {
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)netForContentHeader {

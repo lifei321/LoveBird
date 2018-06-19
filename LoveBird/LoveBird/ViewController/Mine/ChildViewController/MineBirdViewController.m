@@ -31,6 +31,9 @@
     
     _dataArray = [[NSMutableArray alloc] init];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
+
+    
     [self setTableView];
     [self netForLog];
 }
@@ -39,6 +42,13 @@
     [super viewWillLayoutSubviews];
     self.tableView.frame = self.view.bounds;
 }
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)notify {
+    [self.tableView.mj_header beginRefreshing];
+}
+
 
 - (void)netForLog {
     
