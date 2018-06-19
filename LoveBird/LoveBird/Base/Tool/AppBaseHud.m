@@ -77,6 +77,19 @@ static CGFloat HudAfterTime = 2.5;
 }
 
 /**
+ *   操作成功
+ *
+ */
++ (void)showHudWithSuccessful:(NSString *)title view:(UIView *)view block:(AppHudBlock)block {
+    [AppBaseHud showHud:title tipsType:BWMMBProgressHUDMsgTypeSuccessful view:view];
+    sleep(HudAfterTime);
+    if (block) {
+        block();
+    }
+    
+}
+
+/**
  *   操作失败
  *
  */
@@ -86,6 +99,18 @@ static CGFloat HudAfterTime = 2.5;
         return;
     }
     [AppBaseHud showHud:title tipsType:BWMMBProgressHUDMsgTypeError view:view];
+}
+
+/**
+ *   操作失败
+ *
+ */
++ (void)showHudWithfail:(NSString *)title view:(UIView *)view block:(AppHudBlock)block {
+    [AppBaseHud showHudWithfail:title view:view];
+    sleep(HudAfterTime);
+    if (block) {
+        block();
+    }
 }
 
 /**

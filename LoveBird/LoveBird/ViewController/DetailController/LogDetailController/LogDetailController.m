@@ -19,7 +19,7 @@
 #import "LogContentModel.h"
 #import "LogContentSubjectCell.h"
 
-@interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource>
+@interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 // 日志
 @property (nonatomic, strong) LogDetailModel *detailModel;
@@ -266,6 +266,10 @@
         
         LogDetailModel *detailModel = (LogDetailModel *)responseObject;
         
+        if ([detailModel.authorid isEqualToString:[UserPage sharedInstance].userModel.uid]) {
+            [self setRightButton];
+        }
+        
         self.tableView.tableHeaderView = self.headerView;
         self.headerView.detailModel = detailModel;
         self.headerView.height = [self.headerView getHeight];
@@ -359,12 +363,51 @@
     } else {
         self.title = @"文章详情";
     }
+
+    self.page = 1;
+    self.dataArray = [NSMutableArray new];
+}
+
+- (void)setRightButton {
+    
     self.rightButton.title = @"操作";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     
-    self.page = 1;
-    self.dataArray = [NSMutableArray new];
+}
+
+- (void)rightButtonAction {
+    
+    UIActionSheet *actionsheet03 = [[UIActionSheet alloc] initWithTitle:@"操作" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"编辑", @"删除", @"投稿", @"分享", nil];
+    [actionsheet03 showInView:self.view];
+}
+
+// UIActionSheetDelegate实现代理方法
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+        if (0 == buttonIndex) {
+            
+        } else if (1 == buttonIndex) {
+            
+            [AppBaseHud showHudWithLoding:self.view];
+            @weakify(self);
+            [DetailDao getDeleteDetail:self.tid successBlock:^(__kindof AppBaseModel *responseObject) {
+                @strongify(self);
+                [AppBaseHud showHudWithSuccessful:@"删除成功" view:self.view block:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                
+            } failureBlock:^(__kindof AppBaseModel *error) {
+                @strongify(self);
+                [AppBaseHud showHudWithfail:error.errstr view:self.view];
+            }];
+            
+          
+        } else if (2 == buttonIndex) {
+           
+        } else if (3 == buttonIndex) {
+            
+        }
 }
 
 - (void)setTableView {

@@ -255,6 +255,10 @@
  */
 #define kAPI_Detail_BirdDetail kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdDetail")
 
+/**
+ *  删除日志详情
+ */
+#define kAPI_Detail_DeleteBirdDetail kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=delBirdArticle")
 
 
 #pragma mark-- 设置

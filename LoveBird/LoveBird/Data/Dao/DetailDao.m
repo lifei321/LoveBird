@@ -117,4 +117,23 @@
     }];
 }
 
+// 删除日志
++ (void)getDeleteDetail:(NSString *)tid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.token) forKey:@"token"];
+
+    
+    [AppHttpManager POST:kAPI_Detail_DeleteBirdDetail parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 @end

@@ -68,7 +68,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551109102.666741"
+                  timestampString = "551116329.105299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "289"
@@ -83,7 +83,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551109102.670341"
+                  timestampString = "551116329.10849"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "291"
@@ -106,6 +106,22 @@
             startingLineNumber = "297"
             endingLineNumber = "297"
             landmarkName = "+success:responseObject:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/Base/Tool/AppAlertView.m"
+            timestampString = "551111338.888459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-initWithTitle:message:cancelButtonTitle:otherButtonTitles:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

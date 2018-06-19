@@ -13,6 +13,9 @@
 #import "ShequCell.h"
 #import "ShequFrameModel.h"
 #import "BannerModel.h"
+#import "LogDetailController.h"
+#import "ShequZuzhiModel.h"
+#import "ShequZuzhiController.h"
 
 
 @interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -114,6 +117,16 @@
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ShequFrameModel *frameModel = self.dataArray[indexPath.row];
+    if (frameModel.shequModel.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = frameModel.shequModel.tid;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
+}
+
 
 #pragma mark - 轮播图代理
 
@@ -132,6 +145,24 @@
 - (void)setNavigation {
     self.navigationItem.title = @"社区";
     [self.rightButton setImage:[UIImage imageNamed:@"shequ_right"]];
+}
+
+- (void)rightButtonAction {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DiscoverDao getShequSectionSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        ShequZuzhiDataModel *dataModel = (ShequZuzhiDataModel *)responseObject;
+        ShequZuzhiController *zuzhivc = [[ShequZuzhiController alloc] init];
+        zuzhivc.dataModel = dataModel;
+        [self.navigationController pushViewController:zuzhivc animated:YES];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 

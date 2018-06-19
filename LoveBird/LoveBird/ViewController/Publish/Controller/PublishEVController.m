@@ -34,16 +34,28 @@
         PublishEVDataModel *dataModel = (PublishEVDataModel *)responseObject;
         
         AppTagsView *tagView = [[AppTagsView alloc] initWithFrame:CGRectMake(0, total_topView_height, SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height)];
-        tagView.selectModel = self.selectEVModel;
-        tagView.tagArray = dataModel.data;
+        
+        for (int i = 0; i < dataModel.data.count; i++) {
+            PublishEVModel *model = dataModel.data[i];
+            if ([model.evId isEqualToString:self.selectEVModel.evId]) {
+                tagView.selectIndex = i;
+                break;
+            }
+        }
+        
+        NSMutableArray *tempArray = [NSMutableArray new];
+        for (PublishEVModel *model in dataModel.data) {
+            [tempArray addObject:model.name];
+        }
+        tagView.tagArray = [NSArray arrayWithArray:tempArray];
         
         @weakify(self);
-        tagView.tagblock = ^(PublishEVModel *selectModel) {
+        tagView.tagblock = ^(NSInteger selectIndex) {
             @strongify(self);
 
             [self.navigationController popViewControllerAnimated:YES];
             if (self.viewControllerActionBlock) {
-                self.viewControllerActionBlock(self, selectModel);
+                self.viewControllerActionBlock(self, dataModel.data[selectIndex]);
             }
         };
         

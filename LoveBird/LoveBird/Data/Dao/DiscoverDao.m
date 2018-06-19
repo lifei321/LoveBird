@@ -16,6 +16,7 @@
 #import "MatchDetailModel.h"
 #import "MatchArticleModel.h"
 #import "MapDiscoverModel.h"
+#import "ShequZuzhiModel.h"
 
 
 
@@ -42,9 +43,8 @@
 // 社区模块
 + (void)getShequSectionSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
-    [AppHttpManager POST:kAPI_Discover_ShequSection parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_Discover_ShequSection parameters:dic jsonModelName:[ShequZuzhiDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

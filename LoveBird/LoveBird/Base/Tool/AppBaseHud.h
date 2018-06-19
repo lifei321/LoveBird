@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MBProgressHUD+BWMExtension.h"
 
+typedef void(^AppHudBlock)(void);
+
 
 @interface AppBaseHud : NSObject
 
@@ -37,13 +39,23 @@
  */
 + (void)showHudWithSuccessful:(NSString *)title view:(UIView *)view;
 
-
+/**
+ *   操作成功
+ *
+ */
++ (void)showHudWithSuccessful:(NSString *)title view:(UIView *)view block:(AppHudBlock)block;
 
 /**
  *   操作失败
  *
  */
 + (void)showHudWithfail:(NSString *)title view:(UIView *)view;
+
+/**
+ *   操作失败
+ *
+ */
++ (void)showHudWithfail:(NSString *)title view:(UIView *)view block:(AppHudBlock)block;
 
 /**
  *   显示进度条

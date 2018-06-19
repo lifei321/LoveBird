@@ -41,6 +41,8 @@
     self.backgroundColorSelected = kColorTarBarTitleHighlightColor;
     self.backgroundColorNormal = kLineColoreLightGrayECECEC;
     self.backgroundColor = [UIColor whiteColor];
+    
+    self.selectIndex = 0;
 }
 
 // 重写set属性
@@ -115,18 +117,16 @@
         btn.frame = CGRectMake(leftX, topY, 100, btnH);
         btn.tag = 100+i;
         
-        PublishEVModel *evModel = _tagArray[i];
+        NSString *string = _tagArray[i];
 
         // 默认选中第一个
-        if (self.selectModel) {
-            if ([self.selectModel.evId isEqualToString:evModel.evId]) {
-                btn.selected = YES;
-                self.selectButton = btn;
-            }
+        if (self.selectIndex == (btn.tag - 100)) {
+            btn.selected = YES;
+            self.selectButton = btn;
         }
         
         // 按钮文字
-        [btn setTitle:evModel.name forState:UIControlStateNormal];
+        [btn setTitle:string forState:UIControlStateNormal];
         btn.titleLabel.font = kFont6(26);
         [btn setTitleColor:self.textColorNormal forState:UIControlStateNormal];
         [btn setTitleColor:self.textColorSelected forState:UIControlStateSelected];
@@ -187,19 +187,71 @@
     if (self.selectButton.tag == btn.tag) {
         self.selectButton.selected = NO;
         self.selectButton = nil;
-        self.selectModel = nil;
+        self.selectIndex = -1;
     } else {
         self.selectButton.selected = NO;
         self.selectButton = btn;
         self.selectButton.selected = YES;
-        PublishEVModel *model = _tagArray[btn.tag - 100];
-        self.selectModel = model;
+        self.selectIndex = btn.tag - 100;
         
         if (self.tagblock) {
-            self.tagblock(model);
+            self.tagblock(self.selectIndex);
         }
     }
 }
 
++ (CGFloat)getHeight:(NSArray *)dataArray width:(CGFloat)width {
+    
+    CGFloat height = 0;
+    
+    // 按钮高度
+    CGFloat btnH = AutoSize6(54);
+    // 距离左边距
+    CGFloat leftX = AutoSize6(30);
+    // 距离上边距
+    CGFloat topY = AutoSize6(40);
+    // 按钮左右间隙
+    CGFloat marginX = AutoSize6(20);
+    // 按钮上下间隙
+    CGFloat marginY = AutoSize6(20);
+    // 文字左右间隙
+    CGFloat fontMargin = AutoSize6(20);
+    
+    for (int i = 0; i < dataArray.count; i++) {
+        
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(leftX, topY, 100, btnH);
+        btn.tag = 100+i;
+        
+        NSString *string = dataArray[i];
+        
+        // 按钮文字
+        [btn setTitle:string forState:UIControlStateNormal];
+        btn.titleLabel.font = kFont6(26);
+
+        [btn sizeToFit];
+        CGRect frame = btn.frame;
+        frame.size.width += fontMargin * 2;
+        frame.size.height = btnH;
+        btn.frame = frame;
+        
+        // 处理换行
+        if (btn.left + btn.width + marginX > width) {
+            
+            leftX = AutoSize6(30);
+            
+            // 换行
+            topY += btnH + marginY;
+            btn.left = leftX;
+            btn.top = topY;
+        }
+        
+        leftX += btn.width + marginX;
+        
+        height = btn. bottom;
+    }
+    
+    return height;
+}
 
 @end

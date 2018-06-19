@@ -28,4 +28,7 @@
 
 // 鸟种详情
 + (void)getBirdDetail:(NSString *)code successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 删除日志
++ (void)getDeleteDetail:(NSString *)tid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

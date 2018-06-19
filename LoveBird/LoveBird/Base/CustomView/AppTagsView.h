@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PublishEVModel.h"
 
-typedef void(^AppTagsViewBlock)(PublishEVModel *selectModel);
+typedef void(^AppTagsViewBlock)(NSInteger selectIndex);
 
 @interface AppTagsView : UIView
 
@@ -34,8 +33,11 @@ typedef void(^AppTagsViewBlock)(PublishEVModel *selectModel);
 // 默认标签背景颜色
 @property (nonatomic,retain) UIColor* backgroundColorNormal;
 
-@property (nonatomic, strong) PublishEVModel *selectModel;
+// 选中的
+@property (nonatomic, assign) NSInteger selectIndex;
 
 @property (nonatomic, strong) AppTagsViewBlock tagblock;
 
+// 高度
++ (CGFloat)getHeight:(NSArray *)dataArray width:(CGFloat)width;
 @end
