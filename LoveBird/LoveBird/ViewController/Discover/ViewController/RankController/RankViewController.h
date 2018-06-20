@@ -10,4 +10,6 @@
 
 @interface RankViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *matchId;
+
 @end

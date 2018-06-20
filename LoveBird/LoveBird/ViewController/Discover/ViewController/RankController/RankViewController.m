@@ -12,6 +12,7 @@
 #import "UIImage+Addition.h"
 #import "RankModel.h"
 #import "RankTableViewCell.h"
+#import "WZSwitch.h"
 
 
 @interface RankViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -27,6 +28,10 @@
 @property (nonatomic, strong) UILabel *firstLabel;
 
 @property (nonatomic, strong) UILabel *secondLabel;
+
+@property(nonatomic,strong)WZSwitch     *mySwitch;
+
+@property (nonatomic , copy) NSString *isYear;
 
 @end
 
@@ -50,7 +55,7 @@
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DiscoverDao getRankList:@"" type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getRankList:self.matchId type:self.type isYear:self.isYear successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         
         [AppBaseHud hideHud:self.view];
@@ -102,7 +107,7 @@
     self.selectButton.selected = NO;
     button.selected = YES;
     self.selectButton = button;
-    self.type = [NSString stringWithFormat:@"%ld", button.tag];
+    self.type = [NSString stringWithFormat:@"%ld", (long)button.tag];
     [self netForContent];
     [self.dataArray removeAllObjects];
     [self.tableView reloadData];
@@ -167,7 +172,22 @@
     
     self.navigationItem.titleView = titleView;
     
+    self.mySwitch = [[WZSwitch alloc]initWithFrame:CGRectMake(0, 0, AutoSize6(70), AutoSize6(40))];
+    [self.mySwitch setSwitchState:YES animation:NO];
+    [self.mySwitch setTextFont:[UIFont fontWithName:@"Helvetica-Bold" size:AutoSize6(24)]];
     
+    @weakify(self);
+    self.mySwitch.block = ^(BOOL state) {
+        @strongify(self);
+        
+        //yes 音频  no 视频
+        self.isYear = [NSString stringWithFormat:@"%d", !state];
+        [self netForContent];
+    };
+    
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:self.mySwitch];
+    self.rightButton = barItem;
+    self.isYear = @"0";
 }
 
 - (void)setTableView {
