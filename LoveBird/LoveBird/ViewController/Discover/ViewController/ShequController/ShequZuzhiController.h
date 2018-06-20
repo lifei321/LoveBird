@@ -13,4 +13,9 @@
 
 @property (nonatomic, strong) ShequZuzhiDataModel *dataModel;
 
+@property (nonatomic, copy) NSString *groupId;
+
+@property (nonatomic, copy) NSString *sortId;
+
+
 @end

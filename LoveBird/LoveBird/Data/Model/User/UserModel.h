@@ -16,6 +16,9 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, strong) UserModel *userModel;
 
+@property (nonatomic, assign) BOOL isLogin;
+
+
 + (UserPage *)sharedInstance;
 
 + (void)logoutBlock:(UserModelBlock)block;

@@ -329,6 +329,10 @@
                  [UserPage sharedInstance].userModel.token = dataModel.userInfo.token;
                  [UserPage sharedInstance].userModel.uid = dataModel.userInfo.uid;
                  
+                 if (self.viewControllerActionBlock) {
+                     self.viewControllerActionBlock(self, nil);
+                 }
+                 
                  [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
                  [self dismissViewControllerAnimated:YES completion:nil];
                  

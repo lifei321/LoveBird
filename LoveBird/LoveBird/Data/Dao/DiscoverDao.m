@@ -23,10 +23,17 @@
 @implementation DiscoverDao
 
 // 社区列表
-+ (void)getShequList:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getShequList:(NSInteger)page
+             groupId:(NSString *)groupId
+              sortId:(NSString *)sortId
+        successBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock {
+    
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:[NSString stringWithFormat:@"%ld", (long)page] forKey:@"page"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(groupId) forKey:@"groupId"];
+    [dic setObject:EMPTY_STRING_IF_NIL(sortId) forKey:@"sortId"];
 
     [AppHttpManager POST:kAPI_Discover_ShequList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {

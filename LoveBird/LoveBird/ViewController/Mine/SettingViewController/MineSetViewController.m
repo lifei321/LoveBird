@@ -53,7 +53,7 @@
 
 - (void)logoutButtonDidClick {
     [UserPage logoutBlock:^{
-        
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 

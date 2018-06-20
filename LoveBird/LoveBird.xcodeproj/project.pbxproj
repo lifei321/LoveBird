@@ -230,6 +230,7 @@
 		1FDBE74520D827CD0092E82E /* MapDisCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE74420D827CD0092E82E /* MapDisCoverView.m */; };
 		1FDBE74820D950D50092E82E /* ShequZuzhiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE74720D950D50092E82E /* ShequZuzhiModel.m */; };
 		1FDBE74B20D9529A0092E82E /* ShequZuzhiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE74A20D9529A0092E82E /* ShequZuzhiController.m */; };
+		1FDBE74E20D95F130092E82E /* ShequZuzhiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE74D20D95F130092E82E /* ShequZuzhiCell.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -687,6 +688,8 @@
 		1FDBE74720D950D50092E82E /* ShequZuzhiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequZuzhiModel.m; sourceTree = "<group>"; };
 		1FDBE74920D9529A0092E82E /* ShequZuzhiController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequZuzhiController.h; sourceTree = "<group>"; };
 		1FDBE74A20D9529A0092E82E /* ShequZuzhiController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequZuzhiController.m; sourceTree = "<group>"; };
+		1FDBE74C20D95F130092E82E /* ShequZuzhiCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShequZuzhiCell.h; sourceTree = "<group>"; };
+		1FDBE74D20D95F130092E82E /* ShequZuzhiCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShequZuzhiCell.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2001,6 +2004,8 @@
 				1F676F2120A9D3D1002F71B4 /* ShequCellHeadView.m */,
 				1F676F6A20AC769C002F71B4 /* ShequBottomView.h */,
 				1F676F6B20AC769C002F71B4 /* ShequBottomView.m */,
+				1FDBE74C20D95F130092E82E /* ShequZuzhiCell.h */,
+				1FDBE74D20D95F130092E82E /* ShequZuzhiCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2451,6 +2456,7 @@
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F0FDFBF20C23B250041E73B /* LogDetailHeadView.m in Sources */,
+				1FDBE74E20D95F130092E82E /* ShequZuzhiCell.m in Sources */,
 				1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
 				1F94DFBA20D62DDC0095DFC5 /* FinishCell.m in Sources */,

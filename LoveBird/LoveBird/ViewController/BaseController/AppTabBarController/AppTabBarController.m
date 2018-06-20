@@ -33,8 +33,15 @@
     if (self) {
         // 设置代理
         self.delegate = self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOutNotifycation) name:kLogoutSuccessNotification object:nil];
     }
     return self;
+}
+
+- (void)logOutNotifycation {
+    self.selectedIndex = 4;
+    [self tabBarController:self didSelectViewController:[[UIViewController alloc] init]];
 }
 
 - (void)viewDidLoad {
@@ -87,35 +94,31 @@
 #pragma mark --UITabBarControllerDelegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-
+    
     if (tabBarController.selectedIndex == 2) {
-        PublishViewController *pubvc = [[PublishViewController alloc] init];
-        @weakify(self);
-        pubvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
-            @strongify(self);
-            self.selectedIndex = self.selectedItem;
-        };
-        [kViewController presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:pubvc] animated:NO completion:nil];
-        return;
+        
+        [UserPage gotoLoinBlock:^{
+            if (tabBarController.selectedIndex == 2) {
+                PublishViewController *pubvc = [[PublishViewController alloc] init];
+//                @weakify(self);
+                pubvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+//                    @strongify(self);
+                };
+                [kViewController presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:pubvc] animated:NO completion:nil];
+            }
+        }];
+        self.selectedIndex = self.selectedItem;
+    } else if (tabBarController.selectedIndex == 4) {
+        [UserPage gotoLoinBlock:^{
+            self.selectedIndex = 4;
+        }];
+        self.selectedIndex = self.selectedItem;
+
     } else {
         self.selectedItem = self.selectedIndex;
+
     }
 }
-
-/**
- *  在点击tabbarButton的时候调用
- */
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(nonnull UIViewController *)viewController {
-    if (tabBarController.selectedIndex == 3) {
-
-        LoginViewController *logvc = [[LoginViewController alloc] init];
-        [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
-    }
-
-    return YES;
-}
-
-
 
 
 @end

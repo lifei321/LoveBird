@@ -103,7 +103,7 @@
     // 距离左边距
     CGFloat leftX = AutoSize6(30);
     // 距离上边距
-    CGFloat topY = AutoSize6(40);
+    CGFloat topY = AutoSize6(10);
     // 按钮左右间隙
     CGFloat marginX = AutoSize6(20);
     // 按钮上下间隙

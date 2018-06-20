@@ -12,7 +12,6 @@
 
 @implementation UserPage
 
-
 + (UserPage *)sharedInstance {
     static UserPage *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -31,6 +30,13 @@
     return self;
 }
 
+- (BOOL)isLogin {
+    if ([UserPage sharedInstance].userModel.uid.length) {
+        return YES;
+    }
+    return NO;
+}
+
 + (void)logoutBlock:(UserModelBlock)block {
     [AppCache removeObjectForKey:@"token"];
     [AppCache removeObjectForKey:@"uid"];
@@ -43,10 +49,15 @@
 }
 
 + (void)gotoLoinBlock:(UserModelBlock)block {
-    LoginViewController *logvc = [[LoginViewController alloc] init];
-    [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
-    if (block) {
-        block();
+    
+    if (![UserPage sharedInstance].isLogin) {
+        LoginViewController *logvc = [[LoginViewController alloc] init];
+        logvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            if (block) {
+                block();
+            }
+        };
+        [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
     }
 }
 

@@ -115,7 +115,7 @@
 /**
  *  社区模块
  */
-#define kAPI_Discover_ShequSection kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=section")
+#define kAPI_Discover_ShequSection kAPI_USER_SERVER_VERSION(@"community/index.php?cmd=section2")
 
 /**
  *  大赛列表

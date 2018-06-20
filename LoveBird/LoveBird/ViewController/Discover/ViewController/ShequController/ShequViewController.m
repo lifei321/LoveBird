@@ -16,6 +16,7 @@
 #import "LogDetailController.h"
 #import "ShequZuzhiModel.h"
 #import "ShequZuzhiController.h"
+#import "MJRefresh.h"
 
 
 @interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -24,6 +25,8 @@
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -45,7 +48,6 @@
     [self setTableView];
     
     [self netForBanner];
-    [self netforData];
 }
 
 - (void)netForBanner {
@@ -71,24 +73,44 @@
     }];
 }
 
+- (void)netForHeader {
+    self.page = 1;
+    [self netforData];
+}
+
+- (void)netForFooter {
+    self.page++;
+    [self netforData];
+}
+
 - (void)netforData {
-    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DiscoverDao getShequList:1 successBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        [AppBaseHud hideHud:self.view];
-        ShequDataModel *dataModel = (ShequDataModel *)responseObject;
-        for (ShequModel *model in dataModel.data) {
-            ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
-            frameModel.shequModel = model;
-            [self.dataArray addObject:frameModel];
-        }
-        [self.tableView reloadData];
+    [DiscoverDao getShequList:self.page
+                      groupId:self.groupId
+                       sortId:self.sortId
+                 successBlock:^(__kindof AppBaseModel *responseObject) {
+                     @strongify(self);
+                     [AppBaseHud hideHud:self.view];
+                     [self.tableView.mj_header endRefreshing];
+                     [self.tableView.mj_footer endRefreshing];
+                    ShequDataModel *dataModel = (ShequDataModel *)responseObject;
+                     
+                     if (self.page == 1) {
+                         [self.dataArray removeAllObjects];
+                     }
+                    for (ShequModel *model in dataModel.data) {
+                        ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
+                        frameModel.shequModel = model;
+                        [self.dataArray addObject:frameModel];
+                    }
+                    [self.tableView reloadData];
         
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-        [AppBaseHud showHudWithfail:error.errstr view:self.view];
-    }];
+            } failureBlock:^(__kindof AppBaseModel *error) {
+                @strongify(self);
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
+                [AppBaseHud showHudWithfail:error.errstr view:self.view];
+            }];
     
 }
 
@@ -157,6 +179,11 @@
         ShequZuzhiDataModel *dataModel = (ShequZuzhiDataModel *)responseObject;
         ShequZuzhiController *zuzhivc = [[ShequZuzhiController alloc] init];
         zuzhivc.dataModel = dataModel;
+        zuzhivc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            self.groupId = ((ShequZuzhiController *)viewController).groupId;
+            self.sortId = ((ShequZuzhiController *)viewController).sortId;
+            [self.tableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:zuzhivc animated:YES];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -179,7 +206,9 @@
     
     self.cycleScrollView.delegate = self;
     self.tableView.tableHeaderView = self.cycleScrollView;
-    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFooter)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 

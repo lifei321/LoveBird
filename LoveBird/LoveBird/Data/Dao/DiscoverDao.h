@@ -12,7 +12,11 @@
 @interface DiscoverDao : NSObject
 
 // 社区列表
-+ (void)getShequList:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)getShequList:(NSInteger)page
+             groupId:(NSString *)groupId
+              sortId:(NSString *)sortId
+        successBlock:(LFRequestSuccess)successBlock
+        failureBlock:(LFRequestFail)failureBlock;
 
 // 社区模块
 + (void)getShequSectionSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;

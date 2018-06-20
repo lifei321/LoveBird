@@ -33,7 +33,7 @@
         [AppBaseHud hideHud:self.view];
         PublishEVDataModel *dataModel = (PublishEVDataModel *)responseObject;
         
-        AppTagsView *tagView = [[AppTagsView alloc] initWithFrame:CGRectMake(0, total_topView_height, SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height)];
+        AppTagsView *tagView = [[AppTagsView alloc] initWithFrame:CGRectMake(0, total_topView_height + AutoSize6(30), SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height)];
         
         for (int i = 0; i < dataModel.data.count; i++) {
             PublishEVModel *model = dataModel.data[i];

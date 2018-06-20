@@ -7,7 +7,12 @@
 //
 
 #import "AppBaseTableViewController.h"
+#import "ShequZuzhiModel.h"
 
 @interface ShequViewController : AppBaseTableViewController
+
+@property (nonatomic, copy) NSString *groupId;
+
+@property (nonatomic, copy) NSString *sortId;
 
 @end
