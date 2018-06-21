@@ -186,7 +186,10 @@
  */
 #define kAPI_Find_Bird_travelList kAPI_USER_SERVER_VERSION(@"travel/index.php?cmd=travelList")
 
-
+/**
+ *  全局搜索鸟种
+ */
+#define kAPI_Find_Search_bird kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchBird")
 #pragma mark-- 发布
 
 /**
@@ -267,5 +270,29 @@
  *  获取设置
  */
 #define kAPI_Set_message kAPI_USER_SERVER_VERSION(@"user/message.php")
+
+
+#pragma mark-- 搜索
+
+/**
+ *  用户
+ */
+#define kAPI_Search_userlist kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchUser")
+
+/**
+ *  话题
+ */
+#define kAPI_Search_articleList kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchBirdArticle")
+
+/**
+ *  鸟种
+ */
+#define kAPI_Search_birdlist kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchBird")
+
+/**
+ *  zicun
+ */
+#define kAPI_Search_zixun kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchArticle")
+
 
 #endif /* AppApi_h */

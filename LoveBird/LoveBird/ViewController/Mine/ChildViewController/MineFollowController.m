@@ -37,7 +37,11 @@
 
     } else if (self.type == 2) {
         self.title = @"粉丝";
+    } else if (self.type == 2) {
+        self.title = @"用户";
     }
+    
+    
 //    self.rightButton.title = @"完成";
 //    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
 //    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
@@ -80,6 +84,27 @@
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [UserDao userFansList:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
+        [self.dataArray addObjectsFromArray:dataModel.data];
+        [self.tableView reloadData];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+- (void)setWord:(NSString *)word {
+    _word = [word copy];
+    [self netforUser];
+}
+
+- (void)netforUser {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [UserDao userGetList:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;

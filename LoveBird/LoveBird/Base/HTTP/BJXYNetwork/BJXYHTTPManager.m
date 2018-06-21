@@ -289,10 +289,11 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
         [UserPage gotoLoinBlock:^{
             
         }];
+        return;
     }
     
     // 先判断errcode < 0 的判断
-    if ([responseObject objectForKey:@"msg"] && [[responseObject objectForKey:@"code"] integerValue] < 0) {
+    if ([responseObject objectForKey:@"msg"] && [[responseObject objectForKey:@"code"] integerValue] > 0) {
         
         @try {
             model = [[AppBaseModel alloc] initWithDictionary:responseObject error:&error];

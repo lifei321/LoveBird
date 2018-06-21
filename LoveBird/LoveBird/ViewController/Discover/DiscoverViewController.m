@@ -25,6 +25,7 @@
 #import "LogDetailController.h"
 #import "AppWebViewController.h"
 #import "NearController.h"
+#import "SearchViewController.h"
 
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
@@ -60,10 +61,36 @@
 
 - (void)setNavigation {
 
-    self.isNavigationTransparent = YES;
-    self.isCustomNavigation = YES;
-    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
 
+    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - AutoSize6(100), AutoSize6(60))];
+    searchField.placeholder = @"在此输入文章名/作者名";
+    searchField.backgroundColor = [UIColor whiteColor];
+    searchField.font = kFont6(26);
+    searchField.layer.borderColor = (kLineColoreDefaultd4d7dd).CGColor;
+    searchField.layer.borderWidth = 1;
+    searchField.layer.cornerRadius = 2;
+    searchField.delegate = self;
+    
+    CGRect frame = searchField.frame;
+    frame.size.width = AutoSize6(15);// 距离左侧的距离
+    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+    searchField.leftViewMode = UITextFieldViewModeAlways;
+    searchField.leftView = leftview;
+    
+    CGRect rightframe = searchField.frame;
+    rightframe.size.width = AutoSize(35);// 距离左侧的距离
+    UIImageView *rightview = [[UIImageView alloc] initWithFrame:rightframe];
+    rightview.image = [UIImage imageNamed:@"pub_search"];
+    rightview.contentMode = UIViewContentModeCenter;
+    searchField.rightViewMode = UITextFieldViewModeAlways;
+    searchField.rightView = rightview;
+    self.navigationItem.titleView = searchField;
+}
+
+- (void)textFieldShouldBeginEditing:(UITextField *)textField {
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 - (void)setTableView {

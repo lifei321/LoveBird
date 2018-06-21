@@ -36,5 +36,6 @@
 // 鸟岛列表
 + (void)getGuide:(NSString *)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-
+// 搜索鸟种
++ (void)getBirdWord:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

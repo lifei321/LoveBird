@@ -130,4 +130,22 @@
     }];
 }
 
+// 搜索鸟种
++ (void)getBirdWord:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
+    
+    [AppHttpManager POST:kAPI_Find_Search_bird parameters:dic jsonModelName:[FindSelectBirdDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 @end

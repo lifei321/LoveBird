@@ -57,6 +57,9 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 粉丝列表
 + (void)userFansList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 搜索用户列表
++ (void)userGetList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
 // 我的个人信息
 + (void)userMyInfoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 

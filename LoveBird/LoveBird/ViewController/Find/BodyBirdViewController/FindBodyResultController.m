@@ -9,6 +9,7 @@
 #import "FindBodyResultController.h"
 #import "FindResultCell.h"
 #import "BirdDetailController.h"
+#import "FindDao.h"
 
 @interface FindBodyResultController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -29,6 +30,26 @@
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     
     [self setTableView];
+    
+}
+
+- (void)setWord:(NSString *)word {
+    _word = [word copy];
+    [self netForData];
+}
+
+- (void)netForData {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self)
+    [FindDao getBirdWord:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        self.dataModel = (FindSelectBirdDataModel *)responseObject;
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 
@@ -71,7 +92,7 @@
     
     BirdDetailController *detailvc = [[BirdDetailController alloc] init];
     detailvc.cspCode = bridModel.csp_code;
-    [self.navigationController pushViewController:detailvc animated:YES];
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)setDataModel:(FindSelectBirdDataModel *)dataModel {
@@ -92,7 +113,7 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01f)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[FindResultCell class] forCellReuseIdentifier:NSStringFromClass([FindResultCell class])];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(50))];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
 }
 
 @end

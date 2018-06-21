@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) FindSelectBirdDataModel *dataModel;
 
+@property (nonatomic, copy) NSString *word;
+
 @end

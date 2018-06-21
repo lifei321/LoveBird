@@ -12,4 +12,6 @@
 
 @property (nonatomic, assign) NSInteger type;
 
+@property (nonatomic, copy) NSString *word;
+
 @end
