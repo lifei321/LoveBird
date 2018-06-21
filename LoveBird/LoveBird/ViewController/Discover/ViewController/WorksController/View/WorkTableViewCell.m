@@ -28,9 +28,11 @@
         
 
         self.leftImageview = [[WorksImageView alloc] init];
+        self.leftImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.leftImageview];
         
         self.rightImageview = [[WorksImageView alloc] init];
+        self.rightImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.rightImageview];
         
     }
@@ -60,8 +62,8 @@
         
         CGFloat imageHeight = (model1.imgHeight) * (width1 / model1.imgWidth);
         
-        self.leftImageview.frame = CGRectMake(0, 0, width1 - AutoSize6(2), imageHeight);
-        self.rightImageview.frame = CGRectMake(width1 + AutoSize6(1), 0, width2 - AutoSize6(1), imageHeight);
+        self.leftImageview.frame = CGRectMake(0, 0, width1 - 1, imageHeight);
+        self.rightImageview.frame = CGRectMake(width1 + 1, 0, width2 - 1, imageHeight);
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
         [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
         

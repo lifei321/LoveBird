@@ -110,7 +110,7 @@
     if (listArray.count == 1) {
         WorksModel *model = listArray.firstObject;
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
-        return imageHeight + AutoSize6(2);
+        return imageHeight + 2;
         
     } else if (listArray.count == 2) {
         WorksModel *model1 = listArray.firstObject;
@@ -119,7 +119,7 @@
         CGFloat width1 = SCREEN_WIDTH * (model1.imgWidth / (model1.imgWidth + model2.imgWidth));
         
         CGFloat imageHeight = (model1.imgHeight) * (width1 / model1.imgWidth);
-        return imageHeight + AutoSize6(2);
+        return imageHeight + 2;
     }
     
     return 0.01f;
