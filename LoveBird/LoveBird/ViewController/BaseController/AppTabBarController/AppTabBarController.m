@@ -40,7 +40,7 @@
 }
 
 - (void)logOutNotifycation {
-    self.selectedIndex = 4;
+    self.selectedIndex = 0;
     [self tabBarController:self didSelectViewController:[[UIViewController alloc] init]];
 }
 
@@ -109,11 +109,15 @@
         }];
         self.selectedIndex = self.selectedItem;
     } else if (tabBarController.selectedIndex == 4) {
-        [UserPage gotoLoinBlock:^{
-            self.selectedIndex = 4;
-        }];
-        self.selectedIndex = self.selectedItem;
+        if ([UserPage sharedInstance].isLogin) {
+            self.selectedItem = self.selectedIndex;
 
+        } else {
+            [UserPage gotoLoinBlock:^{
+                self.selectedIndex = 4;
+            }];
+            self.selectedIndex = self.selectedItem;
+        }
     } else {
         self.selectedItem = self.selectedIndex;
 

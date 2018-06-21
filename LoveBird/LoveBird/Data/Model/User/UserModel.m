@@ -58,6 +58,10 @@
             }
         };
         [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
+    } else {
+        if (block) {
+            block();
+        }
     }
 }
 

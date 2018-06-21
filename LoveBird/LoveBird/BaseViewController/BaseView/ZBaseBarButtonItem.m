@@ -28,7 +28,7 @@
     
     CGRect frame = self.button.frame;
     frame.size = image.size;
-    self.button.frame = frame;
+    self.button.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width + AutoSize6(20), frame.size.height + AutoSize6(20));
     [self.button setImage:image forState:UIControlStateNormal];
     self.customView = self.button;
 }
