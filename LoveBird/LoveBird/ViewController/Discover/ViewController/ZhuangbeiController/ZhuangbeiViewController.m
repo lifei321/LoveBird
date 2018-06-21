@@ -38,7 +38,16 @@
     // 设置UI
     [self setTableView];
     
-    [self netForContentHeader];
+    if (self.cid.length) {
+        [self netForContentHeader];
+        
+        //默认【下拉刷新】
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
+        //默认【上拉加载】
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
+    } else {
+        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
+    }
 }
 
 - (void)netForContentHeader {
@@ -86,6 +95,33 @@
     }];
 }
 
+- (void)setWord:(NSString *)word {
+    _word = [word copy];
+    [self netForData];
+}
+
+- (void)netForData {
+
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DiscoverDao getZZList:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        ZhuangbeiDataModel *dataModel = (ZhuangbeiDataModel *)responseObject;
+        
+        [self.dataArray removeAllObjects];
+        for (ZhuangbeiModel *model in dataModel.data) {
+            TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
+            lineModel.zhuangbeiModel = model;
+            [self.dataArray addObject:lineModel];
+        }
+        [self.tableView reloadData];
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
 #pragma mark-- tabelView 代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -111,7 +147,7 @@
     TimeLineLayoutModel *cellLayoutModel = self.dataArray[indexPath.row];
     LogDetailController *detailvc = [[LogDetailController alloc] init];
     detailvc.aid = cellLayoutModel.zhuangbeiModel.aid;
-    [self.navigationController pushViewController:detailvc animated:YES];
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 }
 
 #pragma mark-- cell点击代理
@@ -133,8 +169,10 @@
     
     if ([self.cid isEqualToString:@"1"]) {
         self.title = @"装备";
-    } else {
+    } else if ([self.cid isEqualToString:@"2"]){
         self.title = @"资讯";
+    } else {
+        
     }
 }
 
@@ -147,11 +185,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[TimeLineCell class] forCellReuseIdentifier:NSStringFromClass([TimeLineCell class])];
+
     
-    //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
-    //默认【上拉加载】
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
 }
 
 @end

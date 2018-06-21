@@ -143,6 +143,11 @@
  */
 #define kAPI_Discover_articleList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=articleList")
 
+/**
+ * 全局搜索 装备 咨询
+ */
+#define kAPI_Discover_Search_article kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchArticle")
+
 #pragma mark-- 查鸟
 
 /**

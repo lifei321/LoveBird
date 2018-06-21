@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "MineFollowController.h"
 #import "FindBodyResultController.h"
+#import "ZhuangbeiViewController.h"
 
 
 @interface SearchViewController ()<UITextFieldDelegate>
@@ -20,7 +21,7 @@
 @property (nonatomic, strong) MineFollowController *followController;
 @property (nonatomic, strong) FindBodyResultController *birdClassController;
 
-//@property (nonatomic, strong) MineFollowController *followController;
+@property (nonatomic, strong) ZhuangbeiViewController *zhuangbeiController;
 //@property (nonatomic, strong) MineFollowController *followController;
 
 @property (nonatomic, strong) UIView *selectView;
@@ -49,6 +50,8 @@
     self.followController.type = 3;
     
     self.birdClassController = [[FindBodyResultController alloc] init];
+    
+    self.zhuangbeiController = [[ZhuangbeiViewController alloc] init];
 }
 
 - (void)netForData {
@@ -72,7 +75,9 @@
         self.followController.view.frame = CGRectMake(0, AutoSize6(80), SCREEN_WIDTH, self.view.height - AutoSize6(80));
         
     } else if (tag == 104) {
-        
+        self.zhuangbeiController.word = self.searchField.text;
+        [self.view addSubview:self.zhuangbeiController.view];
+        self.zhuangbeiController.view.frame = CGRectMake(0, AutoSize6(80), SCREEN_WIDTH, self.view.height - AutoSize6(80));
     }
     [self.view bringSubviewToFront:self.selectView];
 }
