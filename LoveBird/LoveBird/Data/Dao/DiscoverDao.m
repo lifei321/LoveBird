@@ -18,7 +18,7 @@
 #import "MapDiscoverModel.h"
 #import "ShequZuzhiModel.h"
 
-
+#import "DiscoverContentModel.h"
 
 @implementation DiscoverDao
 
@@ -203,6 +203,24 @@
     [dic setObject:EMPTY_STRING_IF_NIL(radius) forKey:@"raidus"];
     
     [AppHttpManager POST:kAPI_Discover_map parameters:dic jsonModelName:[MapDiscoverDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 全局话题
++ (void)getHuaTiList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
+    
+    [AppHttpManager POST:kAPI_Discover_Search_birdarticle parameters:dic jsonModelName:[DiscoverContentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

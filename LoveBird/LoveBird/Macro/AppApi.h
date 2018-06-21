@@ -148,6 +148,12 @@
  */
 #define kAPI_Discover_Search_article kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchArticle")
 
+/**
+ * 全局搜索 话题
+ */
+#define kAPI_Discover_Search_birdarticle kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchBirdArticle")
+
+
 #pragma mark-- 查鸟
 
 /**

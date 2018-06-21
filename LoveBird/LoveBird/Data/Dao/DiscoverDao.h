@@ -44,4 +44,7 @@
 
 // 全局搜索装备咨询
 + (void)getZZList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 全局话题
++ (void)getHuaTiList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

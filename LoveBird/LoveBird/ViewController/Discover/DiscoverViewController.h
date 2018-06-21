@@ -10,6 +10,9 @@
 
 @interface DiscoverViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *word;
+
+@property (nonatomic, assign) NSInteger type;
 
 
 @end

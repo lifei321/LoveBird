@@ -13,7 +13,7 @@
 #import "TimeLineCell.h"
 #import "AppHttpManager.h"
 #import "MJRefresh.h"
-
+#import "DiscoverDao.h"
 
 #import "TalentViewController.h"
 #import "ShequViewController.h"
@@ -53,10 +53,23 @@
     
     // 设置UI
     [self setTableView];
-    [self setHeaderView];
     
-    // 加载本地数据
-    [self  netForData];
+    if (self.type) {
+        
+        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
+
+    } else {
+        
+        //默认【下拉刷新】
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
+        //默认【上拉加载】
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
+        
+        [self setHeaderView];
+        
+        // 加载本地数据
+        [self  netForData];
+    }
 }
 
 - (void)setNavigation {
@@ -103,10 +116,7 @@
     [self.tableView registerClass:[TimeLineCell class] forCellReuseIdentifier:NSStringFromClass([TimeLineCell class])];
     self.viewModel = [[DiscoverDataSource alloc] init];
     
-    //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
-    //默认【上拉加载】
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
+
 }
 
 // 设置headerview
@@ -344,18 +354,18 @@
     if (layoutModel.contentModel.tid.length) {
         LogDetailController *detailController = [[LogDetailController alloc] init];
         detailController.tid = layoutModel.contentModel.tid;
-        [self.navigationController pushViewController:detailController animated:YES];
+        [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
         
     } else if (layoutModel.contentModel.aid.length) {
         LogDetailController *detailvc = [[LogDetailController alloc] init];
         detailvc.aid = layoutModel.contentModel.aid;
-        [self.navigationController pushViewController:detailvc animated:YES];
+        [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
     } else if (layoutModel.contentModel.webView.length) {
         
         AppWebViewController *web = [[AppWebViewController alloc] init];
         web.hidesBottomBarWhenPushed = YES;
         web.startupUrlString = layoutModel.contentModel.webView;
-        [self.navigationController pushViewController:web animated:YES];
+        [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
     }
 }
 
@@ -372,6 +382,36 @@
     } else if (tag == 400) { // 点赞
         [self netForToolButton:button];
     }
+}
+
+
+#pragma mark-- 全局搜索设置
+- (void)setWord:(NSString *)word {
+    _word = [word copy];
+    [self netForSearchData];
+}
+
+- (void)netForSearchData {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DiscoverDao getHuaTiList:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        DiscoverContentDataModel *dataModel = (DiscoverContentDataModel *)responseObject;
+        
+        for (DiscoverContentModel *model in dataModel.data) {
+            TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
+            lineModel.contentModel = model;
+            [self.viewModel.dataSourceArray addObject:lineModel];
+            
+        }
+        [AppCache setObject:dataModel forKey:kStringForContent];
+        
+        [self.tableView reloadData];
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 

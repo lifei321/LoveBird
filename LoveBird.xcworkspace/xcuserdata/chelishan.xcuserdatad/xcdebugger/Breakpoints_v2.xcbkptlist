@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "551283592.378922"
+            timestampString = "551285237.6004291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "289"
@@ -52,12 +52,12 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551283592.5433199"
+                  timestampString = "551285237.71859"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "289"
                   endingLineNumber = "289"
-                  offsetFromSymbolStart = "270">
+                  offsetFromSymbolStart = "527">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -67,12 +67,12 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551283592.546899"
+                  timestampString = "551285237.722277"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "291"
                   endingLineNumber = "291"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
