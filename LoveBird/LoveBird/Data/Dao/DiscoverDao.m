@@ -152,13 +152,14 @@
 }
 
 // 作品列表
-+ (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(authorid) forKey:@"authorid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(minAid) forKey:@"minAid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(type) forKey:@"type"];
 
     
     [AppHttpManager POST:kAPI_Article_zuopinList parameters:dic jsonModelName:[WorksDataModel class] success:^(__kindof AppBaseModel *responseObject) {

@@ -22,6 +22,9 @@
 
 @property (nonatomic, strong) UIButton *selectButton;
 
+@property (nonatomic, copy) NSString *type;
+
+
 @end
 
 @implementation WorksViewController
@@ -30,6 +33,7 @@
     [super viewDidLoad];
     
     self.pageNum = @"";
+    self.type = @"100";
     
     _dataArray = [NSMutableArray new];
     
@@ -59,7 +63,7 @@
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
     
     @weakify(self);
-    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:pageNum successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:pageNum type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         if (header) {
             [self.tableView.mj_header endRefreshing];
@@ -144,6 +148,8 @@
     self.selectButton.selected = NO;
     button.selected = YES;
     self.selectButton = button;
+    self.type = [NSString stringWithFormat:@"%ld", self.selectButton.tag];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setNavigation {
@@ -165,6 +171,7 @@
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     leftButton.selected = YES;
     self.selectButton = leftButton;
+    leftButton.tag = 100;
     [titleView addSubview:leftButton];
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(leftButton.right, 0, titleView.width / 2, titleView.height)];
@@ -174,6 +181,7 @@
     [rightButton setTitle:@"最新" forState:UIControlStateNormal];
     [rightButton setTitle:@"最新" forState:UIControlStateSelected];
     rightButton.titleLabel.font = kFont6(24);
+    rightButton.tag = 200;
 
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
