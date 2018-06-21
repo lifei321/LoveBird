@@ -102,13 +102,13 @@
     UIBezierPath *path = [[UIBezierPath alloc] init];
     
     //path移动到开始画图的位置
-    [path moveToPoint:CGPointMake(AutoSize6(128), AutoSize6(75))];
+    [path moveToPoint:CGPointMake(AutoSize6(125), AutoSize6(80))];
     
     //从开始位置画一条直线到（rect.origin.x + rect.size.width， rect.origin.y）
     [path addLineToPoint:CGPointMake(AutoSize6(140), AutoSize6(58))];
     
     //再从rect.origin.x + rect.size.width， rect.origin.y））画一条线到(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height)
-    [path addLineToPoint:CGPointMake(AutoSize6(152), AutoSize6(75))];
+    [path addLineToPoint:CGPointMake(AutoSize6(155), AutoSize6(80))];
     
     //关闭path
     [path closePath];
