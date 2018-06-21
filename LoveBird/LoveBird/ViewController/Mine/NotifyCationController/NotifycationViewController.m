@@ -68,7 +68,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01f;
+}
 - (void)makeData {
     
     _dataArray = [NSMutableArray new];

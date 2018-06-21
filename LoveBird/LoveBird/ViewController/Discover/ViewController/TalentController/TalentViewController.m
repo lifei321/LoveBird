@@ -10,6 +10,7 @@
 #import "TalentCollectionViewCell.h"
 #import "TalentModel.h"
 #import "AppHttpManager.h"
+#import "UserInfoViewController.h"
 
 
 @interface TalentViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, FollowButtonDidClickDelegate>
@@ -78,7 +79,13 @@
     return cell;
 }
 
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    TalentModel *model = self.sourceArray[indexPath.row];
+    
+    UserInfoViewController *infovc = [[UserInfoViewController alloc] init];
+    infovc.talentModel = model;
+    [[UIViewController currentViewController].navigationController pushViewController:infovc animated:YES];
+}
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {

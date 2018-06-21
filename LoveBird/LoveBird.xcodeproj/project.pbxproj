@@ -233,6 +233,7 @@
 		1FDBE74E20D95F130092E82E /* ShequZuzhiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE74D20D95F130092E82E /* ShequZuzhiCell.m */; };
 		1FDBE75120DA9CFF0092E82E /* WZSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75020DA9CFE0092E82E /* WZSwitch.m */; };
 		1FDBE75720DAA82D0092E82E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75620DAA82D0092E82E /* SearchViewController.m */; };
+		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -696,6 +697,8 @@
 		1FDBE75020DA9CFE0092E82E /* WZSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSwitch.m; sourceTree = "<group>"; };
 		1FDBE75520DAA82D0092E82E /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		1FDBE75620DAA82D0092E82E /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		1FDBE75920DC00D50092E82E /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -729,6 +732,7 @@
 				0B317C6C1F0F5BFB00B01DDA /* BaseController */,
 				1F0FDF8520BC5B7B0041E73B /* WebviewController */,
 				1F0FDFA120C23B250041E73B /* DetailController */,
+				1FDBE75820DBFFDF0092E82E /* DupleViewContrller */,
 				0BA4190C201C675D002C6335 /* Discover */,
 				0BA4190F201C675D002C6335 /* Find */,
 				0BA4190E201C675D002C6335 /* Guide */,
@@ -2274,6 +2278,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1FDBE75820DBFFDF0092E82E /* DupleViewContrller */ = {
+			isa = PBXGroup;
+			children = (
+				1FDBE75920DC00D50092E82E /* UserInfoViewController.h */,
+				1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */,
+			);
+			path = DupleViewContrller;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2685,6 +2698,7 @@
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
 				1FDBE75120DA9CFF0092E82E /* WZSwitch.m in Sources */,
 				1F4F141B205030980066F790 /* FinishMessageViewController.m in Sources */,
+				1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */,
 				1F676EE620A8046D002F71B4 /* PublishSelectBirdController.m in Sources */,
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
