@@ -22,6 +22,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        self.userInteractionEnabled = YES;
+        [self addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backViewClick)]];
         
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(22), AutoSize6(314), AutoSize6(62))];
         backView.centerX = self.centerX;
@@ -30,6 +32,7 @@
         backView.layer.borderColor = UIColorFromRGB(0xd2d2d2).CGColor;
         backView.layer.cornerRadius = AutoSize6(20);
         backView.clipsToBounds = YES;
+
 
         [self addSubview:backView];
         
@@ -45,6 +48,10 @@
         
     }
     return self;
+}
+
+- (void)backViewClick {
+    
 }
 
 - (void)textViewDidClick {

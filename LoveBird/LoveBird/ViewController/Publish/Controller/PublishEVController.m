@@ -34,7 +34,7 @@
         PublishEVDataModel *dataModel = (PublishEVDataModel *)responseObject;
         
         AppTagsView *tagView = [[AppTagsView alloc] initWithFrame:CGRectMake(0, total_topView_height + AutoSize6(30), SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height)];
-        
+        tagView.selectIndex = -1;
         for (int i = 0; i < dataModel.data.count; i++) {
             PublishEVModel *model = dataModel.data[i];
             if ([model.evId isEqualToString:self.selectEVModel.evId]) {

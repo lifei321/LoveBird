@@ -11,31 +11,40 @@
 
 @interface PublishEditModel : JSONModel
 
-@property (nonatomic, copy) NSString *birdClass;
-
-@property (nonatomic, assign) BOOL isImg;
-
+// 是否是新上传的图片
 @property (nonatomic, assign) BOOL isNewAid;
 
+// 图片的id
 @property (nonatomic, copy) NSString *aid;
 
+// 图片的地址
 @property (nonatomic, copy) NSString *imgUrl;
 
 // 文本内容
 @property (nonatomic, copy) NSString *message;
 
-@property (nonatomic, copy) NSString *tag;
+// 是否是图片格式的cell  no是文字格式的cell
+@property (nonatomic, assign) BOOL isImg;
+
+// 鸟种编号
+@property (nonatomic, copy) NSString *csp_code;
+
+// 图片标签
+@property (nonatomic, copy) NSString *imgTag;
 
 
-
-// 是否显示添加图片和文字
-@property (nonatomic, assign) BOOL isShow;
+/**********************************/
+//自定义字段
 
 @property (nonatomic, assign) BOOL isFirst;
 
 @property (nonatomic, assign) BOOL isLast;
 
-// 首行
-@property (nonatomic, assign) BOOL isZero;
+
+// 是  添加图片和文字形式的cell
+@property (nonatomic, assign) BOOL isAddShowTextAndImageView;
+
+// 是加号形式的cell
+@property (nonatomic, assign) BOOL isAddType;
 
 @end

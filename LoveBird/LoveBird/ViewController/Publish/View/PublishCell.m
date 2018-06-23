@@ -159,15 +159,31 @@
     self.upButton.hidden = editModel.isFirst;
     self.downButton.hidden = editModel.isLast;
     
-    self.backView.hidden = editModel.isZero;
-    self.addView.hidden = !editModel.isShow;
+    // 控制显示
     
-    if (editModel.isZero) {
-        self.addView.top = (editModel.isShow) ? 0 : 0;
-        self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : 0;
+    if (editModel.isAddType || editModel.isAddShowTextAndImageView) {
+        self.backView.hidden = YES;
+
+        if (editModel.isAddShowTextAndImageView) {
+            self.addView.hidden = NO;
+            self.addView.top = 0;
+        } else {
+            self.addView.hidden = YES;
+        }
+        
+        if (editModel.isAddType) {
+            self.addTypeView.hidden = NO;
+            self.addTypeView.top = 0;
+
+        } else {
+            self.addTypeView.hidden = YES;
+        }
+        
     } else {
-        self.addView.top = self.backView.bottom;
-        self.addTypeView.top = (editModel.isShow) ? self.addView.bottom : AutoSize6(274);
+        
+        self.backView.hidden = NO;
+        self.addView.hidden = YES;
+        self.addTypeView.hidden = YES;
     }
 }
 

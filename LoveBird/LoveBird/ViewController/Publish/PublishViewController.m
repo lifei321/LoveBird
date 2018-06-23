@@ -93,42 +93,6 @@
     }];
 }
 
-// 上传照片
-- (void)upLoadImage:(UIImage *)image {
-    [AppBaseHud showHudWithLoding:self.view];
-    @weakify(self);
-    [PublishDao upLoad:image successBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        [AppBaseHud hideHud:self.view];
-        if (self.headerView.headerImageView.image == nil) {
-            self.headerView.headerImageView.image = image;
-        }
-        
-        self.selectEditModel.isShow = NO;
-        PublishUpModel *upModel = (PublishUpModel *)responseObject;
-        
-        // 添加第一行
-        [self adFirstObject];
-        
-        // 设置数据
-        PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.isShow = NO;
-        model.isImg = YES;
-        model.imgUrl = upModel.imgUrl;
-        model.aid = upModel.aid;
-        model.isNewAid = YES;
-        [self getIndex:model selectModel:self.selectEditModel];
-        
-        [self reloadFooterView:YES];
-        [self.tableView reloadData];
-        
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-        
-        [AppBaseHud showHud:error.errstr view:self.view];
-    }];
-}
-
 #pragma mark-- tableview代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArray.count;
@@ -158,18 +122,24 @@
         model.isFirst = NO;
         
         // 判断首行 和 尾行
-        if (self.dataModelArray.count <= 2) {
+        if (self.dataModelArray.count == 3) {
             if (indexPath.row == 1) {
                 model.isFirst = YES;
                 model.isLast = YES;
-            } else if (indexPath.row == 0) {
-                model.isZero = YES;
+            }
+        } else if (self.dataModelArray.count == 5){
+            if (indexPath.row == 1) {
+                model.isFirst = YES;
+                model.isLast = NO;
+            } else if (indexPath.row == 3) {
+                model.isLast = YES;
+                model.isFirst = NO;
             }
         } else {
             if (indexPath.row == 1) {
                 model.isFirst = YES;
                 model.isLast = NO;
-            }  else if (indexPath.row == (self.dataModelArray.count - 1)) {
+            } else if (indexPath.row == (self.dataModelArray.count - 2)) {
                 model.isLast = YES;
                 model.isFirst = NO;
             }
@@ -260,6 +230,17 @@
         if (model.message.length) { // 如果是文字类型的可编辑
             PublishContenController *contentVC = [[PublishContenController alloc] init];
             contentVC.text = model.message;
+            
+            @weakify(self);
+            @weakify(model);
+            contentVC.contentblock = ^(NSString *contentString) {
+                @strongify(self);
+                @strongify(model);
+                // 设置数据
+                model.message = contentString;
+                
+                [self.tableView reloadData];
+            };
             [self.navigationController pushViewController:contentVC animated:YES];
         }
         
@@ -280,85 +261,23 @@
         }
     }
     
-    PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
-    if (indexPath.row == 0) {
-        return model.isShow ? AutoSize6(154) : AutoSize6(74);
-    } else {
-        return model.isShow ? AutoSize6(428): AutoSize6(344);
+    if (indexPath.section == 2) {
+        PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
+        if (model.isAddShowTextAndImageView) {
+            return AutoSize6(84);
+        }
+        
+        if (model.isAddType) {
+            return AutoSize6(74);
+        }
+        
+        return AutoSize6(274);
     }
     
     return 0;
 }
 
-#pragma mark-- PublishCell 代理
-
-// 删除这一行
-- (void)publishCellCloseDelegate:(PublishCell *)cell  {
-    [self.dataModelArray removeObject:cell.editModel];
-    
-    if (self.dataModelArray.count == 1) {
-        [self.dataModelArray removeAllObjects];
-        [self reloadFooterView:NO];
-    }
-    [self.tableView reloadData];
-}
-
-// 上移
-- (void)publishCellUpDelegate:(PublishCell *)cell {
-    
-    if (self.dataModelArray.count < 2) return;
-    
-    for (int i = 0; i < self.dataModelArray.count; i++) {
-        PublishEditModel *model = self.dataModelArray[i];
-        if ([cell.editModel isEqual:model]) {
-            
-            if (i > 0) {
-                [self.dataModelArray removeObject:model];
-                [self.dataModelArray insertObject:model atIndex:(i - 1)];
-                [self.tableView reloadData];
-            }
-            break;
-        }
-    }
-}
-
-// 下移
-- (void)publishCellDownDelegate:(PublishCell *)cell {
-    if (self.dataModelArray.count < 2) return;
-    
-    for (int i = 0; i < self.dataModelArray.count; i++) {
-        PublishEditModel *model = self.dataModelArray[i];
-        if ([cell.editModel isEqual:model]) {
-            
-            if (i < (self.dataModelArray.count - 1)) {
-                [self.dataModelArray removeObject:model];
-                [self.dataModelArray insertObject:model atIndex:(i + 1)];
-                [self.tableView reloadData];
-            }
-            break;
-        }
-    }
-}
-
-// 添加文字
-- (void)publishCellTextDelegate:(PublishCell *)cell {
-    [self textViewClickDelegate:cell.editModel];
-}
-
-// 添加图片
-- (void)publishCellImageDelegate:(PublishCell *)cell {
-    [self imageViewClickDelegate:cell.editModel];
-}
-
-// 显示 添加文字和图片
-- (void)publishCellAddDelegate:(PublishCell *)cell {
-    PublishEditModel *model = cell.editModel;
-    if (model.isShow) {
-        return;
-    }
-    model.isShow = YES;
-    [self.tableView reloadData];
-}
+#pragma mark-- 选择鸟种cell的代理
 
 // 减少鸟的数量
 - (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
@@ -394,36 +313,104 @@
     
     [self.birdInfoArray removeObject:cell.selectModel];
     [self.tableView reloadData];
+    
+}
+
+#pragma mark-- PublishCell 顺序变化 和 删减
+
+// 删除这一行
+- (void)publishCellCloseDelegate:(PublishCell *)cell  {
+    
+    if (self.dataModelArray.count == 3) {
+        [self.dataModelArray removeAllObjects];
+        [self reloadFooterView:NO];
+    } else {
+        NSInteger index = 0;
+        for (int i = 0; i < self.dataModelArray.count; i++ ) {
+            if (cell.editModel == self.dataModelArray[i]) {
+                index = i;
+                break;
+            }
+        }
+        [self.dataModelArray removeObjectAtIndex:(index - 1)];
+        [self.dataModelArray removeObjectAtIndex:(index - 1)];
+        [self.dataModelArray removeObjectAtIndex:(index - 1)];
+        [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index - 1)];
+    }
+    [self.tableView reloadData];
+}
+
+// 上移
+- (void)publishCellUpDelegate:(PublishCell *)cell {
+    
+    if (self.dataModelArray.count == 3) return;
+    NSInteger index = [self getIndexWithModel:cell.editModel];
+    if (index == 1) {
+        return;
+    }
+    
+    [self.dataModelArray exchangeObjectAtIndex:index withObjectAtIndex:(index - 2)];
+    [self.tableView reloadData];
+}
+
+// 下移
+- (void)publishCellDownDelegate:(PublishCell *)cell {
+    if (self.dataModelArray.count == 3) return;
+    NSInteger index = [self getIndexWithModel:cell.editModel];
+    if (index == (self.dataModelArray.count - 2)) {
+        return;
+    }
+    
+    [self.dataModelArray exchangeObjectAtIndex:index withObjectAtIndex:(index + 2)];
+    [self.tableView reloadData];
 
 }
 
-// 获得在数组中次序
-- (void)getIndex:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
+// 获取index
+- (NSInteger)getIndexWithModel:(PublishEditModel *)model {
     NSInteger index = 0;
     for (int i = 0; i < self.dataModelArray.count; i++ ) {
-        if (selectModel == self.dataModelArray[i]) {
+        if (model == self.dataModelArray[i]) {
             index = i;
             break;
         }
     }
-    if ((self.dataModelArray.count == 0) || (index == (self.dataModelArray.count - 1))) {
-        [self.dataModelArray addObject:model];
-    } else {
-        [self.dataModelArray insertObject:model atIndex:(index + 1)];
-    }
+    return index;
 }
 
-- (void)adFirstObject {
-    if (self.dataModelArray.count == 0) {
-        PublishEditModel *modeladd = [[PublishEditModel alloc] init];
-        modeladd.isShow = NO;
-        modeladd.isImg = NO;
-        modeladd.isZero = YES;
-        [self.dataModelArray addObject:modeladd];
-    }
+#pragma mark-- 添加 文字和图片cell 的代理
+
+// 添加文字
+- (void)publishCellTextDelegate:(PublishCell *)cell {
+    [self textViewClickDelegate:cell.editModel];
 }
 
-#pragma mark-- footerview 选择图片 添加文字 代理
+// 添加图片
+- (void)publishCellImageDelegate:(PublishCell *)cell {
+    [self imageViewClickDelegate:cell.editModel];
+}
+
+// 加号点击  显示添加文字和图片的view
+- (void)publishCellAddDelegate:(PublishCell *)cell {
+    
+    if (self.dataModelArray.count == 3) {
+        for (PublishEditModel *editModel in self.dataModelArray) {
+            if (editModel.isAddShowTextAndImageView) {
+                editModel.isAddShowTextAndImageView = NO;
+                editModel.isAddType = YES;
+            }
+        }
+    }
+    
+    PublishEditModel *model = cell.editModel;
+    model.isAddShowTextAndImageView = YES;
+    model.isAddType = NO;
+
+    [self.tableView reloadData];
+}
+
+
+#pragma mark-- footerview  添加 文字 代理
 - (void)textViewClickDelegate:(PublishEditModel *)model {
     PublishContenController *contentvc = [[PublishContenController alloc] init];
     @weakify(self);
@@ -433,16 +420,12 @@
         @strongify(model);
         // 设置数据
         
-        // 添加第一行
-        [self adFirstObject];
-        
+        // 内容cell
         PublishEditModel *modeladd = [[PublishEditModel alloc] init];
         modeladd.message = contentString;
-        modeladd.isShow = NO;
         modeladd.isImg = NO;
-        [self getIndex:modeladd selectModel:model];
+        [self addCell:modeladd selectModel:model];
         
-        model.isShow = NO;
         [self reloadFooterView:YES];
         [self.tableView reloadData];
     };
@@ -450,6 +433,36 @@
     [self.navigationController pushViewController:contentvc animated:YES];
 }
 
+- (void)addCell:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
+    if (!selectModel) {
+        [self.dataModelArray addObject:[self getAddTypeCellModel]];
+        [self.dataModelArray addObject:model];
+        [self.dataModelArray addObject:[self getAddTypeCellModel]];
+    } else {
+        NSInteger index = 0;
+        for (int i = 0; i < self.dataModelArray.count; i++ ) {
+            if (selectModel == self.dataModelArray[i]) {
+                index = i;
+                break;
+            }
+        }
+        [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 1)];
+        [self.dataModelArray insertObject:model atIndex:(index + 2)];
+        [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 3)];
+        [self.dataModelArray removeObject:selectModel];
+    }
+}
+
+// 获取一个加号model
+- (PublishEditModel *)getAddTypeCellModel {
+    PublishEditModel *modeladd = [[PublishEditModel alloc] init];
+    modeladd.isAddShowTextAndImageView = NO;
+    modeladd.isImg = NO;
+    modeladd.isAddType = YES;
+    return modeladd;
+}
+
+#pragma mark-- footerview 添加 图片 的代理
 - (void)imageViewClickDelegate:(PublishEditModel *)model {
     self.selectEditModel = model;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择照片"
@@ -515,6 +528,40 @@
     }];
     UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
     [self upLoadImage:iamge];
+}
+
+// 上传照片
+- (void)upLoadImage:(UIImage *)image {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [PublishDao upLoad:image successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        if (self.headerView.headerImageView.image == nil) {
+            self.headerView.headerImageView.image = image;
+        }
+        
+        self.selectEditModel.isAddShowTextAndImageView = NO;
+        PublishUpModel *upModel = (PublishUpModel *)responseObject;
+        
+        
+        // 设置数据
+        PublishEditModel *model = [[PublishEditModel alloc] init];
+        model.isAddShowTextAndImageView = NO;
+        model.isImg = YES;
+        model.imgUrl = upModel.imgUrl;
+        model.aid = upModel.aid;
+        model.isNewAid = YES;
+        [self addCell:model selectModel:self.selectEditModel];
+
+        [self reloadFooterView:YES];
+        [self.tableView reloadData];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        
+        [AppBaseHud showHud:error.errstr view:self.view];
+    }];
 }
 
 #pragma mark-- 刷新footer
@@ -585,12 +632,12 @@
     NSMutableArray *array2 = [[NSMutableArray alloc] init];
     PublishDetailModel *model1 = [[PublishDetailModel alloc] init];
     model1.title = @"时间";
-    model1.detailString = @"2017-09-13";
+    model1.detailString = @"选择";
     [array2 addObject:model1];
     
     PublishDetailModel *model2 = [[PublishDetailModel alloc] init];
     model2.title = @"位置";
-    model2.detailString = @"北京市海淀区";
+    model2.detailString = @"选择";
     [array2 addObject:model2];
     
     PublishDetailModel *model3 = [[PublishDetailModel alloc] init];
