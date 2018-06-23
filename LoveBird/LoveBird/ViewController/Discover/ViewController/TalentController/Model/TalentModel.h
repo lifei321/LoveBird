@@ -26,7 +26,7 @@
 @property (nonatomic, copy) NSString *master;
 
 
-@property (nonatomic, copy) NSString *masterid;
+@property (nonatomic, copy) NSString *msaterid;
 
 // 达人级别
 @property (nonatomic, copy) NSString *masterlv;

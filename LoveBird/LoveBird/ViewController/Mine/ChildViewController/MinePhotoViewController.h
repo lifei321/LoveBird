@@ -10,4 +10,7 @@
 
 @interface MinePhotoViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *taid;
+
+
 @end

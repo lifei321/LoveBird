@@ -30,8 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.pageNum = @"";
-    
     _dataArray = [NSMutableArray new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
 
@@ -63,13 +61,11 @@
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
     
     @weakify(self);
-    [DiscoverDao getWorksList:@"" matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:self.taid matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        if (header) {
-            [self.tableView.mj_header endRefreshing];
-        } else {
-            [self.tableView.mj_footer endRefreshing];
-        }
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
         WorksDataModel *dataModel = (WorksDataModel *)responseObject;
         self.pageNum = dataModel.maxAid;
         if (header) {
@@ -86,11 +82,8 @@
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
-        if (header) {
-            [self.tableView.mj_header endRefreshing];
-        } else {
-            [self.tableView.mj_footer endRefreshing];
-        }
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }

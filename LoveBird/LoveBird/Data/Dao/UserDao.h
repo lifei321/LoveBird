@@ -24,13 +24,10 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 + (void)userMessageType:(UserMessageType)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 关注
-+ (void)userFollow:(NSString *)fid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userFollow:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 关注列表
-+ (void)userFollowList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
-
-// 用户个人信息
-+ (void)userPersonInfo:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userFollowList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 我的朋友圈 文章列表
 + (void)userContenSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
@@ -41,27 +38,27 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 我的日志列表
 + (void)userLogList:(NSInteger)pageNum
             matchId:(NSString *)matchId
-                fid:(NSString *)fid
+                fid:(NSString *)taid
        successBlock:(LFRequestSuccess)successBlock
        failureBlock:(LFRequestFail)failureBlock;
 
 // 我的鸟种列表
 + (void)userBirdList:(NSInteger)pageNum
-                 fid:(NSString *)fid
+                 fid:(NSString *)taid
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock;
 
 // 相册列表
-+ (void)userPhotoList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userPhotoList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 粉丝列表
-+ (void)userFansList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userFansList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 搜索用户列表
 + (void)userGetList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 我的个人信息
-+ (void)userMyInfoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userMyInfo:(NSString *)taid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 注册
 + (void)userRegister:(NSString *)mobile

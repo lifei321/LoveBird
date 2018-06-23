@@ -10,4 +10,6 @@
 
 @interface MineLogViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *taid;
+
 @end

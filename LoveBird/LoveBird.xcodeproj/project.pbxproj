@@ -133,6 +133,7 @@
 		1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623C204AB1BF00784C62 /* DiscoverContentModel.m */; };
 		1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623F204AD16100784C62 /* TimeLineBottomView.m */; };
 		1F306245204BAF5900784C62 /* AppCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F306243204BAF5900784C62 /* AppCache.m */; };
+		1F3A3FD220DE982100245CA4 /* UserInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A3FD120DE982100245CA4 /* UserInfoHeaderView.m */; };
 		1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1405204D80910066F790 /* MineSetViewController.m */; };
 		1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1408204D81B70066F790 /* MineSetTableViewCell.m */; };
 		1F4F140C204D85010066F790 /* MineSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F140B204D85010066F790 /* MineSetModel.m */; };
@@ -499,6 +500,8 @@
 		1F30623F204AD16100784C62 /* TimeLineBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineBottomView.m; sourceTree = "<group>"; };
 		1F306243204BAF5900784C62 /* AppCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCache.m; sourceTree = "<group>"; };
 		1F306244204BAF5900784C62 /* AppCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCache.h; sourceTree = "<group>"; };
+		1F3A3FD020DE982100245CA4 /* UserInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoHeaderView.h; sourceTree = "<group>"; };
+		1F3A3FD120DE982100245CA4 /* UserInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoHeaderView.m; sourceTree = "<group>"; };
 		1F4F1404204D80910066F790 /* MineSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSetViewController.h; sourceTree = "<group>"; };
 		1F4F1405204D80910066F790 /* MineSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineSetViewController.m; sourceTree = "<group>"; };
 		1F4F1407204D81B70066F790 /* MineSetTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSetTableViewCell.h; sourceTree = "<group>"; };
@@ -1654,6 +1657,15 @@
 			path = AppCache;
 			sourceTree = "<group>";
 		};
+		1F3A3FCF20DE980900245CA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F3A3FD020DE982100245CA4 /* UserInfoHeaderView.h */,
+				1F3A3FD120DE982100245CA4 /* UserInfoHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F4F1401204D805C0066F790 /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2281,6 +2293,7 @@
 		1FDBE75820DBFFDF0092E82E /* DupleViewContrller */ = {
 			isa = PBXGroup;
 			children = (
+				1F3A3FCF20DE980900245CA4 /* View */,
 				1FDBE75920DC00D50092E82E /* UserInfoViewController.h */,
 				1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */,
 			);
@@ -2646,6 +2659,7 @@
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
 				1F0FDFC820C242180041E73B /* BirdDetailModel.m in Sources */,
 				1F676ED920A72440002F71B4 /* AppTabBar.m in Sources */,
+				1F3A3FD220DE982100245CA4 /* UserInfoHeaderView.m in Sources */,
 				1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */,
 				0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */,
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,

@@ -10,4 +10,7 @@
 
 @interface MineBirdViewController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *taid;
+
+
 @end

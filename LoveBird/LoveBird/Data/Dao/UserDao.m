@@ -40,11 +40,11 @@
 }
 
 // 关注
-+ (void)userFollow:(NSString *)fid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userFollow:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"fuid"];
-    
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+
     [AppHttpManager POST:kAPI_User_Follow parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
@@ -58,30 +58,12 @@
 }
 
 // 关注列表
-+ (void)userFollowList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userFollowList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    
-    [AppHttpManager POST:kAPI_User_FollowList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
-        if (successBlock) {
-            successBlock(responseObject);
-        }
-        
-    } failure:^(__kindof AppBaseModel *error) {
-        if (failureBlock) {
-            failureBlock(error);
-        }
-    }];
-}
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
 
-// 用户个人信息
-+ (void)userPersonInfo:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
-    
-    [AppHttpManager POST:kAPI_User_PersonInfo parameters:dic jsonModelName:[UserInfoModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_FollowList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -131,15 +113,15 @@
 // 我的日志列表
 + (void)userLogList:(NSInteger)pageNum
             matchId:(NSString *)matchId
-                fid:(NSString *)fid
+                fid:(NSString *)taid
        successBlock:(LFRequestSuccess)successBlock
        failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchId) forKey:@"matchid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
 
     [AppHttpManager POST:kAPI_User_LogList parameters:dic jsonModelName:[ShequLogModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -155,14 +137,14 @@
 
 // 我的鸟种列表
 + (void)userBirdList:(NSInteger)pageNum
-                 fid:(NSString *)fid
+                 fid:(NSString *)taid
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL(fid) forKey:@"iuid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
     
     [AppHttpManager POST:kAPI_User_BirdList parameters:dic jsonModelName:[UserBirdDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -177,11 +159,11 @@
 }
 
 // 相册列表
-+ (void)userPhotoList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userPhotoList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
-    
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+
     [AppHttpManager POST:kAPI_User_Photos parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
@@ -195,12 +177,12 @@
 }
 
 // 粉丝列表
-+ (void)userFansList:(NSString *)uid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userFansList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+
     [AppHttpManager POST:kAPI_User_FansList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
@@ -217,7 +199,6 @@
 + (void)userGetList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"483887" forKey:@"iuid"];
     [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
     
     [AppHttpManager POST:kAPI_Search_userlist parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -233,12 +214,17 @@
 }
 
 // 我的个人信息
-+ (void)userMyInfoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userMyInfo:(NSString *)taid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
+
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+
 
     [AppHttpManager POST:kAPI_User_PersonInfo parameters:dic jsonModelName:[UserModel class] success:^(__kindof AppBaseModel *responseObject) {
-        [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+        if (!taid.length) {
+            [UserPage sharedInstance].userModel = (UserModel *)responseObject;
+        }
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -265,6 +251,11 @@
     [dic setObject:EMPTY_STRING_IF_NIL(code) forKey:@"vCode"];
 
     [AppHttpManager POST:kAPI_User_register parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        
+        RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
+        [UserPage setUid:dataModel.userInfo.uid];
+        [UserPage setToken:dataModel.userInfo.token];
+        
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -287,6 +278,12 @@
     [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
     
     [AppHttpManager POST:kAPI_User_login parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        
+        RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
+        [UserPage setUid:dataModel.userInfo.uid];
+        [UserPage setToken:dataModel.userInfo.token];
+        
+        
         if (successBlock) {
             successBlock(responseObject);
         }

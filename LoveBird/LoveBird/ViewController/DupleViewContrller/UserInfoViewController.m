@@ -11,30 +11,27 @@
 #import "MineTableViewCell.h"
 #import "MineSetViewController.h"
 #import "NotifycationViewController.h"
-#import "MineHeaderView.h"
+#import "UserInfoHeaderView.h"
 #import "UserDao.h"
 #import "MJRefresh.h"
 #import "UserModel.h"
 #import "MineLogViewController.h"
-#import "MineCollectViewController.h"
 #import "MineBirdViewController.h"
 #import "MinePhotoViewController.h"
-#import "MineFriendViewController.h"
 #import "MineFollowController.h"
 
 
 @interface UserInfoViewController ()
-@property (nonatomic, strong) MineHeaderView *headerView;
+@property (nonatomic, strong) UserInfoHeaderView *headerView;
 
 @property (nonatomic, strong) MineLogViewController *logController;
-
-@property (nonatomic, strong) MineCollectViewController *collectController;
 
 @property (nonatomic, strong) MineBirdViewController *birdController;
 
 @property (nonatomic, strong) MinePhotoViewController *photoController;
 
-@property (nonatomic, strong) MineFriendViewController *friendController;
+@property (nonatomic, strong) UserModel *userModel;
+
 @end
 
 @implementation UserInfoViewController
@@ -44,25 +41,26 @@
     [super viewDidLoad];
     self.title = self.talentModel.master;
     
-    [self setTableView];
     [self netForMyInfo];
 }
 
 
-- (void)netForUserInfo {
-    [AppBaseHud showHudWithLoding:self.view];
-    [self netForMyInfo];
-}
 
 - (void)netForMyInfo {
+    [AppBaseHud showHudWithLoding:self.view];
+
     @weakify(self);
-    [UserDao userMyInfoSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userMyInfo:self.talentModel.msaterid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [AppBaseHud hideHud:self.view];
+        [self setTableView];
+
+        UserModel *model = (UserModel *)responseObject;
+        self.userModel = model;
         
         [self.tableView reloadData];
-        [self.headerView reloadData];
+        [self.headerView reloadData:model];
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
@@ -111,7 +109,7 @@
     
     self.tableView.frame = CGRectMake(0, total_topView_height, SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height);
     
-    MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
+    UserInfoHeaderView *headerView = [[UserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
     self.tableView.tableHeaderView = headerView;
     self.headerView = headerView;
     
@@ -123,29 +121,23 @@
     self.tableView.tableFooterView = footerView;
     
     MineLogViewController *logController = [[MineLogViewController  alloc] init];
+    logController.taid = self.talentModel.msaterid;
     [self addChildViewController:logController];
     logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:logController.view];
     
-    MineCollectViewController *collectController = [[MineCollectViewController alloc] init];
-    [self addChildViewController:collectController];
-    collectController.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:collectController.view];
     
     MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
+    birdController.taid = self.talentModel.msaterid;
     [self addChildViewController:birdController];
-    birdController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
+    birdController.view.frame = CGRectMake(SCREEN_WIDTH , 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:birdController.view];
     
     MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
+    photoController.taid = self.talentModel.msaterid;
     [self addChildViewController:photoController];
-    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, footerView.height);
+    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:photoController.view];
-    
-    MineFriendViewController *friendController = [[MineFriendViewController alloc] init];
-    [self addChildViewController:friendController];
-    friendController.view.frame = CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:friendController.view];
     
     
     @weakify(footerView);
@@ -157,25 +149,16 @@
                 footerView.contentOffset = CGPointMake(0, 0);
             }
                 break;
-            case 200:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-            }
-                break;
+
             case 300:
             {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH , 0);
             }
                 break;
             case 400:
             {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 3, 0);
+                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
                 
-            }
-                break;
-            case 500:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 4, 0);
             }
                 break;
                 

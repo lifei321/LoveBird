@@ -21,6 +21,8 @@
 
 //@property (nonatomic, strong) UILabel *tipsLabel;
 
+@property (nonatomic, assign) NSInteger page;
+
 
 @end
 
@@ -35,7 +37,7 @@
 
     
     [self setTableView];
-    [self netForLog];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -49,20 +51,33 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
+- (void)netForLogHeader {
+    self.page = 1;
+    [self netForLog];
+}
 
 - (void)netForLog {
     
     @weakify(self);
-    [UserDao userBirdList:1 fid:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userBirdList:self.page fid:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
 
         UserBirdDataModel *dataModel = (UserBirdDataModel *)responseObject;
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        self.page ++;
+        
         [self.dataArray addObjectsFromArray:dataModel.birdInfo];
         
-        [self refreshHeaderView:[NSString stringWithFormat:@"%ld", (long)dataModel.birdNum]];
+        if (!self.taid.length) {
+            [self refreshHeaderView:[NSString stringWithFormat:@"%ld", (long)dataModel.birdNum]];
+        }
+        
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -125,7 +140,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
     
     //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLogHeader)];
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }

@@ -325,9 +325,6 @@
              SuccessBlock:^(__kindof AppBaseModel *responseObject) {
                  @strongify(self);
                  [AppBaseHud hideHud:self.view];
-                 RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
-                 [UserPage sharedInstance].userModel.token = dataModel.userInfo.token;
-                 [UserPage sharedInstance].userModel.uid = dataModel.userInfo.uid;
                  
                  if (self.viewControllerActionBlock) {
                      self.viewControllerActionBlock(self, nil);

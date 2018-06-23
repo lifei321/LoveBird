@@ -21,6 +21,10 @@ typedef void(^UserModelBlock)(void);
 
 + (UserPage *)sharedInstance;
 
++ (void)setUid:(NSString *)uid;
+
++ (void)setToken:(NSString *)token;
+
 + (void)logoutBlock:(UserModelBlock)block;
 
 + (void)gotoLoinBlock:(UserModelBlock)block;

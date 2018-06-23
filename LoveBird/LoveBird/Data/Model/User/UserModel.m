@@ -25,7 +25,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.userModel = [self getUserModel];
+        _userModel = [self getUserModel];
     }
     return self;
 }
@@ -118,6 +118,22 @@
     return userModel;
 }
 
++ (void)setUid:(NSString *)uid {
+    if ([UserPage sharedInstance].userModel) {
+        [UserPage sharedInstance].userModel.uid = uid;
+    }
+    [AppCache setObject:uid forKey:@"uid"];
+}
+
++ (void)setToken:(NSString *)token {
+    if ([UserPage sharedInstance].userModel) {
+        [UserPage sharedInstance].userModel.token = token;
+    }
+    [AppCache setObject:token forKey:@"token"];
+    
+}
+
+
 @end
 
 @implementation UserModel
@@ -129,15 +145,5 @@
     }];
 }
 
-- (void)setUid:(NSString *)uid {
-    _uid = [uid copy];
-    [AppCache setObject:uid forKey:@"uid"];
-}
-
-- (void)setToken:(NSString *)token {
-    _token = [token copy];
-    [AppCache setObject:token forKey:@"token"];
-
-}
 
 @end

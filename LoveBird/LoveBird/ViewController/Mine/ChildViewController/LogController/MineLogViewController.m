@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) UILabel *countLabel;
 
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -35,8 +36,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
 
     [self setTableView];
-    
-    [self netForLog];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -50,14 +50,25 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
+- (void)netForLogHeader {
+    self.page = 1;
+    [self netForLog];
+}
+
 - (void)netForLog {
     
     @weakify(self);
-    [UserDao userLogList:1 matchId:nil fid:nil successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userLogList:self.page matchId:nil fid:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        self.page ++;
+        
         
         ShequLogModel *dataModel = (ShequLogModel *)responseObject;
         for (int i = 0; i < dataModel.articleList.count; i++) {
@@ -68,7 +79,9 @@
             [self.dataArray addObject:frameModel];
         }
         self.count = dataModel.draftNum;
-        self.tableView.tableHeaderView = [self makeHeaderView];
+        if (!self.taid.length) {
+            self.tableView.tableHeaderView = [self makeHeaderView];
+        }
 
         [self.tableView reloadData];
         
@@ -124,7 +137,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
     
     //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLogHeader)];
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }

@@ -63,7 +63,7 @@
 
 - (void)netForMyInfo {
     @weakify(self);
-    [UserDao userMyInfoSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userMyInfo:@"" SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [AppBaseHud hideHud:self.view];

@@ -82,6 +82,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     TalentModel *model = self.sourceArray[indexPath.row];
     
+    if ([model.msaterid isEqualToString:[UserPage sharedInstance].userModel.uid]) {
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [self.navigationController popViewControllerAnimated:NO];
+        
+        return;
+    }
+    
     UserInfoViewController *infovc = [[UserInfoViewController alloc] init];
     infovc.talentModel = model;
     [[UIViewController currentViewController].navigationController pushViewController:infovc animated:YES];
