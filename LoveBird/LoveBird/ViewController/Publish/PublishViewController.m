@@ -201,19 +201,20 @@
                 [self.birdInfoArray insertObject:birdModel atIndex:0];
                 [self.tableView reloadData];
             };
-        } else { // 选择鸟名
-            @weakify(self);
-            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
-                @strongify(self);
-                FindSelectBirdModel *birdSeleModel = (FindSelectBirdModel *)userInfo;
-
-                FindSelectBirdModel *birdModel = self.birdInfoArray[indexPath.row];
-                birdSeleModel.isSelect = birdModel.isSelect;
-                birdSeleModel.count = birdModel.count;
-                birdModel = birdSeleModel;
-                [self.tableView reloadData];
-            };
         }
+//        else { // 选择鸟名
+//            @weakify(self);
+//            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+//                @strongify(self);
+//                FindSelectBirdModel *birdSeleModel = (FindSelectBirdModel *)userInfo;
+//
+//                FindSelectBirdModel *birdModel = self.birdInfoArray[indexPath.row];
+//                birdSeleModel.isSelect = birdModel.isSelect;
+//                birdSeleModel.count = birdModel.count;
+//                birdModel = birdSeleModel;
+//                [self.tableView reloadData];
+//            };
+//        }
         [self.navigationController pushViewController:selvc animated:YES];
         return;
     }
@@ -272,7 +273,11 @@
     }
     
     if (indexPath.section == 1) {
-        return AutoSize6(95);
+        if (self.birdInfoArray.count > 1) {
+            return AutoSize6(95);
+        } else {
+            return 0;
+        }
     }
     
     PublishEditModel *model = self.dataArray[indexPath.section][indexPath.row];
@@ -281,11 +286,13 @@
     } else {
         return model.isShow ? AutoSize6(428): AutoSize6(344);
     }
+    
+    return 0;
 }
 
 #pragma mark-- PublishCell 代理
 
-// 关闭这一行
+// 删除这一行
 - (void)publishCellCloseDelegate:(PublishCell *)cell  {
     [self.dataModelArray removeObject:cell.editModel];
     

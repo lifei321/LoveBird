@@ -53,15 +53,13 @@
     
     NSInteger count = self.countLable.text.integerValue;
     if (_isSelect) {
-        if (count == 0) {
-            return;
-        }
-    } else {
-        if (count == 1) {
-            return;
-        }
+        return;
     }
 
+    if (count == 1) {
+        return;
+    }
+    
     count--;
     self.countLable.text = [NSString stringWithFormat:@"%ld", count];
     
@@ -72,6 +70,9 @@
 
 - (void)addButtonClick {
     NSInteger count = self.countLable.text.integerValue;
+    if (_isSelect) {
+        return;
+    }
     
     count++;
     self.countLable.text = [NSString stringWithFormat:@"%ld", count];

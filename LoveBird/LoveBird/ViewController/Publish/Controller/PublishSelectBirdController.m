@@ -69,27 +69,34 @@
     
     AppBaseCellModel *cellModel = self.viewSource.tableListArray[0][indexPath.row];
     FindSelectBirdModel *bridModel = (FindSelectBirdModel *)cellModel.userInfo;
-    if (self.selectBirdModel == bridModel) {
-        return;
-    }
+//    if (self.selectBirdModel == bridModel) {
+//        return;
+//    }
+//
+//    for (AppBaseCellModel *cellmodel in self.viewSource.tableListArray[0]) {
+//        if (cellmodel.isSelect) {
+//            cellmodel.isSelect = NO;
+//            break;
+//        }
+//    }
+//    self.selectBirdModel = bridModel;
+//    cellModel.isSelect = YES;
+//    [self.tableView reloadData];
     
-    for (AppBaseCellModel *cellmodel in self.viewSource.tableListArray[0]) {
-        if (cellmodel.isSelect) {
-            cellmodel.isSelect = NO;
-            break;
+    if (bridModel) {
+        if (self.viewControllerActionBlock) {
+            self.viewControllerActionBlock(self, bridModel);
         }
     }
-    self.selectBirdModel = bridModel;
-    cellModel.isSelect = YES;
-    [self.tableView reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark-- UI
 - (void)setNavigation {
     self.navigationItem.title = @"选择鸟种";
-    self.rightButton.title = @"完成";
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
+//    self.rightButton.title = @"完成";
+//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     
 }
 
