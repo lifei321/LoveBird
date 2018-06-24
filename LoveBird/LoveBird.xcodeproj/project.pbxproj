@@ -178,7 +178,6 @@
 		1F676F0420A9C4F3002F71B4 /* NavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676EF520A9C4F2002F71B4 /* NavView.m */; };
 		1F676F0520A9C4F3002F71B4 /* wphoto_select_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F676EF720A9C4F2002F71B4 /* wphoto_select_no@2x.png */; };
 		1F676F0620A9C4F3002F71B4 /* wphoto_select_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F676EF820A9C4F2002F71B4 /* wphoto_select_yes@2x.png */; };
-		1F676F0720A9C4F3002F71B4 /* wphoto_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F676EF920A9C4F2002F71B4 /* wphoto_back@2x.png */; };
 		1F676F0820A9C4F3002F71B4 /* WPFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F0020A9C4F2002F71B4 /* WPFunctionView.m */; };
 		1F676F0920A9C4F3002F71B4 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F0120A9C4F2002F71B4 /* UIImage+fixOrientation.m */; };
 		1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676F1020A9CAC5002F71B4 /* TalentModel.m */; };
@@ -585,7 +584,6 @@
 		1F676EF520A9C4F2002F71B4 /* NavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavView.m; sourceTree = "<group>"; };
 		1F676EF720A9C4F2002F71B4 /* wphoto_select_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_select_no@2x.png"; sourceTree = "<group>"; };
 		1F676EF820A9C4F2002F71B4 /* wphoto_select_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_select_yes@2x.png"; sourceTree = "<group>"; };
-		1F676EF920A9C4F2002F71B4 /* wphoto_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_back@2x.png"; sourceTree = "<group>"; };
 		1F676EFA20A9C4F2002F71B4 /* WPFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFunctionView.h; sourceTree = "<group>"; };
 		1F676EFB20A9C4F2002F71B4 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		1F676EFC20A9C4F2002F71B4 /* myPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPhotoCell.h; sourceTree = "<group>"; };
@@ -1924,18 +1922,18 @@
 		1F676EF220A9C4F2002F71B4 /* WPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				1F676EF320A9C4F2002F71B4 /* myPhotoCell.m */,
-				1F676EF420A9C4F2002F71B4 /* WPhotoViewController.m */,
-				1F676EF520A9C4F2002F71B4 /* NavView.m */,
 				1F676EF620A9C4F2002F71B4 /* WPhotoImage */,
-				1F676EFA20A9C4F2002F71B4 /* WPFunctionView.h */,
-				1F676EFB20A9C4F2002F71B4 /* UIImage+fixOrientation.h */,
 				1F676EFC20A9C4F2002F71B4 /* myPhotoCell.h */,
-				1F676EFD20A9C4F2002F71B4 /* WPMacros.h */,
-				1F676EFE20A9C4F2002F71B4 /* NavView.h */,
+				1F676EF320A9C4F2002F71B4 /* myPhotoCell.m */,
 				1F676EFF20A9C4F2002F71B4 /* WPhotoViewController.h */,
+				1F676EF420A9C4F2002F71B4 /* WPhotoViewController.m */,
+				1F676EFE20A9C4F2002F71B4 /* NavView.h */,
+				1F676EF520A9C4F2002F71B4 /* NavView.m */,
+				1F676EFD20A9C4F2002F71B4 /* WPMacros.h */,
+				1F676EFA20A9C4F2002F71B4 /* WPFunctionView.h */,
 				1F676F0020A9C4F2002F71B4 /* WPFunctionView.m */,
 				1F676F0120A9C4F2002F71B4 /* UIImage+fixOrientation.m */,
+				1F676EFB20A9C4F2002F71B4 /* UIImage+fixOrientation.h */,
 			);
 			path = WPhoto;
 			sourceTree = "<group>";
@@ -1945,7 +1943,6 @@
 			children = (
 				1F676EF720A9C4F2002F71B4 /* wphoto_select_no@2x.png */,
 				1F676EF820A9C4F2002F71B4 /* wphoto_select_yes@2x.png */,
-				1F676EF920A9C4F2002F71B4 /* wphoto_back@2x.png */,
 			);
 			path = WPhotoImage;
 			sourceTree = "<group>";
@@ -2376,7 +2373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F676F0720A9C4F3002F71B4 /* wphoto_back@2x.png in Resources */,
 				1F676F0620A9C4F3002F71B4 /* wphoto_select_yes@2x.png in Resources */,
 				1F676F0520A9C4F3002F71B4 /* wphoto_select_no@2x.png in Resources */,
 				0B7293111EFA4F1100D1B1EB /* Assets.xcassets in Resources */,

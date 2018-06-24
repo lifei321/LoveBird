@@ -40,15 +40,15 @@ typedef NS_ENUM(NSInteger,XFImageType){
  */
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // 相册列表页面上端的颜色
-#define WPhoto_TopView_Color UIColorFromRGB(0x000000)
+#define WPhoto_TopView_Color UIColorFromRGB(0xffffff)
 // 相册列表页面上端文字的颜色
-#define WPhoto_TopText_Color UIColorFromRGB(0xffffff)
+#define WPhoto_TopText_Color UIColorFromRGB(0x000000)
 
 /*
  图片
  */
 //   相册列表页面左边返回箭头图片
-#define WPhoto_Btn_Back      [UIImage imageNamed:@"wphoto_back@2x"]
+#define WPhoto_Btn_Back      [UIImage imageNamed:@"nav_back_black"]
 //   图片选中状态图片
 #define WPhoto_Btn_Selected       [UIImage imageNamed:@"wphoto_select_yes@2x"]
 //   图片未选中状态图片

@@ -372,7 +372,7 @@
         [_finishBtn setTitleColor:UIColorFromRGB(0xbbbbbb) forState:UIControlStateNormal];
     }
     else {
-        [_finishBtn setTitleColor:UIColorFromRGB(0xcc3366) forState:UIControlStateNormal];
+        [_finishBtn setTitleColor:kColorDefaultColor forState:UIControlStateNormal];
     }
 }
 

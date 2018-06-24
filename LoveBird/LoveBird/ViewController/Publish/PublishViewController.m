@@ -43,6 +43,7 @@
 // 显示添加 的model
 @property (nonatomic, strong) PublishEditModel *selectEditModel;
 
+
 // 生态环境
 @property (nonatomic, strong) PublishEVModel *selectEVModel;
 
@@ -434,7 +435,7 @@
 }
 
 - (void)addCell:(PublishEditModel *)model selectModel:(PublishEditModel *)selectModel {
-    if (!selectModel) {
+    if (self.dataModelArray.count == 0) {
         [self.dataModelArray addObject:[self getAddTypeCellModel]];
         [self.dataModelArray addObject:model];
         [self.dataModelArray addObject:[self getAddTypeCellModel]];
@@ -446,10 +447,17 @@
                 break;
             }
         }
-        [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 1)];
-        [self.dataModelArray insertObject:model atIndex:(index + 2)];
-        [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 3)];
-        [self.dataModelArray removeObject:selectModel];
+        
+        if (selectModel.isAddShowTextAndImageView) {
+            [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 1)];
+            [self.dataModelArray insertObject:model atIndex:(index + 2)];
+            [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 3)];
+            [self.dataModelArray removeObject:selectModel];
+
+        } else {
+            [self.dataModelArray insertObject:model atIndex:(index + 2)];
+            [self.dataModelArray insertObject:[self getAddTypeCellModel] atIndex:(index + 3)];
+        }
     }
 }
 
@@ -511,12 +519,31 @@
 - (void)choosePicture {
     WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
     //选择图片的最大数
-    WphotoVC.selectPhotoOfMax = 8;
+    WphotoVC.selectPhotoOfMax = 9;
     @weakify(self);
     [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+        
+        NSOperationQueue *queue=[[NSOperationQueue alloc] init];
+        NSMutableArray *tempArray = [NSMutableArray new];
+        
         @strongify(self);
         for (NSDictionary *dic in phostsArr) {
-            [self upLoadImage:[dic objectForKey:@"image"]];
+
+            //创建操作
+            NSBlockOperation *operation1=[NSBlockOperation blockOperationWithBlock:^(){
+                [self upLoadImage:[dic objectForKey:@"image"]];
+            }];
+            if (tempArray.count == 0) {
+                [tempArray addObject:operation1];
+            } else {
+                NSOperation *lastOperation = tempArray.lastObject;
+                [operation1 addDependency:lastOperation];
+                [tempArray addObject:operation1];
+            }
+
+            //将操作添加到队列中去
+            [queue addOperation:operation1];
+            
         }
     }];
     [self presentViewController:WphotoVC animated:YES completion:nil];
@@ -532,11 +559,12 @@
 
 // 上传照片
 - (void)upLoadImage:(UIImage *)image {
-    [AppBaseHud showHudWithLoding:self.view];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [AppBaseHud showHudWithLoding:self.view];
+    });
     @weakify(self);
     [PublishDao upLoad:image successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        [AppBaseHud hideHud:self.view];
         if (self.headerView.headerImageView.image == nil) {
             self.headerView.headerImageView.image = image;
         }
@@ -550,10 +578,12 @@
         model.aid = upModel.aid;
         model.isNewAid = YES;
         [self addCell:model selectModel:self.selectEditModel];
-
+        self.selectEditModel = model;
+        
         [self reloadFooterView:YES];
         [self.tableView reloadData];
-        
+        [AppBaseHud hideHud:self.view];
+
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         
