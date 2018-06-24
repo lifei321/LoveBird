@@ -78,7 +78,18 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 #pragma mark-- 发布
 
-- (void)rightButtonAction {
+- (void)publish {
+    
+    if (!self.headerView.textField.text.length) {
+        [AppBaseHud showHudWithfail:@"请输入标题" view:self.view];
+        return;
+    }
+    
+    if (!self.dataModelArray.count && !self.birdInfoArray.count) {
+        [AppBaseHud showHudWithfail:@"请选择鸟种或添加文字、图片" view:self.view];
+        return;
+    }
+    
     [AppBaseHud showHudWithLoding:self.view];
     
     PublishEditModel *selectModel = [self.headerView getFengmian];
@@ -99,18 +110,23 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
                     tid:self.tid
            successBlock:^(__kindof AppBaseModel *responseObject) {
                @strongify(self);
-               [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
-//               [self.dataArray removeAllObjects];
-//               self.dataArray = nil;
-//               [self.dataModelArray removeAllObjects];
-//               self.dataModelArray = nil;
-//               [self.birdInfoArray removeAllObjects];
-//               self.birdInfoArray = nil;
-//
-//               [self reloadHeaderView];
-//               [self reloadFooterView:NO];
-//               [self setModels];
-//               [self.tableView reloadData];
+               
+               if (self.status.length) {
+                   [AppBaseHud showHudWithSuccessful:@"保存成功" view:self.view];
+               } else {
+                   [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
+               }
+               //               [self.dataArray removeAllObjects];
+               //               self.dataArray = nil;
+               //               [self.dataModelArray removeAllObjects];
+               //               self.dataModelArray = nil;
+               //               [self.birdInfoArray removeAllObjects];
+               //               self.birdInfoArray = nil;
+               //
+               //               [self reloadHeaderView];
+               //               [self reloadFooterView:NO];
+               //               [self setModels];
+               //               [self.tableView reloadData];
                [self dismissViewControllerAnimated:YES completion:nil];
            } failureBlock:^(__kindof AppBaseModel *error) {
                @strongify(self);
@@ -672,12 +688,23 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     [self.leftButton setImage:[UIImage imageNamed:@"nav_close_black"]];
 }
 
+- (void)rightButtonAction {
+    self.status = nil;
+    [self publish];
+}
+
 - (void)leftButtonAction {
-    if (self.viewControllerActionBlock) {
-        self.viewControllerActionBlock(self, nil);
-    }
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+
+    AppAlertView *alertView = [[AppAlertView alloc] initWithTitle:@"" message:@"请选择退出方式？" cancelButtonTitle:@"放弃" otherButtonTitles:@"存草稿", nil];
+    alertView.onDismissBlock = ^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else if (buttonIndex == 1) {
+            self.status = @"4";
+            [self publish];
+        }
+    };
+    [alertView show];
 }
 - (void)setTableView {
     
