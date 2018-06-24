@@ -30,15 +30,30 @@
         self.leftImageview = [[WorksImageView alloc] init];
         self.leftImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.leftImageview];
+        self.leftImageview.userInteractionEnabled = YES;
+        [self.leftImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
         
         self.rightImageview = [[WorksImageView alloc] init];
         self.rightImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.rightImageview];
-        
+        self.rightImageview.userInteractionEnabled = YES;
+        [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];
     }
     return self;
 }
 
+- (void)leftImageviewClick {
+    
+    if (self.selectBlock) {
+        self.selectBlock(self.listArray.firstObject);
+    }
+}
+
+- (void)rightImageviewClick {
+    if (self.selectBlock) {
+        self.selectBlock(self.listArray.lastObject);
+    }
+}
 - (void)setListArray:(NSArray *)listArray {
     _listArray = [listArray copy];
     

@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WorksModel.h"
 
+typedef void(^WorkSelectBlock)(WorksModel *selectModel);
+
 @interface WorkTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSArray *listArray;
+
+@property (nonatomic, strong) WorkSelectBlock selectBlock;
+
 
 @end

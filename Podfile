@@ -82,4 +82,7 @@ pod 'SPPageMenu', '~> 2.5.5'
 #百度地图SDK
 pod 'BaiduMapKit'
 
+#MW用到
+pod 'DACircularProgress', '2.3.1'
+
 end

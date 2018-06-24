@@ -12,8 +12,9 @@
 #import <MJRefresh/MJRefresh.h>
 #import "WorkTableViewCell.h"
 #import "UIImage+Addition.h"
+#import "MWPhotoBrowser.h"
 
-@interface WorksViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface WorksViewController ()<UITableViewDelegate, UITableViewDataSource, MWPhotoBrowserDelegate>
 
 // 刷新页数
 @property (nonatomic, copy) NSString *pageNum;
@@ -24,6 +25,7 @@
 
 @property (nonatomic, copy) NSString *type;
 
+@property (nonatomic, strong) NSMutableArray *photoArray;
 
 @end
 
@@ -36,7 +38,8 @@
     self.type = @"100";
     
     _dataArray = [NSMutableArray new];
-    
+    _photoArray = [NSMutableArray new];
+
     [self setNavigation];
     
     // 设置UI
@@ -104,6 +107,31 @@
     WorkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WorkTableViewCell class]) forIndexPath:indexPath];
     
     cell.listArray = self.dataArray[indexPath.row];
+    
+    cell.selectBlock = ^(WorksModel *selectModel) {
+        
+        BOOL displayActionButton = YES;
+        BOOL displaySelectionButtons = NO;
+        BOOL displayNavArrows = NO;
+        BOOL enableGrid = YES;
+        BOOL startOnGrid = NO;
+        BOOL autoPlayOnAppear = NO;
+        
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = displayActionButton;
+        browser.displayNavArrows = displayNavArrows;
+        browser.displaySelectionButtons = displaySelectionButtons;
+        browser.alwaysShowControls = displaySelectionButtons;
+        browser.zoomPhotosToFill = YES;
+        browser.enableGrid = enableGrid;
+        browser.startOnGrid = startOnGrid;
+        browser.enableSwipeToDismiss = NO;
+        browser.autoPlayOnAppear = autoPlayOnAppear;
+        [browser setCurrentPhotoIndex:0];
+        [[UIViewController currentViewController].navigationController pushViewController:browser animated:YES];
+
+    };
+    
     return cell;
 }
 
@@ -114,7 +142,7 @@
     if (listArray.count == 1) {
         WorksModel *model = listArray.firstObject;
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
-        return imageHeight + 2;
+        return imageHeight + 1;
         
     } else if (listArray.count == 2) {
         WorksModel *model1 = listArray.firstObject;
@@ -123,7 +151,7 @@
         CGFloat width1 = SCREEN_WIDTH * (model1.imgWidth / (model1.imgWidth + model2.imgWidth));
         
         CGFloat imageHeight = (model1.imgHeight) * (width1 / model1.imgWidth);
-        return imageHeight + 2;
+        return imageHeight + 1;
     }
     
     return 0.01f;
@@ -139,6 +167,44 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photoArray.count;
+}
+
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+//    if (index < _photos.count)
+//        return [_photoArray objectAtIndex:index];
+//    return nil;
+//}
+//
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+//    if (index < _thumbs.count)
+//        return [_thumbs objectAtIndex:index];
+//    return nil;
+//}
+
+//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+//    MWPhoto *photo = [self.photos objectAtIndex:index];
+//    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+//    return [captionView autorelease];
+//}
+
+//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+//    NSLog(@"ACTION!");
+//}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
+    NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
+}
+
+
+- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
+    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
+}
+
 
 - (void)buttonDidClick:(UIButton *)button {
     if (button == self.selectButton) {
