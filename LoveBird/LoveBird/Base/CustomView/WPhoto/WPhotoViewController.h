@@ -20,4 +20,8 @@
 /** 回调方法 */
 @property (nonatomic, copy) void(^selectPhotosBack)(NSMutableArray *photosArr);
 
+// 所有要显示的照片
+@property (nonatomic, strong) NSArray *imageArray;
+
+
 @end

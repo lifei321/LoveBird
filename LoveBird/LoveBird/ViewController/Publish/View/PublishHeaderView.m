@@ -7,13 +7,15 @@
 //
 
 #import "PublishHeaderView.h"
-
+#import "WPhotoViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface PublishHeaderView()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 
 @property (nonatomic, strong) UIImageView *changeImageView;
 
+@property (nonatomic, strong) PublishEditModel *selectModel;
 
 @end
 
@@ -22,6 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(436))];
     if (self) {
+        _choosePhotoArr = [NSMutableArray new];
         [self addSubview:self.headerImageView];
         [self addSubview:self.textField];
     }
@@ -65,13 +68,46 @@
 
  - (void)changeDidClick {
      
+     WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+     //选择图片的最大数
+     WphotoVC.selectPhotoOfMax = 1;
+     WphotoVC.imageArray = [NSArray arrayWithArray:self.choosePhotoArr];
+     @weakify(self);
+     [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+         @strongify(self);
+         PublishEditModel *model = phostsArr.firstObject;
+        
+         NSString* strUrl = model.imgUrl;
+         SDWebImageManager *manager = [SDWebImageManager sharedManager];
+         NSString* key = [manager cacheKeyForURL:[NSURL URLWithString:strUrl]];
+         SDImageCache* cache = [SDImageCache sharedImageCache];
+         //此方法会先从memory中取。
+         [self reloadHeaderView:[cache imageFromDiskCacheForKey:key]];
+         self.selectModel = model;
+         
+     }];
+     [[UIViewController currentViewController] presentViewController:WphotoVC animated:YES completion:nil];
+     
  }
+
+- (PublishEditModel *)getFengmian {
+    if (!self.selectModel) {
+        self.selectModel = self.choosePhotoArr.firstObject;
+    }
+    
+    return self.selectModel;
+}
          
 - (void)setImage:(UIImage *)image {
     
     if (_image) {
         return;
     }
+    [self reloadHeaderView:image];
+}
+         
+- (void)reloadHeaderView:(UIImage *)image {
+    
     _image = image;
     [self addSubview:self.changeImageView];
     
@@ -82,8 +118,7 @@
     self.headerImageView.height = height;
     self.textField.top = self.headerImageView.bottom;
     self.height = self.textField.height + self.headerImageView.height;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPublishReloadHeaderNotification object:nil];
 }
-         
-
 
 @end

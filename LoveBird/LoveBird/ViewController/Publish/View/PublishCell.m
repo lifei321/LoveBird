@@ -11,7 +11,8 @@
 #import "PublishAddView.h"
 #import "PublishAddTypeView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "PublishSelectBirdController.h"
+#import "FindSelectBirdModel.h"
 
 @interface PublishCell ()
 
@@ -86,6 +87,7 @@
         [self.birdButton setTitle:@"添加鸟名" forState:UIControlStateNormal];
         [self.birdButton setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateNormal];
         self.birdButton.titleLabel.font = kFont6(20);
+        [self.birdButton addTarget:self action:@selector(birdButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
         [backView addSubview:self.birdButton];
         
         self.addView = [[PublishAddView alloc] initWithFrame:CGRectMake(0, backView.bottom, SCREEN_WIDTH, AutoSize6(84))];
@@ -135,7 +137,19 @@
     }
 }
 
-
+- (void)birdButtonDidClick {
+    PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+    
+    @weakify(self);
+    selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+        @strongify(self);
+        FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
+        [self.birdButton setTitle:birdModel.name forState:UIControlStateNormal];
+        CGFloat width = [birdModel.name getTextWightWithFont:self.birdButton.titleLabel.font];
+        self.birdButton.width = width + AutoSize6(20);
+    };
+    [[UIViewController currentViewController].navigationController pushViewController:selvc animated:YES];
+}
 
 - (void)setEditModel:(PublishEditModel *)editModel {
     _editModel = editModel;

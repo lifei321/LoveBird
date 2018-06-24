@@ -25,6 +25,9 @@
 #import "AppDateManager.h"
 #import "WPhotoViewController.h"
 #import "UIImage+Addition.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
@@ -52,48 +55,67 @@
 // 选择的时间
 @property (nonatomic, copy) NSString *selectTime;
 
+// 上传图片用
+@property (nonatomic, strong) NSMutableArray *uploadArray;
+
 @end
 
 @implementation PublishViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:kPublishReloadHeaderNotification object:nil];
+    
     [self setNavigation];
     [self setTableView];
     [self setModels];
+}
+
+- (void)reloadView {
+    [self.tableView reloadData];
 }
 
 #pragma mark-- 发布
 
 - (void)rightButtonAction {
     [AppBaseHud showHudWithLoding:self.view];
+    
+    PublishEditModel *selectModel = [self.headerView getFengmian];
+    
     @weakify(self);
     [PublishDao publish:self.dataModelArray
                birdInfo:self.birdInfoArray
                    evId:self.selectEVModel.evId
                loaction:@""
+                    lat:@""
+                    lng:@""
                    time:self.selectTime
-                 status:@""
+                 status:self.status
                   title:self.headerView.textField.text
+                  imgId:selectModel.aid
+                 imgUrl:selectModel.imgUrl
+                matchid:self.matchid
+                    tid:self.tid
            successBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
-        [self.dataArray removeAllObjects];
-        self.dataArray = nil;
-        [self.dataModelArray removeAllObjects];
-        self.dataModelArray = nil;
-        [self.birdInfoArray removeAllObjects];
-        self.birdInfoArray = nil;
-        
-        [self reloadHeaderView];
-        [self reloadFooterView:NO];
-        [self setModels];
-        [self.tableView reloadData];
-        
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-        [AppBaseHud showHudWithfail:error.errstr view:self.view];
-    }];
+               @strongify(self);
+               [AppBaseHud showHudWithSuccessful:@"发布成功" view:self.view];
+//               [self.dataArray removeAllObjects];
+//               self.dataArray = nil;
+//               [self.dataModelArray removeAllObjects];
+//               self.dataModelArray = nil;
+//               [self.birdInfoArray removeAllObjects];
+//               self.birdInfoArray = nil;
+//
+//               [self reloadHeaderView];
+//               [self reloadFooterView:NO];
+//               [self setModels];
+//               [self.tableView reloadData];
+               [self dismissViewControllerAnimated:YES completion:nil];
+           } failureBlock:^(__kindof AppBaseModel *error) {
+               @strongify(self);
+               [AppBaseHud showHudWithfail:error.errstr view:self.view];
+           }];
 }
 
 #pragma mark-- tableview代理
@@ -524,29 +546,37 @@
     WphotoVC.selectPhotoOfMax = 9;
     @weakify(self);
     [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
-        
-        NSOperationQueue *queue=[[NSOperationQueue alloc] init];
-        NSMutableArray *tempArray = [NSMutableArray new];
-        
         @strongify(self);
-        for (NSDictionary *dic in phostsArr) {
-
-            //创建操作
-            NSBlockOperation *operation1=[NSBlockOperation blockOperationWithBlock:^(){
-                [self upLoadImage:[dic objectForKey:@"image"]];
-            }];
-            if (tempArray.count == 0) {
-                [tempArray addObject:operation1];
-            } else {
-                NSOperation *lastOperation = tempArray.lastObject;
-                [operation1 addDependency:lastOperation];
-                [tempArray addObject:operation1];
-            }
-
-            //将操作添加到队列中去
-            [queue addOperation:operation1];
-            
-        }
+        
+        NSDictionary *dic = phostsArr.firstObject;
+        self.uploadArray = [NSMutableArray arrayWithArray:phostsArr];
+        [self.uploadArray removeObjectAtIndex:0];
+        [self upLoadImage:[dic objectForKey:@"image"]];
+        
+        
+//        NSOperationQueue *queue=[[NSOperationQueue alloc] init];
+//        queue.maxConcurrentOperationCount = 1;
+//
+//        NSMutableArray *tempArray = [NSMutableArray new];
+//
+//        @strongify(self);
+//        for (NSDictionary *dic in phostsArr) {
+//
+//            //创建操作
+//            NSBlockOperation *operation1=[NSBlockOperation blockOperationWithBlock:^(){
+//                [self upLoadImage:[dic objectForKey:@"image"]];
+//            }];
+//            if (tempArray.count == 0) {
+//                [tempArray addObject:operation1];
+//            } else {
+//                NSOperation *lastOperation = tempArray.lastObject;
+//                [operation1 addDependency:lastOperation];
+//                [tempArray addObject:operation1];
+//            }
+//
+//            //将操作添加到队列中去
+//            [queue addOperation:operation1];
+//        }
     }];
     [self presentViewController:WphotoVC animated:YES completion:nil];
 }
@@ -574,6 +604,14 @@
         
         PublishUpModel *upModel = (PublishUpModel *)responseObject;
         
+        // 图片存本地
+        NSString* strUrl = upModel.imgUrl;
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        NSString* key = [manager cacheKeyForURL:[NSURL URLWithString:strUrl]];
+        SDImageCache* cache = [SDImageCache sharedImageCache];
+        [cache storeImage:selectImage forKey:key completion:nil];
+        
+        
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
         model.isImg = YES;
@@ -583,9 +621,19 @@
         [self addCell:model selectModel:self.selectEditModel];
         self.selectEditModel = model;
         
-        [self reloadFooterView:YES];
-        [self.tableView reloadData];
-        [AppBaseHud hideHud:self.view];
+        // 封面数组
+        [self.headerView.choosePhotoArr addObject:model];
+        
+        if (self.uploadArray.count) {
+            NSDictionary *dic = self.uploadArray.firstObject;
+            [self.uploadArray removeObjectAtIndex:0];
+            [self upLoadImage:[dic objectForKey:@"image"]];
+            
+        } else {
+            [self reloadFooterView:YES];
+            [self.tableView reloadData];
+            [AppBaseHud hideHud:self.view];
+        }
 
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);

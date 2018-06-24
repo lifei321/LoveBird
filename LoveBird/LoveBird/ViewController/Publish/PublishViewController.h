@@ -10,4 +10,13 @@
 
 @interface PublishViewController : AppBaseTableViewController
 
+// 当保存草稿时候，提交此参数status=4
+@property (nonatomic, copy) NSString *status;
+
+@property (nonatomic, copy) NSString *tid;
+
+@property (nonatomic, copy) NSString *matchid;
+
+
+
 @end

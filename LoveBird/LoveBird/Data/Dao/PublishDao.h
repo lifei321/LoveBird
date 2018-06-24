@@ -21,9 +21,15 @@
        birdInfo:(NSMutableArray *)birdArray
            evId:(NSString *)evId
        loaction:(NSString *)location
+            lat:(NSString *)lat
+            lng:(NSString *)lng
            time:(NSString *)time
          status:(NSString *)status
           title:(NSString *)title
+          imgId:(NSString *)imgId
+         imgUrl:(NSString *)imgUrl
+        matchid:(NSString *)matchid
+            tid:(NSString *)tid
    successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 获取生态环境

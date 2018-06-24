@@ -19,4 +19,7 @@
 
 #define kLogoutSuccessNotification               @"kLogoutSuccessNotification"
 
+#define kPublishReloadHeaderNotification               @"kPublishReloadHeaderNotification"
+
+
 #endif /* AppNotificationMacro_h */

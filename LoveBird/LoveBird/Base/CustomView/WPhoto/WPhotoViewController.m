@@ -9,6 +9,9 @@
 #import "WPhotoViewController.h"
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "PublishEditModel.h"
+
 
 @interface WPhotoViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -25,6 +28,7 @@
 
 //所选择的图片数组
 @property (nonatomic, strong) NSMutableArray *chooseArray;
+
 
 //所选择的图片所在cell的序列号数组
 @property (nonatomic, strong) NSMutableArray *chooseCellArray;
@@ -58,13 +62,17 @@
 #pragma mark GetAllPhotos
 - (void)getAllPhotos {
     
-    if ([phoneVersion integerValue] >= 8) {
-        //高版本使用PhotoKit框架
-        [self getHeightVersionAllPhotos];
-    }
-    else {
-        //低版本使用ALAssetsLibrary框架
-        [self getLowVersionAllPhotos];
+    if (self.imageArray.count) {
+        
+    } else {
+        if ([phoneVersion integerValue] >= 8) {
+            //高版本使用PhotoKit框架
+            [self getHeightVersionAllPhotos];
+        }
+        else {
+            //低版本使用ALAssetsLibrary框架
+            [self getLowVersionAllPhotos];
+        }
     }
 }
 
@@ -157,11 +165,24 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (self.imageArray.count) {
+        return self.imageArray.count;
+    }
     return self.allPhotoArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.imageArray.count) {
+        NSString *cellId = [NSString stringWithFormat:@"cellId"];
+        myPhotoCell *cell = (myPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+        cell.progressView.hidden = YES;
+        PublishEditModel *editModel = self.imageArray[indexPath.row];
+        [cell.photoView sd_setImageWithURL:[NSURL URLWithString:editModel.imgUrl] placeholderImage:nil];
+
+        return cell;
+    }
+    
     
     if (_allPhotoArr.count) {
         NSString *cellId = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
@@ -217,6 +238,45 @@
     }
 
     myPhotoCell *cell = (myPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    if (self.imageArray.count) {
+
+        if (cell.chooseStatus == NO) {
+            
+            if (_chooseCellArray.count) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:[_chooseCellArray[0] integerValue] inSection:0];
+                myPhotoCell *selectCell = (myPhotoCell *)[collectionView cellForItemAtIndexPath:ip];
+                for (NSInteger i = 2; i < selectCell.subviews.count; i++) {
+                    [selectCell.subviews[i] removeFromSuperview];
+                }
+                selectCell.chooseStatus = NO;
+                [_chooseCellArray removeAllObjects];
+            }
+            
+            [_chooseCellArray addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+            [self finishColorAndTextChange:_chooseCellArray.count];
+            
+            UIImageView *signImage = [[UIImageView alloc]initWithFrame:CGRectMake(cell.frame.size.width-22-5, 5, 22, 22)];
+            signImage.layer.cornerRadius = 22/2;
+            signImage.image = WPhoto_Btn_Selected;
+            signImage.layer.masksToBounds = YES;
+            [cell addSubview:signImage];
+            
+            [WPFunctionView shakeToShow:signImage];
+            cell.chooseStatus = YES;
+            
+        } else {
+            for (NSInteger i = 2; i < cell.subviews.count; i++) {
+                [cell.subviews[i] removeFromSuperview];
+            }
+
+            [_chooseCellArray removeAllObjects];
+            [self finishColorAndTextChange:_chooseCellArray.count];
+            cell.chooseStatus = NO;
+        }
+        return;
+    }
+        
     
     if ([phoneVersion integerValue] >= 8) {
         PHAsset *asset = _allPhotoArr[_allPhotoArr.count-indexPath.row-1];
@@ -321,11 +381,22 @@
 -(void)finishChoosePhotos:(UIButton *)finishbtn{
     
     NSString *finishStr = [NSString stringWithFormat:@"0/%ld 完成", (long)_selectPhotoOfMax];
-    if (![finishbtn.titleLabel.text isEqualToString:finishStr]&&_chooseArray.count) {
-        [WPFunctionView finishChoosePhotos:^(NSMutableArray *myChoosePhotoArr) {
-            _selectPhotosBack(myChoosePhotoArr);
+    if (![finishbtn.titleLabel.text isEqualToString:finishStr]) {
+        
+        if (self.imageArray.count) {
+            NSInteger index = [_chooseCellArray.firstObject integerValue];
+            PublishEditModel *model = self.imageArray[index];
+            _selectPhotosBack([NSMutableArray arrayWithObject:model]);
             [self btnClickBack];
-        } chooseArray:_chooseArray];
+            
+        } else {
+            if (_chooseArray.count) {
+                [WPFunctionView finishChoosePhotos:^(NSMutableArray *myChoosePhotoArr) {
+                    _selectPhotosBack(myChoosePhotoArr);
+                    [self btnClickBack];
+                } chooseArray:_chooseArray];
+            }
+        }
     }
 }
 

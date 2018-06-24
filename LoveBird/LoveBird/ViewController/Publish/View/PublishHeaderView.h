@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PublishEditModel.h"
 
 @interface PublishHeaderView : UIView
 
 @property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic, strong) UIImage *image;
+
+@property (nonatomic, strong) NSMutableArray *choosePhotoArr;
+
+- (PublishEditModel *)getFengmian;
+
 
 @end

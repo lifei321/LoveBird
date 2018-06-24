@@ -45,9 +45,15 @@
        birdInfo:(NSMutableArray *)birdArray
            evId:(NSString *)evId
        loaction:(NSString *)location
+            lat:(NSString *)lat
+            lng:(NSString *)lng
            time:(NSString *)time
          status:(NSString *)status
           title:(NSString *)title
+          imgId:(NSString *)imgId
+         imgUrl:(NSString *)imgUrl
+        matchid:(NSString *)matchid
+            tid:(NSString *)tid
    successBlock:(LFRequestSuccess)successBlock
    failureBlock:(LFRequestFail)failureBlock {
     
@@ -58,15 +64,20 @@
     [params setObject:[@[dic] JSONString]forKey:@"articleBody"];
 
     [birdArray removeLastObject];
+    [params setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [params setObject:[[JSONModel arrayOfDictionariesFromModels:birdArray] JSONString]forKey:@"birdInfo"];
     [params setObject:EMPTY_STRING_IF_NIL(evId) forKey:@"environmentId"];
-    [params setObject:@"483887" forKey:@"lat"];
-    [params setObject:@"483887" forKey:@"lng"];
-    [params setObject:@"483887" forKey:@"locale"];
+    [params setObject:EMPTY_STRING_IF_NIL(lat) forKey:@"lat"];
+    [params setObject:EMPTY_STRING_IF_NIL(lng) forKey:@"lng"];
+    [params setObject:EMPTY_STRING_IF_NIL(location) forKey:@"locale"];
     [params setObject:EMPTY_STRING_IF_NIL(time) forKey:@"observeTime"];
     [params setObject:EMPTY_STRING_IF_NIL(status) forKey:@"status"];
     [params setObject:EMPTY_STRING_IF_NIL(title) forKey:@"title"];
-    [params setObject:@"483887" forKey:@"uid"];
+    [params setObject:EMPTY_STRING_IF_NIL(imgId) forKey:@"imgId"];
+    [params setObject:EMPTY_STRING_IF_NIL(imgUrl) forKey:@"imgUrl"];
+    [params setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+    [params setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+
 
     [AppHttpManager POST:kAPI_Publish_Publish parameters:params jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
