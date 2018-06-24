@@ -127,7 +127,8 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
                //               [self reloadFooterView:NO];
                //               [self setModels];
                //               [self.tableView reloadData];
-               [self dismissViewControllerAnimated:YES completion:nil];
+               [super leftButtonAction];
+               
            } failureBlock:^(__kindof AppBaseModel *error) {
                @strongify(self);
                [AppBaseHud showHudWithfail:error.errstr view:self.view];
@@ -685,7 +686,11 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
 
-    [self.leftButton setImage:[UIImage imageNamed:@"nav_close_black"]];
+    if (self.isModal) {
+        [self.leftButton setImage:[UIImage imageNamed:@"nav_close_black"]];
+    } else {
+        [self.leftButton setImage:[UIImage imageNamed:@"nav_back_black"]];
+    }
 }
 
 - (void)rightButtonAction {
@@ -698,7 +703,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     AppAlertView *alertView = [[AppAlertView alloc] initWithTitle:@"" message:@"请选择退出方式？" cancelButtonTitle:@"放弃" otherButtonTitles:@"存草稿", nil];
     alertView.onDismissBlock = ^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [super leftButtonAction];
         } else if (buttonIndex == 1) {
             self.status = @"4";
             [self publish];

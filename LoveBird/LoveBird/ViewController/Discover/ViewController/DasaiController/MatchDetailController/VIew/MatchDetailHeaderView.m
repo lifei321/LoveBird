@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MatchTitleView.h"
 #import "RankViewController.h"
+#import "LogDetailController.h"
 
 @interface MatchDetailHeaderView()
 
@@ -99,10 +100,9 @@
 
 
 - (void)followButtonDidClick:(UIButton *)button {
-    
-    //    if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(followButtonDidClick:)]) {
-    //        [self.followDelegate followButtonClickDelegate:button];
-    //    }
+    LogDetailController *detailvc = [[LogDetailController alloc] init];
+    detailvc.aid = self.detailModel.aid;
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)setMatchid:(NSString *)matchid {

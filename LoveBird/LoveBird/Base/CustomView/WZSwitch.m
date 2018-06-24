@@ -68,20 +68,20 @@
         _leftOnLabel.backgroundColor = [UIColor whiteColor];
         _leftOnLabel.text      = @"年";
         _leftOnLabel.textAlignment    = NSTextAlignmentCenter;
-        _leftOnLabel.textColor        = [UIColor orangeColor];
+        _leftOnLabel.textColor        = UIColorFromRGB(0xf7b03d);
         [subView addSubview:_leftOnLabel];
         
         _rightOnLabel = [[UILabel alloc]initWithFrame:CGRectMake(width, 0, width, height)];
         _rightOnLabel.backgroundColor = [UIColor whiteColor];
         _rightOnLabel.text      = @"总";
         _rightOnLabel.textAlignment    = NSTextAlignmentCenter;
-        _rightOnLabel.textColor        = [UIColor orangeColor];
+        _rightOnLabel.textColor        = UIColorFromRGB(0xf7b03d);
         [subView addSubview:_rightOnLabel];
         
         self.moveView   = [[UIView alloc]initWithFrame:CGRectMake(2, 2, width-4, height - 4)];
         self.moveView.layer.cornerRadius    = (height - 4)/2;
         self.moveView.clipsToBounds         = YES;
-        self.moveView.backgroundColor       = [UIColor orangeColor];
+        self.moveView.backgroundColor       = UIColorFromRGB(0xf7b03d);
         subView.maskView    = self.moveView;
         
         self.actionBtn = [[UIButton alloc]initWithFrame:self.bounds];
@@ -96,7 +96,7 @@
         self.grayView.hidden    = YES;
         [self addSubview:self.grayView];
         
-        self.backgroundColor            = [UIColor orangeColor];
+        self.backgroundColor            = UIColorFromRGB(0xf7b03d);
         
         self.layer.cornerRadius = height/2;
         self.clipsToBounds  = YES;

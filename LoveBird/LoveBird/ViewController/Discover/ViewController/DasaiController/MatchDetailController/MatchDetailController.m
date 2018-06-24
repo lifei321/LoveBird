@@ -13,6 +13,7 @@
 #import "WorksViewController.h"
 #import "MatchDetaiNoteViewController.h"
 #import <SPPageMenu/SPPageMenu.h>
+#import "PublishViewController.h"
 
 #define kHeight (- 36)
 
@@ -204,6 +205,25 @@
     
     UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
     [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects:detailItem,nil]];
+    
+    
+    // 投稿
+    UIButton *tougaoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(180), SCREEN_HEIGHT - AutoSize6(300), AutoSize6(120), AutoSize6(120))];
+    [tougaoButton setTitle:@"投稿" forState:UIControlStateNormal];
+    [tougaoButton setTitle:@"投稿" forState:UIControlStateSelected];
+    tougaoButton.titleLabel.font = kFont6(37);
+    [tougaoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    tougaoButton.backgroundColor = UIColorFromRGB(0xf7b03d);
+    tougaoButton.layer.cornerRadius = tougaoButton.width / 2;
+    [tougaoButton addTarget:self action:@selector(tougaoButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:tougaoButton];
+    [self.view bringSubviewToFront:tougaoButton];
+}
+
+- (void)tougaoButtonDidClick {
+    PublishViewController *publishvc = [[PublishViewController alloc] init];
+    publishvc.matchid = self.matchid;
+    [self.navigationController pushViewController:publishvc animated:YES];
 }
 
 - (void)detailButton {
