@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) BOOL isSelect;
 
-@property (nonatomic, strong) UILabel *countLable;
+@property (nonatomic, strong) UITextField *countTextField;
 
 
 

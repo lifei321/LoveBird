@@ -10,4 +10,7 @@
 
 @interface PublishSelectBirdController : AppBaseTableViewController
 
+@property (nonatomic, strong) NSMutableArray *selectArray;
+
+
 @end

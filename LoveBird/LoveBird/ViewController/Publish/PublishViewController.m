@@ -38,8 +38,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 // 保存选择的图片或者文字
 @property (nonatomic, strong) NSMutableArray *dataModelArray;
 
-// 鸟种
-@property (nonatomic, strong) NSMutableArray *birdInfoArray;
+
 
 @property (nonatomic, strong) PublishHeaderView *headerView;
 
@@ -200,22 +199,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     if (indexPath.section == 0) {
 
         if (indexPath.row == (self.birdInfoArray.count - 1)) { // 添加鸟种
-            PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
-
-            @weakify(self);
-            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
-                @strongify(self);
-                FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-                model.num++;
-                
-                FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
-                birdModel.isSelect = NO;
-                birdModel.num = 1;
-                [self.birdInfoArray insertObject:birdModel atIndex:0];
-                [self.tableView reloadData];
-            };
-            [self.navigationController pushViewController:selvc animated:YES];
-
+            [self addBird];
         }
 //        else { // 选择鸟名
 //            @weakify(self);
@@ -319,6 +303,24 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     }
     
     return 0;
+}
+
+- (void)addBird {
+    PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+    selvc.selectArray = [NSMutableArray arrayWithArray:self.birdInfoArray];
+    @weakify(self);
+    selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+        @strongify(self);
+        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
+        model.num++;
+        
+        FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
+        birdModel.isSelect = NO;
+        birdModel.num = 1;
+        [self.birdInfoArray insertObject:birdModel atIndex:0];
+        [self.tableView reloadData];
+    };
+    [self.navigationController pushViewController:selvc animated:YES];
 }
 
 #pragma mark-- 选择鸟种cell的代理

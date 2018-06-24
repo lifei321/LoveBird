@@ -31,6 +31,17 @@
     [self setSearchView];
     [self setTableView];
     
+    if (self.selectArray.count) {
+        [self.selectArray removeLastObject];
+        NSMutableArray *tempArray = [NSMutableArray new];
+        for (FindSelectBirdModel *model in self.selectArray) {
+            AppBaseCellModel *cellModel = [[AppBaseCellModel alloc] init];
+            cellModel.userInfo = model;
+            [tempArray addObject:cellModel];
+        }
+        [self.viewSource.tableListArray addObject:tempArray];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
@@ -48,6 +59,7 @@
             cellModel.userInfo = model;
             [tempArray addObject:cellModel];
         }
+        [self.viewSource.tableListArray removeAllObjects];
         [self.viewSource.tableListArray addObject:tempArray];
         [self.tableView reloadData];
         

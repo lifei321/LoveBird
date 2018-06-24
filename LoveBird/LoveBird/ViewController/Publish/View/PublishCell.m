@@ -12,6 +12,8 @@
 #import "PublishAddTypeView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PublishSelectBirdController.h"
+#import "PublishViewController.h"
+#import "PublishHeaderView.h"
 
 @interface PublishCell ()
 
@@ -138,6 +140,8 @@
 
 - (void)birdButtonDidClick {
     PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+    PublishViewController *publishvc = (PublishViewController *)[UIViewController currentViewController];
+    selvc.selectArray = [NSMutableArray arrayWithArray:publishvc.birdInfoArray];
     
     @weakify(self);
     selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {

@@ -9,6 +9,7 @@
 #import "PublishSelectView.h"
 
 @interface PublishSelectView ()
+@property (nonatomic, strong) UILabel *countLabel;
 
 
 @end
@@ -28,17 +29,27 @@
         [lessButton addTarget:self action:@selector(lessButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:lessButton];
         
-        self.countLable = [[UILabel alloc] initWithFrame:CGRectMake(lessButton.right + AutoSize6(5), 0, AutoSize6(104), lessButton.height)];
-        self.countLable.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
-        self.countLable.layer.borderWidth = 1;
-        self.countLable.layer.cornerRadius = 3;
-        self.countLable.text = @"1";
-        self.countLable.textAlignment = NSTextAlignmentCenter;
-        self.countLable.textColor = [UIColor blackColor];
-        self.countLable.font = kFont6(28);
-        [self addSubview:self.countLable];
+        self.countTextField = [[UITextField alloc] initWithFrame:CGRectMake(lessButton.right + AutoSize6(5), 0, AutoSize6(104), lessButton.height)];
+        self.countTextField.textColor = [UIColor blackColor];
+        self.countTextField.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
+        self.countTextField.layer.borderWidth = 1;
+        self.countTextField.layer.cornerRadius = 3;
+        self.countTextField.text = @"1";
+        self.countTextField.textAlignment = NSTextAlignmentCenter;
+        self.countTextField.textColor = [UIColor blackColor];
+        self.countTextField.font = kFont6(28);
+        self.countTextField.keyboardType = UIKeyboardTypeNumberPad;
+        [self addSubview:self.countTextField];
         
-        UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.countLable.right + AutoSize6(5), 0, AutoSize6(50), lessButton.height)];
+        self.countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.countTextField.right + AutoSize6(5), 0, AutoSize6(30), lessButton.height)];
+        self.countLabel.text = @"只";
+        self.countLabel.textAlignment = NSTextAlignmentCenter;
+        self.countLabel.textColor = kColorTextColorLightGraya2a2a2;
+        self.countLabel.font = kFont6(28);
+        [self addSubview:self.countLabel];
+        
+        
+        UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.countLabel.right + AutoSize6(5), 0, AutoSize6(50), lessButton.height)];
         addButton.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
         [addButton setImage:[UIImage imageNamed:@"pub_add_image"] forState:UIControlStateNormal];
         addButton.layer.borderWidth = 1;
@@ -51,7 +62,7 @@
 
 - (void)lessButtonClick {
     
-    NSInteger count = self.countLable.text.integerValue;
+    NSInteger count = self.countTextField.text.integerValue;
     if (_isSelect) {
         return;
     }
@@ -61,7 +72,7 @@
     }
     
     count--;
-    self.countLable.text = [NSString stringWithFormat:@"%ld", count];
+    self.countTextField.text = [NSString stringWithFormat:@"%ld", count];
     
     if (self.lessblock) {
         self.lessblock();
@@ -69,15 +80,25 @@
 }
 
 - (void)addButtonClick {
-    NSInteger count = self.countLable.text.integerValue;
+    
+    NSInteger count = self.countTextField.text.integerValue;
     if (_isSelect) {
         return;
     }
     
     count++;
-    self.countLable.text = [NSString stringWithFormat:@"%ld", count];
+    self.countTextField.text = [NSString stringWithFormat:@"%ld", count];
     if (self.addblock) {
         self.addblock();
+    }
+}
+
+- (void)setIsSelect:(BOOL)isSelect {
+    _isSelect = isSelect;
+    if (isSelect) {
+        self.countTextField.userInteractionEnabled = NO;
+    } else {
+        self.countTextField.userInteractionEnabled = YES;
     }
 }
 

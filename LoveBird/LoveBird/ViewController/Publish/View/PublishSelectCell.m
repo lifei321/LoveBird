@@ -33,7 +33,7 @@
         self.titleLabe.font = kFont6(30);
         [self.contentView addSubview:self.titleLabe];
         
-        _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(310), AutoSize6(30), AutoSize6(220), AutoSize6(112))];
+        _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(345), AutoSize6(30), AutoSize6(255), AutoSize6(112))];
         [self.contentView addSubview:_selectView];
         
         self.lessButton = [[UIButton alloc] initWithFrame:CGRectMake(_selectView.right, AutoSize6(30), AutoSize6(52), AutoSize6(52))];
@@ -64,7 +64,7 @@
     _selectModel = selectModel;
     self.accessoryType = UITableViewCellStyleDefault;
     _selectView.isSelect = selectModel.isSelect;
-    _selectView.countLable.text = [NSString stringWithFormat:@"%ld", selectModel.num];
+    _selectView.countTextField.text = [NSString stringWithFormat:@"%ld", selectModel.num];
 
     if (selectModel.isSelect) {
         self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;

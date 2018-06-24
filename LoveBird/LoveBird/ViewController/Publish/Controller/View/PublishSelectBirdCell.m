@@ -28,9 +28,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.clipsToBounds = YES;
         
         self.iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(200), AutoSize6(130))];
         self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.iconImageView.clipsToBounds = YES;
         self.iconImageView.image = [UIImage imageNamed:@"pub_select_place"];
         [self.contentView addSubview:self.iconImageView];
         

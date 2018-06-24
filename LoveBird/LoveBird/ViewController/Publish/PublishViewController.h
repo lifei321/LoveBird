@@ -18,5 +18,7 @@
 @property (nonatomic, copy) NSString *matchid;
 
 
+// 鸟种 类型
+@property (nonatomic, strong) NSMutableArray *birdInfoArray;
 
 @end
