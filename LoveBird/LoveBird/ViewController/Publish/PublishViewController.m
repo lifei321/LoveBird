@@ -24,6 +24,8 @@
 #import "FindSelectBirdModel.h"
 #import "AppDateManager.h"
 #import "WPhotoViewController.h"
+#import "UIImage+Addition.h"
+
 
 @interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
 
@@ -562,12 +564,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [AppBaseHud showHudWithLoding:self.view];
     });
+    
+    UIImage *selectImage = [image compressImage:image withMaxSize:CGSizeMake(1200, MAXFLOAT)];
+    
     @weakify(self);
-    [PublishDao upLoad:image successBlock:^(__kindof AppBaseModel *responseObject) {
+    [PublishDao upLoad:selectImage successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        if (self.headerView.headerImageView.image == nil) {
-            self.headerView.headerImageView.image = image;
-        }
+        [self.headerView setImage:selectImage];
         
         PublishUpModel *upModel = (PublishUpModel *)responseObject;
         

@@ -10,7 +10,9 @@
 
 @interface PublishHeaderView()
 
+@property (nonatomic, strong) UIImageView *headerImageView;
 
+@property (nonatomic, strong) UIImageView *changeImageView;
 
 
 @end
@@ -18,7 +20,7 @@
 @implementation PublishHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(438))];
+    self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(436))];
     if (self) {
         [self addSubview:self.headerImageView];
         [self addSubview:self.textField];
@@ -30,9 +32,20 @@
     if (!_headerImageView) {
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(322))];
         _headerImageView.contentMode = UIViewContentModeScaleToFill;
-        _headerImageView.backgroundColor = [UIColor orangeColor];
+        _headerImageView.image = [UIImage imageNamed:@"publish_header"];
     }
     return _headerImageView;
+}
+
+- (UIImageView *)changeImageView {
+    if (!_changeImageView) {
+        _changeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(187), AutoSize6(20), AutoSize6(157), AutoSize6(34))];
+        _changeImageView.contentMode = UIViewContentModeScaleToFill;
+        _changeImageView.image = [UIImage imageNamed:@"publish_change"];
+        _changeImageView.userInteractionEnabled = YES;
+        [_changeImageView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeDidClick)]];
+    }
+    return _changeImageView;
 }
 
 - (UITextField *)textField {
@@ -50,6 +63,27 @@
     return _textField;
 }
 
+ - (void)changeDidClick {
+     
+ }
+         
+- (void)setImage:(UIImage *)image {
+    
+    if (_image) {
+        return;
+    }
+    _image = image;
+    [self addSubview:self.changeImageView];
+    
+    self.headerImageView.image = image;
+    
+    CGFloat height = SCREEN_WIDTH / image.size.width  * image.size.height;
+    
+    self.headerImageView.height = height;
+    self.textField.top = self.headerImageView.bottom;
+    self.height = self.textField.height + self.headerImageView.height;
+}
+         
 
 
 @end
