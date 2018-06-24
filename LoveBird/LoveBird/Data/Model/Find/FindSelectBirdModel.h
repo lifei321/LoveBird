@@ -37,6 +37,6 @@
 @property (nonatomic, assign) BOOL isSelect;
 
 // 数量
-@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) NSInteger num;
 
 @end

@@ -148,6 +148,8 @@
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, AutoSize6(30), SCREEN_WIDTH, AutoSize6(40))];
     tipLabel.textAlignment = NSTextAlignmentCenter;
     self.countLabel = tipLabel;
+    tipLabel.userInteractionEnabled = YES;
+    [tipLabel addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tipLabelDidClick)]];
     
     NSString *placeString = self.count;
     NSString *textString = [NSString stringWithFormat:@"您还有%@篇草稿没有完成 ->", placeString];
@@ -161,6 +163,10 @@
     [headview addSubview:tipLabel];
     
     return headview;
+}
+
+- (void)tipLabelDidClick {
+    
 }
 
 @end

@@ -52,7 +52,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551540113.276234"
+                  timestampString = "551543237.271825"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "289"
@@ -67,7 +67,7 @@
                   moduleName = "LoveBird"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551540113.279102"
+                  timestampString = "551543237.280224"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "291"
@@ -75,22 +75,6 @@
                   offsetFromSymbolStart = "12">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/ViewController/Publish/PublishViewController.m"
-            timestampString = "551540113.217199"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-publish"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

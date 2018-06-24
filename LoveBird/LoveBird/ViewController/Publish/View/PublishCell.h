@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PublishEditModel.h"
+#import "FindSelectBirdModel.h"
 
 typedef void(^PublishCellBlock)();
 
@@ -26,6 +27,9 @@ typedef void(^PublishCellBlock)();
 - (void)publishCellImageDelegate:(PublishCell *)cell ;
 
 - (void)publishCellAddDelegate:(PublishCell *)cell ;
+
+- (void)publishCellAddBirdDelegate:(PublishCell *)cell selectModel:(FindSelectBirdModel *)selectModel;
+
 
 @end
 

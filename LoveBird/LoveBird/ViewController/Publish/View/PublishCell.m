@@ -12,7 +12,6 @@
 #import "PublishAddTypeView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PublishSelectBirdController.h"
-#import "FindSelectBirdModel.h"
 
 @interface PublishCell ()
 
@@ -147,6 +146,14 @@
         [self.birdButton setTitle:birdModel.name forState:UIControlStateNormal];
         CGFloat width = [birdModel.name getTextWightWithFont:self.birdButton.titleLabel.font];
         self.birdButton.width = width + AutoSize6(20);
+        
+        self.editModel.csp_code = birdModel.csp_code;
+        self.editModel.imgTag = birdModel.name;
+        
+        //添加鸟种
+        if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellAddBirdDelegate:selectModel:)]) {
+            [self.delegate publishCellAddBirdDelegate:self selectModel:birdModel];
+        }
     };
     [[UIViewController currentViewController].navigationController pushViewController:selvc animated:YES];
 }

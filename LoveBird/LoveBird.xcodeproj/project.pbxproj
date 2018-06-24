@@ -1664,6 +1664,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F3A3FD420DFD8A800245CA4 /* ReversionController */ = {
+			isa = PBXGroup;
+			children = (
+				1F3A3FD520DFD8A800245CA4 /* Model */,
+				1F3A3FD620DFD8A800245CA4 /* View */,
+			);
+			name = ReversionController;
+			path = LoveBird/ViewController/Mine/ChildViewController/ReversionController;
+			sourceTree = SOURCE_ROOT;
+		};
+		1F3A3FD520DFD8A800245CA4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F3A3FD620DFD8A800245CA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F4F1401204D805C0066F790 /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2074,6 +2098,7 @@
 				1F16D8B220C4126600A6C11D /* View */,
 				1F676FA520B97199002F71B4 /* BirdController */,
 				1F676F9620B9119E002F71B4 /* LogController */,
+				1F3A3FD420DFD8A800245CA4 /* ReversionController */,
 				1F676FA720B97199002F71B4 /* MineBirdViewController.h */,
 				1F676FA620B97199002F71B4 /* MineBirdViewController.m */,
 				1F676F8920B5AA9D002F71B4 /* MineCollectViewController.h */,

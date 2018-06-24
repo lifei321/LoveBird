@@ -64,7 +64,7 @@
     _selectModel = selectModel;
     self.accessoryType = UITableViewCellStyleDefault;
     _selectView.isSelect = selectModel.isSelect;
-    _selectView.countLable.text = [NSString stringWithFormat:@"%ld", selectModel.count];
+    _selectView.countLable.text = [NSString stringWithFormat:@"%ld", selectModel.num];
 
     if (selectModel.isSelect) {
         self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;

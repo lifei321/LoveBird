@@ -206,11 +206,11 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
             selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
                 @strongify(self);
                 FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-                model.count++;
+                model.num++;
                 
                 FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
                 birdModel.isSelect = NO;
-                birdModel.count = 1;
+                birdModel.num = 1;
                 [self.birdInfoArray insertObject:birdModel atIndex:0];
                 [self.tableView reloadData];
             };
@@ -327,7 +327,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 - (void)publishSelectCellLessDelegate:(PublishSelectCell *)cell {
     
     FindSelectBirdModel *model = cell.selectModel;
-    model.count --;
+    model.num --;
 }
 
 // 添加鸟种 添加鸟的数量
@@ -335,17 +335,17 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     
     if (cell.selectModel.isSelect) {
         FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-        model.count++;
+        model.num++;
         
         FindSelectBirdModel *modeladd = [[FindSelectBirdModel alloc] init];
         modeladd.name = @"选择鸟种";
         modeladd.isSelect = NO;
-        modeladd.count = 1;
+        modeladd.num = 1;
         [self.birdInfoArray insertObject:modeladd atIndex:0];
         [self.tableView reloadData];
     } else {
         FindSelectBirdModel *model = cell.selectModel;
-        model.count ++;
+        model.num ++;
     }
 }
 
@@ -353,11 +353,36 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 - (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
     
     FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-    model.count--;
+    model.num--;
     
     [self.birdInfoArray removeObject:cell.selectModel];
     [self.tableView reloadData];
     
+}
+
+// 添加鸟种
+- (void)publishCellAddBirdDelegate:(PublishCell *)cell selectModel:(FindSelectBirdModel *)selectModel {
+    if (self.birdInfoArray.count) {
+        for (FindSelectBirdModel *birdModel in self.birdInfoArray) {
+            if ([birdModel.csp_code isEqualToString:selectModel.csp_code]) {
+                return;
+            }
+        }
+    }
+
+    selectModel.num = 1;
+    [self.birdInfoArray insertObject:selectModel atIndex:0];
+    [self.tableView reloadData];
+    
+    // cell 的model填充
+    PublishEditModel *editModel = cell.editModel;
+    for (PublishEditModel *dataModel in self.dataModelArray) {
+        if ([dataModel.imgUrl isEqualToString:editModel.imgUrl]) {
+            dataModel.imgTag = editModel.imgTag;
+            dataModel.csp_code = editModel.csp_code;
+            break;
+        }
+    }
 }
 
 #pragma mark-- PublishCell 顺序变化 和 删减
@@ -734,7 +759,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     FindSelectBirdModel *model01 = [[FindSelectBirdModel alloc] init];
     model01.name = @"选择鸟种";
     model01.isSelect = YES;
-    model01.count = 0;
+    model01.num = 0;
     [self.birdInfoArray addObject:model01];
     [self.dataArray addObject:self.birdInfoArray];
     
