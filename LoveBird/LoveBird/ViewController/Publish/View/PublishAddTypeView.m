@@ -15,7 +15,7 @@
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize6(20), AutoSize6(88), AutoSize6(50))];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize6(22), AutoSize6(88), AutoSize6(62))];
         imageView.centerX = self.centerX;
         imageView.layer.cornerRadius = AutoSize6(25);
         imageView.image = [UIImage imageNamed:@"pub_add"];

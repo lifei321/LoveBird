@@ -142,6 +142,8 @@
     
     if (editModel.message.length) { // 文本信息
         self.birdButton.hidden = YES;
+        self.titleLabe.hidden = NO;
+        
         self.titleLabe.text = editModel.message;
 
         CGFloat height = [editModel.message getTextHeightWithFont:self.titleLabe.font withWidth:AutoSize6(286)];
@@ -153,6 +155,7 @@
 
     } else { // 图片信息
         self.birdButton.hidden = NO;
+        self.titleLabe.hidden = YES;
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:editModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_textImage"]];
     }
     

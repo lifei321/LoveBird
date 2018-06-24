@@ -156,9 +156,10 @@
     
     // 选择鸟种
     if (indexPath.section == 0) {
-        PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
 
         if (indexPath.row == (self.birdInfoArray.count - 1)) { // 添加鸟种
+            PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+
             @weakify(self);
             selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
                 @strongify(self);
@@ -171,6 +172,8 @@
                 [self.birdInfoArray insertObject:birdModel atIndex:0];
                 [self.tableView reloadData];
             };
+            [self.navigationController pushViewController:selvc animated:YES];
+
         }
 //        else { // 选择鸟名
 //            @weakify(self);
@@ -185,7 +188,6 @@
 //                [self.tableView reloadData];
 //            };
 //        }
-        [self.navigationController pushViewController:selvc animated:YES];
         return;
     }
     
@@ -268,7 +270,7 @@
         }
         
         if (model.isAddType) {
-            return AutoSize6(74);
+            return AutoSize6(84);
         }
         
         return AutoSize6(274);
@@ -393,12 +395,10 @@
 // 加号点击  显示添加文字和图片的view
 - (void)publishCellAddDelegate:(PublishCell *)cell {
     
-    if (self.dataModelArray.count == 3) {
-        for (PublishEditModel *editModel in self.dataModelArray) {
-            if (editModel.isAddShowTextAndImageView) {
-                editModel.isAddShowTextAndImageView = NO;
-                editModel.isAddType = YES;
-            }
+    for (PublishEditModel *editModel in self.dataModelArray) {
+        if (editModel.isAddShowTextAndImageView) {
+            editModel.isAddShowTextAndImageView = NO;
+            editModel.isAddType = YES;
         }
     }
     
@@ -541,13 +541,10 @@
             self.headerView.headerImageView.image = image;
         }
         
-        self.selectEditModel.isAddShowTextAndImageView = NO;
         PublishUpModel *upModel = (PublishUpModel *)responseObject;
-        
         
         // 设置数据
         PublishEditModel *model = [[PublishEditModel alloc] init];
-        model.isAddShowTextAndImageView = NO;
         model.isImg = YES;
         model.imgUrl = upModel.imgUrl;
         model.aid = upModel.aid;
