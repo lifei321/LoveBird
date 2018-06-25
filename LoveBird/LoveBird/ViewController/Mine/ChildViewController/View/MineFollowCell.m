@@ -45,12 +45,11 @@
         
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(30) - AutoSize6(113), AutoSize6(40), AutoSize6(113), AutoSize6(55))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
-        [self.followButton setTitle:@"关注" forState:UIControlStateSelected];
+        [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         self.followButton.titleLabel.font = kFont6(26);
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.followButton setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateSelected];
-        [self.followButton setImage:[UIImage imageNamed:@"follow_each"] forState:UIControlStateSelected];
-        [self.followButton setImage:nil forState:UIControlStateNormal];
+
 
         [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:self.followButton.frame.size] forState:UIControlStateNormal];
         [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kLineColoreLightGrayECECEC withSize:self.followButton.frame.size] forState:UIControlStateSelected];
@@ -58,6 +57,9 @@
         self.followButton.layer.cornerRadius = AutoSize6(3);
         self.followButton.clipsToBounds = YES;
         [self addSubview:self.followButton];
+        
+//        [self.followButton setImage:[UIImage imageNamed:@"follow_each"] forState:UIControlStateSelected];
+//        [self.followButton setImage:nil forState:UIControlStateNormal];
         
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(134) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
@@ -68,7 +70,11 @@
 }
 
 - (void)followButtonDidClick:(UIButton *)button {
-    
+    [UserDao userFollow:self.followModel.uid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setFollowModel:(UserFollowModel *)followModel {

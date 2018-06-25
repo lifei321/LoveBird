@@ -57,7 +57,7 @@
         [self addSubview:self.gradeLabel];
         
         // 关注
-        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), self.headIcon.top, AutoSize6(70), self.headIcon.height)];
+        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(130), self.headIcon.top, AutoSize6(100), self.headIcon.height)];
         self.followButton.centerY = self.nickNameLabel.centerY - AutoSize6(2);
         self.followButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
@@ -74,7 +74,11 @@
 
 - (void)followButtonDidClick:(UIButton *)button {
     
-
+    [UserDao userFollow:self.shequModel.authorid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setShequModel:(ShequModel *)shequModel {
@@ -93,6 +97,7 @@
     CGFloat width = [shequModel.author getTextWightWithFont:self.nickNameLabel.font];
     self.nickNameLabel.width = width + AutoSize6(10);
     self.gradeLabel.left = self.nickNameLabel.right;
+    self.followButton.selected = shequModel.is_follow;
 }
 
 @end

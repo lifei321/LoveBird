@@ -60,9 +60,11 @@
 
 - (void)followButtonDidClick:(UIButton *)button {
     
-//    if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(followButtonDidClick:)]) {
-//        [self.followDelegate followButtonClickDelegate:button];
-//    }
+    [UserDao userFollow:self.model.leaderid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setModel:(GuideModel *)model {

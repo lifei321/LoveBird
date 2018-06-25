@@ -55,7 +55,7 @@
         [self.followButton setBackgroundColor:UIColorFromRGB(0x7faf41)];
         self.followButton.titleLabel.font = kFontBold(12);
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.followButton setTitleColor:UIColorFromRGB(0xa2a2a2) forState:UIControlStateSelected];
+        [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
         self.followButton.layer.cornerRadius = AutoSize(3);
         
@@ -66,6 +66,12 @@
 
 - (void)followButtonDidClick:(UIButton *)button {
 
+    [UserDao userFollow:self.talentModel.msaterid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
+    
     if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(followButtonDidClick:)]) {
         [self.followDelegate followButtonClickDelegate:button];
     }
@@ -75,7 +81,7 @@
     _talentModel = talentModel;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:talentModel.head] placeholderImage:[UIImage imageNamed:@""]];
     _textLabel.text = talentModel.master;
-    _followButton.selected = talentModel.isFollow;
+    _followButton.selected = talentModel.is_follow;
 }
 
 

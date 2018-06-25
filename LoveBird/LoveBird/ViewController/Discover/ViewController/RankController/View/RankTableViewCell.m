@@ -58,9 +58,9 @@
         
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(142), AutoSize6(40), AutoSize6(114), AutoSize6(56))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
-        [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
-        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:self.followButton.size] forState:UIControlStateNormal];
-        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorTextColorLightGraya2a2a2 withSize:self.followButton.size] forState:UIControlStateSelected];
+        [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];        
+        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:self.followButton.frame.size] forState:UIControlStateNormal];
+        [self.followButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kLineColoreLightGrayECECEC withSize:self.followButton.frame.size] forState:UIControlStateSelected];
 
         self.followButton.titleLabel.font = kFontBold(12);
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -77,7 +77,11 @@
 }
 
 - (void)followButtonDidClick:(UIButton *)button {
-    
+    [UserDao userFollow:self.rankModel.uid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setRankModel:(RankModel *)rankModel {
@@ -91,6 +95,7 @@
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:rankModel.head] placeholderImage:[UIImage imageNamed:@""]];
     self.topLabel.text = rankModel.username;
+    self.followButton.selected = rankModel.isFollow;
     
     if (rankModel.birdNum.length) {
         NSString *textString = [NSString stringWithFormat:@"%@ 种", rankModel.birdNum];

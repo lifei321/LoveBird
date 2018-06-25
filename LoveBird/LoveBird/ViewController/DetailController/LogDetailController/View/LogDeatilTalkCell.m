@@ -82,7 +82,7 @@
 }
 
 - (void)followButtonDidClick:(UIButton *)button {
-    
+
 }
 
 - (void)setBodyModel:(LogDetailTalkModel *)bodyModel {

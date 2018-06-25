@@ -216,27 +216,6 @@
     }];
 }
 
-- (void)netForToolButton:(UIButton *)button {
-    
-    if (button.selected) {
-        return;
-    }
-    NSInteger tag = button.tag;
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    
-    if (tag == 200) { // 收藏
-        [dic setObject:@"collectArticle" forKey:@"cmd"];
-    } else if (tag == 400) { // 点赞
-        [dic setObject:@"upArticle" forKey:@"cmd"];
-    }
-
-    [AppHttpManager GET:kAPI_Discover_Collect parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
-        button.selected = YES;
-    } failure:^(__kindof AppBaseModel *error) {
-        
-    }];
-}
-
 #pragma mark - 轮播图代理
 
 // 图片滚动
@@ -376,11 +355,19 @@
     if (tag == 100) { // 转发
         
     } else if (tag == 200) { // 收藏
-        [self netForToolButton:button];
+        [UserDao userCollect:timeLineCell.cellLayoutModel.contentModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+            button.selected = !button.selected;
+        } failureBlock:^(__kindof AppBaseModel *error) {
+            [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        }];
     } else if (tag == 300) { // 评论
         
     } else if (tag == 400) { // 点赞
-        [self netForToolButton:button];
+        [UserDao userUp:timeLineCell.cellLayoutModel.contentModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+            button.selected = !button.selected;
+        } failureBlock:^(__kindof AppBaseModel *error) {
+            [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        }];
     }
 }
 

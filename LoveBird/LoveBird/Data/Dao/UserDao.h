@@ -23,9 +23,6 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 获取推送消息
 + (void)userMessageType:(UserMessageType)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-// 关注
-+ (void)userFollow:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
-
 // 关注列表
 + (void)userFollowList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
@@ -75,5 +72,14 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
      SuccessBlock:(LFRequestSuccess)successBlock
      failureBlock:(LFRequestFail)failureBlock;
 
+
+// 关注
++ (void)userFollow:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 收藏
++ (void)userCollect:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 点赞
++ (void)userUp:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 
 @end

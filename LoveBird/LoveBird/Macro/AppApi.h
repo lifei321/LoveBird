@@ -21,6 +21,33 @@
  */
 #define kAPI_User_Follow kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=follow")
 
+
+/**
+ *  点赞
+ */
+#define kAPI_User_up kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upArticle")
+
+/**
+ *  发评论
+ */
+#define kAPI_User_comment kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=commentArticle")
+
+/**
+ *  收藏文章
+ */
+#define kAPI_User_collect kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=collectArticle")
+
+/**
+ *  点赞
+ */
+#define kAPI_User_up kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upArticle")
+
+/**
+ *  点赞
+ */
+#define kAPI_User_up kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upArticle")
+
+
 /**
  *  关注列表
  */

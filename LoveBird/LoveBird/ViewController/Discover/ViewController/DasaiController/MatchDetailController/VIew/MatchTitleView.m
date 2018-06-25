@@ -42,7 +42,7 @@
         self.timeLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.timeLabel];
         
-        // 关注
+        // 我的记录
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(150), AutoSize6(70), AutoSize6(120), AutoSize6(42))];
         [self.followButton setTitle:@"我的记录" forState:UIControlStateNormal];
         [self.followButton setTitle:@"我的记录" forState:UIControlStateSelected];

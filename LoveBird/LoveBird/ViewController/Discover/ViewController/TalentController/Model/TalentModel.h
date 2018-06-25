@@ -32,7 +32,7 @@
 @property (nonatomic, copy) NSString *masterlv;
 
 // 是否关注
-@property (nonatomic, assign) BOOL isFollow;
+@property (nonatomic, assign) BOOL is_follow;
 
 
 @end

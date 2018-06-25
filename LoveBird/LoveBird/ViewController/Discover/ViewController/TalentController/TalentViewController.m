@@ -65,7 +65,7 @@
 }
 
 - (void)followButtonClickDelegate:(UIButton *)button {
-    
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

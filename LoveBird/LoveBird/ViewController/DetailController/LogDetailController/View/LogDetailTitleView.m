@@ -72,9 +72,18 @@
 
 - (void)followButtonDidClick:(UIButton *)button {
     
-//    if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(followButtonDidClick:)]) {
-//        [self.followDelegate followButtonClickDelegate:button];
-//    }
+    NSString *tid;
+    if (self.detailModel) {
+        tid = self.detailModel.authorid;
+    } if (self.contentModel) {
+        tid = self.contentModel.authorid;
+    }
+    
+    [UserDao userFollow:tid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setDetailModel:(LogDetailModel *)detailModel {
