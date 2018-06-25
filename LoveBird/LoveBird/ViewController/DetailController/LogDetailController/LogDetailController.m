@@ -309,8 +309,16 @@
 
 
 - (void)netForTalkList {
+    
+    NSString *string;
+    if (self.tid.length) {
+        string = self.tid;
+    } else {
+        string = self.aid;
+    }
+    
     @weakify(self);
-    [DetailDao getLogDetail:self.tid aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogDetail:string aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_footer endRefreshing];
         self.page ++;
@@ -335,9 +343,17 @@
 }
 
 - (void)netforUplist {
+    
+    NSString *string;
+    if (self.tid.length) {
+        string = self.tid;
+    } else {
+        string = self.aid;
+    }
+    
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DetailDao getLogUPDetail:self.tid aid:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogUPDetail:string aid:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         LogDetailUpDataModel *dataModel = (LogDetailUpDataModel *)responseObject;

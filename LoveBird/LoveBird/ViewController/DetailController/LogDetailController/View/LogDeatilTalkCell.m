@@ -101,7 +101,7 @@
 + (CGFloat)getHeightWithModel:(LogDetailTalkModel *)model {
     
     CGFloat height = 0;
-    if (model.content.length) {
+//    if (model.content.length) {
         height = AutoSize6(30) + AutoSize6(75);
         
         height += [model.content getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
@@ -109,7 +109,7 @@
         height += AutoSize6(20);
         
         height += AutoSize6(30);
-    }
+//    }
 
     return height;
 }

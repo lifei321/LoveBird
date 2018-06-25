@@ -12,6 +12,7 @@
 #import "ShequFrameModel.h"
 #import "ShequCell.h"
 #import "MJRefresh.h"
+#import "LogDetailController.h"
 
 
 
@@ -97,6 +98,15 @@
     }
     
     return 0.01f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ShequFrameModel *frameModel = self.dataArray[indexPath.row];
+    if (frameModel.shequModel.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = frameModel.shequModel.tid;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
 }
 
 - (void)setTableView {

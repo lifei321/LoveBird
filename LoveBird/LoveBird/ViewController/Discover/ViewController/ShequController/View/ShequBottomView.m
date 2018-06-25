@@ -72,7 +72,11 @@
 
 
 - (void)collectButtonDidClick:(UIButton *)button {
-
+    [UserDao userCollect:self.model.tid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)talkButtonDidClick:(UIButton *)button {
@@ -80,7 +84,11 @@
 }
 
 - (void)upButtonDidClick:(UIButton *)button {
-
+    [UserDao userUp:self.model.tid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
+    }];
 }
 
 - (void)setModel:(ShequModel *)model {
