@@ -29,6 +29,7 @@ typedef void(^UserModelBlock)(void);
 
 + (void)gotoLoinBlock:(UserModelBlock)block;
 
++ (void)gotoLoin;
 @end
 
 @interface UserModel : AppBaseModel

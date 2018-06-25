@@ -48,6 +48,12 @@
     }
 }
 
++ (void)gotoLoin {
+    
+    LoginViewController *logvc = [[LoginViewController alloc] init];
+    [[UIViewController currentViewController] presentViewController:[[AppBaseNavigationController alloc] initWithRootViewController:logvc] animated:YES completion:nil];
+}
+
 + (void)gotoLoinBlock:(UserModelBlock)block {
     
     if (![UserPage sharedInstance].isLogin) {

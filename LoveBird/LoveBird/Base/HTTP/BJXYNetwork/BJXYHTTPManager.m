@@ -286,9 +286,7 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
     }
     
     if ([[responseObject objectForKey:@"code"] integerValue] == 4000) {
-        [UserPage gotoLoinBlock:^{
-            
-        }];
+        [UserPage gotoLoin];
         return;
     }
     

@@ -35,46 +35,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "551289564.1913559"
+            filePath = "LoveBird/LoveBird/Data/Model/User/UserModel.m"
+            timestampString = "551629867.089186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "+success:responseObject:success:failure:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "+gotoLoin"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[BJXYHTTPManager success:responseObject:success:failure:]"
-                  moduleName = "LoveBird"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551629461.1181231"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "289"
-                  endingLineNumber = "289"
-                  offsetFromSymbolStart = "527">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__58+[BJXYHTTPManager success:responseObject:success:failure:]_block_invoke"
-                  moduleName = "LoveBird"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chelishan/Desktop/LoveBird/LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-                  timestampString = "551629461.124963"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "291"
-                  endingLineNumber = "291"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
