@@ -33,7 +33,7 @@
         self.titleLabe.font = kFont6(30);
         [self.contentView addSubview:self.titleLabe];
         
-        _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(345), AutoSize6(30), AutoSize6(255), AutoSize6(112))];
+        _selectView = [[PublishSelectView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(355), AutoSize6(30), AutoSize6(255), AutoSize6(112))];
         [self.contentView addSubview:_selectView];
         
         self.lessButton = [[UIButton alloc] initWithFrame:CGRectMake(_selectView.right, AutoSize6(30), AutoSize6(52), AutoSize6(52))];

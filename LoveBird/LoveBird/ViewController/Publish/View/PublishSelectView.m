@@ -29,7 +29,7 @@
         [lessButton addTarget:self action:@selector(lessButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:lessButton];
         
-        self.countTextField = [[UITextField alloc] initWithFrame:CGRectMake(lessButton.right + AutoSize6(5), 0, AutoSize6(104), lessButton.height)];
+        self.countTextField = [[UITextField alloc] initWithFrame:CGRectMake(lessButton.right + AutoSize6(5), 0, AutoSize6(90), lessButton.height)];
         self.countTextField.textColor = [UIColor blackColor];
         self.countTextField.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
         self.countTextField.layer.borderWidth = 1;
@@ -41,13 +41,19 @@
         self.countTextField.keyboardType = UIKeyboardTypeNumberPad;
         [self addSubview:self.countTextField];
         
-        self.countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.countTextField.right + AutoSize6(5), 0, AutoSize6(30), lessButton.height)];
+        self.countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.countTextField.right - 2, 0, AutoSize6(44), lessButton.height)];
+        self.countLabel.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
+        self.countLabel.layer.borderWidth = 1;
+        self.countLabel.layer.cornerRadius = 3;
         self.countLabel.text = @"只";
-        self.countLabel.textAlignment = NSTextAlignmentCenter;
         self.countLabel.textColor = kColorTextColorLightGraya2a2a2;
-        self.countLabel.font = kFont6(28);
+        self.countLabel.textAlignment = NSTextAlignmentCenter;
+        self.countLabel.font = kFont6(25);
         [self addSubview:self.countLabel];
         
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(self.countTextField.right - 3, 1, 3, lessButton.height - 2)];
+        lineView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:lineView];
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.countLabel.right + AutoSize6(5), 0, AutoSize6(50), lessButton.height)];
         addButton.layer.borderColor = kLineColoreLightGrayECECEC.CGColor;
