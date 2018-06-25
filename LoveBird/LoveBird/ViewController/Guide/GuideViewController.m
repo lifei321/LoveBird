@@ -90,13 +90,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    GuideModel *model = self.dataArray[indexPath.row];
+    AppWebViewController *webvc = [[AppWebViewController alloc] init];
+    webvc.startupUrlString = model.jumpUrl;
+    [self.navigationController pushViewController:webvc animated:YES];
 }
 
 - (void)setTableView {
     
     self.title = @"鸟导";
-    [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
+//    [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
     
     self.tableView.top = total_topView_height;
     self.tableView.delegate = self;

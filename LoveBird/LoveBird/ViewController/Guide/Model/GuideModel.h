@@ -48,6 +48,9 @@
 
 @property (nonatomic, copy) NSString *travelDate;
 
+@property (nonatomic, copy) NSString *jumpUrl;
+
+
 
 @end
 
