@@ -79,6 +79,46 @@
     }];
 }
 
+// 颜色
++ (void)getBirdDisplayColor:(NSString *)text shape:(NSString *)shape successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(text) forKey:@"length_code"];
+    [dic setObject:EMPTY_STRING_IF_NIL(shape) forKey:@"shape_code"];
+
+    
+    
+    [AppHttpManager POST:kAPI_Find_Bird_displaycolor parameters:dic jsonModelName:[FindDisplayColorModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+
+// 鸟头
++ (void)getBirdDisplayHead:(NSString *)text shape:(NSString *)shape color:(NSString *)color successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(text) forKey:@"length_code"];
+    [dic setObject:EMPTY_STRING_IF_NIL(shape) forKey:@"shape_code"];
+    [dic setObject:EMPTY_STRING_IF_NIL(color) forKey:@"color_code"];
+
+    [AppHttpManager POST:kAPI_Find_Bird_displayhead parameters:dic jsonModelName:[FindDisplayHeadModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 // 类别查鸟
 + (void)getBirdClass:(NSInteger)type
               family:(NSString *)family

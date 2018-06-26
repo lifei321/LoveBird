@@ -15,3 +15,20 @@
     }];
 }
 @end
+
+
+@implementation FindDisplayColorModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+        return [NSString stringWithFormat:@"data.%@", keyName];
+    }];
+}
+@end
+
+@implementation FindDisplayHeadModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+        return [NSString stringWithFormat:@"data.%@", keyName];
+    }];
+}
+@end

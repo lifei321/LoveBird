@@ -14,3 +14,17 @@
 
 
 @end
+
+
+@interface FindDisplayColorModel : AppBaseModel
+
+@property (nonatomic, strong) NSArray *color_code;
+
+@end
+
+
+@interface FindDisplayHeadModel : AppBaseModel
+
+@property (nonatomic, strong) NSArray *bill_code;
+
+@end

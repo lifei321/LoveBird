@@ -10,6 +10,12 @@
 
 @interface FindColorViewController : AppBaseViewController
 
+@property (nonatomic, copy) NSString *length;
+
+
 @property (nonatomic, copy) NSString *shape;
+
+@property (nonatomic, strong) NSArray *shapeArray;
+
 
 @end

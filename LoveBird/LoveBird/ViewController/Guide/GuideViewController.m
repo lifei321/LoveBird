@@ -92,6 +92,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GuideModel *model = self.dataArray[indexPath.row];
     AppWebViewController *webvc = [[AppWebViewController alloc] init];
+    webvc.hidesBottomBarWhenPushed = YES;
     webvc.startupUrlString = model.jumpUrl;
     [self.navigationController pushViewController:webvc animated:YES];
 }

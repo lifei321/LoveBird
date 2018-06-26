@@ -64,7 +64,7 @@
     @weakify(self);
     [FindDao getBirdBillCode:[self getKeyBill]
                        color:self.color
-                      length:nil
+                      length:self.length
                        shape:self.shape
                         page:@"1"
                 successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -127,6 +127,12 @@
     [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = tag;
     [backView addSubview:button];
+    
+    if ([self.shapeArray containsObject:[NSString stringWithFormat:@"%ld", tag]]) {
+        button.enabled = YES;
+    } else {
+        button.enabled = NO;
+    }
     
     UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, button.bottom, backView.width, AutoSize6(58))];
     stepLabel.text = text;

@@ -10,6 +10,7 @@
 #import "FindHeadViewController.h"
 #import "FindBodyResultController.h"
 #import "FindDao.h"
+#import "FindDisplayShapeModel.h"
 
 @interface FindColorViewController ()
 @property (nonatomic, strong) UIButton *selectButton;
@@ -68,7 +69,7 @@
     @weakify(self);
     [FindDao getBirdBillCode:nil
                        color:[self getKeyColor]
-                      length:nil
+                      length:self.length
                        shape:self.shape
                         page:@"1"
                 successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -98,10 +99,33 @@
 }
 
 - (void)footButtonDidClick {
-    FindHeadViewController *headvc = [[FindHeadViewController alloc] init];
-    headvc.shape = self.shape;
-    headvc.color = [self getKeyColor];
-    [self.navigationController pushViewController:headvc animated:YES];
+    
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdDisplayHead:self.length shape:self.length color:[self getKeyColor] successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        FindHeadViewController *headvc = [[FindHeadViewController alloc] init];
+        headvc.shape = self.shape;
+        headvc.color = [self getKeyColor];
+        headvc.length = self.length;
+        
+        NSMutableArray *temp = [NSMutableArray new];
+        for (id object in ((FindDisplayHeadModel *)responseObject).bill_code) {
+            [temp addObject:[NSString stringWithFormat:@"%@", object]];
+        }
+        headvc.shapeArray = [NSArray arrayWithArray:temp];
+        [self.navigationController pushViewController:headvc animated:YES];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+    
+
 }
 
 - (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image tag:(NSInteger)tag {
@@ -134,6 +158,14 @@
     button.tag = tag;
     [backView addSubview:button];
     
+    if ([self.shapeArray containsObject:[NSString stringWithFormat:@"%ld", tag]]) {
+        button.enabled = YES;
+
+    } else {
+        button.enabled = NO;
+        button.layer.borderWidth = 2;
+        button.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    }
     
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
 //    imageView.image = [UIImage imageNamed:image];

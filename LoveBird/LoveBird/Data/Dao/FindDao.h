@@ -26,6 +26,12 @@
 // 体型可选项
 + (void)getBirdDisplayShape:(NSString *)text successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 颜色
++ (void)getBirdDisplayColor:(NSString *)text shape:(NSString *)shape successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
+
+// 鸟头
++ (void)getBirdDisplayHead:(NSString *)text shape:(NSString *)shape color:(NSString *)color successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
 // 类别查鸟
 + (void)getBirdClass:(NSInteger)type
               family:(NSString *)family

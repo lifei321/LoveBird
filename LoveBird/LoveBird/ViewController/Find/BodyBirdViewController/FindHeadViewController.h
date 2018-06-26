@@ -11,4 +11,8 @@
 @interface FindHeadViewController : AppBaseViewController
 @property (nonatomic, copy) NSString *shape;
 @property (nonatomic, copy) NSString *color;
+@property (nonatomic, copy) NSString *length;
+
+@property (nonatomic, strong) NSArray *shapeArray;
+
 @end

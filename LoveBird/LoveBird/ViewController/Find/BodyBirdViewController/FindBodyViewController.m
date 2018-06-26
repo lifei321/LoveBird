@@ -10,6 +10,7 @@
 #import "FindColorViewController.h"
 #import "FindBodyResultController.h"
 #import "FindDao.h"
+#import "FindDisplayShapeModel.h"
 
 @interface FindBodyViewController ()
 @property (nonatomic, strong) UIButton *selectButton;
@@ -60,7 +61,7 @@
     [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(561) +  titleLabel.bottom  + AutoSize6(37)) text:@"鹰形" image:@"find_4_13"selectImage:@"find_4_yes_13" tag:213 enabel:@"find_4_no_13"]];
     [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 4, AutoSize6(561) +  titleLabel.bottom  + AutoSize6(37)) text:@"鹤形" image:@"find_4_14"selectImage:@"find_4_yes_14" tag:214 enabel:@"find_4_no_14"]];
     [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/4, AutoSize6(561) +  titleLabel.bottom  + AutoSize6(37)) text:@" 鸻鹬形" image:@"find_4_15"selectImage:@"find_4_yes_15" tag:215 enabel:@"find_4_no_15"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 3/4, AutoSize6(561) +  titleLabel.bottom  + AutoSize6(37)) text:@"其他" image:@"find_4_16"selectImage:@"find_4_yes_16" tag:216 enabel:@"find_4_no_16"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 3/4, AutoSize6(561) +  titleLabel.bottom  + AutoSize6(37)) text:@"其他" image:@"find_4_16"selectImage:@"find_4_yes_16" tag:2400 enabel:@"find_4_no_16"]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -76,7 +77,7 @@
     @weakify(self);
     [FindDao getBirdBillCode:nil
                        color:nil
-                      length:nil
+                      length:self.length
                        shape:[self getKeyShape]
                         page:@"1"
                 successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -106,9 +107,29 @@
 }
 
 - (void)footButtonDidClick {
-    FindColorViewController *headvc = [[FindColorViewController alloc] init];
-    headvc.shape = [self getKeyShape];
-    [self.navigationController pushViewController:headvc animated:YES];
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [FindDao getBirdDisplayColor:self.length shape:[self getKeyShape] successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        FindColorViewController *headvc = [[FindColorViewController alloc] init];
+        headvc.shape = [self getKeyShape];
+        headvc.length = self.length;
+        
+        NSMutableArray *temp = [NSMutableArray new];
+        for (id object in ((FindDisplayColorModel *)responseObject).color_code) {
+            [temp addObject:[NSString stringWithFormat:@"%@", object]];
+        }
+        headvc.shapeArray = [NSArray arrayWithArray:temp];
+        [self.navigationController pushViewController:headvc animated:YES];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 - (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image selectImage:(NSString *)selectImage tag:(NSInteger)tag enabel:(NSString *)enabel {

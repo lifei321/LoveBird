@@ -205,6 +205,16 @@
 #define kAPI_Find_Bird_displayshape kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=displayShape")
 
 /**
+ *  查鸟 颜色
+ */
+#define kAPI_Find_Bird_displaycolor kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=displayColor")
+
+/**
+ *  查鸟 鸟头
+ */
+#define kAPI_Find_Bird_displayhead kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=displayBill")
+
+/**
  *  类目
  */
 #define kAPI_Find_Bird_subject kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=searchSubject")
