@@ -174,6 +174,7 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     return button;

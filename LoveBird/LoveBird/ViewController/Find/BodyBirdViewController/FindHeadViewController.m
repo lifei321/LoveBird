@@ -44,11 +44,11 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:titleLabel];
     
-    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1/3" image:@"step_1_1" selectImage:@"step_no_1_1" tag:401]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1/2" image:@"step_1_2" selectImage:@"step_no_1_2" tag:402]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1/1" image:@"step_1_3" selectImage:@"step_no_1_3" tag:403]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@">2/1" image:@"step_1_4" selectImage:@"step_no_1_4" tag:404]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">3/1" image:@"step_1_5" selectImage:@"step_no_1_5" tag:405]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1比3" image:@"step_1_1" selectImage:@"step_no_1_1" tag:401 enabel:@"step_1_1"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比2" image:@"step_1_2" selectImage:@"step_no_1_2" tag:402 enabel:@"step_1_2"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比1" image:@"step_1_3" selectImage:@"step_no_1_3" tag:403 enabel:@"step_1_3"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@"≤2比1" image:@"step_1_4" selectImage:@"step_no_1_4" tag:404 enabel:@"step_1_4"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">2比1" image:@"step_1_5" selectImage:@"step_no_1_5" tag:405 enabel:@"step_1_5"]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -96,7 +96,7 @@
     
     return length;
 }
-- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image selectImage:(NSString *)selectImage tag:(NSInteger)tag {
+- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image selectImage:(NSString *)selectImage tag:(NSInteger)tag enabel:(NSString *)enabel {
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, SCREEN_WIDTH / 3, AutoSize6(208))];
     backView.backgroundColor = [UIColor whiteColor];
@@ -119,7 +119,10 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.5, AutoSize6(24), backView.width - 0.5, AutoSize6(126))];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:enabel] forState:UIControlStateDisabled];
+
     button.backgroundColor = [UIColor whiteColor];
     [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = tag;

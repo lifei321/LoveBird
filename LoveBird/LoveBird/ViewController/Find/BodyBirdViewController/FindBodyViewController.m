@@ -134,6 +134,7 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.5, AutoSize6(22), backView.width - 0.5, AutoSize6(122))];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
     [button setImage:[UIImage imageNamed:enabel] forState:UIControlStateDisabled];
 

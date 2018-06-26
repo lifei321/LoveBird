@@ -127,6 +127,7 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateSelected];
     button.backgroundColor = [UIColor whiteColor];
     [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
