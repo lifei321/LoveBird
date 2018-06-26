@@ -44,11 +44,11 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:titleLabel];
     
-    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1比3" image:@"step_1_1" selectImage:@"step_no_1_1" tag:401 enabel:@"step_1_1"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比2" image:@"step_1_2" selectImage:@"step_no_1_2" tag:402 enabel:@"step_1_2"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比1" image:@"step_1_3" selectImage:@"step_no_1_3" tag:403 enabel:@"step_1_3"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@"≤2比1" image:@"step_1_4" selectImage:@"step_no_1_4" tag:404 enabel:@"step_1_4"]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">2比1" image:@"step_1_5" selectImage:@"step_no_1_5" tag:405 enabel:@"step_1_5"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"≤1比3" image:@"step_yes_1_1" selectImage:@"step_no_1_1" tag:401 enabel:@"step_1_1"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比2" image:@"step_yes_1_2" selectImage:@"step_no_1_2" tag:402 enabel:@"step_1_2"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"≤1比1" image:@"step_yes_1_3" selectImage:@"step_no_1_3" tag:403 enabel:@"step_1_3"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(208) + titleLabel.bottom  + AutoSize6(37)) text:@"≤2比1" image:@"step_yes_1_4" selectImage:@"step_no_1_4" tag:404 enabel:@"step_1_4"]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(208) +  titleLabel.bottom  + AutoSize6(37)) text:@">2比1" image:@"step_yes_1_5" selectImage:@"step_no_1_5" tag:405 enabel:@"step_1_5"]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
