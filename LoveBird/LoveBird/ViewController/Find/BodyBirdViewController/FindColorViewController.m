@@ -45,15 +45,15 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:titleLabel];
     
-    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"黑色" image:@"step_4_1" tag:301]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"灰色" image:@"step_4_2" tag:302]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"白色" image:@"step_4_3" tag:303]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(172) + titleLabel.bottom  + AutoSize6(37)) text:@"红色" image:@"step_4_4" tag:304]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(172) +  titleLabel.bottom  + AutoSize6(37)) text:@"橙色" image:@"step_4_5" tag:305]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/ 3, AutoSize6(172) + titleLabel.bottom + AutoSize6(37)) text:@"黄色" image:@"step_4_6" tag:306]];
-    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"褐色" image:@"step_4_7" tag:307]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"绿色" image:@"step_4_8" tag:308]];
-    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH *2 / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"蓝色" image:@"step_4_9" tag:309]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, titleLabel.bottom + AutoSize6(37)) text:@"黑色" image:@"step_4_1" selectImage:@"step_yes_4_1" enabel:@"step_no_4_1" tag:301]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, titleLabel.bottom  + AutoSize6(37)) text:@"灰色" image:@"step_4_2" selectImage:@"step_yes_4_2" enabel:@"step_no_4_2" tag:302]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/3, titleLabel.bottom  + AutoSize6(37)) text:@"白色" image:@"step_4_3" selectImage:@"step_yes_4_3" enabel:@"step_no_4_3" tag:303]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(172) + titleLabel.bottom  + AutoSize6(37)) text:@"红色" image:@"step_4_4" selectImage:@"step_yes_4_4" enabel:@"step_no_4_4" tag:304]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(172) +  titleLabel.bottom  + AutoSize6(37)) text:@"橙色" image:@"step_4_5" selectImage:@"step_yes_4_5" enabel:@"step_no_4_5" tag:305]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH * 2/ 3, AutoSize6(172) + titleLabel.bottom + AutoSize6(37)) text:@"黄色" image:@"step_4_6" selectImage:@"step_yes_4_6" enabel:@"step_no_4_6" tag:306]];
+    [self.view addSubview:[self makeCellView:CGPointMake(0, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"褐色" image:@"step_4_7" selectImage:@"step_yes_4_7" enabel:@"step_no_4_7" tag:307]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"绿色" image:@"step_4_8" selectImage:@"step_yes_4_8" enabel:@"step_no_4_8" tag:308]];
+    [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH *2 / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"蓝色" image:@"step_4_9" selectImage:@"step_yes_4_9" enabel:@"step_no_4_9" tag:309]];
 
     UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -128,7 +128,7 @@
 
 }
 
-- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image tag:(NSInteger)tag {
+- (UIView *)makeCellView:(CGPoint)point text:(NSString *)text image:(NSString *)image selectImage:(NSString *)selectImage enabel:(NSString *)enabel tag:(NSInteger)tag {
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, SCREEN_WIDTH / 3, AutoSize6(172))];
     backView.backgroundColor = [UIColor whiteColor];
@@ -152,7 +152,9 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateHighlighted];
-    [button setImage:[UIImage imageNamed:image] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:enabel] forState:UIControlStateDisabled];
+
     button.backgroundColor = [UIColor whiteColor];
     [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = tag;
@@ -163,8 +165,6 @@
 
     } else {
         button.enabled = NO;
-        button.layer.borderWidth = 2;
-        button.layer.borderColor = [UIColor darkGrayColor].CGColor;
     }
     
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(40), AutoSize6(98), AutoSize6(60))];
@@ -189,14 +189,9 @@
         return;
     }
     self.selectButton.selected = NO;
-    self.selectButton.layer.borderWidth = 0;
-    self.selectButton.layer.borderColor = kColorDefaultColor.CGColor;
-
     
     button.selected = YES;
     self.selectButton = button;
-    self.selectButton.layer.borderWidth = 2;
-    self.selectButton.layer.borderColor = kColorDefaultColor.CGColor;
 }
 
 @end

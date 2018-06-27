@@ -168,9 +168,9 @@
     [self.view addSubview:headerView];
     
     // 搜索
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize(5), SCREEN_WIDTH, AutoSize(128))];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize(5), SCREEN_WIDTH, AutoSize6(300))];
     UIImageView *imgeView = [[UIImageView alloc] initWithFrame:lineView.bounds];
-    imgeView.backgroundColor = [UIColor orangeColor];
+    imgeView.image = [UIImage imageNamed:@"find_back"];
     [lineView addSubview:imgeView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize(30), AutoSize(30), SCREEN_WIDTH - AutoSize(30), AutoSize(15))];
