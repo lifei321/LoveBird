@@ -36,7 +36,7 @@
     self.title = @"查鸟";
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self setNavigationBarColor:[UIColor whiteColor]];
-    [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
+//    [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
     
     self.tableView.top = total_topView_height;
     [self setHeaderView];

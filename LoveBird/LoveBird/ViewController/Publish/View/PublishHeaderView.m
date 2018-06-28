@@ -113,12 +113,10 @@
     
     self.headerImageView.image = image;
     
-//    CGFloat height = SCREEN_WIDTH / image.size.width  * image.size.height;
-    
-//    self.headerImageView.height = height;
-//    self.textField.top = self.headerImageView.bottom;
-//    self.height = self.textField.height + self.headerImageView.height;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kPublishReloadHeaderNotification object:nil];
+    self.headerImageView.height = AutoSize6(500);
+    self.textField.top = self.headerImageView.bottom;
+    self.height = self.textField.height + self.headerImageView.height;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPublishReloadHeaderNotification object:nil];
 }
 
 @end
