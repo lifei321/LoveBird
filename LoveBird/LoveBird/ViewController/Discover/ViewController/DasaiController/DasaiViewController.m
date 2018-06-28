@@ -94,7 +94,7 @@
 #pragma mark-- UI
 - (void)setNavigation {
     self.navigationItem.title = @"大赛";
-    [self.rightButton setImage:[UIImage imageNamed:@"match_right"]];
+//    [self.rightButton setImage:[UIImage imageNamed:@"match_right"]];
 }
 
 

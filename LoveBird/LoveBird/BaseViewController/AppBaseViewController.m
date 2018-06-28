@@ -138,6 +138,9 @@
         [self.navigationController setNavigationBarHidden:YES animated:NO];
         [self.navigationBar pushNavigationItem:self.navigationBarItem animated:YES];
         [self.view addSubview:self.navigationBar];
+    } else {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+
     }
 }
 

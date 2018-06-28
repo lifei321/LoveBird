@@ -83,6 +83,11 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
     [AppBaseHud showHudWithLoding:self.view];
     
+    if (!textField.text.length) {
+        [AppBaseHud showHud:@"请输入搜索内容" view:self.view];
+        return;
+    }
+    
     @weakify(self)
     [FindDao getBird:textField.text genus:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);

@@ -59,6 +59,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
+    UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [detailButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    detailButton.frame = CGRectMake(0, 0, 15, 10);
+    detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    
+    UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+    [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects:detailItem,nil]];
+    
     [self addUI];
 }
 
@@ -77,6 +91,9 @@
     self.bMapView.delegate = nil; // 不用时，置nil
     self.locService.delegate = nil;
     [self.locService stopUserLocationService];
+    
+    self.isCustomNavigation = NO;
+    self.isNavigationTransparent = NO;
 }
 
 - (void)dealloc {
@@ -107,7 +124,7 @@
     self.locService.delegate = self;
     [self.locService startUserLocationService];
     
-    self.zoomValue = 13;
+    self.zoomValue = 11;
     self.bMapView.zoomLevel = self.zoomValue;
     self.lat = 0;
     self.lng = 0;

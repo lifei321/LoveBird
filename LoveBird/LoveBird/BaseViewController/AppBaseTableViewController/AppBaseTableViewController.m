@@ -70,6 +70,8 @@
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
             // Fallback on earlier versions
+            self.automaticallyAdjustsScrollViewInsets = NO;
+
         }
     }
 
