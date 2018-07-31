@@ -41,6 +41,13 @@ static NSString *DateFormatMD2 = @"MM/dd";
 - (NSString *)getCurrentDate;
 
 /**
+ *  获取当前时间，例如：20150730
+ *
+ *  @return 当前时间
+ */
+- (NSString *)getCurrentDateWithFormatStyle:(NSString *)formatSytle;
+
+/**
  *  get date by dateFormat MM-dd, for example 07-06
  */
 - (NSString *)getDateWithTimeInterval:(NSInteger)timeInterval formatSytle:(NSString *)formatSytle;

@@ -31,13 +31,11 @@
         self.leftImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.leftImageview];
         self.leftImageview.userInteractionEnabled = YES;
-        [self.leftImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
         
         self.rightImageview = [[WorksImageView alloc] init];
         self.rightImageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.rightImageview];
         self.rightImageview.userInteractionEnabled = YES;
-        [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];
     }
     return self;
 }
@@ -66,7 +64,8 @@
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         self.leftImageview.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
         self.leftImageview.name = @"张三";
-        
+        [self.leftImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
+
     } else if (listArray.count == 2) {
         
         WorksModel *model1 = listArray.firstObject;
@@ -81,7 +80,8 @@
         self.rightImageview.frame = CGRectMake(width1 + 1, 0, width2 - 1, imageHeight);
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
         [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
-        
+        [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];
+
         self.leftImageview.name = model1.tags;
         self.rightImageview.name = model2.tags;
     }

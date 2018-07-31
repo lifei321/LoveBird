@@ -38,6 +38,13 @@ static AppDateManager *share = nil;
     return strDate;
 }
 
+- (NSString *)getCurrentDateWithFormatStyle:(NSString *)formatSytle {
+    NSDate *date = [NSDate date];
+    [self.dateFormatter setDateFormat:formatSytle];
+    NSString *strDate = [self.dateFormatter stringFromDate:date];
+    return strDate;
+}
+
 - (NSString *)getDateWithTimeInterval:(NSInteger)timeInterval formatSytle:(NSString *)formatSytle {
     if (!formatSytle) {
         formatSytle = DateFormatMD;

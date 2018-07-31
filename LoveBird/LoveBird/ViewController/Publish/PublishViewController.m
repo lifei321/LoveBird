@@ -318,9 +318,20 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         birdModel.isSelect = NO;
         birdModel.num = 1;
         [self.birdInfoArray insertObject:birdModel atIndex:0];
+        [self setDateAndAddress];
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:selvc animated:YES];
+}
+
+- (void)setDateAndAddress {
+    // 时间 地址
+    NSString *date = [[AppDateManager shareManager] getCurrentDateWithFormatStyle:DateFormatYMD];
+    PublishDetailModel *dateModel = self.dataArray[1][0];
+    if ([dateModel.detailString isEqualToString:@"选择"]) {
+        self.selectTime = date;
+        dateModel.detailString = date;
+    }
 }
 
 #pragma mark-- 选择鸟种cell的代理
@@ -374,6 +385,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
     selectModel.num = 1;
     [self.birdInfoArray insertObject:selectModel atIndex:0];
+    [self setDateAndAddress];
     [self.tableView reloadData];
     
     // cell 的model填充

@@ -77,6 +77,7 @@
         self.pageNum = dataModel.maxAid;
         if (header) {
             [self.dataArray removeAllObjects];
+            [self.photoArray removeAllObjects];
         }
         NSMutableArray *tempArray = [NSMutableArray new];
         for (NSArray *array in dataModel.imgList) {
@@ -117,6 +118,8 @@
         BOOL startOnGrid = NO;
         BOOL autoPlayOnAppear = NO;
         
+
+        
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         browser.displayActionButton = displayActionButton;
         browser.displayNavArrows = displayNavArrows;
@@ -134,6 +137,7 @@
     
     return cell;
 }
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,11 +178,11 @@
     return _photoArray.count;
 }
 
-//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-//    if (index < _photos.count)
-//        return [_photoArray objectAtIndex:index];
-//    return nil;
-//}
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photoArray.count)
+        return [_photoArray objectAtIndex:index];
+    return nil;
+}
 //
 //- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
 //    if (index < _thumbs.count)
@@ -186,11 +190,11 @@
 //    return nil;
 //}
 
-//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
-//    MWPhoto *photo = [self.photos objectAtIndex:index];
-//    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
-//    return [captionView autorelease];
-//}
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    MWPhoto *photo = [self.photoArray objectAtIndex:index];
+    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+    return captionView;
+}
 
 //- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
 //    NSLog(@"ACTION!");
