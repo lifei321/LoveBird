@@ -37,6 +37,8 @@ pod 'AFNetworking', '3.1.0'
 
 pod 'INTULocationManager', '4.2.0'
 
+pod 'Masonry'
+
 pod 'YYKit', '1.0.9'
 
 pod 'Bugly', '2.4.8'

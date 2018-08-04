@@ -125,6 +125,20 @@
 		1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8DF20CD38DD00A6C11D /* MatchNoteViewController.m */; };
 		1F16D8E320CD6C5700A6C11D /* MatchDetaiNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8E220CD6C5700A6C11D /* MatchDetaiNoteViewController.m */; };
 		1F16D8E820CD73CC00A6C11D /* MatchNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8E720CD73CC00A6C11D /* MatchNoteCell.m */; };
+		1F1715E22115E3F8001769AB /* CLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715CC2115E3F7001769AB /* CLSlider.m */; };
+		1F1715E32115E3F8001769AB /* UITabBarController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D12115E3F8001769AB /* UITabBarController+CLPlayerRotation.m */; };
+		1F1715E42115E3F8001769AB /* UINavigationController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D32115E3F8001769AB /* UINavigationController+CLPlayerRotation.m */; };
+		1F1715E52115E3F8001769AB /* UIViewController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D42115E3F8001769AB /* UIViewController+CLPlayerRotation.m */; };
+		1F1715E62115E3F8001769AB /* UIView+CLSetRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D62115E3F8001769AB /* UIView+CLSetRect.m */; };
+		1F1715E72115E3F8001769AB /* AILoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D82115E3F8001769AB /* AILoadingView.m */; };
+		1F1715E82115E3F8001769AB /* PlayTopToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715D92115E3F8001769AB /* PlayTopToolBar.m */; };
+		1F1715E92115E3F8001769AB /* CLPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715DA2115E3F8001769AB /* CLPlayerMaskView.m */; };
+		1F1715EA2115E3F8001769AB /* CLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715DC2115E3F8001769AB /* CLPlayerView.m */; };
+		1F1715EB2115E3F8001769AB /* CLGCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715DD2115E3F8001769AB /* CLGCDTimerManager.m */; };
+		1F1715EC2115E3F8001769AB /* PlayBottomToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715E02115E3F8001769AB /* PlayBottomToolBar.m */; };
+		1F1715FE2115E411001769AB /* YLTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715F92115E411001769AB /* YLTableViewVC.m */; };
+		1F17160F2115FBF1001769AB /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17160C2115FBF0001769AB /* PlayerCell.m */; };
+		1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17160D2115FBF0001769AB /* PlayerCell.xib */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -492,6 +506,33 @@
 		1F16D8E220CD6C5700A6C11D /* MatchDetaiNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDetaiNoteViewController.m; sourceTree = "<group>"; };
 		1F16D8E620CD73CC00A6C11D /* MatchNoteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchNoteCell.h; sourceTree = "<group>"; };
 		1F16D8E720CD73CC00A6C11D /* MatchNoteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchNoteCell.m; sourceTree = "<group>"; };
+		1F1715CB2115E3F7001769AB /* CLGCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLGCDTimerManager.h; sourceTree = "<group>"; };
+		1F1715CC2115E3F7001769AB /* CLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSlider.m; sourceTree = "<group>"; };
+		1F1715CD2115E3F7001769AB /* CLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerView.h; sourceTree = "<group>"; };
+		1F1715CF2115E3F7001769AB /* UINavigationController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1F1715D02115E3F8001769AB /* UIViewController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1F1715D12115E3F8001769AB /* UITabBarController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1F1715D22115E3F8001769AB /* UIView+CLSetRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CLSetRect.h"; sourceTree = "<group>"; };
+		1F1715D32115E3F8001769AB /* UINavigationController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1F1715D42115E3F8001769AB /* UIViewController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1F1715D52115E3F8001769AB /* UITabBarController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1F1715D62115E3F8001769AB /* UIView+CLSetRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CLSetRect.m"; sourceTree = "<group>"; };
+		1F1715D72115E3F8001769AB /* PlayBottomToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayBottomToolBar.h; sourceTree = "<group>"; };
+		1F1715D82115E3F8001769AB /* AILoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AILoadingView.m; sourceTree = "<group>"; };
+		1F1715D92115E3F8001769AB /* PlayTopToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTopToolBar.m; sourceTree = "<group>"; };
+		1F1715DA2115E3F8001769AB /* CLPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerMaskView.m; sourceTree = "<group>"; };
+		1F1715DB2115E3F8001769AB /* CLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSlider.h; sourceTree = "<group>"; };
+		1F1715DC2115E3F8001769AB /* CLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerView.m; sourceTree = "<group>"; };
+		1F1715DD2115E3F8001769AB /* CLGCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLGCDTimerManager.m; sourceTree = "<group>"; };
+		1F1715DE2115E3F8001769AB /* AILoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AILoadingView.h; sourceTree = "<group>"; };
+		1F1715DF2115E3F8001769AB /* PlayTopToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTopToolBar.h; sourceTree = "<group>"; };
+		1F1715E02115E3F8001769AB /* PlayBottomToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayBottomToolBar.m; sourceTree = "<group>"; };
+		1F1715E12115E3F8001769AB /* CLPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerMaskView.h; sourceTree = "<group>"; };
+		1F1715F82115E411001769AB /* YLTableViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTableViewVC.h; sourceTree = "<group>"; };
+		1F1715F92115E411001769AB /* YLTableViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTableViewVC.m; sourceTree = "<group>"; };
+		1F17160C2115FBF0001769AB /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
+		1F17160D2115FBF0001769AB /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
+		1F17160E2115FBF0001769AB /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1507,6 +1548,7 @@
 		1F0FDFB720C23B250041E73B /* BirdDetailControler */ = {
 			isa = PBXGroup;
 			children = (
+				1F1715C92115E3E1001769AB /* video */,
 				1F0FDFB820C23B250041E73B /* Model */,
 				1F0FDFB920C23B250041E73B /* View */,
 				1F0FDFC320C23BC50041E73B /* BirdDetailController.h */,
@@ -1631,6 +1673,80 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1F1715C92115E3E1001769AB /* video */ = {
+			isa = PBXGroup;
+			children = (
+				1F1715ED2115E411001769AB /* Home */,
+				1F1715CA2115E3F7001769AB /* CLPlayer */,
+			);
+			path = video;
+			sourceTree = "<group>";
+		};
+		1F1715CA2115E3F7001769AB /* CLPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1F1715CB2115E3F7001769AB /* CLGCDTimerManager.h */,
+				1F1715CC2115E3F7001769AB /* CLSlider.m */,
+				1F1715CD2115E3F7001769AB /* CLPlayerView.h */,
+				1F1715CE2115E3F7001769AB /* Category */,
+				1F1715D72115E3F8001769AB /* PlayBottomToolBar.h */,
+				1F1715D82115E3F8001769AB /* AILoadingView.m */,
+				1F1715D92115E3F8001769AB /* PlayTopToolBar.m */,
+				1F1715DA2115E3F8001769AB /* CLPlayerMaskView.m */,
+				1F1715DB2115E3F8001769AB /* CLSlider.h */,
+				1F1715DC2115E3F8001769AB /* CLPlayerView.m */,
+				1F1715DD2115E3F8001769AB /* CLGCDTimerManager.m */,
+				1F1715DE2115E3F8001769AB /* AILoadingView.h */,
+				1F1715DF2115E3F8001769AB /* PlayTopToolBar.h */,
+				1F1715E02115E3F8001769AB /* PlayBottomToolBar.m */,
+				1F1715E12115E3F8001769AB /* CLPlayerMaskView.h */,
+			);
+			path = CLPlayer;
+			sourceTree = "<group>";
+		};
+		1F1715CE2115E3F7001769AB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1F1715CF2115E3F7001769AB /* UINavigationController+CLPlayerRotation.h */,
+				1F1715D02115E3F8001769AB /* UIViewController+CLPlayerRotation.h */,
+				1F1715D12115E3F8001769AB /* UITabBarController+CLPlayerRotation.m */,
+				1F1715D22115E3F8001769AB /* UIView+CLSetRect.h */,
+				1F1715D32115E3F8001769AB /* UINavigationController+CLPlayerRotation.m */,
+				1F1715D42115E3F8001769AB /* UIViewController+CLPlayerRotation.m */,
+				1F1715D52115E3F8001769AB /* UITabBarController+CLPlayerRotation.h */,
+				1F1715D62115E3F8001769AB /* UIView+CLSetRect.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		1F1715ED2115E411001769AB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1F17160B2115FBF0001769AB /* View */,
+				1F1715F72115E411001769AB /* TableViewVC */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1F1715F72115E411001769AB /* TableViewVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F1715F82115E411001769AB /* YLTableViewVC.h */,
+				1F1715F92115E411001769AB /* YLTableViewVC.m */,
+			);
+			path = TableViewVC;
+			sourceTree = "<group>";
+		};
+		1F17160B2115FBF0001769AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F17160C2115FBF0001769AB /* PlayerCell.m */,
+				1F17160D2115FBF0001769AB /* PlayerCell.xib */,
+				1F17160E2115FBF0001769AB /* PlayerCell.h */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
@@ -2457,6 +2573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */,
 				1F676F0620A9C4F3002F71B4 /* wphoto_select_yes@2x.png in Resources */,
 				1F676F0520A9C4F3002F71B4 /* wphoto_select_no@2x.png in Resources */,
 				0B7293111EFA4F1100D1B1EB /* Assets.xcassets in Resources */,
@@ -2487,6 +2604,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD+BWMExtension/MBProgressHUD_BWMExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/NJKWebViewProgress/NJKWebViewProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
@@ -2516,6 +2634,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD_BWMExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NJKWebViewProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
@@ -2592,12 +2711,14 @@
 				0B774C521FBEEBC900D67A6A /* AppBaseTableViewController.h in Sources */,
 				1F676EBD20A09545002F71B4 /* PublishDao.m in Sources */,
 				1F16D8C920C8145900A6C11D /* MatchDetailController.m in Sources */,
+				1F1715E42115E3F8001769AB /* UINavigationController+CLPlayerRotation.m in Sources */,
 				1F0FDFC120C23B250041E73B /* LogContentCell.m in Sources */,
 				1F94DFAC20D509290095DFC5 /* MineNotifyCell.m in Sources */,
 				1F0FDF5A20BA9AE60041E73B /* WorksImageView.m in Sources */,
 				0B317C8C1F0F6E9100B01DDA /* ZBaseBarButtonItem.m in Sources */,
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F0FDFBF20C23B250041E73B /* LogDetailHeadView.m in Sources */,
+				1F1715E62115E3F8001769AB /* UIView+CLSetRect.m in Sources */,
 				1FDBE74E20D95F130092E82E /* ShequZuzhiCell.m in Sources */,
 				1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */,
 				1F4F1406204D80910066F790 /* MineSetViewController.m in Sources */,
@@ -2607,6 +2728,7 @@
 				1F676E97209A045A002F71B4 /* UserInfoModel.m in Sources */,
 				1F0FDFBE20C23B250041E73B /* LogDetailBirdCell.m in Sources */,
 				0BA41915201C67FA002C6335 /* FindViewController.m in Sources */,
+				1F1715E92115E3F8001769AB /* CLPlayerMaskView.m in Sources */,
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
 				1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */,
 				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
@@ -2640,6 +2762,7 @@
 				1F16D8BE20C446F600A6C11D /* LogContentSubjectCell.m in Sources */,
 				1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */,
 				1F676FB320B97608002F71B4 /* MineBirdLeftBackView.m in Sources */,
+				1F1715EC2115E3F8001769AB /* PlayBottomToolBar.m in Sources */,
 				1FDBE74220D7FC0E0092E82E /* MapDiscoverModel.m in Sources */,
 				1F16D8D320C826A700A6C11D /* MessageModel.m in Sources */,
 				1F0FDFBD20C23B250041E73B /* LogDeatilTalkCell.m in Sources */,
@@ -2654,8 +2777,10 @@
 				0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */,
 				1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */,
 				1F0FDF6F20BB19D90041E73B /* FindDisplayShapeModel.m in Sources */,
+				1F1715E22115E3F8001769AB /* CLSlider.m in Sources */,
 				1F0FDF6920BB03F30041E73B /* FindBodyResultController.m in Sources */,
 				1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */,
+				1F1715E72115E3F8001769AB /* AILoadingView.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
@@ -2691,6 +2816,7 @@
 				1F676F7220B050E6002F71B4 /* FindHeadViewController.m in Sources */,
 				0BF9BE351F1CBA7D000046FF /* NotificationModel.m in Sources */,
 				1F16D8E320CD6C5700A6C11D /* MatchDetaiNoteViewController.m in Sources */,
+				1F1715FE2115E411001769AB /* YLTableViewVC.m in Sources */,
 				1F4F141720502D9C0066F790 /* NotifycationViewController.m in Sources */,
 				1F94DFCC20D798FB0095DFC5 /* GuideHeadView.m in Sources */,
 				1F676F8120B1679E002F71B4 /* MatchModel.m in Sources */,
@@ -2700,6 +2826,7 @@
 				1F3A3FF120DFF0B000245CA4 /* MWTapDetectingImageView.m in Sources */,
 				0B75D5B71FBEC5C5008D7AE6 /* PhoneTextField.m in Sources */,
 				1F306245204BAF5900784C62 /* AppCache.m in Sources */,
+				1F1715EA2115E3F8001769AB /* CLPlayerView.m in Sources */,
 				1F3A3FEF20DFF0B000245CA4 /* MWZoomingScrollView.m in Sources */,
 				0B702DFE1F1602AF00E39FAF /* RegViewController.m in Sources */,
 				1F676FAA20B97199002F71B4 /* MineBirdViewController.m in Sources */,
@@ -2727,6 +2854,7 @@
 				0B75D5771FBD9D8B008D7AE6 /* AppBaseHud.m in Sources */,
 				1F16D8B020C411E700A6C11D /* MineFollowController.m in Sources */,
 				0BA419DE20235A76002C6335 /* DiscoverListModel.m in Sources */,
+				1F1715E32115E3F8001769AB /* UITabBarController+CLPlayerRotation.m in Sources */,
 				1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */,
 				1F306236204AA29000784C62 /* TimeLineLayoutModel.m in Sources */,
 				0B75D5A51FBEC434008D7AE6 /* NSDate+Extension.m in Sources */,
@@ -2744,6 +2872,7 @@
 				0B75D5761FBD9D8B008D7AE6 /* AppAlertView.m in Sources */,
 				1F0FDFC820C242180041E73B /* BirdDetailModel.m in Sources */,
 				1F676ED920A72440002F71B4 /* AppTabBar.m in Sources */,
+				1F1715EB2115E3F8001769AB /* CLGCDTimerManager.m in Sources */,
 				1F3A3FD220DE982100245CA4 /* UserInfoHeaderView.m in Sources */,
 				1F676ED020A1EF04002F71B4 /* PublishAddTypeView.m in Sources */,
 				0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */,
@@ -2792,6 +2921,7 @@
 				0B7293061EFA4F1100D1B1EB /* main.m in Sources */,
 				0B26F0481FBEF06700464F41 /* AppBaseTableViewController+From.m in Sources */,
 				1F6EB7F72093643000665561 /* LFWKWebView.m in Sources */,
+				1F1715E52115E3F8001769AB /* UIViewController+CLPlayerRotation.m in Sources */,
 				1F676F6C20AC769C002F71B4 /* ShequBottomView.m in Sources */,
 				1F676F1720A9CAC5002F71B4 /* TalentViewController.m in Sources */,
 				1F3A3FEE20DFF0B000245CA4 /* MWCaptionView.m in Sources */,
@@ -2808,6 +2938,7 @@
 				0B317C361F0DDC1200B01DDA /* AppCrashProcessManager.m in Sources */,
 				1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */,
 				1FDBE74B20D9529A0092E82E /* ShequZuzhiController.m in Sources */,
+				1F1715E82115E3F8001769AB /* PlayTopToolBar.m in Sources */,
 				1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
 				1F94DFB720D6262E0095DFC5 /* FinishHeaderView.m in Sources */,
@@ -2815,6 +2946,7 @@
 				1F3A3FF320DFF0B000245CA4 /* MWTapDetectingView.m in Sources */,
 				1F0FDFBB20C23B250041E73B /* LogDetailTalkModel.m in Sources */,
 				1F676F0920A9C4F3002F71B4 /* UIImage+fixOrientation.m in Sources */,
+				1F17160F2115FBF1001769AB /* PlayerCell.m in Sources */,
 				0B75D5951FBEBB46008D7AE6 /* AppLaunchAdModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

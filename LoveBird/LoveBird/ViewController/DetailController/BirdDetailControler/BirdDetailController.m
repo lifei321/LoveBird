@@ -16,7 +16,7 @@
 #import "BirdDetailGradeCell.h"
 #import "BirdDetailCell.h"
 #import "BirdDetailSongController.h"
-#import "BirdDetailVedioController.h"
+#import "YLTableViewVC.h"
 
 
 @interface BirdDetailController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -375,8 +375,8 @@
             [self.navigationController pushViewController:songvc animated:YES];
             
         } else if (row == 1) { // 视频
-            BirdDetailVedioController *vediovc = [[BirdDetailVedioController alloc] init];
-            vediovc.dataArray = [NSArray arrayWithArray:self.detailModel.video];
+            YLTableViewVC *vediovc = [[YLTableViewVC alloc] init];
+            vediovc.arrayDS = [NSMutableArray arrayWithArray:self.detailModel.video];
             [self.navigationController pushViewController:vediovc animated:YES];
         }
     }

@@ -97,6 +97,8 @@
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSString *playback_length;
 @property (nonatomic, copy) NSString *video_url;
+@property (nonatomic, copy) NSString *video_imgUrl;
+
 
 @end
 
