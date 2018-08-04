@@ -41,6 +41,7 @@
         self.clipsToBounds = YES;
         
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(64), AutoSize6(64))];
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.iconImageView.layer.borderWidth = 1;

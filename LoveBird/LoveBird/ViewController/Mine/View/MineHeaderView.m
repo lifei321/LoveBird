@@ -54,7 +54,7 @@
         //头像
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(165), AutoSize6(165))];
         self.iconImageView.center = backImageView.center;
-        self.iconImageView.backgroundColor = [UIColor orangeColor];
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
         self.iconImageView.layer.borderWidth = AutoSize6(4);
         self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;

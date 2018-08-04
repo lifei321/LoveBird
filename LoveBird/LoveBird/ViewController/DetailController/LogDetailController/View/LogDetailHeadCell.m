@@ -64,7 +64,7 @@
 
 - (UIImageView *)makeViewWithLeft:(CGFloat)left {
     UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(left, AutoSize6(36), AutoSize6(66), AutoSize6(66))];
-    view.contentMode = UIViewContentModeCenter;
+    view.contentMode = UIViewContentModeScaleAspectFit;
     view.layer.cornerRadius = view.height / 2;
     view.clipsToBounds = YES;
     [self.contentView addSubview:view];

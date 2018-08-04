@@ -30,7 +30,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), AutoSize6(64), AutoSize6(64))];
-        _iconImageView.contentMode = UIViewContentModeScaleToFill;
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         _iconImageView.clipsToBounds = YES;
         _iconImageView.layer.cornerRadius = AutoSize6(5);
         [self.contentView addSubview:_iconImageView];

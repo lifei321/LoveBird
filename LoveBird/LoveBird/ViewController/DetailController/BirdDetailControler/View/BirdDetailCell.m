@@ -36,8 +36,8 @@
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(75), AutoSize6(20), SCREEN_WIDTH - AutoSize6(230), AutoSize6(28))];
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
-        self.titleLabel.textColor = UIColorFromRGB(0x7f7f7f);
-        self.titleLabel.font = kFont6(32);
+        self.titleLabel.textColor = UIColorFromRGB(0x000000);
+        self.titleLabel.font = kFont6(25);
         [self.contentView addSubview:self.titleLabel];
         
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(52), lineView.bottom + AutoSize6(20), SCREEN_WIDTH - AutoSize6(100), AutoSize6(92))];
@@ -48,7 +48,7 @@
         [self.contentView addSubview:self.contentLabel];
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentLabel.left, self.contentLabel.bottom + AutoSize6(10), self.contentLabel.width, AutoSize6(92))];
-        _iconImageView.contentMode = UIViewContentModeScaleToFill;
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_iconImageView];
         
     }

@@ -32,7 +32,7 @@
         self.clipsToBounds = YES;
         // 头像
         self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(26), AutoSize6(70), AutoSize6(70))];
-        self.headIcon.contentMode = UIViewContentModeCenter;
+        self.headIcon.contentMode = UIViewContentModeScaleAspectFit;
         self.headIcon.clipsToBounds = YES;
         [self addSubview:self.headIcon];
         

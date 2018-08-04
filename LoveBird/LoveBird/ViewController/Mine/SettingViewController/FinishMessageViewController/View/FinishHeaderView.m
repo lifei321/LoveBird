@@ -34,6 +34,8 @@
         [self addSubview:nameLabel];
         
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, nameLabel.bottom + AutoSize6(20), AutoSize6(155), AutoSize6(155))];
+        self.headImageView.contentMode = UIViewContentModeScaleAspectFit;
+
         _headImageView.centerX = self.centerX;
         _headImageView.layer.cornerRadius = _headImageView.width / 2;
         _headImageView.layer.masksToBounds = YES;

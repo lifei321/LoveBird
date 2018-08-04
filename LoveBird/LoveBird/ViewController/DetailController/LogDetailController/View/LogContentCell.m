@@ -39,7 +39,7 @@
         
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
-        _iconImageView.contentMode = UIViewContentModeScaleToFill;
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_iconImageView];
         
         self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];

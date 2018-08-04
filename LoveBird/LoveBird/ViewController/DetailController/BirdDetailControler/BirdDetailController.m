@@ -78,12 +78,15 @@
         BirdDetailTextCell *textcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BirdDetailTextCell class]) forIndexPath:indexPath];
 
         if (row == 0) {
-            textcell.title = self.detailModel.alias;
+            textcell.title = self.detailModel.name;
+            textcell.titleLabel.font = kFont6(32);
             textcell.hasImage = YES;
         } else if (row == 1) {
-            textcell.title = self.detailModel.name;
+            textcell.title = self.detailModel.pinyin;
+            textcell.titleLabel.font = kFont6(32);
         } else if (row == 2) {
             textcell.title = self.detailModel.name_latin;
+            textcell.titleLabel.font = [UIFont italicSystemFontOfSize:AutoSize6(32)];//设置字体为斜体
         }
         cell = textcell;
     } else if (section == 1) {

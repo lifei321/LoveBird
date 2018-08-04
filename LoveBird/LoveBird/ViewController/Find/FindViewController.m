@@ -16,6 +16,7 @@
 #import "FindDao.h"
 #import "ClassifyModel.h"
 #import "FindBodyResultController.h"
+#import "SearchViewController.h"
 
 #define kStringForFind @"kStringForFind"
 
@@ -79,6 +80,12 @@
         [self.tableView.mj_header endRefreshing];
     }];
 }
+
+- (void)textFieldShouldBeginEditing:(UITextField *)textField {
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
     [AppBaseHud showHudWithLoding:self.view];

@@ -29,7 +29,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize6(20), SCREEN_WIDTH, AutoSize6(442))];
-        _iconImageView.contentMode = UIViewContentModeScaleToFill;
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_iconImageView];
         
         self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, _iconImageView.bottom, SCREEN_WIDTH, AutoSize6(115))];

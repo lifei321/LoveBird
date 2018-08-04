@@ -40,7 +40,7 @@
         [self.contentView addSubview:self.rankLabel];
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(92), AutoSize6(23), AutoSize6(90), AutoSize6(90))];
-        _iconImageView.contentMode = UIViewContentModeCenter;
+        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
         _iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];

@@ -16,5 +16,8 @@
 
 @property (nonatomic, copy) NSString *detail;
 
+@property (nonatomic, strong) UILabel *titleLabel;
+
+
 
 @end

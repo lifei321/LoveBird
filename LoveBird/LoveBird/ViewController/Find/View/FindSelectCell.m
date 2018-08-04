@@ -28,7 +28,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, AutoSize(97))];
-        _picImageView.contentMode = UIViewContentModeScaleToFill;
+        self.picImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_picImageView];
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _picImageView.bottom + AutoSize(3), self.width, AutoSize(20))];
