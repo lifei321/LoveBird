@@ -17,6 +17,8 @@
 #import "BirdDetailCell.h"
 #import "BirdDetailSongController.h"
 #import "YLTableViewVC.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 #import "AudioPlayerTool.h"
 
@@ -400,8 +402,22 @@
             YLTableViewVC *vediovc = [[YLTableViewVC alloc] init];
             vediovc.arrayDS = [NSMutableArray arrayWithArray:self.detailModel.video];
             [self.navigationController pushViewController:vediovc animated:YES];
+        } else if (row == 3) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+            imageView.backgroundColor = [UIColor blackColor];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            [self.view addSubview:imageView];
+            imageView.userInteractionEnabled = YES;
+            
+            [imageView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidClick:)]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:self.detailModel.region_img] placeholderImage:nil];
         }
     }
+}
+
+- (void)imageViewDidClick:(UITapGestureRecognizer *)tap {
+    UIImageView *imageView = (UIImageView *)tap.view;
+    [imageView removeFromSuperview];
 }
 
 - (void)netForBirdDetail {

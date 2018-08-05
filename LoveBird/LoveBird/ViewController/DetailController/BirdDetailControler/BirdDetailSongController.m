@@ -22,6 +22,10 @@
     [self setTableView];
     
 }
+- (void)viewDidDisappear:(BOOL)animated {
+    [[AudioPlayerTool sharePlayerTool] destroyPlayer];
+}
+
 
 - (void)BirdDetailSongCell:(BirdDetailSongCell *)cell button:(UIButton *)button {
     
