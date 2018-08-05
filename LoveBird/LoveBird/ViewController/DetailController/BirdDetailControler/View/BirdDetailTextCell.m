@@ -11,7 +11,6 @@
 
 @interface BirdDetailTextCell()
 
-@property (nonatomic, strong) UIImageView *iconImageView;
 
 
 @property (nonatomic, strong) UILabel *tagLabel;
@@ -36,9 +35,9 @@
         [self.contentView addSubview:self.titleLabel];
         
         
-        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(70), AutoSize6(92))];
-        _iconImageView.contentMode = UIViewContentModeRight;
-        [self.contentView addSubview:_iconImageView];
+        _playButton  = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(70), AutoSize6(92))];
+        _playButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [self.contentView addSubview:_playButton];
         
         self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(255), 0, AutoSize6(200), AutoSize6(92))];
         self.tagLabel.textAlignment = NSTextAlignmentRight;
@@ -51,21 +50,38 @@
     return self;
 }
 
+- (void)playbuttondidclick {
+    if (self.playButton.selected) {
+        self.playButton.selected = NO;
+    } else {
+        self.playButton.selected = YES;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BirdDetailTextCell:button:)]) {
+        [self.delegate BirdDetailTextCell:self button:self.playButton];
+    }
+}
+
 - (void)setTitle:(NSString *)title {
     _title = [title copy];
     self.titleLabel.text = title;
-    self.iconImageView.hidden = YES;
+    self.playButton.hidden = YES;
 }
 
 - (void)setDetail:(NSString *)detail {
-    self.iconImageView.hidden = NO;
-    self.iconImageView.image = [UIImage imageNamed:@"detail_right"];
+    self.playButton.hidden = NO;
+    [self.playButton setImage:[UIImage imageNamed:@"detail_right"] forState:UIControlStateNormal];
+    [self.playButton removeTarget:self action:@selector(playbuttondidclick) forControlEvents:UIControlEventTouchUpInside];
     self.tagLabel.text = detail;
 }
 
 - (void)setHasImage:(BOOL)hasImage {
-    self.iconImageView.hidden = NO;
-    self.iconImageView.image = [UIImage imageNamed:@"detail_song"];
+    self.playButton.hidden = NO;
+    [self.playButton setImage:[UIImage imageNamed:@"detail_song"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"detail_song_no"] forState:UIControlStateSelected];
+
+    [_playButton addTarget:self action:@selector(playbuttondidclick) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 @end

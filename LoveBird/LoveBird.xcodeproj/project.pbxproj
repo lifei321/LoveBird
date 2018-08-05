@@ -107,8 +107,6 @@
 		1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89D20C3D80600A6C11D /* FindClassCell.m */; };
 		1F16D8A120C3FCE600A6C11D /* BirdDetailSongController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */; };
 		1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */; };
-		1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */; };
-		1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */; };
 		1F16D8B020C411E700A6C11D /* MineFollowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8AF20C411E700A6C11D /* MineFollowController.m */; };
 		1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B420C4127D00A6C11D /* MineFollowCell.m */; };
 		1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D8B720C4304E00A6C11D /* LogDetailUpModel.m */; };
@@ -139,6 +137,8 @@
 		1F1715FE2115E411001769AB /* YLTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1715F92115E411001769AB /* YLTableViewVC.m */; };
 		1F17160F2115FBF1001769AB /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17160C2115FBF0001769AB /* PlayerCell.m */; };
 		1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17160D2115FBF0001769AB /* PlayerCell.xib */; };
+		1F17161421160715001769AB /* AudioPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161221160715001769AB /* AudioPlayerTool.m */; };
+		1F17161D2116FD9B001769AB /* AudioProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161C2116FD9B001769AB /* AudioProgressView.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -470,10 +470,6 @@
 		1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailSongController.m; sourceTree = "<group>"; };
 		1F16D8A220C3FE6F00A6C11D /* BirdDetailSongCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailSongCell.h; sourceTree = "<group>"; };
 		1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailSongCell.m; sourceTree = "<group>"; };
-		1F16D8A820C4072900A6C11D /* BirdDetailVedioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailVedioController.h; sourceTree = "<group>"; };
-		1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioController.m; sourceTree = "<group>"; };
-		1F16D8AB20C407AB00A6C11D /* BirdDetailVedioCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailVedioCell.h; sourceTree = "<group>"; };
-		1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailVedioCell.m; sourceTree = "<group>"; };
 		1F16D8AE20C411E700A6C11D /* MineFollowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFollowController.h; sourceTree = "<group>"; };
 		1F16D8AF20C411E700A6C11D /* MineFollowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineFollowController.m; sourceTree = "<group>"; };
 		1F16D8B320C4127D00A6C11D /* MineFollowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineFollowCell.h; sourceTree = "<group>"; };
@@ -533,6 +529,10 @@
 		1F17160C2115FBF0001769AB /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
 		1F17160D2115FBF0001769AB /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 		1F17160E2115FBF0001769AB /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
+		1F17161221160715001769AB /* AudioPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerTool.m; sourceTree = "<group>"; };
+		1F17161321160715001769AB /* AudioPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerTool.h; sourceTree = "<group>"; };
+		1F17161B2116FD9B001769AB /* AudioProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioProgressView.h; sourceTree = "<group>"; };
+		1F17161C2116FD9B001769AB /* AudioProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioProgressView.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1548,6 +1548,7 @@
 		1F0FDFB720C23B250041E73B /* BirdDetailControler */ = {
 			isa = PBXGroup;
 			children = (
+				1F1716112116061A001769AB /* autio */,
 				1F1715C92115E3E1001769AB /* video */,
 				1F0FDFB820C23B250041E73B /* Model */,
 				1F0FDFB920C23B250041E73B /* View */,
@@ -1555,8 +1556,6 @@
 				1F0FDFC420C23BC50041E73B /* BirdDetailController.m */,
 				1F16D89F20C3FCE600A6C11D /* BirdDetailSongController.h */,
 				1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */,
-				1F16D8A820C4072900A6C11D /* BirdDetailVedioController.h */,
-				1F16D8A920C4072900A6C11D /* BirdDetailVedioController.m */,
 			);
 			path = BirdDetailControler;
 			sourceTree = "<group>";
@@ -1583,8 +1582,6 @@
 				1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */,
 				1F16D8A220C3FE6F00A6C11D /* BirdDetailSongCell.h */,
 				1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */,
-				1F16D8AB20C407AB00A6C11D /* BirdDetailVedioCell.h */,
-				1F16D8AC20C407AB00A6C11D /* BirdDetailVedioCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1747,6 +1744,17 @@
 				1F17160E2115FBF0001769AB /* PlayerCell.h */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1F1716112116061A001769AB /* autio */ = {
+			isa = PBXGroup;
+			children = (
+				1F17161321160715001769AB /* AudioPlayerTool.h */,
+				1F17161221160715001769AB /* AudioPlayerTool.m */,
+				1F17161B2116FD9B001769AB /* AudioProgressView.h */,
+				1F17161C2116FD9B001769AB /* AudioProgressView.m */,
+			);
+			path = autio;
 			sourceTree = "<group>";
 		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
@@ -2832,7 +2840,6 @@
 				1F676FAA20B97199002F71B4 /* MineBirdViewController.m in Sources */,
 				1F4F1423205D2AEB0066F790 /* FindSelectCell.m in Sources */,
 				1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */,
-				1F16D8AD20C407AB00A6C11D /* BirdDetailVedioCell.m in Sources */,
 				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F676FAD20B972EC002F71B4 /* MineBirdLeftCell.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
@@ -2881,10 +2888,12 @@
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,
 				1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */,
+				1F17161D2116FD9B001769AB /* AudioProgressView.m in Sources */,
 				1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */,
 				0B75D5671FBD9D8B008D7AE6 /* UIButton+HQCustomIcon.m in Sources */,
 				0B75D5A31FBEC434008D7AE6 /* NSString+APP.m in Sources */,
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
+				1F17161421160715001769AB /* AudioPlayerTool.m in Sources */,
 				1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
@@ -2939,7 +2948,6 @@
 				1F0FDF6C20BB055A0041E73B /* FindResultCell.m in Sources */,
 				1FDBE74B20D9529A0092E82E /* ShequZuzhiController.m in Sources */,
 				1F1715E82115E3F8001769AB /* PlayTopToolBar.m in Sources */,
-				1F16D8AA20C4072900A6C11D /* BirdDetailVedioController.m in Sources */,
 				1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */,
 				1F94DFB720D6262E0095DFC5 /* FinishHeaderView.m in Sources */,
 				0B317C8A1F0F6E9100B01DDA /* AppButton.m in Sources */,

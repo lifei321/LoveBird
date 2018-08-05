@@ -18,14 +18,14 @@
 #import "BirdDetailSongController.h"
 #import "YLTableViewVC.h"
 
+#import "AudioPlayerTool.h"
 
-@interface BirdDetailController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface BirdDetailController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BirdDetailTextCellDelegate>
 
 @property (nonatomic, strong) BirdDetailModel *detailModel;
 
 // 轮播图
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
-
 
 @end
 
@@ -46,6 +46,28 @@
     [self setTableView];
     [self netForBirdDetail];
 }
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[AudioPlayerTool sharePlayerTool] destroyPlayer];
+}
+
+- (void)BirdDetailTextCell:(BirdDetailTextCell *)cell button:(UIButton *)button {
+    
+    if ([AudioPlayerTool sharePlayerTool].playerStatus == VedioStatusPlaying) {
+        [[AudioPlayerTool sharePlayerTool] playButtonAction];
+        return;
+    }
+    BirdDetailSongModel *songmodel = self.detailModel.song.firstObject;
+    [[AudioPlayerTool sharePlayerTool] setSongModel:songmodel];
+    [AudioPlayerTool sharePlayerTool].finishBlock = ^{
+        button.selected  = NO;
+    };
+    
+    [AudioPlayerTool sharePlayerTool].progressBlock = ^(CGFloat progress) {
+        
+    };
+}
+
 
 #pragma mark-- tabelView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -76,6 +98,7 @@
 
     if (section == 0) {
         BirdDetailTextCell *textcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BirdDetailTextCell class]) forIndexPath:indexPath];
+        textcell.delegate = self;
 
         if (row == 0) {
             textcell.title = self.detailModel.name;
@@ -91,7 +114,6 @@
         cell = textcell;
     } else if (section == 1) {
         BirdDetailTextCell *textcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BirdDetailTextCell class]) forIndexPath:indexPath];
-
         if (row == 0) {
             textcell.title = @"叫声";
             textcell.detail = [NSString stringWithFormat:@"%ld种", self.detailModel.song.count];

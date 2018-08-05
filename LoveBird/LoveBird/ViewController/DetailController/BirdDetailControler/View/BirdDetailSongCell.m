@@ -10,9 +10,10 @@
 
 @interface BirdDetailSongCell()
 
-@property (nonatomic, strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UIButton *iconImageView;
 
-@property (nonatomic, strong) UILabel *birdLabel;
+
+@property (nonatomic, strong) UILabel *timeTotalLabel;
 
 
 @end
@@ -27,17 +28,24 @@
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
         
-        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), AutoSize6(66), AutoSize6(66))];
-        _iconImageView.contentMode = UIViewContentModeCenter;
+        _iconImageView  = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), AutoSize6(66), AutoSize6(66))];
         _iconImageView.clipsToBounds = YES;
-        _iconImageView.image = [UIImage imageNamed:@"detail_play_no"];
+        [_iconImageView setImage:[UIImage imageNamed:@"detail_play_no"] forState:UIControlStateNormal];
+        [_iconImageView setImage:[UIImage imageNamed:@"detail_play_yes"] forState:UIControlStateSelected];
+
+        [_iconImageView addTarget:self action:@selector(iconImageViewDidClick) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_iconImageView];
         
-        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(150), AutoSize6(106))];
-        self.birdLabel.textAlignment = NSTextAlignmentLeft;
-        self.birdLabel.textColor = kColorDefaultColor;
-        self.birdLabel.font = kFont6(30);
-        [self.contentView addSubview:self.birdLabel];
+        self.progressView = [[AudioProgressView alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(30), 0, AutoSize6(450), AutoSize6(106))];
+        [self addSubview:self.progressView];
+        
+        self.timeTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(170), 0, AutoSize6(150), AutoSize6(106))];
+        self.timeTotalLabel.textColor = kColorDefaultColor;
+        self.timeTotalLabel.textAlignment = NSTextAlignmentRight;
+        self.timeTotalLabel.font = kFont6(30);
+        self.timeTotalLabel.text = @"00:00";
+        [self addSubview:self.timeTotalLabel];
+
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_iconImageView.left, AutoSize6(106) - 0.5, SCREEN_WIDTH - _iconImageView.left, 0.5)];
         lineView.backgroundColor = kLineColoreDefaultd4d7dd;
@@ -50,12 +58,23 @@
 
 - (void)setSongModel:(BirdDetailSongModel *)songModel {
     _songModel = songModel;
-    self.birdLabel.text = songModel.playback_length;
+    self.timeTotalLabel.text = songModel.playback_length;
     
 }
 
 
+- (void)iconImageViewDidClick {
+    if (self.iconImageView.selected) {
+        self.iconImageView.selected = NO;
+    } else {
+        self.iconImageView.selected = YES;
+    }
 
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BirdDetailSongCell:button:)]) {
+        [self.delegate BirdDetailSongCell:self button:self.iconImageView];
+    }
+}
 
 
 @end

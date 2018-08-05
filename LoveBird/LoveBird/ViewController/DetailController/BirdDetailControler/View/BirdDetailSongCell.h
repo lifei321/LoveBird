@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "BirdDetailModel.h"
+#import "AudioProgressView.h"
+
+
+@class BirdDetailSongCell;
+@protocol BBirdDetailSongCellDelegate<NSObject>
+
+- (void)BirdDetailSongCell:(BirdDetailSongCell *)cell button:(UIButton *)button;
+@end
+
+
+
 
 @interface BirdDetailSongCell : UITableViewCell
 
+@property (nonatomic, weak) id<BBirdDetailSongCellDelegate>delegate;
+
 @property (nonatomic, strong) BirdDetailSongModel *songModel;
+
+@property (nonatomic, strong) AudioProgressView *progressView;
 
 @end

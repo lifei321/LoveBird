@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class BirdDetailTextCell;
+@protocol BirdDetailTextCellDelegate<NSObject>
+
+- (void)BirdDetailTextCell:(BirdDetailTextCell *)cell button:(UIButton *)button;
+@end
+
 @interface BirdDetailTextCell : UITableViewCell
+
+@property (nonatomic, weak) id<BirdDetailTextCellDelegate>delegate;
 
 @property (nonatomic, copy) NSString *title;
 
@@ -18,6 +26,7 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, strong) UIButton *playButton;
 
 
 @end

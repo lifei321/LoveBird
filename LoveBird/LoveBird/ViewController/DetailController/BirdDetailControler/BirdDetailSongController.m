@@ -8,8 +8,9 @@
 
 #import "BirdDetailSongController.h"
 #import "BirdDetailSongCell.h"
+#import "AudioPlayerTool.h"
 
-@interface BirdDetailSongController ()<UITableViewDelegate, UITableViewDataSource>
+@interface BirdDetailSongController ()<UITableViewDelegate, UITableViewDataSource, BBirdDetailSongCellDelegate>
 
 @end
 
@@ -22,6 +23,24 @@
     
 }
 
+- (void)BirdDetailSongCell:(BirdDetailSongCell *)cell button:(UIButton *)button {
+    
+    if ([AudioPlayerTool sharePlayerTool].playerStatus == VedioStatusPlaying) {
+        [[AudioPlayerTool sharePlayerTool] playButtonAction];
+        return;
+    }
+    
+    [AudioPlayerTool sharePlayerTool].songModel = cell.songModel;
+    [AudioPlayerTool sharePlayerTool].finishBlock = ^{
+        button.selected  = NO;
+        cell.progressView.progressValue = 0;
+    };
+    
+    [AudioPlayerTool sharePlayerTool].progressBlock = ^(CGFloat progress) {
+        cell.progressView.progressValue = progress;
+    };
+}
+
 #pragma mark-- tabelView 代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -30,6 +49,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BirdDetailSongCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BirdDetailSongCell class]) forIndexPath:indexPath];
     cell.songModel = self.dataArray[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
