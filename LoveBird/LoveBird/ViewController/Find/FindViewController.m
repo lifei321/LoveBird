@@ -81,9 +81,10 @@
     }];
 }
 
-- (void)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:searchVC animated:YES];
+    return NO;
 }
 
 

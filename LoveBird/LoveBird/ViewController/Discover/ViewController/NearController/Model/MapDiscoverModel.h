@@ -8,17 +8,17 @@
 
 #import "AppBaseModel.h"
 
-@protocol MapDiscoverGpsModel;
+@protocol MapDiscoverModel;
 @interface MapDiscoverDataModel : AppBaseModel
 
-@property (nonatomic, strong) NSArray <MapDiscoverGpsModel>*data;
+@property (nonatomic, strong) NSArray <MapDiscoverModel>*data;
 
 @end
 
-@class MapDiscoverModel;
-@interface MapDiscoverGpsModel : JSONModel
+@protocol MapDiscoverInfoModel;
+@interface MapDiscoverGpsModel : AppBaseModel
 
-@property (nonatomic, strong) MapDiscoverModel *gpsInfo;
+@property (nonatomic, strong) NSArray <MapDiscoverInfoModel>*data;
 
 @end
 
@@ -29,7 +29,9 @@
 
 @property (nonatomic, copy) NSString *lng;
 
-@property (nonatomic, strong) NSArray <MapDiscoverInfoModel>*birdInfo;
+@property (nonatomic, copy) NSString *birdCount;
+
+//@property (nonatomic, strong) NSArray <MapDiscoverInfoModel>*birdInfo;
 
 
 @end

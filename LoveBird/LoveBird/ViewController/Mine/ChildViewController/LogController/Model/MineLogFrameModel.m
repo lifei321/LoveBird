@@ -38,6 +38,7 @@
         backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
     }
     
+    
 //    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.backViewFrame.size.height);
 //    backViewHeight = CGRectGetMaxY(self.bottomViewFrame);
     

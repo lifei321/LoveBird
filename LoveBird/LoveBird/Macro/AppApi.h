@@ -273,9 +273,14 @@
 #define kAPI_Article_rankingList kAPI_USER_SERVER_VERSION(@"ranking/index.php?cmd=ranking")
 
 /**
- *  地图
+ *  地图 鸟数量
  */
-#define kAPI_Discover_map kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdMaps")
+#define kAPI_Discover_map kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=getBirdPoint")
+
+/**
+ *  鸟信息
+ */
+#define kAPI_Discover_mapMessage kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=getBirdListByGps")
 
 #pragma mark-- 详情
 

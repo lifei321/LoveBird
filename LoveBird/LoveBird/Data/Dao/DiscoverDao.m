@@ -215,6 +215,24 @@
     }];
 }
 
+// 附近鸟
++ (void)getNearBirdMessage:(NSString *)lat  type:(NSString *)lng successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(lat) forKey:@"lat"];
+    [dic setObject:EMPTY_STRING_IF_NIL(lng) forKey:@"lng"];
+    
+    [AppHttpManager POST:kAPI_Discover_mapMessage parameters:dic jsonModelName:[MapDiscoverGpsModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 // 全局话题
 + (void)getHuaTiList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     

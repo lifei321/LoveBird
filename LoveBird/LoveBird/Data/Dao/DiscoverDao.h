@@ -42,6 +42,9 @@
 // 附近鸟
 + (void)getNearBird:(NSString *)lat  type:(NSString *)lng radius:(NSString *)radius successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 附近鸟
++ (void)getNearBirdMessage:(NSString *)lat  type:(NSString *)lng successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
 // 全局搜索装备咨询
 + (void)getZZList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 

@@ -168,6 +168,8 @@
 		1F4F1426205D2E520066F790 /* FindSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1425205D2E520066F790 /* FindSelectModel.m */; };
 		1F4F142A205E3B430066F790 /* ClassifyBirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */; };
 		1F4F142E205E4D060066F790 /* ClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F142D205E4D060066F790 /* ClassifyModel.m */; };
+		1F5F5C40211728A700FC4F99 /* BirdDetailLookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F5C3F211728A700FC4F99 /* BirdDetailLookController.m */; };
+		1F5F5C4321172A9D00FC4F99 /* BirdLookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F5C4221172A9D00FC4F99 /* BirdLookTableViewCell.m */; };
 		1F676E892096FFEE002F71B4 /* BodyBirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E882096FFEE002F71B4 /* BodyBirdModel.m */; };
 		1F676E902099F924002F71B4 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E8F2099F924002F71B4 /* UserDao.m */; };
 		1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F676E93209A0335002F71B4 /* UserFollowModel.m */; };
@@ -594,6 +596,10 @@
 		1F4F1429205E3B430066F790 /* ClassifyBirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyBirdViewController.m; sourceTree = "<group>"; };
 		1F4F142C205E4D060066F790 /* ClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassifyModel.h; sourceTree = "<group>"; };
 		1F4F142D205E4D060066F790 /* ClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyModel.m; sourceTree = "<group>"; };
+		1F5F5C3E211728A600FC4F99 /* BirdDetailLookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirdDetailLookController.h; sourceTree = "<group>"; };
+		1F5F5C3F211728A700FC4F99 /* BirdDetailLookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirdDetailLookController.m; sourceTree = "<group>"; };
+		1F5F5C4121172A9D00FC4F99 /* BirdLookTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdLookTableViewCell.h; sourceTree = "<group>"; };
+		1F5F5C4221172A9D00FC4F99 /* BirdLookTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdLookTableViewCell.m; sourceTree = "<group>"; };
 		1F676E872096FFEE002F71B4 /* BodyBirdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBirdModel.h; sourceTree = "<group>"; };
 		1F676E882096FFEE002F71B4 /* BodyBirdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBirdModel.m; sourceTree = "<group>"; };
 		1F676E8E2099F924002F71B4 /* UserDao.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
@@ -1556,6 +1562,8 @@
 				1F0FDFC420C23BC50041E73B /* BirdDetailController.m */,
 				1F16D89F20C3FCE600A6C11D /* BirdDetailSongController.h */,
 				1F16D8A020C3FCE600A6C11D /* BirdDetailSongController.m */,
+				1F5F5C3E211728A600FC4F99 /* BirdDetailLookController.h */,
+				1F5F5C3F211728A700FC4F99 /* BirdDetailLookController.m */,
 			);
 			path = BirdDetailControler;
 			sourceTree = "<group>";
@@ -1582,6 +1590,8 @@
 				1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */,
 				1F16D8A220C3FE6F00A6C11D /* BirdDetailSongCell.h */,
 				1F16D8A320C3FE6F00A6C11D /* BirdDetailSongCell.m */,
+				1F5F5C4121172A9D00FC4F99 /* BirdLookTableViewCell.h */,
+				1F5F5C4221172A9D00FC4F99 /* BirdLookTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2739,6 +2749,7 @@
 				1F1715E92115E3F8001769AB /* CLPlayerMaskView.m in Sources */,
 				0BDE65461FBEE5E900C2C76F /* AppBaseTableDataSource.m in Sources */,
 				1F16D89E20C3D80600A6C11D /* FindClassCell.m in Sources */,
+				1F5F5C40211728A700FC4F99 /* BirdDetailLookController.m in Sources */,
 				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
 				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,
@@ -2848,6 +2859,7 @@
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
 				0BA41920201DADFB002C6335 /* DiscoverDataSource.m in Sources */,
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
+				1F5F5C4321172A9D00FC4F99 /* BirdLookTableViewCell.m in Sources */,
 				0BC2B39520A2F82E003283D1 /* AppDateManager.m in Sources */,
 				1F676FB020B97300002F71B4 /* MineBirdRightCell.m in Sources */,
 				0B1D9D441F14BD2100DB0908 /* AppBaseNavigationController.m in Sources */,

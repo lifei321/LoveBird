@@ -30,7 +30,7 @@
         [self addSubview:self.toplineview];
         
         self.topview = [[UIView alloc] init];
-        self.topview.backgroundColor = kLineColoreDefaultd4d7dd;
+        self.topview.backgroundColor = kColorDefaultColor;
         [self addSubview:self.topview];
         
         self.lineview = [[UIView alloc] init];
@@ -44,12 +44,13 @@
     [super layoutSubviews];
     if (self.isFirst) {
         self.toplineview.frame = CGRectZero;
-        self.topview.frame = CGRectMake(0, 0, AutoSize6(10), AutoSize6(10));
+        self.topview.frame = CGRectMake(- AutoSize6(6), 0, AutoSize6(20), AutoSize6(20));
         self.lineview.frame = CGRectMake(self.width / 2 - 0.5, AutoSize6(11), 1, self.height - AutoSize6(12));
+        [self bringSubviewToFront:self.topview];
         
     } else {
         self.toplineview.frame = CGRectMake(self.width / 2 - 0.5, 0, 1, AutoSize6(30));
-        self.topview.frame = CGRectMake(0, AutoSize6(30), AutoSize6(10), AutoSize6(10));
+        self.topview.frame = CGRectMake(- AutoSize6(6), AutoSize6(30), AutoSize6(20), AutoSize6(20));
         
         self.lineview.frame = CGRectMake(self.width / 2 - 0.5, self.topview.bottom + 1, 1, self.height - AutoSize6(12) - AutoSize6(30));
     }

@@ -12,6 +12,7 @@
 #import "MapDisCoverView.h"
 #import "BDAnnotation.h"
 #import "RoundAnnotationView.h"
+#import "SearchViewController.h"
 
 
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
@@ -52,6 +53,8 @@
 
 @property (nonatomic, assign) float radius;
 
+@property (nonatomic, strong) UILabel *locationLabel;
+
 
 @end
 
@@ -74,6 +77,7 @@
     [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects:detailItem,nil]];
     
     [self addUI];
+    [self addNavigation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -124,11 +128,66 @@
     self.locService.delegate = self;
     [self.locService startUserLocationService];
     
-    self.zoomValue = 11;
+    self.zoomValue = 14;
     self.bMapView.zoomLevel = self.zoomValue;
     self.lat = 0;
     self.lng = 0;
     self.radius = 0;
+}
+
+- (void)addNavigation {
+    
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(200), AutoSize6(70))];
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    [self.view bringSubviewToFront:backView];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(0), AutoSize6(0), AutoSize6(60), backView.height)];
+    [backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:backButton];
+    
+    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(backButton.right + AutoSize6(20), AutoSize6(0), AutoSize6(32), backView.height)];
+    locationImageView.backgroundColor = [UIColor whiteColor];
+    locationImageView.contentMode = UIViewContentModeCenter;
+    locationImageView.image = [UIImage imageNamed:@"adress_blue"];
+    [backView addSubview:locationImageView];
+    
+    UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationImageView.right, 0, backView.width - locationImageView.right, backView.height)];
+    locationLabel.backgroundColor = [UIColor whiteColor];
+    locationLabel.textColor = kColorTextColor333333;
+    locationLabel.textAlignment = NSTextAlignmentCenter;
+    locationLabel.font = kFont6(30);
+    locationLabel.text = @"北京";
+    [backView addSubview:locationLabel];
+    _locationLabel = locationLabel;
+    
+    UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), backView.top, backView.height, backView.height)];
+    searchView.backgroundColor = [UIColor whiteColor];
+    searchView.layer.cornerRadius = searchView.width / 2;
+    [self.view addSubview:searchView];
+    [self.view bringSubviewToFront:searchView];
+    searchView.userInteractionEnabled = YES;
+    [searchView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchButtonDidClick)]];
+    
+    UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(50), AutoSize6(50))];
+    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateHighlighted];
+    [searchButton addTarget:self action:@selector(searchButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchButton];
+    [self.view bringSubviewToFront:searchButton];
+    searchButton.center = searchView.center;
+    
+}
+
+- (void)backButtonDidClick {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)searchButtonDidClick {
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark -- 回到用户的位置。
@@ -280,11 +339,19 @@
 //    [mapView setCenterCoordinate:annotation.coordinate animated:NO];
 //    [mapView setZoomLevel:16];
     
-    MapDisCoverView *birdView = [[MapDisCoverView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(100), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(100) - kTabBarHeight - AutoSize6(100))];
-    [self.view addSubview:birdView];
-    [self.view bringSubviewToFront:birdView];
-    
-    birdView.dataArray = [NSMutableArray arrayWithArray:annotation.birdArray];
+    [DiscoverDao getNearBirdMessage:annotation.mapModel.lat type:annotation.mapModel.lng successBlock:^(__kindof AppBaseModel *responseObject) {
+        
+        MapDiscoverGpsModel *gpsModel = (MapDiscoverGpsModel *)responseObject;
+        
+        MapDisCoverView *birdView = [[MapDisCoverView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(100), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(100) - kTabBarHeight - AutoSize6(100))];
+        [self.view addSubview:birdView];
+        [self.view bringSubviewToFront:birdView];
+        
+        birdView.dataArray = [NSMutableArray arrayWithArray:gpsModel.data];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        
+    }];
 }
 
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
@@ -303,20 +370,21 @@
                     
                     MapDiscoverDataModel *data = (MapDiscoverDataModel *)responseObject;
                     
-                    for (MapDiscoverGpsModel *gpsModel in data.data) {
+                    for (MapDiscoverModel *gpsModel in data.data) {
                         
                         BDAnnotation *an = [[BDAnnotation alloc] init];
                         CLLocationCoordinate2D coor;
-                        coor.latitude = gpsModel.gpsInfo.lat.floatValue ;
-                        coor.longitude = gpsModel.gpsInfo.lng.floatValue;
+                        coor.latitude = gpsModel.lat.floatValue ;
+                        coor.longitude = gpsModel.lng.floatValue;
                         an.coordinate = coor;
-                        an.birdArray = [NSArray arrayWithArray:gpsModel.gpsInfo.birdInfo];
-                        if (gpsModel.gpsInfo.birdInfo.count > 100) {
+                        an.mapModel = gpsModel;
+//                        an.birdArray = [NSArray arrayWithArray:gpsModel.gpsInfo.birdInfo];
+                        if (gpsModel.birdCount.integerValue > 100) {
                             an.title = @"100+";
                         } else {
-                            an.title = [NSString stringWithFormat:@"%ld", gpsModel.gpsInfo.birdInfo.count];
+                            an.title = gpsModel.birdCount;
                         }
-                        an.imgUrl = ((MapDiscoverInfoModel *)gpsModel.gpsInfo.birdInfo.firstObject).imgUrl;
+//                        an.imgUrl = ((MapDiscoverInfoModel *)gpsModel.gpsInfo.birdInfo.firstObject).imgUrl;
                         [self.bMapView addAnnotation:an];
                     }
                     

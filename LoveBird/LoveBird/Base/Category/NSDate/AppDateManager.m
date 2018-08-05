@@ -127,4 +127,59 @@ static AppDateManager *share = nil;
     NSString *currentDateStr = [dateFormatter stringFromDate: detailDate];
     return currentDateStr;
 }
+
+
+- (NSString *)getMonthWithTime:(NSString *)time {
+    
+    NSString *month = [[AppDateManager shareManager] getDateWithTime:time formatSytle:DateFormatM];
+    if ([month isEqualToString:@"01"]) {
+        return @"一月";
+    }
+    
+    if ([month isEqualToString:@"02"]) {
+        return @"二月";
+    }
+
+    if ([month isEqualToString:@"03"]) {
+        return @"三月";
+    }
+
+    if ([month isEqualToString:@"04"]) {
+        return @"四月";
+    }
+
+    if ([month isEqualToString:@"05"]) {
+        return @"五月";
+    }
+
+    if ([month isEqualToString:@"06"]) {
+        return @"六月";
+    }
+
+    if ([month isEqualToString:@"07"]) {
+        return @"七月";
+    }
+
+    if ([month isEqualToString:@"08"]) {
+        return @"八月";
+    }
+
+    if ([month isEqualToString:@"09"]) {
+        return @"九月";
+    }
+
+    if ([month isEqualToString:@"10"]) {
+        return @"十月";
+    }
+    if ([month isEqualToString:@"11"]) {
+        return @"十一月";
+    }
+    
+    if ([month isEqualToString:@"12"]) {
+        return @"十二月";
+    }
+
+    return @"";
+}
+
 @end

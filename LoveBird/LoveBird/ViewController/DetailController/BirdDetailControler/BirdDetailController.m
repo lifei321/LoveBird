@@ -18,6 +18,7 @@
 #import "BirdDetailSongController.h"
 #import "YLTableViewVC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "BirdDetailLookController.h"
 
 
 #import "AudioPlayerTool.h"
@@ -411,6 +412,9 @@
             
             [imageView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidClick:)]];
             [imageView sd_setImageWithURL:[NSURL URLWithString:self.detailModel.region_img] placeholderImage:nil];
+        } else if (row == 2) {
+            BirdDetailLookController *lookvc = [[BirdDetailLookController alloc] init];
+            [self.navigationController pushViewController:lookvc animated:YES];
         }
     }
 }

@@ -32,6 +32,9 @@
 
 @property (nonatomic, assign) CGRect subjectLabelFrame;
 
+@property (nonatomic, assign) CGRect countLabelFrame;
+
+
 @property (nonatomic, assign) CGRect timeLabelFrame;
 
 @property (nonatomic, assign) CGRect moreButtonFrame;

@@ -1,19 +1,21 @@
 //
-//  MineLogCell.m
+//  BirdLookTableViewCell.m
 //  LoveBird
 //
-//  Created by cheli shan on 2018/5/26.
+//  Created by cheli shan on 2018/8/5.
 //  Copyright © 2018年 shancheli. All rights reserved.
 //
 
-#import "MineLogCell.h"
+#import "BirdLookTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MineLogLineView.h"
 
-@interface MineLogCell()
+@interface BirdLookTableViewCell()
 
 
 @property (nonatomic, strong) UIView *backView;
+
+@property (nonatomic, strong) UIImageView *iconImageView;
 
 // 标题
 @property (nonatomic, strong) UILabel *titleLable;
@@ -31,6 +33,9 @@
 @property (nonatomic, strong) UILabel *subjectLable;
 
 
+@property (nonatomic, strong) UILabel *countLabel;
+
+
 @property (nonatomic, strong) UIButton *moreButton;
 
 @property (nonatomic, strong) UILabel *dayLable;
@@ -40,7 +45,8 @@
 
 @end
 
-@implementation MineLogCell
+
+@implementation BirdLookTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -64,6 +70,11 @@
         self.monthLable.textColor = kColorTextColor333333;
         self.monthLable.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:self.monthLable];
+        
+        self.iconImageView = [[UIImageView alloc] init];
+        self.iconImageView.contentMode = UIViewContentModeCenter;
+        self.iconImageView.image = [UIImage imageNamed:@"adress_grey"];
+        [self.backView addSubview:self.iconImageView];
         
         self.titleLable = [[UILabel alloc] init];
         self.titleLable.font = kFontDiscoverTitle;
@@ -91,6 +102,12 @@
         self.subjectLable.textAlignment = NSTextAlignmentLeft;
         [self.backView addSubview:self.subjectLable];
         
+        self.countLabel = [[UILabel alloc] init];
+        self.countLabel.font = kFont6(20);
+        self.countLabel.textColor = kColorTextColorLightGraya2a2a2;
+        self.countLabel.textAlignment = NSTextAlignmentRight;
+        [self.backView addSubview:self.countLabel];
+        
         self.moreButton = [[UIButton alloc] init];
         [self.backView addSubview:self.moreButton];
     }
@@ -101,7 +118,9 @@
     _frameModel = frameModel;
     self.accessoryType = UITableViewCellStyleDefault;
     self.backView.frame = frameModel.backViewFrame;
-    self.titleLable.frame = frameModel.titleLabelFrame;
+    
+    self.iconImageView.frame = CGRectMake(frameModel.titleLabelFrame.origin.x, frameModel.titleLabelFrame.origin.y, AutoSize6(12), frameModel.titleLabelFrame.size.height);
+    self.titleLable.frame = CGRectMake(self.iconImageView.right + AutoSize6(10), self.iconImageView.top, frameModel.titleLabelFrame.size.width, frameModel.titleLabelFrame.size.height);
     self.contentImageView.frame = frameModel.contentImageViewFrame;
     self.lineView.isFirst = frameModel.isFirst;
     self.lineView.frame = frameModel.lineViewFrame;
@@ -111,10 +130,12 @@
     self.dayLable.frame = frameModel.dayLabelFrame;
     self.monthLable.frame = frameModel.monthLabelFrame;
     
+//    self.countLabel.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    
     self.titleLable.text = frameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
     self.timeLabel.text = frameModel.shequModel.dateline;
-    self.subjectLable.text = frameModel.shequModel.summary;
+    self.subjectLable.text = frameModel.shequModel.author;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];
     self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.shequModel.dateline];
 }
@@ -142,6 +163,5 @@
     
     [path fill];
 }
-
 
 @end

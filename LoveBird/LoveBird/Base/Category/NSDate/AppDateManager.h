@@ -24,7 +24,9 @@ static NSString *DateFormatMD = @"MM-dd";
 
 static NSString *DateFormatMD2 = @"MM/dd";
 
+static NSString *DateFormatD = @"dd";
 
+static NSString *DateFormatM = @"MM";
 
 @interface AppDateManager : NSObject
 
@@ -98,5 +100,15 @@ static NSString *DateFormatMD2 = @"MM/dd";
 - (NSString *)getDateWithTime:(NSString *)time formatSytle:(NSString *)formatSytle;
 
 - (NSString *)getDateWithTime1000:(NSString *)time formatSytle:(NSString *)formatSytle;
+
+
+/**
+ *  根据时间戳获取一定格式的日期
+ *
+ *  @param time  时间戳
+ *
+ *  @return 一月  二月
+ */
+- (NSString *)getMonthWithTime:(NSString *)time;
 
 @end
