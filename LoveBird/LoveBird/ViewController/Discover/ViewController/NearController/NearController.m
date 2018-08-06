@@ -55,6 +55,8 @@
 
 @property (nonatomic, strong) UILabel *locationLabel;
 
+@property (nonatomic, strong) UITextField *searchTextField;
+
 
 @end
 
@@ -69,7 +71,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [detailButton setImage:[UIImage imageNamed:@"placeHolder"] forState:UIControlStateNormal];
+    [detailButton setImage:[UIImage imageNamed:@"  "] forState:UIControlStateNormal];
     detailButton.frame = CGRectMake(0, 0, 15, 10);
     detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     
@@ -153,6 +155,8 @@
     locationImageView.contentMode = UIViewContentModeCenter;
     locationImageView.image = [UIImage imageNamed:@"adress_blue"];
     [backView addSubview:locationImageView];
+    locationImageView.userInteractionEnabled = YES;
+    [locationImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationDidClick)]];
     
     UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationImageView.right, 0, backView.width - locationImageView.right, backView.height)];
     locationLabel.backgroundColor = [UIColor whiteColor];
@@ -162,6 +166,9 @@
     locationLabel.text = @"北京";
     [backView addSubview:locationLabel];
     _locationLabel = locationLabel;
+    _locationLabel.userInteractionEnabled = YES;
+    [_locationLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationDidClick)]];
+
     
     UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), backView.top, backView.height, backView.height)];
     searchView.backgroundColor = [UIColor whiteColor];
@@ -179,6 +186,27 @@
     [self.view bringSubviewToFront:searchButton];
     searchButton.center = searchView.center;
     
+    //搜索框
+    _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(backView.right - 1, backView.top, SCREEN_WIDTH - backView.right - AutoSize6(20), backView.height)];
+    _searchTextField.backgroundColor = [UIColor whiteColor];
+    _searchTextField.placeholder = @"请输入...";
+    [self.view addSubview:_searchTextField];
+    [self.view bringSubviewToFront:_searchTextField];
+    _searchTextField.hidden = YES;
+    
+    CGRect frame = _searchTextField.frame;
+    frame.size.width = AutoSize(20);// 距离左侧的距离
+    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(20), 1, backView.height - AutoSize6(40))];
+    lineView.backgroundColor = [UIColor blackColor];
+    [leftview addSubview:lineView];
+    
+    _searchTextField.leftViewMode = UITextFieldViewModeAlways;
+    _searchTextField.leftView = leftview;
+}
+
+- (void)locationDidClick {
+    self.searchTextField.hidden = !self.searchTextField.hidden;
 }
 
 - (void)backButtonDidClick {
@@ -384,7 +412,7 @@
                         } else {
                             an.title = gpsModel.birdCount;
                         }
-//                        an.imgUrl = ((MapDiscoverInfoModel *)gpsModel.gpsInfo.birdInfo.firstObject).imgUrl;
+                        an.imgUrl = gpsModel.birdHead;
                         [self.bMapView addAnnotation:an];
                     }
                     

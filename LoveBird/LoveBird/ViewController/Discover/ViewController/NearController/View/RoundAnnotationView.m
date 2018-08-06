@@ -26,7 +26,7 @@
     
     self.iconImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.iconImageView.image = [UIImage imageNamed:@"pub_select_place"];
+    self.iconImageView.image = [UIImage imageNamed:@"placeHolder"];
     self.iconImageView.layer.cornerRadius = self.width / 2;
     self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.iconImageView.layer.borderWidth = 1;
@@ -55,7 +55,7 @@
 
 - (void)setImgUrl:(NSString *)imgUrl {
     _imgUrl = [imgUrl copy];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
 }
 
 

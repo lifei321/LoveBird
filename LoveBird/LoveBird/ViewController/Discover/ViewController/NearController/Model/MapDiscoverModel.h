@@ -31,6 +31,9 @@
 
 @property (nonatomic, copy) NSString *birdCount;
 
+@property (nonatomic, copy) NSString *birdHead;
+
+
 //@property (nonatomic, strong) NSArray <MapDiscoverInfoModel>*birdInfo;
 
 
