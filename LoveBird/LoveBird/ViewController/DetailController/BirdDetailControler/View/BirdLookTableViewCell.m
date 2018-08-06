@@ -133,7 +133,7 @@
 //    self.countLabel.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     
     self.titleLable.text = frameModel.shequModel.subject;
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.timeLabel.text = frameModel.shequModel.dateline;
     self.subjectLable.text = frameModel.shequModel.author;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];

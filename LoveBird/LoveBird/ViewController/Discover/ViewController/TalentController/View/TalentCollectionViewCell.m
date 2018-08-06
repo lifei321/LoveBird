@@ -79,7 +79,7 @@
 
 - (void)setTalentModel:(TalentModel *)talentModel {
     _talentModel = talentModel;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:talentModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:talentModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     _textLabel.text = talentModel.master;
     _followButton.selected = talentModel.is_follow;
 }

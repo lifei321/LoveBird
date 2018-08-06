@@ -54,7 +54,7 @@
             left = AutoSize6(30) + i * AutoSize6(66) * 2 / 3;
         }
         UIImageView *image = [self makeViewWithLeft:left];
-        [image sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@""]];
+        [image sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
         if (i > 7) {
             break;

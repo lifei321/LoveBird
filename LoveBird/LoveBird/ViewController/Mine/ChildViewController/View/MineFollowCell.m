@@ -78,7 +78,7 @@
 }
 
 - (void)setFollowModel:(UserFollowModel *)followModel {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:followModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:followModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabel.text = followModel.username;
     self.followButton.selected = followModel.isFollow;
     

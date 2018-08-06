@@ -84,7 +84,7 @@
 - (void)setShequModel:(ShequModel *)shequModel {
     _shequModel = shequModel;
     
-    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:shequModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:shequModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.nickNameLabel.text = shequModel.author;
     if (shequModel.authorlv.length) {
         self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];

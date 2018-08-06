@@ -70,7 +70,7 @@
 - (void)setModel:(GuideModel *)model {
     _model = model;
     
-    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@""]];
+    [self.headIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.nickNameLabel.text = model.leader;
     self.followButton.selected = model.isFollow;
 }

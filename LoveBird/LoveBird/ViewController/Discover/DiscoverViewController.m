@@ -75,11 +75,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
+        
+        NearController *nearvc = [[NearController alloc] init];
+        [self.navigationController pushViewController:nearvc animated:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"placeHolder"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)setNavigation {

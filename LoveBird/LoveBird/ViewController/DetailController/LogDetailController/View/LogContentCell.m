@@ -72,7 +72,7 @@
         } else {
             _iconImageView.top = self.birdLabel.bottom;
         }
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
         if (bodyModel.imgTag.length) {
             self.tagLabel.text = bodyModel.imgTag;
@@ -130,7 +130,7 @@
         } else {
             _iconImageView.top = self.birdLabel.bottom;
         }
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
         self.tagLabel.frame = CGRectZero;
 //        if (contentModel.imgTag.length) {

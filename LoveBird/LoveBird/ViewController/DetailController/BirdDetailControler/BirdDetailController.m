@@ -479,7 +479,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     
     if (_cycleScrollView == nil) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(400)) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(400)) delegate:nil placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         _cycleScrollView.delegate = self;
     }

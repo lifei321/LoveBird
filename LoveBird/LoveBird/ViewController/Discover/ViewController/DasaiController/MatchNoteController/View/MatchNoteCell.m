@@ -94,8 +94,8 @@
 - (void)setModel:(MatchArticleModel *)model {
     _model = model;
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@""]];
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.nameLable.text = model.author;
     [self.nameLable sizeToFit];
     self.nameLable.centerY = self.iconImageView.centerY;

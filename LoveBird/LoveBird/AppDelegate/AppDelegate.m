@@ -34,6 +34,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
+    [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:kFirstLouchString];
+    
     //配置启动项
     [[AppRoutine sharedRoutine] applaunched];
     

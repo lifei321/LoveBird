@@ -93,7 +93,7 @@
         self.rankLabel.textColor = [UIColor blackColor];
     }
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:rankModel.head] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:rankModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.topLabel.text = rankModel.username;
     self.followButton.selected = rankModel.isFollow;
     

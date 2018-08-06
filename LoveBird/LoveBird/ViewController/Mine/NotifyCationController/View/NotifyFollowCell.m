@@ -65,7 +65,7 @@
 - (void)setModel:(MessageModel *)model {
     _model = model;
     
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@""]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     _titleLabel.text = model.messageUsername;
     _timeLabel.text = [[AppDateManager shareManager] getDateWithTime:model.dateline formatSytle:DateFormatYMDHM];
     _contentLabel.text = model.messageContent;

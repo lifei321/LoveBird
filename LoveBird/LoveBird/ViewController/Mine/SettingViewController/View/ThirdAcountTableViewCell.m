@@ -49,7 +49,7 @@
         
         _arrowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(17), 0, AutoSize(7), AutoSize(47))];
         _arrowImageView.contentMode = UIViewContentModeCenter;
-        _arrowImageView.image = [UIImage imageNamed:@""];
+        _arrowImageView.image = [UIImage imageNamed:@"placeHolder"];
         _arrowImageView.clipsToBounds = YES;
         _arrowImageView.backgroundColor = [UIColor orangeColor];
         [self.contentView addSubview:_arrowImageView];

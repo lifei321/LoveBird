@@ -77,7 +77,7 @@
         _contentLabel.hidden = YES;
         _switchView.hidden = YES;
         
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         _iconImageView.frame = CGRectMake(AutoSize6(30), AutoSize6(10), AutoSize6(74), AutoSize6(74));
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
 

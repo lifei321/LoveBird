@@ -40,7 +40,7 @@
         _headImageView.layer.cornerRadius = _headImageView.width / 2;
         _headImageView.layer.masksToBounds = YES;
         [self addSubview:_headImageView];
-        [_headImageView sd_setImageWithURL:[NSURL URLWithString:[UserPage sharedInstance].userModel.head] placeholderImage:[UIImage imageNamed:@""]];
+        [_headImageView sd_setImageWithURL:[NSURL URLWithString:[UserPage sharedInstance].userModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
         UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - AutoSize6(115), AutoSize6(480), AutoSize6(77))];
         titleView.centerX = self.centerX;

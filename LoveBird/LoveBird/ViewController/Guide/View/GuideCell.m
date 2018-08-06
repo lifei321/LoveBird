@@ -80,7 +80,7 @@
     self.titleView.model = model;
     
     if (model.imgUrl.length) {
-        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         self.contentImageView.frame = CGRectMake(0, self.titleView.bottom, SCREEN_WIDTH, imageHeight);
     } else {

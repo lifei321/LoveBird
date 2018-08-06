@@ -114,7 +114,7 @@
 - (void)setDetailModel:(MatchDetailModel *)detailModel {
     _detailModel = detailModel;
     
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleView.detailModel = detailModel;
     
     self.contentLabel.text = detailModel.summary;

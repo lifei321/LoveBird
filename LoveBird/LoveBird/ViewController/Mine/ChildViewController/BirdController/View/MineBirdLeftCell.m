@@ -84,7 +84,7 @@
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:birdModel.dateline formatSytle:DateFormatYMD];
     NSString *utString = [birdModel.birdHead stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSURL *url = [NSURL URLWithString:utString];
-    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLable.text = birdModel.name;
 }
 

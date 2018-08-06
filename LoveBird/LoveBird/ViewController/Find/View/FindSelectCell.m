@@ -51,7 +51,7 @@
     _model = model;
     _textLabel.text = model.name;
     _nameLabel.text = [NSString stringWithFormat:@"%@%@", @"作者:", model.author];
-    [_picImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@""]];
+    [_picImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
 }
 
 

@@ -69,7 +69,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [detailButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [detailButton setImage:[UIImage imageNamed:@"placeHolder"] forState:UIControlStateNormal];
     detailButton.frame = CGRectMake(0, 0, 15, 10);
     detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     

@@ -51,7 +51,7 @@
     self.iconImageView.height = matchModel.imgHeight * (SCREEN_WIDTH / matchModel.imgWidth);
     self.titleLable.top = self.iconImageView.bottom;
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:matchModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:matchModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLable.text = matchModel.title;
 }
 

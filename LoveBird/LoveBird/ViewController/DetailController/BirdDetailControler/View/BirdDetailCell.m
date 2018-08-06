@@ -81,7 +81,7 @@
         CGFloat imageHeight = (_detailModel.hand_drawing_height) * (self.iconImageView.width / _detailModel.hand_drawing_width);
         self.iconImageView.height = imageHeight + AutoSize6(10);
         self.iconImageView.top = self.contentLabel.bottom + AutoSize6(20);
-        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_detailModel.hand_drawing_img] placeholderImage:[UIImage imageNamed:@""]];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_detailModel.hand_drawing_img] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     }
     
 }

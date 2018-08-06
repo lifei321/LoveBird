@@ -112,7 +112,7 @@
     self.monthLable.frame = frameModel.monthLabelFrame;
     
     self.titleLable.text = frameModel.shequModel.subject;
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.timeLabel.text = frameModel.shequModel.dateline;
     self.subjectLable.text = frameModel.shequModel.summary;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];

@@ -59,7 +59,7 @@
     
     if (listArray.count == 1) {
         WorksModel *model = listArray.firstObject;
-        [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         self.leftImageview.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
@@ -78,8 +78,8 @@
         
         self.leftImageview.frame = CGRectMake(0, 0, width1 - 1, imageHeight);
         self.rightImageview.frame = CGRectMake(width1 + 1, 0, width2 - 1, imageHeight);
-        [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
-        [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+        [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];
 
         self.leftImageview.name = model1.tags;

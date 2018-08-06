@@ -47,3 +47,5 @@
 #define kGtAppId                            @""    //个推id
 #define kGtAppKey                           @""    //个推key
 #define kGtAppSecret                        @""    //个推秘钥
+
+#define kFirstLouchString                   @"kFirstLouchString"
