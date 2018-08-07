@@ -13,6 +13,7 @@
 #import "BDAnnotation.h"
 #import "RoundAnnotationView.h"
 #import "SearchViewController.h"
+#import "MapDisCoverLocationView.h"
 
 
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
@@ -31,9 +32,11 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 
+#import <BaiduMapAPI_Search/BMKPoiSearchOption.h>//只引入所需的单个头文件
+#import <BaiduMapAPI_Search/BMKPoiSearch.h>//只引入所需的单个头文件
 
 
-@interface NearController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate>
+@interface NearController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate,UITextFieldDelegate, BMKPoiSearchDelegate>
 
 //百度地图
 @property (nonatomic, strong) BMKMapView *bMapView;
@@ -56,6 +59,10 @@
 @property (nonatomic, strong) UILabel *locationLabel;
 
 @property (nonatomic, strong) UITextField *searchTextField;
+
+// 定位的位置
+@property (nonatomic,strong) CLLocation *location;
+
 
 
 @end
@@ -139,7 +146,7 @@
 
 - (void)addNavigation {
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(200), AutoSize6(70))];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(300), AutoSize6(70))];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     [self.view bringSubviewToFront:backView];
@@ -163,7 +170,6 @@
     locationLabel.textColor = kColorTextColor333333;
     locationLabel.textAlignment = NSTextAlignmentCenter;
     locationLabel.font = kFont6(30);
-    locationLabel.text = @"北京";
     [backView addSubview:locationLabel];
     _locationLabel = locationLabel;
     _locationLabel.userInteractionEnabled = YES;
@@ -190,6 +196,7 @@
     _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(backView.right - 1, backView.top, SCREEN_WIDTH - backView.right - AutoSize6(20), backView.height)];
     _searchTextField.backgroundColor = [UIColor whiteColor];
     _searchTextField.placeholder = @"请输入...";
+    _searchTextField.delegate = self;
     [self.view addSubview:_searchTextField];
     [self.view bringSubviewToFront:_searchTextField];
     _searchTextField.hidden = YES;
@@ -205,8 +212,84 @@
     _searchTextField.leftView = leftview;
 }
 
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    if ([textField.text isBlankString]) {
+        [AppBaseHud showHudWithfail:@"搜索内容不能为空" view:self.view];
+        return;
+    }
+    BMKPOIBoundSearchOption * option = [[BMKPOIBoundSearchOption alloc]init];
+    
+    option.keywords = @[textField.text];
+    option.rightTop = CLLocationCoordinate2DMake(54.469507,133.782815);
+    option.leftBottom = CLLocationCoordinate2DMake(-4.891816, 85.213952);
+    
+    BMKPoiSearch *poiSearch = [[BMKPoiSearch alloc] init];
+    poiSearch.delegate = self;
+    BOOL flag = [poiSearch poiSearchInbounds:option];
+    if (flag) {
+        NSLog(@"检索发送成功");
+    }else{
+        NSLog(@"检索发送失败");
+    }
+}
+
+#pragma mark implement BMKSearchDelegate
+
+- (void)onGetPoiResult:(BMKPoiSearch*)searcher result:(BMKPOISearchResult*)poiResult errorCode:(BMKSearchErrorCode)errorCode {
+    
+    if (errorCode == BMK_SEARCH_NO_ERROR) {
+
+        if (poiResult.poiInfoList.count == 0) {
+            return;
+        }
+        MapDisCoverLocationView *birdView = [[MapDisCoverLocationView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(170), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(170) - kTabBarHeight - AutoSize6(100))];
+        birdView.dataArray = [NSMutableArray arrayWithArray:poiResult.poiInfoList];
+        
+        @weakify(birdView);
+        birdView.locationBlock = ^(BMKPoiInfo *locationInfo) {
+            @strongify(birdView);
+            [birdView removeFromSuperview];
+            self.searchTextField.hidden = YES;
+            self.searchTextField.text = nil;
+            
+            self.bMapView.centerCoordinate = locationInfo.pt;
+            
+            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                
+                if (!error) {
+                    if (placemarks.count  > 0) {
+                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                        if (placemark != nil) {
+    
+                            NSString *city = placemark.locality;
+                            self.locationLabel.text = city;
+                            NSLog(@"当前城市名称------%@",city);
+    
+                        }
+                    }
+                }
+
+            }];
+
+        };
+        [self.view addSubview:birdView];
+        [self.view bringSubviewToFront:birdView];
+
+    } else {
+        [AppBaseHud showHudWithfail:@"没有结果" view:self.view];
+    }
+}
+
 - (void)locationDidClick {
     self.searchTextField.hidden = !self.searchTextField.hidden;
+    if (self.searchTextField.hidden == NO) {
+        [self.searchTextField becomeFirstResponder];
+    } else {
+        [self.searchTextField endEditing:YES];
+    }
 }
 
 - (void)backButtonDidClick {
@@ -216,6 +299,30 @@
 - (void)searchButtonDidClick {
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:searchVC animated:YES];
+}
+
+- (void)getLocationCityName:(CLLocation *)location {
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *array, NSError *error) {
+        if (array.count > 0) {
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            if (placemark != nil) {
+                
+                NSString *city = placemark.locality;
+                self.locationLabel.text = city;
+                NSLog(@"当前城市名称------%@",city);
+                
+                //                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
+                //                NSArray* records = [_offlineMap searchCity:city];
+                //                BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];
+                //城市编码如:北京为131
+                
+                //                NSInteger cityId = oneRecord.cityID;
+                //                NSLog(@"当前城市的 哪个区------%@ ",placemark.subLocality);
+            }
+        }
+    }];
+
 }
 
 #pragma mark -- 回到用户的位置。
@@ -246,6 +353,19 @@
  */
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation {
     [self.bMapView updateLocationData:userLocation];
+    self.location = userLocation.location;
+    
+    if (self.locationLabel.text.length) {
+        return;
+    }
+    //定位当前城市
+    BMKCoordinateRegion region;
+    region.center.latitude  = userLocation.location.coordinate.latitude;
+    region.center.longitude = userLocation.location.coordinate.longitude;
+    region.span.latitudeDelta = 0;
+    region.span.longitudeDelta = 0;
+    NSLog(@"当前的坐标是:%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [self getLocationCityName:userLocation.location];
 }
 
 /**

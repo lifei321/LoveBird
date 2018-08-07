@@ -101,6 +101,7 @@
 		1F0FDFC520C23BC50041E73B /* BirdDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFC420C23BC50041E73B /* BirdDetailController.m */; };
 		1F0FDFC820C242180041E73B /* BirdDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFC720C242180041E73B /* BirdDetailModel.m */; };
 		1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */; };
+		1F14A96D2119DB7500F1B2C1 /* MapDisCoverLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A96C2119DB7500F1B2C1 /* MapDisCoverLocationView.m */; };
 		1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */; };
 		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
 		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
@@ -460,6 +461,8 @@
 		1F0FDFC720C242180041E73B /* BirdDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailModel.m; sourceTree = "<group>"; };
 		1F0FDFC920C25C8E0041E73B /* BirdDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailTextCell.h; sourceTree = "<group>"; };
 		1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailTextCell.m; sourceTree = "<group>"; };
+		1F14A96B2119DB7500F1B2C1 /* MapDisCoverLocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDisCoverLocationView.h; sourceTree = "<group>"; };
+		1F14A96C2119DB7500F1B2C1 /* MapDisCoverLocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDisCoverLocationView.m; sourceTree = "<group>"; };
 		1F16D89220C2DB4800A6C11D /* BirdDetailClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailClassCell.h; sourceTree = "<group>"; };
 		1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailClassCell.m; sourceTree = "<group>"; };
 		1F16D89520C2E21A00A6C11D /* BirdDetailGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailGradeCell.h; sourceTree = "<group>"; };
@@ -2476,6 +2479,8 @@
 				1F94DFD520D7AC2F0095DFC5 /* RoundAnnotationView.m */,
 				1FDBE74320D827CD0092E82E /* MapDisCoverView.h */,
 				1FDBE74420D827CD0092E82E /* MapDisCoverView.m */,
+				1F14A96B2119DB7500F1B2C1 /* MapDisCoverLocationView.h */,
+				1F14A96C2119DB7500F1B2C1 /* MapDisCoverLocationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2851,6 +2856,7 @@
 				1F676FAA20B97199002F71B4 /* MineBirdViewController.m in Sources */,
 				1F4F1423205D2AEB0066F790 /* FindSelectCell.m in Sources */,
 				1F4F1409204D81B70066F790 /* MineSetTableViewCell.m in Sources */,
+				1F14A96D2119DB7500F1B2C1 /* MapDisCoverLocationView.m in Sources */,
 				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F676FAD20B972EC002F71B4 /* MineBirdLeftCell.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
