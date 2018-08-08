@@ -55,9 +55,7 @@
     [self setTableView];
     
     if (self.type) {
-        
         self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
-
     } else {
         
         //默认【下拉刷新】
@@ -70,23 +68,24 @@
         // 加载本地数据
         [self  netForData];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
-        
+
         NearController *nearvc = [[NearController alloc] init];
         [self.navigationController addChildViewController:nearvc];
         [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"placeHolder"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)setNavigation {
