@@ -126,8 +126,6 @@
     [self.view addSubview:self.bMapView];
     self.bMapView.delegate = self;
     self.bMapView.showsUserLocation = YES;
-    self.bMapView.showMapScaleBar = YES;//显示比例尺
-    self.bMapView.mapScaleBarPosition = CGPointMake(10, 75);//比例尺位置
     self.bMapView.minZoomLevel = 6;
     self.bMapView.maxZoomLevel = 18;///在手机上当前可使用的级别为3-21级
     self.bMapView.isSelectedAnnotationViewFront = YES;
@@ -146,7 +144,7 @@
 
 - (void)addNavigation {
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(300), AutoSize6(70))];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(210), AutoSize6(70))];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     [self.view bringSubviewToFront:backView];
@@ -168,7 +166,7 @@
     UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationImageView.right, 0, backView.width - locationImageView.right, backView.height)];
     locationLabel.backgroundColor = [UIColor whiteColor];
     locationLabel.textColor = kColorTextColor333333;
-    locationLabel.textAlignment = NSTextAlignmentCenter;
+    locationLabel.textAlignment = NSTextAlignmentLeft;
     locationLabel.font = kFont6(30);
     [backView addSubview:locationLabel];
     _locationLabel = locationLabel;
