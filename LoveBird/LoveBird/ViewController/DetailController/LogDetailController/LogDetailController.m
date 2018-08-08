@@ -194,7 +194,14 @@
                 return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
             }
         } else if (self.aid.length) {
-            if (row == 0 || row == (self.contentModel.articleList.count + 1)) {
+            if (row == 0) {
+                if (self.contentModel.author.length) {
+                    return AutoSize6(80);
+                } else {
+                    return 0;
+                }
+            }
+            if (row == (self.contentModel.articleList.count + 1)) {
                 return AutoSize6(80);
             }
             if (self.contentModel.articleList.count + 1 > row) {

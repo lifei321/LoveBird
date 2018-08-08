@@ -40,7 +40,7 @@
         
         // 头像
         self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(30), AutoSize6(75), AutoSize6(75))];
-        self.headIcon.contentMode = UIViewContentModeScaleAspectFit;
+        self.headIcon.contentMode = UIViewContentModeScaleAspectFill;
         self.headIcon.clipsToBounds = YES;
         self.headIcon.layer.cornerRadius = self.headIcon.height / 2;
         [self.contentView addSubview:self.headIcon];
@@ -60,11 +60,11 @@
         [self.contentView addSubview:self.timeLabel];
         
         // 关注
-        self.upButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), self.headIcon.top, AutoSize6(70), self.headIcon.height)];
-        [self.upButton setImage:[UIImage imageNamed:@"operat_big_icon_like"] forState:UIControlStateNormal];
-        [self.upButton setImage:[UIImage imageNamed:@"operat_big_icon_liked"] forState:UIControlStateSelected];
-        [self.upButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.upButton];
+//        self.upButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), self.headIcon.top, AutoSize6(70), self.headIcon.height)];
+//        [self.upButton setImage:[UIImage imageNamed:@"operat_big_icon_like"] forState:UIControlStateNormal];
+//        [self.upButton setImage:[UIImage imageNamed:@"operat_big_icon_liked"] forState:UIControlStateSelected];
+//        [self.upButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.contentView addSubview:self.upButton];
         
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), self.headIcon.bottom + AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
         self.contentLabel.textAlignment = NSTextAlignmentLeft;

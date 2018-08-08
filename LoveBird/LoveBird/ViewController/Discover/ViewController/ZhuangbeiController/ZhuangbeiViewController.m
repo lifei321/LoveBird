@@ -164,6 +164,14 @@
         }];
     } else if (tag == 300) { // 评论
         
+        TimeLineLayoutModel *layoutModel = timeLineCell.cellLayoutModel;
+        
+        if (layoutModel.zhuangbeiModel.aid.length) {
+            LogDetailController *detailvc = [[LogDetailController alloc] init];
+            detailvc.aid = layoutModel.contentModel.aid;
+            [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+        }
+        
     } else if (tag == 400) { // 点赞
         if (button.selected) {
             [AppBaseHud showHudWithfail:@"已赞" view:self.view];

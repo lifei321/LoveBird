@@ -377,6 +377,24 @@
         }];
     } else if (tag == 300) { // 评论
         
+        TimeLineLayoutModel *layoutModel = timeLineCell.cellLayoutModel;
+        
+        if (layoutModel.contentModel.tid.length) {
+            LogDetailController *detailController = [[LogDetailController alloc] init];
+            detailController.tid = layoutModel.contentModel.tid;
+            [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
+            
+        } else if (layoutModel.contentModel.aid.length) {
+            LogDetailController *detailvc = [[LogDetailController alloc] init];
+            detailvc.aid = layoutModel.contentModel.aid;
+            [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+        } else if (layoutModel.contentModel.webView.length) {
+            
+            AppWebViewController *web = [[AppWebViewController alloc] init];
+            web.hidesBottomBarWhenPushed = YES;
+            web.startupUrlString = layoutModel.contentModel.webView;
+            [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+        }
     } else if (tag == 400) { // 点赞
         if (button.selected) {
             [AppBaseHud showHudWithfail:@"已赞" view:self.view];
