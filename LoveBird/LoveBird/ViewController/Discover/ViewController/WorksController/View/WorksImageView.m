@@ -20,6 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.clipsToBounds = YES;
         self.nameLabel = [[UILabel alloc] init];
         self.nameLabel.font = kFont6(20);
         self.nameLabel.textColor = [UIColor whiteColor];

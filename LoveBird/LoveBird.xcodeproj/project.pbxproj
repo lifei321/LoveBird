@@ -811,7 +811,6 @@
 			isa = PBXGroup;
 			children = (
 				0B317C6C1F0F5BFB00B01DDA /* BaseController */,
-				1F0FDF8520BC5B7B0041E73B /* WebviewController */,
 				1F0FDFA120C23B250041E73B /* DetailController */,
 				1FDBE75820DBFFDF0092E82E /* DupleViewContrller */,
 				0BA4190C201C675D002C6335 /* Discover */,
@@ -1489,13 +1488,6 @@
 				1F0FDF6520BABF9F0041E73B /* RankTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1F0FDF8520BC5B7B0041E73B /* WebviewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WebviewController;
 			sourceTree = "<group>";
 		};
 		1F0FDFA120C23B250041E73B /* DetailController */ = {
