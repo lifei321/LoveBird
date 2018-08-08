@@ -33,11 +33,11 @@
         self.collectButton.frame = CGRectMake(self.zhuanfaButton.right, 0, AutoSize(53), AutoSize(45));
         [self addSubview:self.collectButton];
         
-        self.talkButton = [self makeButtonWithTitle:@"评论" image:@"operat_icon_comment" selectImage:@"operat_icon_comment"];
+        self.talkButton = [self makeButtonWithTitle:@"" image:@"operat_icon_comment" selectImage:@"operat_icon_comment"];
         self.talkButton.frame = CGRectMake(self.collectButton.right, 0, AutoSize(53), AutoSize(45));
         [self addSubview:self.talkButton];
         
-        self.upButton = [self makeButtonWithTitle:@"赞" image:@"operat_icon_like" selectImage:@"operat_icon_liked"];
+        self.upButton = [self makeButtonWithTitle:@"" image:@"operat_icon_like" selectImage:@"operat_icon_liked"];
         self.upButton.frame = CGRectMake(self.talkButton.right, 0, AutoSize(53), AutoSize(45));
         [self addSubview:self.upButton];
         
@@ -63,6 +63,40 @@
     if (contentModel.commentNum.length) {
         [self.talkButton setTitle:contentModel.commentNum forState:UIControlStateNormal];
         [self.talkButton setTitle:contentModel.commentNum forState:UIControlStateHighlighted];
+    } else {
+        [self.talkButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.talkButton setTitle:@"0" forState:UIControlStateHighlighted];
+    }
+    
+    if (contentModel.upNum.length) {
+        [self.upButton setTitle:contentModel.upNum forState:UIControlStateNormal];
+        [self.upButton setTitle:contentModel.upNum forState:UIControlStateHighlighted];
+    } else {
+        [self.upButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.upButton setTitle:@"0" forState:UIControlStateHighlighted];
+    }
+}
+
+- (void)setZhuangbeiModel:(ZhuangbeiModel *)zhuangbeiModel {
+    _zhuangbeiModel = zhuangbeiModel;
+    
+    self.collectButton.selected = zhuangbeiModel.isCollection;
+    self.upButton.selected = zhuangbeiModel.isUp;
+    
+    if (zhuangbeiModel.commentNum.length) {
+        [self.talkButton setTitle:zhuangbeiModel.commentNum forState:UIControlStateNormal];
+        [self.talkButton setTitle:zhuangbeiModel.commentNum forState:UIControlStateHighlighted];
+    } else {
+        [self.talkButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.talkButton setTitle:@"0" forState:UIControlStateHighlighted];
+    }
+    
+    if (zhuangbeiModel.upNum.length) {
+        [self.upButton setTitle:zhuangbeiModel.upNum forState:UIControlStateNormal];
+        [self.upButton setTitle:zhuangbeiModel.upNum forState:UIControlStateHighlighted];
+    } else {
+        [self.upButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.upButton setTitle:@"0" forState:UIControlStateHighlighted];
     }
 }
 

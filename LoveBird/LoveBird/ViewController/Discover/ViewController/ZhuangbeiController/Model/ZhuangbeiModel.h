@@ -45,7 +45,7 @@
 @property (nonatomic, copy) NSString *summary;
 
 // 点赞数量
-@property (nonatomic, assign) NSInteger upNum;
+@property (nonatomic, copy) NSString *upNum;
 
 @property (nonatomic, copy) NSString *title;
 

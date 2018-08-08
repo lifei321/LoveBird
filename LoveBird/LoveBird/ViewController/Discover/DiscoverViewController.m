@@ -378,8 +378,14 @@
     } else if (tag == 300) { // 评论
         
     } else if (tag == 400) { // 点赞
+        if (button.selected) {
+            [AppBaseHud showHudWithfail:@"已赞" view:self.view];
+            return;
+        }
         [UserDao userUp:timeLineCell.cellLayoutModel.contentModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
             button.selected = !button.selected;
+            [AppBaseHud showHudWithSuccessful:@"点赞成功" view:self.view];
+
         } failureBlock:^(__kindof AppBaseModel *error) {
             [AppBaseHud showHudWithfail:error.errstr view:self.view];
         }];

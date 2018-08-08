@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DiscoverContentModel.h"
+#import "ZhuangbeiModel.h"
 
 @protocol TimeLineToolClickDelegate <NSObject>
 
@@ -18,6 +19,9 @@
 @interface TimeLineBottomView : UIView
 
 @property (nonatomic, strong) DiscoverContentModel *contentModel;
+
+//  装备 咨询
+@property (nonatomic, strong) ZhuangbeiModel *zhuangbeiModel;
 
 
 @property (nonatomic, weak) id<TimeLineToolClickDelegate>timeLineToolDelegate;
