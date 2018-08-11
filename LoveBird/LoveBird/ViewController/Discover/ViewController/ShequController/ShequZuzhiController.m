@@ -56,8 +56,8 @@
             self.sortId = ((ShequZuzhiModel *)self.dataModel.sort[selectIndex]).birdId;
         } else {
             self.groupId = ((ShequZuzhiModel *)self.dataModel.group[selectIndex]).birdId;
-
         }
+        [self rightButtonAction];
     };
     return cell;
 }
@@ -113,9 +113,9 @@
     
     self.title = @"社区";
     
-    self.rightButton.title = @"完成";
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
-    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
+//    self.rightButton.title = @"完成";
+//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     
     
 }

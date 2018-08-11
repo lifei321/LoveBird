@@ -27,7 +27,6 @@
 // 线
 @property (nonatomic, strong) UIView *lineView;
 
-
 @property (nonatomic, strong) UILabel *timeLabel;
 
 @property (nonatomic, strong) ShequBottomView *bottomView;

@@ -86,18 +86,22 @@
     
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:shequModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.nickNameLabel.text = shequModel.author;
-    if (shequModel.authorlv.length) {
-        self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", shequModel.authorlv];
-        CGFloat width = [self.gradeLabel.text getTextWightWithFont:self.gradeLabel.font];
-        self.gradeLabel.width = width + AutoSize6(15);
-    } else {
-        self.gradeLabel.hidden = YES;
-    }
-
+    
     CGFloat width = [shequModel.author getTextWightWithFont:self.nickNameLabel.font];
     self.nickNameLabel.width = width + AutoSize6(10);
+    
+    NSString *grade = @"0";
+    if (shequModel.authorlv.length) {
+        grade = shequModel.authorlv;
+    }
+    self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", grade];
+    
+    CGFloat gradewidth = [self.gradeLabel.text getTextWightWithFont:self.gradeLabel.font];
+    self.gradeLabel.width = gradewidth + AutoSize6(15);
+
     self.gradeLabel.left = self.nickNameLabel.right;
     self.followButton.selected = shequModel.is_follow;
+
 }
 
 @end
