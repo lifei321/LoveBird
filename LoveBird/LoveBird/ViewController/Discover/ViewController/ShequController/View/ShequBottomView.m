@@ -7,6 +7,8 @@
 //
 
 #import "ShequBottomView.h"
+#import "LogDetailController.h"
+
 
 @interface ShequBottomView()
 
@@ -80,7 +82,13 @@
 }
 
 - (void)talkButtonDidClick:(UIButton *)button {
-
+    
+    if (self.model.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = self.model.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
+        
+    }
 }
 
 - (void)upButtonDidClick:(UIButton *)button {

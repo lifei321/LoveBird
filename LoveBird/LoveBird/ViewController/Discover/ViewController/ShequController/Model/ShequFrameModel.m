@@ -41,7 +41,7 @@
     }
     
     self.bottomViewFrame = CGRectMake(0, backViewHeight + AutoSize6(5), AutoSize6(400), AutoSize6(80));
-    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.backViewFrame.size.height);
+    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.bottomViewFrame.size.height);
     backViewHeight = CGRectGetMaxY(self.bottomViewFrame);
     
     self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(10), kWidthForBackView, backViewHeight);

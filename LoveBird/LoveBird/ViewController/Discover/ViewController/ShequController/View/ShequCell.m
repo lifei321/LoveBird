@@ -65,7 +65,7 @@
         self.lineView.backgroundColor = kColorTextColord2d2d2;
         [self.contentView addSubview:self.lineView];
         
-        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(20), AutoSize6(25), self.backView.width - AutoSize6(40), 0)];
+        self.timeLabel = [[UILabel alloc] init];
         self.timeLabel.font = kFont6(20);
         self.timeLabel.textColor = kColorTextColorLightGraya2a2a2;
         self.timeLabel.textAlignment = NSTextAlignmentRight;
@@ -92,8 +92,8 @@
     
     self.titleLable.text = shequFrameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:shequFrameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-    self.timeLabel.text = shequFrameModel.shequModel.dateline;
     self.bottomView.model = shequFrameModel.shequModel;
+    self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:shequFrameModel.shequModel.dateline formatSytle:DateFormatYMD];
 }
 
 - (void)drawRect:(CGRect)rect {
