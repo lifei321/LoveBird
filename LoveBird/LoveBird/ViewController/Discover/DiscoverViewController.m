@@ -370,7 +370,14 @@
     if (tag == 100) { // 转发
         
     } else if (tag == 200) { // 收藏
-        [UserDao userCollect:timeLineCell.cellLayoutModel.contentModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+        NSString *stringId;
+        if (timeLineCell.cellLayoutModel.contentModel.aid.length) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
+        } else if (timeLineCell.cellLayoutModel.contentModel.tid.length) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.tid;
+        }
+        
+        [UserDao userCollect:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
             button.selected = !button.selected;
         } failureBlock:^(__kindof AppBaseModel *error) {
             [AppBaseHud showHudWithfail:error.errstr view:self.view];
@@ -400,7 +407,16 @@
             [AppBaseHud showHudWithfail:@"已赞" view:self.view];
             return;
         }
-        [UserDao userUp:timeLineCell.cellLayoutModel.contentModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+        
+        NSString *stringId;
+        if (timeLineCell.cellLayoutModel.contentModel.aid.length) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
+        } else if (timeLineCell.cellLayoutModel.contentModel.tid.length) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.tid;
+        }
+
+        
+        [UserDao userUp:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
             button.selected = !button.selected;
             [AppBaseHud showHudWithSuccessful:@"点赞成功" view:self.view];
 

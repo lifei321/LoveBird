@@ -19,4 +19,13 @@
 ///返回lable宽度  width 最大宽度
 + (CGSize)sizeWithLabel:(UILabel *)label width:(CGFloat)width;
 
+
+// 生成一个button
++ (UIButton *)buttonWithFrame:(CGRect)frame
+                       target:(id)target
+                        image:(NSString *)image
+                  selectImage:(NSString *)selectImage
+                        title:(NSString *)title
+                       action:(SEL)action;
+
 @end

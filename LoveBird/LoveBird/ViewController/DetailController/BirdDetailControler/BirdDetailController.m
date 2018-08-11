@@ -471,7 +471,7 @@
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
     footerView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = footerView;
-
+    
     //默认【上拉加载】
 //    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];
 }
@@ -485,5 +485,6 @@
     }
     return _cycleScrollView;
 }
+
 
 @end

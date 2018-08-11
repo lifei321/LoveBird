@@ -250,4 +250,28 @@
         }
     }];
 }
+
+
+
+// 发评论
++ (void)talkWithTid:(NSString *)tid content:(NSString *)content successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(content) forKey:@"comment"];
+
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    
+
+    [AppHttpManager POST:kAPI_User_comment parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 @end

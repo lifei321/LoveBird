@@ -18,6 +18,8 @@
 #import "LogDetailUpModel.h"
 #import "LogContentModel.h"
 #import "LogContentSubjectCell.h"
+#import "UserDao.h"
+#import "DiscoverDao.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
@@ -32,6 +34,12 @@
 
 
 @property (nonatomic, strong) UIView *footerView;
+
+@property (nonatomic, strong) UIView *toolView;
+
+@property (nonatomic, strong) UIView *talkView;
+
+@property (nonatomic, strong) UITextField *talkTextField;
 
 
 @property (nonatomic, assign) NSInteger page;
@@ -436,7 +444,7 @@
 - (void)setTableView {
     
     self.tableView.top = total_topView_height;
-    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height - AutoSize6(98);
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -449,6 +457,10 @@
 
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];
+    
+    self.toolView = [self makeToolView];
+    
+    self.talkView = [self makeTalkView];
 }
 
 - (LogDetailHeadView *)headerView {
@@ -484,5 +496,173 @@
     }
     return _footerView;
 }
+
+
+- (UIView *)makeToolView {
+    
+    UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height - AutoSize6(98), SCREEN_WIDTH, AutoSize6(98))];
+    toolView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:toolView];
+    [self.view bringSubviewToFront:toolView];
+    
+    CGFloat width = SCREEN_WIDTH / 4;
+    
+    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(0, 0, width, toolView.height)
+                                             target:self
+                                              image:@"operat_icon_forward"
+                                        selectImage:@"operat_icon_forward"
+                                              title:@"转发"
+                                             action:@selector(zhuanfaButtonDidClick:)]];
+    
+    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width, 0, width, toolView.height)
+                                             target:self
+                                              image:@"operat_icon_collect"
+                                        selectImage:@"operat_icon_collected"
+                                              title:@"收藏"
+                                             action:@selector(collectButtonDidClick:)]];
+    
+    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 2, 0, width, toolView.height)
+                                             target:self
+                                              image:@"operat_icon_comment"
+                                        selectImage:@"operat_icon_comment"
+                                              title:@"评论"
+                                             action:@selector(talkButtonDidClick:)]];
+    
+    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 3, 0, width, toolView.height)
+                                             target:self
+                                              image:@"operat_icon_like"
+                                        selectImage:@"operat_icon_liked"
+                                              title:@"赞"
+                                             action:@selector(upButtonDidClick:)]];
+    
+    return toolView;
+}
+
+- (void)zhuanfaButtonDidClick:(UIButton *)button {
+    
+}
+
+- (void)collectButtonDidClick:(UIButton *)button {
+    
+    NSString *stringId;
+    if (self.aid.length) {
+        stringId = self.aid;
+    } else if (self.tid.length) {
+        stringId = self.tid;
+    }
+    
+    [UserDao userCollect:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+
+}
+
+- (void)talkButtonDidClick:(UIButton *)button {
+    
+    [self registerForKeyboardNotifications];
+    self.toolView.hidden = YES;
+    self.talkView.hidden = NO;
+    [self.talkTextField becomeFirstResponder];
+}
+
+- (void)upButtonDidClick:(UIButton *)button {
+    NSString *stringId;
+    if (self.aid.length) {
+        stringId = self.aid;
+    } else if (self.tid.length) {
+        stringId = self.tid;
+    }
+    
+    [UserDao userUp:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+        [AppBaseHud showHudWithSuccessful:@"点赞成功" view:self.view];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+- (void)registerForKeyboardNotifications
+{
+    //使用NSNotificationCenter 鍵盤出現時
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShown:)
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
+    //使用NSNotificationCenter 鍵盤隐藏時
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShown:(NSNotification*)aNotification {
+    NSDictionary *info = [aNotification userInfo];
+    
+    CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    CGSize keyboardSize = [value CGRectValue].size;
+
+    //输入框位置动画加载
+    [UIView animateWithDuration:duration animations:^{
+        
+        self.talkView.top = self.view.height - keyboardSize.height + AutoSize6(20);
+    }];
+    
+}
+
+//当键盘隐藏的时候
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    self.toolView.hidden = NO;
+    self.talkView.hidden = YES;
+}
+
+- (void)sendButtonDidClick {
+    [self.talkTextField resignFirstResponder];
+    
+    NSString *stringId;
+    if (self.aid.length) {
+        stringId = self.aid;
+    } else if (self.tid.length) {
+        stringId = self.tid;
+    }
+    [DiscoverDao talkWithTid:stringId content:self.talkTextField.text successBlock:^(__kindof AppBaseModel *responseObject) {
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        
+    }];
+    self.talkTextField.text = nil;
+
+}
+
+
+- (UIView *)makeTalkView {
+    UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, AutoSize6(80))];
+    talkView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:talkView];
+    [self.view bringSubviewToFront:talkView];
+    
+    UITextField *textFieled = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(5), SCREEN_WIDTH - AutoSize6(10) - AutoSize6(150), talkView.height - AutoSize6(10))];
+    textFieled.backgroundColor = kLineColoreDefaultd4d7dd;
+    textFieled.placeholder = @"写一条高能评论";
+    textFieled.textColor = kColorTextColor333333;
+    [talkView addSubview:textFieled];
+    self.talkTextField = textFieled;
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(textFieled.right + AutoSize6(10), textFieled.top, AutoSize6(150) - AutoSize6(20), textFieled.height)];
+    [button setBackgroundColor:kColorDefaultColor];
+    [talkView addSubview:button];
+    [button setTitle:@"发送" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = kFont6(30);
+    button.layer.cornerRadius = 3;
+    [button addTarget:self action:@selector(sendButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    talkView.hidden = YES;
+    return talkView;
+}
+
 
 @end

@@ -83,4 +83,27 @@
     return maximumLabelSize;
 }
 
+
++ (UIButton *)buttonWithFrame:(CGRect)frame
+                       target:(id)target
+                        image:(NSString *)image
+                  selectImage:(NSString *)selectImage
+                        title:(NSString *)title
+                       action:(SEL)action {
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:UIColorFromRGB(0x7f7f7f) forState:UIControlStateNormal];
+    [button setTitleColor:UIColorFromRGB(0x7f7f7f) forState:UIControlStateSelected];
+    button.titleLabel.font = kFont6(25);
+    
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0.0, -AutoSize(5), 0.0, 0.0)];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+
 @end
