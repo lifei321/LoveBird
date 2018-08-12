@@ -11,7 +11,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 @interface PublishHeaderView()
 
-@property (nonatomic, strong) UIImageView *headerImageView;
 
 @property (nonatomic, strong) UIImageView *changeImageView;
 
@@ -33,7 +32,7 @@
 
 - (UIImageView *)headerImageView {
     if (!_headerImageView) {
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(322))];
+        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(332))];
         _headerImageView.contentMode = UIViewContentModeScaleToFill;
         _headerImageView.image = [UIImage imageNamed:@"publish_header"];
     }
@@ -96,6 +95,21 @@
     }
     
     return self.selectModel;
+}
+
+- (void)setImageUrl:(NSString *)imageUrl {
+    if (imageUrl.length == 0) {
+        return;
+    }
+    _imageUrl = [imageUrl copy];
+    [self addSubview:self.changeImageView];
+    
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+
+    self.headerImageView.height = AutoSize6(500);
+    self.textField.top = self.headerImageView.bottom;
+    self.height = self.textField.height + self.headerImageView.height;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPublishReloadHeaderNotification object:nil];
 }
          
 - (void)setImage:(UIImage *)image {

@@ -9,8 +9,19 @@
 #import "AppBaseTableViewCell.h"
 #import "MineCaogaoModel.h"
 
-@interface CaogaoTableViewCell : AppBaseTableViewCell
+@class CaogaoTableViewCell;
+@protocol CaogaoDelegate <NSObject>
+
+- (void)caogaoCellEditDidClick:(CaogaoTableViewCell *)cell;
+
+- (void)caogaoCellPublishDidClick:(CaogaoTableViewCell *)cell;
+
+@end
+
+@interface CaogaoTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) MineCaogaoModel *caogaomodel;
+
+@property (nonatomic, weak) id<CaogaoDelegate>delegate;
 
 @end

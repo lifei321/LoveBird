@@ -11,10 +11,14 @@
 @interface PublishBirdInfoModel : JSONModel
 
 // 编号
-@property (nonatomic, copy) NSString *cspCode;
+@property (nonatomic, copy) NSString *csp_code;
 
 // 数量
 @property (nonatomic, assign) NSInteger num;
+
+// 鸟种名称
+@property (nonatomic, copy) NSString *genus;
+
 
 
 @end

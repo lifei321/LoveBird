@@ -111,4 +111,9 @@ static NSString *DateFormatM = @"MM";
  */
 - (NSString *)getMonthWithTime:(NSString *)time;
 
+
+- (NSString *)timeSwitchTimestamp:(NSString *)formatTime andFormatter:(NSString *)format;
+
+- (NSString *)getNowTimestamp;
+
 @end

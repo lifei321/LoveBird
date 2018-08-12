@@ -53,33 +53,36 @@
         self.iconView.clipsToBounds = YES;
         [backView addSubview:self.iconView];
         
-        self.titleLabe = [[UILabel alloc] initWithFrame:CGRectMake(self.iconView.right + AutoSize6(20), self.iconView.top, AutoSize6(286), AutoSize6(132))];
+        self.titleLabe = [[UILabel alloc] initWithFrame:CGRectMake(self.iconView.right + AutoSize6(20), self.iconView.top, AutoSize6(286), AutoSize6(30))];
         self.titleLabe.textColor = kColorTextColor333333;
         self.titleLabe.textAlignment = NSTextAlignmentLeft;
         self.titleLabe.font = kFont6(20);
         self.titleLabe.numberOfLines = 0;
         [backView addSubview:self.titleLabe];
         
-        self.timeLabe = [[UILabel alloc] initWithFrame:CGRectMake(self.iconView.right + AutoSize6(20), self.iconView.bottom + AutoSize6(40), AutoSize6(60), AutoSize6(40))];
-        self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;
-        self.titleLabe.textAlignment = NSTextAlignmentLeft;
-        self.titleLabe.font = kFont6(20);
-        [backView addSubview:self.titleLabe];
+        self.timeLabe = [[UILabel alloc] initWithFrame:CGRectMake(self.iconView.right + AutoSize6(20), self.iconView.bottom - AutoSize6(40), AutoSize6(130), AutoSize6(40))];
+        self.timeLabe.textColor = kColorTextColorLightGraya2a2a2;
+        self.timeLabe.textAlignment = NSTextAlignmentLeft;
+        self.timeLabe.font = kFont6(20);
+        [backView addSubview:self.timeLabe];
         
-        self.editButton = [UIFactory buttonWithFrame:CGRectMake(self.timeLabe.right, self.timeLabe.top, AutoSize6(60), self.timeLabe.height)
+        self.editButton = [UIFactory buttonWithFrame:CGRectMake(self.timeLabe.right, self.timeLabe.top, AutoSize6(100), self.timeLabe.height)
                                               target:self
-                                               image:@""
-                                         selectImage:@""
+                                               image:@"draft_edit"
+                                         selectImage:@"draft_edit"
                                                title:@"编辑"
                                               action:@selector(editButtonDidClick)];
+        self.editButton.titleLabel.font = kFont6(20);
+
         [backView addSubview:self.editButton];
         
-        self.publishButton = [UIFactory buttonWithFrame:CGRectMake(self.editButton.right, self.timeLabe.top, AutoSize6(60), self.timeLabe.height)
+        self.publishButton = [UIFactory buttonWithFrame:CGRectMake(self.editButton.right, self.timeLabe.top, AutoSize6(100), self.timeLabe.height)
                                               target:self
-                                               image:@""
-                                         selectImage:@""
+                                               image:@"draft_publish"
+                                         selectImage:@"draft_publish"
                                                title:@"发表"
                                               action:@selector(PublishButtonDidClick)];
+        self.publishButton.titleLabel.font = kFont6(20);
         [backView addSubview:self.publishButton];
 
     }
@@ -87,11 +90,16 @@
 }
 
 - (void)editButtonDidClick {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(caogaoCellEditDidClick:)]) {
+        [self.delegate caogaoCellEditDidClick:self];
+    }
 }
 
 - (void)PublishButtonDidClick {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(caogaoCellPublishDidClick:)]) {
+        [self.delegate caogaoCellPublishDidClick:self];
+    }
+
 }
 
 - (void)closeDidClilck {
@@ -104,6 +112,11 @@
     _caogaomodel = caogaomodel;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:caogaomodel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabe.text = caogaomodel.title;
+    CGFloat height = [caogaomodel.title getTextHeightWithFont:self.titleLabe.font withWidth:AutoSize6(286)];
+    if (height > AutoSize6(132)) {
+        height = AutoSize6(132);
+    }
+    self.titleLabe.height = height;
     self.timeLabe.text = [[AppDateManager shareManager] getDateWithTime:caogaomodel.dateline formatSytle:DateFormatYMD];
     
 }

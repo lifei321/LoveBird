@@ -38,4 +38,9 @@
 // 草稿箱
 + (void)getCaogaoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 草稿发布
++ (void)publishCaogao:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 草稿获取详情
++ (void)caogaoDetail:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 @end

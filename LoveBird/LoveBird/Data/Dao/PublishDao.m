@@ -12,6 +12,7 @@
 #import <JSONKit_NoWarning/JSONKit.h>
 #import "PublishEVModel.h"
 #import "MineCaogaoModel.h"
+#import "MinePublishModel.h"
 
 @implementation PublishDao
 
@@ -114,7 +115,47 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
 
-    [AppHttpManager GET:kAPI_Detail_caogaoxiang parameters:dic jsonModelName:[MineCaogaoDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_Detail_caogaoxiang parameters:dic jsonModelName:[MineCaogaoDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+
+// 草稿发布
++ (void)publishCaogao:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(@"1") forKey:@"isDirect"];
+
+
+    [AppHttpManager POST:kAPI_Detail_caogaopublish parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+// 草稿获取详情
++ (void)caogaoDetail:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+    
+    
+    [AppHttpManager POST:kAPI_Detail_caogaoDetail parameters:dic jsonModelName:[MinePublishModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

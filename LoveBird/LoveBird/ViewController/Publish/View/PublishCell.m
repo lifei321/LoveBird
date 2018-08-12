@@ -213,6 +213,13 @@
         self.addView.hidden = YES;
         self.addTypeView.hidden = YES;
     }
+    
+    if (editModel.imgTag.length) {
+        [self.birdButton setTitle:editModel.imgTag forState:UIControlStateNormal];
+        CGFloat width = [editModel.imgTag getTextWightWithFont:self.birdButton.titleLabel.font];
+        self.birdButton.width = width + AutoSize6(20);
+
+    }
 }
 
 @end

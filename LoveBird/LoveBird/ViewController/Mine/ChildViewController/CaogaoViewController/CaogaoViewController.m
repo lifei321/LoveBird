@@ -10,8 +10,10 @@
 #import "CaogaoTableViewCell.h"
 #import "MineCaogaoModel.h"
 #import "PublishDao.h"
+#import "PublishEditViewController.h"
+#import "MinePublishModel.h"
 
-@interface CaogaoViewController ()<UITableViewDataSource>
+@interface CaogaoViewController ()<UITableViewDataSource, CaogaoDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
@@ -34,6 +36,10 @@
     
     [self setTableView];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self netForLog];
 }
 
@@ -45,6 +51,7 @@
     [PublishDao getCaogaoSuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        [self.dataArray removeAllObjects];
         MineCaogaoDataModel *datamodel = (MineCaogaoDataModel *)responseObject;
         [self.dataArray addObjectsFromArray:datamodel.data];
         [self.tableView reloadData];
@@ -65,6 +72,7 @@
     CaogaoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CaogaoTableViewCell class]) forIndexPath:indexPath];
     MineCaogaoModel *model = self.dataArray[indexPath.row];
     cell.caogaomodel = model;
+    cell.delegate = self;
     return cell;
 }
 
@@ -84,9 +92,44 @@
 
 }
 
+- (void)caogaoCellEditDidClick:(CaogaoTableViewCell *)cell {
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [PublishDao caogaoDetail:cell.caogaomodel.tid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        [AppBaseHud hideHud:self.view];
+        MinePublishModel  *model = (MinePublishModel *)responseObject;
+        
+        PublishEditViewController *editvc = [[PublishEditViewController alloc] init];
+        editvc.minePublishModel = model;
+        editvc.tid = cell.caogaomodel.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:editvc animated:YES];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+- (void)caogaoCellPublishDidClick:(CaogaoTableViewCell *)cell {
+    
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [PublishDao publishCaogao:cell.caogaomodel.tid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        [AppBaseHud hideHud:self.view];
+        [self netForLog];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+
+
 - (void)setTableView {
     
-    self.tableView.frame = self.view.bounds;
+    self.tableView.frame = CGRectMake(0, total_topView_height, SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height);
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;

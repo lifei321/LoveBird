@@ -322,6 +322,16 @@
  */
 #define kAPI_Detail_caogaoxiang kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=draftList")
 
+/**
+ *  草稿箱
+ */
+#define kAPI_Detail_caogaopublish kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=saveBirdArticle")
+
+/**
+ *  草稿获取详情
+ */
+#define kAPI_Detail_caogaoDetail kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleDetailForEdit")
+
 
 #pragma mark-- 设置
 

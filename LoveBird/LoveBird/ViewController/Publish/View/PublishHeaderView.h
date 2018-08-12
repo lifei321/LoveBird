@@ -15,7 +15,11 @@
 
 @property (nonatomic, strong) UIImage *image;
 
+@property (nonatomic, copy) NSString *imageUrl;
+
 @property (nonatomic, strong) NSMutableArray *choosePhotoArr;
+
+@property (nonatomic, strong) UIImageView *headerImageView;
 
 - (PublishEditModel *)getFengmian;
 
