@@ -238,6 +238,12 @@
  *  全局搜索鸟种
  */
 #define kAPI_Find_Search_bird kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=searchBird")
+
+/**
+ *  图片鸟种
+ */
+#define kAPI_Find_Search_image_bird kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=aiSearchBirdByimg")
+
 #pragma mark-- 发布
 
 /**

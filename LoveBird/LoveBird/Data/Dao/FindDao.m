@@ -11,6 +11,7 @@
 #import "FindDisplayShapeModel.h"
 #import "ClassifyModel.h"
 #import "GuideModel.h"
+#import "FindzhinengModel.h"
 
 @implementation FindDao
 
@@ -186,6 +187,32 @@
             failureBlock(error);
         }
     }];
+}
+
+// 图片查鸟
++ (void)getBirdImage:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    
+    NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
+    NSDictionary *fileDic = @{@"file": data,
+                              @"fileName":@"file_bird",
+                              };
+    [AppHttpManager POST:kAPI_Find_Search_image_bird
+              parameters:dic
+               fileArray:@[fileDic]
+           jsonModelName:[FindzhinengDataModel class]
+                 success:^(__kindof AppBaseModel *responseObject) {
+                     if (successBlock) {
+                         successBlock(responseObject);
+                     }
+                 } uploadProgress:^(NSProgress *progress) {
+                     
+                 } failure:^(__kindof AppBaseModel *error) {
+                     if (failureBlock) {
+                         failureBlock(error);
+                     }
+                 }];
 }
 
 @end

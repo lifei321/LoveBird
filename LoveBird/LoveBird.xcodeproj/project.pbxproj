@@ -107,6 +107,8 @@
 		1F14A9792120285500F1B2C1 /* MineCaogaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A9782120285500F1B2C1 /* MineCaogaoModel.m */; };
 		1F14A97C21203B8F00F1B2C1 /* PublishEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A97B21203B8F00F1B2C1 /* PublishEditViewController.m */; };
 		1F14A97F21203F4D00F1B2C1 /* MinePublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A97E21203F4D00F1B2C1 /* MinePublishModel.m */; };
+		1F14A9822120817F00F1B2C1 /* FindZhinengViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A9812120817F00F1B2C1 /* FindZhinengViewController.m */; };
+		1F14A985212086A900F1B2C1 /* FindzhinengModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A984212086A900F1B2C1 /* FindzhinengModel.m */; };
 		1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */; };
 		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
 		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
@@ -478,6 +480,10 @@
 		1F14A97B21203B8F00F1B2C1 /* PublishEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishEditViewController.m; sourceTree = "<group>"; };
 		1F14A97D21203F4D00F1B2C1 /* MinePublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePublishModel.h; sourceTree = "<group>"; };
 		1F14A97E21203F4D00F1B2C1 /* MinePublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePublishModel.m; sourceTree = "<group>"; };
+		1F14A9802120817F00F1B2C1 /* FindZhinengViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindZhinengViewController.h; sourceTree = "<group>"; };
+		1F14A9812120817F00F1B2C1 /* FindZhinengViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindZhinengViewController.m; sourceTree = "<group>"; };
+		1F14A983212086A900F1B2C1 /* FindzhinengModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindzhinengModel.h; sourceTree = "<group>"; };
+		1F14A984212086A900F1B2C1 /* FindzhinengModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindzhinengModel.m; sourceTree = "<group>"; };
 		1F16D89220C2DB4800A6C11D /* BirdDetailClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailClassCell.h; sourceTree = "<group>"; };
 		1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailClassCell.m; sourceTree = "<group>"; };
 		1F16D89520C2E21A00A6C11D /* BirdDetailGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailGradeCell.h; sourceTree = "<group>"; };
@@ -1326,6 +1332,8 @@
 				1F4F141D205D29920066F790 /* View */,
 				0BA41913201C67FA002C6335 /* FindViewController.h */,
 				0BA41914201C67FA002C6335 /* FindViewController.m */,
+				1F14A9802120817F00F1B2C1 /* FindZhinengViewController.h */,
+				1F14A9812120817F00F1B2C1 /* FindZhinengViewController.m */,
 			);
 			path = Find;
 			sourceTree = "<group>";
@@ -1985,6 +1993,8 @@
 			children = (
 				1F4F1424205D2E520066F790 /* FindSelectModel.h */,
 				1F4F1425205D2E520066F790 /* FindSelectModel.m */,
+				1F14A983212086A900F1B2C1 /* FindzhinengModel.h */,
+				1F14A984212086A900F1B2C1 /* FindzhinengModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2776,6 +2786,7 @@
 				1F676F1520A9CAC5002F71B4 /* TalentModel.m in Sources */,
 				1F0FDFBF20C23B250041E73B /* LogDetailHeadView.m in Sources */,
 				1F14A97C21203B8F00F1B2C1 /* PublishEditViewController.m in Sources */,
+				1F14A985212086A900F1B2C1 /* FindzhinengModel.m in Sources */,
 				1F1715E62115E3F8001769AB /* UIView+CLSetRect.m in Sources */,
 				1FDBE74E20D95F130092E82E /* ShequZuzhiCell.m in Sources */,
 				1F16D8A420C3FE6F00A6C11D /* BirdDetailSongCell.m in Sources */,
@@ -2792,6 +2803,7 @@
 				1F5F5C40211728A700FC4F99 /* BirdDetailLookController.m in Sources */,
 				1F676F2520AB18ED002F71B4 /* ShequModel.m in Sources */,
 				0BF29A491F137CD700CBE2CB /* LoginViewController.m in Sources */,
+				1F14A9822120817F00F1B2C1 /* FindZhinengViewController.m in Sources */,
 				1F0FDF5120BA90ED0041E73B /* WorksModel.m in Sources */,
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F94DFC920D768D60095DFC5 /* GuideModel.m in Sources */,

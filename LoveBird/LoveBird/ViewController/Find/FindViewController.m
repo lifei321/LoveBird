@@ -17,6 +17,7 @@
 #import "ClassifyModel.h"
 #import "FindBodyResultController.h"
 #import "SearchViewController.h"
+#import "FindZhinengViewController.h"
 
 #define kStringForFind @"kStringForFind"
 
@@ -115,6 +116,8 @@
 - (void)selectViewTap:(UITapGestureRecognizer *)tap {
     UIView *tapView = tap.view;
     if (tapView.tag == 100) {
+        FindZhinengViewController *vc = [[FindZhinengViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (tapView.tag == 200) {
         // 体型查鸟

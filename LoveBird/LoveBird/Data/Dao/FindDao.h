@@ -44,4 +44,7 @@
 
 // 搜索鸟种
 + (void)getBirdWord:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 图片查鸟
++ (void)getBirdImage:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
