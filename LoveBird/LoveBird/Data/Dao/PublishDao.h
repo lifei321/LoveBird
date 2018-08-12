@@ -35,5 +35,7 @@
 // 获取生态环境
 + (void)getEVSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+// 草稿箱
++ (void)getCaogaoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 @end

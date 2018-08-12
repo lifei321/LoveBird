@@ -11,6 +11,7 @@
 #import "PublishUpModel.h"
 #import <JSONKit_NoWarning/JSONKit.h>
 #import "PublishEVModel.h"
+#import "MineCaogaoModel.h"
 
 @implementation PublishDao
 
@@ -107,5 +108,23 @@
         }
     }];
 }
+
+// 草稿箱
++ (void)getCaogaoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+
+    [AppHttpManager GET:kAPI_Detail_caogaoxiang parameters:dic jsonModelName:[MineCaogaoDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 
 @end

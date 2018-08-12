@@ -317,6 +317,12 @@
 #define kAPI_Detail_DeleteBirdDetail kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=delBirdArticle")
 
 
+/**
+ *  草稿箱
+ */
+#define kAPI_Detail_caogaoxiang kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=draftList")
+
+
 #pragma mark-- 设置
 
 /**

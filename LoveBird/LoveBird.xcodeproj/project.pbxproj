@@ -102,6 +102,9 @@
 		1F0FDFC820C242180041E73B /* BirdDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFC720C242180041E73B /* BirdDetailModel.m */; };
 		1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */; };
 		1F14A96D2119DB7500F1B2C1 /* MapDisCoverLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A96C2119DB7500F1B2C1 /* MapDisCoverLocationView.m */; };
+		1F14A973211EFB3E00F1B2C1 /* CaogaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A972211EFB3E00F1B2C1 /* CaogaoViewController.m */; };
+		1F14A976211F1AB400F1B2C1 /* CaogaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A975211F1AB400F1B2C1 /* CaogaoTableViewCell.m */; };
+		1F14A9792120285500F1B2C1 /* MineCaogaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14A9782120285500F1B2C1 /* MineCaogaoModel.m */; };
 		1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */; };
 		1F16D89720C2E21A00A6C11D /* BirdDetailGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89620C2E21A00A6C11D /* BirdDetailGradeCell.m */; };
 		1F16D89A20C2EBD600A6C11D /* BirdDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F16D89920C2EBD600A6C11D /* BirdDetailCell.m */; };
@@ -463,6 +466,12 @@
 		1F0FDFCA20C25C8E0041E73B /* BirdDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailTextCell.m; sourceTree = "<group>"; };
 		1F14A96B2119DB7500F1B2C1 /* MapDisCoverLocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDisCoverLocationView.h; sourceTree = "<group>"; };
 		1F14A96C2119DB7500F1B2C1 /* MapDisCoverLocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDisCoverLocationView.m; sourceTree = "<group>"; };
+		1F14A971211EFB3E00F1B2C1 /* CaogaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaogaoViewController.h; sourceTree = "<group>"; };
+		1F14A972211EFB3E00F1B2C1 /* CaogaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaogaoViewController.m; sourceTree = "<group>"; };
+		1F14A974211F1AB400F1B2C1 /* CaogaoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaogaoTableViewCell.h; sourceTree = "<group>"; };
+		1F14A975211F1AB400F1B2C1 /* CaogaoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaogaoTableViewCell.m; sourceTree = "<group>"; };
+		1F14A9772120285500F1B2C1 /* MineCaogaoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineCaogaoModel.h; sourceTree = "<group>"; };
+		1F14A9782120285500F1B2C1 /* MineCaogaoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCaogaoModel.m; sourceTree = "<group>"; };
 		1F16D89220C2DB4800A6C11D /* BirdDetailClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailClassCell.h; sourceTree = "<group>"; };
 		1F16D89320C2DB4800A6C11D /* BirdDetailClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdDetailClassCell.m; sourceTree = "<group>"; };
 		1F16D89520C2E21A00A6C11D /* BirdDetailGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdDetailGradeCell.h; sourceTree = "<group>"; };
@@ -1591,6 +1600,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1F14A96E211EE08300F1B2C1 /* CaogaoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F14A96F211EE08300F1B2C1 /* Model */,
+				1F14A970211EE08300F1B2C1 /* View */,
+				1F14A971211EFB3E00F1B2C1 /* CaogaoViewController.h */,
+				1F14A972211EFB3E00F1B2C1 /* CaogaoViewController.m */,
+			);
+			path = CaogaoViewController;
+			sourceTree = "<group>";
+		};
+		1F14A96F211EE08300F1B2C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F14A9772120285500F1B2C1 /* MineCaogaoModel.h */,
+				1F14A9782120285500F1B2C1 /* MineCaogaoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F14A970211EE08300F1B2C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F14A974211F1AB400F1B2C1 /* CaogaoTableViewCell.h */,
+				1F14A975211F1AB400F1B2C1 /* CaogaoTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F16D89B20C3D7EF00A6C11D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1598,13 +1636,6 @@
 				1F16D89D20C3D80600A6C11D /* FindClassCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1F16D8B120C4126600A6C11D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1F16D8B220C4126600A6C11D /* View */ = {
@@ -2282,7 +2313,7 @@
 		1F676F8520B5AA6C002F71B4 /* ChildViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1F16D8B120C4126600A6C11D /* Model */,
+				1F14A96E211EE08300F1B2C1 /* CaogaoViewController */,
 				1F16D8B220C4126600A6C11D /* View */,
 				1F676FA520B97199002F71B4 /* BirdController */,
 				1F676F9620B9119E002F71B4 /* LogController */,
@@ -2717,6 +2748,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F14A9792120285500F1B2C1 /* MineCaogaoModel.m in Sources */,
 				1F16D89420C2DB4800A6C11D /* BirdDetailClassCell.m in Sources */,
 				1FDBE74820D950D50092E82E /* ShequZuzhiModel.m in Sources */,
 				1FDBE74520D827CD0092E82E /* MapDisCoverView.m in Sources */,
@@ -2753,6 +2785,7 @@
 				0B75D5B41FBEC5C5008D7AE6 /* AppPlaceHolderTextView.m in Sources */,
 				1F94DFC920D768D60095DFC5 /* GuideModel.m in Sources */,
 				1F0FDF5720BA97330041E73B /* WorkTableViewCell.m in Sources */,
+				1F14A976211F1AB400F1B2C1 /* CaogaoTableViewCell.m in Sources */,
 				1F16D8B820C4304E00A6C11D /* LogDetailUpModel.m in Sources */,
 				1F676EB120A08395002F71B4 /* PublishDetailCell.m in Sources */,
 				1F94DFD220D7AA1C0095DFC5 /* NearController.m in Sources */,
@@ -2895,6 +2928,7 @@
 				0BC2B39820A3F0DF003283D1 /* PublishBirdInfoModel.m in Sources */,
 				0B702E111F16217E00E39FAF /* RegInfoTableViewCell.m in Sources */,
 				1F3A3FF520DFF0B000245CA4 /* MWGridCell.m in Sources */,
+				1F14A973211EFB3E00F1B2C1 /* CaogaoViewController.m in Sources */,
 				0B75D5A41FBEC434008D7AE6 /* NSString+Validate.m in Sources */,
 				0BF9BE2F1F1CA060000046FF /* AppDelegate.m in Sources */,
 				1F676E94209A0335002F71B4 /* UserFollowModel.m in Sources */,

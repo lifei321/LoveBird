@@ -13,6 +13,7 @@
 #import "MineLogCell.h"
 #import "MJRefresh.h"
 #import "LogDetailController.h"
+#import "CaogaoViewController.h"
 
 @interface MineLogViewController ()<UITableViewDataSource>
 
@@ -166,7 +167,8 @@
 }
 
 - (void)tipLabelDidClick {
-    
+    CaogaoViewController *caogaovc = [[CaogaoViewController alloc] init];
+    [[UIViewController currentViewController].navigationController pushViewController:caogaovc animated:YES];
 }
 
 @end
