@@ -83,4 +83,13 @@
     
 }
 
+- (void)setZhinengModel:(FindzhinengModel *)zhinengModel {
+    _zhinengModel = zhinengModel;
+    self.accessoryType = UITableViewCellAccessoryNone;
+
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:zhinengModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    self.titleLabel.text = zhinengModel.name;
+    self.contentLabel.text = zhinengModel.name_la;
+}
+
 @end

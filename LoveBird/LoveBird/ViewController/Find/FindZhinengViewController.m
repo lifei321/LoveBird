@@ -13,6 +13,7 @@
 #import "FindzhinengModel.h"
 #import "WPhotoViewController.h"
 #import "UIImage+Addition.h"
+#import "BirdDetailController.h"
 
 @interface FindZhinengViewController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -47,7 +48,7 @@
     [self setTableView];
     
     UIImageView *headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(500))];
-    headerView.image = [UIImage imageNamed:@"placeHolder"];
+    headerView.image = [UIImage imageNamed:@"zhineng"];
     self.tableView.tableHeaderView = headerView;
     
     
@@ -207,26 +208,49 @@
 
 #pragma mark-- tabelView 代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.dataArray.count) {
+        return self.dataArray.count + 1;
+    }
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FindResultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FindResultCell class]) forIndexPath:indexPath];
-    cell.zhinengModel = self.dataArray[indexPath.row];
-    return cell;
+    
+    if (indexPath.row == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+        cell.textLabel.text = @"识别结果";
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.font = kFont6(32);
+        cell.textLabel.left = AutoSize6(30);
+        return cell;
+    } else {
+        FindResultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FindResultCell class]) forIndexPath:indexPath];
+        cell.zhinengModel = self.dataArray[indexPath.row - 1];
+        return cell;
+    }
+    
+    return nil;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == 0) {
+        return AutoSize6(70);
+    }
     return AutoSize6(130);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.01f;
+    return AutoSize6(10);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    FindzhinengModel *model = self.dataArray[indexPath.row - 1];
+    BirdDetailController *detailvc = [[BirdDetailController alloc] init];
+    detailvc.cspCode = model.csp_code;
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 
 }
 
@@ -240,10 +264,17 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01f)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[FindResultCell class] forCellReuseIdentifier:NSStringFromClass([FindResultCell class])];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
 }
 
 
-
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray new];
+    }
+    return _dataArray;
+}
 
 @end
