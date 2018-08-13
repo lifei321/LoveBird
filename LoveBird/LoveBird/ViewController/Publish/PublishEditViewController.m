@@ -26,6 +26,7 @@
 #import "WPhotoViewController.h"
 #import "UIImage+Addition.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "PublishMapViewController.h"
 
 typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
@@ -54,6 +55,14 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 // 上传图片用
 @property (nonatomic, strong) NSMutableArray *uploadArray;
+
+
+@property (nonatomic, copy) NSString *lng;
+
+@property (nonatomic, copy) NSString *lat;
+
+@property (nonatomic, copy) NSString *locale;
+
 
 
 @end
@@ -96,9 +105,9 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     [PublishDao publish:self.dataModelArray
                birdInfo:self.birdInfoArray
                    evId:self.selectEVModel.evId
-               loaction:@""
-                    lat:@""
-                    lng:@""
+               loaction:self.locale
+                    lat:self.lat
+                    lng:self.lng
                    time:self.selectTime
                  status:self.status
                   title:self.headerView.textField.text
@@ -234,6 +243,28 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         [self.view addSubview:pickerView];
         return;
     }
+    
+    if ((indexPath.section == 1) && (indexPath.row == 1)) {
+        
+        PublishMapViewController *mapvc = [[PublishMapViewController alloc] init];
+        
+        @weakify(self);
+        mapvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            
+            @strongify(self);
+            
+            NSDictionary *dic = (NSDictionary *)userInfo;
+            self.lng = [dic objectForKey:@"lng"];
+            self.lat = [dic objectForKey:@"lat"];
+            self.locale = [dic objectForKey:@"locale"];
+            PublishDetailModel *model = self.dataArray[indexPath.section][indexPath.row];
+            model.detailString = self.locale;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:mapvc animated:YES];
+        
+    }
+
     
     // 生态环境
     if ((indexPath.section == 1) && (indexPath.row == 2)) {
@@ -831,6 +862,9 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     model2.title = @"位置";
     if (self.minePublishModel.locale.length) {
         model2.title = self.minePublishModel.locale;
+        self.locale = self.minePublishModel.locale;
+        self.lng = self.minePublishModel.lng;
+        self.lat = self.minePublishModel.lat;
     } else {
         model2.detailString = @"选择";
     }
