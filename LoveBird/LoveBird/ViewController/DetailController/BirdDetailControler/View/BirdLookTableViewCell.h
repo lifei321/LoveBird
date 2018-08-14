@@ -8,6 +8,7 @@
 
 #import "AppBaseTableViewCell.h"
 #import "MineLogFrameModel.h"
+#import "BirdDetailLogModel.h"
 
 @interface BirdLookTableViewCell : AppBaseTableViewCell
 

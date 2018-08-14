@@ -7,7 +7,7 @@
 //
 
 #import "BirdDetailLookController.h"
-#import "UserDao.h"
+#import "DetailDao.h"
 #import "ShequModel.h"
 #import "MineLogFrameModel.h"
 #import "BirdLookTableViewCell.h"
@@ -35,58 +35,33 @@
     self.title = @"观鸟记录";
     _dataArray = [[NSMutableArray alloc] init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
-    
     [self setTableView];
-    [self.tableView.mj_header beginRefreshing];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-- (void)notify {
-    [self.tableView.mj_header beginRefreshing];
-}
-
-- (void)netForLogHeader {
-    self.page = 1;
+    
     [self netForLog];
 }
 
+
+
 - (void)netForLog {
     
+    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userLogList:self.page matchId:nil fid:nil successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getDetailLog:self.csp_code successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-        
-        if (self.page == 1) {
-            [self.dataArray removeAllObjects];
-        }
-        self.page ++;
-        
-        
-        ShequLogModel *dataModel = (ShequLogModel *)responseObject;
-        for (int i = 0; i < dataModel.articleList.count; i++) {
-            ShequModel *model = dataModel.articleList[i];
+
+        BirdDetailLogDataModel *dataModel = (BirdDetailLogDataModel *)responseObject;
+        for (BirdDetailLogModel *logmodel in dataModel.data) {
             MineLogFrameModel *frameModel = [[MineLogFrameModel alloc] init];
-            frameModel.isFirst = (i == 0) ? YES : NO;
-            frameModel.shequModel = model;
+            frameModel.logModel = logmodel;
             [self.dataArray addObject:frameModel];
         }
-        self.count = dataModel.draftNum;
-        
         [self.tableView reloadData];
-        
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-        
     }];
+    
 }
 
 #pragma mark-- tableview 代理
@@ -132,9 +107,9 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(30))];
     
     //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLogHeader)];
-    //默认【上拉加载】
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLogHeader)];
+//    //默认【上拉加载】
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }
 
 @end

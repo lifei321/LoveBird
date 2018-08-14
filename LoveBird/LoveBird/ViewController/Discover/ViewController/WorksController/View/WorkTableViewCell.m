@@ -28,12 +28,12 @@
         
 
         self.leftImageview = [[WorksImageView alloc] init];
-        self.leftImageview.contentMode = UIViewContentModeScaleAspectFill;
+        self.leftImageview.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:self.leftImageview];
         self.leftImageview.userInteractionEnabled = YES;
         
         self.rightImageview = [[WorksImageView alloc] init];
-        self.rightImageview.contentMode = UIViewContentModeScaleAspectFill;
+        self.rightImageview.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:self.rightImageview];
         self.rightImageview.userInteractionEnabled = YES;
     }

@@ -195,33 +195,35 @@
             
             self.bMapView.centerCoordinate = locationInfo.pt;
             
-            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-                
-                if (!error) {
-                    if (placemarks.count  > 0) {
-                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-                        if (placemark != nil) {
-                            
-                            NSString *city = placemark.locality;
-                            self.locationName = city;
-                            self.lng = locationInfo.pt.longitude;
-                            self.lat = locationInfo.pt.latitude;
-                            if (self.viewControllerActionBlock) {
-                                self.viewControllerActionBlock(self, @{
-                                                                       @"locale":EMPTY_STRING_IF_NIL(city),
-                                                                       @"lng":[NSString stringWithFormat:@"%f", locationInfo.pt.longitude],
-                                                                       @"lat":[NSString stringWithFormat:@"%f", locationInfo.pt.latitude],
-                                                                       });
-                            }
-                            [self.navigationController popViewControllerAnimated:YES];
-                            NSLog(@"当前城市名称------%@",city);
-                            
-                        }
-                    }
-                }
-                
-            }];
+            self.locationName = [NSString stringWithFormat:@"%@%@%@",locationInfo.province, locationInfo.city, locationInfo.area];
+            self.lng = locationInfo.pt.longitude;
+            self.lat = locationInfo.pt.latitude;
+            if (self.viewControllerActionBlock) {
+                self.viewControllerActionBlock(self, @{
+                                                       @"locale":EMPTY_STRING_IF_NIL(locationInfo.city),
+                                                       @"lng":[NSString stringWithFormat:@"%f", locationInfo.pt.longitude],
+                                                       @"lat":[NSString stringWithFormat:@"%f", locationInfo.pt.latitude],
+                                                       });
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+
+            
+//            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//
+//                if (!error) {
+//                    if (placemarks.count  > 0) {
+//                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+//                        if (placemark != nil) {
+//
+//                            NSString *city = placemark.locality;
+//                            NSLog(@"当前城市名称------%@",city);
+//
+//                        }
+//                    }
+//                }
+//
+//            }];
             
         };
         [self.view addSubview:birdView];

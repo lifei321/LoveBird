@@ -248,11 +248,11 @@
     if (section == 2) {
         if (row == 0) {
             if (self.detailModel.bird_class.length) {
-                return AutoSize6(140);
+                return [BirdDetailCell getHeightWithModel:self.detailModel text:self.detailModel.bird_class img:NO];
             }
         } else if (row == 1) {
             if (self.detailModel.alias.length) {
-                return AutoSize6(140);
+                return [BirdDetailCell getHeightWithModel:self.detailModel text:self.detailModel.alias img:NO];
             }
         }
         if (row == 2) {

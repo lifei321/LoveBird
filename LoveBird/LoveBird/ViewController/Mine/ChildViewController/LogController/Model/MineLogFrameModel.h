@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "ShequModel.h"
+#import "BirdDetailLogModel.h"
 
 @interface MineLogFrameModel : NSObject
 
 @property (nonatomic, strong) ShequModel *shequModel;
+
+@property (nonatomic, strong) BirdDetailLogModel *logModel;
 
 
 // cell的高度

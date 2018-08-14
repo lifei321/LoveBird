@@ -31,4 +31,7 @@
 
 // 删除日志
 + (void)getDeleteDetail:(NSString *)tid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 观鸟记录
++ (void)getDetailLog:(NSString *)cspCode successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end

@@ -339,6 +339,12 @@
 #define kAPI_Detail_caogaoDetail kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleDetailForEdit")
 
 
+/**
+ *  观鸟记录
+ */
+#define kAPI_Detail_guanniaojilu kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdLogList")
+
+
 #pragma mark-- 设置
 
 /**

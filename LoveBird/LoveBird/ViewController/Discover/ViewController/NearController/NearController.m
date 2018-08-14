@@ -253,24 +253,24 @@
             self.searchTextField.text = nil;
             
             self.bMapView.centerCoordinate = locationInfo.pt;
-            
-            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-                
-                if (!error) {
-                    if (placemarks.count  > 0) {
-                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-                        if (placemark != nil) {
-    
-                            NSString *city = placemark.locality;
-                            self.locationLabel.text = city;
-                            NSLog(@"当前城市名称------%@",city);
-    
-                        }
-                    }
-                }
+            self.locationLabel.text = locationInfo.city;
 
-            }];
+//            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//
+//                if (!error) {
+//                    if (placemarks.count  > 0) {
+//                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+//                        if (placemark != nil) {
+//
+//                            NSString *city = placemark.locality;
+//                            NSLog(@"当前城市名称------%@",city);
+//
+//                        }
+//                    }
+//                }
+//
+//            }];
 
         };
         [self.view addSubview:birdView];

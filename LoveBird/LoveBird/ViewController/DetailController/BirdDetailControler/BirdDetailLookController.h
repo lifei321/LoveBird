@@ -10,4 +10,6 @@
 
 @interface BirdDetailLookController : AppBaseTableViewController
 
+@property (nonatomic, copy) NSString *csp_code;
+
 @end

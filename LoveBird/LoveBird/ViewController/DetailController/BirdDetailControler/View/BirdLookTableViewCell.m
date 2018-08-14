@@ -128,16 +128,25 @@
     self.moreButton.frame = frameModel.moreButtonFrame;
     self.timeLabel.frame = frameModel.timeLabelFrame;
     self.dayLable.frame = frameModel.dayLabelFrame;
-    self.monthLable.frame = frameModel.monthLabelFrame;
+    self.countLabel.frame = frameModel.countLabelFrame;
     
 //    self.countLabel.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     
-    self.titleLable.text = frameModel.shequModel.subject;
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-    self.timeLabel.text = frameModel.shequModel.dateline;
-    self.subjectLable.text = frameModel.shequModel.author;
-    self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];
-    self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.shequModel.dateline];
+    if (frameModel.logModel.imgUrl.length) {
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.logModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    } else {
+        self.titleLable.text = frameModel.logModel.title;
+    }
+    
+    if (frameModel.logModel.authorName.length) {
+        self.subjectLable.text = [NSString stringWithFormat:@"作者：%@", frameModel.logModel.authorName];
+    }
+
+    self.countLabel.text = [NSString stringWithFormat:@"共%@只", frameModel.logModel.imgdNum];
+    
+//    self.timeLabel.text = frameModel.logModel.dateline;
+    self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.logModel.dateline formatSytle:DateFormatD];
+    self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.logModel.dateline];
 }
 
 

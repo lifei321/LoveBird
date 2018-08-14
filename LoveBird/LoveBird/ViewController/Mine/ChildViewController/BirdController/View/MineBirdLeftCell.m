@@ -43,7 +43,7 @@
         
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(5), AutoSize6(5), AutoSize6(74), AutoSize6(74))];
         self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2;
-        self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         self.iconImageView.clipsToBounds = YES;
         [self.backView addSubview:self.iconImageView];
         

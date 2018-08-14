@@ -12,6 +12,7 @@
 #import "BirdDetailModel.h"
 #import "LogDetailUpModel.h"
 #import "LogContentModel.h"
+#import "BirdDetailLogModel.h"
 
 
 @implementation DetailDao
@@ -126,6 +127,23 @@
 
     
     [AppHttpManager POST:kAPI_Detail_DeleteBirdDetail parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
++ (void)getDetailLog:(NSString *)cspCode successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(cspCode) forKey:@"uid"];
+    
+    
+    [AppHttpManager POST:kAPI_Detail_guanniaojilu parameters:dic jsonModelName:[BirdDetailLogDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/Data/Dao/FindDao.m"
-            timestampString = "555950656.951079"
+            filePath = "LoveBird/LoveBird/ViewController/Discover/ViewController/NearController/NearController.m"
+            timestampString = "555956388.208702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "+getBirdImage:successBlock:failureBlock:"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "-onGetPoiResult:result:errorCode:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

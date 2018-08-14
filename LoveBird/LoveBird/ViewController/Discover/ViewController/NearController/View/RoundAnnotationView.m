@@ -25,7 +25,7 @@
     self.backgroundColor = [UIColor clearColor];
     
     self.iconImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.iconImageView.contentMode = UIViewContentModeScaleToFill;
     self.iconImageView.image = [UIImage imageNamed:@"placeHolder"];
     self.iconImageView.layer.cornerRadius = self.width / 2;
     self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;

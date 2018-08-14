@@ -33,7 +33,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
-        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
         _iconImageView.layer.masksToBounds = YES;
         [self.contentView addSubview:_iconImageView];

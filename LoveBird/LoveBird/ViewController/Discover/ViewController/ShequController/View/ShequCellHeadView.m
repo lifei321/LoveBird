@@ -33,7 +33,7 @@
         
         // 头像
         self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), AutoSize6(65), AutoSize6(65))];
-        self.headIcon.contentMode = UIViewContentModeScaleAspectFit;
+        self.headIcon.contentMode = UIViewContentModeScaleToFill;
         self.headIcon.clipsToBounds = YES;
         self.headIcon.layer.cornerRadius = self.headIcon.width / 2;
         self.headIcon.layer.borderColor = [UIColor whiteColor].CGColor;

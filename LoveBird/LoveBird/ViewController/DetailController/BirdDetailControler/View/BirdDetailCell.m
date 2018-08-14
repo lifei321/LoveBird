@@ -48,7 +48,7 @@
         [self.contentView addSubview:self.contentLabel];
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentLabel.left, self.contentLabel.bottom + AutoSize6(10), self.contentLabel.width, AutoSize6(92))];
-        self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:_iconImageView];
         
     }
