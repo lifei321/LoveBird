@@ -16,7 +16,7 @@
 #import "FindViewController.h"
 #import "GuideViewController.h"
 #import "PublishViewController.h"
-
+#import "NearController.h"
 
 @interface AppTabBarController ()<UITabBarControllerDelegate>
 
@@ -120,7 +120,16 @@
         }
     } else {
         self.selectedItem = self.selectedIndex;
-
+        if (tabBarController.selectedIndex == 0) {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
+                
+            } else {
+                UIViewController *viewController = [UIViewController currentViewController].navigationController.childViewControllers.lastObject;
+                if ([viewController isKindOfClass:[NearController class]]) {
+                    [[UIViewController currentViewController].navigationController popViewControllerAnimated:YES];
+                }
+            }
+        }
     }
 }
 

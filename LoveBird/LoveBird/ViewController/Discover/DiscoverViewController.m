@@ -69,18 +69,17 @@
         [self  netForData];
     }
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
-
-        NearController *nearvc = [[NearController alloc] init];
-        [self.navigationController addChildViewController:nearvc];
-        [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
-    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
+        
+        NearController *nearvc = [[NearController alloc] init];
+        [self.navigationController addChildViewController:nearvc];
+        [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
