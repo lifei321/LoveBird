@@ -16,4 +16,8 @@
 // 文章id
 @property (nonatomic, copy) NSString *aid;
 
+// 1 观鸟记录
+@property (nonatomic, assign) NSInteger logType;
+
+
 @end

@@ -88,9 +88,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MineLogFrameModel *layoutModel = self.dataArray[indexPath.row];
     
-    if (layoutModel.shequModel.tid.length) {
+    if (layoutModel.logModel.tid.length) {
         LogDetailController *detailController = [[LogDetailController alloc] init];
-        detailController.tid = layoutModel.shequModel.tid;
+        detailController.tid = layoutModel.logModel.tid;
+        detailController.logType = 1;
         [self.navigationController pushViewController:detailController animated:YES];
     }
 }

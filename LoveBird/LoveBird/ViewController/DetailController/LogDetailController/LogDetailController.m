@@ -388,9 +388,12 @@
 #pragma mark--- UI
 
 - (void)setNavigation {
-    
     if (self.tid.length) {
-        self.title = @"日志详情";
+        if (self.logType == 1) {
+            self.title = @"观鸟记录";
+        } else {
+            self.title = @"日志详情";
+        }
     } else {
         self.title = @"文章详情";
     }
