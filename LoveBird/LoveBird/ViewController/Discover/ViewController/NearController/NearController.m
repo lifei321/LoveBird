@@ -147,7 +147,7 @@
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(210), AutoSize6(70))];
     backView.backgroundColor = [UIColor whiteColor];
-    backView.alpha = 0.7;
+    backView.alpha = 0.8;
     [self.view addSubview:backView];
     [self.view bringSubviewToFront:backView];
     
@@ -502,11 +502,17 @@
         
         MapDiscoverGpsModel *gpsModel = (MapDiscoverGpsModel *)responseObject;
         
-        MapDisCoverView *birdView = [[MapDisCoverView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(100), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(100) - kTabBarHeight - AutoSize6(100))];
-        [self.view addSubview:birdView];
-        [self.view bringSubviewToFront:birdView];
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        backView.backgroundColor = [UIColor blackColor];
+        backView.alpha = 0.6;
+        [[UIApplication sharedApplication].keyWindow addSubview:backView];
+        
+        MapDisCoverView *birdView = [[MapDisCoverView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(100), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(100) - kTabBarHeight + AutoSize6(10))];
+        [[UIApplication sharedApplication].keyWindow addSubview:birdView];
+//        [self.view bringSubviewToFront:birdView];
         
         birdView.dataArray = [NSMutableArray arrayWithArray:gpsModel.data];
+        birdView.backView = backView;
 
     } failureBlock:^(__kindof AppBaseModel *error) {
         

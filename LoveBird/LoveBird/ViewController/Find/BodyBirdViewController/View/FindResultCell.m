@@ -41,9 +41,11 @@
         [self.contentView addSubview:self.titleLabel];
         
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.left, self.titleLabel.bottom + AutoSize6(15), self.titleLabel.width, AutoSize6(30))];
-        self.contentLabel.textColor = [UIColor blackColor];
         self.contentLabel.textAlignment = NSTextAlignmentLeft;
         self.contentLabel.font = kFont6(28);
+        CGAffineTransform matrix = CGAffineTransformMake(1, 0, tanf(-15 * (CGFloat)M_PI / 180), 1, 0, 0);
+        self.contentLabel.transform = matrix;
+        self.contentLabel.textColor = UIColorFromRGB(0x7f7f7f);
         [self.contentView addSubview:self.contentLabel];
         
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(130) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
@@ -60,13 +62,17 @@
 
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:birdModel.bird_img] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
     self.titleLabel.text = birdModel.name;
-    self.contentLabel.text = birdModel.name_la;
+    
+//    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:birdModel.name_la];
+//    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Courier-BoldOblique" size:AutoSize6(28)] range:NSMakeRange(0, birdModel.name_la.length)];
+//    [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColor7f7f7f range:NSMakeRange(0, birdModel.name_la.length)];
+//    self.contentLabel.attributedText = attrString;
     
     self.titleLabel.textColor = (birdModel.isSelect) ? kColorDefaultColor : [UIColor blackColor];
-    self.contentLabel.textColor = (birdModel.isSelect) ? kColorDefaultColor : [UIColor blackColor];
     self.lineView.backgroundColor = (birdModel.isSelect) ? kColorDefaultColor : kLineColoreDefaultd4d7dd;
     
-    
+    self.contentLabel.textColor = (birdModel.isSelect) ? kColorDefaultColor : kColorTextColor7f7f7f;
+    self.contentLabel.text = birdModel.name_la;
 }
 
 - (void)setInfoModel:(MapDiscoverInfoModel *)infoModel {

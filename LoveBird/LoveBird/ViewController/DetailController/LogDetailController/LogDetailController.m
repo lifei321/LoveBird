@@ -207,6 +207,10 @@
     if (section == 1) {
         if (self.tid.length) {
             if (self.detailModel.postBody.count > row) {
+                
+                if ((self.detailModel.postBody.count - 1) == row) {
+                    return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]] + AutoSize6(10);
+                }
                 return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
             }
         } else if (self.aid.length) {
@@ -245,9 +249,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section == 1) {
-//        if (self.detailModel.birdInfo.count || self.detailModel.publishTime.length || self.detailModel.locale.length) {
-//        }
-        return 0.01f;
+        if (self.detailModel.birdInfo.count ) {
+            return AutoSize6(20);
+        }
     }
     
     if (section == 3) {

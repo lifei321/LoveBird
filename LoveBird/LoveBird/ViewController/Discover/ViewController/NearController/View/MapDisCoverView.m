@@ -30,9 +30,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.layer.cornerRadius = 5;
         self.backgroundColor = [UIColor whiteColor];
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(25), 0, AutoSize6(300), AutoSize6(100))];
-        _textLabel.font = kFont6(32);
+        _textLabel.font = kFontPF6(32);
         _textLabel.textColor = [UIColor blackColor];
         [self addSubview:_textLabel];
         
@@ -45,7 +46,7 @@
         line.backgroundColor = kLineColoreDefaultd4d7dd;
         [self addSubview:line];
         
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, line.bottom, frame.size.width, frame.size.height - line.bottom) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, line.bottom, frame.size.width, frame.size.height - line.bottom - AutoSize6(30)) style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -58,6 +59,7 @@
 }
 
 - (void)closeBUttonClick {
+    [self.backView removeFromSuperview];
     [self removeFromSuperview];
 }
 

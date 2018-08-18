@@ -80,7 +80,7 @@
     _iconImageView.image = [UIImage imageNamed:@"ecology_record"];
 
     self.birdLabel.text = evHuanjing;
-    self.lineView.hidden = NO;
+    self.lineView.hidden = YES;
     self.lineView.frame = CGRectMake(AutoSize6(0), AutoSize6(93), SCREEN_WIDTH, 0.5);
 
 }

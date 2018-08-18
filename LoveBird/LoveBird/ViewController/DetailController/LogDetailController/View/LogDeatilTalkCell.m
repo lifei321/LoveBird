@@ -48,7 +48,7 @@
         // 昵称
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top + AutoSize6(5), SCREEN_WIDTH / 2, AutoSize6(37))];
         self.nickNameLabel.textColor = [UIColor blackColor];
-        self.nickNameLabel.font = kFont(13);
+        self.nickNameLabel.font = kFontPF6(28);
         self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:self.nickNameLabel];
         
@@ -66,14 +66,14 @@
 //        [self.upButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
 //        [self.contentView addSubview:self.upButton];
         
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), self.headIcon.bottom + AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right - AutoSize6(5), self.headIcon.bottom + AutoSize6(20), SCREEN_WIDTH - self.headIcon.right - AutoSize6(30), AutoSize6(94))];
         self.contentLabel.textAlignment = NSTextAlignmentLeft;
-        self.contentLabel.textColor = UIColorFromRGB(0x7f7f7f);
-        self.contentLabel.font = kFont6(26);
+        self.contentLabel.textColor = UIColorFromRGB(0x333333);
+        self.contentLabel.font = kFontPF6(26);
         self.contentLabel.numberOfLines = 0;
         [self.contentView addSubview:self.contentLabel];
         
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(93), SCREEN_WIDTH - AutoSize6(60), 0.5)];
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(self.headIcon.right, AutoSize6(93), SCREEN_WIDTH - AutoSize6(30) - self.headIcon.right, 1)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:self.lineView];
         
@@ -93,8 +93,9 @@
     self.upButton.selected = bodyModel.isUp;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:bodyModel.dateline formatSytle:DateFormatYMD];
     
-    self.contentLabel.height = [bodyModel.content getTextHeightWithFont:self.contentLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60))];
+    self.contentLabel.height = [bodyModel.content getTextHeightWithFont:self.contentLabel.font withWidth:(SCREEN_WIDTH - self.headIcon.right - AutoSize6(30))];
     self.lineView.top = self.contentLabel.bottom + AutoSize6(29);
+    self.lineView.height = 1;
     self.contentLabel.text = bodyModel.content;
 }
 
@@ -104,7 +105,7 @@
 //    if (model.content.length) {
         height = AutoSize6(30) + AutoSize6(75);
         
-        height += [model.content getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
+        height += [model.content getTextHeightWithFont:kFontPF6(26) withWidth:(SCREEN_WIDTH - AutoSize6(105) - AutoSize6(30))];
         
         height += AutoSize6(20);
         
