@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) UIView *loadingView;
 
+@property (nonatomic, strong) UIImageView *headerView;
+
 
 @end
 
@@ -48,8 +50,10 @@
     [self setTableView];
     
     UIImageView *headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(500))];
+    headerView.contentMode = UIViewContentModeScaleToFill;
     headerView.image = [UIImage imageNamed:@"zhineng"];
-    self.tableView.tableHeaderView = headerView;
+    self.headerView = headerView;
+    self.tableView.tableHeaderView = self.headerView;
     
     
     self.tipView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(520) + total_topView_height, SCREEN_WIDTH, self.view.height - AutoSize6(520) - total_topView_height)];
@@ -159,6 +163,7 @@
         @strongify(self);
         
         NSDictionary *dic = phostsArr.firstObject;
+        self.headerView.image = [dic objectForKey:@"image"];
 
         [self netForData:[dic objectForKey:@"image"]];
         
@@ -171,6 +176,7 @@
         
     }];
     UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.headerView.image = iamge;
     [self netForData:iamge];
 }
 
@@ -222,6 +228,11 @@
         cell.textLabel.textColor = [UIColor blackColor];
         cell.textLabel.font = kFont6(32);
         cell.textLabel.left = AutoSize6(30);
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(99), SCREEN_WIDTH - AutoSize6(60), 1)];
+        lineView.backgroundColor = kLineColoreDefaultd4d7dd;
+        [cell addSubview:lineView];
+        
         return cell;
     } else {
         FindResultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FindResultCell class]) forIndexPath:indexPath];
@@ -236,7 +247,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        return AutoSize6(70);
+        return AutoSize6(100);
     }
     return AutoSize6(130);
 }

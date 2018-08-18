@@ -19,6 +19,11 @@
 
 @property (nonatomic, strong) UIView *lineView;
 
+@property (nonatomic, strong) UILabel *wordDetailLabel;
+
+@property (nonatomic, strong) UILabel *scoreLabel;
+
+
 @end
 
 @implementation FindResultCell
@@ -48,6 +53,19 @@
         self.contentLabel.textColor = UIColorFromRGB(0x7f7f7f);
         [self.contentView addSubview:self.contentLabel];
         
+        self.wordDetailLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(130), AutoSize6(30), AutoSize6(100), AutoSize6(30))];
+        self.wordDetailLabel.textColor = kColorTextColor7f7f7f;
+        self.wordDetailLabel.textAlignment = NSTextAlignmentRight;
+        self.wordDetailLabel.font = kFont6(22);
+        [self.contentView addSubview:self.wordDetailLabel];
+
+        
+        self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(130), self.contentLabel.top, AutoSize6(100), AutoSize6(30))];
+        self.scoreLabel.textColor = kColorDefaultColor;
+        self.scoreLabel.textAlignment = NSTextAlignmentRight;
+        self.scoreLabel.font = kFont6(24);
+        [self.contentView addSubview:self.scoreLabel];
+
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(130) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:self.lineView];
@@ -96,6 +114,9 @@
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:zhinengModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
     self.titleLabel.text = zhinengModel.name;
     self.contentLabel.text = zhinengModel.name_la;
+    
+    self.wordDetailLabel.text = @"置信度";
+    self.scoreLabel.text = zhinengModel.score;
 }
 
 @end
