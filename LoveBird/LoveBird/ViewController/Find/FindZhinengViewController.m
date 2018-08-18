@@ -21,6 +21,9 @@
 
 @property (nonatomic, strong) UIView *tipView;
 
+@property (nonatomic, strong) UIView *noDataView;
+
+
 @property (nonatomic, strong) UIView *loadingView;
 
 @property (nonatomic, strong) UIImageView *headerView;
@@ -97,6 +100,28 @@
     [self.loadingView addSubview:loadLabel];
 
     self.loadingView.hidden = YES;
+    
+    
+    self.noDataView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(520) + total_topView_height, SCREEN_WIDTH, self.view.height - AutoSize6(520) - total_topView_height)];
+    self.noDataView.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *nodataone = [[UILabel alloc] initWithFrame:CGRectMake(0, AutoSize6(200), SCREEN_WIDTH, AutoSize6(50))];
+    nodataone.textAlignment = NSTextAlignmentCenter;
+    nodataone.font = kFont6(40);
+    nodataone.textColor = kColorTextColor7f7f7f;
+    nodataone.text = @"抱歉！未检测到鸟类";
+    [self.noDataView addSubview:nodataone];
+    
+    UILabel *nodataTwo = [[UILabel alloc] initWithFrame:CGRectMake(0, nodataone.bottom + AutoSize6(20), SCREEN_WIDTH, nodataone.height)];
+    nodataTwo.textAlignment = NSTextAlignmentCenter;
+    nodataTwo.font = kFont6(40);
+    nodataTwo.textColor = kColorTextColor7f7f7f;
+    nodataTwo.text = @"请上传包含鸟类的清晰图片!";
+    [self.noDataView addSubview:nodataTwo];
+    self.noDataView.hidden = YES;
+    
+    [self.view addSubview:self.noDataView];
+    [self.view bringSubviewToFront:self.noDataView];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height - AutoSize6(146), AutoSize6(425), AutoSize6(88))];
     button.backgroundColor = kColorDefaultColor;
@@ -196,18 +221,20 @@
             [self.tableView reloadData];
             self.tipView.hidden = YES;
             self.loadingView.hidden = YES;
+            self.noDataView.hidden = YES;
         } else {
-            self.tipView.hidden = NO;
+            self.tipView.hidden = YES;
             self.loadingView.hidden = YES;
+            self.noDataView.hidden = NO;
         }
         
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
-        self.tipView.hidden = NO;
+        self.tipView.hidden = YES;
         self.loadingView.hidden = YES;
-
+        self.noDataView.hidden = NO;
     }];
 }
 
