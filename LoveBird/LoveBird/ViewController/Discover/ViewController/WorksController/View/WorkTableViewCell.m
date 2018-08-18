@@ -63,7 +63,7 @@
         
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         self.leftImageview.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
-        self.leftImageview.name = @"张三";
+        self.leftImageview.name = model.tags;
         [self.leftImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
 
     } else if (listArray.count == 2) {
@@ -76,8 +76,8 @@
         
         CGFloat imageHeight = (model1.imgHeight) * (width1 / model1.imgWidth);
         
-        self.leftImageview.frame = CGRectMake(0, 0, width1 - 1, imageHeight);
-        self.rightImageview.frame = CGRectMake(width1 + 1, 0, width2 - 1, imageHeight);
+        self.leftImageview.frame = CGRectMake(0, 0, width1 - 0.5, imageHeight);
+        self.rightImageview.frame = CGRectMake(width1 + 0.5, 0, width2, imageHeight);
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];

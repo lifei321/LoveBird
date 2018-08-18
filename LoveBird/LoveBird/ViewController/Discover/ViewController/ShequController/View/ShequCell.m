@@ -61,8 +61,8 @@
         [self.backView addSubview:self.contentImageView];
         
         self.lineView = [[UIView alloc] init];
-        self.lineView.backgroundColor = kColorTextColord2d2d2;
-        [self.contentView addSubview:self.lineView];
+        self.lineView.backgroundColor = kLineColoreLightGrayECECEC;
+        [self.backView addSubview:self.lineView];
         
         self.timeLabel = [[UILabel alloc] init];
         self.timeLabel.font = kFont6(20);
@@ -88,6 +88,8 @@
     self.lineView.frame = shequFrameModel.lineViewFrame;
     self.bottomView.frame = shequFrameModel.bottomViewFrame;
     self.timeLabel.frame = shequFrameModel.timeLabelFrame;
+    
+    self.backView.layer.cornerRadius = 5;
     
     self.titleLable.text = shequFrameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:shequFrameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];

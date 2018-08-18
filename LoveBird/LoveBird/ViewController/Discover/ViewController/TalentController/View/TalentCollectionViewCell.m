@@ -45,15 +45,15 @@
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _iconImageView.bottom + AutoSize(10), backView.width, AutoSize(15))];
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.textColor = [UIColor blackColor];
-        _textLabel.font = kFont(12);
+        _textLabel.font = kFontPF6(26);
         [backView addSubview:_textLabel];
         
         
-        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width - AutoSize(50)) / 2, backView.bottom + AutoSize(8), AutoSize(50), (frame.size.height / 4) - AutoSize(10))];
+        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width - AutoSize(50)) / 2, backView.bottom + AutoSize(8), AutoSize6(102), AutoSize6(52))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         [self.followButton setBackgroundColor:UIColorFromRGB(0x7faf41)];
-        self.followButton.titleLabel.font = kFontBold(12);
+        self.followButton.titleLabel.font = kFontPF6(24);
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];

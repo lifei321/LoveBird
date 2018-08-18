@@ -25,6 +25,7 @@
     if (shequModel.subject.length) {
         
         CGFloat titleHeight = [shequModel.subject getTextHeightWithFont:kFontDiscoverTitle withWidth:(kWidthForBackView - AutoSize6(40))];
+        titleHeight += AutoSize6(20);
         self.titleLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(25), kWidthForBackView - AutoSize6(40), titleHeight);
         backViewHeight = CGRectGetMaxY(self.titleLabelFrame);
     }
@@ -33,6 +34,9 @@
         CGFloat imageHeight = (shequModel.imgHeight) * (AutoSize6(585) / shequModel.imgWidth);
         self.contentImageViewFrame  = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(20), AutoSize6(585), imageHeight);
         backViewHeight = CGRectGetMaxY(self.contentImageViewFrame);
+    } else {
+        self.lineViewFrame = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(10), kWidthForBackView - AutoSize6(40), 1);
+        backViewHeight = CGRectGetMaxY(self.lineViewFrame);
     }
     
     if (backViewHeight == 0) {
@@ -47,7 +51,7 @@
     self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(10), kWidthForBackView, backViewHeight);
     self.height = CGRectGetMaxY(self.backViewFrame) + AutoSize6(30);
 
-    self.lineViewFrame = CGRectMake(AutoSize6(62.5), AutoSize6(65), 1, self.height - AutoSize6(65));
+//    self.lineViewFrame = CGRectMake(AutoSize6(62.5), AutoSize6(65), 1, self.height - AutoSize6(65));
 }
 
 @end

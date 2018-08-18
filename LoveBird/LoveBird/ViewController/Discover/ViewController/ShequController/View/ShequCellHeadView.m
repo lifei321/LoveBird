@@ -54,6 +54,7 @@
         self.gradeLabel.backgroundColor = kColorDefaultColor;
         self.gradeLabel.font = kFont6(18);
         self.gradeLabel.textAlignment = NSTextAlignmentCenter;
+        self.gradeLabel.layer.masksToBounds = YES;
         [self addSubview:self.gradeLabel];
         
         // 关注
@@ -97,10 +98,11 @@
     self.gradeLabel.text = [NSString stringWithFormat:@"Lv.%@", grade];
     
     CGFloat gradewidth = [self.gradeLabel.text getTextWightWithFont:self.gradeLabel.font];
-    self.gradeLabel.width = gradewidth + AutoSize6(15);
+    self.gradeLabel.width = gradewidth + AutoSize6(20);
 
     self.gradeLabel.left = self.nickNameLabel.right;
     self.followButton.selected = shequModel.is_follow;
+    self.gradeLabel.layer.cornerRadius = 3;
 
 }
 
