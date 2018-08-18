@@ -30,23 +30,23 @@
     if (self) {
         self.clipsToBounds = YES;
         // 头像
-        self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize(10), AutoSize(12), AutoSize(36), AutoSize(36))];
+        self.headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize(10), AutoSize(12), AutoSize6(72), AutoSize6(72))];
         self.headIcon.contentMode = UIViewContentModeScaleToFill;
         self.headIcon.clipsToBounds = YES;
-        self.headIcon.layer.cornerRadius = AutoSize(18);
+        self.headIcon.layer.cornerRadius = AutoSize6(36);
         [self addSubview:self.headIcon];
         
         // 昵称
-        self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top, SCREEN_WIDTH / 2, AutoSize(20))];
+        self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top + AutoSize6(5), SCREEN_WIDTH / 2, self.headIcon.height / 2)];
         self.nickNameLabel.textColor = [UIColor blackColor];
-        self.nickNameLabel.font = kFont(13);
+        self.nickNameLabel.font = kFont6(28);
         self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.nickNameLabel];
         
         // 时间
-        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.nickNameLabel.left, self.nickNameLabel.bottom, self.nickNameLabel.width, AutoSize(15))];
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.nickNameLabel.left, self.nickNameLabel.bottom, self.nickNameLabel.width, self.headIcon.height / 2)];
         self.timeLabel.textColor = UIColorFromRGB(0xa2a2a2);
-        self.timeLabel.font = kFont(9);
+        self.timeLabel.font = kFont6(18);
         self.timeLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.timeLabel];
         
@@ -54,7 +54,7 @@
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), 0, AutoSize(40), AutoSize(60))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
-        self.followButton.titleLabel.font = kFont(13);
+        self.followButton.titleLabel.font = kFont6(28);
         [self.followButton setTitleColor:UIColorFromRGB(0x7faf41) forState:UIControlStateNormal];
         [self.followButton setTitleColor:UIColorFromRGB(0xa2a2a2) forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,6 +84,7 @@
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:contentModel.head] placeholderImage:nil];
     self.followButton.selected = contentModel.isFollow;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
+    self.followButton.centerY = self.centerY - AutoSize6(10);
 }
 
 

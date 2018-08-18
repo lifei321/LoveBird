@@ -20,7 +20,7 @@
     height = CGRectGetMaxY(_topViewFrame);
     
     // 昵称栏
-    _titleViewFrame = CGRectMake(0, height, SCREEN_WIDTH, AutoSize(60));
+    _titleViewFrame = CGRectMake(0, height, SCREEN_WIDTH, AutoSize6(120));
     height = CGRectGetMaxY(_titleViewFrame);
 
     // 图片  不一定存在
