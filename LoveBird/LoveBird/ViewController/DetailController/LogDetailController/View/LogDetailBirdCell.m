@@ -38,7 +38,7 @@
         self.birdLabel.font = kFont6(28);
         [self.contentView addSubview:self.birdLabel];
         
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(93), SCREEN_WIDTH - AutoSize6(30), 0.5)];
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(93), SCREEN_WIDTH - AutoSize6(60), 0.5)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:self.lineView];
     }

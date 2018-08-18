@@ -520,29 +520,29 @@
     
     [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(0, 0, width, toolView.height)
                                              target:self
-                                              image:@"operat_icon_forward"
-                                        selectImage:@"operat_icon_forward"
+                                              image:@"operat_big_icon_forward"
+                                        selectImage:@"operat_big_icon_forward"
                                               title:@"转发"
                                              action:@selector(zhuanfaButtonDidClick:)]];
     
     [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width, 0, width, toolView.height)
                                              target:self
-                                              image:@"operat_icon_collect"
-                                        selectImage:@"operat_icon_collected"
+                                              image:@"operat_big_icon_collect"
+                                        selectImage:@"operat_big_icon_collected"
                                               title:@"收藏"
                                              action:@selector(collectButtonDidClick:)]];
     
     [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 2, 0, width, toolView.height)
                                              target:self
-                                              image:@"operat_icon_comment"
-                                        selectImage:@"operat_icon_comment"
+                                              image:@"operat_big_icon_comment"
+                                        selectImage:@"operat_big_icon_comment"
                                               title:@"评论"
                                              action:@selector(talkButtonDidClick:)]];
     
     [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 3, 0, width, toolView.height)
                                              target:self
-                                              image:@"operat_icon_like"
-                                        selectImage:@"operat_icon_liked"
+                                              image:@"operat_big_icon_like"
+                                        selectImage:@"operat_big_icon_liked"
                                               title:@"赞"
                                              action:@selector(upButtonDidClick:)]];
     
@@ -650,16 +650,24 @@
 
 
 - (UIView *)makeTalkView {
-    UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, AutoSize6(80))];
+    UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, AutoSize6(102))];
     talkView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:talkView];
     [self.view bringSubviewToFront:talkView];
     
-    UITextField *textFieled = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(5), SCREEN_WIDTH - AutoSize6(10) - AutoSize6(150), talkView.height - AutoSize6(10))];
-    textFieled.backgroundColor = kLineColoreDefaultd4d7dd;
+    UITextField *textFieled = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(15), SCREEN_WIDTH - AutoSize6(16) - AutoSize6(150), talkView.height - AutoSize6(32))];
+    textFieled.backgroundColor = kColoreDefaultBackgroundColor;
     textFieled.placeholder = @"写一条高能评论";
     textFieled.textColor = kColorTextColor333333;
+    textFieled.layer.cornerRadius = 5;
     [talkView addSubview:textFieled];
+    textFieled.tintColor = UIColorFromRGB(0x999999);
+    
+    CGRect frame = textFieled.frame;
+    frame.size.width = AutoSize6(20);// 距离左侧的距离
+    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+    textFieled.leftViewMode = UITextFieldViewModeAlways;
+    textFieled.leftView = leftview;
     self.talkTextField = textFieled;
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(textFieled.right + AutoSize6(10), textFieled.top, AutoSize6(150) - AutoSize6(20), textFieled.height)];

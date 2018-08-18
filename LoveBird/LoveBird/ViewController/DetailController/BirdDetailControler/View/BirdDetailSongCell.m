@@ -47,7 +47,7 @@
         [self addSubview:self.timeTotalLabel];
 
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_iconImageView.left, AutoSize6(106) - 0.5, SCREEN_WIDTH - _iconImageView.left, 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_iconImageView.left, AutoSize6(106) - 0.5, SCREEN_WIDTH - _iconImageView.left - AutoSize6(30), 0.5)];
         lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:lineView];
         
