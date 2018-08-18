@@ -17,5 +17,8 @@
 
 @property (nonatomic, copy) NSString *sortId;
 
+// 选中的组织
+@property (nonatomic,strong) ShequZuzhiModel *zuzhiModel;
+
 
 @end

@@ -15,6 +15,10 @@
 
 @property (nonatomic, assign) BOOL isShow;
 
+
+@property (nonatomic, assign) NSInteger cellType;
+
+
 @property (nonatomic, strong) AppTagsViewBlock tagBlock;
 
 

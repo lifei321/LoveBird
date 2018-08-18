@@ -180,8 +180,15 @@
         ShequZuzhiController *zuzhivc = [[ShequZuzhiController alloc] init];
         zuzhivc.dataModel = dataModel;
         zuzhivc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            
+            self.groupId = @"";
+            self.sortId = @"";
+            
             self.groupId = ((ShequZuzhiController *)viewController).groupId;
             self.sortId = ((ShequZuzhiController *)viewController).sortId;
+            
+            self.title = ((ShequZuzhiController *)viewController).zuzhiModel.name;
+            
             [self.tableView.mj_header beginRefreshing];
         };
         [self.navigationController pushViewController:zuzhivc animated:YES];

@@ -36,7 +36,7 @@
 
 - (void)setIsShow:(BOOL)isShow {
     if (isShow) {
-        self.tagsView.selectIndex = 0;
+        self.tagsView.selectIndex = -1;
     } else {
         self.tagsView.selectIndex = -1;
     }

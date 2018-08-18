@@ -41,21 +41,27 @@
     
     if (indexPath.section == 1) {
         cell.isShow = NO;
+        
+        cell.cellType = 1;
 
         cell.dataArray = [self.dataModel.group copy];
         
     } else {
         cell.isShow = YES;
+        cell.cellType = 2;
+        
         cell.dataArray = [self.dataModel.sort copy];
     }
     
     @weakify(cell);
     cell.tagBlock = ^(NSInteger selectIndex) {
         @strongify(cell);
-        if (cell.isShow) {
+        if (cell.cellType == 2) {
             self.sortId = ((ShequZuzhiModel *)self.dataModel.sort[selectIndex]).birdId;
+            self.zuzhiModel =  ((ShequZuzhiModel *)self.dataModel.sort[selectIndex]);
         } else {
             self.groupId = ((ShequZuzhiModel *)self.dataModel.group[selectIndex]).birdId;
+            self.zuzhiModel =  ((ShequZuzhiModel *)self.dataModel.group[selectIndex]);
         }
         [self rightButtonAction];
     };
