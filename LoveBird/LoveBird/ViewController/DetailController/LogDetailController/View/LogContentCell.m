@@ -31,7 +31,7 @@
         self.contentView.backgroundColor = [UIColor whiteColor];
         
         
-        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(10), SCREEN_WIDTH - AutoSize6(60), AutoSize6(0))];
         self.birdLabel.textAlignment = NSTextAlignmentLeft;
         self.birdLabel.textColor = kColorTextColor333333;
         self.birdLabel.font = kFont6(26);
@@ -39,12 +39,12 @@
         [self.contentView addSubview:self.birdLabel];
         
         
-        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), SCREEN_WIDTH - AutoSize6(60), AutoSize6(0))];
         self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         self.iconImageView.backgroundColor = [UIColor orangeColor];
         [self.contentView addSubview:_iconImageView];
         
-        self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(94))];
+        self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), SCREEN_WIDTH - AutoSize6(60), AutoSize6(0))];
         self.tagLabel.textAlignment = NSTextAlignmentCenter;
         self.tagLabel.textColor = kColorTextColor333333;
         self.tagLabel.font = kFont6(22);
@@ -58,108 +58,52 @@
     return self;
 }
 
-- (void)setBodyModel:(LogPostBodyModel *)bodyModel {
-    _bodyModel = bodyModel;
-    
-    self.birdLabel.text = bodyModel.message;
-    CGFloat height = [bodyModel.message getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60))];
-    self.birdLabel.height = height;
-    
-    if (bodyModel.isImg) {
-        
-        if (bodyModel.message.length) {
-            _iconImageView.top = self.birdLabel.bottom + AutoSize6(15);
-        } else {
-            _iconImageView.top = self.birdLabel.bottom;
-        }
-        
-        CGFloat imageHeight = (bodyModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / bodyModel.imgWidth);
-        _iconImageView.height = imageHeight;
-
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-        
-        if (bodyModel.imgTag.length) {
-            self.tagLabel.text = bodyModel.imgTag;
-            CGFloat width = [bodyModel.imgTag getTextWightWithFont:self.tagLabel.font];
-            self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(40) , _iconImageView.bottom + AutoSize6(20), width + AutoSize6(40), AutoSize6(40));
-        } else {
-            self.tagLabel.height = 0;
-        }
-        
-    } else {
-        
-        if (height < AutoSize6(80)) {
-            height = AutoSize6(80);
-        }
-        self.birdLabel.height = height;
-
-        _iconImageView.height = 0;
-        self.tagLabel.height = 0;
-    }
-}
-
-+ (CGFloat)getHeightWithModel:(LogPostBodyModel *)model {
-    CGFloat height = 0;
-    
-    if (!model.message.length && !model.imgUrl.length) {
-        return 0;
-    }
-    
-    height = [model.message getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
-    
-    if (model.message.length) {
-        if (model.isImg) {
-            height += AutoSize6(15);
-        } else {
-            height += AutoSize6(0);
-            if (height < AutoSize6(80)) {
-                height = AutoSize6(80);
-            }
-        }
-    }
-    
-    if (model.isImg) {
-        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
-        
-        if (model.imgTag.length) {
-            height += AutoSize6(60);
-        }
-    }
-    return height;
-}
-
-
 
 
 
 - (void)setContentModel:(LogPostBodyModel *)contentModel {
     _contentModel = contentModel;
     
-    self.birdLabel.text = contentModel.content;
-    CGFloat height = [contentModel.content getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60))];
-    self.birdLabel.height = height;
+    if (contentModel.content.length) {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentModel.content];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:AutoSize6(7)];
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, contentModel.content.length)];
+        self.birdLabel.attributedText = attributedString;
+        
+        CGFloat height = [contentModel.content getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60)) att:paragraphStyle];
+        self.birdLabel.height = height;
+    } else {
+        self.birdLabel.height = 0;
+    }
     
-    if (contentModel.isImg) {
-        CGFloat imageHeight = (contentModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / contentModel.imgWidth);
-        _iconImageView.height = imageHeight;
-        
-        if (contentModel.content.length) {
-            _iconImageView.top = self.birdLabel.bottom + AutoSize6(30);
+    if (contentModel.imgUrl.length) {
+        if (contentModel.imgWidth > 0) {
+            CGFloat imageHeight = (contentModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / contentModel.imgWidth);
+            _iconImageView.height = imageHeight;
+            
+            CGFloat birdHeight = contentModel.content.length ? AutoSize6(10) : 0;
+            
+            _iconImageView.top = self.birdLabel.bottom + birdHeight;
+            [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+            
+            self.tagLabel.frame = CGRectZero;
+            if (contentModel.imgTag.length) {
+                self.tagLabel.text = contentModel.imgTag;
+                CGFloat width = [contentModel.imgTag getTextWightWithFont:self.tagLabel.font];
+                self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(20) , _iconImageView.bottom + AutoSize6(10), width + AutoSize6(20), AutoSize6(40));
+            } else {
+                self.tagLabel.frame = CGRectZero;
+            }
         } else {
-            _iconImageView.top = self.birdLabel.bottom;
+            _iconImageView.height = 0;
+            self.tagLabel.height = 0;
         }
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-        
-        self.tagLabel.frame = CGRectZero;
-//        if (contentModel.imgTag.length) {
-//            self.tagLabel.text = contentModel.imgTag;
-//            CGFloat width = [contentModel.imgTag getTextWightWithFont:self.tagLabel.font];
-//            self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(40) , _iconImageView.bottom + AutoSize6(20), width + AutoSize6(40), AutoSize6(40));
-//        }
         
     } else {
         _iconImageView.height = 0;
         self.tagLabel.height = 0;
+        self.birdLabel.top = AutoSize6(20);
     }
 }
 
@@ -168,25 +112,122 @@
 + (CGFloat)getHeightWithContentModel:(LogPostBodyModel *)model {
     CGFloat height = 0;
     
-    height = [model.content getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
-    
-    if (model.content.length) {
-        if (model.isImg) {
-            height += AutoSize6(20);
-        } else {
-            height += AutoSize6(40);
-        }
+    if (!model.content.length && !model.imgUrl.length) {
+        return height;
     }
     
-    if (model.isImg) {
-        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
-        height += AutoSize6(30);
+    height += AutoSize6(10);
+    if (model.content.length) {
         
-//        if (model.imgTag.length) {
-//            height += AutoSize6(60);
-//        }
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:AutoSize6(7)];
+        
+        CGFloat contentheight = [model.content getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60)) att:paragraphStyle];
+        height += contentheight;
+    }
+    
+    if (model.imgUrl.length) {
+        height += AutoSize6(10);
+        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
+        
+        if (model.imgTag.length) {
+            height += AutoSize6(50);
+            
+            // 留白
+            height += AutoSize6(10);
+
+        } else {
+            
+            // 留白
+            height += AutoSize6(10);
+        }
+    } else {
+        
+        // 文字 上下留20 剧中
+        height += AutoSize6(30);
     }
     return height;
 }
+
+
+
+//- (void)setBodyModel:(LogPostBodyModel *)bodyModel {
+//    _bodyModel = bodyModel;
+//    
+//    //    self.birdLabel.text = bodyModel.message;
+//    
+//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:bodyModel.message];
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    [paragraphStyle setLineSpacing:AutoSize6(7)];
+//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, bodyModel.message.length)];
+//    self.birdLabel.attributedText = attributedString;
+//    [self.birdLabel sizeToFit];
+//    
+//    CGFloat height = [bodyModel.message getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60)) att:paragraphStyle];
+//    self.birdLabel.height = height;
+//    
+//    if (bodyModel.isImg) {
+//        
+//        if (bodyModel.message.length) {
+//            _iconImageView.top = self.birdLabel.bottom + AutoSize6(5);
+//        } else {
+//            _iconImageView.top = self.birdLabel.bottom;
+//        }
+//        
+//        CGFloat imageHeight = (bodyModel.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / bodyModel.imgWidth);
+//        _iconImageView.height = imageHeight;
+//        
+//        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:bodyModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+//        
+//        if (bodyModel.imgTag.length) {
+//            self.tagLabel.text = bodyModel.imgTag;
+//            CGFloat width = [bodyModel.imgTag getTextWightWithFont:self.tagLabel.font];
+//            self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(40) , _iconImageView.bottom + AutoSize6(20), width + AutoSize6(40), AutoSize6(40));
+//        } else {
+//            self.tagLabel.height = 0;
+//        }
+//        
+//    } else {
+//        
+//        if (height < AutoSize6(80)) {
+//            height = AutoSize6(80);
+//        }
+//        self.birdLabel.height = height;
+//        
+//        _iconImageView.height = 0;
+//        self.tagLabel.height = 0;
+//    }
+//}
+//
+//+ (CGFloat)getHeightWithModel:(LogPostBodyModel *)model {
+//    CGFloat height = 0;
+//    
+//    if (!model.message.length && !model.imgUrl.length) {
+//        return 0;
+//    }
+//    
+//    height = [model.message getTextHeightWithFont:kFont6(26) withWidth:(SCREEN_WIDTH - AutoSize6(60))];
+//    
+//    if (model.message.length) {
+//        if (model.isImg) {
+//            height += AutoSize6(5);
+//        } else {
+//            height += AutoSize6(0);
+//            if (height < AutoSize6(80)) {
+//                height = AutoSize6(80);
+//            }
+//        }
+//    }
+//    
+//    if (model.isImg) {
+//        height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
+//        
+//        if (model.imgTag.length) {
+//            height += AutoSize6(60);
+//        }
+//    }
+//    return height;
+//}
+
 
 @end

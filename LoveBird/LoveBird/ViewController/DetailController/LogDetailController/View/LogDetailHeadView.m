@@ -38,7 +38,7 @@
         
         // 文章标题
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(60), 0)];
-        self.titleLabel.font = kFontDiscoverTitle;
+        self.titleLabel.font = kFontPF6(30);
         self.titleLabel.textColor = UIColorFromRGB(0x333333);
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
         self.titleLabel.numberOfLines = 0;

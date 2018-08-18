@@ -20,6 +20,8 @@
  */
 - (CGFloat)getTextHeightWithFont:(UIFont *)font withWidth:(CGFloat)width;
 
+- (CGFloat)getTextHeightWithFont:(UIFont *)font withWidth:(CGFloat)width att:(NSMutableParagraphStyle *)att;
+
 
 //根据最大宽度 返回尺寸
 - (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW;

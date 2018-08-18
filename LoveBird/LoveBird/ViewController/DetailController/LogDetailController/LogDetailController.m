@@ -153,11 +153,10 @@
             LogContentCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentCell class]) forIndexPath:indexPath];
             if (self.tid.length) {
                 if (self.detailModel.postBody.count > row) {
-                    birdcell.bodyModel = self.detailModel.postBody[row];
-                }
-            } else if (self.aid.length) {
-                if (self.contentModel.articleList.count > row) {
-                    birdcell.contentModel = self.contentModel.articleList[row];
+                    
+                    LogPostBodyModel *contentModel = self.detailModel.postBody[row];
+                    contentModel.content = contentModel.message;
+                    birdcell.contentModel = contentModel;
                 }
             }
             cell = birdcell;
@@ -184,6 +183,8 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     
+    // 文章详情没有四条要素  但是多了 作者 和 来源
+    
     if (section == 0) {
         if (row == 0) {
             return self.detailModel.birdInfo.count ? AutoSize6(94) : 0.0f;
@@ -205,15 +206,14 @@
     }
 
     if (section == 1) {
+        
         if (self.tid.length) {
             if (self.detailModel.postBody.count > row) {
-                
-                if ((self.detailModel.postBody.count - 1) == row) {
-                    return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]] + AutoSize6(10);
-                }
-                return [LogContentCell getHeightWithModel:self.detailModel.postBody[row]];
+                return [LogContentCell getHeightWithContentModel:self.detailModel.postBody[row]];
             }
+            
         } else if (self.aid.length) {
+            
             if (row == 0) {
                 if (self.contentModel.author.length) {
                     return AutoSize6(80);
@@ -221,6 +221,7 @@
                     return 0;
                 }
             }
+
             if (row == (self.contentModel.articleList.count + 1)) {
                 return AutoSize6(80);
             }
@@ -228,7 +229,6 @@
                 return [LogContentCell getHeightWithContentModel:self.contentModel.articleList[row -1]];
             }
         }
-
     }
     
     if (section == 2) {
@@ -248,10 +248,32 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    if (section == 1) {
+    if (section == 0) {
         if (self.detailModel.birdInfo.count ) {
             return AutoSize6(20);
         }
+        return 0.01f;
+    }
+    
+    if (section == 1) {
+        
+        if (self.tid.length) {
+            if (self.detailModel.postBody.count ) {
+                return AutoSize6(20);
+            }
+        }
+        
+        if (self.aid.length) {
+            if (self.contentModel.articleList.count) {
+                return AutoSize6(20);
+            }
+        }
+        
+        return 0.01f;
+    }
+    
+    if (section == 2) {
+        return AutoSize6(20);
     }
     
     if (section == 3) {
@@ -259,7 +281,11 @@
             return AutoSize6(60);
         }
     }
-    return AutoSize6(20);
+    return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

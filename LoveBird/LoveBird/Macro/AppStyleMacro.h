@@ -9,9 +9,9 @@
 #import "AppBaseMacro.h"
 
 //自定义字体
-#define kFont(F) [UIFont fontWithName:@"Helvetica-Light" size:AutoSize(F)]
+#define kFont(F) [UIFont fontWithName:@"PingFangSC-Regular" size:AutoSize(F)]
 
-#define kFont6(F) [UIFont fontWithName:@"Helvetica-Light" size:AutoSize6(F)]
+#define kFont6(F) [UIFont fontWithName:@"PingFangSC-Regular" size:AutoSize6(F)]
 
 // 苹方体
 #define kFontPF6(F) [UIFont fontWithName:@"PingFangSC-Regular" size:AutoSize6(F)]

@@ -55,6 +55,8 @@
     
     self.discoverController = [[DiscoverViewController alloc] init];
     self.discoverController.type = 1;
+    
+    [self.searchField becomeFirstResponder];
 }
 
 - (void)netForData {

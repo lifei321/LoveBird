@@ -33,6 +33,17 @@
     return rect.size.height;
 }
 
+
+- (CGFloat)getTextHeightWithFont:(UIFont *)font withWidth:(CGFloat)width att:(NSMutableParagraphStyle *)att {
+    
+
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{NSFontAttributeName:font,
+                                                                                      NSParagraphStyleAttributeName:att.copy}];
+    
+    CGRect rect = [self boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    return rect.size.height;
+}
+
 /**
  *  判断文件是否已经在沙盒中已经存在？
  *
