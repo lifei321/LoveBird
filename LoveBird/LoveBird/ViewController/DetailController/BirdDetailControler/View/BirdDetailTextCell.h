@@ -28,5 +28,6 @@
 
 @property (nonatomic, strong) UIButton *playButton;
 
+@property (nonatomic, strong) UIImageView *iconImageView;
 
 @end

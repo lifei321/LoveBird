@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UILabel *tagLabel;
 
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -45,6 +46,14 @@
         self.tagLabel.font = kFont6(30);
         [self.contentView addSubview:self.tagLabel];
         
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(self.titleLabel.left, AutoSize6(91), SCREEN_WIDTH - AutoSize6(30) - self.titleLabel.left, 1)];
+        self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self.contentView addSubview:self.lineView];
+        
+        self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(70), AutoSize6(92))];
+        self.iconImageView.contentMode = UIViewContentModeRight;
+        [self.contentView addSubview:self.iconImageView];
+        self.iconImageView.hidden = YES;
         
     }
     return self;
@@ -66,17 +75,19 @@
     _title = [title copy];
     self.titleLabel.text = title;
     self.playButton.hidden = YES;
+    self.iconImageView.hidden = YES;
 }
 
 - (void)setDetail:(NSString *)detail {
-    self.playButton.hidden = NO;
-    [self.playButton setImage:[UIImage imageNamed:@"detail_right"] forState:UIControlStateNormal];
-    [self.playButton removeTarget:self action:@selector(playbuttondidclick) forControlEvents:UIControlEventTouchUpInside];
+    self.playButton.hidden = YES;
+    self.iconImageView.hidden = NO;
+    self.iconImageView.image = [UIImage imageNamed:@"detail_right"];
     self.tagLabel.text = detail;
 }
 
 - (void)setHasImage:(BOOL)hasImage {
     self.playButton.hidden = NO;
+    self.iconImageView.hidden = YES;
     [self.playButton setImage:[UIImage imageNamed:@"detail_song"] forState:UIControlStateNormal];
     [self.playButton setImage:[UIImage imageNamed:@"detail_song_no"] forState:UIControlStateSelected];
 

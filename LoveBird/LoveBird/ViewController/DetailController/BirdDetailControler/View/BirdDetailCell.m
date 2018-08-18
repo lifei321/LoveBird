@@ -43,7 +43,7 @@
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(52), lineView.bottom + AutoSize6(20), SCREEN_WIDTH - AutoSize6(100), AutoSize6(92))];
         self.contentLabel.textAlignment = NSTextAlignmentLeft;
         self.contentLabel.textColor = [UIColor blackColor];
-        self.contentLabel.font = kFont6(30);
+        self.contentLabel.font = kFont6(26);
         self.contentLabel.numberOfLines = 0;
         [self.contentView addSubview:self.contentLabel];
         

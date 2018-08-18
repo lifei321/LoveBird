@@ -64,7 +64,7 @@
 - (void)setContentModel:(LogPostBodyModel *)contentModel {
     _contentModel = contentModel;
     
-    if (contentModel.content.length) {
+    if (![contentModel.content isBlankString]) {
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentModel.content];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setLineSpacing:AutoSize6(7)];
@@ -117,7 +117,7 @@
     }
     
     height += AutoSize6(10);
-    if (model.content.length) {
+    if (![model.content isBlankString]) {
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setLineSpacing:AutoSize6(7)];

@@ -155,7 +155,7 @@
                 if (self.detailModel.postBody.count > row) {
                     
                     LogPostBodyModel *contentModel = self.detailModel.postBody[row];
-                    contentModel.content = contentModel.message;
+                    contentModel.content = [contentModel.message copy];
                     birdcell.contentModel = contentModel;
                 }
             }

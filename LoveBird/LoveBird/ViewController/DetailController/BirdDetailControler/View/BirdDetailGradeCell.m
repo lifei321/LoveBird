@@ -47,7 +47,7 @@
         self.worldLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + AutoSize6(20), worldLabel.top, SCREEN_WIDTH / 2 - AutoSize6(50), AutoSize6(40))];
         self.worldLabel.textAlignment = NSTextAlignmentLeft;
         self.worldLabel.textColor = [UIColor blackColor];
-        self.worldLabel.font = kFont6(30);
+        self.worldLabel.font = kFont6(26);
         [self.contentView addSubview:self.worldLabel];
         
         
@@ -61,7 +61,7 @@
         self.wallxLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + AutoSize6(20), wallxLabel.top, SCREEN_WIDTH / 2 - AutoSize6(50), AutoSize6(40))];
         self.wallxLabel.textAlignment = NSTextAlignmentLeft;
         self.wallxLabel.textColor = [UIColor blackColor];
-        self.wallxLabel.font = kFont6(30);
+        self.wallxLabel.font = kFont6(26);
         [self.contentView addSubview:self.wallxLabel];
         
         
@@ -75,7 +75,7 @@
         self.chinaLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + AutoSize6(20), chinaLabel.top, SCREEN_WIDTH / 2 - AutoSize6(50), AutoSize6(40))];
         self.chinaLabel.textAlignment = NSTextAlignmentLeft;
         self.chinaLabel.textColor = [UIColor blackColor];
-        self.chinaLabel.font = kFont6(30);
+        self.chinaLabel.font = kFont6(26);
         [self.contentView addSubview:self.chinaLabel];
         
     }

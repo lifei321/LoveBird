@@ -34,7 +34,7 @@
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _picImageView.bottom + AutoSize(3), self.width, AutoSize(20))];
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.textColor = kColorTextColor333333;
-        _textLabel.font = kFont(14);
+        _textLabel.font = kFont6(26);
         [self addSubview:_textLabel];
         
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _textLabel.bottom + AutoSize(2), self.width, AutoSize(10))];

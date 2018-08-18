@@ -33,7 +33,7 @@
         self.birdClassLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(60), classBird.bottom + AutoSize6(10), SCREEN_WIDTH - AutoSize6(90), AutoSize6(40))];
         self.birdClassLabel.textAlignment = NSTextAlignmentLeft;
         self.birdClassLabel.textColor = [UIColor blackColor];
-        self.birdClassLabel.font = kFont6(30);
+        self.birdClassLabel.font = kFont6(26);
         [self.contentView addSubview:self.birdClassLabel];
         
     }
