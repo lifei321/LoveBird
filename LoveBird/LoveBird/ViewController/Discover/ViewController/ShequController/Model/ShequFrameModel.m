@@ -16,6 +16,7 @@
 - (void)setShequModel:(ShequModel *)shequModel {
     _shequModel = shequModel;
     
+
     CGFloat height = 0;
     self.headViewFrame = CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(65));
     height = CGRectGetMaxY(self.headViewFrame);
@@ -51,7 +52,8 @@
     self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(10), kWidthForBackView, backViewHeight);
     self.height = CGRectGetMaxY(self.backViewFrame) + AutoSize6(30);
 
-//    self.lineViewFrame = CGRectMake(AutoSize6(62.5), AutoSize6(65), 1, self.height - AutoSize6(65));
+    self.leftlineViewFrame = CGRectMake(AutoSize6(62.5), AutoSize6(65), 1, self.height - AutoSize6(65));
+
 }
 
 @end

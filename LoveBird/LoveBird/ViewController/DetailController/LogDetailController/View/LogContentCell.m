@@ -127,7 +127,10 @@
     }
     
     if (model.imgUrl.length) {
-        height += AutoSize6(10);
+        
+        CGFloat birdHeight = model.content.length ? AutoSize6(10) : 0;
+
+        height += birdHeight;
         height += (model.imgHeight) * ((SCREEN_WIDTH - AutoSize6(60)) / model.imgWidth);
         
         if (model.imgTag.length) {

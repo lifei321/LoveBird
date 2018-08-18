@@ -34,7 +34,7 @@
         [self addSubview:self.topview];
         
         self.lineview = [[UIView alloc] init];
-        self.lineview.backgroundColor = kLineColoreDefaultd4d7dd;
+        self.lineview.backgroundColor = UIColorFromRGB(0xdcdcdc);
         [self addSubview:self.lineview];
     }
     return self;

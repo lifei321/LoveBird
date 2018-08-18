@@ -31,4 +31,7 @@
 
 @property (nonatomic, assign) CGRect timeLabelFrame;
 
+@property (nonatomic, assign) CGRect leftlineViewFrame;
+
+
 @end

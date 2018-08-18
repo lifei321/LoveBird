@@ -27,6 +27,9 @@
 // 线
 @property (nonatomic, strong) UIView *lineView;
 
+@property (nonatomic, strong) UIView *lineLeftView;
+
+
 @property (nonatomic, strong) UILabel *timeLabel;
 
 @property (nonatomic, strong) ShequBottomView *bottomView;
@@ -64,6 +67,10 @@
         self.lineView.backgroundColor = kLineColoreLightGrayECECEC;
         [self.backView addSubview:self.lineView];
         
+        self.lineLeftView = [[UIView alloc] init];
+        self.lineLeftView.backgroundColor = UIColorFromRGB(0xdcdcdc);
+        [self.contentView addSubview:self.lineLeftView];
+        
         self.timeLabel = [[UILabel alloc] init];
         self.timeLabel.font = kFont6(20);
         self.timeLabel.textColor = kColorTextColorLightGraya2a2a2;
@@ -88,7 +95,7 @@
     self.lineView.frame = shequFrameModel.lineViewFrame;
     self.bottomView.frame = shequFrameModel.bottomViewFrame;
     self.timeLabel.frame = shequFrameModel.timeLabelFrame;
-    
+    self.lineLeftView.frame = shequFrameModel.leftlineViewFrame;
     self.backView.layer.cornerRadius = 5;
     
     self.titleLable.text = shequFrameModel.shequModel.subject;
