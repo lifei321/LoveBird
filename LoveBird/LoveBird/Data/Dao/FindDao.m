@@ -194,7 +194,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     
-    NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
+    NSData *data = UIImageJPEGRepresentation(image, (CGFloat)0.3);//.jpg
     NSDictionary *fileDic = @{@"file": data,
                               @"fileName":@"file_bird",
                               };
