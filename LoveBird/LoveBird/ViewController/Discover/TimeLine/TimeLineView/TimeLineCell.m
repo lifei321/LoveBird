@@ -61,7 +61,7 @@
         
         // 文章标题
         self.titleLabel = [[UILabel alloc] init];
-        self.titleLabel.font = kFontDiscoverTitle;
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:AutoSize6(30)];
         self.titleLabel.textColor = UIColorFromRGB(0x333333);
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
         self.titleLabel.numberOfLines = 0;

@@ -46,7 +46,7 @@
     height = height + AutoSize(10);
     
     // 底部空白
-    _bottomViewFrame = CGRectMake(_titleLabelFrame.origin.x, height, _titleLabelFrame.size.width, 1);
+    _bottomViewFrame = CGRectMake(_titleLabelFrame.origin.x, height, _titleLabelFrame.size.width, 0.5);
     height = CGRectGetMaxY(_bottomViewFrame);
     
     // 工具条

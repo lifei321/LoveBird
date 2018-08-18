@@ -50,7 +50,7 @@
         [self.contentView addSubview:self.backView];
         
         self.titleLable = [[UILabel alloc] init];
-        self.titleLable.font = kFontDiscoverTitle;
+        self.titleLable.font = kFontPF6(30);
         self.titleLable.textColor = UIColorFromRGB(0x333333);
         self.titleLable.textAlignment = NSTextAlignmentLeft;
         self.titleLable.numberOfLines = 0;

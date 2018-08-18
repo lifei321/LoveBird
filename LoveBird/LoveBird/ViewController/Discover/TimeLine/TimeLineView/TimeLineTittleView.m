@@ -51,13 +51,14 @@
         [self addSubview:self.timeLabel];
         
         // 关注
-        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), 0, AutoSize(40), AutoSize(60))];
+        self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(30) - AutoSize(40), 0, AutoSize(40), AutoSize(60))];
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         self.followButton.titleLabel.font = kFont6(28);
         [self.followButton setTitleColor:UIColorFromRGB(0x7faf41) forState:UIControlStateNormal];
         [self.followButton setTitleColor:UIColorFromRGB(0xa2a2a2) forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        self.followButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [self addSubview:self.followButton];
         self.followButton.tag = 500;
     }
@@ -84,7 +85,7 @@
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:contentModel.head] placeholderImage:nil];
     self.followButton.selected = contentModel.isFollow;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
-    self.followButton.centerY = self.centerY - AutoSize6(10);
+    self.followButton.centerY = self.centerY - AutoSize6(5);
 }
 
 

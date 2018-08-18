@@ -110,7 +110,7 @@
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
     button.titleLabel.font = kFont(10);
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0.0, -AutoSize(5), 0.0, 0.0)];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0.0, -AutoSize(15), 0.0, 0.0)];
     return button;
 }
 

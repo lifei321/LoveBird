@@ -44,7 +44,7 @@
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top, SCREEN_WIDTH / 2, self.headIcon.height)];
         self.nickNameLabel.textColor = [UIColor blackColor];
         self.nickNameLabel.centerY -= AutoSize6(3);
-        self.nickNameLabel.font = kFont(13);
+        self.nickNameLabel.font = kFontPF6(28);
         self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.nickNameLabel];
         
@@ -62,7 +62,7 @@
         self.followButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
-        self.followButton.titleLabel.font = kFont(13);
+        self.followButton.titleLabel.font = kFontPF6(28);
         [self.followButton setTitleColor:UIColorFromRGB(0x7faf41) forState:UIControlStateNormal];
         [self.followButton setTitleColor:UIColorFromRGB(0xa2a2a2) forState:UIControlStateSelected];
         [self.followButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
