@@ -92,7 +92,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 3;
+        return 4;
     }
     if (section == 1) {
         if (self.tid.length) {
@@ -125,6 +125,8 @@
             birdcell.location = self.detailModel.locale;
         } else if (row == 2) {
             birdcell.time = [[AppDateManager shareManager] getDateWithTime:self.detailModel.publishTime formatSytle:DateFormatYMD];
+        } else if (row == 3) {
+            birdcell.evHuanjing = self.detailModel.environment;
         }
         cell = birdcell;
     } else if (section == 1) {
@@ -188,11 +190,17 @@
         }
         
         if (row == 1) {
-            return self.detailModel.locale.length ? AutoSize6(94) : 0.0f;
+//            return self.detailModel.locale.length ? AutoSize6(94) : 0.0f;
+            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0.0f;
         }
         
         if (row == 2) {
-            return self.detailModel.publishTime.length ? AutoSize6(94) : 0.0f;
+//            return self.detailModel.publishTime.length ? AutoSize6(94) : 0.0f;
+            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0.0f;
+        }
+        
+        if (row == 3) {
+            return self.detailModel.birdInfo.count ? AutoSize6(94) : 0.0f;
         }
     }
 

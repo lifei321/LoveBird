@@ -72,11 +72,18 @@
 
     self.birdLabel.text = time;
     self.lineView.hidden = NO;
-    self.lineView.frame = CGRectMake(AutoSize6(0), AutoSize6(93), SCREEN_WIDTH, 0.5);
 }
 
 
+- (void)setEvHuanjing:(NSString *)evHuanjing {
+    _evHuanjing = evHuanjing;
+    _iconImageView.image = [UIImage imageNamed:@"date_record"];
 
+    self.birdLabel.text = evHuanjing;
+    self.lineView.hidden = NO;
+    self.lineView.frame = CGRectMake(AutoSize6(0), AutoSize6(93), SCREEN_WIDTH, 0.5);
+
+}
 
 
 @end

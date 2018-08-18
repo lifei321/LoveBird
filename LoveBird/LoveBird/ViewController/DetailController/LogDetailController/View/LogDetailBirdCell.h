@@ -17,5 +17,8 @@
 
 @property (nonatomic, copy) NSString *time;
 
+// 环境
+@property (nonatomic, copy) NSString *evHuanjing;
+
 
 @end
