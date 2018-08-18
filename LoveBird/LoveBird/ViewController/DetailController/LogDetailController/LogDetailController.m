@@ -412,7 +412,7 @@
 
 - (void)rightButtonAction {
     
-    UIActionSheet *actionsheet03 = [[UIActionSheet alloc] initWithTitle:@"操作" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"编辑", @"删除", @"投稿", @"分享", nil];
+    UIActionSheet *actionsheet03 = [[UIActionSheet alloc] initWithTitle:@"操作" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"编辑", @"删除", @"投稿", @"分享",@"举报", nil];
     [actionsheet03 showInView:self.view];
 }
 

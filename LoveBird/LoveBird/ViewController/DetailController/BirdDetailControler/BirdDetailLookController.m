@@ -40,7 +40,9 @@
     [self netForLog];
 }
 
-
+- (void)netForLogHeader {
+    
+}
 
 - (void)netForLog {
     

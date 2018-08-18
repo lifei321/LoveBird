@@ -128,6 +128,7 @@
     self.moreButton.frame = frameModel.moreButtonFrame;
     self.timeLabel.frame = frameModel.timeLabelFrame;
     self.dayLable.frame = frameModel.dayLabelFrame;
+    self.monthLable.frame = frameModel.monthLabelFrame;
     self.countLabel.frame = frameModel.countLabelFrame;
     
 //    self.countLabel.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
