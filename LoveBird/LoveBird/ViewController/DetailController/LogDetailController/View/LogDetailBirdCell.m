@@ -77,7 +77,7 @@
 
 - (void)setEvHuanjing:(NSString *)evHuanjing {
     _evHuanjing = evHuanjing;
-    _iconImageView.image = [UIImage imageNamed:@"date_record"];
+    _iconImageView.image = [UIImage imageNamed:@"ecology_record"];
 
     self.birdLabel.text = evHuanjing;
     self.lineView.hidden = NO;

@@ -55,7 +55,10 @@
 
 - (void)setImgUrl:(NSString *)imgUrl {
     _imgUrl = [imgUrl copy];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    NSString *stringUrl = [imgUrl stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSURL *url = [NSURL URLWithString:stringUrl];
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolder"]];
 }
 
 

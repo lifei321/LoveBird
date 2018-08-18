@@ -33,6 +33,10 @@
             subViewController = [[navControllerClass alloc] initWithRootViewController:subViewController];
         
         subViewController.tabBarItem = [self getTabBarItemWithAttribute:att];
+        
+//        [subViewController.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, kFont6(30),NSFontAttributeName,nil] forState:UIControlStateSelected];
+        
+
         [navArr addObject:subViewController];
     }
     

@@ -63,7 +63,7 @@
 // 定位的位置
 @property (nonatomic,strong) CLLocation *location;
 
-
+@property (nonatomic, assign) BOOL isNetWotking;
 
 @end
 
@@ -72,6 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isNetWotking = NO;
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
     
@@ -146,16 +147,17 @@
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(210), AutoSize6(70))];
     backView.backgroundColor = [UIColor whiteColor];
+    backView.alpha = 0.7;
     [self.view addSubview:backView];
     [self.view bringSubviewToFront:backView];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(0), AutoSize6(0), AutoSize6(60), backView.height)];
-    [backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"adress_renturn"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"adress_renturn"] forState:UIControlStateHighlighted];
     [backButton addTarget:self action:@selector(backButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:backButton];
     
-    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(backButton.right + AutoSize6(20), AutoSize6(0), AutoSize6(32), backView.height)];
+    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(backButton.right + AutoSize6(10), AutoSize6(0), AutoSize6(32), backView.height)];
     locationImageView.backgroundColor = [UIColor whiteColor];
     locationImageView.contentMode = UIViewContentModeCenter;
     locationImageView.image = [UIImage imageNamed:@"adress_blue"];
@@ -163,7 +165,7 @@
     locationImageView.userInteractionEnabled = YES;
     [locationImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationDidClick)]];
     
-    UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationImageView.right, 0, backView.width - locationImageView.right, backView.height)];
+    UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationImageView.right, 0, backView.width - locationImageView.right - AutoSize6(5), backView.height)];
     locationLabel.backgroundColor = [UIColor whiteColor];
     locationLabel.textColor = kColorTextColor333333;
     locationLabel.textAlignment = NSTextAlignmentLeft;
@@ -174,21 +176,32 @@
     [_locationLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationDidClick)]];
 
     
-    UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), backView.top, backView.height, backView.height)];
-    searchView.backgroundColor = [UIColor whiteColor];
+    UIImageView *searchView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), backView.top, backView.height, backView.height)];
+    searchView.backgroundColor = [UIColor clearColor];
+    searchView.image = [UIImage imageNamed:@"map_search_black1"];
     searchView.layer.cornerRadius = searchView.width / 2;
     [self.view addSubview:searchView];
     [self.view bringSubviewToFront:searchView];
     searchView.userInteractionEnabled = YES;
     [searchView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchButtonDidClick)]];
     
-    UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(50), AutoSize6(50))];
-    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateNormal];
-    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateHighlighted];
-    [searchButton addTarget:self action:@selector(searchButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:searchButton];
-    [self.view bringSubviewToFront:searchButton];
-    searchButton.center = searchView.center;
+    UIImageView *noticeView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), searchView.bottom, backView.height, backView.height)];
+    noticeView.backgroundColor = [UIColor clearColor];
+    noticeView.image = [UIImage imageNamed:@"map_notice"];
+    [self.view addSubview:noticeView];
+    [self.view bringSubviewToFront:noticeView];
+    noticeView.userInteractionEnabled = YES;
+//    [noticeView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchButtonDidClick)]];
+    
+    
+    
+//    UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(50), AutoSize6(50))];
+//    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateNormal];
+//    [searchButton setImage:[UIImage imageNamed:@"search_black"] forState:UIControlStateHighlighted];
+//    [searchButton addTarget:self action:@selector(searchButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:searchButton];
+//    [self.view bringSubviewToFront:searchButton];
+//    searchButton.center = searchView.center;
     
     //搜索框
     _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(backView.right - 1, backView.top, SCREEN_WIDTH - backView.right - AutoSize6(20), backView.height)];
@@ -200,10 +213,10 @@
     _searchTextField.hidden = YES;
     
     CGRect frame = _searchTextField.frame;
-    frame.size.width = AutoSize(20);// 距离左侧的距离
+    frame.size.width = AutoSize(10);// 距离左侧的距离
     UIView *leftview = [[UIView alloc] initWithFrame:frame];
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(20), 1, backView.height - AutoSize6(40))];
-    lineView.backgroundColor = [UIColor blackColor];
+    lineView.backgroundColor = [UIColor lightGrayColor];
     [leftview addSubview:lineView];
     
     _searchTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -423,7 +436,7 @@
         if (mapView.zoomLevel == self.zoomValue) {//当平移地图。大区不再重复请求
             return;
         }
-        
+
         [self netForBird];
     }
 }
@@ -507,6 +520,11 @@
 
 #pragma mark-- 数据相关
 - (void)netForBird {
+    
+    if (self.isNetWotking) {
+        return;
+    }
+    self.isNetWotking = YES;
     @weakify(self);
     [DiscoverDao getNearBird:[NSString stringWithFormat:@"%f", self.lat]
                         type:[NSString stringWithFormat:@"%f", self.lng]
@@ -514,28 +532,32 @@
                 successBlock:^(__kindof AppBaseModel *responseObject) {
                     @strongify(self);
                     
+                    self.isNetWotking = NO;
                     MapDiscoverDataModel *data = (MapDiscoverDataModel *)responseObject;
                     
                     for (MapDiscoverModel *gpsModel in data.data) {
                         
-                        BDAnnotation *an = [[BDAnnotation alloc] init];
-                        CLLocationCoordinate2D coor;
-                        coor.latitude = gpsModel.lat.floatValue ;
-                        coor.longitude = gpsModel.lng.floatValue;
-                        an.coordinate = coor;
-                        an.mapModel = gpsModel;
-//                        an.birdArray = [NSArray arrayWithArray:gpsModel.gpsInfo.birdInfo];
-                        if (gpsModel.birdCount.integerValue > 100) {
-                            an.title = @"100+";
-                        } else {
-                            an.title = gpsModel.birdCount;
+                        if (gpsModel.birdCount.integerValue > 0) {
+                            BDAnnotation *an = [[BDAnnotation alloc] init];
+                            CLLocationCoordinate2D coor;
+                            coor.latitude = gpsModel.lat.floatValue ;
+                            coor.longitude = gpsModel.lng.floatValue;
+                            an.coordinate = coor;
+                            an.mapModel = gpsModel;
+                            //                        an.birdArray = [NSArray arrayWithArray:gpsModel.gpsInfo.birdInfo];
+                            if (gpsModel.birdCount.integerValue > 100) {
+                                an.title = @"100+";
+                            } else {
+                                an.title = gpsModel.birdCount;
+                            }
+                            an.imgUrl = gpsModel.birdHead;
+                            [self.bMapView addAnnotation:an];
                         }
-                        an.imgUrl = gpsModel.birdHead;
-                        [self.bMapView addAnnotation:an];
                     }
                     
                 } failureBlock:^(__kindof AppBaseModel *error) {
                     @strongify(self);
+                    self.isNetWotking = NO;
                     [AppBaseHud showHudWithfail:error.errstr view:self.view];
                 }];
 }

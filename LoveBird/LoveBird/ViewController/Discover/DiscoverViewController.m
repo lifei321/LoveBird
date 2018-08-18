@@ -90,7 +90,7 @@
 - (void)setNavigation {
 
     self.view.backgroundColor = [UIColor orangeColor];
-    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - AutoSize6(100), AutoSize6(60))];
+    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - AutoSize6(100), AutoSize6(40))];
     searchField.placeholder = @"在此输入文章名/作者名";
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.font = kFont6(26);

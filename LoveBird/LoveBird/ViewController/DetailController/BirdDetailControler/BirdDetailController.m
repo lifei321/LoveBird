@@ -208,12 +208,12 @@
     
     if (section == 0) {
         if (row == 0) {
-            if (self.detailModel.alias.length) {
+            if (self.detailModel.name.length) {
                 return AutoSize6(92);
             }
         }
         if (row == 1) {
-            if (self.detailModel.name.length) {
+            if (self.detailModel.pinyin.length) {
                 return AutoSize6(92);
             }
         }
