@@ -207,7 +207,29 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     if (indexPath.section == 0) {
 
         if (indexPath.row == (self.birdInfoArray.count - 1)) { // 添加鸟种
-            [self addBird];
+            PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
+            selvc.selectArray = [NSMutableArray arrayWithArray:self.birdInfoArray];
+            @weakify(self);
+            selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+                @strongify(self);
+                //        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
+                //        model.num++;
+                
+                FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
+                
+                for (FindSelectBirdModel *selectBirdModel in self.birdInfoArray) {
+                    if ([selectBirdModel.csp_code isEqualToString:birdModel.csp_code]) {
+                        return ;
+                    }
+                }
+                
+                birdModel.isSelect = NO;
+                birdModel.num = 1;
+                [self.birdInfoArray insertObject:birdModel atIndex:0];
+                [self setDateAndAddress];
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:selvc animated:YES];
         }
 //        else { // 选择鸟名
 //            @weakify(self);
@@ -334,25 +356,6 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     return 0;
 }
 
-- (void)addBird {
-    PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
-    selvc.selectArray = [NSMutableArray arrayWithArray:self.birdInfoArray];
-    @weakify(self);
-    selvc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
-        @strongify(self);
-        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-        model.num++;
-        
-        FindSelectBirdModel *birdModel = (FindSelectBirdModel *)userInfo;
-        birdModel.isSelect = NO;
-        birdModel.num = 1;
-        [self.birdInfoArray insertObject:birdModel atIndex:0];
-        [self setDateAndAddress];
-        [self.tableView reloadData];
-    };
-    [self.navigationController pushViewController:selvc animated:YES];
-}
-
 - (void)setDateAndAddress {
     // 时间 地址
     NSString *date = [[AppDateManager shareManager] getCurrentDateWithFormatStyle:DateFormatYMD];
@@ -376,8 +379,8 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 - (void)publishSelectCellAddDelegate:(PublishSelectCell *)cell {
     
     if (cell.selectModel.isSelect) {
-        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-        model.num++;
+//        FindSelectBirdModel *model = self.birdInfoArray.lastObject;
+//        model.num++;
         
         FindSelectBirdModel *modeladd = [[FindSelectBirdModel alloc] init];
         modeladd.name = @"点击选择鸟种";
@@ -394,8 +397,8 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 // 删除鸟种 这一行
 - (void)publishSelectCellDeleteDelegate:(PublishSelectCell *)cell {
     
-    FindSelectBirdModel *model = self.birdInfoArray.lastObject;
-    model.num--;
+//    FindSelectBirdModel *model = self.birdInfoArray.lastObject;
+//    model.num--;
     
     [self.birdInfoArray removeObject:cell.selectModel];
     [self.tableView reloadData];
