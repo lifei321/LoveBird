@@ -65,6 +65,11 @@
 }
 - (void)netForContentWithPageNum:(NSString *)minid header:(BOOL)header {
     
+    if ([self.minId isEqualToString:@"0"]) {
+        [self.tableView.mj_footer endRefreshing];
+
+        return;
+    }
     @weakify(self);
     [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:minid type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
@@ -79,14 +84,16 @@
             [self.dataArray removeAllObjects];
             [self.photoArray removeAllObjects];
         }
-        NSMutableArray *tempArray = [NSMutableArray new];
-        for (NSArray *array in dataModel.imgList) {
-            NSArray *modelArray = [WorksModel arrayOfModelsFromDictionaries:array error:nil];
-            [tempArray addObject:modelArray];
-            
+        if (dataModel.imgList.count) {
+            NSMutableArray *tempArray = [NSMutableArray new];
+            for (NSArray *array in dataModel.imgList) {
+                NSArray *modelArray = [WorksModel arrayOfModelsFromDictionaries:array error:nil];
+                [tempArray addObject:modelArray];
+                
+            }
+            [self.dataArray addObjectsFromArray:tempArray];
+            [self.tableView reloadData];
         }
-        [self.dataArray addObjectsFromArray:tempArray];
-        [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
