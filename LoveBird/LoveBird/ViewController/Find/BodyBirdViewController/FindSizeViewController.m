@@ -96,7 +96,7 @@
     self.hightLightView = [self creatHightLineView:-1000];
     [self.view addSubview:self.hightLightView];
     
-    UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
+    UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(150), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
     [footButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     footButton.backgroundColor = kColorDefaultColor;

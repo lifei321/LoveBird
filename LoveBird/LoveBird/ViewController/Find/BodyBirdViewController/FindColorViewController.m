@@ -55,7 +55,7 @@
     [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"蓝色" image:@"step_4_8" selectImage:@"step_yes_4_8" enabel:@"step_no_4_8" tag:308]];
     [self.view addSubview:[self makeCellView:CGPointMake(SCREEN_WIDTH *2 / 3, AutoSize6(344) + titleLabel.bottom + AutoSize6(37)) text:@"棕色" image:@"step_4_9" selectImage:@"step_yes_4_9" enabel:@"step_no_4_9" tag:309]];
 
-    UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(300), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
+    UIButton *footButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(50), self.view.height - AutoSize6(150), SCREEN_WIDTH - AutoSize6(100), AutoSize6(84))];
     [footButton setTitle:@"下一步" forState:UIControlStateNormal];
     [footButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     footButton.backgroundColor = kColorDefaultColor;
