@@ -381,7 +381,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         model.num++;
         
         FindSelectBirdModel *modeladd = [[FindSelectBirdModel alloc] init];
-        modeladd.name = @"选择鸟种";
+        modeladd.name = @"点击选择鸟种";
         modeladd.isSelect = NO;
         modeladd.num = 1;
         [self.birdInfoArray insertObject:modeladd atIndex:0];
@@ -827,7 +827,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     
     self.birdInfoArray = [[NSMutableArray alloc] init];
     FindSelectBirdModel *model01 = [[FindSelectBirdModel alloc] init];
-    model01.name = @"选择鸟种";
+    model01.name = @"点击选择鸟种";
     model01.isSelect = YES;
     model01.num = 0;
     [self.birdInfoArray addObject:model01];

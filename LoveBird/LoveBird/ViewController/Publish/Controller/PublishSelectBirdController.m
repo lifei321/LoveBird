@@ -136,11 +136,11 @@
     [self.view addSubview:backView];
     
     _searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(15), SCREEN_WIDTH - AutoSize6(60), AutoSize6(66))];
-    _searchField.placeholder = @"搜索";
+    _searchField.placeholder = @"输入鸟名简拼/中文/英文";
     _searchField.delegate = self;
     _searchField.layer.cornerRadius = 5;
     _searchField.backgroundColor = [UIColor whiteColor];
-    
+    [_searchField becomeFirstResponder];
     CGRect leftframe = _searchField.frame;
     leftframe.size.width = AutoSize6(70);// 距离左侧的距离
     UIImageView *leftview = [[UIImageView alloc] initWithFrame:leftframe];

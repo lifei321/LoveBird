@@ -71,7 +71,7 @@
         self.lessButton.selected = YES;
     } else {
         self.lessButton.selected = NO;
-        if ([selectModel.name isEqualToString:@"选择鸟种"]) {
+        if ([selectModel.name isEqualToString:@"点击选择鸟种"]) {
             self.titleLabe.textColor = kColorTextColorLightGraya2a2a2;
         } else {
             self.titleLabe.textColor = [UIColor blackColor];
