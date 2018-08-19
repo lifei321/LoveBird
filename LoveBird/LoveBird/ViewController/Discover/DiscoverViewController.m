@@ -194,8 +194,8 @@
 - (void)netForContentWithPageNum:(NSInteger)pageNum header:(BOOL)header {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"uid" forKey:@"483887"];
-    [dic setObject:@"page" forKey:[NSString stringWithFormat:@"%ld", (long)pageNum]];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:[NSString stringWithFormat:@"%ld", (long)pageNum] forKey:@"page"];
 
     @weakify(self);
     [AppHttpManager POST:kAPI_Discover_Content parameters:dic jsonModelName:[DiscoverContentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -205,15 +205,15 @@
         } else {
             [self.tableView.mj_footer endRefreshing];
         }
-        
+        if (header) {
+            [self.viewModel.dataSourceArray removeAllObjects];
+        }
+
         DiscoverContentDataModel *dataModel = (DiscoverContentDataModel *)responseObject;
 
         for (DiscoverContentModel *model in dataModel.data) {
             TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
             lineModel.contentModel = model;
-            if (header) {
-                [self.viewModel.dataSourceArray removeAllObjects];
-            }
             [self.viewModel.dataSourceArray addObject:lineModel];
 
         }
@@ -370,10 +370,10 @@
         
     } else if (tag == 200) { // 收藏
         NSString *stringId;
-        if (timeLineCell.cellLayoutModel.contentModel.aid.length) {
-            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
-        } else if (timeLineCell.cellLayoutModel.contentModel.tid.length) {
+        if (timeLineCell.cellLayoutModel.contentModel.article_status == 100) {
             stringId = timeLineCell.cellLayoutModel.contentModel.tid;
+        }else if (timeLineCell.cellLayoutModel.contentModel.article_status == 200) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
         }
         
         [UserDao userCollect:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -385,22 +385,30 @@
         
         TimeLineLayoutModel *layoutModel = timeLineCell.cellLayoutModel;
         
-        if (layoutModel.contentModel.tid.length) {
+        if (layoutModel.contentModel.article_status == 100) {
             LogDetailController *detailController = [[LogDetailController alloc] init];
             detailController.tid = layoutModel.contentModel.tid;
             [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
-            
-        } else if (layoutModel.contentModel.aid.length) {
-            LogDetailController *detailvc = [[LogDetailController alloc] init];
-            detailvc.aid = layoutModel.contentModel.aid;
-            [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
-        } else if (layoutModel.contentModel.webView.length) {
+            return;
+        }
+        
+        if (layoutModel.contentModel.article_status == 300) {
             
             AppWebViewController *web = [[AppWebViewController alloc] init];
             web.hidesBottomBarWhenPushed = YES;
             web.startupUrlString = layoutModel.contentModel.webView;
             [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+            return;
         }
+        
+        if (layoutModel.contentModel.article_status == 200) {
+            LogDetailController *detailvc = [[LogDetailController alloc] init];
+            detailvc.aid = layoutModel.contentModel.aid;
+            [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+            return;
+        }
+        
+
     } else if (tag == 400) { // 点赞
         if (button.selected) {
             [AppBaseHud showHudWithfail:@"已赞" view:self.view];
@@ -408,12 +416,11 @@
         }
         
         NSString *stringId;
-        if (timeLineCell.cellLayoutModel.contentModel.aid.length) {
-            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
-        } else if (timeLineCell.cellLayoutModel.contentModel.tid.length) {
+        if (timeLineCell.cellLayoutModel.contentModel.article_status == 100) {
             stringId = timeLineCell.cellLayoutModel.contentModel.tid;
+        }else if (timeLineCell.cellLayoutModel.contentModel.article_status == 200) {
+            stringId = timeLineCell.cellLayoutModel.contentModel.aid;
         }
-
         
         [UserDao userUp:stringId successBlock:^(__kindof AppBaseModel *responseObject) {
             button.selected = !button.selected;

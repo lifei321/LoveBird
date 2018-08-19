@@ -66,6 +66,7 @@
 
 @property (nonatomic, copy) NSString *webView;
 
+@property (nonatomic, assign) NSInteger article_status;
 
 
 @end

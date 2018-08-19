@@ -299,7 +299,7 @@
 + (void)userCollect:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"fuid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"tid"];
     
     [AppHttpManager POST:kAPI_User_collect parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -317,7 +317,7 @@
 + (void)userUp:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"fuid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"tid"];
     
     [AppHttpManager POST:kAPI_User_up parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
