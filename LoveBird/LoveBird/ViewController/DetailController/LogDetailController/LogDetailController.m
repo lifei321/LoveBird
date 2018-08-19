@@ -39,6 +39,11 @@
 
 @property (nonatomic, strong) UIView *talkView;
 
+@property (nonatomic, strong) UIButton *collectButton;
+
+@property (nonatomic, strong) UIButton *likeButton;
+
+
 @property (nonatomic, strong) UITextField *talkTextField;
 
 
@@ -139,7 +144,7 @@
             if (row == 0) {
                 LogContentSubjectCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentSubjectCell class]) forIndexPath:indexPath];
                 birdcell.title = [NSString stringWithFormat:@"责任编辑:%@", self.contentModel.author];
-                birdcell.detail = [NSString stringWithFormat:@"作者：%@", self.contentModel.author];
+                birdcell.detail = [NSString stringWithFormat:@"作者：%@", self.contentModel.origina];
                 cell = birdcell;
             } else if (row == (self.contentModel.articleList.count + 1)) {
                 LogContentSubjectCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentSubjectCell class]) forIndexPath:indexPath];
@@ -223,7 +228,7 @@
         } else if (self.aid.length) {
             
             if (row == 0) {
-                if (self.contentModel.author.length) {
+                if (self.contentModel.origina.length) {
                     return AutoSize6(80);
                 } else {
                     return 0;
@@ -302,7 +307,14 @@
         backView.backgroundColor = [UIColor whiteColor];
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(35), AutoSize6(400), AutoSize6(25))];
-        label1.text = [NSString stringWithFormat:@"已有%@人评论过", self.count];
+        NSString *count = @"0";
+        if (self.tid.length) {
+            count = self.count;
+        } else if (self.aid.length) {
+            count = [NSString stringWithFormat:@"%ld", self.dataArray.count];
+        }
+        
+        label1.text = [NSString stringWithFormat:@"已有%@人评论过", count];
         label1.textAlignment = NSTextAlignmentLeft;
         label1.textColor = kColorTextColorLightGraya2a2a2;
         label1.font = kFont6(22);
@@ -326,6 +338,9 @@
         [AppBaseHud hideHud:self.view];
         
         LogDetailModel *detailModel = (LogDetailModel *)responseObject;
+        
+        self.collectButton.selected = detailModel.isCollection;
+        self.likeButton.selected = detailModel.isUp;
         
         if ([detailModel.authorid isEqualToString:[UserPage sharedInstance].userModel.uid]) {
             [self setRightButton];
@@ -354,6 +369,9 @@
         
         LogContentModel *contentModel = (LogContentModel *)responseObject;
         
+        self.collectButton.selected = contentModel.isCollection;
+        self.likeButton.selected = contentModel.isUp;
+        
         self.tableView.tableHeaderView = self.headerView;
         self.headerView.contentModel = contentModel;
         self.headerView.height = [self.headerView getHeight];
@@ -371,28 +389,31 @@
 
 - (void)netForTalkList {
     
-    NSString *string;
-    if (self.tid.length) {
-        string = self.tid;
-    } else {
-        string = self.aid;
-    }
-    
     @weakify(self);
-    [DetailDao getLogDetail:string aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogDetail:self.tid aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_footer endRefreshing];
         self.page ++;
         
-        LogDetailTalkDataModel *dataModel = (LogDetailTalkDataModel *)responseObject;
-        self.count = dataModel.count;
-        if (dataModel.commentList.count) {
-            [self.dataArray addObjectsFromArray: dataModel.commentList];
-        } else {
-            [self.tableView.mj_footer removeFromSuperview];
-            self.tableView.tableFooterView = self.footerView;
+        if (self.tid.length) {
+            LogDetailTalkDataModel *dataModel = (LogDetailTalkDataModel *)responseObject;
+            self.count = dataModel.count;
+            if (dataModel.commentList.count) {
+                [self.dataArray addObjectsFromArray: dataModel.commentList];
+            } else {
+                [self.tableView.mj_footer removeFromSuperview];
+                self.tableView.tableFooterView = self.footerView;
+            }
+        } else if (self.aid.length) {
+            LogDetailTalkWordDataModel *dataModel = (LogDetailTalkWordDataModel *)responseObject;
+            if (dataModel.data.count) {
+                [self.dataArray addObjectsFromArray: dataModel.data];
+            } else {
+                [self.tableView.mj_footer removeFromSuperview];
+                self.tableView.tableFooterView = self.footerView;
+            }
         }
-        
+    
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -563,12 +584,13 @@
                                               title:@"转发"
                                              action:@selector(zhuanfaButtonDidClick:)]];
     
-    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width, 0, width, toolView.height)
+    self.collectButton = [UIFactory buttonWithFrame:CGRectMake(width, 0, width, toolView.height)
                                              target:self
                                               image:@"operat_big_icon_collect"
                                         selectImage:@"operat_big_icon_collected"
                                               title:@"收藏"
-                                             action:@selector(collectButtonDidClick:)]];
+                                             action:@selector(collectButtonDidClick:)];
+    [toolView addSubview:self.collectButton];
     
     [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 2, 0, width, toolView.height)
                                              target:self
@@ -577,12 +599,13 @@
                                               title:@"评论"
                                              action:@selector(talkButtonDidClick:)]];
     
-    [toolView addSubview:[UIFactory buttonWithFrame:CGRectMake(width * 3, 0, width, toolView.height)
+    self.likeButton = [UIFactory buttonWithFrame:CGRectMake(width * 3, 0, width, toolView.height)
                                              target:self
                                               image:@"operat_big_icon_like"
                                         selectImage:@"operat_big_icon_liked"
                                               title:@"赞"
-                                             action:@selector(upButtonDidClick:)]];
+                                             action:@selector(upButtonDidClick:)];
+    [toolView addSubview:self.likeButton];
     
     return toolView;
 }

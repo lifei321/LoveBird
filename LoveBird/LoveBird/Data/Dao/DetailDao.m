@@ -62,12 +62,26 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
 
     
-    [AppHttpManager POST:kAPI_Detail_talkList parameters:dic jsonModelName:[LogDetailTalkDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    NSString *url;
+    Class class;
+    
+    if (tid.length) {
+        [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+        url = kAPI_Detail_talkList;
+        class = [LogDetailTalkDataModel class];
+
+    } else if (aid.length) {
+        [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
+        url = kAPI_Detail_talkList_word;
+        class = [LogDetailTalkWordDataModel class];
+    }
+    
+    
+    
+    [AppHttpManager POST:url parameters:dic jsonModelName:class success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

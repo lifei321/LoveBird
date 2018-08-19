@@ -25,3 +25,10 @@
 @end
 
 
+@implementation LogDetailTalkWordDataModel
+
+
+@end
+
+
+

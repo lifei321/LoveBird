@@ -15,6 +15,13 @@
 
 @property (nonatomic, strong) NSArray <LogDetailTalkModel>*commentList;
 
+@end
+
+
+
+@interface LogDetailTalkWordDataModel : AppBaseModel
+
+@property (nonatomic, strong) NSArray <LogDetailTalkModel>*data;
 
 @end
 

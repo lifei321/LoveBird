@@ -20,6 +20,9 @@
 
 @property (nonatomic, copy) NSString *author;
 
+@property (nonatomic, copy) NSString *origina;
+
+
 @property (nonatomic, copy) NSString *shareUrl;
 
 @property (nonatomic, copy) NSString *title;
@@ -29,6 +32,11 @@
 @property (nonatomic, assign) BOOL isFollow;
 
 @property (nonatomic, assign) BOOL isUp;
+
+@property (nonatomic, assign) BOOL isCollection;
+
+
+
 
 @property (nonatomic, copy) NSString *dateline;
 

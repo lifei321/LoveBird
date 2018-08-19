@@ -307,6 +307,12 @@
  */
 #define kAPI_Detail_talkList kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleCommentList")
 
+
+/**
+ *  文章评论列表
+ */
+#define kAPI_Detail_talkList_word kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=articleCommentList")
+
 /**
  *  日志点赞列表
  */
