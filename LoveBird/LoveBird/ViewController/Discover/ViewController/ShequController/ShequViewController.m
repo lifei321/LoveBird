@@ -18,13 +18,16 @@
 #import "ShequZuzhiController.h"
 #import "MJRefresh.h"
 
-
+#import "MatchDetailController.h"
 @interface ShequViewController ()<SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 // 轮播图
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *bannerArray;
+
 
 @property (nonatomic, assign) NSInteger page;
 
@@ -37,6 +40,7 @@
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         _dataArray = [[NSMutableArray alloc] init];
+        _bannerArray = [NSMutableArray new];
     }
     return self;
 }
@@ -61,7 +65,9 @@
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         BannerDataModel *dataModel = (BannerDataModel *)responseObject;
+        [self.bannerArray removeAllObjects];
         
+        [self.bannerArray addObjectsFromArray:dataModel.data];
         NSMutableArray *temp = [NSMutableArray new];
         for (BannerModel *model in dataModel.data) {
             [temp addObject:model.img];
@@ -160,6 +166,40 @@
 // 图片点击
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
+    BannerModel *bannerModel = self.bannerArray[index];
+    
+    if (bannerModel.view_status.integerValue == 100) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = bannerModel.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
+        return;
+    }
+    
+    if (bannerModel.view_status.integerValue == 200) {
+        LogDetailController *detailvc = [[LogDetailController alloc] init];
+        detailvc.aid = bannerModel.aid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+        return;
+    }
+    
+    if (bannerModel.view_status.integerValue == 300) {
+        
+        AppWebViewController *web = [[AppWebViewController alloc] init];
+        web.hidesBottomBarWhenPushed = YES;
+        web.startupUrlString = bannerModel.url;
+        [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+        return;
+    }
+    
+    if (bannerModel.view_status.integerValue == 400) {
+        
+        MatchDetailController *web = [[MatchDetailController alloc] init];
+        web.hidesBottomBarWhenPushed = YES;
+        web.matchid = bannerModel.mid;
+        [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+        return;
+    }
+
 }
 
 

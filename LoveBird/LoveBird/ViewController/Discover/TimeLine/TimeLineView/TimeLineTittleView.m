@@ -83,7 +83,7 @@
     _contentModel = contentModel;
     self.nickNameLabel.text = contentModel.author;
     [self.headIcon sd_setImageWithURL:[NSURL URLWithString:contentModel.head] placeholderImage:nil];
-    self.followButton.selected = contentModel.isFollow;
+    self.followButton.selected = contentModel.is_follow;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
     self.followButton.centerY = self.centerY - AutoSize6(5);
 }

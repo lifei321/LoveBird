@@ -43,7 +43,7 @@
 @property (nonatomic, assign) BOOL isCollection;
 
 // 是否关注作者
-@property (nonatomic, assign) BOOL isFollow;
+@property (nonatomic, assign) BOOL is_follow;
 
 // 是否点赞
 @property (nonatomic, assign) BOOL isUp;

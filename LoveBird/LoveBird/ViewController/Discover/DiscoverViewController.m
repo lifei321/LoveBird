@@ -26,6 +26,7 @@
 #import "AppWebViewController.h"
 #import "NearController.h"
 #import "SearchViewController.h"
+#import "MatchDetailController.h"
 
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
@@ -172,6 +173,8 @@
     [AppHttpManager GET:kAPI_Discover_Banner parameters:dic jsonModelName:[BannerDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         
+        self.viewModel.cycleArray = [NSMutableArray new];
+        
         BannerDataModel *dataModel = (BannerDataModel *)responseObject;
         self.viewModel.bannerArray = [dataModel.data mutableCopy];
         self.headerView.cycleScrollView.imageURLStringsGroup = self.viewModel.cycleArray;
@@ -240,6 +243,40 @@
 // 图片点击
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
+    BannerModel *bannerModel = self.viewModel.bannerArray[index];
+    
+    if (bannerModel.view_status.integerValue == 100) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = bannerModel.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
+        return;
+    }
+
+    if (bannerModel.view_status.integerValue == 200) {
+        LogDetailController *detailvc = [[LogDetailController alloc] init];
+        detailvc.aid = bannerModel.aid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+        return;
+    }
+
+    if (bannerModel.view_status.integerValue == 300) {
+        
+        AppWebViewController *web = [[AppWebViewController alloc] init];
+        web.hidesBottomBarWhenPushed = YES;
+        web.startupUrlString = bannerModel.url;
+        [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+        return;
+    }
+
+    if (bannerModel.view_status.integerValue == 400) {
+        
+        MatchDetailController *web = [[MatchDetailController alloc] init];
+        web.hidesBottomBarWhenPushed = YES;
+        web.matchid = bannerModel.mid;
+        [[UIViewController currentViewController].navigationController pushViewController:web animated:YES];
+        return;
+    }
+
 }
 
 #pragma mark- 菜单图代理

@@ -35,6 +35,6 @@
 
 @property (nonatomic, copy) NSString *url;
 
-@property (nonatomic, copy) NSString *viewStatus;
+@property (nonatomic, copy) NSString *view_status;
 
 @end
