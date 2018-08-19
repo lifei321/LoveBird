@@ -30,6 +30,9 @@
 // 轮播图
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
+@property (nonatomic, strong) UILabel *footerLabel;
+
+
 @end
 
 @implementation BirdDetailController
@@ -429,7 +432,8 @@
     [DetailDao getBirdDetail:self.cspCode successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         self.detailModel = (BirdDetailModel *)responseObject;
-        
+        self.footerLabel.text = self.detailModel.explain;
+        self.tableView.tableFooterView = self.footerLabel;
         NSMutableArray *temp = [NSMutableArray new];
         for (BirdDetailImageModel *model in self.detailModel.img) {
             [temp addObject:model.img_url];
@@ -467,13 +471,21 @@
     [self.tableView registerClass:[BirdDetailClassCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailClassCell class])];
     [self.tableView registerClass:[BirdDetailGradeCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailGradeCell class])];
     [self.tableView registerClass:[BirdDetailCell class] forCellReuseIdentifier:NSStringFromClass([BirdDetailCell class])];
-
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
-    footerView.backgroundColor = [UIColor whiteColor];
-    self.tableView.tableFooterView = footerView;
     
     //默认【上拉加载】
 //    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];
+}
+
+
+- (UILabel *)footerLabel {
+    if (!_footerLabel) {
+        _footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
+        _footerLabel.backgroundColor = [UIColor whiteColor];
+        _footerLabel.textColor = kColorTextColorLightGraya2a2a2;
+        _footerLabel.textAlignment = NSTextAlignmentCenter;
+        _footerLabel.font = kFont6(24);
+    }
+    return _footerLabel;
 }
 
 - (SDCycleScrollView *)cycleScrollView {

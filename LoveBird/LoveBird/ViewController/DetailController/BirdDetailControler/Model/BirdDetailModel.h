@@ -70,6 +70,10 @@
 
 @property (nonatomic, copy) NSString *song_describe;
 
+@property (nonatomic, copy) NSString *explain;
+
+
+
 
 @end
 

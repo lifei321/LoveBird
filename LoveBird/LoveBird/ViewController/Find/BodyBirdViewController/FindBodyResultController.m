@@ -89,7 +89,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FindSelectBirdModel *bridModel = self.dataArray[indexPath.row];
     if (self.selectBirdModel == bridModel) {
-        return;
+//        return;
     }
     
     for (FindSelectBirdModel *cellmodel in self.dataArray) {

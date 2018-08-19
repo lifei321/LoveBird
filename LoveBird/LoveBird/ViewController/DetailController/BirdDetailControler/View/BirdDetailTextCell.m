@@ -46,14 +46,14 @@
         self.tagLabel.font = kFont6(30);
         [self.contentView addSubview:self.tagLabel];
         
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(self.titleLabel.left, AutoSize6(91), SCREEN_WIDTH - AutoSize6(30) - self.titleLabel.left, 1)];
-        self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
-        [self.contentView addSubview:self.lineView];
-        
         self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(70), AutoSize6(92))];
         self.iconImageView.contentMode = UIViewContentModeRight;
         [self.contentView addSubview:self.iconImageView];
         self.iconImageView.hidden = YES;
+        
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(self.titleLabel.left, AutoSize6(90), SCREEN_WIDTH - AutoSize6(30) - self.titleLabel.left, 1)];
+        self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self.contentView addSubview:self.lineView];
         
     }
     return self;

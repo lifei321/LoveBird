@@ -36,7 +36,7 @@
         
         self.iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, AutoSize6(200), AutoSize6(130))];
         self.iconImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.iconImageView.image = [UIImage imageNamed:@"pub_select_place"];
+        self.iconImageView.image = [UIImage imageNamed:@"placeHolder"];
         [self.contentView addSubview:self.iconImageView];
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(20), AutoSize6(30), SCREEN_WIDTH - AutoSize6(50) - self.iconImageView.right, AutoSize6(30))];
@@ -78,7 +78,7 @@
     _birdModel = birdModel;
     self.accessoryType = UITableViewCellAccessoryNone;
 
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:birdModel.bird_img] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:birdModel.bird_img] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabel.text = birdModel.name;
     
 //    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:birdModel.name_la];
@@ -97,7 +97,7 @@
     _infoModel = infoModel;
     self.accessoryType = UITableViewCellAccessoryNone;
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabel.text = infoModel.name;
     self.contentLabel.text = infoModel.name_la;
     
@@ -111,7 +111,7 @@
     _zhinengModel = zhinengModel;
     self.accessoryType = UITableViewCellAccessoryNone;
 
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:zhinengModel.imgUrl] placeholderImage:[UIImage imageNamed:@"pub_select_place"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:zhinengModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabel.text = zhinengModel.name;
     self.contentLabel.text = zhinengModel.name_la;
     
