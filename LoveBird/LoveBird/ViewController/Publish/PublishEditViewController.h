@@ -27,4 +27,7 @@
 
 @property (nonatomic, strong) MinePublishModel *minePublishModel;
 
+// 1 从社区
+@property (nonatomic, assign) NSInteger fromType;
+
 @end

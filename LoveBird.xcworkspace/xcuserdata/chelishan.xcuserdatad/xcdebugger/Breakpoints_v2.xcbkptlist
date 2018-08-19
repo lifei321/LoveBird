@@ -36,12 +36,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/ViewController/Discover/ViewController/NearController/NearController.m"
-            timestampString = "556376239.5306261"
+            timestampString = "556378812.937924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "272"
             endingLineNumber = "272"
             landmarkName = "-onGetPoiResult:result:errorCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/Base/Category/UIImage+Addition.m"
+            timestampString = "556377523.102596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-compressImage:withMaxSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

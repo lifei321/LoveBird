@@ -599,23 +599,34 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
                                                    cancelButtonTitle:@"取消"
                                               destructiveButtonTitle:nil
                                                    otherButtonTitles:@"拍照", @"相册", nil];
+    actionSheet.tag = 2000;
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {//相机
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            [self makePhoto];
-        } else {
-            [self showAlert];
+    if (actionSheet.tag == 1000) {
+        if (0 == buttonIndex) {
+            [super leftButtonAction];
+            
+        } else if (1 == buttonIndex) {
+            self.status = @"4";
+            [self publish];
         }
-    } else if (buttonIndex == 1) {//相片
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            [self choosePicture];
-        } else {
-            [self showAlert];
+    } else if (actionSheet.tag == 2000) {
+        if (buttonIndex == 0) {//相机
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [self makePhoto];
+            } else {
+                [self showAlert];
+            }
+        } else if (buttonIndex == 1) {//相片
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                [self choosePicture];
+            } else {
+                [self showAlert];
+            }
         }
     }
 }
@@ -780,16 +791,10 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 - (void)leftButtonAction {
 
-    AppAlertView *alertView = [[AppAlertView alloc] initWithTitle:@"" message:@"请选择退出方式？" cancelButtonTitle:@"放弃" otherButtonTitles:@"存草稿", nil];
-    alertView.onDismissBlock = ^(NSInteger buttonIndex) {
-        if (buttonIndex == 0) {
-            [super leftButtonAction];
-        } else if (buttonIndex == 1) {
-            self.status = @"4";
-            [self publish];
-        }
-    };
-    [alertView show];
+    UIActionSheet *actionsheet03 = [[UIActionSheet alloc] initWithTitle:@"请选择退出方式？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"放弃", @"存草稿", nil];
+    actionsheet03.tag = 1000;
+    [actionsheet03 showInView:self.view];
+    
 }
 - (void)setTableView {
     

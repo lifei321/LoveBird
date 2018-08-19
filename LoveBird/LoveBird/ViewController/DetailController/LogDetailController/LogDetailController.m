@@ -20,6 +20,8 @@
 #import "LogContentSubjectCell.h"
 #import "UserDao.h"
 #import "DiscoverDao.h"
+#import "PublishEditViewController.h"
+#import "PublishDao.h"
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
@@ -479,6 +481,22 @@
     
         if (0 == buttonIndex) {
             
+            [AppBaseHud showHudWithLoding:self.view];
+            @weakify(self);
+            [PublishDao caogaoDetail:self.tid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+                [AppBaseHud hideHud:self.view];
+                MinePublishModel *model = (MinePublishModel *)responseObject;
+                
+                PublishEditViewController *editvc = [[PublishEditViewController alloc] init];
+                editvc.minePublishModel = model;
+                editvc.tid = self.tid;
+                editvc.fromType = 1;
+                [[UIViewController currentViewController].navigationController pushViewController:editvc animated:YES];
+                
+            } failureBlock:^(__kindof AppBaseModel *error) {
+                @strongify(self);
+                [AppBaseHud showHudWithfail:error.errstr view:self.view];
+            }];
         } else if (1 == buttonIndex) {
             
             [AppBaseHud showHudWithLoding:self.view];
