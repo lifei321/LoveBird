@@ -67,6 +67,12 @@
         self.nameLabel.font = kFont6(30);
         [self addSubview:self.nameLabel];
         
+        
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(416), SCREEN_WIDTH, AutoSize6(27))];
+        backView.backgroundColor = [UIColor blackColor];
+        backView.alpha = 0.4;
+        [self addSubview:backView];
+        
         self.followLabel = [self makeLabel:AutoSize6(46)];
         self.followLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(followLabelDidClick)];
