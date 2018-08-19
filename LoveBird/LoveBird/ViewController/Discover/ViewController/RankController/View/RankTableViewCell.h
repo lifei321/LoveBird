@@ -11,6 +11,8 @@
 
 @interface RankTableViewCell : UITableViewCell
 
+@property (nonatomic, copy) NSString *cellType;
+
 @property (nonatomic, strong) RankModel *rankModel;
 
 @end

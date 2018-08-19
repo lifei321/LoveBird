@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) UILabel *secondLabel;
 
-@property(nonatomic,strong)WZSwitch     *mySwitch;
+@property(nonatomic,strong) WZSwitch *mySwitch;
 
 @property (nonatomic , copy) NSString *isYear;
 
@@ -85,6 +85,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RankTableViewCell class]) forIndexPath:indexPath];
+    cell.cellType = self.type;
     cell.rankModel = self.dataArray[indexPath.row];
     return cell;
 }
@@ -92,7 +93,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return AutoSize6(136);
+    return AutoSize6(120);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -173,9 +174,12 @@
     self.navigationItem.titleView = titleView;
     
     self.mySwitch = [[WZSwitch alloc]initWithFrame:CGRectMake(0, 0, AutoSize6(70), AutoSize6(40))];
-    [self.mySwitch setSwitchState:YES animation:NO];
+    [self.mySwitch setSwitchState:NO animation:NO];
     [self.mySwitch setTextFont:[UIFont fontWithName:@"Helvetica-Bold" size:AutoSize6(24)]];
     
+    // 0 总       1 年
+    self.isYear = @"1";
+
     @weakify(self);
     self.mySwitch.block = ^(BOOL state) {
         @strongify(self);
@@ -186,8 +190,12 @@
     };
     
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:self.mySwitch];
-    self.rightButton = barItem;
-    self.isYear = @"0";
+    
+    // 大赛过来的不显示年总
+    if (self.matchId.length) {
+        return;
+    }
+    self.rightButton = (ZBaseBarButtonItem *)barItem;
 }
 
 - (void)setTableView {

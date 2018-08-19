@@ -70,7 +70,7 @@
         
         // 昵称
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), self.line1.bottom, SCREEN_WIDTH - AutoSize6(60), AutoSize6(40))];
-        self.contentLabel.textColor = kColorTextColorLightGraya2a2a2;
+        self.contentLabel.textColor = kColorTextColor333333;
         self.contentLabel.font = kFont6(20);
         self.contentLabel.numberOfLines = 0;
         self.contentLabel.textAlignment = NSTextAlignmentLeft;
