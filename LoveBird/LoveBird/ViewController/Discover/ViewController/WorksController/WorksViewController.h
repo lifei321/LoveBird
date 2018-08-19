@@ -14,5 +14,8 @@
 
 @property (nonatomic, copy) NSString *matchid;
 
+@property (nonatomic, copy) NSString *authorId;
+
+
 
 @end

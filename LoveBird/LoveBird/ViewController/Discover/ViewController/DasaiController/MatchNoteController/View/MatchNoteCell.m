@@ -49,7 +49,7 @@
         [self.contentView addSubview:self.iconImageView];
         
         self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(10), 0, AutoSize6(100), self.iconImageView.height)];
-        self.nameLable.font = kFontDiscoverTitle;
+        self.nameLable.font = kFont6(26);
         self.nameLable.textColor = UIColorFromRGB(0x333333);
         self.nameLable.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:self.nameLable];
@@ -73,14 +73,16 @@
         lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:lineView];
         
-        self.locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentImageView.right + AutoSize6(20), self.backView.height - AutoSize6(42), AutoSize6(21), AutoSize6(25))];
+        self.locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentImageView.right + AutoSize6(20), self.backView.height - AutoSize6(50), AutoSize6(21), AutoSize6(35))];
         self.locationImageView.image = [UIImage imageNamed:@"detail_adress"];
+        self.locationImageView.contentMode = UIViewContentModeCenter;
         [self.backView addSubview:self.locationImageView];
         
-        self.locationLable = [[UILabel alloc] initWithFrame:CGRectMake(self.locationImageView.right + AutoSize6(5), self.locationImageView.top, AutoSize6(210), self.locationImageView.height)];
-        self.locationLable.font = kFont6(25);
+        self.locationLable = [[UILabel alloc] initWithFrame:CGRectMake(self.locationImageView.right + AutoSize6(5), self.locationImageView.top, AutoSize6(240), self.locationImageView.height)];
+        self.locationLable.font = kFont6(22);
         self.locationLable.textColor = kColorTextColorLightGraya2a2a2;
         self.locationLable.textAlignment = NSTextAlignmentLeft;
+        self.locationLable.numberOfLines = 0;
         [self.backView addSubview:self.locationLable];
         
         self.moreImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -100,11 +102,20 @@
     [self.nameLable sizeToFit];
     self.nameLable.centerY = self.iconImageView.centerY;
     
-    self.timeLable.text = model.dateline;
+    self.timeLable.text = [[AppDateManager shareManager] getDateWithTime:model.dateline formatSytle:DateFormatYMD];
     [self.timeLable sizeToFit];
     self.timeLable.left = self.nameLable.right + AutoSize6(10);
     self.timeLable.centerY = self.nameLable.centerY;
     
+    CGFloat locationHeight = [model.locale getTextHeightWithFont:self.locationLable.font withWidth:AutoSize6(240)];
+    if (locationHeight > self.locationImageView.height) {
+        self.locationLable.top = self.locationImageView.top - AutoSize6(30);
+        self.locationLable.height = locationHeight;
+
+    } else {
+        self.locationLable.top = self.locationImageView.top;
+        self.locationLable.height = self.locationImageView.height;
+    }
     self.locationLable.text = model.locale;
     
     NSInteger count = 0;

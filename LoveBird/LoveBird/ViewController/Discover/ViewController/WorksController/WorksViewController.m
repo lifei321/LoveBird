@@ -67,11 +67,10 @@
     
     if ([self.minId isEqualToString:@"0"]) {
         [self.tableView.mj_footer endRefreshing];
-
         return;
     }
     @weakify(self);
-    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:minid type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:self.authorId matchid:self.matchid minAid:minid type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         if (header) {
             [self.tableView.mj_header endRefreshing];

@@ -59,7 +59,7 @@
 - (void)netForLog {
     
     @weakify(self);
-    [UserDao userLogList:self.page matchId:nil fid:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userLogList:self.page matchId:self.matchid fid:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];

@@ -44,6 +44,10 @@
 
 @property (nonatomic, assign) NSInteger page;
 
+// 是否正在请求
+@property (nonatomic, assign) NSInteger isRequesting;
+
+
 // 评论
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -62,6 +66,7 @@
     self = [super init];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
+        self.isRequesting = NO;
     }
     return self;
 }
@@ -138,6 +143,9 @@
                 cell = birdcell;
             } else if (row == (self.contentModel.articleList.count + 1)) {
                 LogContentSubjectCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogContentSubjectCell class]) forIndexPath:indexPath];
+                if (!self.contentModel.from.length) {
+                    self.contentModel.from = @" ";
+                }
                 birdcell.title = [NSString stringWithFormat:@"来源:%@", self.contentModel.from];
                 birdcell.detail = @"";
                 cell = birdcell;

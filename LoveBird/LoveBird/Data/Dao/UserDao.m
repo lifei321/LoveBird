@@ -138,6 +138,7 @@
 // 我的鸟种列表
 + (void)userBirdList:(NSInteger)pageNum
                  fid:(NSString *)taid
+             matchid:(NSString *)matchid
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock {
     
@@ -145,7 +146,8 @@
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
     [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
-    
+    [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
+
     [AppHttpManager POST:kAPI_User_BirdList parameters:dic jsonModelName:[UserBirdDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);

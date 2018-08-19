@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 我的鸟种列表
 + (void)userBirdList:(NSInteger)pageNum
                  fid:(NSString *)taid
+             matchid:(NSString *)matchid
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock;
 

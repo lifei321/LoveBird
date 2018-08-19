@@ -12,5 +12,6 @@
 
 @property (nonatomic, copy) NSString *taid;
 
+@property (nonatomic, copy) NSString *matchid;
 
 @end

@@ -60,14 +60,17 @@
     self.pageMenu.bridgeScrollView = self.scrollView;
     
     MineLogViewController *notevc = [[MineLogViewController alloc] init];
+    notevc.matchid = self.matchid;
     [self addChildViewController:notevc];
     
     MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
+    birdController.matchid = self.matchid;
     [self addChildViewController:birdController];
     
     WorksViewController * workvc = [[WorksViewController alloc] init];
     workvc.from = @"dasai";
     workvc.matchid = self.matchid;
+    workvc.authorId = [UserPage sharedInstance].userModel.uid;
     [self addChildViewController:workvc];
     [self.myChildViewControllers addObject:notevc];
     [self.myChildViewControllers addObject:birdController];
