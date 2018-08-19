@@ -21,6 +21,7 @@
 #import "MinePhotoViewController.h"
 #import "MineFriendViewController.h"
 #import "MineFollowController.h"
+#import "WorksViewController.h"
 
 @interface MineViewController ()
 
@@ -145,6 +146,7 @@
     [footerView addSubview:birdController.view];
 
     MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
+    photoController.authorId = [UserPage sharedInstance].userModel.uid;
     [self addChildViewController:photoController];
     photoController.view.frame = CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:photoController.view];

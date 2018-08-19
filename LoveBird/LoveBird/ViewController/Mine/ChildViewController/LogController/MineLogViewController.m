@@ -70,7 +70,6 @@
         }
         self.page ++;
         
-        
         ShequLogModel *dataModel = (ShequLogModel *)responseObject;
         for (int i = 0; i < dataModel.articleList.count; i++) {
             ShequModel *model = dataModel.articleList[i];

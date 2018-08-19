@@ -61,7 +61,7 @@
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
     
     @weakify(self);
-    [DiscoverDao getWorksList:self.taid matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:self.authorId matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

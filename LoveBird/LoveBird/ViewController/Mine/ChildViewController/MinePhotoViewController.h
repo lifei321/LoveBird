@@ -12,5 +12,7 @@
 
 @property (nonatomic, copy) NSString *taid;
 
+@property (nonatomic, copy) NSString *authorId;
+
 
 @end
