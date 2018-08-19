@@ -100,7 +100,6 @@
 
 - (void)footButtonDidClick {
     
-    
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
     [FindDao getBirdDisplayHead:self.length shape:self.length color:[self getKeyColor] successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -175,10 +174,17 @@
     UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, button.bottom, backView.width, AutoSize6(70))];
     stepLabel.text = text;
     stepLabel.font = kFont6(22);
-    stepLabel.textColor = kColorTextColor333333;
+    stepLabel.textColor = [UIColor blackColor];
     stepLabel.textAlignment = NSTextAlignmentCenter;
     [backView addSubview:stepLabel];
     
+    if ([self.shapeArray containsObject:[NSString stringWithFormat:@"%ld", tag]]) {
+        stepLabel.textColor = [UIColor blackColor];
+
+    } else {
+        stepLabel.textColor = UIColorFromRGB(0xcccccc);
+
+    }
     return backView;
     
 }
@@ -192,6 +198,7 @@
     
     button.selected = YES;
     self.selectButton = button;
+    
 }
 
 @end

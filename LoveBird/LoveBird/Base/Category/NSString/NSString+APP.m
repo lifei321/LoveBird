@@ -36,7 +36,6 @@
 
 - (CGFloat)getTextHeightWithFont:(UIFont *)font withWidth:(CGFloat)width att:(NSMutableParagraphStyle *)att {
     
-
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{NSFontAttributeName:font,
                                                                                       NSParagraphStyleAttributeName:att.copy}];
     
