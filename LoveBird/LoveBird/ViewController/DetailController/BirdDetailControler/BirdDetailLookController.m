@@ -37,32 +37,50 @@
     
     [self setTableView];
     
-    [self netForLog];
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLogHeader)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)netForLogHeader {
-    
+    self.page = 1;
+    [self netForLog];
 }
 
 - (void)netForLog {
     
-    [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DetailDao getDetailLog:self.csp_code successBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        [AppBaseHud hideHud:self.view];
+    [DetailDao getDetailLogPage:[NSString stringWithFormat:@"%ld", self.page]
+                        cspCode:self.csp_code
+                   successBlock:^(__kindof AppBaseModel *responseObject) {
+                       @strongify(self);
+                       [AppBaseHud hideHud:self.view];
+                       
+                       [self.tableView.mj_header endRefreshing];
+                       [self.tableView.mj_footer endRefreshing];
+                       
+                       if (self.page == 1) {
+                           [self.dataArray removeAllObjects];
+                       }
+                       self.page ++;
 
-        BirdDetailLogDataModel *dataModel = (BirdDetailLogDataModel *)responseObject;
-        for (BirdDetailLogModel *logmodel in dataModel.data) {
-            MineLogFrameModel *frameModel = [[MineLogFrameModel alloc] init];
-            frameModel.logModel = logmodel;
-            [self.dataArray addObject:frameModel];
-        }
-        [self.tableView reloadData];
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-        [AppBaseHud showHudWithfail:error.errstr view:self.view];
-    }];
+                       BirdDetailLogDataModel *dataModel = (BirdDetailLogDataModel *)responseObject;
+                       for (BirdDetailLogModel *logmodel in dataModel.data) {
+                           MineLogFrameModel *frameModel = [[MineLogFrameModel alloc] init];
+                           frameModel.logModel = logmodel;
+                           [self.dataArray addObject:frameModel];
+                       }
+                       [self.tableView reloadData];
+
+                   } failureBlock:^(__kindof AppBaseModel *error) {
+                       @strongify(self);
+                       [AppBaseHud showHudWithfail:error.errstr view:self.view];
+                       [self.tableView.mj_header endRefreshing];
+                       [self.tableView.mj_footer endRefreshing];
+                   }];
     
 }
 

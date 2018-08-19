@@ -158,11 +158,11 @@
     }];
 }
 
-+ (void)getDetailLog:(NSString *)cspCode successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getDetailLogPage:(NSString *)page cspCode:(NSString *)cspCode successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL(cspCode) forKey:@"uid"];
-    
-    
+    [dic setObject:EMPTY_STRING_IF_NIL(cspCode) forKey:@"csp_code"];
+    [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
+
     [AppHttpManager POST:kAPI_Detail_guanniaojilu parameters:dic jsonModelName:[BirdDetailLogDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);

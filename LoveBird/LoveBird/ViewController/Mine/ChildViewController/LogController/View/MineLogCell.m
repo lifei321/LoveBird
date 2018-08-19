@@ -117,6 +117,10 @@
     self.subjectLable.text = frameModel.shequModel.summary;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];
     self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.shequModel.dateline];
+    
+    CGFloat monthHeight = [self.monthLable.text getTextHeightWithFont:self.monthLable.font withWidth:self.monthLable.width];
+    self.monthLable.height = monthHeight;
+
 }
 
 

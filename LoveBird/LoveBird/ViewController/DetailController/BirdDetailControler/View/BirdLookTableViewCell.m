@@ -69,6 +69,7 @@
         self.monthLable.font = kFont6(17);
         self.monthLable.textColor = kColorTextColor333333;
         self.monthLable.textAlignment = NSTextAlignmentLeft;
+        self.monthLable.numberOfLines = 0;
         [self.contentView addSubview:self.monthLable];
         
         self.iconImageView = [[UIImageView alloc] init];
@@ -147,7 +148,11 @@
     
 //    self.timeLabel.text = frameModel.logModel.dateline;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.logModel.dateline formatSytle:DateFormatD];
+    
     self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.logModel.dateline];
+    
+    CGFloat monthHeight = [self.monthLable.text getTextHeightWithFont:self.monthLable.font withWidth:self.monthLable.width];
+    self.monthLable.height = monthHeight;
 }
 
 

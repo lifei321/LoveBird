@@ -108,6 +108,7 @@
     }
     
     self.dayLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(15), AutoSize6(40), AutoSize6(20));
+    
     self.monthLabelFrame = CGRectMake(self.dayLabelFrame.origin.x, CGRectGetMaxY(self.dayLabelFrame), self.dayLabelFrame.size.width, self.dayLabelFrame.size.height);
 
 }

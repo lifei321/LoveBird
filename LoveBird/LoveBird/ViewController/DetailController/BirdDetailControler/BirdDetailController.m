@@ -417,6 +417,7 @@
             [imageView sd_setImageWithURL:[NSURL URLWithString:self.detailModel.region_img] placeholderImage:nil];
         } else if (row == 2) {
             BirdDetailLookController *lookvc = [[BirdDetailLookController alloc] init];
+            lookvc.csp_code = self.cspCode;
             [self.navigationController pushViewController:lookvc animated:YES];
         }
     }
