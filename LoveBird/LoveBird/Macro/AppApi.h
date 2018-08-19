@@ -356,6 +356,13 @@
  */
 #define kAPI_Detail_guanniaojilu kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdLogList")
 
+/**
+ *  举报
+ */
+#define kAPI_Detail_report kAPI_USER_SERVER_VERSION(@"birdapi/home/index.php?cmd=report")
+
+
+
 
 #pragma mark-- 设置
 

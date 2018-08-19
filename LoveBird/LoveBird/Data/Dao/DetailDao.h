@@ -34,4 +34,8 @@
 
 // 观鸟记录
 + (void)getDetailLog:(NSString *)cspCode successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
+// 举报
++ (void)getDetailReportSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
