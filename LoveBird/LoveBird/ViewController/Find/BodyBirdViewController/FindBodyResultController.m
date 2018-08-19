@@ -41,6 +41,10 @@
     
 }
 
+- (void)rightButtonAction {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)setWord:(NSString *)word {
     _word = [word copy];
     [self netForData];

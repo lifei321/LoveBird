@@ -39,7 +39,7 @@
     [self.view addSubview:stepLabel];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(stepLabel.right + AutoSize6(10), stepLabel.top, SCREEN_WIDTH - AutoSize6(100), AutoSize6(40))];
-    titleLabel.text = @"它的颜色？";
+    titleLabel.text = @"它的主要羽色？";
     titleLabel.font = kFontBold6(36);
     titleLabel.textColor = kColorTextColor333333;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -102,7 +102,7 @@
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [FindDao getBirdDisplayHead:self.length shape:self.length color:[self getKeyColor] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [FindDao getBirdDisplayHead:self.length shape:self.shape color:[self getKeyColor] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         
