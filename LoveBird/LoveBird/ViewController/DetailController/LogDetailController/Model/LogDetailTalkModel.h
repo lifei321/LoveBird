@@ -37,6 +37,9 @@
 
 @property (nonatomic, copy) NSString *userName;
 
+@property (nonatomic, copy) NSString *aCount;
+
+
 @property (nonatomic, assign) BOOL isUp;
 
 

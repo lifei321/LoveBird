@@ -97,11 +97,17 @@
 + (void)getLogUPDetail:(NSString *)tid aid:(NSString *)aid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
-    [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
-
     
-    [AppHttpManager POST:kAPI_Detail_uplist parameters:dic jsonModelName:[LogDetailUpDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    NSString *url;
+    if (tid.length) {
+        [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+        url = kAPI_Detail_uplist;
+    } else if (aid.length) {
+        [dic setObject:EMPTY_STRING_IF_NIL(aid) forKey:@"aid"];
+        url = kAPI_Detail_uplist_word;
+    }
+    
+    [AppHttpManager POST:url parameters:dic jsonModelName:[LogDetailUpDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }

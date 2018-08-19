@@ -319,6 +319,12 @@
 #define kAPI_Detail_uplist kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=birdArticleUpList")
 
 /**
+ *  文章点赞列表
+ */
+#define kAPI_Detail_uplist_word kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=articleUpList")
+
+
+/**
  *  鸟种详情
  */
 #define kAPI_Detail_BirdDetail kAPI_USER_SERVER_VERSION(@"bird/index.php?cmd=birdDetail")

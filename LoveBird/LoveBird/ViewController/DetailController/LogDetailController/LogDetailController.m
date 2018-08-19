@@ -88,10 +88,6 @@
     } else if (self.aid.length) {
         [self netForLogContent];
     }
-    
-    [self netForTalkList];
-    [self netforUplist];
-
 }
 
 #pragma mark-- tabelView 代理
@@ -228,16 +224,13 @@
         } else if (self.aid.length) {
             
             if (row == 0) {
-                if (self.contentModel.origina.length) {
-                    return AutoSize6(80);
-                } else {
-                    return 0;
-                }
+                return self.contentModel.origina.length ? AutoSize6(80) : 0;
             }
 
             if (row == (self.contentModel.articleList.count + 1)) {
-                return AutoSize6(80);
+                return self.contentModel.from.length ? AutoSize6(80) : 0;
             }
+            
             if (self.contentModel.articleList.count + 1 > row) {
                 return [LogContentCell getHeightWithContentModel:self.contentModel.articleList[row -1]];
             }
@@ -304,21 +297,17 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 3) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(60))];
+        backView.clipsToBounds = YES;
         backView.backgroundColor = [UIColor whiteColor];
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(35), AutoSize6(400), AutoSize6(25))];
-        NSString *count = @"0";
-        if (self.tid.length) {
-            count = self.count;
-        } else if (self.aid.length) {
-            count = [NSString stringWithFormat:@"%ld", self.dataArray.count];
-        }
         
-        label1.text = [NSString stringWithFormat:@"已有%@人评论过", count];
+        label1.text = [NSString stringWithFormat:@"已有%@人评论过", self.count];
         label1.textAlignment = NSTextAlignmentLeft;
         label1.textColor = kColorTextColorLightGraya2a2a2;
         label1.font = kFont6(22);
         [backView addSubview:label1];
+        
         return backView;
         
     }
@@ -336,6 +325,9 @@
     [DetailDao getLogDetail:self.tid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        
+        [self netForTalkList];
+        [self netforUplist];
         
         LogDetailModel *detailModel = (LogDetailModel *)responseObject;
         
@@ -366,6 +358,9 @@
     [DetailDao getLogContent:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        
+        [self netForTalkList];
+        [self netforUplist];
         
         LogContentModel *contentModel = (LogContentModel *)responseObject;
         
@@ -408,6 +403,7 @@
             LogDetailTalkWordDataModel *dataModel = (LogDetailTalkWordDataModel *)responseObject;
             if (dataModel.data.count) {
                 [self.dataArray addObjectsFromArray: dataModel.data];
+                self.count = ((LogDetailTalkModel *)self.dataArray.firstObject).aCount;
             } else {
                 [self.tableView.mj_footer removeFromSuperview];
                 self.tableView.tableFooterView = self.footerView;
@@ -420,22 +416,17 @@
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
         [self.tableView.mj_footer endRefreshing];
+        self.tableView.tableFooterView = self.footerView;
+
 
     }];
 }
 
 - (void)netforUplist {
     
-    NSString *string;
-    if (self.tid.length) {
-        string = self.tid;
-    } else {
-        string = self.aid;
-    }
-    
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DetailDao getLogUPDetail:string aid:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogUPDetail:self.tid aid:self.aid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         LogDetailUpDataModel *dataModel = (LogDetailUpDataModel *)responseObject;
