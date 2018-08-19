@@ -33,7 +33,7 @@
         self.titleLabe.font = kFont6(30);
         [self.contentView addSubview:self.titleLabe];
         
-        self.contentLabe = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(300), 0, AutoSize6(240), AutoSize6(95))];
+        self.contentLabe = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(500), 0, AutoSize6(440), AutoSize6(95))];
         self.contentLabe.textColor = kColorTextColorLightGraya2a2a2;
         self.contentLabe.textAlignment = NSTextAlignmentRight;
         self.contentLabe.font = kFont6(26);

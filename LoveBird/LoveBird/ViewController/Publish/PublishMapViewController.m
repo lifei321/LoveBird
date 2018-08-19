@@ -200,7 +200,7 @@
             self.lat = locationInfo.pt.latitude;
             if (self.viewControllerActionBlock) {
                 self.viewControllerActionBlock(self, @{
-                                                       @"locale":EMPTY_STRING_IF_NIL(locationInfo.city),
+                                                       @"locale":EMPTY_STRING_IF_NIL(self.locationName),
                                                        @"lng":[NSString stringWithFormat:@"%f", locationInfo.pt.longitude],
                                                        @"lat":[NSString stringWithFormat:@"%f", locationInfo.pt.latitude],
                                                        });
@@ -261,13 +261,13 @@
                 
                 NSString *city = placemark.locality;
 //                self.locationLabel.text = city;
-                self.locationName = city;
+                self.locationName = [NSString stringWithFormat:@"%@%@%@%@",placemark.country, placemark.locality, placemark.subLocality, placemark.thoroughfare];
                 self.lng = location.coordinate.longitude;
                 self.lat = location.coordinate.latitude;
                 
                 if (self.viewControllerActionBlock) {
                     self.viewControllerActionBlock(self, @{
-                                                           @"locale":EMPTY_STRING_IF_NIL(city),
+                                                           @"locale":EMPTY_STRING_IF_NIL(self.locationName),
                                                            @"lng":[NSString stringWithFormat:@"%f", location.coordinate.longitude],
                                                            @"lat":[NSString stringWithFormat:@"%f", location.coordinate.latitude],
                                                            });

@@ -323,6 +323,10 @@
                 self.locationLabel.text = city;
                 NSLog(@"当前城市名称------%@",city);
                 
+                [UserPage sharedInstance].lat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+                [UserPage sharedInstance].lng = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+                [UserPage sharedInstance].locale = [NSString stringWithFormat:@"%@%@%@%@",placemark.country, placemark.locality, placemark.subLocality, placemark.thoroughfare];
+
                 //                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
                 //                NSArray* records = [_offlineMap searchCity:city];
                 //                BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];

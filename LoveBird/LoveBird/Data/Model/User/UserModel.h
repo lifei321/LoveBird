@@ -19,6 +19,15 @@ typedef void(^UserModelBlock)(void);
 @property (nonatomic, assign) BOOL isLogin;
 
 
+// 发布用
+@property (nonatomic, copy) NSString *lng;
+
+@property (nonatomic, copy) NSString *lat;
+
+@property (nonatomic, copy) NSString *locale;
+
+
+
 + (UserPage *)sharedInstance;
 
 + (void)setUid:(NSString *)uid;
