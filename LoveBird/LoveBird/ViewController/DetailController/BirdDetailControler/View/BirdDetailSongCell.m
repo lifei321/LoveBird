@@ -16,6 +16,10 @@
 @property (nonatomic, strong) UILabel *timeTotalLabel;
 
 
+@property (nonatomic, strong) UILabel *nameLabel;
+
+
+
 @end
 
 @implementation BirdDetailSongCell
@@ -42,12 +46,18 @@
         self.timeTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(170), 0, AutoSize6(150), AutoSize6(106))];
         self.timeTotalLabel.textColor = kColorDefaultColor;
         self.timeTotalLabel.textAlignment = NSTextAlignmentRight;
-        self.timeTotalLabel.font = kFont6(30);
+        self.timeTotalLabel.font = kFont6(26);
         self.timeTotalLabel.text = @"00:00";
         [self addSubview:self.timeTotalLabel];
 
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.progressView.left, _iconImageView.bottom, SCREEN_WIDTH - self.progressView.left - AutoSize6(30), AutoSize6(30))];
+        self.nameLabel.textColor = kColorTextColorLightGraya2a2a2;
+//        self.nameLabel.textAlignment = NSTextAlignmentRight;
+        self.nameLabel.font = kFont6(22);
+        [self addSubview:self.nameLabel];
+
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_iconImageView.left, AutoSize6(106) - 0.5, SCREEN_WIDTH - _iconImageView.left - AutoSize6(30), 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_iconImageView.left, AutoSize6(130) - 0.5, SCREEN_WIDTH - _iconImageView.left - AutoSize6(30), 0.5)];
         lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:lineView];
         
@@ -59,7 +69,7 @@
 - (void)setSongModel:(BirdDetailSongModel *)songModel {
     _songModel = songModel;
     self.timeTotalLabel.text = songModel.playback_length;
-    
+    self.nameLabel.text = [NSString stringWithFormat:@"Recorded by %@",  songModel.author];
 }
 
 

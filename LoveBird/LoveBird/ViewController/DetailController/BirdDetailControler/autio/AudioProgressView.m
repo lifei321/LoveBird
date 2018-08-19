@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.totalView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height / 2 - 2, frame.size.width, 4)];
+        self.totalView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height / 2 - 2, frame.size.width, 2)];
         self.totalView.backgroundColor = kColorDefaultBackgroudColorE5E5E5;
         [self addSubview:self.totalView];
         
