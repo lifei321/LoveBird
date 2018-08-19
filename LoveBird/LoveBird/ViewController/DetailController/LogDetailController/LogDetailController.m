@@ -501,7 +501,7 @@
             
         } else if (4 == buttonIndex) {
             [AppBaseHud showHudWithLoding:self.view];
-            [DetailDao getDetailReportSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+            [DetailDao getDetailReport:self.tid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
                 [AppBaseHud showHudWithSuccessful:@"举报成功" view:self.view];
             } failureBlock:^(__kindof AppBaseModel *error) {
                 [AppBaseHud showHudWithfail:@"举报失败" view:self.view];

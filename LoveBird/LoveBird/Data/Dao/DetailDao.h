@@ -37,5 +37,5 @@
 
 
 // 举报
-+ (void)getDetailReportSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)getDetailReport:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 @end

@@ -175,9 +175,11 @@
     }];
 }
 
-+ (void)getDetailReportSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getDetailReport:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
+
     [AppHttpManager POST:kAPI_Detail_report parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);

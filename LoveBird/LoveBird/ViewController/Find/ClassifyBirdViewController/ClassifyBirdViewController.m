@@ -137,7 +137,7 @@
     [self.view addSubview:searchView];
     
     _searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize(14), ((searchView.height - AutoSize(27)) / 2), SCREEN_WIDTH - AutoSize(27), AutoSize(27))];
-    _searchField.placeholder = @"搜索";
+    _searchField.placeholder = @"";
     _searchField.backgroundColor = [UIColor whiteColor];
     _searchField.delegate = self;
     
