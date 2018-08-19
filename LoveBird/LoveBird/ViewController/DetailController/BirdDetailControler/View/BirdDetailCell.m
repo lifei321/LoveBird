@@ -68,10 +68,12 @@
 
 - (void)setDetail:(NSString *)detail {
     self.iconImageView.hidden = YES;
-    self.contentLabel.text = detail;
     
     CGFloat height = [detail getTextHeightWithFont:self.contentLabel.font withWidth:self.contentLabel.width];
     self.contentLabel.height = height + AutoSize6(20);
+    
+    self.contentLabel.text = detail;
+
 }
 
 - (void)setHasImage:(BOOL)hasImage {
@@ -91,7 +93,7 @@
     
     if (text.length) {
         height += AutoSize6(48);
-        CGFloat textheight = [text getTextHeightWithFont:kFont6(30) withWidth: SCREEN_WIDTH - AutoSize6(100)];
+        CGFloat textheight = [text getTextHeightWithFont:kFont6(26) withWidth: SCREEN_WIDTH - AutoSize6(100)];
         height += textheight + AutoSize6(40);
     }
     
