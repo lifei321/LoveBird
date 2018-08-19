@@ -17,7 +17,7 @@
 @interface WorksViewController ()<UITableViewDelegate, UITableViewDataSource, MWPhotoBrowserDelegate>
 
 // 刷新页数
-@property (nonatomic, copy) NSString *pageNum;
+@property (nonatomic, copy) NSString *minId;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.pageNum = @"";
+    self.minId = @"";
     self.type = @"100";
     
     _dataArray = [NSMutableArray new];
@@ -56,17 +56,17 @@
 }
 
 - (void)netForContentHeader {
-    self.pageNum = @"";
+    self.minId = @"";
     
-    [self netForContentWithPageNum:self.pageNum header:YES];
+    [self netForContentWithPageNum:self.minId header:YES];
 }
 - (void)netForContentFooter {
-    [self netForContentWithPageNum:self.pageNum header:NO];
+    [self netForContentWithPageNum:self.minId header:NO];
 }
-- (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
+- (void)netForContentWithPageNum:(NSString *)minid header:(BOOL)header {
     
     @weakify(self);
-    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:pageNum type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:@"" matchid:self.matchid minAid:minid type:self.type successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         if (header) {
             [self.tableView.mj_header endRefreshing];
@@ -74,7 +74,7 @@
             [self.tableView.mj_footer endRefreshing];
         }
         WorksDataModel *dataModel = (WorksDataModel *)responseObject;
-        self.pageNum = dataModel.maxAid;
+        self.minId = dataModel.maxAid;
         if (header) {
             [self.dataArray removeAllObjects];
             [self.photoArray removeAllObjects];
@@ -83,8 +83,8 @@
         for (NSArray *array in dataModel.imgList) {
             NSArray *modelArray = [WorksModel arrayOfModelsFromDictionaries:array error:nil];
             [tempArray addObject:modelArray];
+            
         }
-        
         [self.dataArray addObjectsFromArray:tempArray];
         [self.tableView reloadData];
         
