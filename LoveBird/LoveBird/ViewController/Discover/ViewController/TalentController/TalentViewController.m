@@ -48,11 +48,11 @@
 
 - (void)netForData {
     
-    NSDictionary *dic = @{
-                          @"cmd":@"masterList",
-                          };
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setValue:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    
     @weakify(self);
-    [AppHttpManager GET:kAPI_Discover_Talent parameters:dic jsonModelName:[TalentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_Discover_Talent parameters:dic jsonModelName:[TalentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
 
         TalentDataModel *dataModel = (TalentDataModel *)responseObject;

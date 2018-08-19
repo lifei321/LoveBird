@@ -82,8 +82,42 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:talentModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     _textLabel.text = talentModel.master;
     _followButton.selected = talentModel.is_follow;
+    
+    if (talentModel.medalUrl.count) {
+        
+        if (talentModel.medalUrl.count == 1) {
+            
+            [self makeimageView:CGRectMake(0, _textLabel.bottom + AutoSize6(10), self.width, AutoSize6(30)) imageUrl:talentModel.medalUrl.firstObject];
+            
+        } else if (talentModel.medalUrl.count == 2) {
+            
+            [self makeimageView:CGRectMake(self.width / 3, _textLabel.bottom + AutoSize6(10), self.width / 6, AutoSize6(30)) imageUrl:talentModel.medalUrl.firstObject];
+            [self makeimageView:CGRectMake(self.width / 3 + self.width / 6, _textLabel.bottom + AutoSize6(10), self.width / 6, AutoSize6(30)) imageUrl:talentModel.medalUrl.lastObject];
+
+            
+        } else if (talentModel.medalUrl.count == 3) {
+            [self makeimageView:CGRectMake(self.width / 4, _textLabel.bottom + AutoSize6(10), self.width / 6, AutoSize6(30)) imageUrl:talentModel.medalUrl.firstObject];
+            [self makeimageView:CGRectMake(self.width / 4 + self.width / 6, _textLabel.bottom + AutoSize6(10), self.width / 6, AutoSize6(30)) imageUrl:talentModel.medalUrl[1]];
+            [self makeimageView:CGRectMake(self.width / 4 + self.width / 3, _textLabel.bottom + AutoSize6(10), self.width / 6, AutoSize6(30)) imageUrl:talentModel.medalUrl.lastObject];
+        }
+    }
 }
 
+
+- (void)makeListView:(NSArray *)imageList {
+    
+    
+    
+}
+
+- (UIImageView *)makeimageView:(CGRect)frame imageUrl:(NSString *)url {
+    UIImageView *imageVIew = [[UIImageView alloc] initWithFrame:frame];
+    imageVIew.contentMode = UIViewContentModeScaleAspectFit;
+    [imageVIew sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    [self addSubview:imageVIew];
+    
+    return imageVIew;
+}
 
 
 @end

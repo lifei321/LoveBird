@@ -35,4 +35,7 @@
 @property (nonatomic, assign) BOOL is_follow;
 
 
+@property (nonatomic, strong) NSArray *medalUrl;
+
+
 @end

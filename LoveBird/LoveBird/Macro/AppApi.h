@@ -132,7 +132,7 @@
 /**
  *  达人
  */
-#define kAPI_Discover_Talent kAPI_USER_SERVER_VERSION(@"master/index.php")
+#define kAPI_Discover_Talent kAPI_USER_SERVER_VERSION(@"master/index.php?cmd=masterList")
 
 /**
  *  社区
