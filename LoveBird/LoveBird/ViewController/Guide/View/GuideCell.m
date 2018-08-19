@@ -94,13 +94,13 @@
     }
     
     NSString *placeString = model.cost;
-    NSString *textString = [NSString stringWithFormat:@"价格 %@", placeString];
+    NSString *textString = [NSString stringWithFormat:@"费用 ¥%@", placeString];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:textString];
     [attrString addAttribute:NSForegroundColorAttributeName value:kColorTextColorLightGraya2a2a2 range:NSMakeRange(0, 3)];
-    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, placeString.length)];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, placeString.length + 1)];
     
-    [attrString addAttribute:NSFontAttributeName value:kFont6(24) range:NSMakeRange(0, 3)];
-    [attrString addAttribute:NSFontAttributeName value:kFont6(40) range:NSMakeRange(3, placeString.length)];
+    [attrString addAttribute:NSFontAttributeName value:kFont6(24) range:NSMakeRange(0, 4)];
+    [attrString addAttribute:NSFontAttributeName value:kFont6(40) range:NSMakeRange(4, placeString.length)];
 
     self.contentLabel.attributedText = attrString;
     self.contentLabel.frame = CGRectMake(AutoSize6(30), self.titleLabel.bottom + AutoSize6(20), SCREEN_WIDTH / 3, AutoSize6(50));
@@ -108,10 +108,10 @@
     NSString *start = [[AppDateManager shareManager] getDateWithTime:model.dateStart formatSytle:DateFormatMD2];
     NSString *end = [[AppDateManager shareManager] getDateWithTime:model.dateEnd formatSytle:DateFormatMD2];
 
-    self.timeLabel.text = [NSString stringWithFormat:@"出团日期：%@ - %@", start, end];
+    self.timeLabel.text = [NSString stringWithFormat:@"活动日期：%@ - %@", start, end];
     self.timeLabel.frame = CGRectMake(SCREEN_WIDTH / 2, self.contentLabel.top, SCREEN_WIDTH / 2 - AutoSize6(30), self.contentLabel.height);
     
-    self.bottonView.frame = CGRectMake(0, self.contentLabel.bottom, SCREEN_WIDTH, AutoSize6(20));
+    self.bottonView.frame = CGRectMake(0, self.contentLabel.bottom + AutoSize6(20), SCREEN_WIDTH, AutoSize6(20));
 }
 
 + (CGFloat)getHeight:(GuideModel *)model {
@@ -132,7 +132,12 @@
     
     height += AutoSize6(70);
     
+    // 留白
     height += AutoSize6(20);
+    
+    // 底部灰色
+    height += AutoSize6(20);
+
     
     return height;
 }
