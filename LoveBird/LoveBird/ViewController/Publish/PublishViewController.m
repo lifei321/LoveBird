@@ -115,6 +115,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
                  imgUrl:selectModel.imgUrl
                 matchid:self.matchid
                     tid:self.tid
+                    pid:@""
            successBlock:^(__kindof AppBaseModel *responseObject) {
                @strongify(self);
                
@@ -256,7 +257,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
             [timePickerView removeFromSuperview];
             timePickerView = nil;
             if (date.length) {
-                self.selectTime = date;
+                self.selectTime = [[AppDateManager shareManager] timeSwitchTimestamp:date andFormatter:DateFormatYMD];
                 PublishDetailModel *model = self.dataArray[indexPath.section][indexPath.row];
                 model.detailString = date;
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
@@ -358,11 +359,11 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 - (void)setDateAndAddress {
     // 时间 地址
-    NSString *date = [[AppDateManager shareManager] getCurrentDateWithFormatStyle:DateFormatYMD];
+    NSString *date = [[AppDateManager shareManager] getNowTimestamp];
     PublishDetailModel *dateModel = self.dataArray[1][0];
     if ([dateModel.detailString isEqualToString:@"选择"]) {
         self.selectTime = date;
-        dateModel.detailString = date;
+        dateModel.detailString = [[AppDateManager shareManager] getDateWithTime:date formatSytle:DateFormatYMD];
     }
 }
 
@@ -830,7 +831,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     self.dataModelArray = [[NSMutableArray alloc] init];
     [self.dataArray addObject:self.dataModelArray];
     
-    self.selectTime = [[AppDateManager shareManager] getDateWithNSDate:[NSDate date] formatSytle:DateFormatYMD];
+    self.selectTime = [[AppDateManager shareManager] getNowTimestamp];
 
 }
 

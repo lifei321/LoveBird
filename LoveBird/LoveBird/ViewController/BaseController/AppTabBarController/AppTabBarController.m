@@ -68,7 +68,7 @@
                                                        selectImage:@"sub_release"],
                         
                         [SubControllerAttribute attributeWithClass:[GuideViewController class]
-                                                   TabBarItemTitle:@"向导"
+                                                   TabBarItemTitle:@"活动"
                                                              image:@"sub_bird_nav"
                                                        selectImage:@"sub_bird_naved"],
                         

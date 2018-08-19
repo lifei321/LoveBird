@@ -47,7 +47,7 @@
         [_listArray addObject:model4];
         
         DiscoverListModel *model5 = [[DiscoverListModel alloc] init];
-        model5.text = @"资讯";
+        model5.text = @"动态";
         model5.imageString = @"information";
         [_listArray addObject:model5];
         

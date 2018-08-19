@@ -56,6 +56,7 @@
          imgUrl:(NSString *)imgUrl
         matchid:(NSString *)matchid
             tid:(NSString *)tid
+            pid:(NSString *)pid
    successBlock:(LFRequestSuccess)successBlock
    failureBlock:(LFRequestFail)failureBlock {
     
@@ -63,6 +64,7 @@
     NSMutableDictionary *params = [NSMutableDictionary new];
 
     [dic setObject:[JSONModel arrayOfDictionariesFromModels:editModelArray] forKey:@"postList"];
+    [dic setObject:EMPTY_STRING_IF_NIL(pid) forKey:@"pid"];
     [params setObject:[@[dic] JSONString]forKey:@"articleBody"];
 
     [birdArray removeLastObject];

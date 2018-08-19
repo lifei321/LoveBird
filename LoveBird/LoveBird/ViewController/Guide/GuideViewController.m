@@ -99,7 +99,7 @@
 
 - (void)setTableView {
     
-    self.title = @"鸟导";
+    self.title = @"活动";
 //    [self.rightButton setImage:[UIImage imageNamed:@"find_right"]];
     
     self.tableView.top = total_topView_height;

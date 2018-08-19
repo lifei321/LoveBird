@@ -193,7 +193,7 @@
     if ([self.cid isEqualToString:@"1"]) {
         self.title = @"装备";
     } else if ([self.cid isEqualToString:@"2"]){
-        self.title = @"资讯";
+        self.title = @"动态";
     } else {
         
     }

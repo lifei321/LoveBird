@@ -12,6 +12,7 @@
 #import "PublishDao.h"
 #import "PublishEditViewController.h"
 #import "MinePublishModel.h"
+#import "DetailDao.h"
 
 @interface CaogaoViewController ()<UITableViewDataSource, CaogaoDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -125,6 +126,21 @@
     }];
 }
 
+- (void)caogaoCellDeleteDidClick:(CaogaoTableViewCell *)cell {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DetailDao getDeleteDetail:cell.caogaomodel.tid successBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+
+        [AppBaseHud hideHud:self.view];
+        
+        [self netForLog];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
 
 
 - (void)setTableView {

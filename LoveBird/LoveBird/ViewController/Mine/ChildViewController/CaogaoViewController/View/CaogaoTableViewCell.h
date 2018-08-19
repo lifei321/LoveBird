@@ -16,6 +16,9 @@
 
 - (void)caogaoCellPublishDidClick:(CaogaoTableViewCell *)cell;
 
+- (void)caogaoCellDeleteDidClick:(CaogaoTableViewCell *)cell;
+
+
 @end
 
 @interface CaogaoTableViewCell : UITableViewCell

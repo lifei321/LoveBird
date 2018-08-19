@@ -103,9 +103,9 @@
 }
 
 - (void)closeDidClilck {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(publishCellCloseDelegate:)]) {
-//        [self.delegate publishCellCloseDelegate:self];
-//    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(caogaoCellDeleteDidClick:)]) {
+        [self.delegate caogaoCellDeleteDidClick:self];
+    }
 }
 
 - (void)setCaogaomodel:(MineCaogaoModel *)caogaomodel {

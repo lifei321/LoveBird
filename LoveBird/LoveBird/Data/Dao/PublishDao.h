@@ -30,6 +30,7 @@
          imgUrl:(NSString *)imgUrl
         matchid:(NSString *)matchid
             tid:(NSString *)tid
+            pid:(NSString *)pid
    successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 获取生态环境
@@ -43,4 +44,6 @@
 
 // 草稿获取详情
 + (void)caogaoDetail:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
+
+
 @end
