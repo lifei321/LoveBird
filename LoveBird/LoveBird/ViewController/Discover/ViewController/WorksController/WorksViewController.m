@@ -89,6 +89,11 @@
                 NSArray *modelArray = [WorksModel arrayOfModelsFromDictionaries:array error:nil];
                 [tempArray addObject:modelArray];
                 
+                for (WorksModel *worksModel in modelArray) {
+                    MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
+                    photo.caption = worksModel.tags;
+                    [self.photoArray addObject:photo];
+                }
             }
             [self.dataArray addObjectsFromArray:tempArray];
             [self.tableView reloadData];
@@ -117,14 +122,22 @@
     
     cell.selectBlock = ^(WorksModel *selectModel) {
         
+        
+        NSInteger index = 0;
+        for (int i = 0; i < self.photoArray.count; i++) {
+            MWPhoto *photoModel = self.photoArray[i];
+            if ([selectModel.imgUrl isEqualToString:[photoModel.photoURL absoluteString]]) {
+                index = i;
+                break;
+            }
+        }
+        
         BOOL displayActionButton = YES;
         BOOL displaySelectionButtons = NO;
         BOOL displayNavArrows = NO;
         BOOL enableGrid = YES;
         BOOL startOnGrid = NO;
         BOOL autoPlayOnAppear = NO;
-        
-
         
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         browser.displayActionButton = displayActionButton;
@@ -136,7 +149,7 @@
         browser.startOnGrid = startOnGrid;
         browser.enableSwipeToDismiss = NO;
         browser.autoPlayOnAppear = autoPlayOnAppear;
-        [browser setCurrentPhotoIndex:0];
+        [browser setCurrentPhotoIndex:index];
         [[UIViewController currentViewController].navigationController pushViewController:browser animated:YES];
 
     };
@@ -175,7 +188,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+//    WorkTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if (cell.selectBlock) {
+//        cell.selectBlock(cell.)
+//    }
 }
 
 #pragma mark - MWPhotoBrowserDelegate

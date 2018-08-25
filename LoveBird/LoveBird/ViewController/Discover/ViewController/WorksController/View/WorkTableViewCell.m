@@ -81,6 +81,7 @@
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];
+        [self.leftImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
 
         self.leftImageview.name = model1.tags;
         self.rightImageview.name = model2.tags;

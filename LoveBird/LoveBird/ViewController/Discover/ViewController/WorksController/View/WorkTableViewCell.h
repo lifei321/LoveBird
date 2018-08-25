@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WorksModel.h"
 
+
+//@protocol WorkTableViewCellDidClickDelegate<NSObject>
+//
+//- (void)workCell:(WorkTableViewCell *)cell didClick:(WorksModel *)worksModel;
+//
+//@end
+
 typedef void(^WorkSelectBlock)(WorksModel *selectModel);
 
 @interface WorkTableViewCell : UITableViewCell
