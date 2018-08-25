@@ -194,6 +194,8 @@
     return _headerView;
 }
 
+
+
 - (void)setNavigation {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 

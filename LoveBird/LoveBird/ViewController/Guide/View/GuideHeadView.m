@@ -47,6 +47,7 @@
         
         // 关注
         self.followButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(10) - AutoSize(40), 0, AutoSize(40), AutoSize(60))];
+        self.followButton.centerY = self.headIcon.centerY;
         [self.followButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.followButton setTitle:@"已关注" forState:UIControlStateSelected];
         self.followButton.titleLabel.font = kFont(13);
