@@ -33,24 +33,6 @@ PODS:
   - MJRefresh (3.1.12)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
-  - mob_sharesdk (4.1.2):
-    - mob_sharesdk/ShareSDK (= 4.1.2)
-    - MOBFoundation
-  - mob_sharesdk/ShareSDK (4.1.2):
-    - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/QQ (4.1.2):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.1.2):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation
-  - mob_sharesdk/ShareSDKPlatforms/WeChat (4.1.2):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation
-  - mob_sharesdk/ShareSDKUI (4.1.2):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation
-  - MOBFoundation (3.1.6)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -66,6 +48,34 @@ PODS:
   - SPPageMenu (2.5.5)
   - TMCache (2.1.0)
   - TTTAttributedLabel (1.13.4)
+  - UMCCommon (1.5.2)
+  - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.4):
+    - UMCCommon
+  - UMCShare/Social/QQ (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedQQ
+  - UMCShare/Social/ReducedQQ (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedSina (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedWeChat (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Sina (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedSina
+  - UMCShare/Social/WeChat (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedWeChat
+  - UMCShare/UI (6.9.4):
+    - UMCCommon
+    - UMCShare/Core
   - WebViewJavascriptBridge (5.0.5)
   - WRNavigationBar (1.0.3)
   - XHLaunchAd (3.8.4):
@@ -90,11 +100,6 @@ DEPENDENCIES:
   - MBProgressHUD+BWMExtension (= 1.0.1)
   - MJRefresh (= 3.1.12)
   - MLeaksFinder
-  - mob_sharesdk
-  - mob_sharesdk/ShareSDKPlatforms/QQ
-  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo
-  - mob_sharesdk/ShareSDKPlatforms/WeChat
-  - mob_sharesdk/ShareSDKUI
   - NJKWebViewProgress (= 0.2.3)
   - Onboard (= 2.3.1)
   - ReactiveObjC (= 3.0.0)
@@ -103,6 +108,12 @@ DEPENDENCIES:
   - SPPageMenu (~> 2.5.5)
   - TMCache (= 2.1.0)
   - TTTAttributedLabel (= 1.13.4)
+  - UMCCommon
+  - UMCSecurityPlugins
+  - UMCShare/Social/QQ
+  - UMCShare/Social/Sina
+  - UMCShare/Social/WeChat
+  - UMCShare/UI
   - WebViewJavascriptBridge (= 5.0.5)
   - WRNavigationBar (= 1.0.3)
   - XHLaunchAd (= 3.8.4)
@@ -127,8 +138,6 @@ SPEC CHECKSUMS:
   MBProgressHUD+BWMExtension: d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
-  mob_sharesdk: e859de6ace7542f3395ce055682f7cd40efdfaa1
-  MOBFoundation: a87c5f11fb87f873337189c3ec0add4d3ec6221a
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
@@ -137,11 +146,14 @@ SPEC CHECKSUMS:
   SPPageMenu: 703108c321bb4658b3cea440bdf81b1cd61936c2
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+  UMCCommon: 4392868ac47ff1b101663106bb114ba616fabbad
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: aa233aecad67979930fe43f3a2f676023b669439
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   WRNavigationBar: 4ae5aab66535b1a1690b3a26d3c2f92cb51b8c09
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 9159281fd2b792e55f81964eefb3439c605f7636
+PODFILE CHECKSUM: 9563c697537751f628d5c6e6787940a2954efd36
 
 COCOAPODS: 1.4.0

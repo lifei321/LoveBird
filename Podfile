@@ -49,16 +49,16 @@ pod 'DZNEmptyDataSet'
 #KVO监听库
 pod 'ReactiveObjC', '3.0.0'
 
-#第三方登录和分享
-pod 'mob_sharesdk'
-pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
-pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
+##第三方登录和分享
+#pod 'mob_sharesdk'
+#pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
+#pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
 
-#微信sdk不带支付的命令
-pod 'mob_sharesdk/ShareSDKPlatforms/WeChat'
-
-# UI模块(非必须，需要用到ShareSDK提供的分享菜单栏和分享编辑页面需要以下1行)
-pod 'mob_sharesdk/ShareSDKUI'
+##微信sdk不带支付的命令
+#pod 'mob_sharesdk/ShareSDKPlatforms/WeChat'
+#
+## UI模块(非必须，需要用到ShareSDK提供的分享菜单栏和分享编辑页面需要以下1行)
+#pod 'mob_sharesdk/ShareSDKUI'
 
 #个推
 pod 'GTSDK', '2.1.0.0'
@@ -86,5 +86,31 @@ pod 'BaiduMapKit'
 
 #MW用到
 pod 'DACircularProgress', '2.3.1'
+
+pod 'UMCCommon'
+pod 'UMCSecurityPlugins'
+
+# U-Share SDK UI模块（分享面板，建议添加）
+pod 'UMCShare/UI'
+
+# 集成微信(精简版0.2M)
+#pod 'UMCShare/Social/ReducedWeChat'
+
+# 集成微信(完整版14.4M)
+pod 'UMCShare/Social/WeChat'
+
+# 集成QQ/QZone/TIM(精简版0.5M)
+#pod 'UMCShare/Social/ReducedQQ'
+
+# 集成QQ/QZone/TIM(完整版7.6M)
+pod 'UMCShare/Social/QQ'
+
+# 集成新浪微博(精简版1M)
+#pod 'UMCShare/Social/ReducedSina'
+
+# 集成新浪微博(完整版25.3M)
+pod 'UMCShare/Social/Sina'
+
+
 
 end
