@@ -149,6 +149,8 @@
 		1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17160D2115FBF0001769AB /* PlayerCell.xib */; };
 		1F17161421160715001769AB /* AudioPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161221160715001769AB /* AudioPlayerTool.m */; };
 		1F17161D2116FD9B001769AB /* AudioProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161C2116FD9B001769AB /* AudioProgressView.m */; };
+		1F1B8043213267B700547801 /* AppShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8042213267B700547801 /* AppShareManager.m */; };
+		1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8045213267CA00547801 /* AppLoginManager.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -565,6 +567,10 @@
 		1F17161321160715001769AB /* AudioPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerTool.h; sourceTree = "<group>"; };
 		1F17161B2116FD9B001769AB /* AudioProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioProgressView.h; sourceTree = "<group>"; };
 		1F17161C2116FD9B001769AB /* AudioProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioProgressView.m; sourceTree = "<group>"; };
+		1F1B8041213267B700547801 /* AppShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppShareManager.h; sourceTree = "<group>"; };
+		1F1B8042213267B700547801 /* AppShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppShareManager.m; sourceTree = "<group>"; };
+		1F1B8044213267CA00547801 /* AppLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLoginManager.h; sourceTree = "<group>"; };
+		1F1B8045213267CA00547801 /* AppLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLoginManager.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1166,6 +1172,7 @@
 		0B75D5791FBE91A6008D7AE6 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				1F1B80402132670200547801 /* AppShareAndLogin */,
 				0B71CF062018748D006D29B7 /* AppShareSDK */,
 				0B75D58E1FBEBB46008D7AE6 /* AppLaunchController */,
 				0B75D58A1FBEBB01008D7AE6 /* AppGuideController */,
@@ -1819,6 +1826,17 @@
 				1F17161C2116FD9B001769AB /* AudioProgressView.m */,
 			);
 			path = autio;
+			sourceTree = "<group>";
+		};
+		1F1B80402132670200547801 /* AppShareAndLogin */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B8041213267B700547801 /* AppShareManager.h */,
+				1F1B8042213267B700547801 /* AppShareManager.m */,
+				1F1B8044213267CA00547801 /* AppLoginManager.h */,
+				1F1B8045213267CA00547801 /* AppLoginManager.m */,
+			);
+			path = AppShareAndLogin;
 			sourceTree = "<group>";
 		};
 		1F306225204AA29000784C62 /* TimeLine */ = {
@@ -2973,6 +2991,7 @@
 				1F4F1413204ED9AF0066F790 /* ThirdAcountTableViewCell.m in Sources */,
 				1F17161421160715001769AB /* AudioPlayerTool.m in Sources */,
 				1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */,
+				1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
 				1F94DFD820D7AC2F0095DFC5 /* RoundAnnotationView.m in Sources */,
@@ -3019,6 +3038,7 @@
 				0B75D57D1FBE91A6008D7AE6 /* AddressBookPage.m in Sources */,
 				1FDBE75120DA9CFF0092E82E /* WZSwitch.m in Sources */,
 				1F4F141B205030980066F790 /* FinishMessageViewController.m in Sources */,
+				1F1B8043213267B700547801 /* AppShareManager.m in Sources */,
 				1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */,
 				1F676EE620A8046D002F71B4 /* PublishSelectBirdController.m in Sources */,
 				1F676E902099F924002F71B4 /* UserDao.m in Sources */,

@@ -19,6 +19,41 @@
 
 @implementation UserDao
 
++ (void)checkUserType:(NSInteger)type unionid:(NSString *)unionid openid:(NSString *)openid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(unionid) forKey:@"unionid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(openid) forKey:@"openid"];
+    [dic setObject:[NSString stringWithFormat:@"%ld", type] forKey:@"type"];
+    
+    [AppHttpManager POST:kAPI_User_CheckUser parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
++ (void)getCode:(NSString *)mobile isRegister:(BOOL)isRegister successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(mobile) forKey:@"mobile"];
+    [dic setObject:@(isRegister) forKey:@"isRegister"];
+    
+    [AppHttpManager POST:kAPI_User_sendSmd parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 // 获取推送消息
 + (void)userMessageType:(UserMessageType)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     

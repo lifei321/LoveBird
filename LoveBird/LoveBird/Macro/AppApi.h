@@ -99,6 +99,12 @@
  */
 #define kAPI_User_MessageNotify kAPI_USER_SERVER_VERSION(@"user/message.php")
 
+//检查第三方是否注册
+#define kAPI_User_CheckUser kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=checkUser")
+
+
+// 发送验证码
+#define kAPI_User_sendSmd kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=sendSmd")
 
 /**
  *  注册

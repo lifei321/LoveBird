@@ -67,6 +67,10 @@
     linePhone.backgroundColor = kColorTarBarTitleHighlightColor;
     [self.view addSubview:linePhone];
     
+    if (_controllerType == RegViewControllerTypeThird) {
+        
+    }
+    
     //密码
     UIView *passWordView = [self makeTextBackViewWithImage:@"lock"
                                                      frame:CGRectMake(AutoSize6(30), linePhone.bottom , phoneView.width, AutoSize(44))
@@ -83,6 +87,9 @@
                                                      frame:CGRectMake(AutoSize6(30), linePass.bottom , phoneView.width, AutoSize(44))
                                                placeHolder:@"请输入昵称"
                                                     isShow:2];
+    if (self.name.length) {
+        _nameTextField.text = self.name;
+    }
     [self.view addSubview:nickNameView];
     
     UIView *linename = [[UIView alloc] initWithFrame:CGRectMake(AutoSize(13), nickNameView.bottom, phoneView.width, 0.5)];
@@ -196,6 +203,19 @@
 
 - (void)codeButtonClick {
     
+    if (_phoneTextField.text.length == 0) {
+        [AppBaseHud showHudWithfail:@"请填写手机号码" view:self.view];
+        return;
+    }
+    
+    [AppBaseHud showHud:@"正在发送" view:self.view];
+    BOOL isRegister = self.name.length ? NO : YES;
+
+    [UserDao getCode:_phoneTextField.text isRegister:isRegister successBlock:^(__kindof AppBaseModel *responseObject) {
+        [AppBaseHud showHudWithSuccessful:responseObject.errstr view:self.view];
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
 }
 
 - (void)leftButtonAction {

@@ -11,6 +11,8 @@
 typedef NS_ENUM(NSInteger, RegViewControllerType) {
     RegViewControllerTypeReg, // 注册
     RegViewControllerTypeForgetPassword, // 找回密码
+    RegViewControllerTypeThird, // 第三方注册
+
 };
 
 @interface RegViewController : AppBaseViewController
@@ -21,6 +23,8 @@ typedef NS_ENUM(NSInteger, RegViewControllerType) {
  */
 @property (nonatomic, assign) RegViewControllerType controllerType;
 
+
+@property (nonatomic, copy) NSString *name;
 
 
 @end

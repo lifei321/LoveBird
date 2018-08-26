@@ -14,6 +14,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "AddressBookPage.h"
 //#import "AppShareSDK.h"
+#import "AppShareManager.h"
 
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 
@@ -70,7 +71,7 @@
     [self setKeyBoard];
     
     //第三方登录和分享
-//    [AppShareSDK registShareSDK];
+    [AppShareManager registerManager];
     
     //获取通讯录
     [AddressBookPage starUpload];

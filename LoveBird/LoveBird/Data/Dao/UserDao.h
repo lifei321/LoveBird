@@ -20,6 +20,13 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 
 @interface UserDao : NSObject
 
+// 1微信 2微博 3qq
++ (void)checkUserType:(NSInteger)type unionid:(NSString *)unionid openid:(NSString *)openid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+// 手机注册 yes   第三方no
++ (void)getCode:(NSString *)mobile isRegister:(BOOL)isRegister successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
 // 获取推送消息
 + (void)userMessageType:(UserMessageType)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 

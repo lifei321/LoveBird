@@ -381,16 +381,16 @@
     
     TimeLineLayoutModel *layoutModel = self.viewModel.dataSourceArray[indexPath.row];
     
-    if (layoutModel.contentModel.tid.length) {
+    if (layoutModel.contentModel.article_status == 100) {
         LogDetailController *detailController = [[LogDetailController alloc] init];
         detailController.tid = layoutModel.contentModel.tid;
         [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
         
-    } else if (layoutModel.contentModel.aid.length) {
+    } else if (layoutModel.contentModel.article_status == 200) {
         LogDetailController *detailvc = [[LogDetailController alloc] init];
         detailvc.aid = layoutModel.contentModel.aid;
         [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
-    } else if (layoutModel.contentModel.webView.length) {
+    } else if (layoutModel.contentModel.article_status == 300) {
         
         AppWebViewController *web = [[AppWebViewController alloc] init];
         web.hidesBottomBarWhenPushed = YES;

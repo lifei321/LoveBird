@@ -18,6 +18,7 @@
 #import "UserDao.h"
 #import "ResetWordController.h"
 #import "RegisterModel.h"
+#import "AppLoginManager.h"
 
 
 @interface LoginViewController ()<UITextFieldDelegate,TTTAttributedLabelDelegate>
@@ -132,7 +133,7 @@
     [inputView addSubview:registButton];
     
     // 忘记密码
-    UIButton *forgetButton = [[UIButton alloc] initWithFrame:CGRectMake(inputView.width - AutoSize(73), registButton.top, AutoSize(60), AutoSize(30))];
+    UIButton *forgetButton = [[UIButton alloc] initWithFrame:CGRectMake(inputView.width - AutoSize(73), registButton.top, AutoSize6(150), AutoSize(30))];
     [forgetButton setTitle:@"忘记密码？" forState: UIControlStateNormal];
     [forgetButton setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateNormal];
     forgetButton.titleLabel.font = kFont(12);
@@ -254,8 +255,8 @@
     CGFloat x = (self.view.width - width * 3 - space * 2) / 2;
     
     UIButton *wechat = [self makeButton:@"weixin" frame:CGRectMake(x, 0, width, width) tag:1000];
-    UIButton *qq = [self makeButton:@"qq" frame:CGRectMake(wechat.right + space, 0, width, width) tag:1001];
-    UIButton *weibo = [self makeButton:@"weibo" frame:CGRectMake(qq.right + space, 0, width, width) tag:1002];
+    UIButton *qq = [self makeButton:@"qq" frame:CGRectMake(wechat.right + space, 0, width, width) tag:1002];
+    UIButton *weibo = [self makeButton:@"weibo" frame:CGRectMake(qq.right + space, 0, width, width) tag:1001];
 
     [backView addSubview:wechat];
     [backView addSubview:qq];
@@ -362,6 +363,39 @@
 #pragma mark- 第三方登录
 - (void)thirdLoginDidClick:(UIButton *)button {
     
+    NSInteger tag = button.tag - 1000;
+    AppLoginType loginType = (AppLoginType)tag;
+    
+    [AppLoginManager loginWithPlatform:loginType infoBlock:^(id result, NSError *error) {
+        UMSocialUserInfoResponse *resp = result;
+        
+            @weakify(self);
+            [UserDao checkUserType:1 unionid:resp.uid openid:resp.openid successBlock:^(__kindof AppBaseModel *responseObject) {
+                @strongify(self);
+
+                if (responseObject.errcode == 1000) {
+                    [self hideKeyboard];
+                    
+                    RegViewController *modifyPassword = [[RegViewController alloc] init];
+                    modifyPassword.controllerType = RegViewControllerTypeReg;
+                    modifyPassword.name = resp.name;
+                    [self.navigationController pushViewController:modifyPassword animated:YES];
+                    
+                } else if (responseObject.errcode == 0) {
+                    if (self.viewControllerActionBlock) {
+                        self.viewControllerActionBlock(self, nil);
+                    }
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+                
+            } failureBlock:^(__kindof AppBaseModel *error) {
+                
+                [AppBaseHud showHudWithfail:@"第三方登录失败" view:self.view];
+            }];
+        
+    }];
     
 }
 

@@ -290,6 +290,16 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
         return;
     }
     
+    if ([[responseObject objectForKey:@"code"] integerValue] == 1000) {
+        AppBaseModel *baseModel = [[AppBaseModel alloc] init];
+        baseModel.errcode = 1000;
+        baseModel.errstr = [responseObject objectForKey:@"msg"];
+        if (success) {
+            success(baseModel);
+        }
+        return;
+    }
+    
     // 先判断errcode < 0 的判断
     if ([responseObject objectForKey:@"msg"] && [[responseObject objectForKey:@"code"] integerValue] > 0) {
         
