@@ -94,8 +94,7 @@
 }
 
 - (void)shareButton:(UIButton *)button {
-    NotifycationViewController *vc = [[NotifycationViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [AppShareManager shareWithTitle:[UserPage sharedInstance].userModel.shareTitle summary:[UserPage sharedInstance].userModel.shareSummary url:[UserPage sharedInstance].userModel.shareUrl image:[UserPage sharedInstance].userModel.shareImg];
 }
 
 - (void)setButton:(UIButton *)button {

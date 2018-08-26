@@ -94,6 +94,19 @@ typedef void(^UserModelBlock)(void);
 @property (nonatomic, copy) NSString *feedbackUrl;
 
 
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareUrl;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
+
+
 
 //articleNum    日志数    number    @mock=24
 //birdspeciesNum    鸟种数    number    @mock=289

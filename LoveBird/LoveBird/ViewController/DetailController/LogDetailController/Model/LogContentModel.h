@@ -22,9 +22,6 @@
 
 @property (nonatomic, copy) NSString *origina;
 
-
-@property (nonatomic, copy) NSString *shareUrl;
-
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, assign) BOOL isEditor;
@@ -53,6 +50,22 @@
 @property (nonatomic, assign) CGFloat coverImgHeight;
 
 @property (nonatomic, assign) CGFloat coverImgWidth;
+
+
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareUrl;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
+
+
 @end
 
 

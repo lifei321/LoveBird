@@ -453,10 +453,19 @@
 - (void)setNavigation {
     
     self.title = @"鸟种详情";
-//    self.rightButton.title = @"操作";
-//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
-//    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
     
+//    UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    [shareButton setImage:[UIImage imageNamed:@"mine_share"] forState:UIControlStateNormal];
+//    [shareButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
+//    shareButton.frame = CGRectMake(0, 0, 15, 10);
+//    shareButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+//    [self.navigationBarItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:shareButton]];
+    
+    [self.rightButton setImage:[UIImage imageNamed:@"operat_big_icon_forward"]];
+}
+
+- (void)rightButtonAction {
+    [AppShareManager shareWithTitle:self.detailModel.shareTitle summary:self.detailModel.shareSummary url:self.detailModel.shareUrl image:self.detailModel.shareImg];
 }
 
 - (void)setTableView {

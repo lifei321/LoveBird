@@ -95,6 +95,11 @@
     [AppCache setObject:userModel.token forKey:@"token"];
     [AppCache setObject:@(userModel.hasFriends) forKey:@"hasFriends"];
     [AppCache setObject:@(userModel.hasMessage) forKey:@"hasMessage"];
+    [AppCache setObject:userModel.shareUrl forKey:@"shareUrl"];
+    [AppCache setObject:userModel.shareImg forKey:@"shareImg"];
+    [AppCache setObject:userModel.shareSummary forKey:@"shareSummary"];
+    [AppCache setObject:userModel.shareTitle forKey:@"shareTitle"];
+
 }
 
 - (UserModel *)getUserModel {
@@ -120,6 +125,10 @@
     userModel.token = [AppCache objectForKey:@"token"];
     userModel.hasFriends = [[AppCache objectForKey:@"hasFriends"] boolValue];
     userModel.hasMessage = [[AppCache objectForKey:@"hasMessage"] boolValue];
+    userModel.shareImg = [AppCache objectForKey:@"shareImg"];
+    userModel.shareSummary = [AppCache objectForKey:@"shareSummary"];
+    userModel.shareTitle = [AppCache objectForKey:@"shareTitle"];
+    userModel.shareUrl = [AppCache objectForKey:@"shareUrl"];
 
     return userModel;
 }

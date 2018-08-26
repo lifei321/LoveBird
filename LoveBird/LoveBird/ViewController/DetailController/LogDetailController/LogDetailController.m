@@ -628,6 +628,12 @@
 
 - (void)zhuanfaButtonDidClick:(UIButton *)button {
     
+    if (self.tid.length) {
+        [AppShareManager shareWithTitle:self.detailModel.shareTitle summary:self.detailModel.shareSummary url:self.detailModel.shareUrl image:self.detailModel.shareImg];
+    } else if (self.aid.length) {
+        [AppShareManager shareWithTitle:self.contentModel.shareTitle summary:self.contentModel.shareSummary url:self.contentModel.shareUrl image:self.contentModel.shareImg];
+    }
+
 }
 
 - (void)collectButtonDidClick:(UIButton *)button {

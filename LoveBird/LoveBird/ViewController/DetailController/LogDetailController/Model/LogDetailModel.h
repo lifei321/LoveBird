@@ -49,9 +49,20 @@
 
 @property (nonatomic, copy) NSString *publishTime;
 
+@property (nonatomic, copy) NSString *title;
+
+
+// 分享文章的url
 @property (nonatomic, copy) NSString *shareUrl;
 
-@property (nonatomic, copy) NSString *title;
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
 
 
 @end

@@ -51,17 +51,23 @@
 
 @property (nonatomic, assign) BOOL  is_follow;
 
-@property (nonatomic, copy) NSString * shareUrl;
-
-@property (nonatomic, copy) NSString * shareImage;
-
-
 @property (nonatomic, copy) NSString * subject;
 
 @property (nonatomic, copy) NSString * summary;
 
 @property (nonatomic, copy) NSString * upNum;
 
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareUrl;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
 
 
 

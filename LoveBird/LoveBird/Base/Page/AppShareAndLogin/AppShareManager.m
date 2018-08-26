@@ -63,9 +63,7 @@
         UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:summary thumImage:imageUrl];
         
         shareObject.webpageUrl = url;
-        
-        shareObject.thumbImage = imageUrl;
-        
+                
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         

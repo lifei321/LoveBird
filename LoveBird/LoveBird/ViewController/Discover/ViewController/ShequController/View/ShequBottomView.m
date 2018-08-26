@@ -69,7 +69,8 @@
 }
 
 - (void)zhuanfaButtonDidClick:(UIButton *)button {
-
+    
+    [AppShareManager shareWithTitle:self.model.shareTitle summary:self.model.shareSummary url:self.model.shareUrl image:self.model.shareImg];
 }
 
 

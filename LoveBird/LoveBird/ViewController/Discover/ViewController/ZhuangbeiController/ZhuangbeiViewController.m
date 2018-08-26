@@ -156,6 +156,11 @@
     NSInteger tag = button.tag;
     if (tag == 100) { // 转发
         
+        ZhuangbeiModel *contentModel = timeLineCell.cellLayoutModel.zhuangbeiModel;
+        
+        [AppShareManager shareWithTitle:contentModel.shareTitle summary:contentModel.shareSummary url:contentModel.shareUrl image:contentModel.shareImg];
+        
+        
     } else if (tag == 200) { // 收藏
         [UserDao userCollect:timeLineCell.cellLayoutModel.zhuangbeiModel.aid successBlock:^(__kindof AppBaseModel *responseObject) {
             button.selected = !button.selected;
