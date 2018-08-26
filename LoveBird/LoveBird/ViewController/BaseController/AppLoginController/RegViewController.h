@@ -26,5 +26,14 @@ typedef NS_ENUM(NSInteger, RegViewControllerType) {
 
 @property (nonatomic, copy) NSString *name;
 
+@property (nonatomic, copy) NSString *headImage;
+
+@property (nonatomic, copy) NSString *uinionid;
+
+@property (nonatomic, copy) NSString *openid;
+
+@property (nonatomic, assign) NSInteger type;
+
+
 
 @end

@@ -27,6 +27,9 @@
 
 @property (nonatomic, strong) AppTextField *codeTextField;
 
+@property (nonatomic, strong) UIButton *codeButton;
+
+
 @end
 
 @implementation RegViewController
@@ -196,6 +199,7 @@
         codeButton.titleLabel.font = kFont6(26);
         codeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [backView addSubview:codeButton];
+        self.codeButton = codeButton;
         
     }
     return backView;
@@ -212,7 +216,15 @@
     BOOL isRegister = self.name.length ? NO : YES;
 
     [UserDao getCode:_phoneTextField.text isRegister:isRegister successBlock:^(__kindof AppBaseModel *responseObject) {
-        [AppBaseHud showHudWithSuccessful:responseObject.errstr view:self.view];
+        
+        if (responseObject.errcode == 2 || responseObject.errcode == 3) {
+            [AppBaseHud showHudWithfail:responseObject.errstr view:self.view];
+        } else {
+            [AppBaseHud showHudWithSuccessful:@"发送成功" view:self.view];
+            
+            [self.codeButton setTitle:@"验证码已发送" forState:UIControlStateNormal];
+        }
+        
     } failureBlock:^(__kindof AppBaseModel *error) {
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
@@ -255,10 +267,14 @@
                  password:[_passwordTextField.text md5HexDigest]
                      name:_nameTextField.text
                      code:_codeTextField.text
+                     type:self.type
+                   openID:self.openid
+                  unionid:self.uinionid
+                headImage:self.headImage
              SuccessBlock:^(__kindof AppBaseModel *responseObject) {
                  @strongify(self);
                  [AppBaseHud hideHud:self.view];
-                 
+                 [AppBaseHud showHud:@"注册成功" view:self.view];
                  [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
                  [self dismissViewControllerAnimated:YES completion:nil];
                  

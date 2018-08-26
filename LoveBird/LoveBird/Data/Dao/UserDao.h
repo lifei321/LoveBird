@@ -70,6 +70,10 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
             password:(NSString *)password
                 name:(NSString *)name
                 code:(NSString *)code
+                type:(NSInteger)type
+              openID:(NSString *)openid
+             unionid:(NSString *)unionid
+           headImage:(NSString *)headImage
         SuccessBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock;
 

@@ -104,7 +104,7 @@
 
 
 // 发送验证码
-#define kAPI_User_sendSmd kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=sendSmd")
+#define kAPI_User_sendSmd kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=sendSms")
 
 /**
  *  注册

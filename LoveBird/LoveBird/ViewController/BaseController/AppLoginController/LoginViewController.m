@@ -363,25 +363,35 @@
 #pragma mark- 第三方登录
 - (void)thirdLoginDidClick:(UIButton *)button {
     
-    NSInteger tag = button.tag - 1000;
+    NSInteger tag = button.tag - 1000 + 1;
     AppLoginType loginType = (AppLoginType)tag;
     
     [AppLoginManager loginWithPlatform:loginType infoBlock:^(id result, NSError *error) {
         UMSocialUserInfoResponse *resp = result;
         
+        [AppBaseHud showHudWithLoding:self.view];
             @weakify(self);
-            [UserDao checkUserType:1 unionid:resp.uid openid:resp.openid successBlock:^(__kindof AppBaseModel *responseObject) {
+            [UserDao checkUserType:loginType unionid:resp.uid openid:resp.openid successBlock:^(__kindof RegisterDataModel *responseObject) {
                 @strongify(self);
-
+                [AppBaseHud hideHud:self.view];
                 if (responseObject.errcode == 1000) {
                     [self hideKeyboard];
                     
                     RegViewController *modifyPassword = [[RegViewController alloc] init];
                     modifyPassword.controllerType = RegViewControllerTypeReg;
                     modifyPassword.name = resp.name;
+                    modifyPassword.openid = resp.openid;
+                    modifyPassword.uinionid = resp.uid;
+                    modifyPassword.headImage = resp.iconurl;
+                    modifyPassword.type = loginType;
                     [self.navigationController pushViewController:modifyPassword animated:YES];
                     
                 } else if (responseObject.errcode == 0) {
+                    
+                    RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;
+                    [UserPage setUid:dataModel.userInfo.uid];
+                    [UserPage setToken:dataModel.userInfo.token];
+                    
                     if (self.viewControllerActionBlock) {
                         self.viewControllerActionBlock(self, nil);
                     }
@@ -392,7 +402,7 @@
                 
             } failureBlock:^(__kindof AppBaseModel *error) {
                 
-                [AppBaseHud showHudWithfail:@"第三方登录失败" view:self.view];
+                [AppBaseHud showHudWithfail:error.errstr view:self.view];
             }];
         
     }];

@@ -25,7 +25,7 @@
     [dic setObject:EMPTY_STRING_IF_NIL(openid) forKey:@"openid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", type] forKey:@"type"];
     
-    [AppHttpManager POST:kAPI_User_CheckUser parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+    [AppHttpManager POST:kAPI_User_CheckUser parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
         }
@@ -278,6 +278,10 @@
             password:(NSString *)password
                 name:(NSString *)name
                 code:(NSString *)code
+                type:(NSInteger)type
+              openID:(NSString *)openid
+             unionid:(NSString *)unionid
+           headImage:(NSString *)headImage
         SuccessBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock {
     
@@ -286,7 +290,14 @@
     [dic setObject:EMPTY_STRING_IF_NIL(password) forKey:@"password"];
     [dic setObject:EMPTY_STRING_IF_NIL(name) forKey:@"userName"];
     [dic setObject:EMPTY_STRING_IF_NIL(code) forKey:@"vCode"];
-
+    
+    if (type > 0) {
+        [dic setObject:[NSString stringWithFormat:@"%ld", type] forKey:@"type"];
+        [dic setObject:EMPTY_STRING_IF_NIL(openid) forKey:@"openid"];
+        [dic setObject:EMPTY_STRING_IF_NIL(headImage) forKey:@"tpHead"];
+        [dic setObject:EMPTY_STRING_IF_NIL(unionid) forKey:@"unionid"];
+    }
+    
     [AppHttpManager POST:kAPI_User_register parameters:dic jsonModelName:[RegisterDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         
         RegisterDataModel *dataModel = (RegisterDataModel *)responseObject;

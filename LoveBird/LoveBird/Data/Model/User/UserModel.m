@@ -128,7 +128,7 @@
     if ([UserPage sharedInstance].userModel) {
         [UserPage sharedInstance].userModel.uid = uid;
     }
-    [AppCache setObject:uid forKey:@"uid"];
+    [AppCache setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
 }
 
 + (void)setToken:(NSString *)token {

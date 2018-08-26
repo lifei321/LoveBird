@@ -105,18 +105,18 @@
  */
 - (NSString *)insertSpacesEveryFourDigitsIntoString:(NSString *)string andPreserveCursorPosition:(NSUInteger *)cursorPosition{
     NSMutableString *stringWithAddedSpaces = [NSMutableString new];
-    NSUInteger cursorPositionInSpacelessString = *cursorPosition;
+//    NSUInteger cursorPositionInSpacelessString = *cursorPosition;
     
     for (NSUInteger i=0; i<string.length; i++) {
-        if(i>0) {
-            if(i==3 || i==7) {
-                [stringWithAddedSpaces appendString:@"-"];
-                
-                if(i<cursorPositionInSpacelessString) {
-                    (*cursorPosition)++;
-                }
-            }
-        }
+//        if(i>0) {
+//            if(i==3 || i==7) {
+//                [stringWithAddedSpaces appendString:@"-"];
+//
+//                if(i<cursorPositionInSpacelessString) {
+//                    (*cursorPosition)++;
+//                }
+//            }
+//        }
         
         unichar characterToAdd = [string characterAtIndex:i];
         NSString *stringToAdd = [NSString stringWithCharacters:&characterToAdd length:1];

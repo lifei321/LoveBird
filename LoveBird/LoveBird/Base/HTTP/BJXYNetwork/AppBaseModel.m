@@ -33,8 +33,8 @@
 +(JSONKeyMapper*)keyMapper {
     
     NSDictionary *dict = @{
-                           @"msg": @"errcode",
-                           @"code": @"errstr"
+                           @"msg": @"errstr",
+                           @"code": @"errcode"
                            };
     
     return [[JSONKeyMapper alloc] initWithDictionary:dict];

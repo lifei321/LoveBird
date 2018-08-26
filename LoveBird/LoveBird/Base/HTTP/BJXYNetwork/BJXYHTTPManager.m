@@ -300,8 +300,31 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
         return;
     }
     
+    // 手机号格式不正确
+    if ([[responseObject objectForKey:@"code"] integerValue] == 2) {
+        AppBaseModel *baseModel = [[AppBaseModel alloc] init];
+        baseModel.errcode = 2;
+        baseModel.errstr = [responseObject objectForKey:@"msg"];
+        if (success) {
+            success(baseModel);
+        }
+        return;
+    }
+ 
+    //手机号已注册
+    if ([[responseObject objectForKey:@"code"] integerValue] == 3) {
+        AppBaseModel *baseModel = [[AppBaseModel alloc] init];
+        baseModel.errcode = 3;
+        baseModel.errstr = [responseObject objectForKey:@"msg"];
+        if (success) {
+            success(baseModel);
+        }
+        return;
+    }
+
+    
     // 先判断errcode < 0 的判断
-    if ([responseObject objectForKey:@"msg"] && [[responseObject objectForKey:@"code"] integerValue] > 0) {
+    if ([[responseObject objectForKey:@"code"] integerValue] != 0) {
         
         @try {
             model = [[AppBaseModel alloc] initWithDictionary:responseObject error:&error];
@@ -333,7 +356,7 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
         model = [self creatErrorBaseModel:BJXYRetCodeJsonParseError];
     } @finally {
         
-        if (model.errcode >= 0) {
+        if (model.errcode == 0) {
             success(model);
         } else {
             failure(model);

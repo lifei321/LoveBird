@@ -10,7 +10,7 @@
 #import <UMShare/UMShare.h>
 
 typedef NS_ENUM(NSInteger, AppLoginType) {
-    AppLoginTypeWeixin = 0,
+    AppLoginTypeWeixin = 1,
     AppLoginTypeWeibo,
     AppLoginTypeQQ,
 };
