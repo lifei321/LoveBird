@@ -36,6 +36,7 @@
 #import "UIFactory.h"
 #import "AppCache.h"
 #import "UIImage+Addition.h"
+#import "AppShareManager.h"
 
 
 

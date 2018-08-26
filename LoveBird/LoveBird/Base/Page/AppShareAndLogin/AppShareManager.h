@@ -18,4 +18,6 @@
 // 支持目前所有iOS系统
 + (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
+
++ (void)shareWithTitle:(NSString *)title summary:(NSString *)summary url:(NSString *)url image:(NSString *)imageUrl;
 @end

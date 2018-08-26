@@ -404,6 +404,9 @@
     
     NSInteger tag = button.tag;
     if (tag == 100) { // 转发
+        DiscoverContentModel *contentModel = timeLineCell.cellLayoutModel.contentModel;
+        
+        [AppShareManager shareWithTitle:contentModel.shareTitle summary:contentModel.shareSummary url:contentModel.shareUrl image:contentModel.shareImg];
         
     } else if (tag == 200) { // 收藏
         NSString *stringId;

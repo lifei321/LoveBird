@@ -48,9 +48,6 @@
 // 是否点赞
 @property (nonatomic, assign) BOOL isUp;
 
-// 分享文章的url
-@property (nonatomic, copy) NSString *shareUrl;
-
 // 文章标题
 @property (nonatomic, copy) NSString *subject;
 
@@ -67,6 +64,19 @@
 @property (nonatomic, copy) NSString *webView;
 
 @property (nonatomic, assign) NSInteger article_status;
+
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareUrl;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
 
 
 @end

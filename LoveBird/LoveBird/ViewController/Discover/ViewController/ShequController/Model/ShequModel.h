@@ -53,6 +53,9 @@
 
 @property (nonatomic, copy) NSString * shareUrl;
 
+@property (nonatomic, copy) NSString * shareImage;
+
+
 @property (nonatomic, copy) NSString * subject;
 
 @property (nonatomic, copy) NSString * summary;
