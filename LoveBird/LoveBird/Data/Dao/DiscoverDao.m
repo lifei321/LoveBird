@@ -115,11 +115,12 @@
 
 
 // 装备咨询列表
-+ (void)getWordList:(NSString *)cid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getWordList:(NSString *)cid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(cid) forKey:@"cid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
 
     [AppHttpManager POST:kAPI_Discover_articleList parameters:dic jsonModelName:[ZhuangbeiDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {

@@ -100,6 +100,9 @@
     self.selectButton.selected = NO;
     self.selectButton = button;
     
+    if (!self.searchField.text.length) {
+        return;
+    }
     [self netForData];
 }
 
@@ -138,20 +141,21 @@
     UIButton *btn = [[UIButton alloc] init];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:kColorTextColorLightGraya2a2a2 forState:UIControlStateNormal];
+    [btn setTitleColor:kColorDefaultColor forState:UIControlStateSelected];
     [btn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:selectImage] forState:UIControlStateSelected];
     btn.tag = tag;
-    btn.titleLabel.font = kFont6(27);
+    btn.titleLabel.font = kFont6(30);
     [btn addTarget:self action:@selector(selectButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }
 
 - (void)setSearchView {
-    _searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(40), total_topView_height + AutoSize6(10), SCREEN_WIDTH - AutoSize6(80), AutoSize6(50))];
+    _searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(40), total_topView_height + AutoSize6(10), SCREEN_WIDTH - AutoSize6(80), AutoSize6(80))];
     _searchField.placeholder = @"请输入...";
     _searchField.layer.cornerRadius = _searchField.height / 2;
     _searchField.backgroundColor = [UIColor whiteColor];
-    _searchField.font = kFont6(26);
+    _searchField.font = kFont6(30);
     _searchField.layer.borderColor = (kLineColoreDefaultd4d7dd).CGColor;
     _searchField.layer.borderWidth = 1;
     _searchField.layer.cornerRadius = 3;
@@ -172,7 +176,7 @@
     _searchField.rightViewMode = UITextFieldViewModeAlways;
     _searchField.rightView = rightview;
     
-    self.selectView = [self makeSelectView:CGRectMake(AutoSize6(0), _searchField.bottom + AutoSize6(10), SCREEN_WIDTH, AutoSize6(70))];
+    self.selectView = [self makeSelectView:CGRectMake(AutoSize6(0), _searchField.bottom + AutoSize6(10), SCREEN_WIDTH, AutoSize6(90))];
     [self.view addSubview:self.selectView];
     
 }

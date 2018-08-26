@@ -209,13 +209,13 @@
     [notificationButton setImage:[UIImage imageNamed:@"mine_notification_no"] forState:UIControlStateNormal];
     [notificationButton setImage:[UIImage imageNamed:@"mine_notification_yes"] forState:UIControlStateSelected];
     [notificationButton addTarget:self action:@selector(notificationButton:) forControlEvents:UIControlEventTouchUpInside];
-    notificationButton.frame = CGRectMake(0, 0, 15, 10);
+    notificationButton.frame = CGRectMake(0, 0, 30, 10);
     notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [detailButton setImage:[UIImage imageNamed:@"mine_detail"] forState:UIControlStateNormal];
     [detailButton addTarget:self action:@selector(detailButton:) forControlEvents:UIControlEventTouchUpInside];
-    detailButton.frame = CGRectMake(0, 0, 15, 10);
+    detailButton.frame = CGRectMake(0, 0, 30, 10);
     detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     
     UIBarButtonItem *notificationItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
@@ -225,13 +225,13 @@
     UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [shareButton setImage:[UIImage imageNamed:@"mine_share"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.frame = CGRectMake(0, 0, 15, 10);
+    shareButton.frame = CGRectMake(0, 0, 30, 10);
     shareButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     
     UIButton *setButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [setButton setImage:[UIImage imageNamed:@"mine_setting"] forState:UIControlStateNormal];
     [setButton addTarget:self action:@selector(setButton:) forControlEvents:UIControlEventTouchUpInside];
-    setButton.frame = CGRectMake(0, 0, 15, 10);
+    setButton.frame = CGRectMake(0, 0, 30, 10);
     setButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];

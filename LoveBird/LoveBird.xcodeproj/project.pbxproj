@@ -2559,26 +2559,10 @@
 		1FDBE75220DAA8110092E82E /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1FDBE75320DAA8110092E82E /* Model */,
-				1FDBE75420DAA8110092E82E /* View */,
 				1FDBE75520DAA82D0092E82E /* SearchViewController.h */,
 				1FDBE75620DAA82D0092E82E /* SearchViewController.m */,
 			);
 			path = SearchViewController;
-			sourceTree = "<group>";
-		};
-		1FDBE75320DAA8110092E82E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1FDBE75420DAA8110092E82E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		1FDBE75820DBFFDF0092E82E /* DupleViewContrller */ = {

@@ -33,7 +33,7 @@
 - (void)loadRequest:(NSURLRequest *)request {
     
     NSMutableURLRequest *requestNew = [NSMutableURLRequest requestWithURL:request.URL];
-    [requestNew addValue:[LFWKWebView readCurrentCookie:request.URL] forHTTPHeaderField:@"Cookie"];
+//    [requestNew addValue:[LFWKWebView readCurrentCookie:request.URL] forHTTPHeaderField:@"Cookie"];
     [super loadRequest:requestNew];
 }
 
@@ -162,33 +162,33 @@
  *  @param decisionHandler  decisionHandler是一个block 决定是否跳转block 两个枚举类型，取消／允许
  */
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
+
     BOOL respondsToSelector = [_controllerDelegate respondsToSelector:@selector(lfwebView:shouldStartLoadWithRequest:navigationType:)];
     BOOL resultBOOL = YES;
     if (respondsToSelector) {
         resultBOOL = [_controllerDelegate lfwebView:webView shouldStartLoadWithRequest:navigationAction.request navigationType:navigationAction.navigationType];
     }
-    
+
     BOOL isLoadingDisableScheme = [self isLoadingWKWebViewDisableScheme:navigationAction.request.URL];
-    
+
     // 解决10.3.1 crash
     NSURL *url = navigationAction.request.URL;
     if([[url scheme] isEqualToString:@"wvjbscheme"]){
         return;
     }
-    
+
     if(resultBOOL && !isLoadingDisableScheme) {
-        
+
         //        self.currentRequest = navigationAction.request;
         if(navigationAction.targetFrame == nil) {
             [webView loadRequest:navigationAction.request];
         }
         decisionHandler(WKNavigationActionPolicyAllow);
     } else {
-        
+
         decisionHandler(WKNavigationActionPolicyCancel);
     }
-    
+
 }
 
 /**
@@ -235,18 +235,18 @@
  *  接收到服务器响应后决定是否允许跳转
  */
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-    
+
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
-    
+
     if ([_controllerDelegate respondsToSelector:@selector(lfwebView:getResponse:)]) {
         [_controllerDelegate lfwebView:webView getResponse:response];
     }
     NSArray *cookies =[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:response.URL];
-    
+
     for (NSHTTPCookie *cookie in cookies) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
     }
-    
+
     // 不对200做特殊判断，通一允许请求
     decisionHandler(WKNavigationResponsePolicyAllow);
 }

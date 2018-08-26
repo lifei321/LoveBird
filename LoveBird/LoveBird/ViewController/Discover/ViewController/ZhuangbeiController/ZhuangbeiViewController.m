@@ -61,11 +61,9 @@
 }
 - (void)netForContentWithPageNum:(NSInteger)pageNum header:(BOOL)header {
     
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:@"page" forKey:[NSString stringWithFormat:@"%ld", (long)pageNum]];
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DiscoverDao getWordList:self.cid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWordList:self.cid page:[NSString stringWithFormat:@"%ld", (long)pageNum] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         if (header) {
             [self.tableView.mj_header endRefreshing];

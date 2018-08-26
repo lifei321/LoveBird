@@ -35,9 +35,7 @@
         self.leftButton.image = (self.blackImage)?self.blackImage:[UIImage imageNamed:@"nav_back_black"];
     }
     
-    @weakify(self);
     [RACObserve(self.webView, canGoBack) subscribeNext:^(id x) {
-        @strongify(self);
         [self updateNaviLeftButtton];
     }];
 
@@ -46,6 +44,7 @@
     
     // 动态更改title
     [_webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
 
@@ -91,6 +90,9 @@
 
 - (void)loadURL:(NSURL *)url {
     self.url = url;
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
+    [_webView loadRequest:request];
 }
 
 - (void)setStartupUrlString:(NSString *)startupUrlString {
