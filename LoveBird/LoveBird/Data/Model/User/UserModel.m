@@ -18,6 +18,11 @@
     
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
+        sharedInstance.userModel = [[UserModel alloc] init];
+        
+        sharedInstance.userModel.uid = [AppCache objectForKey:@"uid"];
+        sharedInstance.userModel.token = [AppCache objectForKey:@"token"];
+
     });
     return sharedInstance;
 }
@@ -42,6 +47,7 @@
     [AppCache removeObjectForKey:@"uid"];
     [UserPage sharedInstance].userModel.token = nil;
     [UserPage sharedInstance].userModel.uid = nil;
+    [UserPage sharedInstance].userModel = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:nil];
     if (block) {
         block();
@@ -134,18 +140,19 @@
 }
 
 + (void)setUid:(NSString *)uid {
-    if ([UserPage sharedInstance].userModel) {
-        [UserPage sharedInstance].userModel.uid = uid;
+    if (![UserPage sharedInstance].userModel) {
+        [UserPage sharedInstance].userModel = [[UserModel alloc] init];
     }
+    [UserPage sharedInstance].userModel.uid = uid;
     [AppCache setObject:EMPTY_STRING_IF_NIL(uid) forKey:@"uid"];
 }
 
 + (void)setToken:(NSString *)token {
-    if ([UserPage sharedInstance].userModel) {
-        [UserPage sharedInstance].userModel.token = token;
+    if (![UserPage sharedInstance].userModel) {
+        [UserPage sharedInstance].userModel = [[UserModel alloc] init];
     }
+    [UserPage sharedInstance].userModel.token = token;
     [AppCache setObject:token forKey:@"token"];
-    
 }
 
 

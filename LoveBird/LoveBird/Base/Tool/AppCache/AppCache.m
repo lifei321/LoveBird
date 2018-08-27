@@ -32,6 +32,11 @@ static NSString * const AppCacheSharedName = @"AppCacheShared";
 
 
 + (void)setObject:(id<NSCoding>)object forKey:(NSString *)key {
+    
+    if (!object) {
+        [[self sharedCache] removeObjectForKey:key];
+        return;
+    }
     [[self sharedCache] setObject:object forKey:key];
 }
 

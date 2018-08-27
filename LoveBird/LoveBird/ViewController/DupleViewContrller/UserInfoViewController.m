@@ -71,6 +71,7 @@
 // 退出登录
 - (void)logOutNotifycation {
     
+    
 }
 
 - (void)notificationButton:(UIButton *)button {

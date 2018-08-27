@@ -11,6 +11,7 @@
 #import <WebKit/WebKit.h>
 
 
+@class LFWKWebView;
 @protocol LFWebViewDelegate <NSObject>
 
 @optional
@@ -39,7 +40,7 @@
  *
  *  @return               返回Yes加载，否则不加载
  */
-- (BOOL)lfwebView:(WKWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(WKNavigationType)navigationType;
+- (BOOL)lfwebView:(LFWKWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(WKNavigationType)navigationType;
 
 /**
  * 获取连接NSHTTPURLResponse
@@ -47,7 +48,7 @@
  * @param webView  当前webView对象
  * @param response 获取的NSHTTPURLResponse
  */
-- (void)lfwebView:(WKWebView *)webView getResponse:(NSHTTPURLResponse *)response;
+- (void)lfwebView:(LFWKWebView *)webView getResponse:(NSHTTPURLResponse *)response;
 
 @end
 

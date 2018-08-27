@@ -40,22 +40,26 @@
     }];
 
     // 添加观察者，观察网页进度条
-    [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     
     // 动态更改title
     [_webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     
+    [self.view addSubview:self.webView];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // 如果有导航栏则需要减去64高，如果有tabbar的高度需要减去，也必需在viewWillAppear方法中去实现
-    if (self.navigationController.navigationBarHidden == NO ) {
-        
-        self.webView.height = SCREEN_HEIGHT - 64;
-    }
+//    // 如果有导航栏则需要减去64高，如果有tabbar的高度需要减去，也必需在viewWillAppear方法中去实现
+//    if (self.navigationController.navigationBarHidden == NO ) {
+//
+        self.webView.top = total_topView_height;
+        self.webView.height = SCREEN_HEIGHT - total_topView_height;
+        self.webView.width = SCREEN_WIDTH;
+//        self.webView.controllerDelegate = self;
+//    }
     
     self.progressView.progressBarView.height = 2.f;
     self.progressView.progressBarView.backgroundColor = UIColorFromRGB(0x574ef2);
@@ -206,7 +210,7 @@
 
 #pragma mark - UIWebViewDelegate
 
-- (BOOL)lftwebView:(LFWKWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)lfwebView:(WKWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(WKNavigationType)navigationType {
     
     NSLog(@"===%@", request.URL);
 //    if ([BJXYRoutes canOpenURL:request.URL]) {
@@ -217,7 +221,7 @@
     return YES;
 }
 
-- (void)lftwebViewDidStartLoad:(LFWKWebView *)webView {
+- (void)lfwebViewDidStartLoad:(WKWebView *)webView {
     
     //添加进度条
     self.progressView.alpha = 1.0;
@@ -227,14 +231,14 @@
     NSLog(@"webview开始加载 %@", webView.URL);
 }
 
-- (void)lftwebViewDidFinishLoad:(LFWKWebView *)webView {
+- (void)lfwebViewDidFinishLoad:(WKWebView *)webView {
     
     _url = webView.URL;
     _isFinish = YES;
     [self updateNaviLeftButtton];
 }
 
-- (void)lftwebView:(LFWKWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)lfwebView:(WKWebView *)webView didFailLoadWithError:(NSError *)error {
     
     [self updateNaviLeftButtton];
     NSLog(@"webview加载失败－－－%@",error);

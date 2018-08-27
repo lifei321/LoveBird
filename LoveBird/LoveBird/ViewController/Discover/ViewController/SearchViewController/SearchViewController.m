@@ -70,22 +70,22 @@
     if (tag == 101) {
         self.birdClassController.word = self.searchField.text;
         [self.view addSubview:self.birdClassController.view];
-        self.birdClassController.view.frame = CGRectMake(0,  AutoSize6(150), SCREEN_WIDTH, self.view.height - AutoSize6(150));
+        self.birdClassController.view.frame = CGRectMake(0,  AutoSize6(190), SCREEN_WIDTH, self.view.height - AutoSize6(190));
         
     } else if (tag == 102) {
         self.discoverController.word = self.searchField.text;
         [self.view addSubview:self.discoverController.view];
-        self.discoverController.view.frame = CGRectMake(0, AutoSize6(270), SCREEN_WIDTH, self.view.height - AutoSize6(150));
+        self.discoverController.view.frame = CGRectMake(0, AutoSize6(300), SCREEN_WIDTH, self.view.height - AutoSize6(190));
         
     } else if (tag == 103) {
         self.followController.word = self.searchField.text;
         [self.view addSubview:self.followController.view];
-        self.followController.view.frame = CGRectMake(0, AutoSize6(150), SCREEN_WIDTH, self.view.height - AutoSize6(150));
+        self.followController.view.frame = CGRectMake(0, AutoSize6(190), SCREEN_WIDTH, self.view.height - AutoSize6(220));
         
     } else if (tag == 104) {
         self.zhuangbeiController.word = self.searchField.text;
         [self.view addSubview:self.zhuangbeiController.view];
-        self.zhuangbeiController.view.frame = CGRectMake(0, AutoSize6(150), SCREEN_WIDTH, self.view.height - AutoSize6(150));
+        self.zhuangbeiController.view.frame = CGRectMake(0, AutoSize6(190), SCREEN_WIDTH, self.view.height - AutoSize6(190));
     }
     [self.view bringSubviewToFront:self.selectView];
     [self.view bringSubviewToFront:self.searchField];
