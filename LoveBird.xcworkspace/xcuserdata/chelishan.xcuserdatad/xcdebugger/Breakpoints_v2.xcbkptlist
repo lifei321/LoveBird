@@ -35,22 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/ViewController/Discover/ViewController/NearController/NearController.m"
-            timestampString = "556872786.3881871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "-onGetPoiResult:result:errorCode:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Category/UIImage+Addition.m"
             timestampString = "556377523.102596"
             startingColumnNumber = "9223372036854775807"
@@ -90,6 +74,22 @@
             startingLineNumber = "396"
             endingLineNumber = "396"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
+            timestampString = "557080661.8909529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "+success:responseObject:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

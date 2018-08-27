@@ -65,6 +65,8 @@
 
 @property (nonatomic, assign) BOOL isNetWotking;
 
+@property (nonatomic, assign) BOOL canNetWork;
+
 @end
 
 @implementation NearController
@@ -73,6 +75,7 @@
     [super viewDidLoad];
     
     self.isNetWotking = NO;
+    self.canNetWork = NO;
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
     
@@ -95,6 +98,10 @@
     self.isNavigationTransparent = YES;
     
     [self.bMapView viewWillAppear];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.bMapView.delegate = self; //
     self.locService.delegate = self;
     [self.locService startUserLocationService];
@@ -391,6 +398,7 @@
     [self.bMapView updateLocationData:userLocation];
 
     if ((self.lat == 0) && (self.lng == 0) && (self.radius == 0)) {
+        self.canNetWork = YES;
         self.bMapView.centerCoordinate = userLocation.location.coordinate;
         self.lat = userLocation.location.coordinate.latitude;
         self.lng = userLocation.location.coordinate.longitude;
@@ -415,37 +423,46 @@
     self.oldCoor = mapView.centerCoordinate;
 }
 
+
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     self.lat = mapView.centerCoordinate.latitude;
     self.lng = mapView.centerCoordinate.longitude;
-    [self setParamsOfRadius];
     
+    [self setParamsOfRadius];
+
     if (mapView.zoomLevel > self.zoomValue) {
         NSLog(@"地图放大了");
     }else if (mapView.zoomLevel < self.zoomValue){
         NSLog(@"地图缩小了");
     }
     
-    if (mapView.zoomLevel > 14) {
-        
-        //请求小区
-        //当没有放大缩小 计算平移的距离。当距离小于2千米。不再进行计算  避免过度消耗
-        float distance = [self distanceBetweenFromCoor:self.oldCoor toCoor:mapView.centerCoordinate];
-        if (distance <= 1000 && mapView.zoomLevel == self.zoomValue) {
-            return;
-        }
-        [self netForBird];
-        
-    } else if(mapView.zoomLevel <= 14) {
-        if (mapView.zoomLevel == self.zoomValue) {//当平移地图。大区不再重复请求
-            return;
-        }
-
-        [self netForBird];
+    float distance = [self distanceBetweenFromCoor:self.oldCoor toCoor:mapView.centerCoordinate];
+    if (distance <= 1000 && mapView.zoomLevel == self.zoomValue) {
+        return;
     }
+    [self netForBird];
+    
+//    if (mapView.zoomLevel > 14) {
+//
+//        //请求小区
+//        //当没有放大缩小 计算平移的距离。当距离小于2千米。不再进行计算  避免过度消耗
+//
+//
+//    } else if(mapView.zoomLevel <= 14) {
+//        if (mapView.zoomLevel == self.zoomValue) {//当平移地图。大区不再重复请求
+//            return;
+//        }
+//
+//        [self netForBird];
+//    }
 }
 
 - (void)setParamsOfRadius {
+    
+    if (self.radius == 0) {
+        self.radius = 6500;
+        return;
+    }
     CLLocationCoordinate2D location = [self.bMapView convertPoint:CGPointMake(0, SCREEN_WIDTH / 2) toCoordinateFromView:self.bMapView];
     
     float distance = [self distanceBetweenFromCoor:self.bMapView.centerCoordinate toCoor:location];
@@ -467,6 +484,9 @@
 
 }
 
+- (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    NSLog(@"-----");
+}
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation {
     BDAnnotation *anno = (BDAnnotation *)annotation;
@@ -564,7 +584,6 @@
                             [self.bMapView addAnnotation:an];
                         }
                     }
-                    
                 } failureBlock:^(__kindof AppBaseModel *error) {
                     @strongify(self);
                     self.isNetWotking = NO;
@@ -577,6 +596,9 @@
 //地图渲染完毕
 - (void)mapViewDidFinishRendering:(BMKMapView *)mapView {
     
+//    [self netForBird];
+//
+//    [self.bMapView mapForceRefresh];
 //    //避免屏幕内没有房源-->计算屏幕右上角、左下角经纬度-->获取这个区域内所有的大头针-->判断有没有大头针-->若屏幕内没有，但整个地图中存在大头针-->移动中心点到这个大头针
 //    BMKCoordinateBounds coorbBound;
 //    CLLocationCoordinate2D northEast;

@@ -107,6 +107,8 @@
     self.selectBirdModel = bridModel;
     bridModel.isSelect = YES;
     [self.tableView reloadData];
+    [self closeBUttonClick];
+
     
     BirdDetailController *detailvc = [[BirdDetailController alloc] init];
     detailvc.cspCode = bridModel.csp_code;
