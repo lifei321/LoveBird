@@ -17,6 +17,8 @@
 
 static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
+
+
 @implementation MWPhotoBrowser
 
 #pragma mark - Init
@@ -192,7 +194,11 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
 	// Super
     [super viewDidLoad];
-	
+    
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
+
+    [self makeHeadIcon];
 }
 
 - (void)performLayout {
@@ -373,6 +379,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     // Layout
     [self.view setNeedsLayout];
 
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -424,6 +432,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
 	// Super
 	[super viewWillDisappear:animated];
+    
+    self.isCustomNavigation = NO;
+    self.isNavigationTransparent = NO;
+
     
 }
 
@@ -479,6 +491,40 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
             _previousViewControllerBackButton = nil;
         }
     }
+}
+
+- (void)makeHeadIcon {
+    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(40), SCREEN_WIDTH, AutoSize6(100))];
+    headView.backgroundColor = [UIColor blackColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:headView];
+    _headView = headView;
+    
+    // 关闭按钮
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize(0), headView.height, headView.height)];
+    [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
+    [closeButton addTarget:self action:@selector(closeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:closeButton];
+    
+    _headImageview = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), AutoSize6(15), AutoSize6(70), AutoSize6(70))];
+    _headImageview.layer.cornerRadius = _headImageview.width / 2;
+    _headImageview.layer.borderColor = [UIColor whiteColor].CGColor;
+    _headImageview.contentMode = UIViewContentModeScaleToFill;
+    _headImageview.layer.borderWidth = 1;
+    _headImageview.clipsToBounds = YES;
+    [headView addSubview:_headImageview];
+    
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), 0, SCREEN_WIDTH / 2, headView.height)];
+    _nameLabel.font = kFontPF6(28);
+    _nameLabel.textColor = [UIColor whiteColor];
+    [headView addSubview:_nameLabel];
+
+}
+
+- (void)closeButtonDidClick {
+    [self.headView removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Layout
@@ -1420,12 +1466,22 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
             // Non-view controller based
             [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:animated ? UIStatusBarAnimationSlide : UIStatusBarAnimationNone];
             
+            CGFloat top = hidden ? - AutoSize6(100) : AutoSize6(40);
+            
+            [UIView animateWithDuration:animationDuration animations:^{
+                self.headView.top = top;
+            }];
+            
         } else {
             
             // View controller based so animate away
             _statusBarShouldBeHidden = hidden;
+            CGFloat top = hidden ? - AutoSize6(100) : AutoSize6(40);
+
             [UIView animateWithDuration:animationDuration animations:^(void) {
                 [self setNeedsStatusBarAppearanceUpdate];
+                self.headView.top = top;
+
             } completion:^(BOOL finished) {}];
             
         }

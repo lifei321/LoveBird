@@ -10,7 +10,7 @@
 #import "MWPhoto.h"
 #import "MWPhotoProtocol.h"
 #import "MWCaptionView.h"
-
+#import "AppBaseViewController.h"
 // Debug Logging
 #if 0 // Set to 1 to enable debug logging
 #define MWLog(x, ...) NSLog(x, ## __VA_ARGS__);
@@ -38,7 +38,7 @@
 
 @end
 
-@interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate>
+@interface MWPhotoBrowser : AppBaseViewController <UIScrollViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet id<MWPhotoBrowserDelegate> delegate;
 @property (nonatomic) BOOL zoomPhotosToFill;
@@ -52,6 +52,16 @@
 @property (nonatomic) BOOL autoPlayOnAppear;
 @property (nonatomic) NSUInteger delayToHideElements;
 @property (nonatomic, readonly) NSUInteger currentIndex;
+
+
+@property (nonatomic, strong) UIView *headView;
+
+@property (nonatomic, strong) UIImageView *headImageview;
+
+
+@property (nonatomic, strong) UILabel *nameLabel;
+
+
 
 // Customise image selection icons as they are the only icons with a colour tint
 // Icon should be located in the app's main bundle

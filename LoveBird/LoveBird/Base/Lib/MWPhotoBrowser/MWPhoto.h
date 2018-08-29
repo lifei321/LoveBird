@@ -22,6 +22,12 @@
 @property (nonatomic) BOOL isVideo;
 @property (nonatomic, strong) NSURL *photoURL;
 
+
+@property (nonatomic, strong) NSString *iconUrl;
+
+@property (nonatomic, strong) NSString *name;
+
+
 + (MWPhoto *)photoWithImage:(UIImage *)image;
 + (MWPhoto *)photoWithURL:(NSURL *)url;
 + (MWPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;

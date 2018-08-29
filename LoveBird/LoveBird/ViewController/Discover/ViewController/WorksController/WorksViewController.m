@@ -13,6 +13,7 @@
 #import "WorkTableViewCell.h"
 #import "UIImage+Addition.h"
 #import "MWPhotoBrowser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface WorksViewController ()<UITableViewDelegate, UITableViewDataSource, MWPhotoBrowserDelegate>
 
@@ -92,6 +93,8 @@
                 for (WorksModel *worksModel in modelArray) {
                     MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
                     photo.caption = worksModel.tags;
+                    photo.iconUrl = worksModel.head;
+                    photo.name = worksModel.author;
                     [self.photoArray addObject:photo];
                 }
             }
@@ -228,7 +231,12 @@
 
 
 - (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
-    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
+    
+    MWPhoto *photo = self.photoArray[index];
+    [photoBrowser.headImageview sd_setImageWithURL:[NSURL URLWithString:photo.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    photoBrowser.nameLabel.text = photo.name;
+    return @" ";
+//    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
 }
 
 

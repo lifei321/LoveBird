@@ -39,6 +39,28 @@
 
 @property (nonatomic, assign) CGFloat imgWidth;
 
+@property (nonatomic, copy) NSString *authorid;
+
+@property (nonatomic, copy) NSString *author;
+
+@property (nonatomic, copy) NSString *head;
+
+@property (nonatomic, copy) NSString *tid;
+
+@property (nonatomic, copy) NSString *imgExifModel;
+
+@property (nonatomic, copy) NSString *imgExifLen;
+
+@property (nonatomic, copy) NSString *imgExifParameter;
+
+@property (nonatomic, copy) NSString *shareUrl;
+
+@property (nonatomic, copy) NSString *shareTitle;
+
+@property (nonatomic, copy) NSString *shareSummary;
+
+@property (nonatomic, copy) NSString *shareImg;
+
 @end
 
 

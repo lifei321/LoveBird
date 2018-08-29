@@ -165,7 +165,7 @@
             if (row == 4) {
                 classCell.title = @"描述";
                 classCell.detail = self.detailModel.describe;
-                if (self.detailModel.region_img.length) {
+                if (self.detailModel.region_img.length || self.detailModel.describe.length) {
                     classCell.hasImage = YES;
                 }
             } else if (row == 5) {
@@ -268,7 +268,7 @@
         }
         
         if (row == 4) {
-            if (self.detailModel.describe.length) {
+            if (self.detailModel.region_img.length || self.detailModel.describe.length) {
                 return [BirdDetailCell getHeightWithModel:self.detailModel text:self.detailModel.describe img:YES];
             }
         }
