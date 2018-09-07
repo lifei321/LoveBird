@@ -151,6 +151,7 @@
 		1F17161D2116FD9B001769AB /* AudioProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161C2116FD9B001769AB /* AudioProgressView.m */; };
 		1F1B8043213267B700547801 /* AppShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8042213267B700547801 /* AppShareManager.m */; };
 		1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8045213267CA00547801 /* AppLoginManager.m */; };
+		1F1B804C2142C67C00547801 /* app.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1F1B804B2142C67C00547801 /* app.cer */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -571,6 +572,7 @@
 		1F1B8042213267B700547801 /* AppShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppShareManager.m; sourceTree = "<group>"; };
 		1F1B8044213267CA00547801 /* AppLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLoginManager.h; sourceTree = "<group>"; };
 		1F1B8045213267CA00547801 /* AppLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLoginManager.m; sourceTree = "<group>"; };
+		1F1B804B2142C67C00547801 /* app.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = app.cer; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1289,6 +1291,7 @@
 		0B75D5B81FBEC874008D7AE6 /* BJXYNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				1F1B804B2142C67C00547801 /* app.cer */,
 				0B75D5C31FBECED5008D7AE6 /* AppBaseModel.h */,
 				0B75D5C41FBECED5008D7AE6 /* AppBaseModel.m */,
 				0B75D5BB1FBEC874008D7AE6 /* BJXYHTTPManager.h */,
@@ -2652,6 +2655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */,
+				1F1B804C2142C67C00547801 /* app.cer in Resources */,
 				1F676F0620A9C4F3002F71B4 /* wphoto_select_yes@2x.png in Resources */,
 				1F676F0520A9C4F3002F71B4 /* wphoto_select_no@2x.png in Resources */,
 				0B7293111EFA4F1100D1B1EB /* Assets.xcassets in Resources */,
