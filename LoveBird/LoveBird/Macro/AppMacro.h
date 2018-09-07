@@ -42,6 +42,10 @@
 //基础网址
 #define kAPI_USER_SERVER                    @"http://www.birdfans.com/source/birdapi"
 
+//#define kAPI_USER_SERVER                    @"https://xcxu.birdfans.com/source/birdapi"
+
+
+
 
 
 #define kGtAppId                            @""    //个推id

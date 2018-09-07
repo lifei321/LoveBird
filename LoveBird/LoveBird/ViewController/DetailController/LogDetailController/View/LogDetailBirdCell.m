@@ -49,10 +49,20 @@
     _birdArray = [birdArray copy];
     
     NSString *text ;
+    NSString *contentText;
     for (LogBirdInfoModel *model in birdArray) {
-        text = [NSString stringWithFormat:@"%@ %@ ",model.genus, model.num];
+        text = [NSString stringWithFormat:@"%@%@ ",model.genus, model.num];
+        
+        if (contentText.length) {
+            contentText = [contentText stringByAppendingString:text];
+        } else {
+            contentText = [text copy];
+        }
     }
-    self.birdLabel.text = text;
+    
+//    CGFloat height = [contentText getTextHeightWithFont:self.birdLabel.font withWidth:SCREEN_WIDTH - _iconImageView.right - AutoSize6(40)];
+    self.birdLabel.numberOfLines = 0;
+    self.birdLabel.text = contentText;
     self.lineView.hidden = NO;
 
 }
