@@ -20,3 +20,16 @@
 }
 
 @end
+
+
+
+@implementation MessageCountModel
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName) {
+        return [NSString stringWithFormat:@"data.%@", keyName];
+    }];
+}
+
+
+@end

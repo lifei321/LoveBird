@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dataArray = [NSMutableArray new];
     
     self.tableView.top = total_topView_height;
     self.tableView.height = SCREEN_HEIGHT - total_topView_height;

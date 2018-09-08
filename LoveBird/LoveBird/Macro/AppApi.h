@@ -390,6 +390,11 @@
 
 #define kAPI_Set_finishHeadiCON kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=modifyhead")
 
+// 消息接口
+#define kAPI_Set_Message kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=messageInfo")
+
+// 消息详情
+#define kAPI_Set_MessageDetail kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=message")
 
 
 #pragma mark-- 搜索

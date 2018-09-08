@@ -35,15 +35,16 @@
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(22), AutoSize6(88), AutoSize6(88))];
         self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
+        _iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(20), _iconImageView.top, SCREEN_WIDTH / 2, _iconImageView.height)];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.textColor = kColorTextColor333333;
         _titleLabel.font = kFont(14);
         [self.contentView addSubview:_titleLabel];
         
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(230), _titleLabel.top, AutoSize6(200), _titleLabel.height)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(330), _titleLabel.top, AutoSize6(300), _titleLabel.height)];
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.textColor = kColorTextColorLightGraya2a2a2;
         _timeLabel.font = kFont6(23);
@@ -51,11 +52,11 @@
         
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.left, _iconImageView.bottom, SCREEN_WIDTH - AutoSize6(60), AutoSize6(70))];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
-        _contentLabel.textColor = [UIColor blackColor];
-        _contentLabel.font = kFont(14);
+        _contentLabel.textColor = kColorTextColor7f7f7f;
+        _contentLabel.font = kFontPF6(26);
         [self.contentView addSubview:_contentLabel];
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(192) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(192) - 0.5, SCREEN_WIDTH - AutoSize6(60), 0.5)];
         line.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:line];
     }
@@ -69,8 +70,6 @@
     _titleLabel.text = model.messageUsername;
     _timeLabel.text = [[AppDateManager shareManager] getDateWithTime:model.dateline formatSytle:DateFormatYMDHM];
     _contentLabel.text = model.messageContent;
-    
-    
     
 }
 @end

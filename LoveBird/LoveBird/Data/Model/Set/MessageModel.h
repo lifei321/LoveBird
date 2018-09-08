@@ -38,4 +38,19 @@
 //messageUsername    发消息用户名
 
 
+@interface MessageCountModel:AppBaseModel
 
+@property (nonatomic, assign) NSInteger sysNum;
+
+@property (nonatomic, assign) NSInteger commentNum;
+
+
+@property (nonatomic, assign) NSInteger followNum;
+
+@property (nonatomic, assign) NSInteger upNum;
+
+@property (nonatomic, assign) NSInteger mailNum;
+
+
+
+@end

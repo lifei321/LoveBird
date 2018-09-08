@@ -43,9 +43,12 @@
         _titleLabel.font = kFont(14);
         [self.contentView addSubview:_titleLabel];
         
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(77), 0, AutoSize(60), AutoSize(47))];
-        _contentLabel.textAlignment = NSTextAlignmentRight;
-        _contentLabel.textColor = [UIColor blackColor];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), AutoSize6(29), AutoSize6(40), AutoSize6(40))];
+        _contentLabel.textAlignment = NSTextAlignmentCenter;
+        _contentLabel.layer.cornerRadius = _contentLabel.width / 2;
+        _contentLabel.clipsToBounds = YES;
+        _contentLabel.backgroundColor = [UIColor redColor];
+        _contentLabel.textColor = [UIColor whiteColor];
         _contentLabel.font = kFont(14);
         [self.contentView addSubview:_contentLabel];
         
@@ -68,6 +71,14 @@
     _iconImageView.image = [UIImage imageNamed:model.iconUrl];
     _titleLabel.text = model.title;
     _contentLabel.text = model.detailText;
+    
+    if (model.detailText.length) {
+        _contentLabel.centerY = self.contentView.centerY;
+        _contentLabel.hidden = NO;
+    } else {
+        _contentLabel.hidden = YES;
+    }
+    _arrowImageView.centerY = self.contentView.centerY;
 }
 
 @end
