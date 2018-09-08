@@ -235,6 +235,7 @@
     MWPhoto *photo = self.photoArray[index];
     [photoBrowser.headImageview sd_setImageWithURL:[NSURL URLWithString:photo.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     photoBrowser.nameLabel.text = photo.name;
+    photoBrowser.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", index + 1, self.photoArray.count];
     return @" ";
 //    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
 }

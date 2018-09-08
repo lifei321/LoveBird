@@ -504,13 +504,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     upButton.titleLabel.font = kFontPF6(26);
     [footerView addSubview:upButton];
     
-    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(400), 0, AutoSize6(370), AutoSize6(50))];
+    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(400), 0, AutoSize6(350), AutoSize6(70))];
     countLabel.textColor = [UIColor whiteColor];
     countLabel.textAlignment = NSTextAlignmentRight;
-    countLabel.font = kFontPF6(26);
+    countLabel.font = kFontPF6(28);
     [footerView addSubview:countLabel];
     self.countLabel = countLabel;
-    
 }
 
 #pragma mark - Layout
@@ -526,7 +525,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	_performingLayout = YES;
 	
 	// Toolbar
-	_toolbar.frame = [self frameForToolbarAtOrientation:self.interfaceOrientation];
+//    _toolbar.frame = [self frameForToolbarAtOrientation:self.interfaceOrientation];
     
 	// Remember index
 	NSUInteger indexPriorToLayout = _currentPageIndex;
@@ -1443,8 +1442,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 //    CGFloat animatonOffset = 20;
 //    CGFloat animationDuration = (animated ? 0.35 : 0);
     
-    self.headView.hidden = hidden;
-    self.footView.hidden = hidden;
+    self.headView.hidden = !self.headView.hidden;
+    self.footView.hidden = !self.footView.hidden;
     return;
     
 }
