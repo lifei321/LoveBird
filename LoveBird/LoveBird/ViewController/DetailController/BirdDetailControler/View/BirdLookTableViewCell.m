@@ -136,10 +136,10 @@
     
     if (frameModel.logModel.imgUrl.length) {
         [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.logModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-    } else {
-        self.titleLable.text = frameModel.logModel.title;
     }
     
+    self.titleLable.text = frameModel.logModel.point;
+
     if (frameModel.logModel.authorName.length) {
         self.subjectLable.text = [NSString stringWithFormat:@"作者：%@", frameModel.logModel.authorName];
     }

@@ -89,12 +89,12 @@
 
 + (void)uploadHeadIcon:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.token) forKey:@"token"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].token) forKey:@"token"];
 
     NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
     NSDictionary *fileDic = @{@"file": data,
-                              @"fileName":@"file_bird",
+                              @"fileName":@"file_head",
                               };
     
     

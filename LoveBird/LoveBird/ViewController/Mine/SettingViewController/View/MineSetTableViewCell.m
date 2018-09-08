@@ -45,10 +45,10 @@
         _titleLabel.font = kFont(14);
         [self.contentView addSubview:_titleLabel];
         
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(77), 0, AutoSize(60), AutoSize6(94))];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(100), 0, AutoSize(60), AutoSize6(94))];
         _contentLabel.textAlignment = NSTextAlignmentRight;
-        _contentLabel.textColor = [UIColor blackColor];
-        _contentLabel.font = kFont(14);
+        _contentLabel.textColor = UIColorFromRGB(0x7f7f7f);
+        _contentLabel.font = kFontPF6(24);
         [self.contentView addSubview:_contentLabel];
         
         _arrowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(17), 0, AutoSize(7), AutoSize6(94))];
@@ -71,6 +71,7 @@
 - (void)setModel:(MineSetModel *)model {
     _model = model;
     _titleLabel.text = model.title;
+    _contentLabel.text = model.detailText;
     
     if (model.iconUrl.length) {
         _iconImageView.hidden = NO;

@@ -71,8 +71,8 @@
         self.titleLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(25), kWidthForBackView - AutoSize6(40), AutoSize6(40));
         backViewHeight = CGRectGetMaxY(self.titleLabelFrame);
 
-//        CGFloat imageHeight = (logModel.imgHeight) * (AutoSize6(585) / logModel.imgWidth);
-        self.contentImageViewFrame  = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(20), AutoSize6(585), AutoSize6(350));
+        CGFloat imageHeight = (logModel.imgHeight) * (AutoSize6(585) / logModel.imgWidth);
+        self.contentImageViewFrame  = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(20), AutoSize6(585), imageHeight);
         backViewHeight = CGRectGetMaxY(self.contentImageViewFrame);
 
     } else if (logModel.title.length) {

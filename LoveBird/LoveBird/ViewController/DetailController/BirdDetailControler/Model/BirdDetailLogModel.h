@@ -34,6 +34,10 @@
 
 @property (nonatomic, copy) NSString * dateline;
 
+@property (nonatomic, assign) CGFloat imgWidth;
+
+@property (nonatomic, assign) CGFloat imgHeight;
+
 
 
 @end

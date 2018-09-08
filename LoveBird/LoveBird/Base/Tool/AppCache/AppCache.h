@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^AppCacheCompletionBlock)(void);
+
 @interface AppCache : NSObject
 
 
@@ -49,4 +51,13 @@
  */
 + (BOOL)containsObjectForKey:(NSString *)key;
 
+/**
+ 获取sd的缓存大小 M
+ */
++ (CGFloat)getSdCacheSize;
+
+/**
+ 清理sd的缓存
+ */
++ (void)clearSdCacheCompletion:(AppCacheCompletionBlock)block;
 @end

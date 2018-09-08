@@ -144,7 +144,9 @@
     UIImage *selectImage = [iamge compressImage:iamge withMaxSize:CGSizeMake(1200, MAXFLOAT)];
     [SetDao uploadHeadIcon:selectImage successBlock:^(__kindof AppBaseModel *responseObject) {
         [AppBaseHud showHudWithSuccessful:@"上传成功" view:self.view];
-        
+        self.headerView.headImageView.image = selectImage;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotification object:nil];
+
     } failureBlock:^(__kindof AppBaseModel *error) {
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
@@ -253,7 +255,9 @@
     
     if (indexPath.section == 2 && indexPath.row == 0) {
         [self zuzhi];
+        return;
     }
+    
 }
 
 - (void)zuzhi {

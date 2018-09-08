@@ -68,6 +68,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MineSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MineSetTableViewCell class]) forIndexPath:indexPath];
     cell.model = _dataArray[indexPath.section][indexPath.row];
+    
     return cell;
 }
 
@@ -144,6 +145,20 @@
             }
             webvc.startupUrlString = url;
             [self.navigationController pushViewController:webvc animated:YES];
+            return;
+        }
+        
+        if (indexPath.section == 2) {
+            [AppAlertView questionAlertWithTitle:@"" message:@"确定清除缓存吗？" onDismiss:^(NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    [AppCache clearSdCacheCompletion:^{
+                        MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
+                        model.detailText = [NSString stringWithFormat:@"%.2fM", [AppCache getSdCacheSize]];
+                        
+                        [self.tableView reloadData];
+                    }];
+                }
+            }];
         }
     }
 }
@@ -203,6 +218,7 @@
     model20.isShowContent = YES;
     model20.isShowSwitch = NO;
     model20.title = @"清理缓存";
+    model20.detailText = [NSString stringWithFormat:@"%.2fM", [AppCache getSdCacheSize]];
     [section2 addObject:model20];
     
     NSMutableArray *section3 = [NSMutableArray new];
