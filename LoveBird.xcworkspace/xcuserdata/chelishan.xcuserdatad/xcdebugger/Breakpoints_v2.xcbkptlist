@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/HTTP/BJXYNetwork/BJXYHTTPManager.m"
-            timestampString = "558024341.517614"
+            timestampString = "558025982.2850471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "343"
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558024341.518267"
+            timestampString = "558073151.870203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1363"
-            endingLineNumber = "1363"
+            startingLineNumber = "1348"
+            endingLineNumber = "1348"
             landmarkName = "-showGrid:"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,28 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558024341.518342"
+            timestampString = "558073151.870556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1418"
-            endingLineNumber = "1418"
-            landmarkName = "-hideGrid"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558024341.518392"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1054"
-            endingLineNumber = "1054"
-            landmarkName = "-frameForToolbarAtOrientation:"
+            startingLineNumber = "1538"
+            endingLineNumber = "1538"
+            landmarkName = "-actionButtonPressed:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -161,14 +161,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 	[self.view addSubview:_pagingScrollView];
 	
-    // Toolbar
-    _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
-    _toolbar.tintColor = [UIColor whiteColor];
-    _toolbar.barTintColor = nil;
-    [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-    [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsLandscapePhone];
-    _toolbar.barStyle = UIBarStyleBlackTranslucent;
-    _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+//    // Toolbar
+//    _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
+//    _toolbar.tintColor = [UIColor whiteColor];
+//    _toolbar.barTintColor = nil;
+//    [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+//    [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsLandscapePhone];
+//    _toolbar.barStyle = UIBarStyleBlackTranslucent;
+//    _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+//    _toolbar.hidden = YES;
     
     // Toolbar Items
     if (self.displayNavArrows) {
@@ -199,6 +200,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.isNavigationTransparent = YES;
 
     [self makeHeadIcon];
+    [self makeFooterView];
 }
 
 - (void)performLayout {
@@ -210,86 +212,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	// Setup pages
     [_visiblePages removeAllObjects];
     [_recycledPages removeAllObjects];
-    
-    // Navigation buttons
-    if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
-        // We're first on stack so show done button
-        _doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed:)];
-        // Set appearance
-        [_doneButton setBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [_doneButton setBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-        [_doneButton setBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        [_doneButton setBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-        [_doneButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
-        [_doneButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
-        self.navigationItem.rightBarButtonItem = _doneButton;
-    } else {
-        // We're not first so show back button
-        UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-        NSString *backButtonTitle = previousViewController.navigationItem.backBarButtonItem ? previousViewController.navigationItem.backBarButtonItem.title : previousViewController.title;
-        UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle style:UIBarButtonItemStylePlain target:nil action:nil];
-        // Appearance
-        [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-        [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-        [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
-        [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
-        _previousViewControllerBackButton = previousViewController.navigationItem.backBarButtonItem; // remember previous
-        previousViewController.navigationItem.backBarButtonItem = newBackButton;
-    }
-
-    // Toolbar items
-    BOOL hasItems = NO;
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    fixedSpace.width = 32; // To balance action button
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-
-    // Left button - Grid
-    if (_enableGrid) {
-        hasItems = YES;
-        [items addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageForResourcePath:@"MWPhotoBrowser.bundle/UIBarButtonItemGrid" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]] style:UIBarButtonItemStylePlain target:self action:@selector(showGridAnimated)]];
-    } else {
-        [items addObject:fixedSpace];
-    }
-
-    // Middle - Nav
-    if (_previousButton && _nextButton && numberOfPhotos > 1) {
-        hasItems = YES;
-        [items addObject:flexSpace];
-        [items addObject:_previousButton];
-        [items addObject:flexSpace];
-        [items addObject:_nextButton];
-        [items addObject:flexSpace];
-    } else {
-        [items addObject:flexSpace];
-    }
-
-    // Right - Action
-    if (_actionButton && !(!hasItems && !self.navigationItem.rightBarButtonItem)) {
-        [items addObject:_actionButton];
-    } else {
-        // We're not showing the toolbar so try and show in top right
-        if (_actionButton)
-            self.navigationItem.rightBarButtonItem = _actionButton;
-        [items addObject:fixedSpace];
-    }
-
-    // Toolbar visibility
-    [_toolbar setItems:items];
-    BOOL hideToolbar = YES;
-    for (UIBarButtonItem* item in _toolbar.items) {
-        if (item != fixedSpace && item != flexSpace) {
-            hideToolbar = NO;
-            break;
-        }
-    }
-    if (hideToolbar) {
-        [_toolbar removeFromSuperview];
-    } else {
-        [self.view addSubview:_toolbar];
-    }
     
     // Update nav
 	[self updateNavigation];
@@ -381,6 +303,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
+    self.backImage = [UIImage imageNamed:@""];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -390,7 +313,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     // Autoplay if first is video
     if (!_viewHasAppearedInitially) {
         if (_autoPlayOnAppear) {
-            MWPhoto *photo = [self photoAtIndex:_currentPageIndex];
+            MWPhoto *photo = (MWPhoto *)[self photoAtIndex:_currentPageIndex];
             if ([photo respondsToSelector:@selector(isVideo)] && photo.isVideo) {
                 [self playVideoAtIndex:_currentPageIndex];
             }
@@ -493,21 +416,24 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
 }
 
+
+#pragma mark--- 自定义
+
 - (void)makeHeadIcon {
     
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(40), SCREEN_WIDTH, AutoSize6(100))];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(0), SCREEN_WIDTH, AutoSize6(140))];
     headView.backgroundColor = [UIColor blackColor];
     [[UIApplication sharedApplication].keyWindow addSubview:headView];
     _headView = headView;
     
     // 关闭按钮
-    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize(0), headView.height, headView.height)];
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(40), AutoSize6(30), headView.height - AutoSize6(40))];
     [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
     [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:closeButton];
     
-    _headImageview = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), AutoSize6(15), AutoSize6(70), AutoSize6(70))];
+    _headImageview = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), AutoSize6(55), AutoSize6(70), AutoSize6(70))];
     _headImageview.layer.cornerRadius = _headImageview.width / 2;
     _headImageview.layer.borderColor = [UIColor whiteColor].CGColor;
     _headImageview.contentMode = UIViewContentModeScaleToFill;
@@ -515,7 +441,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _headImageview.clipsToBounds = YES;
     [headView addSubview:_headImageview];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), 0, SCREEN_WIDTH / 2, headView.height)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), AutoSize6(40), SCREEN_WIDTH / 2, headView.height - AutoSize6(40))];
     _nameLabel.font = kFontPF6(28);
     _nameLabel.textColor = [UIColor whiteColor];
     [headView addSubview:_nameLabel];
@@ -524,7 +450,67 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 - (void)closeButtonDidClick {
     [self.headView removeFromSuperview];
+    [self.footView removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)detailButtonDidClick {
+
+
+}
+
+- (void)shareButtonDidClick {
+    
+    
+}
+
+- (void)upButtonDidClick {
+    
+    
+}
+
+
+
+- (void)makeFooterView {
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - AutoSize6(160), SCREEN_WIDTH, AutoSize6(160))];
+    footerView.backgroundColor = [UIColor blackColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:footerView];
+    _footView = footerView;
+    
+    UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(80), AutoSize6(30), AutoSize6(60))];
+    [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
+    [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
+    [detailButton addTarget:self action:@selector(detailButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:detailButton];
+
+    UIButton *shareButton = [UIFactory buttonWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(260), AutoSize6(80), AutoSize6(100), AutoSize6(60))
+                                                target:self
+                                                 image:@"pic_close"
+                                           selectImage:@"pic_close"
+                                                 title:@"分享"
+                                                action:@selector(shareButtonDidClick)];
+    [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    shareButton.titleLabel.font = kFontPF6(26);
+    [footerView addSubview:shareButton];
+    
+    
+    UIButton *upButton = [UIFactory buttonWithFrame:CGRectMake(shareButton.right + AutoSize6(40), shareButton.top, AutoSize6(100), AutoSize6(60))
+                                                target:self
+                                                 image:@"pic_close"
+                                           selectImage:@"pic_close"
+                                                 title:@"赞"
+                                                action:@selector(upButtonDidClick)];
+    [upButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    upButton.titleLabel.font = kFontPF6(26);
+    [footerView addSubview:upButton];
+    
+    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(400), 0, AutoSize6(370), AutoSize6(50))];
+    countLabel.textColor = [UIColor whiteColor];
+    countLabel.textAlignment = NSTextAlignmentRight;
+    countLabel.font = kFontPF6(26);
+    [footerView addSubview:countLabel];
+    self.countLabel = countLabel;
+    
 }
 
 #pragma mark - Layout
@@ -1154,7 +1140,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	_nextButton.enabled = (_currentPageIndex < numberOfPhotos - 1);
     
     // Disable action button if there is no image or it's a video
-    MWPhoto *photo = [self photoAtIndex:_currentPageIndex];
+    MWPhoto *photo = (MWPhoto *)[self photoAtIndex:_currentPageIndex];
     if ([photo underlyingImage] == nil || ([photo respondsToSelector:@selector(isVideo)] && photo.isVideo)) {
         _actionButton.enabled = NO;
         _actionButton.tintColor = [UIColor clearColor]; // Tint to hide button
@@ -1454,101 +1440,13 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     [self cancelControlHiding];
     
     // Animations & positions
-    CGFloat animatonOffset = 20;
-    CGFloat animationDuration = (animated ? 0.35 : 0);
+//    CGFloat animatonOffset = 20;
+//    CGFloat animationDuration = (animated ? 0.35 : 0);
     
-    // Status bar
-    if (!_leaveStatusBarAlone) {
-
-        // Hide status bar
-        if (!_isVCBasedStatusBarAppearance) {
-            
-            // Non-view controller based
-            [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:animated ? UIStatusBarAnimationSlide : UIStatusBarAnimationNone];
-            
-            CGFloat top = hidden ? - AutoSize6(100) : AutoSize6(40);
-            
-            [UIView animateWithDuration:animationDuration animations:^{
-                self.headView.top = top;
-            }];
-            
-        } else {
-            
-            // View controller based so animate away
-            _statusBarShouldBeHidden = hidden;
-            CGFloat top = hidden ? - AutoSize6(100) : AutoSize6(40);
-
-            [UIView animateWithDuration:animationDuration animations:^(void) {
-                [self setNeedsStatusBarAppearanceUpdate];
-                self.headView.top = top;
-
-            } completion:^(BOOL finished) {}];
-            
-        }
-
-    }
+    self.headView.hidden = hidden;
+    self.footView.hidden = hidden;
+    return;
     
-    // Toolbar, nav bar and captions
-    // Pre-appear animation positions for sliding
-    if ([self areControlsHidden] && !hidden && animated) {
-        
-        // Toolbar
-        _toolbar.frame = CGRectOffset([self frameForToolbarAtOrientation:self.interfaceOrientation], 0, animatonOffset);
-        
-        // Captions
-        for (MWZoomingScrollView *page in _visiblePages) {
-            if (page.captionView) {
-                MWCaptionView *v = page.captionView;
-                // Pass any index, all we're interested in is the Y
-                CGRect captionFrame = [self frameForCaptionView:v atIndex:0];
-                captionFrame.origin.x = v.frame.origin.x; // Reset X
-                v.frame = CGRectOffset(captionFrame, 0, animatonOffset);
-            }
-        }
-        
-    }
-    [UIView animateWithDuration:animationDuration animations:^(void) {
-        
-        CGFloat alpha = hidden ? 0 : 1;
-
-        // Nav bar slides up on it's own on iOS 7+
-        [self.navigationController.navigationBar setAlpha:alpha];
-        
-        // Toolbar
-        _toolbar.frame = [self frameForToolbarAtOrientation:self.interfaceOrientation];
-        if (hidden) _toolbar.frame = CGRectOffset(_toolbar.frame, 0, animatonOffset);
-        _toolbar.alpha = alpha;
-
-        // Captions
-        for (MWZoomingScrollView *page in _visiblePages) {
-            if (page.captionView) {
-                MWCaptionView *v = page.captionView;
-                // Pass any index, all we're interested in is the Y
-                CGRect captionFrame = [self frameForCaptionView:v atIndex:0];
-                captionFrame.origin.x = v.frame.origin.x; // Reset X
-                if (hidden) captionFrame = CGRectOffset(captionFrame, 0, animatonOffset);
-                v.frame = captionFrame;
-                v.alpha = alpha;
-            }
-        }
-        
-        // Selected buttons
-        for (MWZoomingScrollView *page in _visiblePages) {
-            if (page.selectedButton) {
-                UIButton *v = page.selectedButton;
-                CGRect newFrame = [self frameForSelectedButton:v atIndex:0];
-                newFrame.origin.x = v.frame.origin.x;
-                v.frame = newFrame;
-            }
-        }
-
-    } completion:^(BOOL finished) {}];
-    
-	// Control hiding timer
-	// Will cancel existing timer but only begin hiding if
-	// they are visible
-	if (!permanent) [self hideControlsAfterDelay];
-	
 }
 
 - (BOOL)prefersStatusBarHidden {

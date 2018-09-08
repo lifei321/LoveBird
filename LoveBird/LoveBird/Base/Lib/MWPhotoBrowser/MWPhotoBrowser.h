@@ -56,6 +56,13 @@
 
 @property (nonatomic, strong) UIView *headView;
 
+@property (nonatomic, strong) UIView *footView;
+
+@property (nonatomic, strong) UIView *footDetailView;
+
+@property (nonatomic, strong) UILabel *countLabel;
+
+
 @property (nonatomic, strong) UIImageView *headImageview;
 
 
