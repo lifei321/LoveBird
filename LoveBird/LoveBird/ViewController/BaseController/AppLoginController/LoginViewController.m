@@ -96,11 +96,11 @@
     tipLabel.width = [tipLabel.text getTextWightWithFont:tipLabel.font];
 
     //问好
-    UIButton *questionButton = [[UIButton alloc] initWithFrame:CGRectMake(tipLabel.right - AutoSize(5), tipLabel.top - AutoSize(3), tipLabel.height + AutoSize(6), tipLabel.height + AutoSize(6))];
-    [questionButton setImage:[UIImage imageNamed:@"question"] forState:UIControlStateNormal];
-    [questionButton setImage:[UIImage imageNamed:@"question"] forState:UIControlStateHighlighted];
-    [questionButton addTarget:self action:@selector(questionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    [inputView addSubview:questionButton];
+//    UIButton *questionButton = [[UIButton alloc] initWithFrame:CGRectMake(tipLabel.right - AutoSize(5), tipLabel.top - AutoSize(3), tipLabel.height + AutoSize(6), tipLabel.height + AutoSize(6))];
+//    [questionButton setImage:[UIImage imageNamed:@"question"] forState:UIControlStateNormal];
+//    [questionButton setImage:[UIImage imageNamed:@"question"] forState:UIControlStateHighlighted];
+//    [questionButton addTarget:self action:@selector(questionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+//    [inputView addSubview:questionButton];
     
     //账号输入框
     UIView *phoneView = [self makeTextBackViewWithImage:@"phone"
@@ -169,6 +169,14 @@
     [inputView addSubview:readLabel];
     
     [self.view addSubview:inputView];
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [self hideKeyboard];
+
+    AppWebViewController *webvc = [[AppWebViewController alloc] init];
+    webvc.startupUrlString = @"https://xcxu.birdfans.com/app/protocol.php";
+    [[UIViewController currentViewController].navigationController pushViewController:webvc animated:YES];
 }
 
 
@@ -250,16 +258,16 @@
     
     UIView *backView = [[UIView alloc] initWithFrame:frame];
     
-    CGFloat space = AutoSize(49);
+    CGFloat space = AutoSize(60);
     CGFloat width = frame.size.height;
-    CGFloat x = (self.view.width - width * 3 - space * 2) / 2;
+    CGFloat x = (self.view.width - width * 2 - space * 1) / 2;
     
     UIButton *wechat = [self makeButton:@"weixin" frame:CGRectMake(x, 0, width, width) tag:1000];
-    UIButton *qq = [self makeButton:@"qq" frame:CGRectMake(wechat.right + space, 0, width, width) tag:1002];
-    UIButton *weibo = [self makeButton:@"weibo" frame:CGRectMake(qq.right + space, 0, width, width) tag:1001];
+//    UIButton *qq = [self makeButton:@"qq" frame:CGRectMake(wechat.right + space, 0, width, width) tag:1002];
+    UIButton *weibo = [self makeButton:@"weibo" frame:CGRectMake(wechat.right + space, 0, width, width) tag:1001];
 
     [backView addSubview:wechat];
-    [backView addSubview:qq];
+//    [backView addSubview:qq];
     [backView addSubview:weibo];
     return backView;
 }
@@ -406,13 +414,6 @@
             }];
         
     }];
-    
-}
-
-
-#pragma mark- TTTAttributedLabelDelegate
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    [self hideKeyboard];
     
 }
 
