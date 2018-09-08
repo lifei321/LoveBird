@@ -175,6 +175,7 @@
 		1F2A858E2143C753008BC55A /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A85772143C753008BC55A /* MJRefreshBackFooter.m */; };
 		1F2A858F2143C753008BC55A /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A85782143C753008BC55A /* MJRefreshAutoFooter.m */; };
 		1F2A85902143C753008BC55A /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A857A2143C753008BC55A /* MJRefreshComponent.m */; };
+		1F2A859321440376008BC55A /* MineDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A859221440376008BC55A /* MineDetailView.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -642,6 +643,8 @@
 		1F2A857A2143C753008BC55A /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		1F2A857B2143C753008BC55A /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		1F2A857C2143C753008BC55A /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		1F2A859121440376008BC55A /* MineDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineDetailView.h; sourceTree = "<group>"; };
+		1F2A859221440376008BC55A /* MineDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineDetailView.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1034,6 +1037,8 @@
 				0B702E161F16299100E39FAF /* MineTableViewCell.m */,
 				1F6EB7FB2096073900665561 /* MineHeaderView.h */,
 				1F6EB7FC2096073900665561 /* MineHeaderView.m */,
+				1F2A859121440376008BC55A /* MineDetailView.h */,
+				1F2A859221440376008BC55A /* MineDetailView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3048,6 +3053,7 @@
 				1F1715E72115E3F8001769AB /* AILoadingView.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */,
+				1F2A859321440376008BC55A /* MineDetailView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,
 				1F676E9D209A0774002F71B4 /* UserBirdModel.m in Sources */,

@@ -22,6 +22,7 @@
 #import "MineFriendViewController.h"
 #import "MineFollowController.h"
 #import "WorksViewController.h"
+#import "MineDetailView.h"
 
 @interface MineViewController ()
 
@@ -92,8 +93,19 @@
 }
 
 - (void)detailButton:(UIButton *)button {
-    NotifycationViewController *vc = [[NotifycationViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    backView.backgroundColor = [UIColor blackColor];
+    backView.alpha = 0.6;
+    [[UIApplication sharedApplication].keyWindow addSubview:backView];
+    
+    MineDetailView *birdView = [[MineDetailView alloc] initWithFrame:CGRectMake(AutoSize6(80), AutoSize6(260), SCREEN_WIDTH - AutoSize6(160), SCREEN_HEIGHT - AutoSize6(260) - kTabBarHeight - AutoSize6(150))];
+    birdView.backView = backView;
+    birdView.name = [UserPage sharedInstance].userModel.username;
+    birdView.grade = [UserPage sharedInstance].userModel.level;
+    birdView.head = [UserPage sharedInstance].userModel.head;
+    birdView.userModel = [UserPage sharedInstance].userModel;
+    [[UIApplication sharedApplication].keyWindow addSubview:birdView];
 }
 
 - (void)shareButton:(UIButton *)button {
