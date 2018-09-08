@@ -8,6 +8,7 @@
 
 #import "SetDao.h"
 #import "MessageModel.h"
+#import "MineLocationModel.h"
 
 @implementation SetDao
 
@@ -30,6 +31,22 @@
     }];
 }
 
-
++(void)getLocation:(NSString *)upid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL(upid) forKey:@"upid"];
+    
+    
+    [AppHttpManager POST:kAPI_Set_location parameters:dic jsonModelName:[MineLocationDataModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 
 @end

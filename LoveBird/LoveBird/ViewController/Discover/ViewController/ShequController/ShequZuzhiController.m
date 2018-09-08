@@ -29,6 +29,7 @@
 
 #pragma mark-- tabelView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 2;
 }
 
@@ -88,6 +89,11 @@
             [array addObject:model.name];
         }
     }
+    if (self.fromType == 2) {
+        if (indexPath.section == 0) {
+            return 0;
+        }
+    }
     return [AppTagsView getHeight:array width:SCREEN_WIDTH] + AutoSize6(10);
 }
 
@@ -96,11 +102,17 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        if (self.fromType == 2) {
+            return 0;
+        }
+    }
     return AutoSize6(70);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(70))];
+    headView.clipsToBounds = YES;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(30), SCREEN_WIDTH -  AutoSize6(60), AutoSize6(40))];
     label.font = kFont6(26);
     label.textColor = UIColorFromRGB(0x7f7f7f);
@@ -117,7 +129,11 @@
 
 - (void)setNavigation {
     
-    self.title = @"社区";
+    if (self.fromType == 2) {
+        self.title = @"选择组织";
+    } else {
+        self.title = @"社区";
+    }
     
 //    self.rightButton.title = @"完成";
 //    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];

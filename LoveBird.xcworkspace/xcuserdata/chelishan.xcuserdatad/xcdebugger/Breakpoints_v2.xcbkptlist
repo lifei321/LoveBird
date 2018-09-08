@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.038614"
+            timestampString = "558092340.759873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1417"
@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.038718"
+            timestampString = "558092340.759949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1608"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.0387959"
+            timestampString = "558092340.76001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "678"
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.038864"
+            timestampString = "558092340.760065"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "691"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.038921"
+            timestampString = "558092340.760119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1256"
@@ -164,12 +164,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558086125.03898"
+            timestampString = "558092340.7601711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1462"
             endingLineNumber = "1462"
             landmarkName = "-hideGrid"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/BaseViewController/AppWebViewController/AppWebViewController.m"
+            timestampString = "558086362.3659689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-lfwebViewDidStartLoad:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/BaseViewController/AppWebViewController/AppWebViewController.m"
+            timestampString = "558086366.887864"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-lfwebView:didFailLoadWithError:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/BaseViewController/AppWebViewController/AppWebViewController.m"
+            timestampString = "558086370.766036"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "-lfwebView:shouldStartLoadWithRequest:navigationType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

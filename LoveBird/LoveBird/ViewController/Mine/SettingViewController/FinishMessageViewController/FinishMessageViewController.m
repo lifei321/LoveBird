@@ -10,13 +10,28 @@
 #import "MineSetModel.h"
 #import "FinishHeaderView.h"
 #import "FinishCell.h"
-
+#import "PublishContenController.h"
+#import "ApplyTimePickerView.h"
+#import "MineLocationViewController.h"
+#import "ShequZuzhiController.h"
+#import "DiscoverDao.h"
 
 @interface FinishMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, strong) FinishHeaderView *headerView;
+
+@property (nonatomic, copy) NSString * shengString;
+
+@property (nonatomic, copy) NSString * shiString;
+
+
+@property (nonatomic, copy) NSString *group;
+
+@property (nonatomic, copy) NSString *groupId;
+
+
 
 @end
 
@@ -73,8 +88,86 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.section == 0 && indexPath.row == 3) {
+        ApplyTimePickerView *pickerView = [[ApplyTimePickerView alloc] initWithFrame:self.view.bounds];
+        @weakify(self)
+        pickerView.handler = ^(ApplyTimePickerView *timePickerView, NSString *date) {
+            @strongify(self)
+            [timePickerView removeFromSuperview];
+            timePickerView = nil;
+            if (date.length) {
+                MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
+                model.detailText = date;
+                [self.tableView reloadData];
+            }
+        };
+        [self.view addSubview:pickerView];
+        return;
+    }
+    
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        MineLocationViewController *vc = [[MineLocationViewController alloc] init];
+        vc.isFirst = YES;
+        vc.block = ^(NSString *sheng, NSString *shi) {
+            MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
+            model.detailText = [NSString stringWithFormat:@"%@%@", sheng, shi];
+            self.shengString = sheng;
+            self.shiString = shi;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    PublishContenController *contentvc = [[PublishContenController alloc] init];
+    if (indexPath.section == 0 && indexPath.row == 4) {
+        contentvc.contentblock = ^(NSString *contentString) {
+            MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
+            model.detailText = contentString;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:contentvc animated:YES];
+    } else if (indexPath.section == 1) {
+        contentvc.contentblock = ^(NSString *contentString) {
+            MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
+            model.detailText = contentString;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:contentvc animated:YES];
+    }
+    
+    if (indexPath.section == 2 && indexPath.row == 0) {
+        [self zuzhi];
+    }
 }
 
+- (void)zuzhi {
+    [AppBaseHud showHudWithLoding:self.view];
+    @weakify(self);
+    [DiscoverDao getShequSectionSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        ShequZuzhiDataModel *dataModel = (ShequZuzhiDataModel *)responseObject;
+        ShequZuzhiController *zuzhivc = [[ShequZuzhiController alloc] init];
+        zuzhivc.fromType = 2;
+        zuzhivc.dataModel = dataModel;
+        zuzhivc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
+            
+            self.groupId = ((ShequZuzhiController *)viewController).groupId;
+            self.group = ((ShequZuzhiController *)viewController).zuzhiModel.name;
+            MineSetModel *model = self.dataArray[2][0];
+            model.detailText = self.group;
+            [self.tableView reloadData];
+            
+        };
+        [self.navigationController pushViewController:zuzhivc animated:YES];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
 
 
 - (void)makeData {

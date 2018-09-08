@@ -377,6 +377,12 @@
  */
 #define kAPI_Set_message kAPI_USER_SERVER_VERSION(@"user/message.php")
 
+/**
+ *  获取位置
+ */
+#define kAPI_Set_location kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=getDistrictList")
+
+
 
 #pragma mark-- 搜索
 

@@ -20,6 +20,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.clipsToBounds = YES;
         self.tagsView = [[AppTagsView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
         [self.contentView addSubview:self.tagsView];
         

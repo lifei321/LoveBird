@@ -142,6 +142,7 @@
             } else if (indexPath.row == 2) {
                 url = [UserPage sharedInstance].userModel.feedbackUrl;
             }
+            webvc.startupUrlString = url;
             [self.navigationController pushViewController:webvc animated:YES];
         }
     }

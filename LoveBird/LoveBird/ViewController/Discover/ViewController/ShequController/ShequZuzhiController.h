@@ -20,5 +20,8 @@
 // 选中的组织
 @property (nonatomic,strong) ShequZuzhiModel *zuzhiModel;
 
+// 来源 1 社区        2 完善信息
+@property (nonatomic, assign) NSInteger fromType;
+
 
 @end

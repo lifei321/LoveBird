@@ -30,7 +30,6 @@ PODS:
   - MBProgressHUD (0.9.2)
   - MBProgressHUD+BWMExtension (1.0.1):
     - MBProgressHUD (~> 0.9.1)
-  - MJRefresh (3.1.12)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
   - NJKWebViewProgress (0.2.3):
@@ -98,7 +97,6 @@ DEPENDENCIES:
   - JSONModel (= 1.7.0)
   - Masonry
   - MBProgressHUD+BWMExtension (= 1.0.1)
-  - MJRefresh (= 3.1.12)
   - MLeaksFinder
   - NJKWebViewProgress (= 0.2.3)
   - Onboard (= 2.3.1)
@@ -136,7 +134,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MBProgressHUD+BWMExtension: d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
@@ -154,6 +151,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 9563c697537751f628d5c6e6787940a2954efd36
+PODFILE CHECKSUM: e840159a6c727b542880dd1e069a7fe6aeaf8fd7
 
 COCOAPODS: 1.4.0

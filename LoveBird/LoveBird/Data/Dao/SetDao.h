@@ -15,4 +15,6 @@
 // 获取  获取通知（系统消息、评论、关注、赞）列表
 +(void)getSetType:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
+
++(void)getLocation:(NSString *)upid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
