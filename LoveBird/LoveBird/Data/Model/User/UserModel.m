@@ -18,11 +18,6 @@
     
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        sharedInstance.userModel = [[UserModel alloc] init];
-        
-        sharedInstance.userModel.uid = [AppCache objectForKey:@"uid"];
-        sharedInstance.userModel.token = [AppCache objectForKey:@"token"];
-
     });
     return sharedInstance;
 }
@@ -37,6 +32,10 @@
 
 - (BOOL)isLogin {
     if ([UserPage sharedInstance].userModel.uid.length) {
+        return YES;
+    }
+    
+    if ([AppCache objectForKey:@"uid"]) {
         return YES;
     }
     return NO;
@@ -86,7 +85,6 @@
     [AppCache setObject:userModel.location forKey:@"location"];
     [AppCache setObject:userModel.qq forKey:@"qq"];
     [AppCache setObject:userModel.sign forKey:@"sign"];
-    [AppCache setObject:userModel.uid forKey:@"uid"];
     [AppCache setObject:userModel.username forKey:@"username"];
     [AppCache setObject:userModel.wechat forKey:@"wechat"];
     [AppCache setObject:userModel.weibo forKey:@"weibo"];
@@ -98,7 +96,6 @@
     [AppCache setObject:@(userModel.hasCollection) forKey:@"hasCollection"];
     [AppCache setObject:userModel.level forKey:@"level"];
     [AppCache setObject:userModel.zuzhi forKey:@"zuzhi"];
-    [AppCache setObject:userModel.token forKey:@"token"];
     [AppCache setObject:@(userModel.hasFriends) forKey:@"hasFriends"];
     [AppCache setObject:@(userModel.hasMessage) forKey:@"hasMessage"];
     [AppCache setObject:userModel.shareUrl forKey:@"shareUrl"];
@@ -155,6 +152,29 @@
     [AppCache setObject:token forKey:@"token"];
 }
 
+- (NSString *)uid {
+    if ([UserPage sharedInstance].userModel.uid) {
+        return [UserPage sharedInstance].userModel.uid;
+    }
+    
+    if ([AppCache objectForKey:@"uid"]) {
+        return [AppCache objectForKey:@"uid"];
+    }
+    
+    return nil;
+}
+
+- (NSString *)token {
+    if ([UserPage sharedInstance].userModel.token) {
+        return [UserPage sharedInstance].userModel.token;
+    }
+    
+    if ([AppCache objectForKey:@"token"]) {
+        return [AppCache objectForKey:@"token"];
+    }
+    
+    return nil;
+}
 
 @end
 

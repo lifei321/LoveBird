@@ -19,6 +19,12 @@ typedef void(^UserModelBlock)(void);
 @property (nonatomic, assign) BOOL isLogin;
 
 
+@property (nonatomic, copy) NSString *uid;
+
+@property (nonatomic, copy) NSString *token;
+
+
+
 // 发布用
 @property (nonatomic, copy) NSString *lng;
 
