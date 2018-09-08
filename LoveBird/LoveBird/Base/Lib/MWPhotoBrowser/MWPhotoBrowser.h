@@ -68,6 +68,13 @@
 
 @property (nonatomic, strong) UILabel *nameLabel;
 
+@property (nonatomic, strong) UILabel *qicaiLabel;
+
+@property (nonatomic, strong) UILabel *jingtouLabel;
+
+@property (nonatomic, strong) UILabel *canshuLabel;
+
+
 
 
 // Customise image selection icons as they are the only icons with a colour tint

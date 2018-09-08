@@ -12,6 +12,7 @@
 #import "MWPhotoBrowserPrivate.h"
 #import "SDImageCache.h"
 #import "UIImage+MWPhotoBrowser.h"
+#import "UserDao.h"
 
 #define PADDING                  10
 
@@ -200,6 +201,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.isNavigationTransparent = YES;
 
     [self makeHeadIcon];
+    [self makeFooterDetailView];
     [self makeFooterView];
 }
 
@@ -207,7 +209,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     // Setup
     _performingLayout = YES;
-    NSUInteger numberOfPhotos = [self numberOfPhotos];
+//    NSUInteger numberOfPhotos = [self numberOfPhotos];
     
 	// Setup pages
     [_visiblePages removeAllObjects];
@@ -455,35 +457,60 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 - (void)detailButtonDidClick {
+    
+    BOOL show = self.footDetailView.top > (SCREEN_HEIGHT - AutoSize6(170)) ? YES : NO;
 
-
+    if (show) {
+        self.footDetailView.top = SCREEN_HEIGHT - AutoSize6(160) - AutoSize6(430);
+    } else {
+        self.footDetailView.top = SCREEN_HEIGHT - AutoSize6(160);
+    }
 }
 
 - (void)shareButtonDidClick {
     
+    MWPhoto *photo = [_photos objectAtIndex:_currentPageIndex];
     
+    [AppShareManager shareWithTitle:photo.shareTitle summary:photo.shareSummary url:photo.shareUrl image:photo.shareImg];
+
 }
 
-- (void)upButtonDidClick {
+- (void)upButtonDidClick:(UIButton *)button {
     
+    if (button.selected) {
+        [AppBaseHud showHudWithfail:@"已赞" view:self.view];
+        return;
+    }
+    
+    MWPhoto *photo = [_photos objectAtIndex:_currentPageIndex];
+    
+    [UserDao userUp:photo.tid successBlock:^(__kindof AppBaseModel *responseObject) {
+        button.selected = !button.selected;
+        [AppBaseHud showHudWithSuccessful:@"点赞成功" view:self.view];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+
     
 }
 
 
 
 - (void)makeFooterView {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - AutoSize6(160), SCREEN_WIDTH, AutoSize6(160))];
+    
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - AutoSize6(80), SCREEN_WIDTH, AutoSize6(80))];
     footerView.backgroundColor = [UIColor blackColor];
     [[UIApplication sharedApplication].keyWindow addSubview:footerView];
     _footView = footerView;
     
-    UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(80), AutoSize6(30), AutoSize6(60))];
+    UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), AutoSize6(30), AutoSize6(60))];
     [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
     [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
     [detailButton addTarget:self action:@selector(detailButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:detailButton];
 
-    UIButton *shareButton = [UIFactory buttonWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(260), AutoSize6(80), AutoSize6(100), AutoSize6(60))
+    UIButton *shareButton = [UIFactory buttonWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(260), AutoSize6(0), AutoSize6(100), AutoSize6(60))
                                                 target:self
                                                  image:@"pic_close"
                                            selectImage:@"pic_close"
@@ -499,17 +526,60 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
                                                  image:@"pic_close"
                                            selectImage:@"pic_close"
                                                  title:@"赞"
-                                                action:@selector(upButtonDidClick)];
+                                             action:@selector(upButtonDidClick:)];
     [upButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     upButton.titleLabel.font = kFontPF6(26);
     [footerView addSubview:upButton];
-    
-    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(400), 0, AutoSize6(350), AutoSize6(70))];
+}
+
+
+- (void)makeFooterDetailView {
+    UIView *footDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - AutoSize6(160), SCREEN_WIDTH, AutoSize6(580))];
+    footDetailView.backgroundColor = [UIColor blackColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:footDetailView];
+    _footDetailView = footDetailView;
+
+    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(400), 0, AutoSize6(350), AutoSize6(80))];
     countLabel.textColor = [UIColor whiteColor];
     countLabel.textAlignment = NSTextAlignmentRight;
     countLabel.font = kFontPF6(28);
-    [footerView addSubview:countLabel];
+    [footDetailView addSubview:countLabel];
     self.countLabel = countLabel;
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(81), SCREEN_WIDTH - AutoSize6(60), 1)];
+    lineView.backgroundColor = kColorTextColor333333;
+    [footDetailView addSubview:lineView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), lineView.bottom + AutoSize6(20), SCREEN_WIDTH - AutoSize6(60), AutoSize6(50))];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.font = kFontPF6(26);
+    titleLabel.text = @"照片参数";
+    [footDetailView addSubview:titleLabel];
+    
+    UILabel *qicaiLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), titleLabel.bottom + AutoSize6(10), SCREEN_WIDTH - AutoSize6(60), AutoSize6(50))];
+    qicaiLabel.textColor = UIColorFromRGB(0x666666);
+    qicaiLabel.textAlignment = NSTextAlignmentLeft;
+    qicaiLabel.font = kFontPF6(26);
+    qicaiLabel.text = @"器材";
+    [footDetailView addSubview:qicaiLabel];
+    self.qicaiLabel = qicaiLabel;
+    
+    UILabel *jingtouLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), qicaiLabel.bottom + AutoSize6(10), SCREEN_WIDTH - AutoSize6(60), AutoSize6(50))];
+    jingtouLabel.textColor = UIColorFromRGB(0x666666);
+    jingtouLabel.textAlignment = NSTextAlignmentLeft;
+    jingtouLabel.font = kFontPF6(26);
+    jingtouLabel.text = @"镜头";
+    [footDetailView addSubview:jingtouLabel];
+    self.jingtouLabel = jingtouLabel;
+    
+    UILabel *canshuLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), jingtouLabel.bottom + AutoSize6(10), SCREEN_WIDTH - AutoSize6(60), AutoSize6(50))];
+    canshuLabel.textColor = UIColorFromRGB(0x666666);
+    canshuLabel.textAlignment = NSTextAlignmentLeft;
+    canshuLabel.font = kFontPF6(26);
+    canshuLabel.text = @"参数";
+    [footDetailView addSubview:canshuLabel];
+    self.canshuLabel = canshuLabel;
 }
 
 #pragma mark - Layout
@@ -1444,6 +1514,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     self.headView.hidden = !self.headView.hidden;
     self.footView.hidden = !self.footView.hidden;
+    self.footDetailView.hidden = !self.footDetailView.hidden;
     return;
     
 }

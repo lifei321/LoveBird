@@ -28,6 +28,25 @@
 @property (nonatomic, strong) NSString *name;
 
 
+@property (nonatomic, copy) NSString *imgExifModel;
+
+@property (nonatomic, copy) NSString *imgExifLen;
+
+@property (nonatomic, copy) NSString *imgExifParameter;
+
+
+@property (nonatomic, copy) NSString *shareUrl;
+
+@property (nonatomic, copy) NSString *shareTitle;
+
+@property (nonatomic, copy) NSString *shareSummary;
+
+@property (nonatomic, copy) NSString *shareImg;
+
+@property (nonatomic, copy) NSString *tid;
+
+
+
 + (MWPhoto *)photoWithImage:(UIImage *)image;
 + (MWPhoto *)photoWithURL:(NSURL *)url;
 + (MWPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;

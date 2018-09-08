@@ -95,6 +95,14 @@
                     photo.caption = worksModel.tags;
                     photo.iconUrl = worksModel.head;
                     photo.name = worksModel.author;
+                    photo.imgExifLen = worksModel.imgExifLen;
+                    photo.imgExifModel = worksModel.imgExifModel;
+                    photo.imgExifParameter = worksModel.imgExifParameter;
+                    photo.shareImg = worksModel.shareImg;
+                    photo.shareUrl = worksModel.shareUrl;
+                    photo.shareTitle = worksModel.shareTitle;
+                    photo.shareSummary = worksModel.shareSummary;
+                    photo.tid = worksModel.tid;
                     [self.photoArray addObject:photo];
                 }
             }
@@ -236,6 +244,13 @@
     [photoBrowser.headImageview sd_setImageWithURL:[NSURL URLWithString:photo.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     photoBrowser.nameLabel.text = photo.name;
     photoBrowser.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", index + 1, self.photoArray.count];
+    
+    photoBrowser.qicaiLabel.text = [NSString stringWithFormat:@"%@  %@", @"器材", photo.imgExifModel];
+    photoBrowser.jingtouLabel.text = [NSString stringWithFormat:@"%@  %@", @"镜头", photo.imgExifLen];
+    photoBrowser.canshuLabel.text = [NSString stringWithFormat:@"%@  %@", @"参数", photo.imgExifParameter];
+
+    
+    
     return @" ";
 //    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
 }
