@@ -44,7 +44,9 @@
     [[AppPush sharedAppPush] setPush];
     
     //引导页
-    [[AppGuideManager shareManager] showGuideView];
+//    [[AppGuideManager shareManager] showGuideView];
+    
+    [self setRootViewControllerForWindow];
     
     [self.window makeKeyAndVisible];
     return YES;

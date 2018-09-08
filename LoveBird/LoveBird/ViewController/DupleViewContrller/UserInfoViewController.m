@@ -135,7 +135,7 @@
     [footerView addSubview:birdController.view];
     
     MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
-    photoController.taid = self.talentModel.msaterid;
+    photoController.authorId = self.talentModel.msaterid;
     [self addChildViewController:photoController];
     photoController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:photoController.view];
