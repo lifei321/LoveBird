@@ -10,4 +10,6 @@
 
 @interface FinishHeaderView : UIView
 
+@property (nonatomic, copy) NSString *gender;
+
 @end

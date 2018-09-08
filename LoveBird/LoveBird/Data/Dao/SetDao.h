@@ -17,4 +17,18 @@
 
 
 +(void)getLocation:(NSString *)upid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
+
++ (void)finishMessage:(NSString *)province
+                 city:(NSString *)city
+               gender:(NSString *)gender
+               wechat:(NSString *)wechat
+                weibo:(NSString *)weibo
+                   qq:(NSString *)qq
+                  gid:(NSString *)gid
+             birthday:(NSString *)birthday
+                 sign:(NSString *)sign
+         successBlock:(LFRequestSuccess)successBlock
+         failureBlock:(LFRequestFail)failureBlock;
 @end

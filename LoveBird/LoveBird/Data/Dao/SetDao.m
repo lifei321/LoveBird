@@ -49,4 +49,43 @@
     }];
 }
 
++ (void)finishMessage:(NSString *)province
+                 city:(NSString *)city
+               gender:(NSString *)gender
+               wechat:(NSString *)wechat
+                weibo:(NSString *)weibo
+                   qq:(NSString *)qq
+                  gid:(NSString *)gid
+             birthday:(NSString *)birthday
+                 sign:(NSString *)sign
+         successBlock:(LFRequestSuccess)successBlock
+         failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].token) forKey:@"token"];
+    [dic setObject:EMPTY_STRING_IF_NIL(province) forKey:@"province"];
+    [dic setObject:EMPTY_STRING_IF_NIL(city) forKey:@"city"];
+    [dic setObject:EMPTY_STRING_IF_NIL(gender) forKey:@"gender"];
+    [dic setObject:EMPTY_STRING_IF_NIL(wechat) forKey:@"wechat"];
+    [dic setObject:EMPTY_STRING_IF_NIL(weibo) forKey:@"weibo"];
+    [dic setObject:EMPTY_STRING_IF_NIL(qq) forKey:@"qq"];
+    [dic setObject:EMPTY_STRING_IF_NIL(gid) forKey:@"gid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(birthday) forKey:@"birthday"];
+    [dic setObject:EMPTY_STRING_IF_NIL(sign) forKey:@"birdsign"];
+
+    
+    [AppHttpManager POST:kAPI_Set_finish parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+
+}
+
 @end

@@ -382,6 +382,10 @@
  */
 #define kAPI_Set_location kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=getDistrictList")
 
+/**
+ *  完善信息
+ */
+#define kAPI_Set_finish kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=modifyUserinfo")
 
 
 #pragma mark-- 搜索

@@ -103,7 +103,12 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, copy) NSString *QRcodeUrl;
 
+@property (nonatomic, copy) NSString *province;
 
+@property (nonatomic, copy) NSString *city;
+
+@property (nonatomic, copy) NSString *gid;
+@property (nonatomic, copy) NSString *group;
 
 
 // 分享文章的url

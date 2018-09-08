@@ -15,6 +15,7 @@
 #import "MineLocationViewController.h"
 #import "ShequZuzhiController.h"
 #import "DiscoverDao.h"
+#import "SetDao.h"
 
 @interface FinishMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -29,8 +30,13 @@
 
 @property (nonatomic, copy) NSString *group;
 
-@property (nonatomic, copy) NSString *groupId;
+@property (nonatomic, copy) NSString *wechat;
 
+@property (nonatomic, copy) NSString *weibo;
+@property (nonatomic, copy) NSString *qq;
+@property (nonatomic, copy) NSString *gid;
+@property (nonatomic, copy) NSString *birthday;
+@property (nonatomic, copy) NSString *sign;
 
 
 @end
@@ -49,6 +55,10 @@
     [super viewDidLoad];
     
     self.title = @"完善个人信息";
+    
+    self.rightButton.title = @"保存";
+    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : kColorDefaultColor, NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+
     self.tableView.top = total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.height = SCREEN_HEIGHT - total_topView_height;
@@ -66,7 +76,26 @@
     
 }
 
-
+- (void)rightButtonAction {
+    [self getData];
+    [AppBaseHud showHudWithLoding:self.view];
+    [SetDao finishMessage:self.shengString
+                     city:self.shiString
+                   gender:self.headerView.gender
+                   wechat:self.wechat
+                    weibo:self.weibo
+                       qq:self.qq
+                      gid:self.gid
+                 birthday:self.birthday
+                     sign:self.sign
+             successBlock:^(__kindof AppBaseModel *responseObject) {
+                 [AppBaseHud showHudWithSuccessful:@"保存成功" view:self.view];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotification object:nil];
+                 
+             } failureBlock:^(__kindof AppBaseModel *error) {
+                 [AppBaseHud showHudWithfail:error.errstr view:self.view];
+             }];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _dataArray.count;
@@ -98,6 +127,7 @@
             if (date.length) {
                 MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
                 model.detailText = date;
+                self.birthday = date;
                 [self.tableView reloadData];
             }
         };
@@ -124,6 +154,7 @@
         contentvc.contentblock = ^(NSString *contentString) {
             MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
             model.detailText = contentString;
+            self.sign = contentString;
             [self.tableView reloadData];
         };
         [self.navigationController pushViewController:contentvc animated:YES];
@@ -131,6 +162,14 @@
         contentvc.contentblock = ^(NSString *contentString) {
             MineSetModel *model = self.dataArray[indexPath.section][indexPath.row];
             model.detailText = contentString;
+            if (indexPath.row == 0) {
+                self.wechat = contentString;
+            } else if (indexPath.row == 1){
+                self.weibo = contentString;
+            } else if (indexPath.row == 2) {
+                self.qq = contentString;
+            }
+            
             [self.tableView reloadData];
         };
         [self.navigationController pushViewController:contentvc animated:YES];
@@ -154,7 +193,7 @@
         zuzhivc.dataModel = dataModel;
         zuzhivc.viewControllerActionBlock = ^(UIViewController *viewController, NSObject *userInfo) {
             
-            self.groupId = ((ShequZuzhiController *)viewController).groupId;
+            self.gid = ((ShequZuzhiController *)viewController).groupId;
             self.group = ((ShequZuzhiController *)viewController).zuzhiModel.name;
             MineSetModel *model = self.dataArray[2][0];
             model.detailText = self.group;
@@ -167,6 +206,39 @@
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
+}
+
+- (void)getData {
+
+    if (self.shengString.length == 0) {
+        self.shengString = [UserPage sharedInstance].userModel.province;
+        self.shiString = [UserPage sharedInstance].userModel.city;
+    }
+    
+    if (self.wechat.length == 0) {
+        self.wechat = [UserPage sharedInstance].userModel.wechat;
+    }
+    
+    if (self.weibo.length == 0) {
+        self.weibo = [UserPage sharedInstance].userModel.weibo;
+    }
+
+    if (self.qq.length == 0) {
+        self.qq = [UserPage sharedInstance].userModel.qq;
+    }
+
+    if (self.birthday.length == 0) {
+        self.birthday = [UserPage sharedInstance].userModel.birthday;
+    }
+
+    if (self.sign.length == 0) {
+        self.sign = [UserPage sharedInstance].userModel.sign;
+    }
+
+    if (self.gid.length == 0) {
+        self.wechat = [UserPage sharedInstance].userModel.gid;
+    }
+
 }
 
 
@@ -195,7 +267,7 @@
     model2.isShowContent = NO;
     model2.isShowSwitch = NO;
     model2.title = @"所在地";
-    model2.detailText = [UserPage sharedInstance].userModel.location;
+    model2.detailText = [NSString stringWithFormat:@"%@%@", [UserPage sharedInstance].userModel.province, [UserPage sharedInstance].userModel.city];
     model2.pushViewController = @"ThirdAcountViewController";
     [section0 addObject:model2];
     
@@ -253,7 +325,7 @@
     model40.isShowContent = NO;
     model40.isShowSwitch = NO;
     model40.title = @"加入组织";
-    model40.detailText = [UserPage sharedInstance].userModel.zuzhi;
+    model40.detailText = [UserPage sharedInstance].userModel.group;
     [section2 addObject:model40];
     
     _dataArray = @[section0, section1, section2];

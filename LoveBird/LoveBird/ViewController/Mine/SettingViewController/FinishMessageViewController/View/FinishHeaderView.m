@@ -59,8 +59,6 @@
         leftButton.titleLabel.font = kFont6(24);
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        leftButton.selected = YES;
-        self.selectButton = leftButton;
         leftButton.tag = 100;
         [titleView addSubview:leftButton];
         
@@ -98,12 +96,38 @@
         
         [titleView addSubview:scolreButton];
         
+        NSString *gender = [UserPage sharedInstance].userModel.gender;
+        if ([gender isEqualToString:@"男"]) {
+            self.selectButton = leftButton;
+        } else if ([gender isEqualToString:@"女"]) {
+            self.selectButton = rightButton;
+        } else {
+            self.selectButton = scolreButton;
+        }
+        self.selectButton.selected = YES;
+        
     }
     return self;
 }
 
 - (void)buttonDidClick:(UIButton *)button {
+    if (button.selected) {
+        return;
+    }
     
+    self.selectButton.selected = NO;
+    self.selectButton = button;
+    self.selectButton.selected = YES;
+}
+
+- (NSString *)gender {
+    if (self.selectButton.tag == 100) {
+        return @"男";
+    } else if (self.selectButton.tag == 100) {
+        return @"女";
+    } else {
+        return @"保密";
+    }
 }
 
 @end

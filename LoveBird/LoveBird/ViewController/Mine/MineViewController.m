@@ -45,6 +45,9 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForUserInfo) name:kLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOutNotifycation) name:kLogoutSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForMyInfo) name:kRefreshUserInfoNotification object:nil];
+
+    
     
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;

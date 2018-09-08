@@ -21,5 +21,7 @@
 
 #define kPublishReloadHeaderNotification               @"kPublishReloadHeaderNotification"
 
+#define kRefreshUserInfoNotification               @"kRefreshUserInfoNotification"
+
 
 #endif /* AppNotificationMacro_h */
