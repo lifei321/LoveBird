@@ -12,8 +12,6 @@
 
 @interface FinishHeaderView()
 
-@property (nonatomic, strong) UIImageView *headImageView;
-
 @property (nonatomic, strong) UIButton *selectButton;
 
 
@@ -35,6 +33,8 @@
         
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, nameLabel.bottom + AutoSize6(20), AutoSize6(155), AutoSize6(155))];
         self.headImageView.contentMode = UIViewContentModeScaleToFill;
+        _headImageView.userInteractionEnabled = YES;
+        [_headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
 
         _headImageView.centerX = self.centerX;
         _headImageView.layer.cornerRadius = _headImageView.width / 2;
@@ -108,6 +108,12 @@
         
     }
     return self;
+}
+
+- (void)headIconDidClick {
+    if (self.block) {
+        self.block();
+    }
 }
 
 - (void)buttonDidClick:(UIButton *)button {

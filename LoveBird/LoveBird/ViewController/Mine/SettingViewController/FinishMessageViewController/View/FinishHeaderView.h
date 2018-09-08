@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^mineHeaderBlock)(void);
+
 @interface FinishHeaderView : UIView
 
 @property (nonatomic, copy) NSString *gender;
+
+@property (nonatomic, strong) UIImageView *headImageView;
+
+@property (nonatomic, strong) mineHeaderBlock block;
+
 
 @end

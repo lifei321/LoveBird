@@ -131,7 +131,7 @@
     NSString *strings = [urlStrings componentsJoinedByString:@"&"];
     NSString *sign = [NSString stringWithFormat:@"%@%@%@", signKey,strings, signKey];
     NSLog(@"sign is %@", sign);
-    [self setObject:[sign md5HexDigest] forKey:@"sign"];
+    [self setObject:[sign md5HexDigest] forKey:@"appsign"];
 //    strings = [NSString stringWithFormat:@"%@&sign=%@", strings, [sign md5HexDigest]];
 }
 @end

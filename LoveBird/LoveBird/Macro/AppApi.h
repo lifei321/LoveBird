@@ -388,6 +388,10 @@
 #define kAPI_Set_finish kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=modifyUserinfo")
 
 
+#define kAPI_Set_finishHeadiCON kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=modifyhead.php")
+
+
+
 #pragma mark-- 搜索
 
 /**

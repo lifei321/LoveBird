@@ -31,4 +31,11 @@
                  sign:(NSString *)sign
          successBlock:(LFRequestSuccess)successBlock
          failureBlock:(LFRequestFail)failureBlock;
+
+
++ (void)uploadHeadIcon:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
+
+
 @end
+

@@ -17,7 +17,7 @@
 #import "DiscoverDao.h"
 #import "SetDao.h"
 
-@interface FinishMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface FinishMessageViewController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -58,6 +58,7 @@
     
     self.rightButton.title = @"保存";
     [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : kColorDefaultColor, NSFontAttributeName: kFont6(30)} forState:UIControlStateNormal];
+    [self.rightButton setTitleTextAttributes:@{NSForegroundColorAttributeName : kColorDefaultColor, NSFontAttributeName: kFont6(30)} forState:UIControlStateHighlighted];
 
     self.tableView.top = total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
@@ -72,9 +73,84 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
     
+    @weakify(self);
+    self.headerView.block = ^{
+        @strongify(self);
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择照片"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"取消"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"拍照", @"相册", nil];
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    };
+    
     [self makeData];
     
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+        if (buttonIndex == 0) {//相机
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [self makePhoto];
+            } else {
+                [self showAlert];
+            }
+        } else if (buttonIndex == 1) {//相片
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                [self choosePicture];
+            } else {
+                [self showAlert];
+            }
+        }
+}
+
+- (void)showAlert {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请在设置-->隐私-->相机，中开启本应用的相机访问权限！！" delegate:self
+                                         cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"我知道了", nil];
+    [alert show];
+}
+
+//跳转到imagePicker里
+- (void)makePhoto {
+    
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+    pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    pickerController.delegate = self;
+    [self presentViewController:pickerController animated:YES completion:nil];
+}
+
+//跳转到相册
+- (void)choosePicture {
+    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+    
+    imagePicker.editing = YES;
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [AppBaseHud showHudWithLoding:self.view];
+    });
+    
+    UIImage *selectImage = [iamge compressImage:iamge withMaxSize:CGSizeMake(1200, MAXFLOAT)];
+    [SetDao uploadHeadIcon:selectImage successBlock:^(__kindof AppBaseModel *responseObject) {
+        [AppBaseHud showHudWithSuccessful:@"上传成功" view:self.view];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+    }];
+}
+
+
 
 - (void)rightButtonAction {
     [self getData];

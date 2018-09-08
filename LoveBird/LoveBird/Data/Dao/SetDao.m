@@ -72,7 +72,7 @@
     [dic setObject:EMPTY_STRING_IF_NIL(qq) forKey:@"qq"];
     [dic setObject:EMPTY_STRING_IF_NIL(gid) forKey:@"gid"];
     [dic setObject:EMPTY_STRING_IF_NIL(birthday) forKey:@"birthday"];
-    [dic setObject:EMPTY_STRING_IF_NIL(sign) forKey:@"birdsign"];
+    [dic setObject:EMPTY_STRING_IF_NIL(sign) forKey:@"sign"];
 
     
     [AppHttpManager POST:kAPI_Set_finish parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -85,7 +85,33 @@
             failureBlock(error);
         }
     }];
+}
 
++ (void)uploadHeadIcon:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.token) forKey:@"token"];
+
+    NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
+    NSDictionary *fileDic = @{@"file": data,
+                              @"fileName":@"file_bird",
+                              };
+    
+    
+    [AppHttpManager POST:kAPI_Set_finishHeadiCON
+              parameters:dic
+               fileArray:@[fileDic]
+           jsonModelName:[AppBaseModel class]
+                 success:^(__kindof AppBaseModel *responseObject) {
+                     if (successBlock) {
+                         successBlock(responseObject);
+                     }
+                 } uploadProgress:nil
+                 failure:^(__kindof AppBaseModel *error) {
+                     if (failureBlock) {
+                         failureBlock(error);
+                     }
+                 }];
 }
 
 @end

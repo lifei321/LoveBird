@@ -122,7 +122,7 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
     [data addEntriesFromDictionary:parameters];
     
     //重新登陆，会多一个sign参数
-    if (data[@"sign"]) [data removeObjectForKey:@"sign"];
+    if (data[@"appsign"]) [data removeObjectForKey:@"appsign"];
     
     // // 添加通用参数，自定义如ua，channel参数
     if ([self sharedClient].generalParaDict) {
