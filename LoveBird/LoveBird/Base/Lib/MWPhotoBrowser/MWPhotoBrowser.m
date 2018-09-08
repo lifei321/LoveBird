@@ -504,16 +504,16 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     [[UIApplication sharedApplication].keyWindow addSubview:footerView];
     _footView = footerView;
     
-    UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), AutoSize6(30), AutoSize6(60))];
-    [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
-    [detailButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
+    UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), AutoSize6(60), AutoSize6(60))];
+    [detailButton setImage:[UIImage imageNamed:@"work_detail"] forState:UIControlStateNormal];
+    [detailButton setImage:[UIImage imageNamed:@"work_detail"] forState:UIControlStateHighlighted];
     [detailButton addTarget:self action:@selector(detailButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:detailButton];
 
     UIButton *shareButton = [UIFactory buttonWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(260), AutoSize6(0), AutoSize6(100), AutoSize6(60))
                                                 target:self
-                                                 image:@"pic_close"
-                                           selectImage:@"pic_close"
+                                                 image:@"pic_share"
+                                           selectImage:@"pic_share"
                                                  title:@"分享"
                                                 action:@selector(shareButtonDidClick)];
     [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

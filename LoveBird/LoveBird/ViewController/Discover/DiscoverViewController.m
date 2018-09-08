@@ -41,6 +41,9 @@
 // 刷新页数
 @property (nonatomic, assign) NSInteger pageNum;
 
+@property (nonatomic, strong) UIView *navigationView;
+
+
 @end
 
 @implementation DiscoverViewController
@@ -50,8 +53,9 @@
 
     self.pageNum = 0;
     
-    [self setNavigation];
-    
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
+
     // 设置UI
     [self setTableView];
     
@@ -74,7 +78,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
+
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"discover_navigation"] forBarMetrics:UIBarMetricsDefault];
+    
+    [self.view addSubview:self.navigationView];
+    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
         
         NearController *nearvc = [[NearController alloc] init];
@@ -86,34 +97,45 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    self.isCustomNavigation = NO;
+    self.isNavigationTransparent = NO;
 }
 
-- (void)setNavigation {
-
-    self.view.backgroundColor = [UIColor orangeColor];
-    UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - AutoSize6(100), AutoSize6(40))];
-    searchField.placeholder = @"在此输入文章名/作者名";
-    searchField.backgroundColor = [UIColor whiteColor];
-    searchField.font = kFont6(26);
-    searchField.layer.borderColor = (kLineColoreDefaultd4d7dd).CGColor;
-    searchField.layer.borderWidth = 1;
-    searchField.layer.cornerRadius = 2;
-    searchField.delegate = self;
-    
-    CGRect frame = searchField.frame;
-    frame.size.width = AutoSize6(15);// 距离左侧的距离
-    UIView *leftview = [[UIView alloc] initWithFrame:frame];
-    searchField.leftViewMode = UITextFieldViewModeAlways;
-    searchField.leftView = leftview;
-    
-    CGRect rightframe = searchField.frame;
-    rightframe.size.width = AutoSize(35);// 距离左侧的距离
-    UIImageView *rightview = [[UIImageView alloc] initWithFrame:rightframe];
-    rightview.image = [UIImage imageNamed:@"pub_search"];
-    rightview.contentMode = UIViewContentModeCenter;
-    searchField.rightViewMode = UITextFieldViewModeAlways;
-    searchField.rightView = rightview;
-    self.navigationItem.titleView = searchField;
+- (UIView *)navigationView {
+    if (!_navigationView) {
+        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, total_topView_height)];
+        _navigationView.backgroundColor = [UIColor whiteColor];
+        
+        UIImageView *backView = [[UIImageView alloc] initWithFrame:_navigationView.bounds];
+        backView.image = [UIImage imageNamed:@"discover_navigation"];
+        backView.contentMode = UIViewContentModeScaleToFill;
+        [_navigationView addSubview:backView];
+        
+        UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(30), 25, SCREEN_WIDTH - AutoSize6(60), 34)];
+        searchField.placeholder = @"在此输入文章名/作者名";
+        searchField.backgroundColor = [UIColor whiteColor];
+        searchField.font = kFont6(26);
+        searchField.layer.borderColor = (kLineColoreDefaultd4d7dd).CGColor;
+        searchField.layer.borderWidth = 1;
+        searchField.layer.cornerRadius = 2;
+        searchField.delegate = self;
+        
+        CGRect frame = searchField.frame;
+        frame.size.width = AutoSize6(15);// 距离左侧的距离
+        UIView *leftview = [[UIView alloc] initWithFrame:frame];
+        searchField.leftViewMode = UITextFieldViewModeAlways;
+        searchField.leftView = leftview;
+        
+        CGRect rightframe = searchField.frame;
+        rightframe.size.width = AutoSize(35);// 距离左侧的距离
+        UIImageView *rightview = [[UIImageView alloc] initWithFrame:rightframe];
+        rightview.image = [UIImage imageNamed:@"pub_search"];
+        rightview.contentMode = UIViewContentModeCenter;
+        searchField.rightViewMode = UITextFieldViewModeAlways;
+        searchField.rightView = rightview;
+        [_navigationView addSubview:searchField];
+    }
+    return _navigationView;
 }
 
 - (void)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -123,15 +145,13 @@
 
 - (void)setTableView {
     
-    self.tableView.top = 0;
+    self.tableView.top = total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[TimeLineCell class] forCellReuseIdentifier:NSStringFromClass([TimeLineCell class])];
     self.viewModel = [[DiscoverDataSource alloc] init];
-    
-
 }
 
 // 设置headerview

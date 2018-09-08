@@ -79,8 +79,17 @@
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self addUI];
+    [self addNavigation];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.isCustomNavigation = YES;
+    self.isNavigationTransparent = YES;
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [detailButton setImage:[UIImage imageNamed:@"  "] forState:UIControlStateNormal];
     detailButton.frame = CGRectMake(0, 0, 15, 10);
@@ -88,14 +97,6 @@
     
     UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
     [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects:detailItem,nil]];
-    
-    [self addUI];
-    [self addNavigation];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.isCustomNavigation = YES;
-    self.isNavigationTransparent = YES;
     
     [self.bMapView viewWillAppear];
 }
