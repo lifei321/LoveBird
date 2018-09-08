@@ -72,6 +72,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 2) {
+            return 0;
+        }
+    }
     return AutoSize6(94);
 }
 
@@ -104,7 +110,6 @@
         label.text = @"个人信息设置";
     } else if (section == 1) {
         label.text = @"推送设置";
-
     } else if (section == 2) {
         return nil;
     } else if (section == 3) {
@@ -158,6 +163,7 @@
     model1.isShowContent = NO;
     model1.isShowSwitch = NO;
     model1.title = @"我的二维码";
+    model1.pushViewController = @"MineQRViewController";
     [section0 addObject:model1];
     
     MineSetModel *model2 = [[MineSetModel alloc] init];

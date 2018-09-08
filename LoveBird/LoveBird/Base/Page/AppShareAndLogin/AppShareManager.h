@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, AppShareType) {
+    AppShareTypeWechat = 0,
+    AppShareTypeWeibo = 1,
+    AppShareTypeQQ = 2,
+};
+
 @interface AppShareManager : NSObject
 
 + (void)registerManager;
@@ -20,4 +26,11 @@
 
 
 + (void)shareWithTitle:(NSString *)title summary:(NSString *)summary url:(NSString *)url image:(NSString *)imageUrl;
+
++ (void)shareWithTitle:(NSString *)title
+               summary:(NSString *)summary
+                   url:(NSString *)url
+                 image:(NSString *)imageUrl
+             shareType:(AppShareType)type;
+
 @end

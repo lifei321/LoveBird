@@ -152,6 +152,7 @@
 		1F1B8043213267B700547801 /* AppShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8042213267B700547801 /* AppShareManager.m */; };
 		1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8045213267CA00547801 /* AppLoginManager.m */; };
 		1F1B804C2142C67C00547801 /* app.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1F1B804B2142C67C00547801 /* app.cer */; };
+		1F2A84BE2143AC46008BC55A /* MineQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A84BD2143AC46008BC55A /* MineQRViewController.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -573,6 +574,8 @@
 		1F1B8044213267CA00547801 /* AppLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLoginManager.h; sourceTree = "<group>"; };
 		1F1B8045213267CA00547801 /* AppLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLoginManager.m; sourceTree = "<group>"; };
 		1F1B804B2142C67C00547801 /* app.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = app.cer; sourceTree = "<group>"; };
+		1F2A84BC2143AC46008BC55A /* MineQRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQRViewController.h; sourceTree = "<group>"; };
+		1F2A84BD2143AC46008BC55A /* MineQRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQRViewController.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -1965,6 +1968,8 @@
 				1F4F1402204D805C0066F790 /* Model */,
 				1F4F1404204D80910066F790 /* MineSetViewController.h */,
 				1F4F1405204D80910066F790 /* MineSetViewController.m */,
+				1F2A84BC2143AC46008BC55A /* MineQRViewController.h */,
+				1F2A84BD2143AC46008BC55A /* MineQRViewController.m */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -2950,6 +2955,7 @@
 				0B75D5A51FBEC434008D7AE6 /* NSDate+Extension.m in Sources */,
 				0B75D5781FBD9D8B008D7AE6 /* UIFactory.m in Sources */,
 				1F676E9A209A05BE002F71B4 /* UserFriendModel.m in Sources */,
+				1F2A84BE2143AC46008BC55A /* MineQRViewController.m in Sources */,
 				1F0FDFBC20C23B250041E73B /* LogDetailModel.m in Sources */,
 				0B75D5C51FBECED6008D7AE6 /* AppBaseModel.m in Sources */,
 				0B75D5661FBD9D8B008D7AE6 /* NSURL+QueryDictionary.m in Sources */,

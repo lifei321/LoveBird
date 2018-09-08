@@ -107,4 +107,48 @@
 }
 
 
++ (void)shareWithTitle:(NSString *)title
+               summary:(NSString *)summary
+                   url:(NSString *)url
+                 image:(NSString *)imageUrl
+             shareType:(AppShareType)type {
+    
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:summary thumImage:imageUrl];
+    
+    shareObject.webpageUrl = url;
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    UMSocialPlatformType platformType;
+    switch (type) {
+        case AppShareTypeWechat:
+            platformType = UMSocialPlatformType_WechatSession;
+            break;
+        case AppShareTypeWeibo:
+            platformType = UMSocialPlatformType_Sina;
+            break;
+        case AppShareTypeQQ:
+            platformType = UMSocialPlatformType_QQ;
+            break;
+
+        default:
+            break;
+    }
+    
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:[UIViewController currentViewController] completion:^(id data, NSError *error) {
+        if (error) {
+            [[[AppShareManager alloc] init] alertWithError:error];
+        }
+    }];
+
+    
+}
+
 @end

@@ -31,7 +31,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        self.clipsToBounds = YES;
+        
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
         self.iconImageView.contentMode = UIViewContentModeScaleToFill;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
@@ -59,7 +60,7 @@
         _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(124), AutoSize6(18), AutoSize6(94), AutoSize6(58))];
         [self.contentView addSubview:_switchView];
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(94) - 0.5, SCREEN_WIDTH - AutoSize6(30), 0.5)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(94) - 0.5, SCREEN_WIDTH - AutoSize6(60), 0.5)];
         line.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:line];
     }

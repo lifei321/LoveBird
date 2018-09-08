@@ -99,6 +99,12 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, copy) NSString *feedbackUrl;
 
+@property (nonatomic, copy) NSString *gender;
+
+@property (nonatomic, copy) NSString *QRcodeUrl;
+
+
+
 
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareUrl;
