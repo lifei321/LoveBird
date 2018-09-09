@@ -22,8 +22,11 @@
 #import "DiscoverDao.h"
 #import "PublishEditViewController.h"
 #import "PublishDao.h"
+#import "MWPhotoBrowser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+
+@interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MWPhotoBrowserDelegate>
 
 // 日志
 @property (nonatomic, strong) LogDetailModel *detailModel;
@@ -65,6 +68,9 @@
 // 评论总数
 @property (nonatomic, copy) NSString *count;
 
+@property (nonatomic, strong) NSMutableArray *photoArray;
+
+
 @end
 
 @implementation LogDetailController
@@ -74,6 +80,7 @@
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         self.isRequesting = NO;
+        _photoArray = [NSMutableArray new];
     }
     return self;
 }
@@ -158,6 +165,41 @@
                 if (self.contentModel.articleList.count + 1 > row) {
                     birdcell.contentModel = self.contentModel.articleList[row - 1];
                 }
+                
+                birdcell.selectBlock = ^(LogPostBodyModel *selectModel) {
+                    
+                    
+                    NSInteger index = 0;
+                    for (int i = 0; i < self.photoArray.count; i++) {
+                        MWPhoto *photoModel = self.photoArray[i];
+                        if ([selectModel.imgUrl isEqualToString:[photoModel.photoURL absoluteString]]) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    
+                    BOOL displayActionButton = YES;
+                    BOOL displaySelectionButtons = NO;
+                    BOOL displayNavArrows = NO;
+                    BOOL enableGrid = YES;
+                    BOOL startOnGrid = NO;
+                    BOOL autoPlayOnAppear = NO;
+                    
+                    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+                    browser.displayActionButton = displayActionButton;
+                    browser.displayNavArrows = displayNavArrows;
+                    browser.displaySelectionButtons = displaySelectionButtons;
+                    browser.alwaysShowControls = displaySelectionButtons;
+                    browser.zoomPhotosToFill = YES;
+                    browser.enableGrid = enableGrid;
+                    browser.startOnGrid = startOnGrid;
+                    browser.enableSwipeToDismiss = NO;
+                    browser.autoPlayOnAppear = autoPlayOnAppear;
+                    [browser setCurrentPhotoIndex:index];
+                    [[UIViewController currentViewController].navigationController pushViewController:browser animated:YES];
+                    
+                };
+                
                 cell = birdcell;
             }
         } else {
@@ -170,6 +212,40 @@
                     birdcell.contentModel = contentModel;
                 }
             }
+            
+            birdcell.selectBlock = ^(LogPostBodyModel *selectModel) {
+                
+                NSInteger index = 0;
+                for (int i = 0; i < self.photoArray.count; i++) {
+                    MWPhoto *photoModel = self.photoArray[i];
+                    if ([selectModel.imgUrl isEqualToString:[photoModel.photoURL absoluteString]]) {
+                        index = i;
+                        break;
+                    }
+                }
+                
+                BOOL displayActionButton = YES;
+                BOOL displaySelectionButtons = NO;
+                BOOL displayNavArrows = NO;
+                BOOL enableGrid = YES;
+                BOOL startOnGrid = NO;
+                BOOL autoPlayOnAppear = NO;
+                
+                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+                browser.displayActionButton = displayActionButton;
+                browser.displayNavArrows = displayNavArrows;
+                browser.displaySelectionButtons = displaySelectionButtons;
+                browser.alwaysShowControls = displaySelectionButtons;
+                browser.zoomPhotosToFill = YES;
+                browser.enableGrid = enableGrid;
+                browser.startOnGrid = startOnGrid;
+                browser.enableSwipeToDismiss = NO;
+                browser.autoPlayOnAppear = autoPlayOnAppear;
+                [browser setCurrentPhotoIndex:index];
+                [[UIViewController currentViewController].navigationController pushViewController:browser animated:YES];
+                
+            };
+            
             cell = birdcell;
         }
     } else if (section == 2) {
@@ -330,8 +406,24 @@
         
         [self netForTalkList];
         [self netforUplist];
-        
         LogDetailModel *detailModel = (LogDetailModel *)responseObject;
+
+        for (LogPostBodyModel *worksModel in detailModel.postBody) {
+            MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
+            photo.caption = worksModel.imgTag;
+            photo.iconUrl = detailModel.authorHead;
+            photo.name = detailModel.author;
+            photo.imgExifLen = worksModel.imgExifLen;
+            photo.imgExifModel = worksModel.imgExifModel;
+            photo.imgExifParameter = worksModel.imgExifParameter;
+            photo.shareImg = worksModel.shareImg;
+            photo.shareUrl = worksModel.shareUrl;
+            photo.shareTitle = worksModel.shareTitle;
+            photo.shareSummary = worksModel.shareSummary;
+            photo.tid = worksModel.aid;
+            [self.photoArray addObject:photo];
+        }
+        
         
         self.collectButton.selected = detailModel.isCollection;
         self.likeButton.selected = detailModel.isUp;
@@ -365,6 +457,23 @@
         [self netforUplist];
         
         LogContentModel *contentModel = (LogContentModel *)responseObject;
+        
+        for (LogPostBodyModel *worksModel in contentModel.articleList) {
+            MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
+            photo.caption = worksModel.imgTag;
+            photo.iconUrl = contentModel.head;
+            photo.name = contentModel.author;
+            photo.imgExifLen = worksModel.imgExifLen;
+            photo.imgExifModel = worksModel.imgExifModel;
+            photo.imgExifParameter = worksModel.imgExifParameter;
+            photo.shareImg = worksModel.shareImg;
+            photo.shareUrl = worksModel.shareUrl;
+            photo.shareTitle = worksModel.shareTitle;
+            photo.shareSummary = worksModel.shareSummary;
+            photo.tid = worksModel.aid;
+            [self.photoArray addObject:photo];
+        }
+
         
         self.collectButton.selected = contentModel.isCollection;
         self.likeButton.selected = contentModel.isUp;
@@ -764,6 +873,57 @@
     
     talkView.hidden = YES;
     return talkView;
+}
+
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photoArray.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photoArray.count)
+        return [_photoArray objectAtIndex:index];
+    return nil;
+}
+//
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+//    if (index < _thumbs.count)
+//        return [_thumbs objectAtIndex:index];
+//    return nil;
+//}
+
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    MWPhoto *photo = [self.photoArray objectAtIndex:index];
+    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+    return captionView;
+}
+
+//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+//    NSLog(@"ACTION!");
+//}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
+    NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
+}
+
+
+- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
+    
+    MWPhoto *photo = self.photoArray[index];
+    [photoBrowser.headImageview sd_setImageWithURL:[NSURL URLWithString:photo.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    photoBrowser.nameLabel.text = photo.name;
+    photoBrowser.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", index + 1, self.photoArray.count];
+    
+    photoBrowser.qicaiLabel.text = [NSString stringWithFormat:@"%@  %@", @"器材", photo.imgExifModel];
+    photoBrowser.jingtouLabel.text = [NSString stringWithFormat:@"%@  %@", @"镜头", photo.imgExifLen];
+    photoBrowser.canshuLabel.text = [NSString stringWithFormat:@"%@  %@", @"参数", photo.imgExifParameter];
+    
+    
+    
+    return @" ";
+    //    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
 }
 
 

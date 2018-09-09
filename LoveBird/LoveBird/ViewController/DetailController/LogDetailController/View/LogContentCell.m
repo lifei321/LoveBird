@@ -59,6 +59,11 @@
 }
 
 
+- (void)leftImageviewClick {
+    if (self.selectBlock) {
+        self.selectBlock(self.contentModel);
+    }
+}
 
 
 - (void)setContentModel:(LogPostBodyModel *)contentModel {
@@ -86,7 +91,9 @@
             
             _iconImageView.top = self.birdLabel.bottom + birdHeight;
             [_iconImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-            
+            _iconImageView.userInteractionEnabled = YES;
+            [_iconImageView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftImageviewClick)]];
+
             self.tagLabel.frame = CGRectZero;
             if (contentModel.imgTag.length) {
                 self.tagLabel.text = contentModel.imgTag;

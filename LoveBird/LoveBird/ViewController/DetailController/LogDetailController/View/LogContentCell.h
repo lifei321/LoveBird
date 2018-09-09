@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "LogDetailModel.h"
 
+typedef void(^WorkSelectBlock)(LogPostBodyModel *selectModel);
+
 @interface LogContentCell : UITableViewCell
 
 @property (nonatomic, strong) LogPostBodyModel *contentModel;
 
 + (CGFloat)getHeightWithContentModel:(LogPostBodyModel *)model ;
+
+@property (nonatomic, strong) WorkSelectBlock selectBlock;
+
 
 @end

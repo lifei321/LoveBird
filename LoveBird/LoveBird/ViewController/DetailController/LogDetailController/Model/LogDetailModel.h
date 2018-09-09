@@ -102,6 +102,20 @@
 
 @property (nonatomic, copy) NSString *imgExifParameter;
 
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareUrl;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareImg;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareSummary;
+
+// 分享文章的url
+@property (nonatomic, copy) NSString *shareTitle;
+
+
 @end
 
 //
