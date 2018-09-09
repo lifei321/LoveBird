@@ -163,7 +163,7 @@
 
 // 设置headerview
 - (void)setHeaderView {
-    DiscoverHeaderView *headerView = [[DiscoverHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, AutoSize(312))];
+    DiscoverHeaderView *headerView = [[DiscoverHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, AutoSize(325))];
     headerView.cycleScrollView.delegate = self;
     headerView.collectionView.delegate = self;
     headerView.collectionView.dataSource = self;

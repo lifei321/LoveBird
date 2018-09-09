@@ -49,13 +49,13 @@
         self.flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         self.flowLayout.itemSize = CGSizeMake(AutoSize(36), AutoSize(56));
         self.flowLayout.minimumInteritemSpacing = AutoSize(30);
-        self.flowLayout.minimumLineSpacing = AutoSize(5);
+        self.flowLayout.minimumLineSpacing = AutoSize(15);
         self.flowLayout.sectionInset = UIEdgeInsetsMake(AutoSize(10), AutoSize(25), AutoSize(10), AutoSize(25));
         ///header 和footer 的高度
         self.flowLayout.headerReferenceSize = CGSizeZero;
         self.flowLayout.footerReferenceSize = CGSizeZero;
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, AutoSize(175), self.width, AutoSize(137)) collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, AutoSize(175), self.width, AutoSize(150)) collectionViewLayout:self.flowLayout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.scrollEnabled = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
