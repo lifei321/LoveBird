@@ -45,6 +45,9 @@
         _iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];
         
+        self.iconImageView.userInteractionEnabled = YES;
+        [self.iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         self.topLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(10), _iconImageView.top, AutoSize6(300), _iconImageView.height / 2)];
         self.topLabel.textAlignment = NSTextAlignmentLeft;
         self.topLabel.textColor = [UIColor blackColor];
@@ -130,9 +133,23 @@
         [attrString addAttribute:NSFontAttributeName value:kFont6(20) range:NSMakeRange(rankModel.credit.length, 2)];
         self.bottomLabel.attributedText = attrString;
     }
-    
-    
-    
 }
+
+- (void)headIconDidClick {
+    
+    if ([self.rankModel.uid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = self.rankModel.uid;
+    uservc.userName = self.rankModel.username;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
+
 
 @end

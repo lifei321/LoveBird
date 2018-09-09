@@ -91,7 +91,8 @@
     }
     
     UserInfoViewController *infovc = [[UserInfoViewController alloc] init];
-    infovc.talentModel = model;
+    infovc.uid = model.msaterid;
+    infovc.userName = model.master;
     [[UIViewController currentViewController].navigationController pushViewController:infovc animated:YES];
 }
 

@@ -37,6 +37,9 @@
         self.headIcon.layer.cornerRadius = self.headIcon.height / 2;
         [self addSubview:self.headIcon];
         
+        self.headIcon.userInteractionEnabled = YES;
+        [self.headIcon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         // 昵称
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top + AutoSize6(5), SCREEN_WIDTH / 2, AutoSize6(37))];
         self.nickNameLabel.textColor = [UIColor blackColor];
@@ -103,5 +106,34 @@
     self.followButton.selected = contentModel.isFollow;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:contentModel.dateline formatSytle:DateFormatYMD];
 }
+
+
+- (void)headIconDidClick {
+    NSString *uid;
+    NSString *name;
+    if (self.detailModel) {
+        uid = self.detailModel.authorid;
+        name = self.detailModel.author;
+    }
+    if (self.contentModel) {
+        uid = self.contentModel.authorid;
+        name = self.contentModel.author;
+    }
+    
+    if ([uid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = uid;
+    uservc.userName = name;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
+
+
 
 @end

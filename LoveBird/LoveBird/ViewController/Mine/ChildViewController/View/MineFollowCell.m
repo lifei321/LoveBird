@@ -37,6 +37,9 @@
         self.iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.iconImageView];
         
+        self.iconImageView.userInteractionEnabled = YES;
+        [self.iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(10), AutoSize6(0), SCREEN_WIDTH - AutoSize6(50) - self.iconImageView.right, AutoSize6(134))];
         self.titleLabel.textColor = [UIColor blackColor];
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -86,5 +89,19 @@
     
 }
 
-
+- (void)headIconDidClick {
+    
+    if ([self.followModel.uid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = self.followModel.uid;
+    uservc.userName = self.followModel.username;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
 @end

@@ -241,16 +241,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (BOOL)presentingViewControllerPrefersStatusBarHidden {
     UIViewController *presenting = self.presentingViewController;
     if (presenting) {
-        if ([presenting isKindOfClass:[UINavigationController class]]) {
-            presenting = [(UINavigationController *)presenting topViewController];
-        }
-    } else {
-        // We're in a navigation controller so get previous one!
-        if (self.navigationController && self.navigationController.viewControllers.count > 1) {
-            presenting = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-        }
-    }
-    if (presenting) {
         return [presenting prefersStatusBarHidden];
     } else {
         return NO;
@@ -306,6 +296,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.isCustomNavigation = YES;
     self.isNavigationTransparent = YES;
     self.backImage = [UIImage imageNamed:@""];
+    
+    self.headView.hidden = NO;
+    self.footView.hidden = NO;
+    self.footDetailView.hidden = NO;
+    self.view.backgroundColor = [UIColor blackColor];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -324,6 +320,11 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     _viewHasAppearedInitially = YES;
         
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -346,7 +347,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
     
     // Controls
-    [self.navigationController.navigationBar.layer removeAllAnimations]; // Stop all animations on nav bar
+//    [self.navigationController.navigationBar.layer removeAllAnimations]; // Stop all animations on nav bar
     [NSObject cancelPreviousPerformRequestsWithTarget:self]; // Cancel any pending toggles from taps
     [self setControlsHidden:NO animated:NO permanent:YES];
     
@@ -360,8 +361,11 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     self.isCustomNavigation = NO;
     self.isNavigationTransparent = NO;
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
 
-    
+    self.headView.hidden = YES;
+    self.footView.hidden = YES;
+    self.footDetailView.hidden = YES;
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -377,44 +381,44 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 #pragma mark - Nav Bar Appearance
 
 - (void)setNavBarAppearance:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    UINavigationBar *navBar = self.navigationController.navigationBar;
-    navBar.tintColor = [UIColor whiteColor];
-    navBar.barTintColor = nil;
-    navBar.shadowImage = nil;
-    navBar.translucent = YES;
-    navBar.barStyle = UIBarStyleBlackTranslucent;
-    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    UINavigationBar *navBar = self.navigationController.navigationBar;
+//    navBar.tintColor = [UIColor whiteColor];
+//    navBar.barTintColor = nil;
+//    navBar.shadowImage = nil;
+//    navBar.translucent = YES;
+//    navBar.barStyle = UIBarStyleBlackTranslucent;
+//    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+//    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
 }
 
 - (void)storePreviousNavBarAppearance {
-    _didSavePreviousStateOfNavBar = YES;
-    _previousNavBarBarTintColor = self.navigationController.navigationBar.barTintColor;
-    _previousNavBarTranslucent = self.navigationController.navigationBar.translucent;
-    _previousNavBarTintColor = self.navigationController.navigationBar.tintColor;
-    _previousNavBarHidden = self.navigationController.navigationBarHidden;
-    _previousNavBarStyle = self.navigationController.navigationBar.barStyle;
-    _previousNavigationBarBackgroundImageDefault = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
-    _previousNavigationBarBackgroundImageLandscapePhone = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsLandscapePhone];
+//    _didSavePreviousStateOfNavBar = YES;
+//    _previousNavBarBarTintColor = self.navigationController.navigationBar.barTintColor;
+//    _previousNavBarTranslucent = self.navigationController.navigationBar.translucent;
+//    _previousNavBarTintColor = self.navigationController.navigationBar.tintColor;
+//    _previousNavBarHidden = self.navigationController.navigationBarHidden;
+//    _previousNavBarStyle = self.navigationController.navigationBar.barStyle;
+//    _previousNavigationBarBackgroundImageDefault = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+//    _previousNavigationBarBackgroundImageLandscapePhone = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsLandscapePhone];
 }
 
 - (void)restorePreviousNavBarAppearance:(BOOL)animated {
     if (_didSavePreviousStateOfNavBar) {
-        [self.navigationController setNavigationBarHidden:_previousNavBarHidden animated:animated];
-        UINavigationBar *navBar = self.navigationController.navigationBar;
-        navBar.tintColor = _previousNavBarTintColor;
-        navBar.translucent = _previousNavBarTranslucent;
-        navBar.barTintColor = _previousNavBarBarTintColor;
-        navBar.barStyle = _previousNavBarStyle;
-        [navBar setBackgroundImage:_previousNavigationBarBackgroundImageDefault forBarMetrics:UIBarMetricsDefault];
-        [navBar setBackgroundImage:_previousNavigationBarBackgroundImageLandscapePhone forBarMetrics:UIBarMetricsLandscapePhone];
-        // Restore back button if we need to
-        if (_previousViewControllerBackButton) {
-            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
-            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
-            _previousViewControllerBackButton = nil;
-        }
+//        [self.navigationController setNavigationBarHidden:_previousNavBarHidden animated:animated];
+//        UINavigationBar *navBar = self.navigationController.navigationBar;
+//        navBar.tintColor = _previousNavBarTintColor;
+//        navBar.translucent = _previousNavBarTranslucent;
+//        navBar.barTintColor = _previousNavBarBarTintColor;
+//        navBar.barStyle = _previousNavBarStyle;
+//        [navBar setBackgroundImage:_previousNavigationBarBackgroundImageDefault forBarMetrics:UIBarMetricsDefault];
+//        [navBar setBackgroundImage:_previousNavigationBarBackgroundImageLandscapePhone forBarMetrics:UIBarMetricsLandscapePhone];
+//        // Restore back button if we need to
+//        if (_previousViewControllerBackButton) {
+//            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
+//            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
+//            _previousViewControllerBackButton = nil;
+//        }
     }
 }
 
@@ -443,6 +447,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _headImageview.clipsToBounds = YES;
     [headView addSubview:_headImageview];
     
+    self.headImageview.userInteractionEnabled = YES;
+    [self.headImageview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+    
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), AutoSize6(40), SCREEN_WIDTH / 2, headView.height - AutoSize6(40))];
     _nameLabel.font = kFontPF6(28);
     _nameLabel.textColor = [UIColor whiteColor];
@@ -450,9 +457,30 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 }
 
+- (void)headIconDidClick {
+    
+    MWPhoto *photo = (MWPhoto *)[self photoAtIndex:_currentPageIndex];
+
+    if ([photo.uid isEqualToString:[UserPage sharedInstance].uid]) {
+
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = photo.uid;
+    uservc.userName = photo.userName;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
+
+
 - (void)closeButtonDidClick {
     [self.headView removeFromSuperview];
     [self.footView removeFromSuperview];
+    [self.footDetailView removeFromSuperview];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -616,15 +644,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	for (MWZoomingScrollView *page in _visiblePages) {
         NSUInteger index = page.index;
 		page.frame = [self frameForPageAtIndex:index];
-        if (page.captionView) {
-            page.captionView.frame = [self frameForCaptionView:page.captionView atIndex:index];
-        }
-        if (page.selectedButton) {
-            page.selectedButton.frame = [self frameForSelectedButton:page.selectedButton atIndex:index];
-        }
-        if (page.playButton) {
-            page.playButton.frame = [self frameForPlayButton:page.playButton atIndex:index];
-        }
+//        if (page.captionView) {
+//            page.captionView.frame = [self frameForCaptionView:page.captionView atIndex:index];
+//        }
+//        if (page.selectedButton) {
+//            page.selectedButton.frame = [self frameForSelectedButton:page.selectedButton atIndex:index];
+//        }
+//        if (page.playButton) {
+//            page.playButton.frame = [self frameForPlayButton:page.playButton atIndex:index];
+//        }
         
         // Adjust scales if bounds has changed since last time
         if (!CGRectEqualToRect(_previousLayoutBounds, self.view.bounds)) {
@@ -667,7 +695,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     // In iOS 7 the nav bar gets shown after rotation, but might as well do this for everything!
     if ([self areControlsHidden]) {
         // Force hidden
-        self.navigationController.navigationBarHidden = YES;
+//        self.navigationController.navigationBarHidden = YES;
     }
 	
 }
@@ -688,10 +716,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	_rotating = NO;
     // Ensure nav bar isn't re-displayed
-    if ([self areControlsHidden]) {
-        self.navigationController.navigationBarHidden = NO;
-        self.navigationController.navigationBar.alpha = 0;
-    }
+//    if ([self areControlsHidden]) {
+//        self.navigationController.navigationBarHidden = NO;
+//        self.navigationController.navigationBar.alpha = 0;
+//    }
 }
 
 #pragma mark - Data
@@ -1120,20 +1148,20 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     return CGRectIntegral(captionFrame);
 }
 
-- (CGRect)frameForSelectedButton:(UIButton *)selectedButton atIndex:(NSUInteger)index {
-    CGRect pageFrame = [self frameForPageAtIndex:index];
-    CGFloat padding = 20;
-    CGFloat yOffset = 0;
-    if (![self areControlsHidden]) {
-        UINavigationBar *navBar = self.navigationController.navigationBar;
-        yOffset = navBar.frame.origin.y + navBar.frame.size.height;
-    }
-    CGRect selectedButtonFrame = CGRectMake(pageFrame.origin.x + pageFrame.size.width - selectedButton.frame.size.width - padding,
-                                            padding + yOffset,
-                                            selectedButton.frame.size.width,
-                                            selectedButton.frame.size.height);
-    return CGRectIntegral(selectedButtonFrame);
-}
+//- (CGRect)frameForSelectedButton:(UIButton *)selectedButton atIndex:(NSUInteger)index {
+//    CGRect pageFrame = [self frameForPageAtIndex:index];
+//    CGFloat padding = 20;
+//    CGFloat yOffset = 0;
+//    if (![self areControlsHidden]) {
+//        UINavigationBar *navBar = self.navigationController.navigationBar;
+//        yOffset = navBar.frame.origin.y + navBar.frame.size.height;
+//    }
+//    CGRect selectedButtonFrame = CGRectMake(pageFrame.origin.x + pageFrame.size.width - selectedButton.frame.size.width - padding,
+//                                            padding + yOffset,
+//                                            selectedButton.frame.size.width,
+//                                            selectedButton.frame.size.height);
+//    return CGRectIntegral(selectedButtonFrame);
+//}
 
 - (CGRect)frameForPlayButton:(UIButton *)playButton atIndex:(NSUInteger)index {
     CGRect pageFrame = [self frameForPageAtIndex:index];
@@ -1670,12 +1698,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.progressHUD.labelText = message;
     self.progressHUD.mode = MBProgressHUDModeIndeterminate;
     [self.progressHUD show:YES];
-    self.navigationController.navigationBar.userInteractionEnabled = NO;
+//    self.navigationController.navigationBar.userInteractionEnabled = NO;
 }
 
 - (void)hideProgressHUD:(BOOL)animated {
     [self.progressHUD hide:animated];
-    self.navigationController.navigationBar.userInteractionEnabled = YES;
+//    self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 - (void)showProgressHUDCompleteMessage:(NSString *)message {
@@ -1687,7 +1715,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     } else {
         [self.progressHUD hide:YES];
     }
-    self.navigationController.navigationBar.userInteractionEnabled = YES;
+//    self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 @end

@@ -12,9 +12,11 @@
 #import <MJRefresh/MJRefresh.h>
 #import "WorkTableViewCell.h"
 #import "UIImage+Addition.h"
+#import "MWPhotoBrowser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
-@interface MinePhotoViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MinePhotoViewController ()<UITableViewDelegate, UITableViewDataSource, MWPhotoBrowserDelegate>
 
 // 刷新页数
 @property (nonatomic, copy) NSString *pageNum;
@@ -22,6 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIButton *selectButton;
+
+@property (nonatomic, strong) NSMutableArray *photoArray;
 
 @end
 
@@ -31,6 +35,7 @@
     [super viewDidLoad];
     
     _dataArray = [NSMutableArray new];
+    _photoArray = [NSMutableArray new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify) name:kLoginSuccessNotification object:nil];
 
     // 设置UI
@@ -78,10 +83,30 @@
         self.pageNum = dataModel.maxAid;
         if (header) {
             [self.dataArray removeAllObjects];
+            [self.photoArray removeAllObjects];
         }
         NSMutableArray *tempArray = [NSMutableArray new];
         for (NSArray *array in dataModel.imgList) {
             NSArray *modelArray = [WorksModel arrayOfModelsFromDictionaries:array error:nil];
+            
+            for (WorksModel *worksModel in modelArray) {
+                MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
+                photo.caption = worksModel.tags;
+                photo.iconUrl = worksModel.head;
+                photo.name = worksModel.author;
+                photo.imgExifLen = worksModel.imgExifLen;
+                photo.imgExifModel = worksModel.imgExifModel;
+                photo.imgExifParameter = worksModel.imgExifParameter;
+                photo.shareImg = worksModel.shareImg;
+                photo.shareUrl = worksModel.shareUrl;
+                photo.shareTitle = worksModel.shareTitle;
+                photo.shareSummary = worksModel.shareSummary;
+                photo.tid = worksModel.tid;
+                photo.uid = worksModel.authorid;
+                photo.userName = worksModel.author;
+                [self.photoArray addObject:photo];
+            }
+            
             [tempArray addObject:modelArray];
         }
         
@@ -105,6 +130,41 @@
     WorkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WorkTableViewCell class]) forIndexPath:indexPath];
     
     cell.listArray = self.dataArray[indexPath.row];
+    
+    cell.selectBlock = ^(WorksModel *selectModel) {
+        
+        
+        NSInteger index = 0;
+        for (int i = 0; i < self.photoArray.count; i++) {
+            MWPhoto *photoModel = self.photoArray[i];
+            if ([selectModel.imgUrl isEqualToString:[photoModel.photoURL absoluteString]]) {
+                index = i;
+                break;
+            }
+        }
+        
+        BOOL displayActionButton = YES;
+        BOOL displaySelectionButtons = NO;
+        BOOL displayNavArrows = NO;
+        BOOL enableGrid = YES;
+        BOOL startOnGrid = NO;
+        BOOL autoPlayOnAppear = NO;
+        
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = displayActionButton;
+        browser.displayNavArrows = displayNavArrows;
+        browser.displaySelectionButtons = displaySelectionButtons;
+        browser.alwaysShowControls = displaySelectionButtons;
+        browser.zoomPhotosToFill = YES;
+        browser.enableGrid = enableGrid;
+        browser.startOnGrid = startOnGrid;
+        browser.enableSwipeToDismiss = NO;
+        browser.autoPlayOnAppear = autoPlayOnAppear;
+        [browser setCurrentPhotoIndex:index];
+        [[UIViewController currentViewController].navigationController pushViewController:browser animated:YES];
+        
+    };
+
     return cell;
 }
 
@@ -166,5 +226,54 @@
 }
 
 
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photoArray.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photoArray.count)
+        return [_photoArray objectAtIndex:index];
+    return nil;
+}
+//
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+//    if (index < _thumbs.count)
+//        return [_thumbs objectAtIndex:index];
+//    return nil;
+//}
+
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    MWPhoto *photo = [self.photoArray objectAtIndex:index];
+    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+    return captionView;
+}
+
+//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+//    NSLog(@"ACTION!");
+//}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
+    NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
+}
+
+
+- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
+    
+    MWPhoto *photo = self.photoArray[index];
+    [photoBrowser.headImageview sd_setImageWithURL:[NSURL URLWithString:photo.iconUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    photoBrowser.nameLabel.text = photo.name;
+    photoBrowser.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", index + 1, self.photoArray.count];
+    
+    photoBrowser.qicaiLabel.text = [NSString stringWithFormat:@"%@  %@", @"器材", photo.imgExifModel];
+    photoBrowser.jingtouLabel.text = [NSString stringWithFormat:@"%@  %@", @"镜头", photo.imgExifLen];
+    photoBrowser.canshuLabel.text = [NSString stringWithFormat:@"%@  %@", @"参数", photo.imgExifParameter];
+    
+    
+    
+    return @" ";
+    //    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
+}
 
 @end

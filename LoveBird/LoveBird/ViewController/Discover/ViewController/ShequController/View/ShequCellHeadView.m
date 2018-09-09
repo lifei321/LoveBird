@@ -40,6 +40,9 @@
         self.headIcon.layer.borderWidth = AutoSize6(2);
         [self addSubview:self.headIcon];
         
+        self.headIcon.userInteractionEnabled = YES;
+        [self.headIcon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         // 昵称
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top, SCREEN_WIDTH / 2, self.headIcon.height)];
         self.nickNameLabel.textColor = [UIColor blackColor];
@@ -104,6 +107,22 @@
     self.followButton.selected = shequModel.is_follow;
     self.gradeLabel.layer.cornerRadius = 3;
 
+}
+
+- (void)headIconDidClick {
+    
+    if ([self.shequModel.authorid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = self.shequModel.authorid;
+    uservc.userName = self.shequModel.author;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
 }
 
 @end

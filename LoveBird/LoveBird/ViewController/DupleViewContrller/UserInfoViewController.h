@@ -7,10 +7,12 @@
 //
 
 #import "AppBaseTableViewController.h"
-#import "TalentModel.h"
 
 @interface UserInfoViewController : AppBaseTableViewController
 
-@property (nonatomic, strong) TalentModel *talentModel;
+
+@property (nonatomic, copy) NSString *uid;
+
+@property (nonatomic, copy) NSString *userName;
 
 @end

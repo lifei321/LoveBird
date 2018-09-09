@@ -103,6 +103,8 @@
                     photo.shareTitle = worksModel.shareTitle;
                     photo.shareSummary = worksModel.shareSummary;
                     photo.tid = worksModel.tid;
+                    photo.uid = worksModel.authorid;
+                    photo.userName = worksModel.author;
                     [self.photoArray addObject:photo];
                 }
             }

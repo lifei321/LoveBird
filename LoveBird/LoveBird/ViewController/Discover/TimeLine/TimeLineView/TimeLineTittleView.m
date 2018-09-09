@@ -36,6 +36,9 @@
         self.headIcon.layer.cornerRadius = AutoSize6(36);
         [self addSubview:self.headIcon];
         
+        self.headIcon.userInteractionEnabled = YES;
+        [self.headIcon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         // 昵称
         self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headIcon.right + AutoSize(5), self.headIcon.top + AutoSize6(5), SCREEN_WIDTH / 2, self.headIcon.height / 2)];
         self.nickNameLabel.textColor = [UIColor blackColor];
@@ -88,6 +91,21 @@
     self.followButton.centerY = self.centerY - AutoSize6(5);
 }
 
+- (void)headIconDidClick {
+    
+    if ([self.contentModel.authorid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = self.contentModel.authorid;
+    uservc.userName = self.contentModel.author;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
 
 
 @end

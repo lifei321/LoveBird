@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.418455"
+            timestampString = "558197694.688918"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1417"
-            endingLineNumber = "1417"
+            startingLineNumber = "1445"
+            endingLineNumber = "1445"
             landmarkName = "-showGrid:"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.418818"
+            timestampString = "558197694.689339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1608"
-            endingLineNumber = "1608"
+            startingLineNumber = "1636"
+            endingLineNumber = "1636"
             landmarkName = "-actionButtonPressed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.418951"
+            timestampString = "558197694.689644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
             landmarkName = "-willAnimateRotationToInterfaceOrientation:duration:"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.419078"
+            timestampString = "558197694.6899101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
+            startingLineNumber = "723"
+            endingLineNumber = "723"
             landmarkName = "-didRotateFromInterfaceOrientation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.419202"
+            timestampString = "558197694.690181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1256"
-            endingLineNumber = "1256"
+            startingLineNumber = "1284"
+            endingLineNumber = "1284"
             landmarkName = "-selectedButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/MWPhotoBrowser/MWPhotoBrowser.m"
-            timestampString = "558180313.419328"
+            timestampString = "558197694.690432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1462"
-            endingLineNumber = "1462"
+            startingLineNumber = "1490"
+            endingLineNumber = "1490"
             landmarkName = "-hideGrid"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,7 +164,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/ViewController/Publish/PublishViewController.m"
-            timestampString = "558188093.983656"
+            timestampString = "558197694.690716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "718"

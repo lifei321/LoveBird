@@ -39,7 +39,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.talentModel.master;
+    self.title = self.userName;
+    
+    self.navigationBar.backgroundColor = [UIColor whiteColor];
     
     [self netForMyInfo];
 }
@@ -48,9 +50,11 @@
 
 - (void)netForMyInfo {
     [AppBaseHud showHudWithLoding:self.view];
+    
+    
 
     @weakify(self);
-    [UserDao userMyInfo:self.talentModel.msaterid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userMyInfo:self.uid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [AppBaseHud hideHud:self.view];
@@ -122,20 +126,20 @@
     self.tableView.tableFooterView = footerView;
     
     MineLogViewController *logController = [[MineLogViewController  alloc] init];
-    logController.taid = self.talentModel.msaterid;
+    logController.taid = self.uid;
     [self addChildViewController:logController];
     logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:logController.view];
     
     
     MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
-    birdController.taid = self.talentModel.msaterid;
+    birdController.taid = self.uid;
     [self addChildViewController:birdController];
     birdController.view.frame = CGRectMake(SCREEN_WIDTH , 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:birdController.view];
     
     MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
-    photoController.authorId = self.talentModel.msaterid;
+    photoController.authorId = self.uid;
     [self addChildViewController:photoController];
     photoController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
     [footerView addSubview:photoController.view];

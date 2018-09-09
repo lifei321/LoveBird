@@ -45,6 +45,9 @@
 
 @property (nonatomic, copy) NSString *tid;
 
+@property (nonatomic, copy) NSString *uid;
+
+@property (nonatomic, copy) NSString *userName;
 
 
 + (MWPhoto *)photoWithImage:(UIImage *)image;
