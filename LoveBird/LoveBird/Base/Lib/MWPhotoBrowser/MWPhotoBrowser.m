@@ -523,8 +523,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     UIButton *upButton = [UIFactory buttonWithFrame:CGRectMake(shareButton.right + AutoSize6(40), shareButton.top, AutoSize6(100), AutoSize6(60))
                                                 target:self
-                                                 image:@"pic_close"
-                                           selectImage:@"pic_close"
+                                                 image:@"works_like"
+                                           selectImage:@"works_liked"
                                                  title:@"赞"
                                              action:@selector(upButtonDidClick:)];
     [upButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
