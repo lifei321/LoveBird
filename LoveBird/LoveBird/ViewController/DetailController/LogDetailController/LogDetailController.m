@@ -24,6 +24,7 @@
 #import "PublishDao.h"
 #import "MWPhotoBrowser.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "DasaiTougaoViewController.h"
 
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MWPhotoBrowserDelegate>
@@ -623,8 +624,13 @@
             
           
         } else if (2 == buttonIndex) {
-           
+            DasaiTougaoViewController *vc = [[DasaiTougaoViewController alloc] init];
+            vc.tid = self.tid;
+            [self.navigationController pushViewController:vc animated:YES];
+            
         } else if (3 == buttonIndex) {
+            
+            [AppShareManager shareWithTitle:self.detailModel.shareTitle summary:self.detailModel.shareSummary url:self.detailModel.shareUrl image:self.detailModel.shareImg];
             
         } else if (4 == buttonIndex) {
             [AppBaseHud showHudWithLoding:self.view];

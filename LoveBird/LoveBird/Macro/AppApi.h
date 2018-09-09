@@ -155,6 +155,9 @@
  */
 #define kAPI_Discover_MatchList kAPI_USER_SERVER_VERSION(@"match/index.php?cmd=matchList")
 
+// 投稿
+#define kAPI_Discover_tougaodasai kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=joinMatch")
+
 /**
  *  大赛详情
  */

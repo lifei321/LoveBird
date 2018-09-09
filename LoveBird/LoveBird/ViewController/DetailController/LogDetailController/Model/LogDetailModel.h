@@ -51,6 +51,7 @@
 
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, copy) NSString *tid;
 
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareUrl;

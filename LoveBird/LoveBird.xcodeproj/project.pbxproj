@@ -176,6 +176,7 @@
 		1F2A858F2143C753008BC55A /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A85782143C753008BC55A /* MJRefreshAutoFooter.m */; };
 		1F2A85902143C753008BC55A /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A857A2143C753008BC55A /* MJRefreshComponent.m */; };
 		1F2A859321440376008BC55A /* MineDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A859221440376008BC55A /* MineDetailView.m */; };
+		1F2A859B21450F2A008BC55A /* DasaiTougaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A859A21450F2A008BC55A /* DasaiTougaoViewController.m */; };
 		1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622A204AA29000784C62 /* TimeLinePictureView.m */; };
 		1F306233204AA29000784C62 /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622B204AA29000784C62 /* TimeLineCell.m */; };
 		1F306234204AA29000784C62 /* TimeLineTittleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30622C204AA29000784C62 /* TimeLineTittleView.m */; };
@@ -645,6 +646,8 @@
 		1F2A857C2143C753008BC55A /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		1F2A859121440376008BC55A /* MineDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineDetailView.h; sourceTree = "<group>"; };
 		1F2A859221440376008BC55A /* MineDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineDetailView.m; sourceTree = "<group>"; };
+		1F2A859921450F2A008BC55A /* DasaiTougaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DasaiTougaoViewController.h; sourceTree = "<group>"; };
+		1F2A859A21450F2A008BC55A /* DasaiTougaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DasaiTougaoViewController.m; sourceTree = "<group>"; };
 		1F306227204AA29000784C62 /* TimeLinePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLinePictureView.h; sourceTree = "<group>"; };
 		1F306228204AA29000784C62 /* TimeLineTittleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTittleView.h; sourceTree = "<group>"; };
 		1F306229204AA29000784C62 /* TimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
@@ -2511,6 +2514,8 @@
 				1F676F7D20B1671F002F71B4 /* View */,
 				1F676F7A20B16705002F71B4 /* DasaiViewController.h */,
 				1F676F7B20B16705002F71B4 /* DasaiViewController.m */,
+				1F2A859921450F2A008BC55A /* DasaiTougaoViewController.h */,
+				1F2A859A21450F2A008BC55A /* DasaiTougaoViewController.m */,
 			);
 			path = DasaiController;
 			sourceTree = "<group>";
@@ -3187,6 +3192,7 @@
 				1F16D8BB20C4377900A6C11D /* LogContentModel.m in Sources */,
 				0B75D5C21FBECCB0008D7AE6 /* AppHttpManager.m in Sources */,
 				1F676F6F20B00A9E002F71B4 /* FindSizeViewController.m in Sources */,
+				1F2A859B21450F2A008BC55A /* DasaiTougaoViewController.m in Sources */,
 				1F16D8E820CD73CC00A6C11D /* MatchNoteCell.m in Sources */,
 				1F3A3FF420DFF0B000245CA4 /* MWGridViewController.m in Sources */,
 				1F676EA3209A0AC7002F71B4 /* UserModel.m in Sources */,

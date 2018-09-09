@@ -7,7 +7,12 @@
 //
 
 #import "AppBaseTableViewCell.h"
+#import "MatchModel.h"
 
 @interface MatchListCell : AppBaseTableViewCell
+
+@property (nonatomic, strong) void(^matchClickBlock)(MatchListCell *cell);
+
+@property (nonatomic, strong) MatchModel *matchModel;
 
 @end

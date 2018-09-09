@@ -18,6 +18,9 @@
 
 @property (nonatomic, strong) UILabel *titleLable;
 
+@property (nonatomic, strong) UIButton *selectButton;
+
+
 @end
 
 @implementation MatchListCell
@@ -39,6 +42,12 @@
         self.titleLable.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.titleLable];
         
+        self.selectButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), AutoSize6(30), AutoSize6(70), AutoSize6(60))];
+        [self.selectButton setImage:[UIImage imageNamed:@"select"] forState:UIControlStateNormal];
+        [self.selectButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
+        [self.selectButton addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.selectButton];
+        
     }
     return self;
 }
@@ -53,6 +62,26 @@
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:matchModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLable.text = matchModel.title;
+    
+    self.selectButton.hidden = YES;
+}
+
+- (void)selectClick {
+    if (self.matchClickBlock) {
+        self.matchClickBlock(self);
+    }
+}
+
+- (void)setMatchModel:(MatchModel *)matchModel {
+    self.accessoryType = UITableViewCellStyleDefault;
+    _matchModel = matchModel;
+    self.iconImageView.height = matchModel.imgHeight * (SCREEN_WIDTH / matchModel.imgWidth);
+    self.titleLable.top = self.iconImageView.bottom;
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:matchModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    self.titleLable.text = matchModel.title;
+    
+    self.selectButton.selected = matchModel.isSelected;
 }
 
 @end

@@ -26,6 +26,10 @@
 
 @property (nonatomic, assign) CGFloat imgWidth;
 
+@property (nonatomic, assign) BOOL isSelected;
+
+
+
 
 //imgHeight    封面图高度    number    @mock=$order(400,400,400)
 //imgUrl    封面图    string    @mock=$order('http://www.fansimg.com/forum/201801/08/125057lgui7i10s1guuqbi.jpg','http://www.fansimg.com/forum/201801/08/125057lgui7i10s1guuqbi.jpg','http://www.fansimg.com/forum/201801/08/125057lgui7i10s1guuqbi.jpg')
