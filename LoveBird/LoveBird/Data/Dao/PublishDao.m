@@ -19,7 +19,7 @@
 // 上传图片
 + (void)upLoad:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     
     NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);//.jpg
     NSDictionary *fileDic = @{@"file": data,
@@ -68,7 +68,7 @@
     [params setObject:[@[dic] JSONString]forKey:@"articleBody"];
 
     [birdArray removeLastObject];
-    [params setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [params setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [params setObject:[[JSONModel arrayOfDictionariesFromModels:birdArray] JSONString]forKey:@"birdInfo"];
     [params setObject:EMPTY_STRING_IF_NIL(evId) forKey:@"environmentId"];
     [params setObject:EMPTY_STRING_IF_NIL(lat) forKey:@"lat"];
@@ -115,7 +115,7 @@
 // 草稿箱
 + (void)getCaogaoSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
 
     [AppHttpManager POST:kAPI_Detail_caogaoxiang parameters:dic jsonModelName:[MineCaogaoDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -133,7 +133,7 @@
 // 草稿发布
 + (void)publishCaogao:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(@"1") forKey:@"isDirect"];
 
@@ -153,7 +153,7 @@
 // 草稿获取详情
 + (void)caogaoDetail:(NSString *)tid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     
     

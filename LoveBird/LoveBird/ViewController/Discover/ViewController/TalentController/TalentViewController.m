@@ -49,7 +49,7 @@
 - (void)netForData {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setValue:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setValue:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     
     @weakify(self);
     [AppHttpManager POST:kAPI_Discover_Talent parameters:dic jsonModelName:[TalentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
@@ -82,7 +82,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     TalentModel *model = self.sourceArray[indexPath.row];
     
-    if ([model.msaterid isEqualToString:[UserPage sharedInstance].userModel.uid]) {
+    if ([model.msaterid isEqualToString:[UserPage sharedInstance].uid]) {
         ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
         
         [self.navigationController popViewControllerAnimated:NO];

@@ -428,7 +428,7 @@
         self.collectButton.selected = detailModel.isCollection;
         self.likeButton.selected = detailModel.isUp;
         
-        if ([detailModel.authorid isEqualToString:[UserPage sharedInstance].userModel.uid]) {
+        if ([detailModel.authorid isEqualToString:[UserPage sharedInstance].uid]) {
             [self setRightButton];
         }
         

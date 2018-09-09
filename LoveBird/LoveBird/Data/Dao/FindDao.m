@@ -157,7 +157,7 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(pageNum) forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     
     [AppHttpManager POST:kAPI_Find_Bird_travelList parameters:dic jsonModelName:[GuideDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -192,7 +192,7 @@
 // 图片查鸟
 + (void)getBirdImage:(UIImage *)image successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     
     NSData *data = UIImageJPEGRepresentation(image, (CGFloat)0.3);//.jpg
     NSDictionary *fileDic = @{@"file": data,

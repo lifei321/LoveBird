@@ -70,7 +70,7 @@
     WorksViewController * workvc = [[WorksViewController alloc] init];
     workvc.from = @"dasai";
     workvc.matchid = self.matchid;
-    workvc.authorId = [UserPage sharedInstance].userModel.uid;
+    workvc.authorId = [UserPage sharedInstance].uid;
     [self addChildViewController:workvc];
     [self.myChildViewControllers addObject:notevc];
     [self.myChildViewControllers addObject:birdController];

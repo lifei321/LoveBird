@@ -31,7 +31,7 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:[NSString stringWithFormat:@"%ld", (long)page] forKey:@"page"];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(groupId) forKey:@"groupId"];
     [dic setObject:EMPTY_STRING_IF_NIL(sortId) forKey:@"sortId"];
 
@@ -118,7 +118,7 @@
 + (void)getWordList:(NSString *)cid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(cid) forKey:@"cid"];
     [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
 
@@ -156,7 +156,7 @@
 + (void)getWorksList:(NSString *)authorid matchid:(NSString *)matchid  minAid:(NSString *)minAid type:(NSString *)type successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(authorid) forKey:@"authorid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(minAid) forKey:@"minAid"];
@@ -178,7 +178,7 @@
 // 排行
 + (void)getRankList:(NSString *)matchid  type:(NSString *)type isYear:(NSString *)isYear successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(type) forKey:@"type"];
     [dic setObject:EMPTY_STRING_IF_NIL(isYear) forKey:@"isYear"];
@@ -261,7 +261,7 @@
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(content) forKey:@"comment"];
 
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     
 
     [AppHttpManager POST:kAPI_User_comment parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {

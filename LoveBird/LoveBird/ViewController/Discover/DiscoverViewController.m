@@ -217,7 +217,7 @@
 - (void)netForContentWithPageNum:(NSInteger)pageNum header:(BOOL)header {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:[NSString stringWithFormat:@"%ld", (long)pageNum] forKey:@"page"];
 
     @weakify(self);
