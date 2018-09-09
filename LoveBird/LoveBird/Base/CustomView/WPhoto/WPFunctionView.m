@@ -22,7 +22,7 @@
         for (NSInteger i = 0; i<_chooseArray.count; i++) {
             
             UIImage *image = _chooseArray[i];
-            image = image.fixOrientation;
+//            image = image.fixOrientation;
             
             [myChoosePhotoArr addObject:[WPFunc createDicImage:image]];
             if (myChoosePhotoArr.count == _chooseArray.count) {
@@ -68,10 +68,7 @@
     CGFloat width = [firstArr[1] floatValue];
     //高
     CGFloat height = [secondArr[0] floatValue];
-    if (width>720.0) {
-        height = height*720.0/width;
-        width = 720.0;
-    }
+
     NSString *widthStr = [NSString stringWithFormat:@"%.2f",width];
     NSString *heightStr = [NSString stringWithFormat:@"%.2f",height];
     

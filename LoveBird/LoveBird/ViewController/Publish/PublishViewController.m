@@ -703,7 +703,30 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         [AppBaseHud showHudWithLoding:self.view];
     });
     
+    NSData *imagedata = UIImageJPEGRepresentation(image, 1);
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata, NULL);
+    CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
+    NSDictionary *exifDic = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary) ;
+
     UIImage *selectImage = [image compressImage:image withMaxSize:CGSizeMake(1200, MAXFLOAT)];
+    
+    NSData *imagedata2 = UIImageJPEGRepresentation(selectImage, 1);
+    CGImageSourceRef imageSource2 = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata2, NULL);
+    CFDictionaryRef imageInfo2 = CGImageSourceCopyPropertiesAtIndex(imageSource2, 0,NULL);
+    NSDictionary *exifDic2 = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo2, kCGImagePropertyExifDictionary) ;
+//
+    NSData *newimagedata = UIImageJPEGRepresentation(selectImage, 1);
+//    CFDataRef newcfdata = CFDataCreate(NULL, [newimagedata bytes], [newimagedata length]);
+//    CGImageSourceRef newimageSource = CGImageSourceCreateWithData(newcfdata, nil);
+//    CFStringRef UTI = CGImageSourceGetType(newimageSource);
+//    NSMutableData *newImageData = [NSMutableData dataWithData:UIImagePNGRepresentation(selectImage)];
+//    CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)newImageData, UTI, 1,NULL);
+//
+//    //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
+//    CGImageDestinationAddImageFromSource(destination, newimageSource, 0, (__bridge CFDictionaryRef)exifDic);
+//    CGImageDestinationFinalize(destination);
+//
+//    UIImage *newImage = [UIImage imageWithData:newImageData];
     
     @weakify(self);
     [PublishDao upLoad:selectImage successBlock:^(__kindof AppBaseModel *responseObject) {

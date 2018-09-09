@@ -331,7 +331,7 @@
                     cell.chooseStatus = NO;
                 }
             }
-        } asset:asset viewSize:self.view.bounds.size];
+        } asset:asset viewSize:CGSizeMake(10000, 10000)];
         
     } else {
         if (cell.chooseStatus == NO) {
