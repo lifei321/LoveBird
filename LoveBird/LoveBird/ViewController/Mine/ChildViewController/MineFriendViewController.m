@@ -19,6 +19,8 @@
 @interface MineFriendViewController ()<UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+@property (nonatomic, assign) NSInteger page;
+
 @end
 
 @implementation MineFriendViewController
@@ -33,7 +35,7 @@
     
     [self setTableView];
     
-    [self netForLog];
+    [self netForHeader];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -50,14 +52,24 @@
 }
 
 
+- (void)netForHeader {
+    self.page = 1;
+    [self netForLog];
+}
+
 - (void)netForLog {
 
     @weakify(self);
-    [UserDao userContenSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userContenPage:self.page SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        self.page ++;
 
         ShequDataModel *dataModel = (ShequDataModel *)responseObject;
         for (ShequModel *model in dataModel.data) {
@@ -121,7 +133,7 @@
     [self.tableView registerClass:[ShequCell class] forCellReuseIdentifier:NSStringFromClass([ShequCell class])];
     
     //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForHeader)];
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForLog)];
 }

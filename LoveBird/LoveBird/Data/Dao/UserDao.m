@@ -111,10 +111,11 @@
 }
 
 // 我的朋友圈 文章列表
-+ (void)userContenSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userContenPage:(NSInteger)pageNum SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
-    
+    [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
+
     [AppHttpManager POST:kAPI_User_FollowContentList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);
@@ -196,10 +197,11 @@
 }
 
 // 相册列表
-+ (void)userPhotoList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userPhotoList:(NSString *)taid pageNum:(NSInteger)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+    [dic setObject:[NSString stringWithFormat:@"%ld", pageNum] forKey:@"page"];
 
     [AppHttpManager POST:kAPI_User_Photos parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {

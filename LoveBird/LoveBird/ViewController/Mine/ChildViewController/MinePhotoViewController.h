@@ -14,5 +14,6 @@
 
 @property (nonatomic, copy) NSString *authorId;
 
+@property (nonatomic, assign) BOOL fromMe;
 
 @end

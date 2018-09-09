@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 + (void)userFollowList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 我的朋友圈 文章列表
-+ (void)userContenSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userContenPage:(NSInteger)pageNum SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 我的收藏列表
 + (void)userCollectList:(NSInteger)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
         failureBlock:(LFRequestFail)failureBlock;
 
 // 相册列表
-+ (void)userPhotoList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)userPhotoList:(NSString *)taid pageNum:(NSInteger)pageNum successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 粉丝列表
 + (void)userFansList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;

@@ -50,6 +50,14 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
+- (NSString *)authorId {
+    if (_fromMe) {
+        return [UserPage sharedInstance].uid;
+    }
+    
+    return _authorId;
+}
+
 - (void)netForContentHeader {
     self.pageNum = @"";
     
