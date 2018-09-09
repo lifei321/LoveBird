@@ -64,7 +64,9 @@
 
 - (void)creatBackGround {
     UIImageView *backImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backImageView.backgroundColor = kColorTarBarTitleHighlightColor;
+//    backImageView.backgroundColor = kColorTarBarTitleHighlightColor;
+    backImageView.image = [UIImage imageNamed:@"login_back"];
+    backImageView.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:backImageView];
 }
 
