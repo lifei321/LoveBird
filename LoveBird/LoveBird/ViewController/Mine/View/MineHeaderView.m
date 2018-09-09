@@ -68,10 +68,10 @@
         [self addSubview:self.nameLabel];
         
         
-        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(416), SCREEN_WIDTH, AutoSize6(27))];
-        backView.backgroundColor = [UIColor blackColor];
-        backView.alpha = 0.4;
-        [self addSubview:backView];
+        UIImageView *backView = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize6(385), SCREEN_WIDTH, AutoSize6(85))];
+        backView.image = [UIImage imageNamed:@"mine_bottom"];
+        [backImageView addSubview:backView];
+        [backImageView bringSubviewToFront:backView];
         
         self.followLabel = [self makeLabel:AutoSize6(46)];
         self.followLabel.userInteractionEnabled = YES;
