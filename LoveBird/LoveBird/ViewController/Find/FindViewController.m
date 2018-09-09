@@ -223,7 +223,7 @@
     [headerView addSubview:lineView];
     
     // 选择
-    UIView *selectView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom + AutoSize(5), SCREEN_WIDTH, AutoSize(81))];
+    UIView *selectView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom + AutoSize(5), SCREEN_WIDTH, AutoSize(91))];
     selectView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:selectView];
     
@@ -252,7 +252,7 @@
     UIView *backView = [[UIView alloc] initWithFrame:frame];
     backView.userInteractionEnabled = YES;
     
-    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize(13), backView.width, AutoSize(36))];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, AutoSize(18), backView.width, AutoSize(36))];
     view.image = [UIImage imageNamed:image];
     view.contentMode = UIViewContentModeCenter;
     view.userInteractionEnabled = YES;
