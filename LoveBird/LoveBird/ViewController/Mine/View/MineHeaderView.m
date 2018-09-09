@@ -124,7 +124,7 @@
         self.redView = [[UIView alloc] initWithFrame:CGRectMake(friendButton.width - AutoSize6(40), AutoSize6(20), AutoSize6(7), AutoSize6(7))];
         self.redView.backgroundColor = [UIColor redColor];
         self.redView.layer.cornerRadius = self.redView.width / 2;
-        [friendButton addSubview:self.redView];
+//        [friendButton addSubview:self.redView];
         self.redView.hidden = YES;
         
         UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, bottomView.bottom - 0.5, SCREEN_WIDTH, 0.5)];
