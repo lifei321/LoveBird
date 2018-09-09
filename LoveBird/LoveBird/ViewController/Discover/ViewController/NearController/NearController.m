@@ -186,7 +186,7 @@
     
     UIImageView *searchView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), backView.top, backView.height, backView.height)];
     searchView.backgroundColor = [UIColor clearColor];
-    searchView.image = [UIImage imageNamed:@"map_search_black1"];
+    searchView.image = [UIImage imageNamed:@"map_search_black"];
     searchView.layer.cornerRadius = searchView.width / 2;
     [self.view addSubview:searchView];
     [self.view bringSubviewToFront:searchView];

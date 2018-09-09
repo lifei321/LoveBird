@@ -231,9 +231,9 @@
     CGFloat width = AutoSize(50);
     CGFloat space = (SCREEN_WIDTH - width *3 - left * 2) / 2;
     
-    UIView *view1 = [self makeImageViewWithFrame:CGRectMake(left, 0, width, selectView.height) image:@"pic_checkbird" text:@"图片查鸟" sel:@selector(selectViewTap:)];
-    UIView *view2 = [self makeImageViewWithFrame:CGRectMake(view1.right + space, 0, width, selectView.height) image:@"shap_checkbird" text:@"体型查鸟" sel:@selector(selectViewTap:)];
-    UIView *view3 = [self makeImageViewWithFrame:CGRectMake(view2.right + space, 0, width, selectView.height) image:@"classify_checkbird" text:@"分类查鸟" sel:@selector(selectViewTap:)];
+    UIView *view1 = [self makeImageViewWithFrame:CGRectMake(left, 0, width, selectView.height) image:@"pic_find" text:@"图片查鸟" sel:@selector(selectViewTap:)];
+    UIView *view2 = [self makeImageViewWithFrame:CGRectMake(view1.right + space, 0, width, selectView.height) image:@"body_find" text:@"体型查鸟" sel:@selector(selectViewTap:)];
+    UIView *view3 = [self makeImageViewWithFrame:CGRectMake(view2.right + space, 0, width, selectView.height) image:@"class_find" text:@"分类查鸟" sel:@selector(selectViewTap:)];
     view1.tag = 100;
     view2.tag = 200;
     view3.tag = 300;

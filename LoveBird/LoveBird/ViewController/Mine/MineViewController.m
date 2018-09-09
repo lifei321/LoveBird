@@ -221,8 +221,8 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     UIButton *notificationButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [notificationButton setImage:[UIImage imageNamed:@"mine_notification_no"] forState:UIControlStateNormal];
-    [notificationButton setImage:[UIImage imageNamed:@"mine_notification_yes"] forState:UIControlStateSelected];
+    [notificationButton setImage:[UIImage imageNamed:@"home_icon_inform"] forState:UIControlStateNormal];
+    [notificationButton setImage:[UIImage imageNamed:@"home_icon_inform"] forState:UIControlStateSelected];
     [notificationButton addTarget:self action:@selector(notificationButton:) forControlEvents:UIControlEventTouchUpInside];
     notificationButton.frame = CGRectMake(0, 0, 30, 10);
     notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
