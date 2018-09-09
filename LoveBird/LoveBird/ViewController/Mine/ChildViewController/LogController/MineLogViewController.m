@@ -74,10 +74,14 @@
         for (int i = 0; i < dataModel.articleList.count; i++) {
             ShequModel *model = dataModel.articleList[i];
             MineLogFrameModel *frameModel = [[MineLogFrameModel alloc] init];
-            frameModel.isFirst = (i == 0) ? YES : NO;
+            frameModel.isFirst = NO;
             frameModel.shequModel = model;
             [self.dataArray addObject:frameModel];
         }
+        
+        MineLogFrameModel *logframeModel = self.dataArray.firstObject;
+        logframeModel.isFirst = YES;
+        
         self.count = dataModel.draftNum;
         if (!self.taid.length) {
             self.tableView.tableHeaderView = [self makeHeaderView];

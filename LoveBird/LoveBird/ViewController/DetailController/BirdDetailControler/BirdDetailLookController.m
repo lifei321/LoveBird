@@ -73,6 +73,9 @@
                            frameModel.logModel = logmodel;
                            [self.dataArray addObject:frameModel];
                        }
+                       MineLogFrameModel *logframemodel = self.dataArray.firstObject;
+                       logframemodel.isFirst = YES;
+                       
                        [self.tableView reloadData];
 
                    } failureBlock:^(__kindof AppBaseModel *error) {

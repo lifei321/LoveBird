@@ -45,11 +45,13 @@
     self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(30), kWidthForBackView, backViewHeight);
     self.height = CGRectGetMaxY(self.backViewFrame);
     
-    if (self.isFirst) {
-        self.lineViewFrame = CGRectMake(AutoSize6(69), self.backViewFrame.origin.y, AutoSize6(10), self.height - self.backViewFrame.origin.y);
-    } else {
-        self.lineViewFrame = CGRectMake(AutoSize6(69), 0, AutoSize6(10), self.height);
-    }
+    self.lineViewFrame = CGRectMake(AutoSize6(69), 0, AutoSize6(10), self.height);
+
+//    if (!self.isFirst) {
+//        self.lineViewFrame = CGRectMake(AutoSize6(69), self.backViewFrame.origin.y, AutoSize6(10), self.height - self.backViewFrame.origin.y);
+//    } else {
+//        self.lineViewFrame = CGRectMake(AutoSize6(69), 0, AutoSize6(10), self.height);
+//    }
     
     self.dayLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(15), AutoSize6(40), AutoSize6(20));
     self.monthLabelFrame = CGRectMake(self.dayLabelFrame.origin.x, CGRectGetMaxY(self.dayLabelFrame), self.dayLabelFrame.size.width, self.dayLabelFrame.size.height);

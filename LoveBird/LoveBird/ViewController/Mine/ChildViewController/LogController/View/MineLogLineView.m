@@ -26,7 +26,7 @@
     if (self) {
         
         self.toplineview = [[UIView alloc] init];
-        self.toplineview.backgroundColor = kLineColoreDefaultd4d7dd;
+        self.toplineview.backgroundColor = UIColorFromRGB(0xdcdcdc);
         [self addSubview:self.toplineview];
         
         self.topview = [[UIView alloc] init];
@@ -43,18 +43,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.isFirst) {
-        self.toplineview.frame = CGRectZero;
-        self.topview.frame = CGRectMake(- AutoSize6(6), 0, AutoSize6(20), AutoSize6(20));
-        self.lineview.frame = CGRectMake(self.width / 2 - 0.5, AutoSize6(11), 1, self.height - AutoSize6(12));
-        [self bringSubviewToFront:self.topview];
-        
+        self.toplineview.hidden = YES;
     } else {
-        self.toplineview.frame = CGRectMake(self.width / 2 - 0.5, 0, 1, AutoSize6(30));
-        self.topview.frame = CGRectMake(- AutoSize6(6), AutoSize6(30), AutoSize6(20), AutoSize6(20));
-        
-        self.lineview.frame = CGRectMake(self.width / 2 - 0.5, self.topview.bottom + 1, 1, self.height - AutoSize6(12) - AutoSize6(30));
+        self.toplineview.hidden = NO;
     }
     
+    self.toplineview.frame = CGRectMake(self.width / 2 - 0.5, 0, 1, AutoSize6(30));
+    self.topview.frame = CGRectMake(- AutoSize6(6), AutoSize6(30), AutoSize6(20), AutoSize6(20));
+    self.lineview.frame = CGRectMake(self.width / 2 - 0.5, self.topview.bottom + 1, 1, self.height - AutoSize6(12) - AutoSize6(30));
     self.topview.layer.cornerRadius = self.topview.width / 2;
 
 }
