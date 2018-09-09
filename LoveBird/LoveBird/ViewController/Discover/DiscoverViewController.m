@@ -76,6 +76,13 @@
     
 }
 
+- (void)setType:(NSInteger)type {
+    _type = type;
+    if (type == 1) {
+        self.navigationView.hidden = YES;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.isCustomNavigation = YES;

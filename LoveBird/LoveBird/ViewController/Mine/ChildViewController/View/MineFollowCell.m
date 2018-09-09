@@ -72,12 +72,14 @@
 - (void)followButtonDidClick:(UIButton *)button {
     [UserDao userFollow:self.followModel.uid successBlock:^(__kindof AppBaseModel *responseObject) {
         button.selected = !button.selected;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotification object:nil];
     } failureBlock:^(__kindof AppBaseModel *error) {
         [AppBaseHud showHudWithfail:error.errstr view:[UIViewController currentViewController].view];
     }];
 }
 
 - (void)setFollowModel:(UserFollowModel *)followModel {
+    _followModel = followModel;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:followModel.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.titleLabel.text = followModel.username;
     self.followButton.selected = followModel.isFollow;

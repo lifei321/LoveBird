@@ -75,7 +75,7 @@
     } else if (tag == 102) {
         self.discoverController.word = self.searchField.text;
         [self.view addSubview:self.discoverController.view];
-        self.discoverController.view.frame = CGRectMake(0, AutoSize6(300), SCREEN_WIDTH, self.view.height - AutoSize6(190));
+        self.discoverController.view.frame = CGRectMake(0, AutoSize6(300) - total_topView_height, SCREEN_WIDTH, self.view.height - AutoSize6(190) + total_topView_height);
         
     } else if (tag == 103) {
         self.followController.word = self.searchField.text;

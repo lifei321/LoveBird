@@ -108,6 +108,14 @@
     if (model.upNum.length) {
         [self.upButton setTitle:model.upNum forState:UIControlStateNormal];
     }
+    
+    if (model.isCollection) {
+        self.collectButton.selected = YES;
+    }
+    
+    if (model.isUp) {
+        self.upButton.selected = YES;
+    }
 }
 
 @end
