@@ -111,6 +111,7 @@ pod 'UMCShare/Social/QQ'
 # 集成新浪微博(完整版25.3M)
 pod 'UMCShare/Social/Sina'
 
+pod 'RITLKit'
 
 
 end

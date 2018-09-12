@@ -39,6 +39,59 @@ PODS:
   - NJKWebViewProgress/ProgressView (0.2.3)
   - Onboard (2.3.1)
   - ReactiveObjC (3.0.0)
+  - RITLKit (0.3.9.4):
+    - Masonry
+    - RITLKit/Category (= 0.3.9.4)
+    - RITLKit/ImagePicker (= 0.3.9.4)
+    - RITLKit/ScrollPageController (= 0.3.9.4)
+    - RITLKit/Utility (= 0.3.9.4)
+    - RITLKit/View (= 0.3.9.4)
+    - RITLKit/Web (= 0.3.9.4)
+    - RITLViewFrame
+  - RITLKit/Category (0.3.9.4):
+    - Masonry
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/ImagePicker (0.3.9.4):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/ScrollPageController (0.3.9.4):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.9.4)
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/ScrollPageController/LLSegmentBar (0.3.9.4):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/Utility (0.3.9.4):
+    - Masonry
+    - RITLKit/Utility/DownLoader (= 0.3.9.4)
+    - RITLKit/Utility/Filter (= 0.3.9.4)
+    - RITLKit/Utility/Reachability (= 0.3.9.4)
+    - RITLViewFrame
+  - RITLKit/Utility/DownLoader (0.3.9.4):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Filter (0.3.9.4):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Reachability (0.3.9.4):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/View (0.3.9.4):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/Web (0.3.9.4):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLViewFrame (0.0.1)
   - SDCycleScrollView (1.74):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.2.2):
@@ -101,6 +154,7 @@ DEPENDENCIES:
   - NJKWebViewProgress (= 0.2.3)
   - Onboard (= 2.3.1)
   - ReactiveObjC (= 3.0.0)
+  - RITLKit
   - SDCycleScrollView (= 1.74)
   - SDWebImage (= 4.2.2)
   - SPPageMenu (~> 2.5.5)
@@ -138,6 +192,8 @@ SPEC CHECKSUMS:
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  RITLKit: 90131dc63cc762ce57a3f6a2dbb502d70fb0704c
+  RITLViewFrame: 4e38e6333e6b4691c1980c3fcda9ff4d08f0d2c8
   SDCycleScrollView: f821215226f6146a35470721a9d6e83ec5cfb04b
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   SPPageMenu: 703108c321bb4658b3cea440bdf81b1cd61936c2
@@ -151,6 +207,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e840159a6c727b542880dd1e069a7fe6aeaf8fd7
+PODFILE CHECKSUM: b16eb1b9e640b46beee6df9164cb9c2fc9d8070f
 
 COCOAPODS: 1.4.0

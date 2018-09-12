@@ -23,15 +23,18 @@
 #import "PublishSelectBirdController.h"
 #import "FindSelectBirdModel.h"
 #import "AppDateManager.h"
-#import "WPhotoViewController.h"
 #import "UIImage+Addition.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PublishMapViewController.h"
 
+#import "RITLPhotosViewController.h"
+#import <Photos/Photos.h>
+#import <RITLKit/RITLKit.h>
+
 typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 
-@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate>
+@interface PublishViewController ()<UITableViewDataSource, PublishFooterViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PublishCellDelegate, PublishSelectDelegate, RITLPhotosViewControllerDelegate>
 
 // tableview数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -39,6 +42,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 // 保存选择的图片或者文字
 @property (nonatomic, strong) NSMutableArray *dataModelArray;
 
+@property (nonatomic, strong) NSMutableArray *selectImageArray;
 
 
 @property (nonatomic, strong) PublishHeaderView *headerView;
@@ -71,7 +75,8 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _selectImageArray = [NSMutableArray new];
+    _uploadArray = [NSMutableArray new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:kPublishReloadHeaderNotification object:nil];
     
     [self setNavigation];
@@ -649,18 +654,29 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         
 //跳转到相册
 - (void)choosePicture {
-    WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
-    //选择图片的最大数
-    WphotoVC.selectPhotoOfMax = 9;
-    @weakify(self);
-    [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
-        @strongify(self);
-        
-        NSDictionary *dic = phostsArr.firstObject;
-        self.uploadArray = [NSMutableArray arrayWithArray:phostsArr];
-        [self.uploadArray removeObjectAtIndex:0];
-        [self upLoadImage:[dic objectForKey:@"image"]];
-        
+    
+    RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
+    photoController.configuration.maxCount = 9;//最大的选择数目
+    photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+    photoController.photo_delegate = self;
+//    photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
+//    photoController.defaultIdentifers = self.selectImageArray;//记录已经选择过的资源
+    
+    [self presentViewController:photoController animated:true completion:^{}];
+    
+    
+//    WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+//    //选择图片的最大数
+//    WphotoVC.selectPhotoOfMax = 9;
+//    @weakify(self);
+//    [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+//        @strongify(self);
+//
+//        NSDictionary *dic = phostsArr.firstObject;
+//        self.uploadArray = [NSMutableArray arrayWithArray:phostsArr];
+//        [self.uploadArray removeObjectAtIndex:0];
+//        [self upLoadImage:[dic objectForKey:@"image"]];
+    
         
 //        NSOperationQueue *queue=[[NSOperationQueue alloc] init];
 //        queue.maxConcurrentOperationCount = 1;
@@ -685,8 +701,18 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 //            //将操作添加到队列中去
 //            [queue addOperation:operation1];
 //        }
-    }];
-    [self presentViewController:WphotoVC animated:YES completion:nil];
+//    }];
+//    [self presentViewController:WphotoVC animated:YES completion:nil];
+}
+
+- (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
+{
+    self.uploadArray = [NSMutableArray arrayWithArray:images];
+    for (NSInteger i = (infos.count - 1); i >= 0; i--) {
+        NSDictionary *dic = infos[i];
+        [self.selectImageArray insertObject:dic atIndex:0];
+    }
+    [self upLoadImage:0];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -694,28 +720,41 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         
     }];
     UIImage *iamge = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self upLoadImage:iamge];
+    [self.uploadArray addObject:iamge];
+    [self upLoadImage:0];
 }
 
 // 上传照片
-- (void)upLoadImage:(UIImage *)image {
+- (void)upLoadImage:(NSInteger)index {
+    
+    UIImage *image;
+    if (index < self.uploadArray.count) {
+        image = self.uploadArray[index];
+    } else {
+        [self.uploadArray removeAllObjects];
+        return;
+    }
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [AppBaseHud showHudWithLoding:self.view];
     });
     
-    NSData *imagedata = UIImageJPEGRepresentation(image, 1);
-    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata, NULL);
-    CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
-    NSDictionary *exifDic = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary) ;
+
+    
+//    NSData *imagedata = UIImageJPEGRepresentation(image, 1);
+//    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata, NULL);
+//    CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
+//    NSDictionary *exifDic = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary) ;
 
     UIImage *selectImage = [image compressImage:image withMaxSize:CGSizeMake(1200, MAXFLOAT)];
     
-    NSData *imagedata2 = UIImageJPEGRepresentation(selectImage, 1);
-    CGImageSourceRef imageSource2 = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata2, NULL);
-    CFDictionaryRef imageInfo2 = CGImageSourceCopyPropertiesAtIndex(imageSource2, 0,NULL);
-    NSDictionary *exifDic2 = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo2, kCGImagePropertyExifDictionary) ;
-//
-    NSData *newimagedata = UIImageJPEGRepresentation(selectImage, 1);
+//    NSData *imagedata2 = UIImageJPEGRepresentation(selectImage, 1);
+//    CGImageSourceRef imageSource2 = CGImageSourceCreateWithData((__bridge CFDataRef)imagedata2, NULL);
+//    CFDictionaryRef imageInfo2 = CGImageSourceCopyPropertiesAtIndex(imageSource2, 0,NULL);
+//    NSDictionary *exifDic2 = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo2, kCGImagePropertyExifDictionary) ;
+////
+//    NSData *newimagedata = UIImageJPEGRepresentation(selectImage, 1);
 //    CFDataRef newcfdata = CFDataCreate(NULL, [newimagedata bytes], [newimagedata length]);
 //    CGImageSourceRef newimageSource = CGImageSourceCreateWithData(newcfdata, nil);
 //    CFStringRef UTI = CGImageSourceGetType(newimageSource);
@@ -755,10 +794,8 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
         // 封面数组
         [self.headerView.choosePhotoArr addObject:model];
         
-        if (self.uploadArray.count) {
-            NSDictionary *dic = self.uploadArray.firstObject;
-            [self.uploadArray removeObjectAtIndex:0];
-            [self upLoadImage:[dic objectForKey:@"image"]];
+        if ((index + 1) < self.uploadArray.count) {
+            [self upLoadImage:index + 1];
             
         } else {
             [self reloadFooterView:YES];
@@ -768,6 +805,10 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
 
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
+        
+        [self.selectImageArray removeObjectAtIndex:index];
+        [self.uploadArray removeObjectAtIndex:index];
+        [self upLoadImage:index + 1];
         
         [AppBaseHud showHud:error.errstr view:self.view];
     }];
