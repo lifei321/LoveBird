@@ -8,7 +8,7 @@
 
 #import "RankViewController.h"
 #import "DiscoverDao.h"
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh.h"
 #import "UIImage+Addition.h"
 #import "RankModel.h"
 #import "RankTableViewCell.h"

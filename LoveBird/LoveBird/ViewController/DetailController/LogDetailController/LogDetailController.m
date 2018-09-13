@@ -11,7 +11,7 @@
 #import "LogDetailHeadView.h"
 #import "LogDetailBirdCell.h"
 #import "LogContentCell.h"
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh.h"
 #import "LogDetailTalkModel.h"
 #import "LogDeatilTalkCell.h"
 #import "LogDetailHeadCell.h"

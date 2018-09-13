@@ -9,7 +9,7 @@
 #import "WorksViewController.h"
 #import "WorksModel.h"
 #import "DiscoverDao.h"
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh.h"
 #import "WorkTableViewCell.h"
 #import "UIImage+Addition.h"
 #import "MWPhotoBrowser.h"

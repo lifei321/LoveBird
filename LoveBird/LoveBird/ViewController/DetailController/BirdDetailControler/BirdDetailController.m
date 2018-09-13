@@ -7,7 +7,7 @@
 //
 
 #import "BirdDetailController.h"
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "DetailDao.h"
 #import "BirdDetailModel.h"
