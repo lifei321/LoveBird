@@ -597,8 +597,14 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     PHAsset *asset = [self.dataSource assetAtIndexPath:[NSIndexPath indexPathForItem:[self indexOfCurrentAsset:self.collectionView] inSection:0]];
     
     //如果是添加，需要坚持数量
-    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount &&
-        ![self.dataManager containAsset:asset]/*是添加*/) { return; }//不能进行选择
+    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount && ![self.dataManager containAsset:asset]/*是添加*/) {
+        
+        NSString *title = [NSString stringWithFormat:@"您最多可以选择%ld张照片!", RITLPhotosConfiguration.defaultConfiguration.maxCount];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:@" " delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+        return;
+        
+    }//不能进行选择
     
     //进行修正
     [self.dataManager addOrRemoveAsset:asset];

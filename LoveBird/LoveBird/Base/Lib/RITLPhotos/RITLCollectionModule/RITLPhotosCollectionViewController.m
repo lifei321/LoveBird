@@ -598,8 +598,15 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath complete:(RITLPhotosCellStatusAction)animated
 {
-    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount &&
-        ![self.dataManager containAsset:asset]/*是添加*/) { return; }//不能进行选择
+    //如果是添加，需要坚持数量
+    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount && ![self.dataManager containAsset:asset]/*是添加*/) {
+        
+        NSString *title = [NSString stringWithFormat:@"您最多可以选择%ld张照片!", RITLPhotosConfiguration.defaultConfiguration.maxCount];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:@" " delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+        return;
+        
+    }//不能进行选择
     
     NSInteger index = [self.dataManager addOrRemoveAsset:asset].integerValue;
     
