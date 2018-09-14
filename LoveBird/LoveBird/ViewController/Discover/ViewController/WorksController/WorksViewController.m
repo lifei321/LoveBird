@@ -130,6 +130,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WorkTableViewCell class]) forIndexPath:indexPath];
+    if (indexPath.row >= self.dataArray.count) {
+        return cell;
+    }
     
     cell.listArray = self.dataArray[indexPath.row];
     
@@ -174,15 +177,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    if (indexPath.row >= self.dataArray.count) {
+        return 0.01;
+    }
     NSArray *listArray = self.dataArray[indexPath.row];
     if (listArray.count == 1) {
+        
         WorksModel *model = listArray.firstObject;
+        if (model.imgWidth < 0.1f) {
+            return 0.01f;
+        }
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         return imageHeight + 1;
         
     } else if (listArray.count == 2) {
         WorksModel *model1 = listArray.firstObject;
         WorksModel *model2 = listArray.lastObject;
+        
+        if (model1.imgWidth < 0.1f || ((model1.imgWidth + model2.imgWidth) < 0.1)) {
+            return 0.01f;
+        }
         
         CGFloat width1 = SCREEN_WIDTH * (model1.imgWidth / (model1.imgWidth + model2.imgWidth));
         
