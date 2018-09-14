@@ -14,4 +14,7 @@
 
 @property (nonatomic, copy) NSString *word;
 
+@property (nonatomic, copy) NSString *taid;
+
+
 @end

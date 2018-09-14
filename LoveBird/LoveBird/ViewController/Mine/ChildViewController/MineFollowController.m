@@ -66,7 +66,7 @@
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userFollowList:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userFollowList:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
@@ -83,7 +83,7 @@
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userFansList:@"" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userFansList:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
@@ -145,7 +145,7 @@
 
 - (void)setTableView {
     
-    self.tableView.top = topView_height;
+    self.tableView.top = 0;
     self.tableView.height = SCREEN_HEIGHT - topView_height;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
