@@ -24,19 +24,36 @@
 #import "WorksViewController.h"
 #import "MineDetailView.h"
 
-@interface MineViewController ()
+
+#import "JXCategoryView.h"
+#import "TestListBaseView.h"
+#import "JXPagerListRefreshView.h"
+
+#import "LogTableView.h"
+#import "UserBirdClassTableView.h"
+#import "UserPhotoTbleView.h"
+#import "UserCollectTableView.h"
+#import "UserFriendTableView.h"
+
+//612
+#define JXTableHeaderViewHeight  AutoSize6(470)
+
+static const CGFloat JXheightForHeaderInSection = 50;
+
+@interface MineViewController ()<JXPagerViewDelegate, JXCategoryViewDelegate>
 
 @property (nonatomic, strong) MineHeaderView *headerView;
 
-@property (nonatomic, strong) MineLogViewController *logController;
 
-@property (nonatomic, strong) MineCollectViewController *collectController;
+@property (nonatomic, strong) JXPagerView *pagerView;
 
-@property (nonatomic, strong) MineBirdViewController *birdController;
+@property (nonatomic, strong) JXCategoryTitleView *categoryView;
+@property (nonatomic, strong) NSArray <NSString *> *titles;
+@property (nonatomic, strong) NSArray <TestListBaseView *> *listViewArray;
 
-@property (nonatomic, strong) MinePhotoViewController *photoController;
+@property (nonatomic, strong) UIView *naviBGView;
+@property (nonatomic, assign) CGFloat pinHeaderViewInsetTop;
 
-@property (nonatomic, strong) MineFriendViewController *friendController;
 
 @end
 
@@ -47,19 +64,39 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForUserInfo) name:kLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOutNotifycation) name:kLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForMyInfo) name:kRefreshUserInfoNotification object:nil];
+    
 
-    
-    
-    self.isCustomNavigation = YES;
-    self.isNavigationTransparent = YES;
-    
-    [self setTableView];
+    [self setHeadForView];
+    [self netForUserInfo];
+    [self setNavigationHidden];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavigation];
+    self.navigationController.navigationBar.translucent = false;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+//    self.pagerView.frame = CGRectMake(0, self.pinHeaderViewInsetTop, self.view.bounds.size.width, self.view.bounds.size.height - self.pinHeaderViewInsetTop);
+
+    self.pagerView.frame = self.view.bounds;
+}
+
+- (void)mainTableViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat thresholdDistance = 100;
+    CGFloat percent = scrollView.contentOffset.y/thresholdDistance;
+    percent = MAX(0, MIN(1, percent));
+    self.naviBGView.alpha = percent;
+}
+
 
 - (void)netForUserInfo {
     [AppBaseHud showHudWithLoding:self.view];
@@ -70,14 +107,11 @@
     @weakify(self);
     [UserDao userMyInfo:@"" SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
-        [self.tableView.mj_header endRefreshing];
         [AppBaseHud hideHud:self.view];
         
-        [self.tableView reloadData];
         [self.headerView reloadData];
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
-        [self.tableView.mj_header endRefreshing];
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
     }];
 }
@@ -117,141 +151,240 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.01f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.01f;
-}
-
 
 #pragma mark-- UI
 
 
-- (void)setTableView {
+- (void)setHeadForView {
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = false;
     
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kTabBarHeight);
+    _titles = @[@"日志", @"收藏", @"鸟种", @"相册", @"朋友圈"];
     
-    MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(612))];
-    self.tableView.tableHeaderView = headerView;
+    MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, JXTableHeaderViewHeight)];
     self.headerView = headerView;
     
-    UIScrollView *footerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.height - self.headerView.height)];
-    footerView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 0);
-    footerView.showsVerticalScrollIndicator = NO;
-    footerView.bounces = NO;
-    footerView.pagingEnabled = YES;
-    self.tableView.tableFooterView = footerView;
-
-    MineLogViewController *logController = [[MineLogViewController  alloc] init];
-    [self addChildViewController:logController];
-    logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:logController.view];
-
-    MineCollectViewController *collectController = [[MineCollectViewController alloc] init];
-    [self addChildViewController:collectController];
-    collectController.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:collectController.view];
-
-    MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
-    [self addChildViewController:birdController];
-    birdController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:birdController.view];
-
-    MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
-    photoController.fromMe = YES;
-    [self addChildViewController:photoController];
-    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:photoController.view];
-
-    MineFriendViewController *friendController = [[MineFriendViewController alloc] init];
-    [self addChildViewController:friendController];
-    friendController.view.frame = CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, footerView.height);
-    [footerView addSubview:friendController.view];
-
+    LogTableView *powerListView = [[LogTableView alloc] init];
+    powerListView.taid = [UserPage sharedInstance].uid;
     
-    @weakify(footerView);
-    headerView.headerBlock = ^(NSInteger tag) {
-        @strongify(footerView);
-        switch (tag) {
-            case 100:
-            {
-                footerView.contentOffset = CGPointMake(0, 0);
-            }
-                break;
-            case 200:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-            }
-                break;
-            case 300:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
-            }
-                break;
-            case 400:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 3, 0);
+    UserCollectTableView *collectListView = [[UserCollectTableView alloc] init];
+    
+    UserBirdClassTableView *hobbyListView = [[UserBirdClassTableView alloc] init];
+    hobbyListView.taid = [UserPage sharedInstance].uid;
+    
+    UserPhotoTbleView *partnerListView = [[UserPhotoTbleView alloc] init];
+    partnerListView.authorId = [UserPage sharedInstance].uid;
+    partnerListView.fromMe = YES;
+    
+    UserFriendTableView *friendListView = [[UserFriendTableView alloc] init];
 
-            }
-                break;
-            case 500:
-            {
-                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 4, 0);
-            }
-                break;
-                
-            default:
-                break;
-        }
-    };
+    _listViewArray = @[powerListView, collectListView, hobbyListView, partnerListView, friendListView];
     
-    //默认【下拉刷新】
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForMyInfo)];
-    [self.tableView.mj_header beginRefreshing];
+    _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
+    self.categoryView.titles = self.titles;
+    self.categoryView.backgroundColor = [UIColor whiteColor];
+    self.categoryView.delegate = self;
+    self.categoryView.titleSelectedColor = kColorDefaultColor;
+    self.categoryView.titleColor = UIColorFromRGB(0x7f7f7f);
+    self.categoryView.titleColorGradientEnabled = YES;
+    self.categoryView.titleLabelZoomEnabled = YES;
+    self.categoryView.titleLabelZoomEnabled = YES;
     
+    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+    lineView.indicatorLineViewColor = kColorDefaultColor;
+    lineView.indicatorLineWidth = 30;
+    self.categoryView.indicators = @[lineView];
+    
+    _pagerView = [self preferredPagingView];
+    [self.view addSubview:self.pagerView];
+    
+    self.categoryView.contentScrollView = self.pagerView.listContainerView.collectionView;
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
+}
+
+- (JXPagerView *)preferredPagingView {
+    return [[JXPagerListRefreshView alloc] initWithDelegate:self];
+}
+
+#pragma mark - JXPagerViewDelegate
+
+- (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
+    return self.headerView;
+//    return _userHeaderView;
+}
+
+- (CGFloat)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
+    return JXTableHeaderViewHeight;
+}
+
+- (CGFloat)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
+    return JXheightForHeaderInSection;
+}
+
+- (UIView *)viewForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
+    return self.categoryView;
+}
+
+- (NSArray<UIView<JXPagerViewListViewDelegate> *> *)listViewsInPagerView:(JXPagerView *)pagerView {
+    return self.listViewArray;
+}
+
+#pragma mark - JXCategoryViewDelegate
+
+- (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
+    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
 }
 
 
-- (void)setNavigation {
+- (void)setNavigationHidden {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    CGFloat topSafeMargin = 20;
+    if (@available(iOS 11.0, *)) {
+        if ([UIScreen mainScreen].bounds.size.height == 812) {
+            topSafeMargin = [UIApplication sharedApplication].keyWindow.safeAreaInsets.top;
+        }
+    }
+    CGFloat naviHeight = topSafeMargin + 44;
+    self.pinHeaderViewInsetTop = naviHeight;
     
-    self.isCustomNavigation = YES;
-    self.isNavigationTransparent = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
+    self.naviBGView = [[UIView alloc] init];
+    self.naviBGView.alpha = 0;
+    self.naviBGView.backgroundColor = kColorDefaultColor;
+    self.naviBGView.frame = CGRectMake(0, 0, self.view.bounds.size.width, naviHeight);
+    [self.view addSubview:self.naviBGView];
+    
     UIButton *notificationButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [notificationButton setImage:[UIImage imageNamed:@"home_icon_inform"] forState:UIControlStateNormal];
     [notificationButton setImage:[UIImage imageNamed:@"home_icon_inform"] forState:UIControlStateSelected];
     [notificationButton addTarget:self action:@selector(notificationButton:) forControlEvents:UIControlEventTouchUpInside];
-    notificationButton.frame = CGRectMake(0, 0, 30, 10);
-    notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    notificationButton.frame = CGRectMake(10, topSafeMargin, 44, 44);
+//    notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:notificationButton];
     
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [detailButton setImage:[UIImage imageNamed:@"mine_detail"] forState:UIControlStateNormal];
     [detailButton addTarget:self action:@selector(detailButton:) forControlEvents:UIControlEventTouchUpInside];
-    detailButton.frame = CGRectMake(0, 0, 30, 10);
-    detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    detailButton.frame = CGRectMake(54, topSafeMargin, 44, 44);
+//    detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:detailButton];
     
-    UIBarButtonItem *notificationItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
-    UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
-    [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects: notificationItem, detailItem,nil]];
+//    UIBarButtonItem *notificationItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
+//    UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+//    [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects: notificationItem, detailItem,nil]];
     
     UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [shareButton setImage:[UIImage imageNamed:@"mine_share"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.frame = CGRectMake(0, 0, 30, 10);
-    shareButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    shareButton.frame = CGRectMake(SCREEN_WIDTH - 54, topSafeMargin, 44, 44);
+//    shareButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:shareButton];
     
     UIButton *setButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [setButton setImage:[UIImage imageNamed:@"mine_setting"] forState:UIControlStateNormal];
     [setButton addTarget:self action:@selector(setButton:) forControlEvents:UIControlEventTouchUpInside];
-    setButton.frame = CGRectMake(0, 0, 30, 10);
-    setButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    setButton.frame = CGRectMake(SCREEN_WIDTH -98, topSafeMargin, 44, 44);
+//    setButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:setButton];
     
-    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
-    UIBarButtonItem *setItem = [[UIBarButtonItem alloc] initWithCustomView:setButton];
-    [self.navigationBarItem setRightBarButtonItems:[NSArray arrayWithObjects: setItem, shareItem, nil]];
+//    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+//    UIBarButtonItem *setItem = [[UIBarButtonItem alloc] initWithCustomView:setButton];
+//    [self.navigationBarItem setRightBarButtonItems:[NSArray arrayWithObjects: setItem, shareItem, nil]];
+    
+    
+    //让mainTableView可以显示范围外
+    self.pagerView.mainTableView.clipsToBounds = false;
+    //让头图的布局往上移动naviHeight高度，填充导航栏下面的内容
+//    self.headerView.top = -naviHeight;
+//    self.headerView.height = naviHeight + self.headerView.height;
+//    self.userHeaderView.imageView.frame = CGRectMake(0, -naviHeight, self.view.bounds.size.width, naviHeight + JXTableHeaderViewHeight);
     
 }
+
+
+
+
+
+//- (void)setTableView {
+//
+//    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kTabBarHeight);
+//
+//
+//
+//    UIScrollView *footerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.height - self.headerView.height)];
+//    footerView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 0);
+//    footerView.showsVerticalScrollIndicator = NO;
+//    footerView.bounces = NO;
+//    footerView.pagingEnabled = YES;
+//    self.tableView.tableFooterView = footerView;
+//
+//    MineLogViewController *logController = [[MineLogViewController  alloc] init];
+//    [self addChildViewController:logController];
+//    logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
+//    [footerView addSubview:logController.view];
+//
+//    MineCollectViewController *collectController = [[MineCollectViewController alloc] init];
+//    [self addChildViewController:collectController];
+//    collectController.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, footerView.height);
+//    [footerView addSubview:collectController.view];
+//
+//    MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
+//    [self addChildViewController:birdController];
+//    birdController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
+//    [footerView addSubview:birdController.view];
+//
+//    MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
+//    photoController.fromMe = YES;
+//    [self addChildViewController:photoController];
+//    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, footerView.height);
+//    [footerView addSubview:photoController.view];
+//
+//    MineFriendViewController *friendController = [[MineFriendViewController alloc] init];
+//    [self addChildViewController:friendController];
+//    friendController.view.frame = CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, footerView.height);
+//    [footerView addSubview:friendController.view];
+//
+//
+//    @weakify(footerView);
+//    headerView.headerBlock = ^(NSInteger tag) {
+//        @strongify(footerView);
+//        switch (tag) {
+//            case 100:
+//            {
+//                footerView.contentOffset = CGPointMake(0, 0);
+//            }
+//                break;
+//            case 200:
+//            {
+//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
+//            }
+//                break;
+//            case 300:
+//            {
+//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
+//            }
+//                break;
+//            case 400:
+//            {
+//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 3, 0);
+//
+//            }
+//                break;
+//            case 500:
+//            {
+//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 4, 0);
+//            }
+//                break;
+//
+//            default:
+//                break;
+//        }
+//    };
+//
+//    //默认【下拉刷新】
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForMyInfo)];
+//    [self.tableView.mj_header beginRefreshing];
+//
+//}
+
 @end

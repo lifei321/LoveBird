@@ -14,6 +14,11 @@ typedef void(^MineHeaderViewBlock)(NSInteger tag);
 
 @property (nonatomic, strong) MineHeaderViewBlock headerBlock;
 
+@property (nonatomic, strong) UIImageView *backImageView;
+
+
 - (void)reloadData;
+
+- (void)scrollViewDidScroll:(CGFloat)contentOffsetY;
 
 @end

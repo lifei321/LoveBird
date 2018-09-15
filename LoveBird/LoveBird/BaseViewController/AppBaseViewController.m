@@ -83,7 +83,8 @@
     
     //右滑返回手势
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
+    self.navigationController.navigationBar.translucent = true;
+
     if (_isCustomNavigation) {
         
         [self.view bringSubviewToFront:_navigationBar];

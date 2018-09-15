@@ -6,8 +6,10 @@
 //  Copyright © 2017年 shancheli. All rights reserved.
 //
 
-#import "AppBaseTableViewController.h"
+#import "AppBaseViewController.h"
 
-@interface MineViewController : AppBaseTableViewController
+@interface MineViewController : AppBaseViewController
+
+
 
 @end

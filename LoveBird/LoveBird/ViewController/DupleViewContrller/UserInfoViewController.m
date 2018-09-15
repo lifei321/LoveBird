@@ -64,12 +64,14 @@ static const CGFloat JXheightForHeaderInSection = 50;
     self.title = self.userName;
     
     self.navigationBar.backgroundColor = [UIColor whiteColor];
-    
 
     [self setHeadForView];
-
     
     [self netForMyInfo];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = false;
 }
 
 - (void)setHeadForView {
@@ -112,10 +114,6 @@ static const CGFloat JXheightForHeaderInSection = 50;
     self.categoryView.contentScrollView = self.pagerView.listContainerView.collectionView;
     
     self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
-    
-    for (TestListBaseView *listView in self.listViewArray) {
-        listView.isNeedHeader = YES;
-    }
 }
 
 - (JXPagerView *)preferredPagingView {

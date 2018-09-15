@@ -309,6 +309,8 @@
 		1F8C004A214C0A4500C00B8E /* LogTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C0049214C0A4500C00B8E /* LogTableView.m */; };
 		1F8C004D214C0CCD00C00B8E /* UserBirdClassTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C004C214C0CCD00C00B8E /* UserBirdClassTableView.m */; };
 		1F8C0050214C10BA00C00B8E /* UserPhotoTbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C004F214C10BA00C00B8E /* UserPhotoTbleView.m */; };
+		1F8C0053214C1A1B00C00B8E /* UserCollectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C0052214C1A1B00C00B8E /* UserCollectTableView.m */; };
+		1F8C0056214C1B8100C00B8E /* UserFriendTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C0055214C1B8100C00B8E /* UserFriendTableView.m */; };
 		1F8CFF952149523200C00B8E /* RITLPhotosGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CFF562149523200C00B8E /* RITLPhotosGroupTableViewController.m */; };
 		1F8CFF962149523200C00B8E /* RITLPhotosGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CFF572149523200C00B8E /* RITLPhotosGroupCell.m */; };
 		1F8CFF972149523200C00B8E /* RITLPhotosMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CFF592149523200C00B8E /* RITLPhotosMaker.m */; };
@@ -937,6 +939,10 @@
 		1F8C004C214C0CCD00C00B8E /* UserBirdClassTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserBirdClassTableView.m; sourceTree = "<group>"; };
 		1F8C004E214C10BA00C00B8E /* UserPhotoTbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPhotoTbleView.h; sourceTree = "<group>"; };
 		1F8C004F214C10BA00C00B8E /* UserPhotoTbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPhotoTbleView.m; sourceTree = "<group>"; };
+		1F8C0051214C1A1B00C00B8E /* UserCollectTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCollectTableView.h; sourceTree = "<group>"; };
+		1F8C0052214C1A1B00C00B8E /* UserCollectTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCollectTableView.m; sourceTree = "<group>"; };
+		1F8C0054214C1B8100C00B8E /* UserFriendTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserFriendTableView.h; sourceTree = "<group>"; };
+		1F8C0055214C1B8100C00B8E /* UserFriendTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserFriendTableView.m; sourceTree = "<group>"; };
 		1F8CFF522149523200C00B8E /* RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotos.h; sourceTree = "<group>"; };
 		1F8CFF542149523200C00B8E /* RITLPhotosGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotosGroupTableViewController.h; sourceTree = "<group>"; };
 		1F8CFF552149523200C00B8E /* RITLPhotosGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotosGroupCell.h; sourceTree = "<group>"; };
@@ -1248,6 +1254,10 @@
 				1F6EB7FC2096073900665561 /* MineHeaderView.m */,
 				1F2A859121440376008BC55A /* MineDetailView.h */,
 				1F2A859221440376008BC55A /* MineDetailView.m */,
+				1F8C0051214C1A1B00C00B8E /* UserCollectTableView.h */,
+				1F8C0052214C1A1B00C00B8E /* UserCollectTableView.m */,
+				1F8C0054214C1B8100C00B8E /* UserFriendTableView.h */,
+				1F8C0055214C1B8100C00B8E /* UserFriendTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3636,6 +3646,7 @@
 				1F676F8420B16986002F71B4 /* MatchListCell.m in Sources */,
 				1F676FB320B97608002F71B4 /* MineBirdLeftBackView.m in Sources */,
 				1F8C004D214C0CCD00C00B8E /* UserBirdClassTableView.m in Sources */,
+				1F8C0053214C1A1B00C00B8E /* UserCollectTableView.m in Sources */,
 				1F1715EC2115E3F8001769AB /* PlayBottomToolBar.m in Sources */,
 				1FDBE74220D7FC0E0092E82E /* MapDiscoverModel.m in Sources */,
 				1F16D8D320C826A700A6C11D /* MessageModel.m in Sources */,
@@ -3737,6 +3748,7 @@
 				1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */,
 				1F676FA420B94FE6002F71B4 /* MineLogLineView.m in Sources */,
 				1F4F1410204ED7550066F790 /* ThirdAcountViewController.m in Sources */,
+				1F8C0056214C1B8100C00B8E /* UserFriendTableView.m in Sources */,
 				0BA41920201DADFB002C6335 /* DiscoverDataSource.m in Sources */,
 				1F6EB7FD2096073900665561 /* MineHeaderView.m in Sources */,
 				1F5F5C4321172A9D00FC4F99 /* BirdLookTableViewCell.m in Sources */,

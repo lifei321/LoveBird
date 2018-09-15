@@ -14,6 +14,8 @@
 
 @interface MineHeaderView()
 
+
+
 // 头像
 @property (nonatomic, strong) UIImageView *iconImageView;
 
@@ -49,6 +51,7 @@
         UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(470))];
         backImageView.image = [UIImage imageNamed:@"mine_header_back"];
         backImageView.contentMode = UIViewContentModeScaleToFill;
+        self.backImageView = backImageView;
         [self addSubview:backImageView];
         
         //头像
@@ -59,6 +62,7 @@
         self.iconImageView.layer.borderWidth = AutoSize6(4);
         self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.iconImageView.layer.masksToBounds = YES;
+        self.iconImageView.image = [UIImage imageNamed:@"placeHolder"];
         [self addSubview:self.iconImageView];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.iconImageView.bottom + AutoSize6(22), SCREEN_WIDTH, AutoSize6(28))];
@@ -101,38 +105,38 @@
         
         self.gradeLabel = [self makeLabel:self.scorleLabel.right];
         
-        UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, backImageView.bottom, SCREEN_WIDTH, AutoSize6(142))];
-        bottomView.backgroundColor= [UIColor whiteColor];
-        [self addSubview:bottomView];
+//        UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, backImageView.bottom, SCREEN_WIDTH, AutoSize6(142))];
+//        bottomView.backgroundColor= [UIColor whiteColor];
+//        [self addSubview:bottomView];
         
-        self.logButton = [self makeButton:0 image:@"mine_header_log_no" selectImage:@"mine_header_log_yes" title:@"日志" tag:100];
-        [bottomView addSubview:self.logButton];
+//        self.logButton = [self makeButton:0 image:@"mine_header_log_no" selectImage:@"mine_header_log_yes" title:@"日志" tag:100];
+//        [bottomView addSubview:self.logButton];
+//
+//        UIButton *collectButton = [self makeButton:self.logButton.right image:@"mine_header_collect_no" selectImage:@"mine_header_collect_yes" title:@"收藏" tag:200];
+//        [bottomView addSubview:collectButton];
+//
+//        self.birdButton = [self makeButton:collectButton.right image:@"mine_header_bird_no" selectImage:@"mine_header_bird_yes" title:@"鸟种" tag:300];
+//        [bottomView addSubview:self.birdButton];
+//
+//        UIButton *pictureButton = [self makeButton:self.birdButton.right image:@"mine_header_picture_no" selectImage:@"mine_header_picture_yes" title:@"相册" tag:400];
+//        [bottomView addSubview:pictureButton];
+//
+//        UIButton *friendButton = [self makeButton:pictureButton.right image:@"mine_header_friend_no" selectImage:@"mine_header_friend_yes" title:@"朋友圈" tag:500];
+//        [bottomView addSubview:friendButton];
+//        self.friendButton = friendButton;
         
-        UIButton *collectButton = [self makeButton:self.logButton.right image:@"mine_header_collect_no" selectImage:@"mine_header_collect_yes" title:@"收藏" tag:200];
-        [bottomView addSubview:collectButton];
-        
-        self.birdButton = [self makeButton:collectButton.right image:@"mine_header_bird_no" selectImage:@"mine_header_bird_yes" title:@"鸟种" tag:300];
-        [bottomView addSubview:self.birdButton];
-        
-        UIButton *pictureButton = [self makeButton:self.birdButton.right image:@"mine_header_picture_no" selectImage:@"mine_header_picture_yes" title:@"相册" tag:400];
-        [bottomView addSubview:pictureButton];
-        
-        UIButton *friendButton = [self makeButton:pictureButton.right image:@"mine_header_friend_no" selectImage:@"mine_header_friend_yes" title:@"朋友圈" tag:500];
-        [bottomView addSubview:friendButton];
-        self.friendButton = friendButton;
-        
-        self.redView = [[UIView alloc] initWithFrame:CGRectMake(friendButton.width - AutoSize6(40), AutoSize6(20), AutoSize6(7), AutoSize6(7))];
-        self.redView.backgroundColor = [UIColor redColor];
-        self.redView.layer.cornerRadius = self.redView.width / 2;
+//        self.redView = [[UIView alloc] initWithFrame:CGRectMake(friendButton.width - AutoSize6(40), AutoSize6(20), AutoSize6(7), AutoSize6(7))];
+//        self.redView.backgroundColor = [UIColor redColor];
+//        self.redView.layer.cornerRadius = self.redView.width / 2;
 //        [friendButton addSubview:self.redView];
         self.redView.hidden = YES;
         
-        UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, bottomView.bottom - 0.5, SCREEN_WIDTH, 0.5)];
-        lineview.backgroundColor = kLineColoreDefaultd4d7dd;
-        [self addSubview:lineview];
+//        UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, bottomView.bottom - 0.5, SCREEN_WIDTH, 0.5)];
+//        lineview.backgroundColor = kLineColoreDefaultd4d7dd;
+//        [self addSubview:lineview];
         
         // 进来选中日志
-        [self bottomButtonDidClick:self.logButton];
+//        [self bottomButtonDidClick:self.logButton];
     }
     return self;
 }
@@ -232,4 +236,12 @@
     self.redView.hidden = (model.hasMessage) ? NO : YES;
 
 }
+
+- (void)scrollViewDidScroll:(CGFloat)contentOffsetY {
+    CGRect frame = self.backImageView.frame;
+    frame.size.height -= contentOffsetY;
+    frame.origin.y = contentOffsetY;
+    self.backImageView.frame = frame;
+}
+
 @end
