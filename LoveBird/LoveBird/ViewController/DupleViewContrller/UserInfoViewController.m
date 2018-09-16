@@ -29,6 +29,10 @@
 #import "LogTableView.h"
 #import "UserBirdClassTableView.h"
 #import "UserPhotoTbleView.h"
+#import <SDWebImage/SDWebImageManager.h>
+#import "MineDetailView.h"
+#import "MineMessageViewController.h"
+
 
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)
@@ -53,6 +57,7 @@
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic, strong) NSArray <TestListBaseView *> *listViewArray;
 
+@property (nonatomic, strong) UIView *naviBGView;
 
 
 @end
@@ -65,15 +70,41 @@
     self.title = self.userName;
     
     self.navigationBar.backgroundColor = [UIColor whiteColor];
-
     [self setHeadForView];
     
     [self netForMyInfo];
+    
+    [self setNavigationHidden];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = false;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    //    self.pagerView.frame = CGRectMake(0, self.pinHeaderViewInsetTop, self.view.bounds.size.width, self.view.bounds.size.height - self.pinHeaderViewInsetTop);
+    
+    self.pagerView.frame = self.view.bounds;
+}
+
+- (void)mainTableViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat thresholdDistance = 100;
+    CGFloat percent = scrollView.contentOffset.y/thresholdDistance;
+    percent = MAX(0, MIN(1, percent));
+    self.naviBGView.alpha = 1 - percent;
+    
+    
+}
+
 
 - (void)getTitlesWithInfo {
     UserModel *model = self.userModel;
@@ -208,6 +239,106 @@
 - (void)logOutNotifycation {
     
     
+}
+
+- (void)setNavigationHidden {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    CGFloat topSafeMargin = 20;
+    if (@available(iOS 11.0, *)) {
+        if ([UIScreen mainScreen].bounds.size.height == 812) {
+            topSafeMargin = [UIApplication sharedApplication].keyWindow.safeAreaInsets.top;
+        }
+    }
+    CGFloat naviHeight = topSafeMargin + 44;
+    
+    self.naviBGView = [[UIView alloc] init];
+    self.naviBGView.alpha = 1;
+    self.naviBGView.backgroundColor = [UIColor clearColor];
+    self.naviBGView.frame = CGRectMake(0, 0, self.view.bounds.size.width, naviHeight);
+    [self.view addSubview:self.naviBGView];
+
+    
+    UIButton *notificationButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [notificationButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateNormal];
+    [notificationButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateSelected];
+    [notificationButton addTarget:self action:@selector(leftButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    notificationButton.frame = CGRectMake(10, topSafeMargin, 44, 44);
+    //    notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:notificationButton];
+    
+    UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [detailButton setImage:[UIImage imageNamed:@"mine_detail"] forState:UIControlStateNormal];
+    [detailButton addTarget:self action:@selector(detailButton:) forControlEvents:UIControlEventTouchUpInside];
+    detailButton.frame = CGRectMake(54, topSafeMargin, 44, 44);
+    //    detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:detailButton];
+    
+    
+    //    UIBarButtonItem *notificationItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
+    //    UIBarButtonItem *detailItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+    //    [self.navigationBarItem setLeftBarButtonItems:[NSArray arrayWithObjects: notificationItem, detailItem,nil]];
+    
+    UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [shareButton setImage:[UIImage imageNamed:@"home_icon_letter"] forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(sentMessage) forControlEvents:UIControlEventTouchUpInside];
+    shareButton.frame = CGRectMake(SCREEN_WIDTH - 98, topSafeMargin, 44, 44);
+    //    shareButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:shareButton];
+    
+    UIButton *setButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [setButton setImage:[UIImage imageNamed:@"mine_share"] forState:UIControlStateNormal];
+    [setButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
+    setButton.frame = CGRectMake(SCREEN_WIDTH -54, topSafeMargin, 44, 44);
+    //    setButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    [self.naviBGView addSubview:setButton];
+    
+    //    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+    //    UIBarButtonItem *setItem = [[UIBarButtonItem alloc] initWithCustomView:setButton];
+    //    [self.navigationBarItem setRightBarButtonItems:[NSArray arrayWithObjects: setItem, shareItem, nil]];
+    
+    
+    //让mainTableView可以显示范围外
+    self.pagerView.mainTableView.clipsToBounds = false;
+    //让头图的布局往上移动naviHeight高度，填充导航栏下面的内容
+    //    self.headerView.top = -naviHeight;
+    //    self.headerView.height = naviHeight + self.headerView.height;
+    //    self.userHeaderView.imageView.frame = CGRectMake(0, -naviHeight, self.view.bounds.size.width, naviHeight + JXTableHeaderViewHeight);
+    
+}
+
+- (void)sentMessage {
+    MineMessageViewController *message = [[MineMessageViewController alloc] init];
+    message.taid = self.userModel.uid;
+    [self.navigationController pushViewController:message animated:YES];
+}
+
+- (void)detailButton:(UIButton *)button {
+    
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    backView.backgroundColor = [UIColor blackColor];
+    backView.alpha = 0.6;
+    [[UIApplication sharedApplication].keyWindow addSubview:backView];
+    
+    MineDetailView *birdView = [[MineDetailView alloc] initWithFrame:CGRectMake(AutoSize6(80), AutoSize6(260), SCREEN_WIDTH - AutoSize6(160), SCREEN_HEIGHT - AutoSize6(260) - kTabBarHeight - AutoSize6(150))];
+    birdView.backView = backView;
+    birdView.name = self.userModel.username;
+    birdView.grade = self.userModel.level;
+    birdView.head = self.userModel.head;
+    birdView.userModel = self.userModel;
+    [[UIApplication sharedApplication].keyWindow addSubview:birdView];
+}
+
+- (void)shareButton:(UIButton *)button {
+    [AppShareManager shareWithTitle:[UserPage sharedInstance].userModel.shareTitle summary:[UserPage sharedInstance].userModel.shareSummary url:[UserPage sharedInstance].userModel.shareUrl image:[UserPage sharedInstance].userModel.shareImg];
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    //停止下载所有图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
 //- (void)notificationButton:(UIButton *)button {

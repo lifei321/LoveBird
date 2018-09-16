@@ -191,7 +191,7 @@
     [self netForContentWithPageNum:self.pageNum header:NO];
 }
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
-    
+
     @weakify(self);
     [DiscoverDao getWorksList:self.authorId matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);

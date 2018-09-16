@@ -164,12 +164,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/Base/Lib/JXPagerView/JXCategoryView/Title/JXCategoryTitleView.m"
-            timestampString = "558781570.275591"
+            timestampString = "558795335.659018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
             landmarkName = "-refreshDataSource"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveBird/LoveBird/ViewController/DupleViewContrller/View/Photo/UserPhotoTbleView.m"
+            timestampString = "558795335.659336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-netForContentWithPageNum:header:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

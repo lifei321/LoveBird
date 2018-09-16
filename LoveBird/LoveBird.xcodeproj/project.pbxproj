@@ -366,6 +366,7 @@
 		1FDBE75120DA9CFF0092E82E /* WZSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75020DA9CFE0092E82E /* WZSwitch.m */; };
 		1FDBE75720DAA82D0092E82E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75620DAA82D0092E82E /* SearchViewController.m */; };
 		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
+		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -1102,6 +1103,8 @@
 		1FDBE75620DAA82D0092E82E /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		1FDBE75920DC00D50092E82E /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		1FDC3430214E870900500DFD /* MineMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageViewController.h; sourceTree = "<group>"; };
+		1FDC3431214E870900500DFD /* MineMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageViewController.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1270,6 +1273,8 @@
 				0B317CAD1F0F829300B01DDA /* QuestionViewController.m */,
 				0B317CAF1F0F82D900B01DDA /* FeedBackViewController.h */,
 				0B317CB01F0F82D900B01DDA /* FeedBackViewController.m */,
+				1FDC3430214E870900500DFD /* MineMessageViewController.h */,
+				1FDC3431214E870900500DFD /* MineMessageViewController.m */,
 			);
 			path = MoreViewController;
 			sourceTree = "<group>";
@@ -3662,6 +3667,7 @@
 				0BA748B81F025F8200A8B33A /* AppWebViewController.m in Sources */,
 				0BA4191B201C6854002C6335 /* PublishViewController.m in Sources */,
 				1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */,
+				1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */,
 				0B317CBC1F0F972200B01DDA /* AboutUsViewController.m in Sources */,
 				1F676F8B20B5AA9D002F71B4 /* MineCollectViewController.m in Sources */,
 				1F0FDF6F20BB19D90041E73B /* FindDisplayShapeModel.m in Sources */,

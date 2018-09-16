@@ -14,6 +14,7 @@
 #import "MineLogCell.h"
 #import "LogDetailController.h"
 #import "CaogaoViewController.h"
+#import <SDWebImage/SDImageCache.h>
 
 @interface LogTableView ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, copy) void(^scrollCallback)(UIScrollView *scrollView);
@@ -155,7 +156,7 @@
 }
 
 - (void)netForLog {
-    
+
     @weakify(self);
     [UserDao userLogList:self.page matchId:self.matchid fid:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);

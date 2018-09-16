@@ -21,6 +21,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+#import <SDWebImage/SDWebImageManager.h>
 
 @interface AppDelegate ()
 
@@ -157,5 +158,17 @@
         // 其他如支付等SDK的回调
     }
     return result;
+}
+
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    
+    //因为我们用SDWebImage框架下载的图片
+    
+    //停止下载所有图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 @end

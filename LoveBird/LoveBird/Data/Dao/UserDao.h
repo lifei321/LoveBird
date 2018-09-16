@@ -94,4 +94,6 @@ typedef NS_ENUM(NSInteger,UserMessageType) {
 // 点赞
 + (void)userUp:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 
++ (void)sendMessage:(NSString *)taid message:(NSString *)message successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
 @end

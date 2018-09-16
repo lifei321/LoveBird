@@ -93,12 +93,12 @@
     
     [self.view addSubview:self.navigationView];
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
-        
-        NearController *nearvc = [[NearController alloc] init];
-        [self.navigationController addChildViewController:nearvc];
-        [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
-    }
+//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kFirstLouchString] boolValue]) {
+//        
+//        NearController *nearvc = [[NearController alloc] init];
+//        [self.navigationController addChildViewController:nearvc];
+//        [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:kFirstLouchString];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

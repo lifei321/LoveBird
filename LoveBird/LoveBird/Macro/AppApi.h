@@ -47,6 +47,7 @@
  */
 #define kAPI_User_up kAPI_USER_SERVER_VERSION(@"article/index.php?cmd=upArticle")
 
+#define kAPI_User_sendMessage kAPI_USER_SERVER_VERSION(@"user/sendMessage.php")
 
 /**
  *  关注列表

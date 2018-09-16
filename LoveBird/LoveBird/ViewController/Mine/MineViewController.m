@@ -35,6 +35,7 @@
 #import "UserPhotoTbleView.h"
 #import "UserCollectTableView.h"
 #import "UserFriendTableView.h"
+#import <SDWebImage/SDWebImageManager.h>
 
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)
@@ -329,6 +330,12 @@
 }
 
 
+- (void)didReceiveMemoryWarning {
+    //停止下载所有图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+}
 
 
 

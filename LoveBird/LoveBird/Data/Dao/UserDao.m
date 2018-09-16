@@ -381,4 +381,25 @@
     }];
 }
 
++ (void)sendMessage:(NSString *)taid message:(NSString *)message successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].token) forKey:@"token"];
+    [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(message) forKey:@"message"];
+
+    
+    [AppHttpManager POST:kAPI_User_sendMessage parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
+
 @end
