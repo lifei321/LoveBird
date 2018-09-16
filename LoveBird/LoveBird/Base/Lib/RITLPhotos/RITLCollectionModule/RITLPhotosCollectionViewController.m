@@ -121,7 +121,7 @@ static NSString *const reuseIdentifier = @"photo";
     
     
     // NavigationItem
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"取消", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
     
     // Register cell classes
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
