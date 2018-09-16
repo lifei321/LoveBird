@@ -25,6 +25,10 @@
 
     // 图片  不一定存在
     if (contentModel.imgUrl.length) {
+        if (contentModel.imgWidth < 1) {
+            return ;
+        }
+
         CGFloat imageHeight = (contentModel.imgHeight) * (SCREEN_WIDTH / contentModel.imgWidth);
         _contentImageViewFrame = CGRectMake(0, height, SCREEN_WIDTH, imageHeight);
         height = CGRectGetMaxY(_contentImageViewFrame);
@@ -72,6 +76,10 @@
     
     // 图片  不一定存在
     if (zhuangbeiModel.img.length) {
+        if (zhuangbeiModel.imgWidth < 1) {
+            return ;
+        }
+
         CGFloat imageHeight = (zhuangbeiModel.imgHeight) * (SCREEN_WIDTH / zhuangbeiModel.imgWidth);
         _contentImageViewFrame = CGRectMake(0, height, SCREEN_WIDTH, imageHeight);
         height = CGRectGetMaxY(_contentImageViewFrame);

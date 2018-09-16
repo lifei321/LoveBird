@@ -26,6 +26,10 @@
     }
     
     if (shequModel.imgUrl.length) {
+        if (shequModel.imgWidth < 1) {
+            return ;
+        }
+
         CGFloat imageHeight = (shequModel.imgHeight) * (AutoSize6(585) / shequModel.imgWidth);
         self.contentImageViewFrame  = CGRectMake(AutoSize6(20), backViewHeight + AutoSize6(20), AutoSize6(585), imageHeight);
         backViewHeight = CGRectGetMaxY(self.contentImageViewFrame);
@@ -69,6 +73,10 @@
 
     
     if (logModel.imgUrl.length) {
+        if (logModel.imgWidth < 1) {
+            return ;
+        }
+
         
         self.titleLabelFrame = CGRectMake(AutoSize6(20), AutoSize6(25), kWidthForBackView - AutoSize6(40), AutoSize6(40));
         backViewHeight = CGRectGetMaxY(self.titleLabelFrame);

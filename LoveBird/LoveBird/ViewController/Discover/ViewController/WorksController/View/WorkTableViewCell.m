@@ -61,6 +61,9 @@
         WorksModel *model = listArray.firstObject;
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         
+        if (model.imgWidth < 1) {
+            return;
+        }
         CGFloat imageHeight = (model.imgHeight) * (SCREEN_WIDTH / model.imgWidth);
         self.leftImageview.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
         self.leftImageview.name = model.tags;
@@ -70,6 +73,11 @@
         
         WorksModel *model1 = listArray.firstObject;
         WorksModel *model2 = listArray.lastObject;
+        
+        if (model1.imgWidth < 1 || (model1.imgWidth + model2.imgWidth) < 1) {
+            return;
+        }
+
         
         CGFloat width1 = SCREEN_WIDTH * (model1.imgWidth / (model1.imgWidth + model2.imgWidth));
         CGFloat width2 = SCREEN_WIDTH * (model2.imgWidth / (model1.imgWidth + model2.imgWidth));

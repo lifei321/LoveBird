@@ -86,6 +86,10 @@
     
     MatchModel *model = (MatchModel *)cellModel.userInfo;
     
+    if (model.imgWidth < 1) {
+        return 0.01f;
+    }
+    
     height = model.imgHeight * (SCREEN_WIDTH / model.imgWidth);
     
     return  height + AutoSize6(115) + AutoSize6(20);

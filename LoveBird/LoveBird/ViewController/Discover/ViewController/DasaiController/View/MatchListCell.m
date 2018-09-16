@@ -57,6 +57,10 @@
 
     MatchModel *matchModel = (MatchModel *)model.userInfo;
     
+    if (matchModel.imgWidth < 1) {
+        return;
+    }
+    
     self.iconImageView.height = matchModel.imgHeight * (SCREEN_WIDTH / matchModel.imgWidth);
     self.titleLable.top = self.iconImageView.bottom;
     
@@ -75,6 +79,11 @@
 - (void)setMatchModel:(MatchModel *)matchModel {
     self.accessoryType = UITableViewCellStyleDefault;
     _matchModel = matchModel;
+    
+    if (matchModel.imgWidth < 1) {
+        return;
+    }
+    
     self.iconImageView.height = matchModel.imgHeight * (SCREEN_WIDTH / matchModel.imgWidth);
     self.titleLable.top = self.iconImageView.bottom;
     

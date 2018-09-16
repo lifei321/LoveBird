@@ -145,7 +145,7 @@
 
 - (void)setTableView {
     
-    self.tableView.top = 0;
+    self.tableView.top = topView_height;
     self.tableView.height = SCREEN_HEIGHT - topView_height;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
