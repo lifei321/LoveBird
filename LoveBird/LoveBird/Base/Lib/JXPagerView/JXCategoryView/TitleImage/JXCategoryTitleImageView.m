@@ -21,8 +21,8 @@
 - (void)initializeDatas {
     [super initializeDatas];
 
-    _imageType = JXCategoryTitleImageType_LeftImage;
-    _imageSize = CGSizeMake(20, 20);
+    _imageType = JXCategoryTitleImageType_TopImage;
+    _imageSize = CGSizeMake(23, 30);
     _titleImageSpacing = 5;
     _imageZoomEnabled = NO;
     _imageZoomScale = 1.2;
@@ -88,9 +88,13 @@
     }
 }
 
+//- (CGFloat)preferredCellWidthWithIndex:(NSInteger)index {
+//    CGFloat width = [super preferredCellWidthWithIndex:index];
+//    return width + self.titleImageSpacing + self.imageSize.width;
+//}
+
 - (CGFloat)preferredCellWidthWithIndex:(NSInteger)index {
-    CGFloat width = [super preferredCellWidthWithIndex:index];
-    return width + self.titleImageSpacing + self.imageSize.width;
+    return self.cellWidth;
 }
 
 @end

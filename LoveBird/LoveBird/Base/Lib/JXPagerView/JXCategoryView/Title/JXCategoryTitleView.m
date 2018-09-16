@@ -8,7 +8,6 @@
 
 #import "JXCategoryTitleView.h"
 #import "JXCategoryFactory.h"
-
 @interface JXCategoryTitleView ()
 
 @end
@@ -105,6 +104,7 @@
     model.titleColor = self.titleColor;
     model.titleSelectedColor = self.titleSelectedColor;
     model.title = self.titles[index];
+
     model.titleLabelMaskEnabled = self.titleLabelMaskEnabled;
     model.titleLabelZoomEnabled = self.titleLabelZoomEnabled;
     model.titleLabelZoomScale = 1.0;

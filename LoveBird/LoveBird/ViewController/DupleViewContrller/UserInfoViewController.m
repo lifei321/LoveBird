@@ -24,6 +24,7 @@
 #import "JXCategoryView.h"
 #import "TestListBaseView.h"
 #import "JXPagerListRefreshView.h"
+#import "JXCategoryTitleImageView.h"
 
 #import "LogTableView.h"
 #import "UserBirdClassTableView.h"
@@ -32,7 +33,7 @@
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)
 
-static const CGFloat JXheightForHeaderInSection = 50;
+#define JXheightForHeaderInSection AutoSize6(142)
 
 @interface UserInfoViewController ()<JXPagerViewDelegate, JXCategoryViewDelegate>
 @property (nonatomic, strong) UserInfoHeaderNewView *headerView;
@@ -48,7 +49,7 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
 @property (nonatomic, strong) JXPagerView *pagerView;
 
-@property (nonatomic, strong) JXCategoryTitleView *categoryView;
+@property (nonatomic, strong) JXCategoryTitleImageView *categoryView;
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic, strong) NSArray <TestListBaseView *> *listViewArray;
 
@@ -74,11 +75,29 @@ static const CGFloat JXheightForHeaderInSection = 50;
     self.navigationController.navigationBar.translucent = false;
 }
 
+- (void)getTitlesWithInfo {
+    UserModel *model = self.userModel;
+    
+    if (!model.articleNum ) {
+        model.articleNum = @"0";
+    }
+    if (!model.birdspeciesNum) {
+        model.birdspeciesNum = @"0";
+    }
+    
+    NSString *log = [NSString stringWithFormat:@"日志 %@", model.articleNum];
+    NSString *bird = [NSString stringWithFormat:@"鸟种 %@", model.birdspeciesNum];
+    
+    _titles = @[log, bird, @"相册"];
+    self.categoryView.titles = self.titles;
+}
+
 - (void)setHeadForView {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = false;
     
-    _titles = @[@"日志", @"鸟种", @"相册"];
+    [self getTitlesWithInfo];
+    
     UserInfoHeaderNewView *headerView = [[UserInfoHeaderNewView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, JXTableHeaderViewHeight)];
     self.headerView = headerView;
     
@@ -93,20 +112,24 @@ static const CGFloat JXheightForHeaderInSection = 50;
     
     _listViewArray = @[powerListView, hobbyListView, partnerListView];
 
-    _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
+    _categoryView = [[JXCategoryTitleImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
     self.categoryView.titles = self.titles;
     self.categoryView.backgroundColor = [UIColor whiteColor];
     self.categoryView.delegate = self;
-    self.categoryView.titleSelectedColor = [UIColor colorWithRed:105/255.0 green:144/255.0 blue:239/255.0 alpha:1];
-    self.categoryView.titleColor = [UIColor blackColor];
+    self.categoryView.titleSelectedColor = kColorDefaultColor;
+    self.categoryView.titleColor = UIColorFromRGB(0x7f7f7f);
     self.categoryView.titleColorGradientEnabled = YES;
     self.categoryView.titleLabelZoomEnabled = YES;
     self.categoryView.titleLabelZoomEnabled = YES;
+    self.categoryView.imageNames = @[@"mine_header_log_no", @"mine_header_bird_no", @"mine_header_picture_no"];
+    self.categoryView.selectedImageNames = @[@"mine_header_log_yes", @"mine_header_bird_yes", @"mine_header_picture_yes"];
+    self.categoryView.cellWidthZoomEnabled = NO;
+    self.categoryView.titleFont = kFontPF6(22);
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-    lineView.indicatorLineViewColor = [UIColor colorWithRed:105/255.0 green:144/255.0 blue:239/255.0 alpha:1];
+    lineView.indicatorLineViewColor = kColorDefaultColor;
     lineView.indicatorLineWidth = 30;
-    self.categoryView.indicators = @[lineView];
+//    self.categoryView.indicators = @[lineView];
     
     _pagerView = [self preferredPagingView];
     [self.view addSubview:self.pagerView];
@@ -169,9 +192,11 @@ static const CGFloat JXheightForHeaderInSection = 50;
         UserModel *model = (UserModel *)responseObject;
         self.userModel = model;
         
-        [self.tableView reloadData];
-        [self.headerView reloadData:model];
+        [self getTitlesWithInfo];
         
+        [self.headerView reloadData:model];
+        [self.categoryView reloadDatas];
+
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];

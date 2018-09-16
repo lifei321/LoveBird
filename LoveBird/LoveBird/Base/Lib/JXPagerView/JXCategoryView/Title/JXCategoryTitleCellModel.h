@@ -13,6 +13,11 @@
 
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, copy) NSString *image;
+
+@property (nonatomic, copy) NSString *selectImage;
+
+
 @property (nonatomic, strong) UIColor *titleColor;
 
 @property (nonatomic, strong) UIColor *titleSelectedColor;

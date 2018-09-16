@@ -28,6 +28,7 @@
 #import "JXCategoryView.h"
 #import "TestListBaseView.h"
 #import "JXPagerListRefreshView.h"
+#import "JXCategoryTitleImageView.h"
 
 #import "LogTableView.h"
 #import "UserBirdClassTableView.h"
@@ -38,7 +39,7 @@
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)
 
-static const CGFloat JXheightForHeaderInSection = 50;
+#define JXheightForHeaderInSection AutoSize6(142)
 
 @interface MineViewController ()<JXPagerViewDelegate, JXCategoryViewDelegate>
 
@@ -47,7 +48,7 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
 @property (nonatomic, strong) JXPagerView *pagerView;
 
-@property (nonatomic, strong) JXCategoryTitleView *categoryView;
+@property (nonatomic, strong) JXCategoryTitleImageView *categoryView;
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic, strong) NSArray <TestListBaseView *> *listViewArray;
 
@@ -108,6 +109,8 @@ static const CGFloat JXheightForHeaderInSection = 50;
     [UserDao userMyInfo:@"" SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        [self getTitlesWithInfo];
+        [self.categoryView reloadDatas];
         
         [self.headerView reloadData];
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -154,18 +157,35 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
 #pragma mark-- UI
 
+- (void)getTitlesWithInfo {
+    UserModel *model = [UserPage sharedInstance].userModel;
+    
+    if ([model.articleNum isBlankString]) {
+        model.articleNum = @"0";
+    }
+    if ([model.birdspeciesNum isBlankString]) {
+        model.birdspeciesNum = @"0";
+    }
+
+    NSString *log = [NSString stringWithFormat:@"日志 %@", model.articleNum];
+    NSString *bird = [NSString stringWithFormat:@"鸟种 %@", model.birdspeciesNum];
+    
+    _titles = @[log, @"收藏", bird, @"相册", @"朋友圈"];
+    self.categoryView.titles = self.titles;
+
+}
+
 
 - (void)setHeadForView {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = false;
     
-    _titles = @[@"日志", @"收藏", @"鸟种", @"相册", @"朋友圈"];
+    [self getTitlesWithInfo];
     
     MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, JXTableHeaderViewHeight)];
     self.headerView = headerView;
     
     LogTableView *powerListView = [[LogTableView alloc] init];
-    powerListView.taid = [UserPage sharedInstance].uid;
     
     UserCollectTableView *collectListView = [[UserCollectTableView alloc] init];
     
@@ -180,7 +200,7 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
     _listViewArray = @[powerListView, collectListView, hobbyListView, partnerListView, friendListView];
     
-    _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
+    _categoryView = [[JXCategoryTitleImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
     self.categoryView.titles = self.titles;
     self.categoryView.backgroundColor = [UIColor whiteColor];
     self.categoryView.delegate = self;
@@ -189,11 +209,16 @@ static const CGFloat JXheightForHeaderInSection = 50;
     self.categoryView.titleColorGradientEnabled = YES;
     self.categoryView.titleLabelZoomEnabled = YES;
     self.categoryView.titleLabelZoomEnabled = YES;
+    self.categoryView.imageNames = @[@"mine_header_log_no", @"mine_header_collect_no", @"mine_header_bird_no", @"mine_header_picture_no", @"mine_header_friend_no"];
+    self.categoryView.selectedImageNames = @[@"mine_header_log_yes", @"mine_header_collect_yes", @"mine_header_bird_yes", @"mine_header_picture_yes", @"mine_header_friend_yes"];
+    self.categoryView.cellWidthZoomEnabled = NO;
+    self.categoryView.titleFont = kFontPF6(22);
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     lineView.indicatorLineViewColor = kColorDefaultColor;
-    lineView.indicatorLineWidth = 30;
-    self.categoryView.indicators = @[lineView];
+    lineView.indicatorLineWidth = SCREEN_WIDTH / 5;
+//    self.categoryView.indicators = @[lineView];
+    
     
     _pagerView = [self preferredPagingView];
     [self.view addSubview:self.pagerView];

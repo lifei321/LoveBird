@@ -2857,11 +2857,11 @@
 			isa = PBXGroup;
 			children = (
 				1F8C000B214BFF4600C00B8E /* JXCategoryCollectionView.h */,
+				1F8C0010214BFF4600C00B8E /* JXCategoryCollectionView.m */,
 				1F8C000C214BFF4600C00B8E /* JXCategoryIndicatorProtocol.h */,
 				1F8C000D214BFF4600C00B8E /* JXCategoryViewDefines.h */,
 				1F8C000E214BFF4600C00B8E /* JXCategoryFactory.m */,
 				1F8C000F214BFF4600C00B8E /* UIColor+JXAdd.h */,
-				1F8C0010214BFF4600C00B8E /* JXCategoryCollectionView.m */,
 				1F8C0011214BFF4600C00B8E /* UIColor+JXAdd.m */,
 				1F8C0012214BFF4600C00B8E /* JXCategoryFactory.h */,
 			);
@@ -2872,9 +2872,9 @@
 			isa = PBXGroup;
 			children = (
 				1F8C0014214BFF4600C00B8E /* JXCategoryBaseView.h */,
+				1F8C0017214BFF4600C00B8E /* JXCategoryBaseView.m */,
 				1F8C0015214BFF4600C00B8E /* JXCategoryBaseCell.h */,
 				1F8C0016214BFF4600C00B8E /* JXCategoryBaseCellModel.h */,
-				1F8C0017214BFF4600C00B8E /* JXCategoryBaseView.m */,
 				1F8C0018214BFF4600C00B8E /* JXCategoryBaseCell.m */,
 				1F8C0019214BFF4600C00B8E /* JXCategoryBaseCellModel.m */,
 			);
@@ -3188,12 +3188,12 @@
 		1F8CFFED214BFF4600C00B8E /* TitleImage */ = {
 			isa = PBXGroup;
 			children = (
-				1F8CFFEE214BFF4600C00B8E /* JXCategoryTitleImageView.m */,
-				1F8CFFEF214BFF4600C00B8E /* JXCategoryTitleImageCell.m */,
-				1F8CFFF0214BFF4600C00B8E /* JXCategoryTitleImageCellModel.h */,
 				1F8CFFF1214BFF4600C00B8E /* JXCategoryTitleImageView.h */,
+				1F8CFFEE214BFF4600C00B8E /* JXCategoryTitleImageView.m */,
+				1F8CFFF0214BFF4600C00B8E /* JXCategoryTitleImageCellModel.h */,
 				1F8CFFF2214BFF4600C00B8E /* JXCategoryTitleImageCellModel.m */,
 				1F8CFFF3214BFF4600C00B8E /* JXCategoryTitleImageCell.h */,
+				1F8CFFEF214BFF4600C00B8E /* JXCategoryTitleImageCell.m */,
 			);
 			path = TitleImage;
 			sourceTree = "<group>";
