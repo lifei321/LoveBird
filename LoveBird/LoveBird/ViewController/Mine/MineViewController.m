@@ -79,8 +79,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
@@ -95,7 +95,9 @@
     CGFloat thresholdDistance = 100;
     CGFloat percent = scrollView.contentOffset.y/thresholdDistance;
     percent = MAX(0, MIN(1, percent));
-    self.naviBGView.alpha = percent;
+    self.naviBGView.alpha = 1 - percent;
+    
+    
 }
 
 
@@ -274,8 +276,8 @@
     self.pinHeaderViewInsetTop = naviHeight;
     
     self.naviBGView = [[UIView alloc] init];
-    self.naviBGView.alpha = 0;
-    self.naviBGView.backgroundColor = kColorDefaultColor;
+    self.naviBGView.alpha = 1;
+    self.naviBGView.backgroundColor = [UIColor clearColor];
     self.naviBGView.frame = CGRectMake(0, 0, self.view.bounds.size.width, naviHeight);
     [self.view addSubview:self.naviBGView];
     
