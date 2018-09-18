@@ -168,6 +168,9 @@
     
     //停止下载所有图片
     [[SDWebImageManager sharedManager] cancelAll];
+    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+
     //清除内存中的图片
     [[SDWebImageManager sharedManager].imageCache clearMemory];
 }

@@ -65,7 +65,8 @@
     [self netForContentWithPageNum:self.minId header:NO];
 }
 - (void)netForContentWithPageNum:(NSString *)minid header:(BOOL)header {
-    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+
     if ([self.minId isEqualToString:@"0"]) {
         [self.tableView.mj_footer endRefreshing];
         return;
@@ -138,7 +139,8 @@
     
     cell.selectBlock = ^(WorksModel *selectModel) {
         
-        
+        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+
         NSInteger index = 0;
         for (int i = 0; i < self.photoArray.count; i++) {
             MWPhoto *photoModel = self.photoArray[i];

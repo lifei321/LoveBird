@@ -29,9 +29,13 @@
 #import "LogTableView.h"
 #import "UserBirdClassTableView.h"
 #import "UserPhotoTbleView.h"
-#import <SDWebImage/SDWebImageManager.h>
 #import "MineDetailView.h"
 #import "MineMessageViewController.h"
+#import <SDWebImage/SDImageCache.h>
+#import <SDWebImage/SDWebImageManager.h>
+
+static BOOL SDImageCacheOldShouldDecompressImages = YES;
+static BOOL SDImagedownloderOldShouldDecompressImages = YES;
 
 
 //612
@@ -64,10 +68,31 @@
 
 @implementation UserInfoViewController
 
+//- (void)loadView {
+//    [super loadView];
+//
+//    SDImageCache *canche = [SDImageCache sharedImageCache];
+//    SDImageCacheOldShouldDecompressImages = canche.config.shouldDecompressImages;
+//    canche.config.shouldDecompressImages = NO;
+//
+//    SDWebImageDownloader *downloder = [SDWebImageDownloader sharedDownloader];
+//    SDImagedownloderOldShouldDecompressImages = downloder.shouldDecompressImages;
+//    downloder.shouldDecompressImages = NO;
+//}
+//
+//- (void)dealloc {
+//    SDImageCache *canche = [SDImageCache sharedImageCache];
+//    canche.config.shouldDecompressImages = SDImageCacheOldShouldDecompressImages;
+//
+//    SDWebImageDownloader *downloder = [SDWebImageDownloader sharedDownloader];
+//    downloder.shouldDecompressImages = SDImagedownloderOldShouldDecompressImages;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.userName;
+    
+    self.hidesBottomBarWhenPushed = YES;
     
     self.navigationBar.backgroundColor = [UIColor whiteColor];
     [self setHeadForView];
@@ -76,17 +101,33 @@
     
     [self setNavigationHidden];
 
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache]clearMemory];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = false;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache].config setShouldDecompressImages :NO];
+    [[SDWebImageDownloader sharedDownloader] setShouldDecompressImages:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+//    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache]clearMemory];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache].config setShouldDecompressImages :YES];
+    [[SDWebImageDownloader sharedDownloader] setShouldDecompressImages:YES];
+
+
 }
 
 - (void)viewWillLayoutSubviews {
@@ -262,14 +303,14 @@
     [notificationButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateNormal];
     [notificationButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateSelected];
     [notificationButton addTarget:self action:@selector(leftButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    notificationButton.frame = CGRectMake(10, topSafeMargin, 44, 44);
+    notificationButton.frame = CGRectMake(0, topSafeMargin, 44, 44);
     //    notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.naviBGView addSubview:notificationButton];
     
     UIButton *detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [detailButton setImage:[UIImage imageNamed:@"mine_detail"] forState:UIControlStateNormal];
     [detailButton addTarget:self action:@selector(detailButton:) forControlEvents:UIControlEventTouchUpInside];
-    detailButton.frame = CGRectMake(54, topSafeMargin, 44, 44);
+    detailButton.frame = CGRectMake(44, topSafeMargin, 44, 44);
     //    detailButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.naviBGView addSubview:detailButton];
     
@@ -337,6 +378,9 @@
 - (void)didReceiveMemoryWarning {
     //停止下载所有图片
     [[SDWebImageManager sharedManager] cancelAll];
+    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+
     //清除内存中的图片
     [[SDWebImageManager sharedManager].imageCache clearMemory];
 }

@@ -9,6 +9,7 @@
 #import "WorkTableViewCell.h"
 #import "WorksImageView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <YYKit/UIImageView+YYWebImage.h>
 
 @interface WorkTableViewCell()
 
@@ -60,7 +61,8 @@
     if (listArray.count == 1) {
         WorksModel *model = listArray.firstObject;
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
-        
+//        [self.leftImageview setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholder:[UIImage imageNamed:@"placeHolder"]];
+
         if (model.imgWidth < 1) {
             return;
         }
@@ -86,6 +88,9 @@
         
         self.leftImageview.frame = CGRectMake(0, 0, width1 - 0.5, imageHeight);
         self.rightImageview.frame = CGRectMake(width1 + 0.5, 0, width2, imageHeight);
+//        [self.leftImageview setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholder:[UIImage imageNamed:@"placeHolder"]];
+//        [self.rightImageview setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholder:[UIImage imageNamed:@"placeHolder"]];
+
         [self.leftImageview sd_setImageWithURL:[NSURL URLWithString:model1.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview sd_setImageWithURL:[NSURL URLWithString:model2.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         [self.rightImageview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightImageviewClick)]];

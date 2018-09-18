@@ -17,6 +17,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 
+
 @interface UserPhotoTbleView ()<UITableViewDelegate, UITableViewDataSource, MWPhotoBrowserDelegate>
 
 // 刷新页数
@@ -38,6 +39,7 @@
 - (void)dealloc
 {
     self.scrollCallback = nil;
+
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -88,7 +90,7 @@
         
         if (self.isNeedFooter) {
             self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                [self netForContentFooter];
+                [weakSelf netForContentFooter];
             }];
         }
     }
@@ -192,6 +194,9 @@
 }
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
 
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache]clearMemory];
+
     @weakify(self);
     [DiscoverDao getWorksList:self.authorId matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
@@ -231,7 +236,8 @@
         
         [self.dataArray addObjectsFromArray:tempArray];
         [self.tableView reloadData];
-        
+        [[SDImageCache sharedImageCache]clearMemory];
+
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
@@ -247,12 +253,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WorkTableViewCell class]) forIndexPath:indexPath];
-    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache]clearMemory];
+
     cell.listArray = self.dataArray[indexPath.row];
     
+    @weakify(self);
     cell.selectBlock = ^(WorksModel *selectModel) {
-        
-        
+        @strongify(self);
+
+        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+        [[SDImageCache sharedImageCache]clearMemory];
+
         NSInteger index = 0;
         for (int i = 0; i < self.photoArray.count; i++) {
             MWPhoto *photoModel = self.photoArray[i];

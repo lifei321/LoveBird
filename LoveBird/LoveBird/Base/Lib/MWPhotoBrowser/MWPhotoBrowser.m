@@ -13,6 +13,9 @@
 #import "SDImageCache.h"
 #import "UIImage+MWPhotoBrowser.h"
 #import "UserDao.h"
+#import <SDWebImage/SDImageCache.h>
+#import <SDWebImage/SDWebImageManager.h>
+
 
 #define PADDING                  10
 
@@ -131,6 +134,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    
+    //停止下载所有图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+
 	
 }
 
@@ -1717,5 +1729,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
 //    self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
+
 
 @end
