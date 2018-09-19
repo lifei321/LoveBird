@@ -194,8 +194,8 @@
 }
 - (void)netForContentWithPageNum:(NSString *)pageNum header:(BOOL)header {
 
-    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
-    [[SDImageCache sharedImageCache]clearMemory];
+//    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+//    [[SDImageCache sharedImageCache]clearMemory];
 
     @weakify(self);
     [DiscoverDao getWorksList:self.authorId matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
@@ -262,8 +262,8 @@
     cell.selectBlock = ^(WorksModel *selectModel) {
         @strongify(self);
 
-        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
-        [[SDImageCache sharedImageCache]clearMemory];
+//        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+//        [[SDImageCache sharedImageCache]clearMemory];
 
         NSInteger index = 0;
         for (int i = 0; i < self.photoArray.count; i++) {
