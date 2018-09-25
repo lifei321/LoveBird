@@ -153,7 +153,7 @@
 
 - (void)addNavigation {
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100), AutoSize6(210), AutoSize6(70))];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(100) + topView_origin_y, AutoSize6(210), AutoSize6(70))];
     backView.backgroundColor = [UIColor whiteColor];
     backView.alpha = 0.8;
     [self.view addSubview:backView];

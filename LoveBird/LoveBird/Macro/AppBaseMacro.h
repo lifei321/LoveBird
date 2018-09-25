@@ -79,7 +79,7 @@
 #define FONT(F) [UIFont fontWithName:@"FZHTJW--GB1-0" size:F]
 
 //根据不同的设备，定义不同的大小
-#define AutoSizeScale (iPhone6PlusScale ? (1.17) : iPhone6Plus ? (1.29375) : (iPhone6 ? (1.17) : 1))
+#define AutoSizeScale (iPhone6PlusScale ? (1.17) : iPhone6Plus ? (1.29375) : (iPhone6 ? (1.17) : ((IS_IPHONE_X  == YES)? (1.17) : 1)))
 #define AutoSize(size) rint(AutoSizeScale*size)
 
 #define AutoSizeScale6 (SCREEN_WIDTH / 750)

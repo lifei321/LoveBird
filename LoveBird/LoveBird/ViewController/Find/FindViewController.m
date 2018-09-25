@@ -193,7 +193,7 @@
     label.text = @"让我们一起来认识鸟儿吧";
     label.font = kFont(12);
     label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentLeft;
+    label.textAlignment = NSTextAlignmentCenter;
     [lineView addSubview:label];
     
     _searchField = [[UITextField alloc] initWithFrame:CGRectMake(((SCREEN_WIDTH - AutoSize(255)) / 2), label.bottom + AutoSize(20), AutoSize(255), AutoSize(29))];
