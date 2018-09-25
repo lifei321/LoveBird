@@ -81,17 +81,12 @@
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview != nil) {
-        __weak typeof(self)weakSelf = self;
         if (self.isNeedHeader) {
-            self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                [weakSelf netForContentHeader];
-            }];
+            self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForContentHeader)];
         }
         
         if (self.isNeedFooter) {
-            self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                [weakSelf netForContentFooter];
-            }];
+            self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForContentFooter)];
         }
     }
     [self.tableView.mj_header beginRefreshing];

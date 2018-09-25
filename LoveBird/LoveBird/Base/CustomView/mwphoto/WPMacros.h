@@ -17,9 +17,9 @@ typedef NS_ENUM(NSInteger,XFImageType){
     XFImageTypeOfThumb         //缩略图
 };
 
-#define navView_H 64
+#define navView_H total_topView_height
 
-#define TabBar_H 49
+#define TabBar_H kTabBarHeight
 
 /**
  *  控制器

@@ -3387,7 +3387,7 @@
 					0B7293001EFA4F1100D1B1EB = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = MZF5QVQ8GK;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4007,8 +4007,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MZF5QVQ8GK;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = BEWPSDX7W7;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
@@ -4048,9 +4049,10 @@
 				);
 				INFOPLIST_FILE = LoveBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gift.www.LoveBird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lovebird.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "33ce3f1c-fc39-4e03-9b19-4c025f98c916";
+				PROVISIONING_PROFILE_SPECIFIER = lovebird_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4061,9 +4063,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MZF5QVQ8GK;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -4073,9 +4076,10 @@
 				);
 				INFOPLIST_FILE = LoveBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gift.www.LoveBird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lovebird.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "28ef398b-7aed-472f-a516-7aeb5c5feca4";
+				PROVISIONING_PROFILE_SPECIFIER = loveBird_appstore;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

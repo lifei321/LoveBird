@@ -151,7 +151,8 @@
 }
 
 - (void)setTabelview {
-    self.tableView.top = AutoSize(44) + topView_height;
+    self.tableView.top = total_topView_height + AutoSize(44);
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height - AutoSize(44);
     [self.tableView registerClass:[FindClassCell class] forCellReuseIdentifier:NSStringFromClass([FindClassCell class])];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

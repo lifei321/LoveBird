@@ -294,8 +294,8 @@
 
 - (void)setTableView {
     
-    self.tableView.top = topView_height;
-    self.tableView.height = SCREEN_HEIGHT - topView_height;
+    self.tableView.top = total_topView_height;
+    self.tableView.height = SCREEN_HEIGHT - total_topView_height;
     self.tableView.backgroundColor = kColoreDefaultBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

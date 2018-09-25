@@ -439,19 +439,19 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 - (void)makeHeadIcon {
     
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(0), SCREEN_WIDTH, AutoSize6(140))];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, AutoSize6(0), SCREEN_WIDTH, total_topView_height)];
     headView.backgroundColor = [UIColor blackColor];
     [[UIApplication sharedApplication].keyWindow addSubview:headView];
     _headView = headView;
     
     // 关闭按钮
-    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(40), AutoSize6(30), headView.height - AutoSize6(40))];
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(AutoSize6(30), topView_origin_y, AutoSize6(30), headView.height - topView_origin_y)];
     [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateNormal];
     [closeButton setImage:[UIImage imageNamed:@"pic_close"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:closeButton];
     
-    _headImageview = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), AutoSize6(55), AutoSize6(70), AutoSize6(70))];
+    _headImageview = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(100), topView_origin_y, headView.height - topView_origin_y, headView.height - topView_origin_y)];
     _headImageview.layer.cornerRadius = _headImageview.width / 2;
     _headImageview.layer.borderColor = [UIColor whiteColor].CGColor;
     _headImageview.contentMode = UIViewContentModeScaleToFill;
@@ -462,7 +462,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.headImageview.userInteractionEnabled = YES;
     [self.headImageview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), AutoSize6(40), SCREEN_WIDTH / 2, headView.height - AutoSize6(40))];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImageview.right + AutoSize6(20), topView_origin_y, SCREEN_WIDTH / 2, headView.height - topView_origin_y)];
     _nameLabel.font = kFontPF6(28);
     _nameLabel.textColor = [UIColor whiteColor];
     [headView addSubview:_nameLabel];

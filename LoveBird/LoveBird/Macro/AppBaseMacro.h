@@ -23,15 +23,18 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
-#define topView_origin_y        (IOS7 ? (20) : 0)
-#define topView_height          (IOS7 ? (64) : 44)
-#define total_topView_height    64
+#define IS_IPHONE_X (SCREEN_HEIGHT == 812.0f) ? YES : NO
+
+#define topView_origin_y ((IS_IPHONE_X==YES)?44.0f: 20.0f)
+
+#define total_topView_height ((IS_IPHONE_X==YES) ? 88.0f: 64.0f)
+
+// tabBar的系统默认高度
+#define kTabBarHeight ((IS_IPHONE_X==YES)?83.0f: 49.0f)
+
 
 //  NavBar高度
 #define NavigationBar_HEIGHT 44
-
-// tabBar的系统默认高度
-#define kTabBarHeight 49
 
 
 #define DEVICENAME [UIDevice currentDevice].name

@@ -118,7 +118,7 @@
         backView.contentMode = UIViewContentModeScaleToFill;
         [_navigationView addSubview:backView];
         
-        UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(30), 25, SCREEN_WIDTH - AutoSize6(60), 34)];
+        UITextField *searchField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(30), topView_origin_y + 5, SCREEN_WIDTH - AutoSize6(60), total_topView_height - topView_origin_y - 10)];
         searchField.placeholder = @"在此输入文章名/作者名";
         searchField.backgroundColor = [UIColor whiteColor];
         searchField.font = kFont6(26);
