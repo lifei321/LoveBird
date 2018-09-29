@@ -40,8 +40,10 @@
         self.moreButtonFrame = CGRectMake(kWidthForBackView - AutoSize6(100), backViewHeight, AutoSize6(80), AutoSize6(78));
         
         backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
+    } else {
+        self.subjectLabelFrame  = CGRectMake(AutoSize6(20), backViewHeight, AutoSize6(585), AutoSize6(20));
+        backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
     }
-    
     
 //    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.backViewFrame.size.height);
 //    backViewHeight = CGRectGetMaxY(self.bottomViewFrame);

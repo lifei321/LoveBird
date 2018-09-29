@@ -48,6 +48,9 @@
         self.iconImageView.layer.masksToBounds = YES;
         [self.contentView addSubview:self.iconImageView];
         
+        self.iconImageView.userInteractionEnabled = YES;
+        [self.iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headIconDidClick)]];
+        
         self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(10), 0, AutoSize6(100), self.iconImageView.height)];
         self.nameLable.font = kFont6(26);
         self.nameLable.textColor = UIColorFromRGB(0x333333);
@@ -154,5 +157,22 @@
     
     return backView;
 }
+
+- (void)headIconDidClick {
+    
+    if ([self.model.authorid isEqualToString:[UserPage sharedInstance].uid]) {
+        
+        ((UITabBarController *)(kTabBarController)).selectedIndex = 4;
+        
+        [[UIViewController currentViewController].navigationController popToRootViewControllerAnimated:NO];
+        return;
+    }
+    
+    UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+    uservc.uid = self.model.authorid;
+    uservc.userName = self.model.author;
+    [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+}
+
 
 @end

@@ -48,6 +48,12 @@
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         [self.tableView registerClass:[MineLogCell class] forCellReuseIdentifier:NSStringFromClass([MineLogCell class])];
+        
+        if (@available(iOS 11.0, *)) {
+            UITableView.appearance.estimatedRowHeight = 0;
+            UITableView.appearance.estimatedSectionFooterHeight = 0;
+            UITableView.appearance.estimatedSectionHeaderHeight = 0;
+        }
         [self addSubview:self.tableView];
         self.isNeedFooter = YES;
         self.isNeedHeader = YES;
@@ -179,6 +185,7 @@
         if (!self.taid.length) {
             self.tableView.tableHeaderView = [self makeHeaderView];
         }
+        
         
         [self.tableView reloadData];
         

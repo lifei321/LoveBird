@@ -53,7 +53,12 @@
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         [self.tableView registerClass:[WorkTableViewCell class] forCellReuseIdentifier:NSStringFromClass([WorkTableViewCell class])];
-
+        
+        if (@available(iOS 11.0, *)) {
+            UITableView.appearance.estimatedRowHeight = 0;
+            UITableView.appearance.estimatedSectionFooterHeight = 0;
+            UITableView.appearance.estimatedSectionHeaderHeight = 0;
+        }
         [self addSubview:self.tableView];
         self.isNeedFooter = YES;
         self.isNeedHeader = YES;

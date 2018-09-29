@@ -136,7 +136,7 @@
 
 - (void)reloadFooterHeight {
     CGFloat count;
-    if (_dataArray.count % 2) {
+    if (_dataArray.count % 2 != 0) {
         count = (_dataArray.count / 2) + 1;
     } else {
         count = (_dataArray.count / 2);

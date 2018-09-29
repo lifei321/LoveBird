@@ -10,7 +10,7 @@
 #import "DiscoverDao.h"
 #import "MatchArticleModel.h"
 #import "MatchNoteCell.h"
-
+#import "LogDetailController.h"
 
 @interface MatchDetaiNoteViewController ()<UITableViewDataSource>
 
@@ -78,7 +78,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
+    MatchArticleModel *frameModel = self.dataArray[indexPath.row];
+    if (frameModel.tid.length) {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.tid = frameModel.tid;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
 }
 
 - (void)setTableView {

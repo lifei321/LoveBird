@@ -51,6 +51,11 @@
         [self addSubview:self.tableView];
         self.isNeedFooter = YES;
         self.isNeedHeader = YES;
+        if (@available(iOS 11.0, *)) {
+            UITableView.appearance.estimatedRowHeight = 0;
+            UITableView.appearance.estimatedSectionFooterHeight = 0;
+            UITableView.appearance.estimatedSectionHeaderHeight = 0;
+        }
     }
     return self;
 }
