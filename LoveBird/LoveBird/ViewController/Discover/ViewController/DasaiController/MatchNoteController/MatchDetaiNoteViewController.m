@@ -42,19 +42,19 @@
 
 - (void)netForLog {
     
-    @weakify(self);
-    [DiscoverDao getMatchArctleList:self.matchid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
-        @strongify(self);
-        [AppBaseHud hideHud:self.view];
-        MatchArticleDataModel *dataModel = (MatchArticleDataModel *)responseObject;
-        
-        [self.dataArray addObjectsFromArray:dataModel.data];
-        [self.tableView reloadData];
-        
-    } failureBlock:^(__kindof AppBaseModel *error) {
-        @strongify(self);
-        [AppBaseHud showHudWithfail:error.errstr view:self.view];
-    }];
+//    @weakify(self);
+//    [DiscoverDao getMatchArctleList:self.matchid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+//        @strongify(self);
+//        [AppBaseHud hideHud:self.view];
+//        MatchArticleDataModel *dataModel = (MatchArticleDataModel *)responseObject;
+//        
+//        [self.dataArray addObjectsFromArray:dataModel.data];
+//        [self.tableView reloadData];
+//        
+//    } failureBlock:^(__kindof AppBaseModel *error) {
+//        @strongify(self);
+//        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+//    }];
 }
 
 #pragma mark-- tableview 代理

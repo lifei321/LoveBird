@@ -34,9 +34,6 @@
 #import <SDWebImage/SDImageCache.h>
 #import <SDWebImage/SDWebImageManager.h>
 
-static BOOL SDImageCacheOldShouldDecompressImages = YES;
-static BOOL SDImagedownloderOldShouldDecompressImages = YES;
-
 
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)

@@ -185,6 +185,7 @@
 		1F30623D204AB1BF00784C62 /* DiscoverContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623C204AB1BF00784C62 /* DiscoverContentModel.m */; };
 		1F306240204AD16100784C62 /* TimeLineBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F30623F204AD16100784C62 /* TimeLineBottomView.m */; };
 		1F306245204BAF5900784C62 /* AppCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F306243204BAF5900784C62 /* AppCache.m */; };
+		1F37E56A215FCC2800DF6620 /* MatchNoteTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F37E569215FCC2800DF6620 /* MatchNoteTableView.m */; };
 		1F3A3FD220DE982100245CA4 /* UserInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A3FD120DE982100245CA4 /* UserInfoHeaderView.m */; };
 		1F3A3FED20DFF0B000245CA4 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A3FDC20DFF0B000245CA4 /* MWPhotoBrowser.m */; };
 		1F3A3FEE20DFF0B000245CA4 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A3FDD20DFF0B000245CA4 /* MWCaptionView.m */; };
@@ -734,6 +735,8 @@
 		1F30623F204AD16100784C62 /* TimeLineBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineBottomView.m; sourceTree = "<group>"; };
 		1F306243204BAF5900784C62 /* AppCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCache.m; sourceTree = "<group>"; };
 		1F306244204BAF5900784C62 /* AppCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCache.h; sourceTree = "<group>"; };
+		1F37E568215FCC2800DF6620 /* MatchNoteTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchNoteTableView.h; sourceTree = "<group>"; };
+		1F37E569215FCC2800DF6620 /* MatchNoteTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchNoteTableView.m; sourceTree = "<group>"; };
 		1F3A3FD020DE982100245CA4 /* UserInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoHeaderView.h; sourceTree = "<group>"; };
 		1F3A3FD120DE982100245CA4 /* UserInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoHeaderView.m; sourceTree = "<group>"; };
 		1F3A3FD820DFF0B000245CA4 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
@@ -2005,6 +2008,8 @@
 				1F16D8D820CD0E4600A6C11D /* MatchTitleView.m */,
 				1F16D8DA20CD343700A6C11D /* MatchSelectView.h */,
 				1F16D8DB20CD343700A6C11D /* MatchSelectView.m */,
+				1F37E568215FCC2800DF6620 /* MatchNoteTableView.h */,
+				1F37E569215FCC2800DF6620 /* MatchNoteTableView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -3386,7 +3391,7 @@
 				TargetAttributes = {
 					0B7293001EFA4F1100D1B1EB = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = MZF5QVQ8GK;
+						DevelopmentTeam = BEWPSDX7W7;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -3750,6 +3755,7 @@
 				1F14A96D2119DB7500F1B2C1 /* MapDisCoverLocationView.m in Sources */,
 				1F676ECA20A0B26E002F71B4 /* PublishContenController.m in Sources */,
 				1F676FAD20B972EC002F71B4 /* MineBirdLeftCell.m in Sources */,
+				1F37E56A215FCC2800DF6620 /* MatchNoteTableView.m in Sources */,
 				1F4F140C204D85010066F790 /* MineSetModel.m in Sources */,
 				1F6EB7EA20935FD400665561 /* UIDevice+LFAddition.m in Sources */,
 				1F676FA420B94FE6002F71B4 /* MineLogLineView.m in Sources */,

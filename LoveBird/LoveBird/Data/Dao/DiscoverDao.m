@@ -134,10 +134,11 @@
 }
 
 // 大赛记录列表
-+ (void)getMatchArctleList:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getMatchArctleList:(NSString *)matchid page:(NSString *)page SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(page) forKey:@"page"];
 
     [AppHttpManager POST:kAPI_Discover_MatchArticleList parameters:dic jsonModelName:[MatchArticleDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
