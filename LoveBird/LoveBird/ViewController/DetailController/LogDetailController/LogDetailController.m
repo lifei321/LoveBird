@@ -422,6 +422,7 @@
             photo.shareTitle = worksModel.shareTitle;
             photo.shareSummary = worksModel.shareSummary;
             photo.tid = worksModel.aid;
+            photo.uid = detailModel.authorid;
             [self.photoArray addObject:photo];
         }
         

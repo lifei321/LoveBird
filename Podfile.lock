@@ -28,7 +28,7 @@ PODS:
   - JSONModel (1.7.0)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
-  - MBProgressHUD+BWMExtension (1.0.1):
+  - "MBProgressHUD+BWMExtension (1.0.1)":
     - MBProgressHUD (~> 0.9.1)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
@@ -149,7 +149,7 @@ DEPENDENCIES:
   - JSONKit-NoWarning (= 1.2)
   - JSONModel (= 1.7.0)
   - Masonry
-  - MBProgressHUD+BWMExtension (= 1.0.1)
+  - "MBProgressHUD+BWMExtension (= 1.0.1)"
   - MLeaksFinder
   - NJKWebViewProgress (= 0.2.3)
   - Onboard (= 2.3.1)
@@ -171,6 +171,43 @@ DEPENDENCIES:
   - XHLaunchAd (= 3.8.4)
   - YYKit (= 1.0.9)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - BaiduMapKit
+    - Bugly
+    - DACircularProgress
+    - DZNEmptyDataSet
+    - FBRetainCycleDetector
+    - FLAnimatedImage
+    - GTSDK
+    - INTULocationManager
+    - IQKeyboardManager
+    - JLRoutes
+    - JSONKit-NoWarning
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - "MBProgressHUD+BWMExtension"
+    - MLeaksFinder
+    - NJKWebViewProgress
+    - Onboard
+    - ReactiveObjC
+    - RITLKit
+    - RITLViewFrame
+    - SDCycleScrollView
+    - SDWebImage
+    - SPPageMenu
+    - TMCache
+    - TTTAttributedLabel
+    - UMCCommon
+    - UMCSecurityPlugins
+    - UMCShare
+    - WebViewJavascriptBridge
+    - WRNavigationBar
+    - XHLaunchAd
+    - YYKit
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BaiduMapKit: 51bba432a28316680676b4d453a70e5031f3a7eb
@@ -187,7 +224,7 @@ SPEC CHECKSUMS:
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MBProgressHUD+BWMExtension: d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
+  "MBProgressHUD+BWMExtension": d0603a1c0b03ef74cae6a0986d63c0bdf34bedfe
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
@@ -209,4 +246,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b16eb1b9e640b46beee6df9164cb9c2fc9d8070f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

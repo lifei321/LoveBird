@@ -370,7 +370,7 @@ static BOOL SDImagedownloderOldShouldDecompressImages = YES;
 }
 
 - (void)shareButton:(UIButton *)button {
-    [AppShareManager shareWithTitle:[UserPage sharedInstance].userModel.shareTitle summary:[UserPage sharedInstance].userModel.shareSummary url:[UserPage sharedInstance].userModel.shareUrl image:[UserPage sharedInstance].userModel.shareImg];
+    [AppShareManager shareWithTitle:self.userModel.shareTitle summary:self.userModel.shareSummary url:self.userModel.shareUrl image:self.userModel.shareImg];
 }
 
 
