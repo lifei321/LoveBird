@@ -35,6 +35,10 @@
 @property (nonatomic, strong) ShequBottomView *bottomView;
 
 
+@property (nonatomic, strong) UILabel *imageCountLabel;
+
+
+
 @end
 
 @implementation ShequCell
@@ -62,6 +66,13 @@
         self.contentImageView = [[UIImageView alloc] init];
         self.contentImageView.contentMode = UIViewContentModeScaleToFill;
         [self.backView addSubview:self.contentImageView];
+        
+        self.imageCountLabel = [[UILabel alloc] init];
+        self.imageCountLabel.font = kFontPF6(28);
+        self.imageCountLabel.textColor = UIColorFromRGB(0x000000);
+        self.imageCountLabel.backgroundColor = UIColorFromRGBWithAlpha(0xffffff,0.5);
+        self.imageCountLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentImageView addSubview:self.imageCountLabel];
         
         self.lineView = [[UIView alloc] init];
         self.lineView.backgroundColor = kLineColoreLightGrayECECEC;
@@ -102,6 +113,11 @@
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:shequFrameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.bottomView.model = shequFrameModel.shequModel;
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:shequFrameModel.shequModel.dateline formatSytle:DateFormatYMD];
+    
+    if (shequFrameModel.shequModel.showPicsum) {
+        self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
+        self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", shequFrameModel.shequModel.picsum];
+    }
 }
 
 - (void)drawRect:(CGRect)rect {

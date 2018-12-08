@@ -70,6 +70,11 @@
 @property (nonatomic, copy) NSString *shareTitle;
 
 
+@property (nonatomic, assign) BOOL  showPicsum;
+
+@property (nonatomic, copy) NSString  *picsum;
+
+
 
 //author    作者名    string
 //authorid    作者id    string
