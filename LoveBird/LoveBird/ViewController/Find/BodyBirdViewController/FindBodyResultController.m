@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) FindSelectBirdModel *selectBirdModel;
 
+@property (nonatomic, assign) NSInteger page;
+
 @end
 
 @implementation FindBodyResultController
@@ -47,20 +49,37 @@
 
 - (void)setWord:(NSString *)word {
     _word = [word copy];
+    [self netForHeader];
+}
+
+- (void)netForHeader {
+    self.page = 1;
     [self netForData];
 }
+
 
 - (void)netForData {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self)
-    [FindDao getBirdWord:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+    [FindDao getBirdWord:self.word page:self.page successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        self.page ++;
+        
         self.dataModel = (FindSelectBirdDataModel *)responseObject;
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+
     }];
 }
 
@@ -126,6 +145,12 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[FindResultCell class] forCellReuseIdentifier:NSStringFromClass([FindResultCell class])];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(200))];
+    
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForHeader)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForData)];
+
 }
 
 @end

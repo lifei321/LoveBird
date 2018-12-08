@@ -55,7 +55,7 @@
         wallxLabel.font = kFont6(26);
         wallxLabel.textColor = kColorTextColorLightGraya2a2a2;
         wallxLabel.textAlignment = NSTextAlignmentLeft;
-        wallxLabel.text = @"世界自然保护联盟IUCN";
+        wallxLabel.text = @"华盛顿公约CITE";
         [self.contentView addSubview:wallxLabel];
         
         self.wallxLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + AutoSize6(20), wallxLabel.top, SCREEN_WIDTH / 2 - AutoSize6(50), AutoSize6(40))];
