@@ -210,7 +210,10 @@
     self.loadingView.hidden = NO;
     self.tipView.hidden = YES;
     @weakify(self);
-    [FindDao getBirdImage:image successBlock:^(__kindof AppBaseModel *responseObject) {
+    
+    UIImage *selectImage = [image compressImage:image withMaxSize:CGSizeMake(1200, MAXFLOAT)];
+
+    [FindDao getBirdImage:selectImage successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
         
