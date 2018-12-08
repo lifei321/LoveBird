@@ -25,6 +25,8 @@
 #import "MWPhotoBrowser.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DasaiTougaoViewController.h"
+#import "BirdDetailController.h"
+
 
 #import "JXPagerView.h"
 #import "JXCategoryView.h"
@@ -401,7 +403,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if ((indexPath.section == 0) && (indexPath.row == 0)) {
+        BirdDetailController *detail = [[BirdDetailController alloc] init];
+        
+        LogBirdInfoModel * birdModel = self.detailModel.birdInfo.firstObject;
+        detail.cspCode = birdModel.csp_code;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
 }
 
 - (void)netForLogDetail {

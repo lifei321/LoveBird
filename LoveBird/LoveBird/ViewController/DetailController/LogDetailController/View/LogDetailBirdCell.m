@@ -63,6 +63,7 @@
 //    CGFloat height = [contentText getTextHeightWithFont:self.birdLabel.font withWidth:SCREEN_WIDTH - _iconImageView.right - AutoSize6(40)];
     self.birdLabel.numberOfLines = 0;
     self.birdLabel.text = contentText;
+    self.birdLabel.textColor = kColorDefaultColor;
     self.lineView.hidden = NO;
 
 }
