@@ -373,10 +373,12 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     
     PublishDetailModel *addressModel = self.dataArray[1][1];
     if ([addressModel.detailString isEqualToString:@"选择"]) {
-        self.locale = [UserPage sharedInstance].locale;
-        self.lng = [UserPage sharedInstance].lng;
-        self.lat = [UserPage sharedInstance].lat;
-        addressModel.detailString = self.locale;
+        
+        // 去掉默认地址
+//        self.locale = [UserPage sharedInstance].locale;
+//        self.lng = [UserPage sharedInstance].lng;
+//        self.lat = [UserPage sharedInstance].lat;
+//        addressModel.detailString = self.locale;
     }
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveBird/LoveBird/ViewController/DetailController/LogDetailController/LogDetailController.m"
-            timestampString = "563619193.534007"
+            timestampString = "565933309.972525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "-netForLogContent"
             landmarkType = "7">
          </BreakpointContent>

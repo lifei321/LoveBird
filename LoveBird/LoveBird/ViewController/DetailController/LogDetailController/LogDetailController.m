@@ -26,6 +26,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DasaiTougaoViewController.h"
 
+#import "JXPagerView.h"
+#import "JXCategoryView.h"
+#import "TestListBaseView.h"
+#import "JXPagerListRefreshView.h"
+#import "JXCategoryTitleImageView.h"
+
 
 @interface LogDetailController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MWPhotoBrowserDelegate>
 
