@@ -436,10 +436,14 @@
         self.footerLabel.text = self.detailModel.explain;
         self.tableView.tableFooterView = self.footerLabel;
         NSMutableArray *temp = [NSMutableArray new];
+        NSMutableArray *titleArray = [NSMutableArray new];
+
         for (BirdDetailImageModel *model in self.detailModel.img) {
             [temp addObject:model.img_url];
+            [titleArray addObject:[NSString stringWithFormat:@"by:%@", model.author]];
         }
         self.cycleScrollView.imageURLStringsGroup = temp;
+        self.cycleScrollView.titlesGroup = titleArray;
         [self.tableView reloadData];
 
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -504,6 +508,12 @@
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(480)) delegate:nil placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         _cycleScrollView.delegate = self;
+        _cycleScrollView.titleLabelTextColor = [UIColor whiteColor];
+        _cycleScrollView.titleLabelTextFont = kFont6(20);
+        _cycleScrollView.titleLabelTextAlignment = NSTextAlignmentLeft;
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];
+        _cycleScrollView.titleLabelHeight = AutoSize6(40);
+        
     }
     return _cycleScrollView;
 }
