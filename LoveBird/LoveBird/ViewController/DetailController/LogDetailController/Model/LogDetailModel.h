@@ -116,6 +116,9 @@
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareTitle;
 
+@property (nonatomic, copy) NSString *cspCode;
+
+
 
 @end
 

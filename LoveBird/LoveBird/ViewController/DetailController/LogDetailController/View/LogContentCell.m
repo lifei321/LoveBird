@@ -8,6 +8,7 @@
 
 #import "LogContentCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "BirdDetailController.h"
 
 @interface LogContentCell()
 
@@ -53,11 +54,19 @@
         self.tagLabel.clipsToBounds = YES;
         [self.contentView addSubview:self.tagLabel];
 
+        self.tagLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jumptoBirdDetail)];
+        [self.tagLabel addGestureRecognizer:tap];
         
     }
     return self;
 }
 
+- (void)jumptoBirdDetail {
+    BirdDetailController *birdDetail = [[BirdDetailController alloc] init];
+    birdDetail.cspCode = self.contentModel.cspCode;
+    [[UIViewController currentViewController].navigationController pushViewController:birdDetail animated:YES];
+}
 
 - (void)leftImageviewClick {
     if (self.selectBlock) {
