@@ -51,8 +51,9 @@
             [tempArray addObject:cellModel];
         }
         self.dataSource.tableListArray = [NSMutableArray arrayWithObjects:tempArray, nil];
-        [self.tableView reloadData];
-        
+        if (listModel.data.count) {
+            [self.tableView reloadData];
+        }
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];

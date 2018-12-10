@@ -81,7 +81,10 @@
             lineModel.zhuangbeiModel = model;
             [self.dataArray addObject:lineModel];
         }
-        [self.tableView reloadData];
+        if (dataModel.data.count) {
+            [self.tableView reloadData];
+        }
+        
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         if (header) {

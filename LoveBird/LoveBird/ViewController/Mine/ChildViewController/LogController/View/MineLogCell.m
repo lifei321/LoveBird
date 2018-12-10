@@ -9,6 +9,7 @@
 #import "MineLogCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MineLogLineView.h"
+#import "ShequBottomView.h"
 
 @interface MineLogCell()
 
@@ -38,6 +39,9 @@
 @property (nonatomic, strong) UILabel *monthLable;
 
 @property (nonatomic, strong) UILabel *imageCountLabel;
+
+@property (nonatomic, strong) ShequBottomView *bottomView;
+
 
 
 @end
@@ -103,6 +107,10 @@
         
         self.moreButton = [[UIButton alloc] init];
         [self.backView addSubview:self.moreButton];
+        
+        self.bottomView = [[ShequBottomView alloc] initWithFrame:CGRectZero];
+        [self.backView addSubview:self.bottomView];
+
     }
     return self;
 }
@@ -115,28 +123,30 @@
     self.contentImageView.frame = frameModel.contentImageViewFrame;
     self.lineView.isFirst = frameModel.isFirst;
     self.lineView.frame = frameModel.lineViewFrame;
-    self.subjectLable.frame = frameModel.subjectLabelFrame;
-    self.moreButton.frame = frameModel.moreButtonFrame;
+//    self.subjectLable.frame = frameModel.subjectLabelFrame;
+//    self.moreButton.frame = frameModel.moreButtonFrame;
     self.timeLabel.frame = frameModel.timeLabelFrame;
     self.dayLable.frame = frameModel.dayLabelFrame;
     self.monthLable.frame = frameModel.monthLabelFrame;
-    
+    self.bottomView.frame = frameModel.bottomViewFrame;
+
     self.titleLable.text = frameModel.shequModel.subject;
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:frameModel.shequModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.timeLabel.text = frameModel.shequModel.dateline;
-    self.subjectLable.text = frameModel.shequModel.summary;
+//    self.subjectLable.text = frameModel.shequModel.summary;
     self.dayLable.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatD];
     self.monthLable.text = [[AppDateManager shareManager] getMonthWithTime:frameModel.shequModel.dateline];
     
     CGFloat monthHeight = [self.monthLable.text getTextHeightWithFont:self.monthLable.font withWidth:self.monthLable.width];
     self.monthLable.height = monthHeight;
-    
+    self.bottomView.model = frameModel.shequModel;
+    self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatYMD];
+
+
     if (frameModel.shequModel.showPicsum) {
         self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
         self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", frameModel.shequModel.picsum];
     }
-
-
 }
 
 

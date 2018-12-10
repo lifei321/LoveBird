@@ -110,8 +110,10 @@
             [tempArray addObject:modelArray];
         }
         
-        [self.dataArray addObjectsFromArray:tempArray];
-        [self.tableView reloadData];
+        if (tempArray.count) {
+            [self.dataArray addObjectsFromArray:tempArray];
+            [self.tableView reloadData];
+        }
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);

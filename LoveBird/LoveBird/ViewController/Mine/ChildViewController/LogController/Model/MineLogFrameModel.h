@@ -44,5 +44,6 @@
 
 @property (nonatomic, assign) BOOL isFirst;
 
+@property (nonatomic, assign) CGRect bottomViewFrame;
 
 @end

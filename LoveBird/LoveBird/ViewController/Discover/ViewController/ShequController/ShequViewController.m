@@ -109,8 +109,9 @@
                         frameModel.shequModel = model;
                         [self.dataArray addObject:frameModel];
                     }
-                    [self.tableView reloadData];
-        
+                     if (dataModel.data.count) {
+                         [self.tableView reloadData];
+                     }
             } failureBlock:^(__kindof AppBaseModel *error) {
                 @strongify(self);
                 [self.tableView.mj_header endRefreshing];

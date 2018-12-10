@@ -35,19 +35,23 @@
         backViewHeight = CGRectGetMaxY(self.contentImageViewFrame);
     }
     
-    if (shequModel.summary.length) {
-        self.subjectLabelFrame  = CGRectMake(AutoSize6(20), backViewHeight, AutoSize6(585), AutoSize6(78));
-        self.moreButtonFrame = CGRectMake(kWidthForBackView - AutoSize6(100), backViewHeight, AutoSize6(80), AutoSize6(78));
-        
-        backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
-    } else {
-        self.subjectLabelFrame  = CGRectMake(AutoSize6(20), backViewHeight, AutoSize6(585), AutoSize6(20));
-        backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
-    }
+//    if (shequModel.summary.length) {
+//        self.subjectLabelFrame  = CGRectMake(AutoSize6(20), backViewHeight, AutoSize6(585), AutoSize6(78));
+//        self.moreButtonFrame = CGRectMake(kWidthForBackView - AutoSize6(100), backViewHeight, AutoSize6(80), AutoSize6(78));
+//
+//        backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
+//    } else {
+//        self.subjectLabelFrame  = CGRectMake(AutoSize6(20), backViewHeight, AutoSize6(585), AutoSize6(20));
+//        backViewHeight = CGRectGetMaxY(self.subjectLabelFrame);
+//    }
+    
+    self.bottomViewFrame = CGRectMake(0, backViewHeight + AutoSize6(5), AutoSize6(400), AutoSize6(80));
+    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.bottomViewFrame.size.height);
+    backViewHeight = CGRectGetMaxY(self.bottomViewFrame);
     
 //    self.timeLabelFrame = CGRectMake(kWidthForBackView - AutoSize6(20) - AutoSize6(200), self.bottomViewFrame.origin.y, AutoSize6(200), self.backViewFrame.size.height);
 //    backViewHeight = CGRectGetMaxY(self.bottomViewFrame);
-    
+        
     self.backViewFrame = CGRectMake(AutoSize6(95), height + AutoSize6(30), kWidthForBackView, backViewHeight);
     self.height = CGRectGetMaxY(self.backViewFrame);
     

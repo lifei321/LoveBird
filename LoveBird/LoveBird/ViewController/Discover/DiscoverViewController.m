@@ -249,8 +249,9 @@
         }
         [AppCache setObject:dataModel forKey:kStringForContent];
 
-        [self.tableView reloadData];
-        
+        if (dataModel.data.count) {
+            [self.tableView reloadData];
+        }
     } failure:^(__kindof AppBaseModel *error) {
         if (header) {
             [self.tableView.mj_header endRefreshing];

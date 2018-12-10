@@ -78,8 +78,9 @@
             [self refreshHeaderView:[NSString stringWithFormat:@"%ld", (long)dataModel.birdNum]];
         }
         
-        [self.tableView reloadData];
-        
+        if (dataModel.birdInfo.count) {
+            [self.tableView reloadData];
+        }
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
