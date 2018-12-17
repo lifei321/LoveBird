@@ -31,6 +31,9 @@
 
 @property (nonatomic, strong) TimeLineBottomView *toolView;
 
+@property (nonatomic, strong) UILabel *imageCountLabel;
+
+
 @end
 
 @implementation TimeLineCell
@@ -58,6 +61,14 @@
         self.contentImageView = [[UIImageView alloc] init];
         self.contentImageView.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:self.contentImageView];
+        
+        self.imageCountLabel = [[UILabel alloc] init];
+        self.imageCountLabel.font = kFontPF6(28);
+        self.imageCountLabel.textColor = UIColorFromRGB(0xffffff);
+        self.imageCountLabel.backgroundColor = UIColorFromRGBWithAlpha(0x000000,0.5);
+        self.imageCountLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentImageView addSubview:self.imageCountLabel];
+
         
         // 文章标题
         self.titleLabel = [[UILabel alloc] init];
@@ -112,6 +123,11 @@
         _titleLabel.text = cellLayoutModel.contentModel.subject;
         _contentLabel.text = cellLayoutModel.contentModel.summary;
         _toolView.contentModel = cellLayoutModel.contentModel;
+        
+        if (cellLayoutModel.contentModel.show_picsum.integerValue) {
+            self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
+            self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", cellLayoutModel.contentModel.picsum];
+        }
         
     } else if (cellLayoutModel.zhuangbeiModel) {
         

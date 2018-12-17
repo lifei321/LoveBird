@@ -70,7 +70,7 @@
 @property (nonatomic, copy) NSString *shareTitle;
 
 
-@property (nonatomic, assign) BOOL  showPicsum;
+@property (nonatomic, copy) NSString * show_picsum;
 
 @property (nonatomic, copy) NSString  *picsum;
 

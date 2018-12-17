@@ -84,8 +84,8 @@
         
         self.imageCountLabel = [[UILabel alloc] init];
         self.imageCountLabel.font = kFontPF6(28);
-        self.imageCountLabel.textColor = UIColorFromRGB(0x000000);
-        self.imageCountLabel.backgroundColor = UIColorFromRGBWithAlpha(0xffffff,0.5);
+        self.imageCountLabel.textColor = UIColorFromRGB(0xffffff);
+        self.imageCountLabel.backgroundColor = UIColorFromRGBWithAlpha(0x000000,0.5);
         self.imageCountLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentImageView addSubview:self.imageCountLabel];
 
@@ -143,7 +143,7 @@
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:frameModel.shequModel.dateline formatSytle:DateFormatYMD];
 
 
-    if (frameModel.shequModel.showPicsum) {
+    if (frameModel.shequModel.show_picsum.integerValue) {
         self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
         self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", frameModel.shequModel.picsum];
     }
