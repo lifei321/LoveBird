@@ -15,6 +15,8 @@
 + (void)getShequList:(NSInteger)page
              groupId:(NSString *)groupId
               sortId:(NSString *)sortId
+            province:(NSString *)province
+                city:(NSString *)city
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock;
 

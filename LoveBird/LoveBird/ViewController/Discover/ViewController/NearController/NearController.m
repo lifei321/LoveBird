@@ -334,6 +334,9 @@
                 [UserPage sharedInstance].lat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
                 [UserPage sharedInstance].lng = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
                 [UserPage sharedInstance].locale = [NSString stringWithFormat:@"%@%@%@%@",placemark.country, placemark.locality, placemark.subLocality, placemark.thoroughfare];
+                [UserPage sharedInstance].province = city;
+                [UserPage sharedInstance].city = city;
+//                BMKAddressComponent
 
                 //                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
                 //                NSArray* records = [_offlineMap searchCity:city];

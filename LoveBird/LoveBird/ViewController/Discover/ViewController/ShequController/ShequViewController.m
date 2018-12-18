@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *bannerArray;
 
+@property (nonatomic, strong) UIButton *selectButton;
 
 @property (nonatomic, assign) NSInteger page;
 
@@ -79,21 +80,33 @@
     }];
 }
 
-- (void)netForHeader {
+// 最新
+- (void)netForNewHeader {
     self.page = 1;
-    [self netforData];
+    [AppBaseHud showHudWithLoding:self.view];
+    [self netforNew];
 }
 
-- (void)netForFooter {
-    self.page++;
-    [self netforData];
+// 关注
+- (void)netForFriendHeader {
+    self.page = 1;
+    [AppBaseHud showHudWithLoding:self.view];
+    [self netForFriend];
 }
 
-- (void)netforData {
+- (void)netForNearHeader {
+    self.page = 1;
+    [AppBaseHud showHudWithLoding:self.view];
+    [self netForNear];
+}
+
+- (void)netforNew {
     @weakify(self);
     [DiscoverDao getShequList:self.page
                       groupId:self.groupId
                        sortId:self.sortId
+                     province:@""
+                         city:@""
                  successBlock:^(__kindof AppBaseModel *responseObject) {
                      @strongify(self);
                      [AppBaseHud hideHud:self.view];
@@ -104,6 +117,7 @@
                      if (self.page == 1) {
                          [self.dataArray removeAllObjects];
                      }
+                     self.page++;
                     for (ShequModel *model in dataModel.data) {
                         ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
                         frameModel.shequModel = model;
@@ -118,7 +132,75 @@
                 [self.tableView.mj_footer endRefreshing];
                 [AppBaseHud showHudWithfail:error.errstr view:self.view];
             }];
+}
+
+
+- (void)netForFriend {
     
+    @weakify(self);
+    [UserDao userContenPage:self.page SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        self.page ++;
+        
+        ShequDataModel *dataModel = (ShequDataModel *)responseObject;
+        for (ShequModel *model in dataModel.data) {
+            ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
+            frameModel.shequModel = model;
+            [self.dataArray addObject:frameModel];
+        }
+        if (dataModel.data.count) {
+            [self.tableView reloadData];
+        }
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+}
+
+
+- (void)netForNear {
+    @weakify(self);
+    [DiscoverDao getShequList:self.page
+                      groupId:self.groupId
+                       sortId:self.sortId
+                     province:[UserPage sharedInstance].province
+                         city:[UserPage sharedInstance].city
+                 successBlock:^(__kindof AppBaseModel *responseObject) {
+                     @strongify(self);
+                     [AppBaseHud hideHud:self.view];
+                     [self.tableView.mj_header endRefreshing];
+                     [self.tableView.mj_footer endRefreshing];
+                     ShequDataModel *dataModel = (ShequDataModel *)responseObject;
+                     
+                     if (self.page == 1) {
+                         [self.dataArray removeAllObjects];
+                     }
+                     self.page++;
+                     for (ShequModel *model in dataModel.data) {
+                         ShequFrameModel *frameModel = [[ShequFrameModel alloc] init];
+                         frameModel.shequModel = model;
+                         [self.dataArray addObject:frameModel];
+                     }
+                     if (dataModel.data.count) {
+                         [self.tableView reloadData];
+                     }
+                 } failureBlock:^(__kindof AppBaseModel *error) {
+                     @strongify(self);
+                     [self.tableView.mj_header endRefreshing];
+                     [self.tableView.mj_footer endRefreshing];
+                     [AppBaseHud showHudWithfail:error.errstr view:self.view];
+                 }];
 }
 
 #pragma mark-- tableview 代理
@@ -205,10 +287,6 @@
 
 
 #pragma mark-- UI
-- (void)setNavigation {
-    self.navigationItem.title = @"社区";
-    [self.rightButton setImage:[UIImage imageNamed:@"shequ_right"]];
-}
 
 - (void)rightButtonAction {
     [AppBaseHud showHudWithLoding:self.view];
@@ -254,8 +332,8 @@
     
     self.cycleScrollView.delegate = self;
     self.tableView.tableHeaderView = self.cycleScrollView;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForHeader)];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFooter)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForNewHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netforNew)];
     [self.tableView.mj_header beginRefreshing];
 }
 
@@ -268,6 +346,106 @@
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     }
     return _cycleScrollView;
+}
+
+- (void)buttonDidClick:(UIButton *)button {
+    if (button == self.selectButton) {
+        return;
+    }
+    
+    self.selectButton.selected = NO;
+    button.selected = YES;
+    self.selectButton = button;
+    
+    if (self.selectButton.tag == 100) {
+        [self.rightButton setImage:[UIImage imageNamed:@"shequ_right"]];
+    } else {
+        [self.rightButton setImage:[UIImage imageNamed:@""]];
+    }
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    
+    if (self.selectButton.tag == 100) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForNewHeader)];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netforNew)];
+
+        [self netForNewHeader];
+    } else if (self.selectButton.tag == 200) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForFriendHeader)];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFriend)];
+
+        [self netForFriendHeader];
+    } else if (self.selectButton.tag == 300) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForNearHeader)];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForNear)];
+
+        [self netForNearHeader];
+    }
+    
+    [self.dataArray removeAllObjects];
+    [self.tableView reloadData];
+}
+
+- (void)setNavigation {
+    
+    [self.rightButton setImage:[UIImage imageNamed:@"shequ_right"]];
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, AutoSize6(400), AutoSize6(68))];
+    titleView.layer.borderColor = kColorDefaultColor.CGColor;
+    titleView.layer.borderWidth = 1;
+    titleView.layer.cornerRadius = 5;
+    titleView.clipsToBounds = YES;
+    
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, titleView.width / 3 - 1, titleView.height)];
+    [leftButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
+    [leftButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton setTitle:@"最新" forState:UIControlStateNormal];
+    [leftButton setTitle:@"最新" forState:UIControlStateSelected];
+    leftButton.titleLabel.font = kFont6(24);
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    leftButton.selected = YES;
+    self.selectButton = leftButton;
+    leftButton.tag = 100;
+    [titleView addSubview:leftButton];
+    
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(leftButton.right, 0, 1, titleView.height)];
+    line1.backgroundColor = kColorDefaultColor;
+    [titleView addSubview:line1];
+    
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(leftButton.right + 1, 0, titleView.width / 3 - 1, titleView.height)];
+    [rightButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
+    [rightButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton setTitle:@"关注" forState:UIControlStateNormal];
+    [rightButton setTitle:@"关注" forState:UIControlStateSelected];
+    rightButton.titleLabel.font = kFont6(24);
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    rightButton.tag = 200;
+    
+    [titleView addSubview:rightButton];
+    
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(rightButton.right, 0, 1, titleView.height)];
+    line2.backgroundColor = kColorDefaultColor;
+    [titleView addSubview:line2];
+    
+    UIButton *scolreButton = [[UIButton alloc] initWithFrame:CGRectMake(rightButton.right + 1, 0, titleView.width / 3 - 1, titleView.height)];
+    [scolreButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:kColorDefaultColor withSize:leftButton.size] forState:UIControlStateSelected];
+    [scolreButton setBackgroundImage:[[UIImage alloc] drawImageWithBackgroudColor:[UIColor whiteColor] withSize:leftButton.size] forState:UIControlStateNormal];
+    [scolreButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [scolreButton setTitle:@"附近" forState:UIControlStateNormal];
+    [scolreButton setTitle:@"附近" forState:UIControlStateSelected];
+    scolreButton.titleLabel.font = kFont6(24);
+    [scolreButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [scolreButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    scolreButton.tag = 300;
+    
+    [titleView addSubview:scolreButton];
+    
+    self.navigationItem.titleView = titleView;
 }
 
 @end

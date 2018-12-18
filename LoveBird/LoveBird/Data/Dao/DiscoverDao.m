@@ -26,6 +26,8 @@
 + (void)getShequList:(NSInteger)page
              groupId:(NSString *)groupId
               sortId:(NSString *)sortId
+            province:(NSString *)province
+                city:(NSString *)city
         successBlock:(LFRequestSuccess)successBlock
         failureBlock:(LFRequestFail)failureBlock {
     
@@ -34,6 +36,8 @@
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(groupId) forKey:@"groupId"];
     [dic setObject:EMPTY_STRING_IF_NIL(sortId) forKey:@"sortId"];
+    [dic setObject:EMPTY_STRING_IF_NIL(province) forKey:@"province"];
+    [dic setObject:EMPTY_STRING_IF_NIL(city) forKey:@"city"];
 
     [AppHttpManager POST:kAPI_Discover_ShequList parameters:dic jsonModelName:[ShequDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
