@@ -125,9 +125,14 @@
         _toolView.contentModel = cellLayoutModel.contentModel;
         
         if (cellLayoutModel.contentModel.show_picsum.integerValue) {
+            self.imageCountLabel.hidden = NO;
+
             self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
             self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", cellLayoutModel.contentModel.picsum];
+        } else {
+            self.imageCountLabel.hidden = YES;
         }
+
         
     } else if (cellLayoutModel.zhuangbeiModel) {
         

@@ -115,8 +115,11 @@
     self.timeLabel.text = [[AppDateManager shareManager] getDateWithTime:shequFrameModel.shequModel.dateline formatSytle:DateFormatYMD];
     
     if (shequFrameModel.shequModel.show_picsum.integerValue) {
+        self.imageCountLabel.hidden = NO;
         self.imageCountLabel.frame = CGRectMake(0, self.contentImageView.height - AutoSize6(54), AutoSize6(100), AutoSize6(54));
         self.imageCountLabel.text = [NSString stringWithFormat:@"%@张", shequFrameModel.shequModel.picsum];
+    } else {
+        self.imageCountLabel.hidden = YES;
     }
 }
 
