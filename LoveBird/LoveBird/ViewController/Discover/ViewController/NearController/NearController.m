@@ -35,8 +35,10 @@
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>//只引入所需的单个头文件
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>//只引入所需的单个头文件
 
+#import <BaiduMapAPI_Search/BMKGeocodeSearchOption.h>
 
-@interface NearController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate,UITextFieldDelegate, BMKPoiSearchDelegate>
+
+@interface NearController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate,UITextFieldDelegate, BMKPoiSearchDelegate, BMKGeoCodeSearchDelegate>
 
 //百度地图
 @property (nonatomic, strong) BMKMapView *bMapView;
@@ -334,10 +336,8 @@
                 [UserPage sharedInstance].lat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
                 [UserPage sharedInstance].lng = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
                 [UserPage sharedInstance].locale = [NSString stringWithFormat:@"%@%@%@%@",placemark.country, placemark.locality, placemark.subLocality, placemark.thoroughfare];
-                [UserPage sharedInstance].province = city;
-                [UserPage sharedInstance].city = city;
 //                BMKAddressComponent
-
+//BMKReverseGeoCodeSearchResult
                 //                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
                 //                NSArray* records = [_offlineMap searchCity:city];
                 //                BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];
@@ -349,6 +349,14 @@
         }
     }];
 
+}
+
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeSearchResult *)result errorCode:(BMKSearchErrorCode)error {
+    
+    if (error == BMK_OPEN_NO_ERROR) {
+        [UserPage sharedInstance].province = result.addressDetail.province;
+        [UserPage sharedInstance].city = result.addressDetail.city;
+    }
 }
 
 #pragma mark -- 回到用户的位置。
@@ -392,6 +400,14 @@
     region.span.longitudeDelta = 0;
     NSLog(@"当前的坐标是:%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [self getLocationCityName:userLocation.location];
+    
+    
+    // 根据经纬度反编码
+    BMKGeoCodeSearch *geocodesearch = [[BMKGeoCodeSearch alloc]init];
+    geocodesearch.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    BMKReverseGeoCodeSearchOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeSearchOption alloc]init];
+    reverseGeocodeSearchOption.location = userLocation.location.coordinate;
+    [geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
 }
 
 /**
