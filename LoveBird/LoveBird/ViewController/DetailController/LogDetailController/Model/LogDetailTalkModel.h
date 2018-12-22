@@ -29,6 +29,10 @@
 
 @property (nonatomic, copy) NSString *content;
 
+// 第二层回复
+@property (nonatomic, copy) NSString *quote;
+
+
 @property (nonatomic, copy) NSString *dateline;
 
 @property (nonatomic, copy) NSString *head;
@@ -41,6 +45,9 @@
 
 
 @property (nonatomic, assign) BOOL isUp;
+
+
+@property (nonatomic, copy) NSString *pid;
 
 
 @end

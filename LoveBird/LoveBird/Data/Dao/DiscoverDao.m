@@ -303,11 +303,15 @@
 
 
 // 发评论
-+ (void)talkWithTid:(NSString *)tid content:(NSString *)content successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)talkWithTid:(NSString *)tid content:(NSString *)content pid:(NSString *)pid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(tid) forKey:@"tid"];
     [dic setObject:EMPTY_STRING_IF_NIL(content) forKey:@"comment"];
+    
+    if (pid.length) {
+        [dic setObject:EMPTY_STRING_IF_NIL(pid) forKey:@"pid"];
+    }
 
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     

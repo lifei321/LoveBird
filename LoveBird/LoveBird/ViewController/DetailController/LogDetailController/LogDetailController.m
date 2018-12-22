@@ -80,6 +80,11 @@
 @property (nonatomic, strong) NSMutableArray *photoArray;
 
 
+@property (nonatomic, copy) NSString *placeString;
+
+// 楼层
+@property (nonatomic, copy) NSString *pid;
+
 @end
 
 @implementation LogDetailController
@@ -268,6 +273,11 @@
         if (self.dataArray.count > row) {
             birdcell.bodyModel = self.dataArray[row];
         }
+        birdcell.huifuBlock = ^(LogDetailTalkModel *bodyModel) {
+            self.placeString = [NSString stringWithFormat:@"@%@:", bodyModel.userName];
+            self.pid = bodyModel.pid;
+            [self talkButtonDidClick:nil];
+        };
         cell = birdcell;
     }
 
@@ -785,10 +795,14 @@
 
 - (void)talkButtonDidClick:(UIButton *)button {
     
+    self.placeString = button ? @"写一条高能评论": self.placeString;
+    self.pid = button ? nil : self.pid;
+    
     [self registerForKeyboardNotifications];
     self.toolView.hidden = YES;
     self.talkView.hidden = NO;
     [self.talkTextField becomeFirstResponder];
+    self.talkTextField.placeholder = self.placeString;
 }
 
 - (void)upButtonDidClick:(UIButton *)button {
@@ -852,7 +866,7 @@
     } else if (self.tid.length) {
         stringId = self.tid;
     }
-    [DiscoverDao talkWithTid:stringId content:self.talkTextField.text successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao talkWithTid:stringId content:self.talkTextField.text pid:self.pid successBlock:^(__kindof AppBaseModel *responseObject) {
 
     } failureBlock:^(__kindof AppBaseModel *error) {
         
@@ -870,7 +884,7 @@
     
     UITextField *textFieled = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(15), SCREEN_WIDTH - AutoSize6(16) - AutoSize6(150), talkView.height - AutoSize6(32))];
     textFieled.backgroundColor = kColoreDefaultBackgroundColor;
-    textFieled.placeholder = @"写一条高能评论";
+    textFieled.placeholder = self.placeString;
     textFieled.textColor = kColorTextColor333333;
     textFieled.layer.cornerRadius = 5;
     [talkView addSubview:textFieled];

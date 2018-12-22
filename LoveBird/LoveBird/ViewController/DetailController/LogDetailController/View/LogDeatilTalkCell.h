@@ -12,6 +12,9 @@
 
 @interface LogDeatilTalkCell : UITableViewCell
 
+@property (nonatomic, strong)  void(^huifuBlock)(LogDetailTalkModel *bodyModel);
+
+
 @property (nonatomic, strong) LogDetailTalkModel *bodyModel;
 
 

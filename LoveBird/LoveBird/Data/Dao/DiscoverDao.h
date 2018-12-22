@@ -59,5 +59,5 @@
 + (void)getHuaTiList:(NSString *)word page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 发评论
-+ (void)talkWithTid:(NSString *)tid content:(NSString *)content successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
++ (void)talkWithTid:(NSString *)tid content:(NSString *)content pid:(NSString *)pid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 @end
