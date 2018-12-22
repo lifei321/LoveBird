@@ -9,7 +9,7 @@
 #import "AppManager.h"
 #import "SetDao.h"
 #import "MessageModel.h"
-
+#import "GlobelMessage.h"
 
 @implementation AppManager
 
@@ -41,7 +41,19 @@
     } failureBlock:^(__kindof AppBaseModel *error) {
         
     }];
+}
+
+
+- (void)netForGlobleData {
     
+    [SetDao getGlobelSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        GlobelMessage *countmodel = (GlobelMessage *)responseObject;
+        [AppManager sharedInstance].maxPicCount = countmodel.maxBird;
+        [[NSUserDefaults standardUserDefaults] setObject:countmodel.maxBird forKey:@"maxBird"];
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        [AppManager sharedInstance].maxPicCount = [[NSUserDefaults standardUserDefaults] objectForKey:@"maxBird"];
+    }];
 }
 
 

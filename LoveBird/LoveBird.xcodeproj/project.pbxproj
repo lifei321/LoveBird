@@ -369,6 +369,7 @@
 		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
 		8BE85A3D21CE113300836585 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A3C21CE113300836585 /* AppManager.m */; };
 		8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */; };
+		8BE85A4321CE358C00836585 /* GlobelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4221CE358C00836585 /* GlobelMessage.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -1111,6 +1112,8 @@
 		8BE85A3C21CE113300836585 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		8BE85A4021CE1C5B00836585 /* LoveBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveBird.entitlements; sourceTree = "<group>"; };
+		8BE85A4121CE358C00836585 /* GlobelMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobelMessage.h; sourceTree = "<group>"; };
+		8BE85A4221CE358C00836585 /* GlobelMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobelMessage.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2026,6 +2029,8 @@
 				1F16D8D220C826A700A6C11D /* MessageModel.m */,
 				1F2A84C52143C10D008BC55A /* MineLocationModel.h */,
 				1F2A84C62143C10D008BC55A /* MineLocationModel.m */,
+				8BE85A4121CE358C00836585 /* GlobelMessage.h */,
+				8BE85A4221CE358C00836585 /* GlobelMessage.m */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -3704,6 +3709,7 @@
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
 				1F8CFFA32149523200C00B8E /* UICollectionViewCell+RITLPhotosAsset.m in Sources */,
 				1F16D8E020CD38DD00A6C11D /* MatchNoteViewController.m in Sources */,
+				8BE85A4321CE358C00836585 /* GlobelMessage.m in Sources */,
 				1F2A859321440376008BC55A /* MineDetailView.m in Sources */,
 				1F306232204AA29000784C62 /* TimeLinePictureView.m in Sources */,
 				0BA419DB202357E2002C6335 /* DiscoverHeaderCell.m in Sources */,

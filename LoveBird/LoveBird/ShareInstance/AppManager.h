@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)netForMessageCount;
 
+- (void)netForGlobleData;
+
 // 消息数量
 @property (nonatomic, copy) NSString *messageCount;
 

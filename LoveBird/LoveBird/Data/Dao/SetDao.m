@@ -9,6 +9,7 @@
 #import "SetDao.h"
 #import "MessageModel.h"
 #import "MineLocationModel.h"
+#import "GlobelMessage.h"
 
 @implementation SetDao
 
@@ -131,6 +132,22 @@
         }
     }];
 }
+
++(void)getGlobelSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [AppHttpManager POST:kAPI_GET_GLOBLE_DATA parameters:dic jsonModelName:[GlobelMessage class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 
 
 @end

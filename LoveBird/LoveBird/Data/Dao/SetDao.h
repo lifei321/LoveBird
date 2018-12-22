@@ -37,5 +37,7 @@
 
 
 +(void)getMessageSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
++(void)getGlobelSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
 

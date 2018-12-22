@@ -400,6 +400,10 @@
 // 消息详情
 #define kAPI_Set_MessageDetail kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=message")
 
+// 获取全局数据
+#define kAPI_GET_GLOBLE_DATA kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=configGlobal")
+
+
 
 #pragma mark-- 搜索
 

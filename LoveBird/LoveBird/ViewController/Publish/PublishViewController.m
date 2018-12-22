@@ -212,6 +212,14 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     // 选择鸟种
     if (indexPath.section == 0) {
 
+        if (self.birdInfoArray.count > [AppManager sharedInstance].maxPicCount.integerValue) {
+            NSString * messagestr = [NSString stringWithFormat:@"每次最多可发布%@种鸟", [AppManager sharedInstance].maxPicCount];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:messagestr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+        
         if (indexPath.row == (self.birdInfoArray.count - 1)) { // 添加鸟种
             PublishSelectBirdController *selvc = [[PublishSelectBirdController alloc] init];
             selvc.selectArray = [NSMutableArray arrayWithArray:self.birdInfoArray];
