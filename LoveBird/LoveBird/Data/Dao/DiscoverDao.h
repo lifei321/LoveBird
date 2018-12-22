@@ -56,7 +56,7 @@
 + (void)getZZList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 全局话题
-+ (void)getHuaTiList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++ (void)getHuaTiList:(NSString *)word page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 发评论
 + (void)talkWithTid:(NSString *)tid content:(NSString *)content successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;

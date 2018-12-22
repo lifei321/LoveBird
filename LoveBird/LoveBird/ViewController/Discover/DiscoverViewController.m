@@ -504,16 +504,34 @@
 #pragma mark-- 全局搜索设置
 - (void)setWord:(NSString *)word {
     _word = [word copy];
+    
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForSearchDataHeader)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForSearchData)];
+
+    
+    [self netForSearchDataHeader];
+}
+
+- (void)netForSearchDataHeader {
+    self.pageNum = 1;
     [self netForSearchData];
 }
 
 - (void)netForSearchData {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DiscoverDao getHuaTiList:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getHuaTiList:self.word page:self.pageNum successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
+        [self.tableView.mj_footer endRefreshing];
+
         [AppBaseHud hideHud:self.view];
         DiscoverContentDataModel *dataModel = (DiscoverContentDataModel *)responseObject;
+        if (self.pageNum == 1) {
+            [self.viewModel.dataSourceArray removeAllObjects];
+        }
+        self.pageNum++ ;
         
         for (DiscoverContentModel *model in dataModel.data) {
             TimeLineLayoutModel *lineModel = [[TimeLineLayoutModel alloc] init];
@@ -521,12 +539,11 @@
             [self.viewModel.dataSourceArray addObject:lineModel];
             
         }
-        [AppCache setObject:dataModel forKey:kStringForContent];
-        
         [self.tableView reloadData];
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 

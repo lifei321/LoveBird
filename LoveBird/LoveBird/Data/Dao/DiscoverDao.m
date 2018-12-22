@@ -279,11 +279,13 @@
 }
 
 // 全局话题
-+ (void)getHuaTiList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getHuaTiList:(NSString *)word page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
+    NSString *pagestr = [NSString stringWithFormat:@"%ld", page];
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(pagestr) forKey:@"page"];
 
     [AppHttpManager POST:kAPI_Discover_Search_birdarticle parameters:dic jsonModelName:[DiscoverContentDataModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
