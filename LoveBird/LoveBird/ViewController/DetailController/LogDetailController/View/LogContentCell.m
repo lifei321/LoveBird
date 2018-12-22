@@ -64,7 +64,7 @@
 
 - (void)jumptoBirdDetail {
     BirdDetailController *birdDetail = [[BirdDetailController alloc] init];
-    birdDetail.cspCode = self.contentModel.cspCode;
+    birdDetail.cspCode = self.contentModel.csp_code;
     [[UIViewController currentViewController].navigationController pushViewController:birdDetail animated:YES];
 }
 

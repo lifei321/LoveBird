@@ -69,7 +69,7 @@
         chinaLabel.font = kFont6(26);
         chinaLabel.textColor = kColorTextColorLightGraya2a2a2;
         chinaLabel.textAlignment = NSTextAlignmentLeft;
-        chinaLabel.text = @"华盛顿公约CITES";
+        chinaLabel.text = @"中国法律保护等级";
         [self.contentView addSubview:chinaLabel];
         
         self.chinaLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + AutoSize6(20), chinaLabel.top, SCREEN_WIDTH / 2 - AutoSize6(50), AutoSize6(40))];
