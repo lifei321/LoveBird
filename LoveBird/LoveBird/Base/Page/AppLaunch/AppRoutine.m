@@ -54,6 +54,8 @@
 - (void)applaunched {
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    [UITabBar appearance].translucent = NO;
 
     //配置网络请求
     [self configNetwork];
