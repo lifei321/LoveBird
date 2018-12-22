@@ -105,8 +105,8 @@
     [DiscoverDao getShequList:self.page
                       groupId:self.groupId
                        sortId:self.sortId
-                     province:@""
-                         city:@""
+                     province:[UserPage sharedInstance].province
+                         city:[UserPage sharedInstance].city
                  successBlock:^(__kindof AppBaseModel *responseObject) {
                      @strongify(self);
                      [AppBaseHud hideHud:self.view];
