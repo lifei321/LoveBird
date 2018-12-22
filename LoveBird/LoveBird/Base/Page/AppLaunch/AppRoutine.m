@@ -55,6 +55,7 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
+    // tabbar push返回的时候 位置有偏移
     [UITabBar appearance].translucent = NO;
 
     //配置网络请求
