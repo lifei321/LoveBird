@@ -101,6 +101,8 @@ PODS:
   - TMCache (2.1.0)
   - TTTAttributedLabel (1.13.4)
   - UMCCommon (1.5.2)
+  - UMCPush (3.2.3):
+    - UMCCommon
   - UMCSecurityPlugins (1.0.6)
   - UMCShare/Core (6.9.4):
     - UMCCommon
@@ -161,6 +163,7 @@ DEPENDENCIES:
   - TMCache (= 2.1.0)
   - TTTAttributedLabel (= 1.13.4)
   - UMCCommon
+  - UMCPush
   - UMCSecurityPlugins
   - UMCShare/Social/QQ
   - UMCShare/Social/Sina
@@ -201,6 +204,7 @@ SPEC REPOS:
     - TMCache
     - TTTAttributedLabel
     - UMCCommon
+    - UMCPush
     - UMCSecurityPlugins
     - UMCShare
     - WebViewJavascriptBridge
@@ -237,6 +241,7 @@ SPEC CHECKSUMS:
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UMCCommon: 4392868ac47ff1b101663106bb114ba616fabbad
+  UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: aa233aecad67979930fe43f3a2f676023b669439
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
@@ -244,6 +249,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ded95405835d28b589d574b16e9779652e5e6588
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b16eb1b9e640b46beee6df9164cb9c2fc9d8070f
+PODFILE CHECKSUM: 0201ec83e8f3649254c69f15be9606832a12f2d9
 
 COCOAPODS: 1.5.3

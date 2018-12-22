@@ -24,6 +24,14 @@
     BOOL _isFirstLoad;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

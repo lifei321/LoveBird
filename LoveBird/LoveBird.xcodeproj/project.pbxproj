@@ -368,6 +368,7 @@
 		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
 		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
 		8BE85A3D21CE113300836585 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A3C21CE113300836585 /* AppManager.m */; };
+		8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -1108,6 +1109,8 @@
 		1FDC3431214E870900500DFD /* MineMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageViewController.m; sourceTree = "<group>"; };
 		8BE85A3B21CE113300836585 /* AppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		8BE85A3C21CE113300836585 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
+		8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		8BE85A4021CE1C5B00836585 /* LoveBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveBird.entitlements; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1117,6 +1120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */,
 				C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1333,6 +1337,7 @@
 		0B7293031EFA4F1100D1B1EB /* LoveBird */ = {
 			isa = PBXGroup;
 			children = (
+				8BE85A4021CE1C5B00836585 /* LoveBird.entitlements */,
 				0B75D51E1FBD9D8B008D7AE6 /* Base */,
 				0B72931D1EFA4F9200D1B1EB /* BaseViewController */,
 				0B72931F1EFA503E00D1B1EB /* Macro */,
@@ -1764,6 +1769,7 @@
 		1301B90486CF26C17815B39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */,
 				CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */,
 			);
 			name = Frameworks;
@@ -3405,6 +3411,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -4020,6 +4029,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LoveBird/LoveBird.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MZF5QVQ8GK;
@@ -4077,6 +4087,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LoveBird/LoveBird.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MZF5QVQ8GK;

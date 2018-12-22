@@ -15,13 +15,11 @@
 
 
 //设置推送基本信息
-- (void)setPush ;
+- (void)setPushWithLaunchOptions:(NSDictionary * __nullable)launchOptions;
+
 
 //注册成功 保存devicetoken
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken ;
-
-//恢复SDK运行
-- (void)resume;
 
 // 收到推送消息
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo;

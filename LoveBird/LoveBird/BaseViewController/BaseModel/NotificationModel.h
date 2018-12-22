@@ -10,31 +10,36 @@
 
 @interface NotificationModel : AppBaseModel
 
-/**
- *  标题
- */
-@property (nonatomic, copy) NSString *title;
+///**
+// *  标题
+// */
+//@property (nonatomic, copy) NSString *title;
+//
+///**
+// *  消息内容
+// */
+//@property (nonatomic, copy) NSString *message;
+//
+///**
+// *  附带参数 里面包括跳转需要的参数
+// */
+//@property (nonatomic, copy) NSString *extradata;
+//
+///**
+// *  执行的操作
+// */
+//@property (nonatomic, copy) NSString *action;
+//
+//
+///**
+// *  message id
+// */
+//@property (nonatomic, copy) NSString *msgId;
 
-/**
- *  消息内容
- */
-@property (nonatomic, copy) NSString *message;
+// 跳转动作
+@property (nonatomic, copy) NSString *view_status;
 
-/**
- *  附带参数 里面包括跳转需要的参数
- */
-@property (nonatomic, copy) NSString *extradata;
-
-/**
- *  执行的操作
- */
-@property (nonatomic, copy) NSString *action;
-
-
-/**
- *  message id
- */
-@property (nonatomic, copy) NSString *msgId;
-
+// 帖子id
+@property (nonatomic, copy) NSString *pushId;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "AppPush.h"
-#import <GTSDK/GeTuiSdk.h>
+#import <UMPush/UMessage.h>
 #import "NotificationModel.h"
 #import "JSONKit.h"
 #import "AppAlertView.h"
@@ -17,7 +17,12 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface AppPush ()<GeTuiSdkDelegate>
+
+#import "LogDetailController.h"
+#import "MatchDetailController.h"
+
+
+@interface AppPush ()
 
 @end
 
@@ -36,12 +41,17 @@
 
 
 #pragma mark-- 注册
-- (void)setPush {
+- (void)setPushWithLaunchOptions:(NSDictionary * __nullable)launchOptions {
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-
-    // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
-    [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:(id<GeTuiSdkDelegate>)self];
+    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
+    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
+    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionAlert;
+    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+        } else {
+            
+        }
+    }];
     
     // 注册 APNS
     [[AppPush sharedAppPush] registerPush];
@@ -51,6 +61,9 @@
 
 #pragma mark--  远程通知注册
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                             stringByReplacingOccurrencesOfString: @">" withString: @""]
+                                             stringByReplacingOccurrencesOfString: @" " withString: @""]);
     
     // 真机上才处理Token，模拟器上生成的Token在后台会报错
 #if !(TARGET_IPHONE_SIMULATOR)
@@ -62,66 +75,25 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         // 向个推服务器注册deviceToken
-        [GeTuiSdk registerDeviceToken:token];
+        [UMessage registerDeviceToken:deviceToken];
         
         //上传
         [self appRegisteredWithPushToken];
     }
-#endif
-}
+    
 
-#pragma mark--   恢复SDK运行  支持APP 后台刷新数据，
-- (void)resume {
-    [GeTuiSdk resume];
+#endif
 }
 
 
 #pragma mark- 接收到推送消息
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    // 将收到的APNs信息传给个推统计
-    [GeTuiSdk handleRemoteNotification:userInfo];
+    [UMessage setAutoAlert:NO];
+    [UMessage didReceiveRemoteNotification:userInfo];
     
     [self processRemoteNotification:userInfo];
 }
-
-#pragma mark--- GTSDK代理
-
-/** SDK启动成功返回cid */
-- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
-    
-    //个推SDK已注册，返回clientId
-    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
-}
-
-/** SDK遇到错误回调 */
-- (void)GeTuiSdkDidOccurError:(NSError *)error {
-    
-    //个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知。
-    NSLog(@"\n>>>[GexinSdk error]:%@\n\n", [error localizedDescription]);
-}
-
-/** SDK收到透传消息回调 */  // App 在前台运行时 收到推送消息
-- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
-    
-    if (!offLine) { //如果是离线消息，不处理
-        NSDictionary *payload = [NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:nil];
-        if (payload) {
-            NSDictionary *userInfo = @{@"payload" : payload};
-            
-            //拼接好userInfo
-            [self processRemoteNotification:userInfo];
-            
-            //统计推送到达量
-            NotificationModel *model = [[NotificationModel alloc] initWithDictionary:payload error:nil];
-            NSDictionary *extraDict;
-            if (model && [model.extradata isKindOfClass:[NSString class]]) {//为空不执行
-                extraDict = [model.extradata objectFromJSONString];;
-            }
-        }
-    }
-}
-
 
 
 #pragma mark-- 对通知消息的处理
@@ -131,20 +103,22 @@
  */
 - (NSDictionary *)handleUserInfo:(NSDictionary *)userInfo {
     
-    NSMutableDictionary *resultInfo = [NSMutableDictionary dictionary];
-    if (userInfo[@"payload"]) {
-        NSDictionary *payloadDic = userInfo[@"payload"];
-        
-        if ([payloadDic isKindOfClass:[NSString class]]) {
-            NSData *data = [userInfo[@"payload"] dataUsingEncoding:NSUTF8StringEncoding];
-            payloadDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            
-            if (payloadDic != nil) {
-                resultInfo[@"payload"] = payloadDic;
+    NSMutableDictionary *resultInfo;
+    if ([userInfo objectForKey:@"aps"]) {
+        NSDictionary *apsInfo = userInfo[@"aps"];
+        if ([apsInfo isKindOfClass:[NSDictionary class]] && [apsInfo objectForKey:@"appGo"]) {
+            NSString *payloadDic = [apsInfo objectForKey:@"appGo"];
+            NSData *jsonData = [payloadDic dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *err;
+            resultInfo = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&err];
+            if (resultInfo && !err) {
+                return resultInfo;
             }
         }
     }
-    return [resultInfo copy];
+    return [NSMutableDictionary dictionary];
 }
 
 /**
@@ -160,38 +134,13 @@
         return;
     }
     
-    if (![model.extradata isKindOfClass:[NSString class]]) {
-        return;
-    }
     
-    NSDictionary *extraDict = [model.extradata objectFromJSONString];
-    BOOL atLaunch = ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) ? NO : YES;
+    BOOL atLaunch = ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) ? NO : YES;
     if (atLaunch) { //后台切前台直接route
         
-        [self routeViewControllerWithAction:model.action extraData:extraDict];
-    } else { //当前app是打开的，弹窗
-        
-        AppAlertView *alertView = [[AppAlertView alloc] initWithTitle:model.title message:model.message cancelButtonTitle:@"关闭" otherButtonTitles:@"查看", nil];
-        
-        alertView.onDismissBlock = ^(NSInteger index) {
-            if (index == alertView.firstOtherButtonIndex) {
-                [self routeViewControllerWithAction:model.action extraData:extraDict];
-            }
-        };
-        [alertView show];
+        [self routeViewControllerWithNotifyModel:model];
     }
 }
-
-/**
- *  不同的action跳转到不同的VC
- *
- *  @param action    跳转的参数：1，2，3，4
- *  @param extradata 额外参数
- */
-- (void)routeViewControllerWithAction:(NSString *)action extraData:(NSDictionary *)extradata {
-    
-}
-
 
 #pragma mark- 向服务器上传token
 - (void)appRegisteredWithPushToken {
@@ -199,7 +148,7 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kDeviceToken];
     
     //上传token
-    
+    NSLog(@"token----  %@", token);
 }
 
 
@@ -246,5 +195,42 @@
     //        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
     //    }
 }
+
+
+
+
+
+/**
+ *  不同的action跳转到不同的VC
+ */
+- (void)routeViewControllerWithNotifyModel:(NotificationModel *)model {
+
+    if (model.view_status.integerValue == 100) {
+        // 日志详情
+        LogDetailController *logDetailVC = [[LogDetailController alloc] init];
+        logDetailVC.tid = model.pushId;
+        [[UIViewController currentViewController].navigationController pushViewController:logDetailVC animated:YES];
+        
+    } else if (model.view_status.integerValue == 200) {
+        // 文章详情
+        LogDetailController *logDetailVC = [[LogDetailController alloc] init];
+        logDetailVC.aid = model.pushId;
+        [[UIViewController currentViewController].navigationController pushViewController:logDetailVC animated:YES];
+        
+    } else if (model.view_status.integerValue == 300) {
+        // 大赛详情
+        MatchDetailController *logDetailVC = [[MatchDetailController alloc] init];
+        logDetailVC.matchid = model.pushId;
+        [[UIViewController currentViewController].navigationController pushViewController:logDetailVC animated:YES];
+        
+    } else if (model.view_status.integerValue == 400) {
+        // webview
+        AppWebViewController *webvc = [[AppWebViewController alloc] init];
+        webvc.startupUrlString = model.pushId;
+        [[UIViewController currentViewController].navigationController pushViewController:webvc animated:YES];
+    }
+    
+}
+
 
 @end

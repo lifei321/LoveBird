@@ -42,7 +42,7 @@
     [[AppRoutine sharedRoutine] applaunched];
     
     //推送设置
-    [[AppPush sharedAppPush] setPush];
+    [[AppPush sharedAppPush] setPushWithLaunchOptions:launchOptions];
     
     //引导页
 //    [[AppGuideManager shareManager] showGuideView];
@@ -65,7 +65,7 @@
 #pragma mark--- 注册推送
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken  {
-    
+
     //保存devicetoken
     [[AppPush sharedAppPush] didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
@@ -79,22 +79,17 @@
 
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    
+
     NSLog(@"\n>>>[DeviceToken Error]:%@\n\n", error.description);
 }
 
 
 #pragma mark--   支持 APP 后台刷新数据，
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    /// Background Fetch 恢复SDK 运行
-    [[AppPush sharedAppPush] resume];
-
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
@@ -102,16 +97,16 @@
 #pragma mark-- 接受到推送消息
 //  在iOS 10 以前，处理 APNs 通知点击事件
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
+
     // 将收到的APNs信息传给个推统计
     [[AppPush sharedAppPush] didReceiveRemoteNotification:userInfo];
-    
+
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
+
     [[AppPush sharedAppPush] didReceiveRemoteNotification:userInfo];
 }
 
@@ -121,7 +116,7 @@
 
 //  iOS 10: App在前台获取到通知
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    
+
     // 根据APP需要，判断是否要提示用户Badge、Sound、Alert
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
@@ -129,7 +124,7 @@
 //  iOS 10: 点击通知进入App时触发，在该方法内统计有效用户点击数
 //  对于iOS 10 及以后版本，处理 APNs 通知点击
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
-    
+
     // 将收到的APNs信息传给个推统计
     [[AppPush sharedAppPush] didReceiveRemoteNotification:response.notification.request.content.userInfo];
 
