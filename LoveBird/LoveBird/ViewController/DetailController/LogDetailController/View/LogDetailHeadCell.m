@@ -43,28 +43,6 @@
 
 - (void)setDataArray:(NSArray *)dataArray {
     _dataArray = [dataArray copy];
-    
-    NSMutableArray *array = [NSMutableArray new];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-
-    _dataArray = [NSArray arrayWithArray:array];
     self.birdLabel.text = [NSString stringWithFormat:@"已有%ld人赞过", self.dataArray.count];
 
     CGFloat top = self.birdLabel.bottom + AutoSize6(20);
@@ -118,27 +96,6 @@
 }
 
 + (CGFloat)getHeight:(NSArray *)dataArray {
-    NSMutableArray *array = [NSMutableArray new];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-    [array addObjectsFromArray:dataArray];
-
-    dataArray = [NSArray arrayWithArray:array];
     
     CGFloat top = 0.0;
     int count = 0;
