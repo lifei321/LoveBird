@@ -28,6 +28,9 @@ static NSString *DateFormatD = @"dd";
 
 static NSString *DateFormatM = @"MM";
 
+static NSString *DateFormatY = @"yyyy";
+
+
 @interface AppDateManager : NSObject
 
 // 时间样式
@@ -41,6 +44,14 @@ static NSString *DateFormatM = @"MM";
  *  @return 当前时间
  */
 - (NSString *)getCurrentDate;
+
+/**
+ *  获取当前年份，例如：2015
+ *
+ *  @return 当前时间
+ */
+- (NSString *)getCurrentYear;
+
 
 /**
  *  获取当前时间，例如：20150730

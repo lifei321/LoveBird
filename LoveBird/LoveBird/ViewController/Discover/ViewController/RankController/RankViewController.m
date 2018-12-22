@@ -15,7 +15,7 @@
 #import "WZSwitch.h"
 
 
-@interface RankViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface RankViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, copy) NSString *type;
 
@@ -23,7 +23,9 @@
 
 @property (nonatomic, strong) UIButton *selectButton;
 
-@property (nonatomic, strong) UIImageView *headerView;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 
 @property (nonatomic, strong) UILabel *firstLabel;
 
@@ -33,6 +35,10 @@
 
 @property (nonatomic , copy) NSString *isYear;
 
+@property (nonatomic, strong) NSMutableArray *labelArray;
+
+@property (nonatomic , copy) NSString *currentYear;
+
 @end
 
 @implementation RankViewController
@@ -41,7 +47,8 @@
     [super viewDidLoad];
     
     _dataArray = [NSMutableArray new];
-    
+    _labelArray = [NSMutableArray new];
+
     [self setNavigation];
     
     // 设置UI
@@ -55,7 +62,7 @@
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [DiscoverDao getRankList:self.matchId type:self.type isYear:self.isYear successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getRankList:self.matchId type:self.type isYear:self.isYear year:self.currentYear successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         
         [AppBaseHud hideHud:self.view];
@@ -98,6 +105,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01f;
 }
 
 - (void)buttonDidClick:(UIButton *)button {
@@ -211,30 +222,94 @@
 
 }
 
-- (UIImageView *)headerView {
+- (UIView *)headerView {
     if (!_headerView) {
-        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(375))];
-        _headerView.image = [UIImage imageNamed:@"mine_header_back"];
-        _headerView.contentMode = UIViewContentModeScaleToFill;
-
-        self.firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(140), AutoSize6(100), SCREEN_WIDTH - AutoSize6(280), AutoSize6(54))];
-        self.firstLabel.textAlignment = NSTextAlignmentCenter;
-        self.firstLabel.textColor = [UIColor whiteColor];
-        self.firstLabel.backgroundColor = [UIColor blackColor];
-        self.firstLabel.alpha = 0.6;
-        self.firstLabel.font = kFont6(26);
-        [_headerView addSubview:self.firstLabel];
+//        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(375))];
+//        _headerView.image = [UIImage imageNamed:@"mine_header_back"];
+//        _headerView.contentMode = UIViewContentModeScaleToFill;
+//
+//        self.firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(140), AutoSize6(100), SCREEN_WIDTH - AutoSize6(280), AutoSize6(54))];
+//        self.firstLabel.textAlignment = NSTextAlignmentCenter;
+//        self.firstLabel.textColor = [UIColor whiteColor];
+//        self.firstLabel.backgroundColor = [UIColor blackColor];
+//        self.firstLabel.alpha = 0.6;
+//        self.firstLabel.font = kFont6(26);
+//        [_headerView addSubview:self.firstLabel];
+//
+//        self.secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(95), self.firstLabel.bottom + AutoSize6(26),SCREEN_WIDTH - AutoSize6(190), AutoSize6(65))];
+//        self.secondLabel.textAlignment = NSTextAlignmentCenter;
+//        self.secondLabel.textColor = [UIColor whiteColor];
+//        self.secondLabel.font = kFont6(40);
+//        self.secondLabel.backgroundColor = [UIColor blackColor];
+//        self.secondLabel.alpha = 0.6;
+//        [_headerView addSubview:self.secondLabel];
         
-        self.secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(95), self.firstLabel.bottom + AutoSize6(26),SCREEN_WIDTH - AutoSize6(190), AutoSize6(65))];
-        self.secondLabel.textAlignment = NSTextAlignmentCenter;
-        self.secondLabel.textColor = [UIColor whiteColor];
-        self.secondLabel.font = kFont6(40);
-        self.secondLabel.backgroundColor = [UIColor blackColor];
-        self.secondLabel.alpha = 0.6;
-        [_headerView addSubview:self.secondLabel];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(100))];
+        _headerView.backgroundColor = UIColorFromRGB(0xececec);
+        
+        UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:_headerView.bounds];
+        scrollview.backgroundColor = UIColorFromRGB(0xececec);
+
+        [_headerView addSubview:scrollview];
+        scrollview.delegate = self;
+        
+        NSMutableArray *array = [NSMutableArray new];
+        NSString *currentYear = [[AppDateManager shareManager] getCurrentYear];
+        self.currentYear = currentYear;
+        for (int i = 2018; i< (currentYear.integerValue + 5); i++) {
+            NSString *string = [NSString stringWithFormat:@"%d", i];
+            [array addObject:string];
+        }
+        
+        CGFloat left = 0;
+        CGFloat width = AutoSize6(100);
+        for (int i = 0; i < array.count; i++) {
+            left = i * width;
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(left, 0, width, _headerView.height)];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = UIColorFromRGB(0x777777);
+            label.font = kFont6(30);
+            label.text = array[i];
+            [scrollview addSubview:label];
+            [_labelArray addObject:label];
+            label.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelDidClick:)];
+            [label addGestureRecognizer:tap];
+        }
+        scrollview.contentSize = CGSizeMake(array.count * width, 0);
+        self.scrollView = scrollview;
+        
+        int currentIndex = 0;
+        for (int i = 0; i< array.count; i++) {
+            NSString *string = array[i];
+            if ([string isEqualToString:currentYear]) {
+                currentIndex = i;
+                break;
+            }
+        }
+        
+        UILabel *label = _labelArray[currentIndex];
+        label.textColor = UIColorFromRGB(0xffad29);
+        label.font = kFontBold6(30);
+        
+        scrollview.contentOffset = CGPointMake(- (SCREEN_WIDTH / 2 - (currentIndex * width + width / 2)), 0);
     }
     return _headerView;
 }
 
-
+- (void)labelDidClick:(UITapGestureRecognizer *)tap {
+    UILabel *label = (UILabel *)tap.view;
+    for (UILabel *olabel in _labelArray) {
+        olabel.font = kFont6(30);
+        olabel.textColor = UIColorFromRGB(0x777777);
+    }
+    label.textColor = UIColorFromRGB(0xffad29);
+    label.font = kFontBold6(30);
+    self.currentYear = label.text;
+    
+    NSInteger currentIndex = [self.labelArray indexOfObject:label];
+    self.scrollView.contentOffset = CGPointMake(- (SCREEN_WIDTH / 2 - (currentIndex * label.width + label.width / 2)), 0);
+    
+    [self netForContent];
+}
 @end

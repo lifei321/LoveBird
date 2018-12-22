@@ -220,12 +220,13 @@
 }
 
 // 排行
-+ (void)getRankList:(NSString *)matchid  type:(NSString *)type isYear:(NSString *)isYear successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)getRankList:(NSString *)matchid  type:(NSString *)type isYear:(NSString *)isYear year:(NSString *)year successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(matchid) forKey:@"matchid"];
     [dic setObject:EMPTY_STRING_IF_NIL(type) forKey:@"type"];
     [dic setObject:EMPTY_STRING_IF_NIL(isYear) forKey:@"isYear"];
+    [dic setObject:EMPTY_STRING_IF_NIL(year) forKey:@"year"];
 
     
     [AppHttpManager POST:kAPI_Article_rankingList parameters:dic jsonModelName:[RankDataModel class] success:^(__kindof AppBaseModel *responseObject) {

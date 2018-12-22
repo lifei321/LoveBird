@@ -38,6 +38,13 @@ static AppDateManager *share = nil;
     return strDate;
 }
 
+- (NSString *)getCurrentYear {
+    NSDate *date = [NSDate date];
+    [self.dateFormatter setDateFormat:DateFormatY];
+    NSString *strDate = [self.dateFormatter stringFromDate:date];
+    return strDate;
+}
+
 - (NSString *)getCurrentDateWithFormatStyle:(NSString *)formatSytle {
     NSDate *date = [NSDate date];
     [self.dateFormatter setDateFormat:formatSytle];
