@@ -39,5 +39,7 @@
 +(void)getMessageSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 +(void)getGlobelSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
+
++(void)setDeviceToken:(NSString *)token SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
 

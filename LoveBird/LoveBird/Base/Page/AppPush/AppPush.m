@@ -20,7 +20,7 @@
 
 #import "LogDetailController.h"
 #import "MatchDetailController.h"
-
+#import "SetDao.h"
 
 @interface AppPush ()
 
@@ -149,6 +149,11 @@
     
     //上传token
     NSLog(@"token----  %@", token);
+    
+    if ([UserPage sharedInstance].isLogin) {
+        [SetDao setDeviceToken:token SuccessBlock:nil failureBlock:nil];
+    }
+    
 }
 
 

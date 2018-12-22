@@ -404,6 +404,9 @@
 #define kAPI_GET_GLOBLE_DATA kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=configGlobal")
 
 
+#define kAPI_PUSH_TOKEN kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=birdPushini")
+
+
 
 #pragma mark-- 搜索
 

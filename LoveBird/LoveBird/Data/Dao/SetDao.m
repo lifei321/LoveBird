@@ -148,6 +148,24 @@
     }];
 }
 
++(void)setDeviceToken:(NSString *)token SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL(token) forKey:@"device_tokens"];
+
+    [AppHttpManager POST:kAPI_PUSH_TOKEN parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
+
 
 
 @end
