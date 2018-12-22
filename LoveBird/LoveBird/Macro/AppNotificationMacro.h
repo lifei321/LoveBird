@@ -23,5 +23,6 @@
 
 #define kRefreshUserInfoNotification               @"kRefreshUserInfoNotification"
 
+#define kRefreshMessageCountNotification        @"kRefreshMessageCountNotification"
 
 #endif /* AppNotificationMacro_h */

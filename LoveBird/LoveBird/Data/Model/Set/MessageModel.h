@@ -51,6 +51,8 @@
 
 @property (nonatomic, assign) NSInteger mailNum;
 
+// 所有的维度数量
+@property (nonatomic, copy) NSString *allNum;
 
 
 @end

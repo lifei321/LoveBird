@@ -47,6 +47,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNumOfMessageCount) name:kRefreshMessageCountNotification object:nil];
+    
     self.selectedItem = 0;
     
     //公共的导航控制器
@@ -133,5 +135,17 @@
     }
 }
 
+
+- (void)refreshNumOfMessageCount {
+    UITabBarItem * item = [self.tabBar.items objectAtIndex:4];
+    
+    if ([AppManager sharedInstance].messageCount.integerValue > 0) {
+        item.badgeValue = [AppManager sharedInstance].messageCount;
+        item.badgeColor = nil;
+    } else {
+        item.badgeValue = @"";
+        item.badgeColor = [UIColor clearColor];
+    }
+}
 
 @end

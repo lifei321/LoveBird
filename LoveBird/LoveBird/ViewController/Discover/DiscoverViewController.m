@@ -74,6 +74,8 @@
         [self  netForData];
     }
     
+    // 所有消息数量
+    [[AppManager sharedInstance] netForMessageCount];
 }
 
 - (void)setType:(NSInteger)type {

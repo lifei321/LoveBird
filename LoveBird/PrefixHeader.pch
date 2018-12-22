@@ -42,6 +42,7 @@
 
 #import "UserModel.h"
 #import "UserDao.h"
+#import "AppManager.h"
 
 
 #import "UserInfoViewController.h"

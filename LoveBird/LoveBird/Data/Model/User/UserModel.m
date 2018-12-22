@@ -47,6 +47,8 @@
     [UserPage sharedInstance].userModel.token = nil;
     [UserPage sharedInstance].userModel.uid = nil;
     [UserPage sharedInstance].userModel = nil;
+    [[AppManager sharedInstance] refreshData];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:nil];
     if (block) {
         block();

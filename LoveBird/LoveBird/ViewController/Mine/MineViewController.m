@@ -57,6 +57,9 @@
 @property (nonatomic, assign) CGFloat pinHeaderViewInsetTop;
 
 
+@property (nonatomic, strong) UILabel *countLabel;
+
+
 @end
 
 @implementation MineViewController
@@ -66,7 +69,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForUserInfo) name:kLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOutNotifycation) name:kLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netForMyInfo) name:kRefreshUserInfoNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNumOfMessageCount) name:kRefreshMessageCountNotification object:nil];
+
 
     [self setHeadForView];
     [self netForUserInfo];
@@ -76,6 +80,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // 所有消息数量
+    [[AppManager sharedInstance] netForMessageCount];
+    
     self.navigationController.navigationBar.translucent = false;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
@@ -99,6 +107,16 @@
     self.naviBGView.alpha = 1 - percent;
     
     
+}
+
+- (void)refreshNumOfMessageCount {
+    if ([AppManager sharedInstance].messageCount.integerValue) {
+        self.countLabel.hidden = NO;
+        self.countLabel.text = [AppManager sharedInstance].messageCount;
+    } else {
+        self.countLabel.hidden = YES;
+        self.countLabel.text = [AppManager sharedInstance].messageCount;
+    }
 }
 
 
@@ -287,6 +305,18 @@
     [notificationButton setImage:[UIImage imageNamed:@"home_icon_inform"] forState:UIControlStateSelected];
     [notificationButton addTarget:self action:@selector(notificationButton:) forControlEvents:UIControlEventTouchUpInside];
     notificationButton.frame = CGRectMake(10, topSafeMargin, 44, 44);
+    
+    UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(notificationButton.width - 18, 0, 18, 18)];
+    countLabel.clipsToBounds = YES;
+    countLabel.layer.cornerRadius = countLabel.width / 2;
+    countLabel.backgroundColor = [UIColor redColor];
+    countLabel.font = kFont6(20);
+    countLabel.textColor = [UIColor whiteColor];
+    countLabel.textAlignment = NSTextAlignmentCenter;
+    [notificationButton addSubview:countLabel];
+    self.countLabel = countLabel;
+    self.countLabel.hidden = YES;
+    
 //    notificationButton.contentEdgeInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.naviBGView addSubview:notificationButton];
     

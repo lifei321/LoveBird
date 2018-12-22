@@ -367,6 +367,7 @@
 		1FDBE75720DAA82D0092E82E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75620DAA82D0092E82E /* SearchViewController.m */; };
 		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
 		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
+		8BE85A3D21CE113300836585 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A3C21CE113300836585 /* AppManager.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -1105,6 +1106,8 @@
 		1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		1FDC3430214E870900500DFD /* MineMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageViewController.h; sourceTree = "<group>"; };
 		1FDC3431214E870900500DFD /* MineMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageViewController.m; sourceTree = "<group>"; };
+		8BE85A3B21CE113300836585 /* AppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		8BE85A3C21CE113300836585 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1334,6 +1337,7 @@
 				0B72931D1EFA4F9200D1B1EB /* BaseViewController */,
 				0B72931F1EFA503E00D1B1EB /* Macro */,
 				0BA41924201DB78E002C6335 /* Data */,
+				8BE85A3A21CE10F900836585 /* ShareInstance */,
 				0B317C521F0E408800B01DDA /* ViewController */,
 				0BF9BE2C1F1CA043000046FF /* AppDelegate */,
 				0B7293101EFA4F1100D1B1EB /* Assets.xcassets */,
@@ -3343,6 +3347,15 @@
 			path = DupleViewContrller;
 			sourceTree = "<group>";
 		};
+		8BE85A3A21CE10F900836585 /* ShareInstance */ = {
+			isa = PBXGroup;
+			children = (
+				8BE85A3B21CE113300836585 /* AppManager.h */,
+				8BE85A3C21CE113300836585 /* AppManager.m */,
+			);
+			path = ShareInstance;
+			sourceTree = "<group>";
+		};
 		C7B2A91CBFF05B76FDE51931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3628,6 +3641,7 @@
 				1F0FDF7B20BC4CB90041E73B /* DetailDao.m in Sources */,
 				1F8C0039214BFF4600C00B8E /* JXCategoryBaseView.m in Sources */,
 				1F8CFFC0214953E400C00B8E /* myPhotoCell.m in Sources */,
+				8BE85A3D21CE113300836585 /* AppManager.m in Sources */,
 				1F16D8A120C3FCE600A6C11D /* BirdDetailSongController.m in Sources */,
 				1F8C0023214BFF4600C00B8E /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				1F676EBA20A08AAC002F71B4 /* PublishFooterView.m in Sources */,
