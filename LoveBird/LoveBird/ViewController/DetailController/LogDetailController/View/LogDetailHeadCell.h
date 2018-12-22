@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *dataArray;
 
++ (CGFloat)getHeight:(NSArray *)dataArray;
+
 @end

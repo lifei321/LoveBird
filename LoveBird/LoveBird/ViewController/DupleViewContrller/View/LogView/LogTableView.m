@@ -186,8 +186,9 @@
             self.tableView.tableHeaderView = [self makeHeaderView];
         }
         
-        
-        [self.tableView reloadData];
+        if (dataModel.articleList.count) {
+            [self.tableView reloadData];
+        }
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);

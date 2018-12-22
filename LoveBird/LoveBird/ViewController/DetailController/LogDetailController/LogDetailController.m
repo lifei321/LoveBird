@@ -336,7 +336,7 @@
     
     if (section == 2) {
         if (self.headArray.count) {
-            return AutoSize6(138);
+            return [LogDetailHeadCell getHeight:self.dataArray];
         }
     }
     

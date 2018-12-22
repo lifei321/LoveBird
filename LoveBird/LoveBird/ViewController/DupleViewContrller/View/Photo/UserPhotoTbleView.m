@@ -235,7 +235,11 @@
         }
         
         [self.dataArray addObjectsFromArray:tempArray];
-        [self.tableView reloadData];
+        
+        if (dataModel.imgList.count) {
+            [self.tableView reloadData];
+        }
+
         [[SDImageCache sharedImageCache]clearMemory];
 
     } failureBlock:^(__kindof AppBaseModel *error) {
