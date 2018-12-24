@@ -58,7 +58,7 @@
 @property (nonatomic, strong) UIButton *likeButton;
 
 
-@property (nonatomic, strong) UITextField *talkTextField;
+@property (nonatomic, strong) AppPlaceHolderTextView *talkTextField;
 
 
 @property (nonatomic, assign) NSInteger page;
@@ -882,19 +882,19 @@
     [self.view addSubview:talkView];
     [self.view bringSubviewToFront:talkView];
     
-    UITextField *textFieled = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(15), SCREEN_WIDTH - AutoSize6(16) - AutoSize6(150), talkView.height - AutoSize6(32))];
+    AppPlaceHolderTextView *textFieled = [[AppPlaceHolderTextView alloc] initWithFrame:CGRectMake(AutoSize6(10), AutoSize6(15), SCREEN_WIDTH - AutoSize6(16) - AutoSize6(150), talkView.height - AutoSize6(32))];
     textFieled.backgroundColor = kColoreDefaultBackgroundColor;
     textFieled.placeholder = self.placeString;
     textFieled.textColor = kColorTextColor333333;
     textFieled.layer.cornerRadius = 5;
     [talkView addSubview:textFieled];
     textFieled.tintColor = UIColorFromRGB(0x999999);
-    
-    CGRect frame = textFieled.frame;
-    frame.size.width = AutoSize6(20);// 距离左侧的距离
-    UIView *leftview = [[UIView alloc] initWithFrame:frame];
-    textFieled.leftViewMode = UITextFieldViewModeAlways;
-    textFieled.leftView = leftview;
+    textFieled.contentInset = UIEdgeInsetsMake(AutoSize6(6), AutoSize6(5), AutoSize6(6), AutoSize6(6));
+//    CGRect frame = textFieled.frame;
+//    frame.size.width = AutoSize6(20);// 距离左侧的距离
+//    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+//    textFieled.leftViewMode = UITextFieldViewModeAlways;
+//    textFieled.leftView = leftview;
     self.talkTextField = textFieled;
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(textFieled.right + AutoSize6(10), textFieled.top, AutoSize6(150) - AutoSize6(20), textFieled.height)];

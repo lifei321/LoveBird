@@ -21,6 +21,7 @@
 #import "EXTScope.h"
 
 #import <WRNavigationBar/WRNavigationBar.h>
+#import "MJRefresh.h"
 
 
 #import "AppBaseNavigationController.h"
@@ -37,6 +38,7 @@
 #import "AppCache.h"
 #import "UIImage+Addition.h"
 #import "AppShareManager.h"
+#import "AppPlaceHolderTextView.h"
 
 
 
@@ -49,7 +51,6 @@
 
 
 
-#import "MJRefresh.h"
 
 
 

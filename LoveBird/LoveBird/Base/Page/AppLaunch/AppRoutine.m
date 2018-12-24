@@ -55,8 +55,11 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
-    // tabbar push返回的时候 位置有偏移
-    [UITabBar appearance].translucent = NO;
+//    // tabbar push返回的时候 位置有偏移
+//    NSString *version = [UIDevice currentDevice].systemVersion;
+//    if (version.doubleValue >= 12.1) {
+//        [UITabBar appearance].translucent = NO;
+//    }
 
     //配置网络请求
     [self configNetwork];

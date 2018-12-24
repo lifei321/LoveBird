@@ -73,7 +73,7 @@
     self.wordCoutLabel.font = kFont(12);
     self.wordCoutLabel.textAlignment = NSTextAlignmentCenter;
     self.wordCoutLabel.text = [NSString stringWithFormat:@"0/%ld", self.limitCount];
-    [self addSubview:self.wordCoutLabel];
+//    [self addSubview:self.wordCoutLabel];
     
     _wordMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize(10), self.bottom, self.width, AutoSize(15))];
     _wordMoreLabel.font = kFont(10);
@@ -81,7 +81,7 @@
     _wordMoreLabel.textAlignment = NSTextAlignmentLeft;
     _wordMoreLabel.text = @"您输入的字数已经超出范围";
     self.wordMoreLabel.hidden = YES;
-    [self addSubview:_wordMoreLabel];
+//    [self addSubview:_wordMoreLabel];
 
 }
 
@@ -98,18 +98,18 @@
 #pragma mark - NSNotification
 - (void)textChanged:(NSNotification *)notificaiton {
     [self updatePlaceholder];
-    
-    self.layer.borderColor = [UIColor redColor].CGColor;
-    self.backgroundColor = [UIColor whiteColor];
-    self.wordMoreLabel.hidden = YES;
-    
-    if (self.text.length > self.limitCount) {
-        self.layer.borderColor = [UIColor redColor].CGColor;
-        self.backgroundColor = [UIColor yellowColor];
-        self.wordMoreLabel.hidden = NO;
-    }
-    
-    self.wordCoutLabel.text = [NSString stringWithFormat:@"%ld/%ld",(unsigned long)self.text.length, self.limitCount];
+//
+//    self.layer.borderColor = [UIColor redColor].CGColor;
+//    self.backgroundColor = [UIColor whiteColor];
+//    self.wordMoreLabel.hidden = YES;
+//
+//    if (self.text.length > self.limitCount) {
+//        self.layer.borderColor = [UIColor redColor].CGColor;
+//        self.backgroundColor = [UIColor yellowColor];
+//        self.wordMoreLabel.hidden = NO;
+//    }
+//
+//    self.wordCoutLabel.text = [NSString stringWithFormat:@"%ld/%ld",(unsigned long)self.text.length, self.limitCount];
 
 }
 
