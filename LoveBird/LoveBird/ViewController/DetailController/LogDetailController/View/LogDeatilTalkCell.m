@@ -74,7 +74,7 @@
         [self.upButton setTitle:@"回复" forState:UIControlStateHighlighted];
         [self.upButton setTitleColor:kColorDefaultColor forState:UIControlStateNormal];
         [self.upButton setTitleColor:kColorDefaultColor forState:UIControlStateHighlighted];
-        self.upButton.titleLabel.font = kFont6(24);
+        self.upButton.titleLabel.font = kFont6(30);
         [self.upButton addTarget:self action:@selector(huifuButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.upButton];
         
@@ -136,28 +136,30 @@
     
     CGFloat height = 0;
     
-    // 头像底部高度
-    height = AutoSize6(30) + AutoSize6(75);
-    
-    // 一层距离头像高度
-    height += AutoSize6(20);
-    
-    // 一层内容高度
-    height += [model.content getTextHeightWithFont:kFontPF6(26) withWidth:(SCREEN_WIDTH - AutoSize6(105) - AutoSize6(30))];
-    
-    if (model.quote.length) {
-        // 二层距离一层高度
+    if (model.head.length) {
+        // 头像底部高度
+        height = AutoSize6(30) + AutoSize6(75);
+        
+        // 一层距离头像高度
+        height += AutoSize6(20);
+        
+        // 一层内容高度
+        height += [model.content getTextHeightWithFont:kFontPF6(26) withWidth:(SCREEN_WIDTH - AutoSize6(105) - AutoSize6(30))];
+        
+        if (model.quote.length) {
+            // 二层距离一层高度
+            height += AutoSize6(30);
+            
+            // 二层内部上下间距
+            height += AutoSize6(30) + AutoSize6(20);
+            
+            // 二层高度
+            height += [model.quote getTextHeightWithFont:kFontPF6(24) withWidth:(SCREEN_WIDTH - AutoSize6(105) - AutoSize6(30) - AutoSize6(40))];
+        }
+        
+        // 楼层距离底部高度
         height += AutoSize6(30);
-        
-        // 二层内部上下间距
-        height += AutoSize6(30) + AutoSize6(20);
-        
-        // 二层高度
-        height += [model.quote getTextHeightWithFont:kFontPF6(24) withWidth:(SCREEN_WIDTH - AutoSize6(105) - AutoSize6(30) - AutoSize6(40))];
     }
-    
-    // 楼层距离底部高度
-    height += AutoSize6(30);
 
     return height;
 }

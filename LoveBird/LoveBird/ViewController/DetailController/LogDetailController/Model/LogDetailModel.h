@@ -11,6 +11,9 @@
 
 @protocol LogBirdInfoModel;
 @protocol LogPostBodyModel;
+@protocol LogExtendArticleModel;
+
+@class LogAdArticleModel;
 @interface LogDetailModel : AppBaseModel
 
 @property (nonatomic, assign) CGFloat imgWidth;
@@ -18,6 +21,11 @@
 @property (nonatomic, strong) NSArray <LogBirdInfoModel>*birdInfo;
 
 @property (nonatomic, strong) NSArray <LogPostBodyModel>*postBody;
+
+@property (nonatomic, strong) NSArray <LogExtendArticleModel>*extendArticle;
+
+
+@property (nonatomic, strong) LogAdArticleModel *adArticle;
 
 @property (nonatomic, copy) NSString *author;
 
@@ -164,6 +172,36 @@
 
 
 
+@interface LogAdArticleModel : JSONModel
 
+@property (nonatomic, copy) NSString *aid;
+
+@property (nonatomic, copy) NSString *tid;
+
+@property (nonatomic, copy) NSString *url;
+
+@property (nonatomic, copy) NSString *view_status;
+
+@property (nonatomic, copy) NSString *imgUrl;
+
+
+@end
+
+@interface LogExtendArticleModel : JSONModel
+
+@property (nonatomic, copy) NSString *tid;
+
+@property (nonatomic, copy) NSString *article_status;
+
+@property (nonatomic, copy) NSString *title;
+
+@property (nonatomic, copy) NSString *imgUrl;
+
+@property (nonatomic, copy) NSString *imgWidth;
+
+@property (nonatomic, copy) NSString *imgHeight;
+
+
+@end
 
 

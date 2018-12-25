@@ -36,3 +36,23 @@
 
 
 @end
+
+@implementation LogAdArticleModel
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
+
+
+@end
+
+
+@implementation LogExtendArticleModel
+
++ (BOOL)propertyIsOptional:(NSString*)propertyName {
+    return YES;
+}
+
+
+@end
+

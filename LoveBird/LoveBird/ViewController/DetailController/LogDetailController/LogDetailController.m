@@ -27,6 +27,9 @@
 #import "DasaiTougaoViewController.h"
 #import "BirdDetailController.h"
 
+#import "LogDetailBananerCell.h"
+#import "LogDetailImageViewCell.h"
+
 
 #import "JXPagerView.h"
 #import "JXCategoryView.h"
@@ -115,7 +118,7 @@
 
 #pragma mark-- tabelView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -131,11 +134,23 @@
         }
     }
     
-    if (section == 2) { // 头像列表
+    // 广告位
+    if (section == 2) {
         return 1;
     }
     
+    // 精彩推荐
     if (section == 3) {
+        return 1;
+    }
+    
+    // 头像列表
+    if (section == 4) {
+        return 1;
+    }
+    
+    // 评论
+    if (section == 5) {
         return self.dataArray.count;
     }
     
@@ -263,12 +278,23 @@
             cell = birdcell;
         }
     } else if (section == 2) {
+        LogDetailImageViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailImageViewCell class]) forIndexPath:indexPath];
+        imageCell.articleModel = self.detailModel.adArticle;
+        cell = imageCell;
+        
+    } else if (section == 3) {
+        
+        LogDetailBananerCell *bananerCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailBananerCell class]) forIndexPath:indexPath];
+        bananerCell.dataArray = self.detailModel.extendArticle;
+        cell = bananerCell;
+        
+    } else if (section == 4) {
         
         LogDetailHeadCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailHeadCell class]) forIndexPath:indexPath];
         birdcell.dataArray = self.headArray;
         cell = birdcell;
 
-    } else if (section == 3) {
+    } else if (section == 5) {
         LogDeatilTalkCell *birdcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDeatilTalkCell class]) forIndexPath:indexPath];
         if (self.dataArray.count > row) {
             birdcell.bodyModel = self.dataArray[row];
@@ -335,12 +361,22 @@
     }
     
     if (section == 2) {
-        if (self.headArray.count) {
-            return [LogDetailHeadCell getHeight:self.dataArray];
+        if (self.detailModel.adArticle.imgUrl.length) {
+            return AutoSize6(180);
         }
     }
     
     if (section == 3) {
+        return [LogDetailBananerCell getHeightWithArray:self.detailModel.extendArticle];
+    }
+    
+    if (section == 4) {
+        if (self.headArray.count) {
+            return [LogDetailHeadCell getHeight:self.headArray];
+        }
+    }
+    
+    if (section == 5) {
         if (self.dataArray.count) {
             return [LogDeatilTalkCell getHeightWithModel:self.dataArray[row]];
         }
@@ -375,11 +411,11 @@
         return 0.01f;
     }
     
-    if (section == 2) {
+    if (section == 4) {
         return AutoSize6(20);
     }
     
-    if (section == 3) {
+    if (section == 5) {
         if (self.dataArray.count) {
             return AutoSize6(60);
         }
@@ -392,24 +428,25 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 3) {
-        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(60))];
-        backView.clipsToBounds = YES;
-        backView.backgroundColor = [UIColor whiteColor];
-        
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(35), AutoSize6(400), AutoSize6(25))];
-        
-        label1.text = [NSString stringWithFormat:@"已有%@人评论过", self.count];
-        label1.textAlignment = NSTextAlignmentLeft;
-        label1.textColor = kColorTextColorLightGraya2a2a2;
-        label1.font = kFont6(22);
-        [backView addSubview:label1];
-        
-        return backView;
-        
+    if (section == 5) {
+        if (self.count.length) {
+            UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(60))];
+            backView.clipsToBounds = YES;
+            backView.backgroundColor = [UIColor whiteColor];
+            
+            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(35), AutoSize6(400), AutoSize6(25))];
+            
+            label1.text = [NSString stringWithFormat:@"已有%@人评论过", self.count];
+            label1.textAlignment = NSTextAlignmentLeft;
+            label1.textColor = kColorTextColorLightGraya2a2a2;
+            label1.font = kFont6(22);
+            [backView addSubview:label1];
+            
+            return backView;
+        }
     }
     
-    return [[UIView alloc] init];
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -522,7 +559,7 @@
 - (void)netForTalkList {
     
     @weakify(self);
-    [DetailDao getLogDetail:self.tid aid:self.aid page:[NSString stringWithFormat:@"%ld", self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DetailDao getLogDetail:self.tid aid:self.aid page:[NSString stringWithFormat:@"%ld", (long)self.page] successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_footer endRefreshing];
         self.page ++;
@@ -534,7 +571,6 @@
                 [self.dataArray addObjectsFromArray: dataModel.commentList];
             } else {
                 [self.tableView.mj_footer removeFromSuperview];
-                self.tableView.tableFooterView = self.footerView;
             }
         } else if (self.aid.length) {
             LogDetailTalkWordDataModel *dataModel = (LogDetailTalkWordDataModel *)responseObject;
@@ -543,10 +579,12 @@
                 self.count = ((LogDetailTalkModel *)self.dataArray.firstObject).aCount;
             } else {
                 [self.tableView.mj_footer removeFromSuperview];
-                self.tableView.tableFooterView = self.footerView;
             }
         }
     
+        if (self.dataArray.count == 0) {
+            self.tableView.tableFooterView = self.footerView;
+        }
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
@@ -680,6 +718,8 @@
     [self.tableView registerClass:[LogDeatilTalkCell class] forCellReuseIdentifier:NSStringFromClass([LogDeatilTalkCell class])];
     [self.tableView registerClass:[LogDetailHeadCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailHeadCell class])];
     [self.tableView registerClass:[LogContentSubjectCell class] forCellReuseIdentifier:NSStringFromClass([LogContentSubjectCell class])];
+    [self.tableView registerClass:[LogDetailBananerCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailBananerCell class])];
+    [self.tableView registerClass:[LogDetailImageViewCell class] forCellReuseIdentifier:NSStringFromClass([LogDetailImageViewCell class])];
 
     //默认【上拉加载】
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForTalkList)];

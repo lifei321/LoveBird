@@ -83,7 +83,7 @@
     if (contentModel.coverImgUrl.length) {
         CGFloat imageHeight = (contentModel.coverImgHeight) * (SCREEN_WIDTH / contentModel.coverImgWidth);
         self.contentImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, imageHeight);
-        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.coverImgUrl] placeholderImage:[UIImage imageNamed:@" "]];
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:contentModel.coverImgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     } else {
         self.contentImageView.frame = CGRectZero;
     }

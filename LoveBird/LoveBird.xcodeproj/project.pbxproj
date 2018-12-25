@@ -371,6 +371,9 @@
 		8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */; };
 		8BE85A4321CE358C00836585 /* GlobelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4221CE358C00836585 /* GlobelMessage.m */; };
 		8BE85A4621CE897900836585 /* LogDetailHeadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4521CE897900836585 /* LogDetailHeadImageView.m */; };
+		8BE85A4921D1186000836585 /* LogDetailBananerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4821D1186000836585 /* LogDetailBananerCell.m */; };
+		8BE85A4C21D1280A00836585 /* LogArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4B21D1280A00836585 /* LogArticleCell.m */; };
+		8BE85A4F21D268F900836585 /* LogDetailImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4E21D268F900836585 /* LogDetailImageViewCell.m */; };
 		C9477D485CF4155EFE8F5B90 /* Pods_LoveBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */; };
 /* End PBXBuildFile section */
 
@@ -1117,6 +1120,12 @@
 		8BE85A4221CE358C00836585 /* GlobelMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobelMessage.m; sourceTree = "<group>"; };
 		8BE85A4421CE897900836585 /* LogDetailHeadImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailHeadImageView.h; sourceTree = "<group>"; };
 		8BE85A4521CE897900836585 /* LogDetailHeadImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailHeadImageView.m; sourceTree = "<group>"; };
+		8BE85A4721D1186000836585 /* LogDetailBananerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailBananerCell.h; sourceTree = "<group>"; };
+		8BE85A4821D1186000836585 /* LogDetailBananerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailBananerCell.m; sourceTree = "<group>"; };
+		8BE85A4A21D1280A00836585 /* LogArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogArticleCell.h; sourceTree = "<group>"; };
+		8BE85A4B21D1280A00836585 /* LogArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogArticleCell.m; sourceTree = "<group>"; };
+		8BE85A4D21D268F900836585 /* LogDetailImageViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDetailImageViewCell.h; sourceTree = "<group>"; };
+		8BE85A4E21D268F900836585 /* LogDetailImageViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDetailImageViewCell.m; sourceTree = "<group>"; };
 		8DAC673339827C6EDBE23389 /* Pods-LoveBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveBird.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LoveBird/Pods-LoveBird.release.xcconfig"; sourceTree = "<group>"; };
 		CA41C249F6A793169BB121B2 /* Pods_LoveBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1904,6 +1913,12 @@
 				1F16D8BD20C446F600A6C11D /* LogContentSubjectCell.m */,
 				8BE85A4421CE897900836585 /* LogDetailHeadImageView.h */,
 				8BE85A4521CE897900836585 /* LogDetailHeadImageView.m */,
+				8BE85A4721D1186000836585 /* LogDetailBananerCell.h */,
+				8BE85A4821D1186000836585 /* LogDetailBananerCell.m */,
+				8BE85A4A21D1280A00836585 /* LogArticleCell.h */,
+				8BE85A4B21D1280A00836585 /* LogArticleCell.m */,
+				8BE85A4D21D268F900836585 /* LogDetailImageViewCell.h */,
+				8BE85A4E21D268F900836585 /* LogDetailImageViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3710,6 +3725,7 @@
 				1F1715E22115E3F8001769AB /* CLSlider.m in Sources */,
 				1F2A857E2143C753008BC55A /* MJRefreshConst.m in Sources */,
 				1F0FDF6920BB03F30041E73B /* FindBodyResultController.m in Sources */,
+				8BE85A4F21D268F900836585 /* LogDetailImageViewCell.m in Sources */,
 				1F0FDFCB20C25C8E0041E73B /* BirdDetailTextCell.m in Sources */,
 				1F1715E72115E3F8001769AB /* AILoadingView.m in Sources */,
 				0BA41923201DAF13002C6335 /* DiscoverHeaderView.m in Sources */,
@@ -3856,6 +3872,7 @@
 				1F8CFFA82149523200C00B8E /* RITLPhotosHorBrowseViewController.m in Sources */,
 				1F16D8C420C6DC1600A6C11D /* MatchArticleModel.m in Sources */,
 				1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */,
+				8BE85A4C21D1280A00836585 /* LogArticleCell.m in Sources */,
 				0B75D5A61FBEC434008D7AE6 /* NSDateFormatter+Category.m in Sources */,
 				1F8C002D214BFF4600C00B8E /* JXCategoryTitleCellModel.m in Sources */,
 				0B75D5631FBD9D8B008D7AE6 /* NSDictionary+NTBasicAdditions.m in Sources */,
@@ -3893,6 +3910,7 @@
 				1F2A858F2143C753008BC55A /* MJRefreshAutoFooter.m in Sources */,
 				0B75D5BF1FBEC874008D7AE6 /* BJXYHTTPManager.m in Sources */,
 				1F8C0043214C05DE00C00B8E /* TestListBaseView.m in Sources */,
+				8BE85A4921D1186000836585 /* LogDetailBananerCell.m in Sources */,
 				1F676ECD20A1E563002F71B4 /* PublishAddView.m in Sources */,
 				1F676EA8209F34F7002F71B4 /* PublishHeaderView.m in Sources */,
 				1F16D8B520C4127D00A6C11D /* MineFollowCell.m in Sources */,
