@@ -905,7 +905,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     [array2 addObject:model1];
     
     PublishDetailModel *model2 = [[PublishDetailModel alloc] init];
-    model2.title = @"位置";
+    model2.title = @"拍摄地点";
     model2.detailString = @"选择";
     [array2 addObject:model2];
     

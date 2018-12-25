@@ -971,7 +971,7 @@ typedef void(^PublishUploadBlock)(NSInteger index, NSArray *selectImageArray);
     [array2 addObject:model1];
     
     PublishDetailModel *model2 = [[PublishDetailModel alloc] init];
-    model2.title = @"位置";
+    model2.title = @"拍摄地点";
     if (self.minePublishModel.locale.length) {
         model2.detailString = self.minePublishModel.locale;
         self.locale = self.minePublishModel.locale;
