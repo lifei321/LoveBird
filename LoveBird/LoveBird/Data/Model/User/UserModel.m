@@ -107,6 +107,7 @@
     [AppCache setObject:userModel.system forKey:@"system"];
     [AppCache setObject:userModel.follow forKey:@"follow"];
     [AppCache setObject:userModel.comment forKey:@"comment"];
+    [AppCache setObject:userModel.honor forKey:@"honor"];
 
 }
 
@@ -140,6 +141,8 @@
     userModel.system = [AppCache objectForKey:@"system"];
     userModel.follow = [AppCache objectForKey:@"follow"];
     userModel.comment = [AppCache objectForKey:@"comment"];
+    userModel.honor = [AppCache objectForKey:@"honor"];
+
 
 
     return userModel;

@@ -210,7 +210,7 @@
     self.followLabel.text = [NSString stringWithFormat:@"关注 %@", model.followNum];
     self.fansLabel.text = [NSString stringWithFormat:@"粉丝 %@", model.fansNum];
     self.scorleLabel.text = [NSString stringWithFormat:@"积分 %@", model.credit];
-    self.gradeLabel.text = [NSString stringWithFormat:@"菜鸟 Lv.%@", model.level];
+    self.gradeLabel.text = [NSString stringWithFormat:@"%@", model.honor];
     
     [self.logButton setTitle:[NSString stringWithFormat:@"日志 %@", model.articleNum] forState:UIControlStateNormal];
     [self reloadButton:self.logButton];

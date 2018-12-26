@@ -92,6 +92,8 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, copy) NSString *level;
 
+@property (nonatomic, copy) NSString *honor;
+
 @property (nonatomic, copy) NSString *zuzhi;
 
 @property (nonatomic, copy) NSString *token;
