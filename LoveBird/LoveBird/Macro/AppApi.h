@@ -403,9 +403,11 @@
 // 获取全局数据
 #define kAPI_GET_GLOBLE_DATA kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=configGlobal")
 
-
+// 上传token
 #define kAPI_PUSH_TOKEN kAPI_USER_SERVER_VERSION(@"home/index.php?cmd=birdPushini")
 
+// 上传push设置
+#define kAPI_PUSH_SETTING kAPI_USER_SERVER_VERSION(@"user/index.php?cmd=pushSetting")
 
 
 #pragma mark-- 搜索

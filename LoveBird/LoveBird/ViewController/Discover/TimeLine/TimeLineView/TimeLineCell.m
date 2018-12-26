@@ -119,7 +119,7 @@
         _titleView.contentModel = cellLayoutModel.contentModel;
         NSString *utString = [cellLayoutModel.contentModel.imgUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         NSURL *url = [NSURL URLWithString:utString];
-        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"holder"]];
+        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         _titleLabel.text = cellLayoutModel.contentModel.subject;
         _contentLabel.text = cellLayoutModel.contentModel.summary;
         _toolView.contentModel = cellLayoutModel.contentModel;
@@ -138,7 +138,7 @@
         
         NSString *utString = [cellLayoutModel.zhuangbeiModel.img stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         NSURL *url = [NSURL URLWithString:utString];
-        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"holder"]];
+        [_contentImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolder"]];
         _titleLabel.text = cellLayoutModel.zhuangbeiModel.title;
         _contentLabel.text = cellLayoutModel.zhuangbeiModel.summary;
         _toolView.zhuangbeiModel = cellLayoutModel.zhuangbeiModel;

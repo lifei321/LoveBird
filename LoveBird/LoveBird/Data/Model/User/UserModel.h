@@ -126,6 +126,14 @@ typedef void(^UserModelBlock)(void);
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareTitle;
 
+// 推送开关
+@property (nonatomic, copy) NSString *system;
+
+@property (nonatomic, copy) NSString *follow;
+
+@property (nonatomic, copy) NSString *comment;
+
+
 
 
 //articleNum    日志数    number    @mock=24

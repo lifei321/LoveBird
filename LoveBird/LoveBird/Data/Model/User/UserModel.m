@@ -104,6 +104,9 @@
     [AppCache setObject:userModel.shareImg forKey:@"shareImg"];
     [AppCache setObject:userModel.shareSummary forKey:@"shareSummary"];
     [AppCache setObject:userModel.shareTitle forKey:@"shareTitle"];
+    [AppCache setObject:userModel.system forKey:@"system"];
+    [AppCache setObject:userModel.follow forKey:@"follow"];
+    [AppCache setObject:userModel.comment forKey:@"comment"];
 
 }
 
@@ -134,6 +137,10 @@
     userModel.shareSummary = [AppCache objectForKey:@"shareSummary"];
     userModel.shareTitle = [AppCache objectForKey:@"shareTitle"];
     userModel.shareUrl = [AppCache objectForKey:@"shareUrl"];
+    userModel.system = [AppCache objectForKey:@"system"];
+    userModel.follow = [AppCache objectForKey:@"follow"];
+    userModel.comment = [AppCache objectForKey:@"comment"];
+
 
     return userModel;
 }

@@ -166,6 +166,26 @@
     }];
 }
 
++(void)setPushSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].token) forKey:@"token"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.system) forKey:@"system"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.comment) forKey:@"comment"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].userModel.follow) forKey:@"follow"];
+
+    [AppHttpManager POST:kAPI_PUSH_SETTING parameters:dic jsonModelName:[AppBaseModel class] success:^(__kindof AppBaseModel *responseObject) {
+        if (successBlock) {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(__kindof AppBaseModel *error) {
+        if (failureBlock) {
+            failureBlock(error);
+        }
+    }];
+}
 
 
 @end

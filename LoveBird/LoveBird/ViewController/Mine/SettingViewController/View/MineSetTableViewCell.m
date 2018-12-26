@@ -8,7 +8,7 @@
 
 #import "MineSetTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "SetDao.h"
 
 
 @interface MineSetTableViewCell()
@@ -59,6 +59,7 @@
         
         _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(124), AutoSize6(18), AutoSize6(94), AutoSize6(58))];
         [self.contentView addSubview:_switchView];
+        [_switchView addTarget:self action:@selector(switchViewDidClick:) forControlEvents:UIControlEventValueChanged];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(94) - 0.5, SCREEN_WIDTH - AutoSize6(60), 0.5)];
         line.backgroundColor = kLineColoreDefaultd4d7dd;
@@ -107,4 +108,21 @@
 }
 
 
+- (void)switchViewDidClick:(UISwitch *)switchView {
+    
+    if ([self.model.title isEqualToString:@"系统消息"]) {
+        [UserPage sharedInstance].userModel.system = [NSString stringWithFormat:@"%d", switchView.on];
+    } else if ([self.model.title isEqualToString:@"评论我"]) {
+        [UserPage sharedInstance].userModel.comment = [NSString stringWithFormat:@"%d", switchView.on];
+
+    } else if ([self.model.title isEqualToString:@"关注我"]) {
+        [UserPage sharedInstance].userModel.follow = [NSString stringWithFormat:@"%d", switchView.on];
+    }
+    
+    [SetDao setPushSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        
+    }];
+}
 @end

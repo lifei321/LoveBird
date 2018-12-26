@@ -10,6 +10,11 @@
 #import "LogDetailModel.h"
 
 
+@protocol LogExtendArticleModel;
+
+@class LogAdArticleModel;
+
+
 @protocol LogPostBodyModel;
 @interface LogContentModel : AppBaseModel
 
@@ -64,6 +69,13 @@
 
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareTitle;
+
+
+
+@property (nonatomic, strong) NSArray <LogExtendArticleModel>*extendArticle;
+
+
+@property (nonatomic, strong) LogAdArticleModel *adArticle;
 
 
 @end

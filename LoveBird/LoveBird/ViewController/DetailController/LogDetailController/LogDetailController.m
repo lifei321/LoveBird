@@ -279,13 +279,23 @@
         }
     } else if (section == 2) {
         LogDetailImageViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailImageViewCell class]) forIndexPath:indexPath];
-        imageCell.articleModel = self.detailModel.adArticle;
+        if (self.detailModel) {
+            imageCell.articleModel = self.detailModel.adArticle;
+        } else if (self.contentModel) {
+            imageCell.articleModel = self.contentModel.adArticle;
+        }
         cell = imageCell;
         
     } else if (section == 3) {
         
         LogDetailBananerCell *bananerCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LogDetailBananerCell class]) forIndexPath:indexPath];
-        bananerCell.dataArray = self.detailModel.extendArticle;
+        
+        if (self.detailModel) {
+            bananerCell.dataArray = self.detailModel.extendArticle;
+        } else if (self.contentModel) {
+            bananerCell.dataArray = self.contentModel.extendArticle;
+        }
+
         cell = bananerCell;
         
     } else if (section == 4) {
@@ -361,13 +371,17 @@
     }
     
     if (section == 2) {
-        if (self.detailModel.adArticle.imgUrl.length) {
+        if (self.detailModel.adArticle.imgUrl.length || self.contentModel.adArticle.imgUrl.length) {
             return AutoSize6(180);
         }
     }
     
     if (section == 3) {
-        return [LogDetailBananerCell getHeightWithArray:self.detailModel.extendArticle];
+        if (self.detailModel) {
+            return [LogDetailBananerCell getHeightWithArray:self.detailModel.extendArticle];
+        } else if (self.contentModel) {
+            return [LogDetailBananerCell getHeightWithArray:self.contentModel.extendArticle];
+        }
     }
     
     if (section == 4) {

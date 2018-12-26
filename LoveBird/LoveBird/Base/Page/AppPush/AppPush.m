@@ -21,6 +21,7 @@
 #import "LogDetailController.h"
 #import "MatchDetailController.h"
 #import "SetDao.h"
+#import "UserInfoViewController.h"
 
 @interface AppPush ()
 
@@ -233,6 +234,11 @@
         AppWebViewController *webvc = [[AppWebViewController alloc] init];
         webvc.startupUrlString = model.pushId;
         [[UIViewController currentViewController].navigationController pushViewController:webvc animated:YES];
+    } else if (model.view_status.integerValue == 500) {
+        UserInfoViewController *uservc = [[UserInfoViewController alloc] init];
+        uservc.uid = model.pushId;
+        [[UIViewController currentViewController].navigationController pushViewController:uservc animated:YES];
+
     }
     
 }
