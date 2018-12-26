@@ -49,6 +49,7 @@
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentLabel.left, self.contentLabel.bottom + AutoSize6(10), self.contentLabel.width, AutoSize6(92))];
         self.iconImageView.contentMode = UIViewContentModeScaleToFill;
+        self.iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];
         
     }
@@ -69,27 +70,38 @@
 - (void)setDetail:(NSString *)detail {
     self.iconImageView.hidden = YES;
     
-    CGFloat height = [detail getTextHeightWithFont:self.contentLabel.font withWidth:self.contentLabel.width];
-    self.contentLabel.height = height + AutoSize6(20);
-    
-    self.contentLabel.text = detail;
-
+    if (detail.length) {
+        CGFloat height = [detail getTextHeightWithFont:self.contentLabel.font withWidth:self.contentLabel.width];
+        self.contentLabel.height = height + AutoSize6(20);
+        
+        self.contentLabel.text = detail;
+    } else {
+        self.contentLabel.height = 0;
+        self.contentLabel.text = @"";
+    }
 }
 
 - (void)setHasImage:(BOOL)hasImage {
     self.iconImageView.hidden = NO;
     
     if (_detailModel.hand_drawing_img.length) {
-        CGFloat imageHeight = (_detailModel.hand_drawing_height) * (self.iconImageView.width / _detailModel.hand_drawing_width);
-        self.iconImageView.height = imageHeight + AutoSize6(10);
-        self.iconImageView.top = self.contentLabel.bottom + AutoSize6(20);
+        CGFloat imageHeight = (_detailModel.hand_drawing_height) * ((SCREEN_WIDTH - AutoSize6(100)) / _detailModel.hand_drawing_width);
+        self.iconImageView.height = imageHeight + AutoSize6(30);
+        self.iconImageView.width = SCREEN_WIDTH - AutoSize6(100);
+        if (self.contentLabel.text.length) {
+            self.iconImageView.top = self.contentLabel.bottom + AutoSize6(20);
+        } else {
+            self.iconImageView.top = self.contentLabel.bottom;
+        }
         [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_detailModel.hand_drawing_img] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    } else {
+        self.iconImageView.height = 0;
     }
     
 }
 
 + (CGFloat)getHeightWithModel:(BirdDetailModel *)model text:(NSString *)text img:(BOOL)img {
-    CGFloat height = 0;
+    CGFloat height = AutoSize6(68);
     
     if (text.length) {
         height += AutoSize6(48);
@@ -98,8 +110,9 @@
     }
     
     if (img) {
-        CGFloat imageHeight = (model.hand_drawing_height) * ((SCREEN_WIDTH - AutoSize6(100)) / model.hand_drawing_width);
-        height += AutoSize6(20) + imageHeight;
+        CGFloat scale = ((SCREEN_WIDTH - AutoSize6(100)) / model.hand_drawing_width);
+        CGFloat imageHeight = (model.hand_drawing_height) * scale;
+        height += AutoSize6(40) + imageHeight;
     }
     
     return height;

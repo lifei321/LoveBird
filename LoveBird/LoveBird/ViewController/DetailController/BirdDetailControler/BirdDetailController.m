@@ -122,10 +122,10 @@
         BirdDetailTextCell *textcell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BirdDetailTextCell class]) forIndexPath:indexPath];
         if (row == 0) {
             textcell.title = @"叫声";
-            textcell.detail = [NSString stringWithFormat:@"%ld种", self.detailModel.song.count];
+            textcell.detail = [NSString stringWithFormat:@"%lu种", (unsigned long)self.detailModel.song.count];
         } else if (row == 1) {
             textcell.title = @"视频";
-            textcell.detail = [NSString stringWithFormat:@"%ld条", self.detailModel.video.count];
+            textcell.detail = [NSString stringWithFormat:@"%lu条", (unsigned long)self.detailModel.video.count];
         } else if (row == 2) {
             textcell.title = @"观察记录";
             textcell.detail = [NSString stringWithFormat:@"%@条", self.detailModel.obs_times];
