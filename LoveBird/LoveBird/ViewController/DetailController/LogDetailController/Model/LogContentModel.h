@@ -39,6 +39,8 @@
 
 
 
+@property (nonatomic, copy) NSString *viewNum;
+
 
 @property (nonatomic, copy) NSString *dateline;
 
@@ -76,6 +78,9 @@
 
 
 @property (nonatomic, strong) LogAdArticleModel *adArticle;
+
+
+
 
 
 @end

@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) LogAdArticleModel *adArticle;
 
+
+
 @property (nonatomic, copy) NSString *author;
 
 @property (nonatomic, copy) NSString *authorHead;
@@ -74,6 +76,10 @@
 @property (nonatomic, copy) NSString *shareTitle;
 
 
+@property (nonatomic, copy) NSString *viewNum;
+
+
+
 @end
 
 
@@ -112,6 +118,8 @@
 @property (nonatomic, copy) NSString *imgExifParameter;
 
 
+
+
 // 分享文章的url
 @property (nonatomic, copy) NSString *shareUrl;
 
@@ -127,6 +135,9 @@
 @property (nonatomic, copy) NSString *csp_code;
 
 
+@property (nonatomic, copy) NSString *article_status;
+
+@property (nonatomic, copy) NSString *tid;
 
 @end
 

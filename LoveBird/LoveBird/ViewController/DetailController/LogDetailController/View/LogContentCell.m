@@ -9,6 +9,7 @@
 #import "LogContentCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BirdDetailController.h"
+#import "LogDetailController.h"
 
 @interface LogContentCell()
 
@@ -108,6 +109,16 @@
                 self.tagLabel.text = contentModel.imgTag;
                 CGFloat width = [contentModel.imgTag getTextWightWithFont:self.tagLabel.font];
                 self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(20) , _iconImageView.bottom + AutoSize6(10), width + AutoSize6(20), AutoSize6(40));
+
+                if (contentModel.article_status.integerValue == 100) {
+                    self.tagLabel.textColor = kColorDefaultColor;
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagLabelDidClick)];
+                    self.tagLabel.userInteractionEnabled = YES;
+                    [self.tagLabel addGestureRecognizer:tap];
+                } else {
+                    self.tagLabel.backgroundColor = UIColorFromRGB(0xececec);
+                }
+                
             } else {
                 self.tagLabel.frame = CGRectZero;
             }
@@ -123,6 +134,13 @@
     }
 }
 
+- (void)tagLabelDidClick {
+    if (self.contentModel.tid.length) {
+        LogDetailController *detailvc = [[LogDetailController alloc] init];
+        detailvc.tid = self.contentModel.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
+    }
+}
 
 
 + (CGFloat)getHeightWithContentModel:(LogPostBodyModel *)model {

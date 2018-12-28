@@ -32,6 +32,7 @@
 #import "NSString+APP.h"
 #import "UIView+Frame.h"
 #import "NSString+Validate.h"
+#import "UIButton+HQCustomIcon.h"
 
 #import "AppAlertView.h"
 #import "AppBaseHud.h"

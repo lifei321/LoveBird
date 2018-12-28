@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) LogDetailTitleView *titleView;
 
+@property (nonatomic, strong) UIButton *countButton;
 
 @end
 
@@ -36,6 +37,13 @@
         self.contentImageView.contentMode = UIViewContentModeScaleToFill;
         [self addSubview:self.contentImageView];
         
+        // 观看次数
+        self.countButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(80), AutoSize6(70))];
+        [self.contentImageView addSubview:self.countButton];
+        [self.countButton setImage:[UIImage imageNamed:@"detailview"] forState:UIControlStateNormal];
+        [self.countButton setIconInLeftWithSpacing:AutoSize6(20)];
+        self.countButton.titleLabel.font = kFont6(26);
+
         // 文章标题
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), 0, SCREEN_WIDTH - AutoSize6(60), 0)];
         self.titleLabel.font = kFontPF6(30);
@@ -75,6 +83,14 @@
     self.titleView.top = self.titleLabel.bottom + AutoSize6(20);
     self.titleView.detailModel = detailModel;
     
+    if (detailModel.viewNum.length && detailModel.coverImgUrl.length) {
+        [self.countButton setTitle:detailModel.viewNum forState:UIControlStateNormal];
+        self.countButton.hidden = NO;
+
+    } else {
+        self.countButton.hidden = YES;
+    }
+    
 }
 
 - (void)setContentModel:(LogContentModel *)contentModel {
@@ -95,6 +111,15 @@
     
     self.titleView.top = self.titleLabel.bottom + AutoSize6(20);
     self.titleView.contentModel = contentModel;
+    if (contentModel.viewNum.length && contentModel.coverImgUrl.length) {
+        [self.countButton setTitle:contentModel.viewNum forState:UIControlStateNormal];
+        self.countButton.hidden = NO;
+        
+    } else {
+        self.countButton.hidden = YES;
+    }
+
+
 }
 
 - (CGFloat)getHeight {

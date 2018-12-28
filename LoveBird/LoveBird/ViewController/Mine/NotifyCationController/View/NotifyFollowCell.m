@@ -37,6 +37,10 @@
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
         _iconImageView.clipsToBounds = YES;
         [self.contentView addSubview:_iconImageView];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconDidClick)];
+        _iconImageView.userInteractionEnabled = YES;
+        [_iconImageView addGestureRecognizer:tap];
+        
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.right + AutoSize6(20), _iconImageView.top, SCREEN_WIDTH / 2, _iconImageView.height)];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -71,5 +75,12 @@
     _timeLabel.text = [[AppDateManager shareManager] getDateWithTime:model.dateline formatSytle:DateFormatYMDHM];
     _contentLabel.text = model.messageContent;
     
+}
+
+
+- (void)iconDidClick {
+    UserInfoViewController *infovc = [[UserInfoViewController alloc] init];
+    infovc.uid = self.model.messageUid;
+    [[UIViewController currentViewController].navigationController pushViewController:infovc animated:YES];
 }
 @end

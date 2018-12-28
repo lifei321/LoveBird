@@ -36,12 +36,12 @@
         .top    = 0,
         .left   = 0,
         .bottom = 0,
-        .right  = 0,
+        .right  = - Spacing / 2,
     };
     
     self.imageEdgeInsets = (UIEdgeInsets){
         .top    = 0,
-        .left   = 0,
+        .left   = - Spacing / 2,
         .bottom = 0,
         .right  = 0,
     };

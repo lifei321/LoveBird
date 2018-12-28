@@ -10,6 +10,7 @@
 #import "NotifyFollowCell.h"
 #import "MessageModel.h"
 #import "SetDao.h"
+#import "LogDetailController.h"
 
 
 @interface MineNotifyFollowController ()<UITableViewDelegate, UITableViewDataSource>
@@ -69,6 +70,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    MessageModel *model = self.dataArray[indexPath.row];
+    LogDetailController *detailvc = [[LogDetailController alloc] init];
+    detailvc.tid = model.tid;
+    [[UIViewController currentViewController].navigationController pushViewController:detailvc animated:YES];
 }
 @end
