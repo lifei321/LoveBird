@@ -28,8 +28,6 @@
 
 @property (nonatomic, copy) NSString *messageUsername;
 
-@property (nonatomic, copy) NSString *messageUid;
-
 @property (nonatomic, copy) NSString *tid;
 
 @end
