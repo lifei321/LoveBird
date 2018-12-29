@@ -129,12 +129,34 @@
     self.title = @"位置";
     self.rightButton.title = @"完成";
     
-    self.searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(50), total_topView_height + AutoSize6(20), SCREEN_WIDTH - AutoSize6(100), AutoSize6(80))];
+    self.searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(AutoSize6(50), total_topView_height + AutoSize6(20), SCREEN_WIDTH - AutoSize6(300), AutoSize6(80))];
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor whiteColor];
     self.searchTextField.placeholder = @"请输入...";
     [self.view addSubview:self.searchTextField];
     [self.view bringSubviewToFront:self.searchTextField];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.searchTextField.right + AutoSize6(5), self.searchTextField.top, AutoSize6(200), self.searchTextField.height)];
+    [button setTitle:@"当前位置" forState:UIControlStateNormal];
+    button.titleLabel.font = kFont6(28);
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setBackgroundColor:kColorDefaultColor];
+    [self.view addSubview:button];
+    [button addTarget:self action:@selector(getCurrentLocation) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)getCurrentLocation {
+    if (self.viewControllerActionBlock) {
+        self.locationName = [NSString stringWithFormat:@"%@%@%@",[UserPage sharedInstance].province, [UserPage sharedInstance].city, [UserPage sharedInstance].street];
+
+        self.viewControllerActionBlock(self, @{
+                                               @"locale":EMPTY_STRING_IF_NIL(self.locationName),
+                                               @"lng":[UserPage sharedInstance].lng,
+                                               @"lat":[UserPage sharedInstance].lat,
+                                               });
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (void)rightButtonAction {

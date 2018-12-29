@@ -36,6 +36,11 @@ typedef void(^UserModelBlock)(void);
 
 @property (nonatomic, copy) NSString *city;
 
+@property (nonatomic, copy) NSString *SubLocality;
+
+@property (nonatomic, copy) NSString *street;
+
+
 
 + (UserPage *)sharedInstance;
 

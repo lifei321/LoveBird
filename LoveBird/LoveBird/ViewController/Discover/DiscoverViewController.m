@@ -595,11 +595,17 @@
             
             NSDictionary *address = [placemark addressDictionary];
             [UserPage sharedInstance].province = [address objectForKey:@"State"];
-            
+            [UserPage sharedInstance].street = [address objectForKey:@"Street"];
+            [UserPage sharedInstance].SubLocality = [address objectForKey:@"SubLocality"];
+
             [UserPage sharedInstance].city = [address objectForKey:@"City"];
             if ([UserPage sharedInstance].province.length == 0) {
                 [UserPage sharedInstance].province = [UserPage sharedInstance].city;
             }
+            
+            [UserPage sharedInstance].lng = [NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude];
+            [UserPage sharedInstance].lat = [NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude];
+
         }
     }];
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
