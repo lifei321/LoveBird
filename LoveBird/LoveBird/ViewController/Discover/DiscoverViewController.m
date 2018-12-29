@@ -28,11 +28,15 @@
 #import "SearchViewController.h"
 #import "MatchDetailController.h"
 
+#import <CoreLocation/CoreLocation.h>
+
+
+
 #define kStringForBanner @"kStringForBanner"
 #define kStringForContent @"kStringForContent"
 
 
-@interface DiscoverViewController ()<SDCycleScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, TimeLineClickDelegate>
+@interface DiscoverViewController ()<SDCycleScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, TimeLineClickDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) DiscoverDataSource *viewModel;
 
@@ -42,6 +46,9 @@
 @property (nonatomic, assign) NSInteger pageNum;
 
 @property (nonatomic, strong) UIView *navigationView;
+
+@property(nonatomic,strong) CLLocationManager *locationManager;
+
 
 
 @end
@@ -77,7 +84,7 @@
     // 所有消息数量
     [[AppManager sharedInstance] netForMessageCount];
     [[AppManager sharedInstance] netForGlobleData];
-
+    [self startLocate];
 }
 
 - (void)setType:(NSInteger)type {
@@ -86,6 +93,8 @@
         self.navigationView.hidden = YES;
     }
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -550,6 +559,61 @@
         [self.tableView.mj_footer endRefreshing];
     }];
 }
+
+
+#pragma mark-- 开始定位
+
+- (BOOL)isLocationServiceOpen {
+    if ([ CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        return NO;
+    } else
+        return YES;
+}
+
+
+- (void)startLocate {
+    self.locationManager = [[CLLocationManager alloc] init] ;
+    self.locationManager.delegate = self;
+
+    //确定用户的位置服务启用
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
+    [self.locationManager startUpdatingLocation];
+}
+
+#pragma mark - CoreLocation Delegate
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    //此处locations存储了持续更新的位置坐标值，取最后一个值为最新位置，如果不想让其持续更新位置，则在此方法中获取到一个值之后让locationManager stopUpdatingLocation
+    CLLocation *currentLocation = [locations lastObject];
+    // 获取当前所在的城市名
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            
+            NSDictionary *address = [placemark addressDictionary];
+            [UserPage sharedInstance].province = [address objectForKey:@"State"];
+            
+            [UserPage sharedInstance].city = [address objectForKey:@"City"];
+            if ([UserPage sharedInstance].province.length == 0) {
+                [UserPage sharedInstance].province = [UserPage sharedInstance].city;
+            }
+        }
+    }];
+    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+    [manager stopUpdatingLocation];
+}
+
+ - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+     if (error.code == kCLErrorDenied) {
+         // 提示用户出错原因，可按住Option键点击 KCLErrorDenied的查看更多出错信息，可打印error.code值查找原因所在
+     }
+ }
+
+
+
 
 
 @end
