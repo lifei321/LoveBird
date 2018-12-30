@@ -36,7 +36,7 @@
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>//只引入所需的单个头文件
 
 
-@interface PublishMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate,UITextFieldDelegate, BMKPoiSearchDelegate>
+@interface PublishMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, UISearchBarDelegate,UITextFieldDelegate, BMKPoiSearchDelegate, BMKSuggestionSearchDelegate>
 
 //百度地图
 @property (nonatomic, strong) BMKMapView *bMapView;
@@ -180,79 +180,67 @@
         [AppBaseHud showHudWithfail:@"搜索内容不能为空" view:self.view];
         return;
     }
-    BMKPOIBoundSearchOption * option = [[BMKPOIBoundSearchOption alloc]init];
-    
-    option.keywords = @[textField.text];
-    option.rightTop = CLLocationCoordinate2DMake(54.469507,133.782815);
-    option.leftBottom = CLLocationCoordinate2DMake(-4.891816, 85.213952);
-    
-    BMKPoiSearch *poiSearch = [[BMKPoiSearch alloc] init];
+    BMKSuggestionSearchOption* option = [[BMKSuggestionSearchOption alloc] init];
+    option.cityname = @"全国";
+    option.keyword  = textField.text;
+    BMKSuggestionSearch *poiSearch = [[BMKSuggestionSearch alloc] init];
     poiSearch.delegate = self;
-    BOOL flag = [poiSearch poiSearchInbounds:option];
-    if (flag) {
-        NSLog(@"检索发送成功");
-    }else{
-        NSLog(@"检索发送失败");
-    }
+    [poiSearch suggestionSearch:option];
 }
 
 #pragma mark implement BMKSearchDelegate
 
-- (void)onGetPoiResult:(BMKPoiSearch*)searcher result:(BMKPOISearchResult*)poiResult errorCode:(BMKSearchErrorCode)errorCode {
-    
-    if (errorCode == BMK_SEARCH_NO_ERROR) {
-        
-        if (poiResult.poiInfoList.count == 0) {
+//实现Delegate处理回调结果
+- (void)onGetSuggestionResult:(BMKSuggestionSearch*)searcher result:(BMKSuggestionResult*)result errorCode:(BMKSearchErrorCode)error{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+        if (result.keyList.count == 0) {
             return;
         }
-        MapDisCoverLocationView *birdView = [[MapDisCoverLocationView alloc] initWithFrame:CGRectMake(AutoSize6(30), total_topView_height + AutoSize6(100), SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(170) - kTabBarHeight - AutoSize6(100))];
-        birdView.dataArray = [NSMutableArray arrayWithArray:poiResult.poiInfoList];
+        MapDisCoverLocationView *birdView = [[MapDisCoverLocationView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(100) + topView_origin_y + _searchTextField.height, SCREEN_WIDTH - AutoSize6(60), SCREEN_HEIGHT - AutoSize6(170) - kTabBarHeight - AutoSize6(100))];
+        birdView.dataArray = [NSMutableArray arrayWithArray:result.keyList];
         
         @weakify(birdView);
-        birdView.locationBlock = ^(BMKPoiInfo *locationInfo) {
+        birdView.locationBlock = ^(NSString *info, NSInteger index) {
             @strongify(birdView);
             [birdView removeFromSuperview];
             self.searchTextField.hidden = YES;
             self.searchTextField.text = nil;
             
-            self.bMapView.centerCoordinate = locationInfo.pt;
+            NSString *city = result.cityList[index];
+            NSString *strict = result.districtList[index];
             
-            self.locationName = [NSString stringWithFormat:@"%@%@%@",locationInfo.province, locationInfo.city, locationInfo.area];
-            self.lng = locationInfo.pt.longitude;
-            self.lat = locationInfo.pt.latitude;
+            NSString *address;
+            if (result.addressList.count > index) {
+                address = result.addressList[index];
+            }
+            
+            if (address.length == 0) {
+                address = info;
+            }
+            self.locationName = [NSString stringWithFormat:@"%@%@%@",city, strict, address];
+            
+            id coor = result.ptList[index];
+            NSValue *coord = (NSValue *)coor;
+            
+            CLLocationCoordinate2D stru;
+            [coord getValue:&stru];
+            
+            self.lng = stru.longitude;
+            self.lat = stru.latitude;
             if (self.viewControllerActionBlock) {
                 self.viewControllerActionBlock(self, @{
                                                        @"locale":EMPTY_STRING_IF_NIL(self.locationName),
-                                                       @"lng":[NSString stringWithFormat:@"%f", locationInfo.pt.longitude],
-                                                       @"lat":[NSString stringWithFormat:@"%f", locationInfo.pt.latitude],
+                                                       @"lng":[NSString stringWithFormat:@"%f", self.lng],
+                                                       @"lat":[NSString stringWithFormat:@"%f", self.lat],
                                                        });
             }
             [self.navigationController popViewControllerAnimated:YES];
-
-            
-//            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-//            [geocoder geocodeAddressString:locationInfo.name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-//
-//                if (!error) {
-//                    if (placemarks.count  > 0) {
-//                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//                        if (placemark != nil) {
-//
-//                            NSString *city = placemark.locality;
-//                            NSLog(@"当前城市名称------%@",city);
-//
-//                        }
-//                    }
-//                }
-//
-//            }];
-            
         };
         [self.view addSubview:birdView];
         [self.view bringSubviewToFront:birdView];
-        
     } else {
-        [AppBaseHud showHudWithfail:@"没有结果" view:self.view];
+        NSLog(@"抱歉，未找到结果");
     }
 }
 

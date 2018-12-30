@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchResult.h>//只引入所需的单个头文件
 
-typedef void(^MapSelectLocationBlock)(BMKPoiInfo *locationInfo);
+typedef void(^MapSelectLocationBlock)(NSString *info, NSInteger index);
 
 @interface MapDisCoverLocationView : UIView
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+
 
 @property (nonatomic, strong) MapSelectLocationBlock locationBlock;
 

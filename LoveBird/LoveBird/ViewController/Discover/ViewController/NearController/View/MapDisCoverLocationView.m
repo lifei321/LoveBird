@@ -55,8 +55,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    BMKPoiInfo *info = self.dataArray[indexPath.row];
-    cell.textLabel.text = info.name;
+    NSString *info = self.dataArray[indexPath.row];
+    cell.textLabel.text = info;
     return cell;
 }
 
@@ -71,10 +71,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BMKPoiInfo *info = self.dataArray[indexPath.row];
+    NSString *info = self.dataArray[indexPath.row];
 
     if (self.locationBlock) {
-        self.locationBlock(info);
+        self.locationBlock(info, indexPath.row);
     }
 }
 
