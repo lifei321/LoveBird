@@ -29,7 +29,6 @@
     if (self) {
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _iconImageView.backgroundColor = [UIColor orangeColor];
         _iconImageView.contentMode = UIViewContentModeCenter;
         _iconImageView.layer.cornerRadius = _iconImageView.width / 2;
         _iconImageView.clipsToBounds = YES;
@@ -51,7 +50,6 @@
         _arrowImageView.contentMode = UIViewContentModeCenter;
         _arrowImageView.image = [UIImage imageNamed:@"placeHolder"];
         _arrowImageView.clipsToBounds = YES;
-        _arrowImageView.backgroundColor = [UIColor orangeColor];
         [self.contentView addSubview:_arrowImageView];
         
         _switchView = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize(57), 0, AutoSize(47), AutoSize(47))];

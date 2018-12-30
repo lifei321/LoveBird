@@ -35,7 +35,7 @@
 + (void)getMatchDetail:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
 // 大赛记录列表
-+ (void)getMatchArctleList:(NSString *)matchid SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
++ (void)getMatchArctleList:(NSString *)matchid page:(NSInteger)page  SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock ;
 
 // 装备咨询列表
 + (void)getWordList:(NSString *)cid page:(NSString *)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;

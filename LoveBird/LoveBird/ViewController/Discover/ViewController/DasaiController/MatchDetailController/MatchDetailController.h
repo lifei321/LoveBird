@@ -7,9 +7,12 @@
 //
 
 #import "AppBaseTableViewController.h"
+#import "MatchDetailModel.h"
 
 @interface MatchDetailController : AppBaseTableViewController
 
 @property (nonatomic, copy) NSString *matchid;
+
+@property (nonatomic, strong) MatchDetailModel *detailModel;
 
 @end

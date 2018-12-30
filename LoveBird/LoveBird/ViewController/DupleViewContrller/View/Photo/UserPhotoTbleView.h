@@ -17,9 +17,9 @@
 @property (nonatomic, assign) BOOL isNeedHeader;
 
 
-@property (nonatomic, copy) NSString *taid;
-
 @property (nonatomic, copy) NSString *authorId;
+
+@property (nonatomic, copy) NSString *matchId;
 
 @property (nonatomic, assign) BOOL fromMe;
 

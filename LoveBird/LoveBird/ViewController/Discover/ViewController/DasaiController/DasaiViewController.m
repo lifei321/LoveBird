@@ -12,6 +12,7 @@
 #import "DiscoverDao.h"
 #import "MatchDetailController.h"
 
+#import "MatchDetailModel.h"
 
 @interface DasaiViewController ()
 
@@ -75,9 +76,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     AppBaseCellModel *cellModel = self.dataSource.tableListArray[indexPath.section][indexPath.row];
-    MatchDetailController *detailvc = [[MatchDetailController alloc] init];
-    detailvc.matchid = ((MatchModel *)cellModel.userInfo).matchid;
-    [self.navigationController pushViewController:detailvc animated:YES];
+    MatchModel *model = (MatchModel *)cellModel.userInfo;
+    [self netForDetaiModelWithMatchId:model.matchid];
+}
+
+- (void)netForDetaiModelWithMatchId:(NSString *)matchid {
+    [AppBaseHud showHudWithLoding:self.view];
+    
+    @weakify(self);
+    [DiscoverDao getMatchDetail:matchid SuccessBlock:^(__kindof AppBaseModel *responseObject) {
+        @strongify(self);
+        [AppBaseHud hideHud:self.view];
+        
+        MatchDetailController *detailvc = [[MatchDetailController alloc] init];
+        detailvc.matchid = matchid;
+        detailvc.detailModel = responseObject;
+        [self.navigationController pushViewController:detailvc animated:YES];
+
+    } failureBlock:^(__kindof AppBaseModel *error) {
+        @strongify(self);
+        [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        
+    }];
 }
 
 - (CGFloat)getHeight:(NSInteger)row {

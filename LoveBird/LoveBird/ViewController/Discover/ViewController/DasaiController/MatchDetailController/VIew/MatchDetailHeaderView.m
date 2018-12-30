@@ -28,6 +28,9 @@
 
 @property (nonatomic, strong) UIView *line2;
 
+@property (nonatomic, strong) UIView *line3;
+
+
 @end
 
 
@@ -89,6 +92,11 @@
         
         [self.detailButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.detailButton];
+        
+        self.line3 = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentLabel.bottom, SCREEN_WIDTH, 0.5)];
+        self.line3.backgroundColor = kLineColoreDefaultd4d7dd;
+        [self addSubview:self.line3];
+
     }
     return self;
 }
@@ -125,6 +133,8 @@
     self.line2.top = self.contentLabel.bottom;
     
     self.detailButton.top = self.line2.bottom;
+    
+    self.line3.top = self.detailButton.bottom - 1;
 }
 
 - (CGFloat)getHeight {

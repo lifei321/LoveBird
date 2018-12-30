@@ -43,7 +43,6 @@
         
         _iconImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), SCREEN_WIDTH - AutoSize6(60), AutoSize6(0))];
         self.iconImageView.contentMode = UIViewContentModeScaleToFill;
-        self.iconImageView.backgroundColor = [UIColor orangeColor];
         [self.contentView addSubview:_iconImageView];
         
         self.tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(0), SCREEN_WIDTH - AutoSize6(60), AutoSize6(0))];

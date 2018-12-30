@@ -34,9 +34,6 @@
 #import <SDWebImage/SDImageCache.h>
 #import <SDWebImage/SDWebImageManager.h>
 
-static BOOL SDImageCacheOldShouldDecompressImages = YES;
-static BOOL SDImagedownloderOldShouldDecompressImages = YES;
-
 
 //612
 #define JXTableHeaderViewHeight  AutoSize6(470)
@@ -53,7 +50,6 @@ static BOOL SDImagedownloderOldShouldDecompressImages = YES;
 @property (nonatomic, strong) MinePhotoViewController *photoController;
 
 @property (nonatomic, strong) UserModel *userModel;
-
 
 @property (nonatomic, strong) JXPagerView *pagerView;
 
@@ -95,6 +91,7 @@ static BOOL SDImagedownloderOldShouldDecompressImages = YES;
     self.hidesBottomBarWhenPushed = YES;
     
     self.navigationBar.backgroundColor = [UIColor whiteColor];
+    
     [self setHeadForView];
     
     [self netForMyInfo];
@@ -384,99 +381,5 @@ static BOOL SDImagedownloderOldShouldDecompressImages = YES;
     //清除内存中的图片
     [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
-
-//- (void)notificationButton:(UIButton *)button {
-//    NotifycationViewController *vc = [[NotifycationViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-//
-//- (void)detailButton:(UIButton *)button {
-//    NotifycationViewController *vc = [[NotifycationViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-//
-//- (void)shareButton:(UIButton *)button {
-//    NotifycationViewController *vc = [[NotifycationViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-//
-//- (void)setButton:(UIButton *)button {
-//    MineSetViewController *vc = [[MineSetViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 0.01f;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 0.01f;
-//}
-//
-//
-//#pragma mark-- UI
-//
-//
-//- (void)setTableView {
-//
-//    self.tableView.frame = CGRectMake(0, total_topView_height, SCREEN_WIDTH, SCREEN_HEIGHT - total_topView_height);
-//
-//    UserInfoHeaderView *headerView = [[UserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, JXTableHeaderViewHeight)];
-//    self.headerView = headerView;
-//
-//    UIScrollView *footerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.height - self.headerView.height)];
-//    footerView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 0);
-//    footerView.showsVerticalScrollIndicator = NO;
-//    footerView.bounces = NO;
-//    footerView.pagingEnabled = YES;
-//    self.tableView.tableFooterView = footerView;
-//
-//    MineLogViewController *logController = [[MineLogViewController  alloc] init];
-//    logController.taid = self.uid;
-//    [self addChildViewController:logController];
-//    logController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, footerView.height);
-//    [footerView addSubview:logController.view];
-//
-//
-//    MineBirdViewController *birdController = [[MineBirdViewController alloc] init];
-//    birdController.taid = self.uid;
-//    [self addChildViewController:birdController];
-//    birdController.view.frame = CGRectMake(SCREEN_WIDTH , 0, SCREEN_WIDTH, footerView.height);
-//    [footerView addSubview:birdController.view];
-//
-//    MinePhotoViewController *photoController = [[MinePhotoViewController alloc] init];
-//    photoController.authorId = self.uid;
-//    [self addChildViewController:photoController];
-//    photoController.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, footerView.height);
-//    [footerView addSubview:photoController.view];
-//
-//
-//    @weakify(footerView);
-//    headerView.headerBlock = ^(NSInteger tag) {
-//        @strongify(footerView);
-//        switch (tag) {
-//            case 100:
-//            {
-//                footerView.contentOffset = CGPointMake(0, 0);
-//            }
-//                break;
-//
-//            case 300:
-//            {
-//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH , 0);
-//            }
-//                break;
-//            case 400:
-//            {
-//                footerView.contentOffset = CGPointMake(SCREEN_WIDTH * 2, 0);
-//
-//            }
-//                break;
-//
-//            default:
-//                break;
-//        }
-//    };
-//}
 
 @end

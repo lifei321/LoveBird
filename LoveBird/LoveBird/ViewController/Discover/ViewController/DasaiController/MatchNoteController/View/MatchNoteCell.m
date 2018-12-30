@@ -76,7 +76,7 @@
         lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:lineView];
         
-        self.locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentImageView.right + AutoSize6(20), self.backView.height - AutoSize6(50), AutoSize6(21), AutoSize6(35))];
+        self.locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentImageView.right + AutoSize6(20), self.backView.height - AutoSize6(80), AutoSize6(21), AutoSize6(35))];
         self.locationImageView.image = [UIImage imageNamed:@"detail_adress"];
         self.locationImageView.contentMode = UIViewContentModeCenter;
         [self.backView addSubview:self.locationImageView];
@@ -99,6 +99,14 @@
 - (void)setModel:(MatchArticleModel *)model {
     _model = model;
     
+    for (UIView *subview in self.backView.subviews) {
+        
+        if ([subview isKindOfClass:[UIImageView class]] || [subview isKindOfClass:[UILabel class]]) {
+            continue;
+        }
+        [subview removeFromSuperview];
+    }
+    
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     self.nameLable.text = model.author;
@@ -112,10 +120,13 @@
     
     CGFloat locationHeight = [model.locale getTextHeightWithFont:self.locationLable.font withWidth:AutoSize6(240)];
     if (locationHeight > self.locationImageView.height) {
-        self.locationLable.top = self.locationImageView.top - AutoSize6(30);
+        self.locationImageView.top = self.backView.height - AutoSize6(100);
+        self.locationLable.top = self.locationImageView.top;
         self.locationLable.height = locationHeight;
 
     } else {
+        self.locationImageView.top = self.backView.height - AutoSize6(50);
+
         self.locationLable.top = self.locationImageView.top;
         self.locationLable.height = self.locationImageView.height;
     }

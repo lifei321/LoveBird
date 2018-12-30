@@ -64,6 +64,12 @@
         self.isNeedHeader = YES;
         
         _photoArray = [NSMutableArray new];
+        
+        if (@available(iOS 11.0, *)) {
+            UITableView.appearance.estimatedRowHeight = 0;
+            UITableView.appearance.estimatedSectionFooterHeight = 0;
+            UITableView.appearance.estimatedSectionHeaderHeight = 0;
+        }
     }
     return self;
 }
@@ -198,7 +204,7 @@
 //    [[SDImageCache sharedImageCache]clearMemory];
 
     @weakify(self);
-    [DiscoverDao getWorksList:self.authorId matchid:@"" minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
+    [DiscoverDao getWorksList:self.authorId matchid:self.matchId minAid:pageNum type:@"100" successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
