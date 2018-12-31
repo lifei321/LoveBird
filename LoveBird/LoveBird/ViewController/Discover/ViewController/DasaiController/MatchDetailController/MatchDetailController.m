@@ -46,7 +46,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.backImage = [UIImage imageNamed:@""];
+    
+    self.navigationBar.backgroundColor = [UIColor whiteColor];
     
     [self setHeadForView];
     
@@ -228,7 +229,7 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     //    self.pagerView.frame = CGRectMake(0, self.pinHeaderViewInsetTop, self.view.bounds.size.width, self.view.bounds.size.height - self.pinHeaderViewInsetTop);
-    
+
     self.pagerView.frame = self.view.bounds;
 }
 
@@ -267,5 +268,22 @@
 - (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
     self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
 }
+
+- (void)didReceiveMemoryWarning {
+    //停止下载所有图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+}
+
+
+
+
+
+
+
 
 @end

@@ -43,12 +43,6 @@
 @interface UserInfoViewController ()<JXPagerViewDelegate, JXCategoryViewDelegate>
 @property (nonatomic, strong) UserInfoHeaderNewView *headerView;
 
-@property (nonatomic, strong) MineLogViewController *logController;
-
-@property (nonatomic, strong) MineBirdViewController *birdController;
-
-@property (nonatomic, strong) MinePhotoViewController *photoController;
-
 @property (nonatomic, strong) UserModel *userModel;
 
 @property (nonatomic, strong) JXPagerView *pagerView;
