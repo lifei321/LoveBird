@@ -19,6 +19,9 @@
 //devcieToken
 #define kDeviceToken                        @"AppDeviceToken"
 
+#define kSystem                          @"kSystem"
+#define kTalk                            @"kTalk"
+#define kFollow                          @"kFollow"
 
 
 #endif /* AppStringMacro_h */

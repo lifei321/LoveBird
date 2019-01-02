@@ -94,6 +94,20 @@
             _arrowImageView.hidden = YES;
             _contentLabel.hidden = YES;
             _switchView.hidden = NO;
+            
+            NSString *system = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@",kSystem, [UserPage sharedInstance].uid]];
+            NSString *comment = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@",kTalk, [UserPage sharedInstance].uid]];
+            NSString *follow = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@",kFollow, [UserPage sharedInstance].uid]];
+
+            if ([model.title isEqualToString:@"系统消息"]) {
+                _switchView.on = system.length ? system.boolValue : YES;
+            } else if ([model.title isEqualToString:@"评论我"]) {
+                _switchView.on = comment.length ? comment.boolValue : YES;
+
+            } else if ([model.title isEqualToString:@"关注我"]) {
+                _switchView.on = follow.length ? follow.boolValue : YES;
+            }
+            
         } else {
             _switchView.hidden = YES;
             if (model.isShowContent) {
@@ -110,17 +124,30 @@
 
 - (void)switchViewDidClick:(UISwitch *)switchView {
     
+    NSString *system = [UserPage sharedInstance].userModel.system.length ? [UserPage sharedInstance].userModel.system : @"1";
+    NSString *commont = [UserPage sharedInstance].userModel.comment.length ? [UserPage sharedInstance].userModel.comment : @"1";
+    NSString *follow = [UserPage sharedInstance].userModel.follow.length ? [UserPage sharedInstance].userModel.follow : @"1";
+
     if ([self.model.title isEqualToString:@"系统消息"]) {
-        [UserPage sharedInstance].userModel.system = [NSString stringWithFormat:@"%d", switchView.on];
+        system = [NSString stringWithFormat:@"%d", switchView.on];
+        
     } else if ([self.model.title isEqualToString:@"评论我"]) {
-        [UserPage sharedInstance].userModel.comment = [NSString stringWithFormat:@"%d", switchView.on];
+        commont = [NSString stringWithFormat:@"%d", switchView.on];
 
     } else if ([self.model.title isEqualToString:@"关注我"]) {
-        [UserPage sharedInstance].userModel.follow = [NSString stringWithFormat:@"%d", switchView.on];
+        follow = [NSString stringWithFormat:@"%d", switchView.on];
     }
     
-    [SetDao setPushSuccessBlock:^(__kindof AppBaseModel *responseObject) {
+    
+    [SetDao setPush:system talk:commont follow:follow SuccessBlock:^(__kindof AppBaseModel *responseObject) {
         
+        [UserPage sharedInstance].userModel.system = system;
+        [UserPage sharedInstance].userModel.comment = commont;
+        [UserPage sharedInstance].userModel.follow = follow;
+        [[NSUserDefaults standardUserDefaults] setObject:system  forKey:[NSString stringWithFormat:@"%@%@",kSystem, [UserPage sharedInstance].uid]];
+        [[NSUserDefaults standardUserDefaults] setObject:commont  forKey:[NSString stringWithFormat:@"%@%@",kTalk, [UserPage sharedInstance].uid]];
+        [[NSUserDefaults standardUserDefaults] setObject:follow  forKey:[NSString stringWithFormat:@"%@%@",kFollow, [UserPage sharedInstance].uid]];
+
     } failureBlock:^(__kindof AppBaseModel *error) {
         
     }];

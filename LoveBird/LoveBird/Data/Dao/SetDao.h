@@ -42,6 +42,6 @@
 
 +(void)setDeviceToken:(NSString *)token SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 
-+(void)setPushSuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
++(void)setPush:(NSString *)system talk:(NSString *)talk follow:(NSString *)follow SuccessBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock;
 @end
 

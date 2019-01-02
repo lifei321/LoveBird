@@ -192,6 +192,7 @@
     
     NSMutableArray *section1 = [NSMutableArray new];
     MineSetModel *model10 = [[MineSetModel alloc] init];
+    
     model10.iconUrl = @"";
     model10.isShowContent = NO;
     model10.isShowSwitch = YES;
