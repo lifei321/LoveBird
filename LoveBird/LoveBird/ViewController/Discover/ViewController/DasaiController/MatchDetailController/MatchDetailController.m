@@ -23,7 +23,7 @@
 #import "MatchDetailNoteTableView.h"
 #import "UserPhotoTbleView.h"
 
-#define JXheightForHeaderInSection AutoSize6(142)
+#define JXheightForHeaderInSection AutoSize6(100)
 
 
 @interface MatchDetailController ()<JXPagerViewDelegate, JXCategoryViewDelegate>
@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) JXPagerView *pagerView;
 
-@property (nonatomic, strong) JXCategoryTitleImageView *categoryView;
+@property (nonatomic, strong) JXCategoryTitleView *categoryView;
 
 @property (nonatomic, strong) NSArray <TestListBaseView *> *listViewArray;
 
@@ -188,24 +188,24 @@
     
     _listViewArray = @[partnerListView, notevc];
     
-    _categoryView = [[JXCategoryTitleImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
+    _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, JXheightForHeaderInSection)];
     self.categoryView.titles = @[@"作品", @"记录"];
     self.categoryView.backgroundColor = [UIColor whiteColor];
     self.categoryView.delegate = self;
     self.categoryView.titleSelectedColor = kColorDefaultColor;
     self.categoryView.titleColor = UIColorFromRGB(0x7f7f7f);
     self.categoryView.titleColorGradientEnabled = YES;
-    self.categoryView.titleLabelZoomEnabled = YES;
-    self.categoryView.titleLabelZoomEnabled = YES;
-    self.categoryView.imageNames = @[@"mine_header_picture_no", @"mine_header_log_no"];
-    self.categoryView.selectedImageNames = @[@"mine_header_picture_yes", @"mine_header_log_yes"];
+//    self.categoryView.titleLabelZoomEnabled = YES;
+//    self.categoryView.titleLabelZoomEnabled = YES;
+//    self.categoryView.imageNames = @[@"", @""];
+//    self.categoryView.selectedImageNames = @[@"mine_header_picture_yes", @"mine_header_log_yes"];
     self.categoryView.cellWidthZoomEnabled = NO;
-    self.categoryView.titleFont = kFontPF6(22);
+    self.categoryView.titleFont = kFontBold6(30);
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     lineView.indicatorLineViewColor = kColorDefaultColor;
-    lineView.indicatorLineWidth = 30;
-    //    self.categoryView.indicators = @[lineView];
+    lineView.indicatorLineWidth = AutoSize6(80);
+    self.categoryView.indicators = @[lineView];
     
     _pagerView = [self preferredPagingView];
     [self.view addSubview:self.pagerView];
