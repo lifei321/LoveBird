@@ -7,12 +7,14 @@
 //
 
 #import "LogDetailBirdCell.h"
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import "BirdDetailController.h"
 
-@interface LogDetailBirdCell()
+@interface LogDetailBirdCell()<TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 
-@property (nonatomic, strong) UILabel *birdLabel;
+@property (nonatomic, strong) TTTAttributedLabel *birdLabel;
 
 @property (nonatomic, strong) UIView *lineView;
 @end
@@ -32,12 +34,16 @@
         _iconImageView.image = [UIImage imageNamed:@"bird_record"];
         [self.contentView addSubview:_iconImageView];
         
-        self.birdLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(20), 0, SCREEN_WIDTH - _iconImageView.right - AutoSize6(40), AutoSize6(94))];
+        self.birdLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(self.iconImageView.right + AutoSize6(20), 0, SCREEN_WIDTH - _iconImageView.right - AutoSize6(40), AutoSize6(94))];
         self.birdLabel.textAlignment = NSTextAlignmentLeft;
         self.birdLabel.textColor = kColorTextColor333333;
         self.birdLabel.font = kFont6(28);
+        self.birdLabel.delegate = self;
         [self.contentView addSubview:self.birdLabel];
-        
+        self.birdLabel.userInteractionEnabled = YES;
+        _birdLabel.activeLinkAttributes = @{NSForegroundColorAttributeName:kColorDefaultColor,NSUnderlineStyleAttributeName:@(0)};
+        _birdLabel.linkAttributes = @{NSForegroundColorAttributeName:kColorTextColor333333,NSUnderlineStyleAttributeName:@(0)};
+
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(AutoSize6(30), AutoSize6(93), SCREEN_WIDTH - AutoSize6(60), 0.5)];
         self.lineView.backgroundColor = kLineColoreDefaultd4d7dd;
         [self.contentView addSubview:self.lineView];
@@ -50,6 +56,7 @@
     
     NSString *text ;
     NSString *contentText;
+    
     for (LogBirdInfoModel *model in birdArray) {
         text = [NSString stringWithFormat:@"%@%@ ",model.genus, model.num];
         
@@ -60,12 +67,34 @@
         }
     }
     
+    //设置需要点击的文字的颜色大小
+    [self.birdLabel setText:contentText afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+        
+        [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:kFont6(28) range:NSMakeRange(0, contentText.length)];
+        [mutableAttributedString addAttribute:(NSString*)kCTForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, contentText.length)];
+        return mutableAttributedString;
+    }];
+
+    for (LogBirdInfoModel *model in birdArray) {
+        NSString *text = [NSString stringWithFormat:@"%@%@ ",model.genus, model.num];
+        NSRange boldRange1 = [contentText rangeOfString:text options:NSCaseInsensitiveSearch];
+        [self.birdLabel addLinkToAddress:@{@"code": model.csp_code} withRange:boldRange1];
+    }
+    
 //    CGFloat height = [contentText getTextHeightWithFont:self.birdLabel.font withWidth:SCREEN_WIDTH - _iconImageView.right - AutoSize6(40)];
     self.birdLabel.numberOfLines = 0;
-    self.birdLabel.text = contentText;
     self.birdLabel.textColor = kColorDefaultColor;
     self.lineView.hidden = NO;
+}
 
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithAddress:(NSDictionary *)addressComponents {
+    BirdDetailController *detail = [[BirdDetailController alloc] init];
+    detail.cspCode = [addressComponents objectForKey:@"code"];
+    [[UIViewController currentViewController].navigationController pushViewController:detail animated:YES];
+
+}
+
+- (void)sdds {
 }
 
 - (void)setLocation:(NSString *)location {

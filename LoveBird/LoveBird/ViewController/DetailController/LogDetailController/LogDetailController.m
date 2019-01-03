@@ -464,13 +464,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0) && (indexPath.row == 0)) {
-        BirdDetailController *detail = [[BirdDetailController alloc] init];
-        
-        LogBirdInfoModel * birdModel = self.detailModel.birdInfo.firstObject;
-        detail.cspCode = birdModel.csp_code;
-        [self.navigationController pushViewController:detail animated:YES];
-    }
+
 }
 
 - (void)netForLogDetail {
