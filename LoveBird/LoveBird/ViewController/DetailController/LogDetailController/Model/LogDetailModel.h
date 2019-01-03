@@ -109,6 +109,10 @@
 
 @property (nonatomic, assign) BOOL isImg;
 
+@property (nonatomic, assign) BOOL isVideo;
+
+@property (nonatomic, copy) NSString *videoUrl;
+
 @property (nonatomic, copy) NSString *content;
 
 @property (nonatomic, copy) NSString *imgExifModel;

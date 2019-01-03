@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BirdDetailController.h"
 #import "LogDetailController.h"
+#import "TTTAttributedLabel.h"
 
 @interface LogContentCell()
 
@@ -83,10 +84,23 @@
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setLineSpacing:AutoSize6(7)];
         [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, contentModel.content.length)];
+        
+        if ((contentModel.article_status.integerValue == 100) && (contentModel.isImg == NO)) {
+            
+            [attributedString addAttribute:NSForegroundColorAttributeName value:kColorDefaultColor range:NSMakeRange(0, contentModel.content.length)];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagLabelDidClick)];
+            self.birdLabel.userInteractionEnabled = YES;
+            [self.birdLabel addGestureRecognizer:tap];
+        } else {
+            [attributedString addAttribute:NSForegroundColorAttributeName value:kColorTextColor333333 range:NSMakeRange(0, contentModel.content.length)];
+        }
+        
         self.birdLabel.attributedText = attributedString;
         
         CGFloat height = [contentModel.content getTextHeightWithFont:self.birdLabel.font withWidth:(SCREEN_WIDTH - AutoSize6(60)) att:paragraphStyle];
         self.birdLabel.height = height;
+
+        
     } else {
         self.birdLabel.height = 0;
     }
@@ -108,15 +122,6 @@
                 self.tagLabel.text = contentModel.imgTag;
                 CGFloat width = [contentModel.imgTag getTextWightWithFont:self.tagLabel.font];
                 self.tagLabel.frame = CGRectMake(_iconImageView.right - width - AutoSize6(20) , _iconImageView.bottom + AutoSize6(10), width + AutoSize6(20), AutoSize6(40));
-
-                if (contentModel.article_status.integerValue == 100) {
-                    self.tagLabel.textColor = kColorDefaultColor;
-                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagLabelDidClick)];
-                    self.tagLabel.userInteractionEnabled = YES;
-                    [self.tagLabel addGestureRecognizer:tap];
-                } else {
-                    self.tagLabel.backgroundColor = UIColorFromRGB(0xececec);
-                }
                 
             } else {
                 self.tagLabel.frame = CGRectZero;

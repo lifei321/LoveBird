@@ -492,6 +492,8 @@
             photo.shareSummary = worksModel.shareSummary;
             photo.tid = worksModel.aid;
             photo.uid = detailModel.authorid;
+            photo.isVideo = worksModel.isVideo;
+            photo.videoURL = [NSURL URLWithString:worksModel.videoUrl];
             [self.photoArray addObject:photo];
         }
         
@@ -542,6 +544,8 @@
             photo.shareTitle = worksModel.shareTitle;
             photo.shareSummary = worksModel.shareSummary;
             photo.tid = worksModel.aid;
+            photo.isVideo = worksModel.isVideo;
+            photo.videoURL = [NSURL URLWithString:worksModel.videoUrl];
             [self.photoArray addObject:photo];
         }
 
