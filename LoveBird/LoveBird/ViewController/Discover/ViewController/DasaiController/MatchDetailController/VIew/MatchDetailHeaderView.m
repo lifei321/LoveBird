@@ -87,7 +87,7 @@
         self.detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, AutoSize6(80))];
         [self.detailButton setTitle:@"大赛详情>" forState:UIControlStateNormal];
         [self.detailButton setTitle:@"大赛详情>" forState:UIControlStateSelected];
-        self.detailButton.titleLabel.font = kFont6(26);
+        self.detailButton.titleLabel.font = kFont6(30);
         [self.detailButton setTitleColor:UIColorFromRGB(0xf7b03d) forState:UIControlStateNormal];
         
         [self.detailButton addTarget:self action:@selector(followButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];

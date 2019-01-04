@@ -85,6 +85,7 @@
     _detailModel = detailModel;
     
     MatchDetailHeaderView *headerView = [[MatchDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+    headerView.matchid = self.matchid;
     headerView.detailModel = detailModel;
     CGFloat headerHeight = [headerView getHeight];
     headerView.height = headerHeight;
