@@ -26,6 +26,7 @@
 
 @property (nonatomic, copy) NSString * tid;
 
+@property (nonatomic, copy) NSString * aid;
 
 @property (nonatomic, copy) NSString * author;
 

@@ -93,6 +93,7 @@
             [self.birdLabel addGestureRecognizer:tap];
         } else {
             [attributedString addAttribute:NSForegroundColorAttributeName value:kColorTextColor333333 range:NSMakeRange(0, contentModel.content.length)];
+            self.birdLabel.userInteractionEnabled = NO;
         }
         
         self.birdLabel.attributedText = attributedString;

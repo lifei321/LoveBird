@@ -178,9 +178,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ShequFrameModel *frameModel = self.dataArray[indexPath.row];
-    if (frameModel.shequModel.tid.length) {
+    if (frameModel.shequModel.tid.integerValue) {
         LogDetailController *detailController = [[LogDetailController alloc] init];
         detailController.tid = frameModel.shequModel.tid;
+        [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
+    } else {
+        LogDetailController *detailController = [[LogDetailController alloc] init];
+        detailController.aid = frameModel.shequModel.aid;
         [[UIViewController currentViewController].navigationController pushViewController:detailController animated:YES];
     }
 }
