@@ -81,7 +81,7 @@
         self.locationImageView.contentMode = UIViewContentModeCenter;
         [self.backView addSubview:self.locationImageView];
         
-        self.locationLable = [[UILabel alloc] initWithFrame:CGRectMake(self.locationImageView.right + AutoSize6(5), self.locationImageView.top, AutoSize6(240), self.locationImageView.height)];
+        self.locationLable = [[UILabel alloc] initWithFrame:CGRectMake(self.locationImageView.right + AutoSize6(5), self.locationImageView.top, AutoSize6(220), self.locationImageView.height)];
         self.locationLable.font = kFont6(22);
         self.locationLable.textColor = kColorTextColorLightGraya2a2a2;
         self.locationLable.textAlignment = NSTextAlignmentLeft;
@@ -118,7 +118,7 @@
     self.timeLable.left = self.nameLable.right + AutoSize6(10);
     self.timeLable.centerY = self.nameLable.centerY;
     
-    CGFloat locationHeight = [model.locale getTextHeightWithFont:self.locationLable.font withWidth:AutoSize6(240)];
+    CGFloat locationHeight = [model.locale getTextHeightWithFont:self.locationLable.font withWidth:AutoSize6(220)];
     if (locationHeight > self.locationImageView.height) {
         self.locationImageView.top = self.backView.height - AutoSize6(100);
         self.locationLable.top = self.locationImageView.top;
