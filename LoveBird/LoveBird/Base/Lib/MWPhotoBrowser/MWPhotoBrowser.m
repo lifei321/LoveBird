@@ -1555,6 +1555,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.headView.hidden = !self.headView.hidden;
     self.footView.hidden = !self.footView.hidden;
     self.footDetailView.hidden = !self.footDetailView.hidden;
+    
+
     return;
     
 }

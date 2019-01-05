@@ -366,6 +366,7 @@
 		1FDBE75720DAA82D0092E82E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75620DAA82D0092E82E /* SearchViewController.m */; };
 		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
 		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
+		8B4B4DD821E06F3D00B48C65 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B4B4DD721E06F3D00B48C65 /* MWPhotoBrowser.bundle */; };
 		8BE85A3D21CE113300836585 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A3C21CE113300836585 /* AppManager.m */; };
 		8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */; };
 		8BE85A4321CE358C00836585 /* GlobelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A4221CE358C00836585 /* GlobelMessage.m */; };
@@ -1110,6 +1111,7 @@
 		1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		1FDC3430214E870900500DFD /* MineMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageViewController.h; sourceTree = "<group>"; };
 		1FDC3431214E870900500DFD /* MineMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageViewController.m; sourceTree = "<group>"; };
+		8B4B4DD721E06F3D00B48C65 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		8BE85A3B21CE113300836585 /* AppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		8BE85A3C21CE113300836585 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -2369,6 +2371,7 @@
 		1F3A3FD720DFF0B000245CA4 /* MWPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				8B4B4DD721E06F3D00B48C65 /* MWPhotoBrowser.bundle */,
 				1F3A3FD820DFF0B000245CA4 /* MWTapDetectingImageView.h */,
 				1F3A3FD920DFF0B000245CA4 /* MWPhoto.h */,
 				1F3A3FDA20DFF0B000245CA4 /* MWPhotoProtocol.h */,
@@ -3473,6 +3476,7 @@
 				1F8CFFC4214953E400C00B8E /* wphoto_select_yes@2x.png in Resources */,
 				1F2A857F2143C753008BC55A /* MJRefresh.bundle in Resources */,
 				0B7293111EFA4F1100D1B1EB /* Assets.xcassets in Resources */,
+				8B4B4DD821E06F3D00B48C65 /* MWPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

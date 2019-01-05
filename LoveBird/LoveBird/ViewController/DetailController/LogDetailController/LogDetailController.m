@@ -214,6 +214,10 @@
                     BOOL startOnGrid = NO;
                     BOOL autoPlayOnAppear = NO;
                     
+                    if (selectModel.isVideo) {
+                        autoPlayOnAppear = YES;
+                    }
+                    
                     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
                     browser.displayActionButton = displayActionButton;
                     browser.displayNavArrows = displayNavArrows;
@@ -260,6 +264,10 @@
                 BOOL startOnGrid = NO;
                 BOOL autoPlayOnAppear = NO;
                 
+                if (selectModel.isVideo) {
+                    autoPlayOnAppear = YES;
+                }
+
                 MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
                 browser.displayActionButton = displayActionButton;
                 browser.displayNavArrows = displayNavArrows;
@@ -479,6 +487,10 @@
         LogDetailModel *detailModel = (LogDetailModel *)responseObject;
 
         for (LogPostBodyModel *worksModel in detailModel.postBody) {
+            if (!worksModel.isImg) {
+                continue;
+            }
+
             MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
             photo.caption = worksModel.imgTag;
             photo.iconUrl = detailModel.authorHead;
@@ -492,8 +504,7 @@
             photo.shareSummary = worksModel.shareSummary;
             photo.tid = worksModel.aid;
             photo.uid = detailModel.authorid;
-            photo.isVideo = worksModel.isVideo;
-            photo.videoURL = [NSURL URLWithString:worksModel.videoUrl];
+
             [self.photoArray addObject:photo];
         }
         
@@ -532,7 +543,12 @@
         LogContentModel *contentModel = (LogContentModel *)responseObject;
         
         for (LogPostBodyModel *worksModel in contentModel.articleList) {
+            
             MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:worksModel.imgUrl]];
+            if (!worksModel.isImg) {
+                continue;
+            }
+            
             photo.caption = worksModel.imgTag;
             photo.iconUrl = contentModel.head;
             photo.name = contentModel.author;
@@ -544,8 +560,10 @@
             photo.shareTitle = worksModel.shareTitle;
             photo.shareSummary = worksModel.shareSummary;
             photo.tid = worksModel.aid;
-            photo.isVideo = worksModel.isVideo;
-            photo.videoURL = [NSURL URLWithString:worksModel.videoUrl];
+            if (worksModel.videoUrl.length > 1) {
+                photo.isVideo = worksModel.isVideo;
+                photo.videoURL = [NSURL URLWithString:worksModel.videoUrl];
+            }
             [self.photoArray addObject:photo];
         }
 

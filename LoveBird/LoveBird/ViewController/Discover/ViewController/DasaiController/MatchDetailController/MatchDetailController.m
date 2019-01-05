@@ -90,7 +90,6 @@
     CGFloat headerHeight = [headerView getHeight];
     headerView.height = headerHeight;
     self.headerView = headerView;
-
 }
 
 //- (void)netForDetaiModel {
