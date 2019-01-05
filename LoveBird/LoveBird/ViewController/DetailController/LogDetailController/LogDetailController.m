@@ -433,6 +433,28 @@
         return 0.01f;
     }
     
+    if (section == 2) {
+        if (self.detailModel.adArticle.imgUrl.length) {
+            return AutoSize6(20);
+        } else if (self.contentModel.adArticle.imgUrl.length){
+            return AutoSize6(20);
+        }
+    }
+    
+    if (section == 3) {
+        if (self.detailModel) {
+            if (self.detailModel.extendArticle.count) {
+                return AutoSize6(20);
+            }
+
+        } else if (self.contentModel) {
+            if (self.contentModel.extendArticle.count) {
+                return AutoSize6(20);
+            }
+            
+        }
+    }
+    
     if (section == 4) {
         return AutoSize6(20);
     }
