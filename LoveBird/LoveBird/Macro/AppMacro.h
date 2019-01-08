@@ -40,9 +40,11 @@
 #define kNetworkAddress                     @"www.baidu.com"
 
 //基础网址
+#ifdef DEBUG
 #define kAPI_USER_SERVER                    @"http://www.birdfans.com/source/birdapi"
+#endif
 
-//#define kAPI_USER_SERVER                    @"https://xcxu.birdfans.com/source/birdapi"
+#define kAPI_USER_SERVER                    @"https://xcxu.birdfans.com/source/birdapi"
 
 
 
