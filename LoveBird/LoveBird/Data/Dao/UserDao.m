@@ -93,10 +93,11 @@
 }
 
 // 关注列表
-+ (void)userFollowList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userFollowList:(NSString *)taid page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+    [dic setObject:[NSString stringWithFormat:@"%ld", page] forKey:@"page"];
 
     [AppHttpManager POST:kAPI_User_FollowList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -216,11 +217,12 @@
 }
 
 // 粉丝列表
-+ (void)userFansList:(NSString *)taid successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userFansList:(NSString *)taid page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
     [dic setObject:EMPTY_STRING_IF_NIL(taid) forKey:@"taid"];
+    [dic setObject:[NSString stringWithFormat:@"%ld", page] forKey:@"page"];
 
     [AppHttpManager POST:kAPI_User_FansList parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
@@ -235,11 +237,12 @@
 }
 
 // 搜索用户列表
-+ (void)userGetList:(NSString *)word successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
++ (void)userGetList:(NSString *)word page:(NSInteger)page successBlock:(LFRequestSuccess)successBlock failureBlock:(LFRequestFail)failureBlock {
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
-    
+    [dic setObject:[NSString stringWithFormat:@"%ld", page] forKey:@"page"];
+
     [AppHttpManager POST:kAPI_Search_userlist parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {
         if (successBlock) {
             successBlock(responseObject);

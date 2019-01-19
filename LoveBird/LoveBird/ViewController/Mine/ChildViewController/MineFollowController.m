@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -52,68 +53,138 @@
     [self setTableView];
     
     if (self.type == 1) {
+        
+        //默认【下拉刷新】
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForFollowHeader)];
+        //默认【上拉加载】
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFollowList)];
+
         [self netForFollowList];
 
     } else if (self.type == 2) {
+        
+        //默认【下拉刷新】
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForFansHeader)];
+        //默认【上拉加载】
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFansList)];
+
         [self netForFansList];
     }
+    
     
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)netForFollowHeader {
+    self.page = 1;
+    [self netForFollowList];
+}
+
 - (void)netForFollowList {
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userFollowList:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userFollowList:self.taid page:self.page successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+            self.page ++;
+        }
         [self.dataArray addObjectsFromArray:dataModel.data];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
+}
+
+- (void)netForFansHeader {
+    self.page = 1;
+    [self netForFansList];
 }
 
 - (void)netForFansList {
     
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userFansList:self.taid successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userFansList:self.taid page:self.page successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+            self.page ++;
+        }
+        
         [self.dataArray addObjectsFromArray:dataModel.data];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
 - (void)setWord:(NSString *)word {
     _word = [word copy];
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(netForUserHeader)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netforUser)];
+    [self netForUserHeader];
+}
+
+- (void)netForUserHeader {
+    self.page = 1;
     [self netforUser];
 }
+
 
 - (void)netforUser {
     [AppBaseHud showHudWithLoding:self.view];
     @weakify(self);
-    [UserDao userGetList:self.word successBlock:^(__kindof AppBaseModel *responseObject) {
+    [UserDao userGetList:self.word page:self.page successBlock:^(__kindof AppBaseModel *responseObject) {
         @strongify(self);
         [AppBaseHud hideHud:self.view];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
         UserFollowListModel *dataModel = (UserFollowListModel *)responseObject;
+        
+        if (self.page == 1) {
+            [self.dataArray removeAllObjects];
+            self.page ++;
+        }
+
         [self.dataArray addObjectsFromArray:dataModel.data];
         [self.tableView reloadData];
         
     } failureBlock:^(__kindof AppBaseModel *error) {
         @strongify(self);
         [AppBaseHud showHudWithfail:error.errstr view:self.view];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
