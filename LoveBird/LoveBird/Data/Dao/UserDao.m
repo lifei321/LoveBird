@@ -241,6 +241,8 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:EMPTY_STRING_IF_NIL(word) forKey:@"keywords"];
+    [dic setObject:EMPTY_STRING_IF_NIL([UserPage sharedInstance].uid) forKey:@"uid"];
+
     [dic setObject:[NSString stringWithFormat:@"%ld", page] forKey:@"page"];
 
     [AppHttpManager POST:kAPI_Search_userlist parameters:dic jsonModelName:[UserFollowListModel class] success:^(__kindof AppBaseModel *responseObject) {

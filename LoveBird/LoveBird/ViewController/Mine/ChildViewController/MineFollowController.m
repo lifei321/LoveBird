@@ -59,7 +59,7 @@
         //默认【上拉加载】
         self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFollowList)];
 
-        [self netForFollowList];
+        [self netForFollowHeader];
 
     } else if (self.type == 2) {
         
@@ -68,7 +68,7 @@
         //默认【上拉加载】
         self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(netForFansList)];
 
-        [self netForFansList];
+        [self netForFansHeader];
     }
     
     
