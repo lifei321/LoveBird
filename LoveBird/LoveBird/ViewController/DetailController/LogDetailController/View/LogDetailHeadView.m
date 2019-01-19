@@ -38,7 +38,7 @@
         [self addSubview:self.contentImageView];
         
         // 观看次数
-        self.countButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(100), 0, AutoSize6(80), AutoSize6(70))];
+        self.countButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - AutoSize6(140), 0, AutoSize6(120), AutoSize6(70))];
         [self.contentImageView addSubview:self.countButton];
         [self.countButton setImage:[UIImage imageNamed:@"detailview"] forState:UIControlStateNormal];
         [self.countButton setIconInLeftWithSpacing:AutoSize6(20)];
