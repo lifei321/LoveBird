@@ -42,10 +42,10 @@
 //基础网址
 #ifdef DEBUG
 #define kAPI_USER_SERVER                    @"http://www.birdfans.com/source/birdapi"
-#endif
+#else
 
 #define kAPI_USER_SERVER                    @"https://xcxu.birdfans.com/source/birdapi"
-
+#endif
 
 
 

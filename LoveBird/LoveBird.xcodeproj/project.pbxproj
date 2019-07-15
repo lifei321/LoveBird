@@ -150,7 +150,6 @@
 		1F17161D2116FD9B001769AB /* AudioProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17161C2116FD9B001769AB /* AudioProgressView.m */; };
 		1F1B8043213267B700547801 /* AppShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8042213267B700547801 /* AppShareManager.m */; };
 		1F1B8046213267CA00547801 /* AppLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B8045213267CA00547801 /* AppLoginManager.m */; };
-		1F1B804C2142C67C00547801 /* app.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1F1B804B2142C67C00547801 /* app.cer */; };
 		1F2A84BE2143AC46008BC55A /* MineQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A84BD2143AC46008BC55A /* MineQRViewController.m */; };
 		1F2A84C42143BED8008BC55A /* MineLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A84C32143BED8008BC55A /* MineLocationViewController.m */; };
 		1F2A84C72143C10D008BC55A /* MineLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A84C62143C10D008BC55A /* MineLocationModel.m */; };
@@ -366,6 +365,7 @@
 		1FDBE75720DAA82D0092E82E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75620DAA82D0092E82E /* SearchViewController.m */; };
 		1FDBE75B20DC00D50092E82E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */; };
 		1FDC3432214E870900500DFD /* MineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC3431214E870900500DFD /* MineMessageViewController.m */; };
+		8B06D9CD22D62E2300F8252B /* app.cer in Resources */ = {isa = PBXBuildFile; fileRef = 8B06D9CC22D62E2300F8252B /* app.cer */; };
 		8B4B4DD821E06F3D00B48C65 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B4B4DD721E06F3D00B48C65 /* MWPhotoBrowser.bundle */; };
 		8BE85A3D21CE113300836585 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE85A3C21CE113300836585 /* AppManager.m */; };
 		8BE85A3F21CE1C3F00836585 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE85A3E21CE1C3E00836585 /* NotificationCenter.framework */; };
@@ -673,7 +673,6 @@
 		1F1B8042213267B700547801 /* AppShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppShareManager.m; sourceTree = "<group>"; };
 		1F1B8044213267CA00547801 /* AppLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLoginManager.h; sourceTree = "<group>"; };
 		1F1B8045213267CA00547801 /* AppLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLoginManager.m; sourceTree = "<group>"; };
-		1F1B804B2142C67C00547801 /* app.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = app.cer; sourceTree = "<group>"; };
 		1F2A84BC2143AC46008BC55A /* MineQRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQRViewController.h; sourceTree = "<group>"; };
 		1F2A84BD2143AC46008BC55A /* MineQRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQRViewController.m; sourceTree = "<group>"; };
 		1F2A84C22143BED8008BC55A /* MineLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineLocationViewController.h; sourceTree = "<group>"; };
@@ -1111,6 +1110,7 @@
 		1FDBE75A20DC00D50092E82E /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		1FDC3430214E870900500DFD /* MineMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageViewController.h; sourceTree = "<group>"; };
 		1FDC3431214E870900500DFD /* MineMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageViewController.m; sourceTree = "<group>"; };
+		8B06D9CC22D62E2300F8252B /* app.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = app.cer; sourceTree = "<group>"; };
 		8B4B4DD721E06F3D00B48C65 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		8BE85A3B21CE113300836585 /* AppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		8BE85A3C21CE113300836585 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -1618,7 +1618,7 @@
 		0B75D5B81FBEC874008D7AE6 /* BJXYNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				1F1B804B2142C67C00547801 /* app.cer */,
+				8B06D9CC22D62E2300F8252B /* app.cer */,
 				0B75D5C31FBECED5008D7AE6 /* AppBaseModel.h */,
 				0B75D5C41FBECED5008D7AE6 /* AppBaseModel.m */,
 				0B75D5BB1FBEC874008D7AE6 /* BJXYHTTPManager.h */,
@@ -3469,10 +3469,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B06D9CD22D62E2300F8252B /* app.cer in Resources */,
 				1F8CFFAA2149523200C00B8E /* RITLPhotos.bundle in Resources */,
 				1F1716102115FBF1001769AB /* PlayerCell.xib in Resources */,
 				1F8CFFC2214953E400C00B8E /* wphoto_select_no@2x.png in Resources */,
-				1F1B804C2142C67C00547801 /* app.cer in Resources */,
 				1F8CFFC4214953E400C00B8E /* wphoto_select_yes@2x.png in Resources */,
 				1F2A857F2143C753008BC55A /* MJRefresh.bundle in Resources */,
 				0B7293111EFA4F1100D1B1EB /* Assets.xcassets in Resources */,

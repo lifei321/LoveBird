@@ -18,9 +18,9 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
     dispatch_once(&onceToken, ^{
         
         httpManagersharedClient = [self manager];
-        httpManagersharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
-        httpManagersharedClient.securityPolicy.allowInvalidCertificates = YES;
-        httpManagersharedClient.securityPolicy.validatesDomainName = YES;
+//        httpManagersharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
+//        httpManagersharedClient.securityPolicy.allowInvalidCertificates = YES;
+//        httpManagersharedClient.securityPolicy.validatesDomainName = YES;
         httpManagersharedClient.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingAllowFragments];
         httpManagersharedClient.requestSerializer.HTTPShouldHandleCookies = YES;
         [httpManagersharedClient.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -29,21 +29,25 @@ static BJXYHTTPManager *httpManagersharedClient = nil;
 
         [BJXYHTTPManager setAppCookie];
         
-        NSString *certFilePath = [[NSBundle mainBundle] pathForResource:@"app" ofType:@"cer"];
-        NSData *certData = [NSData dataWithContentsOfFile:certFilePath];
-        NSSet *certSet = [NSSet setWithObject:certData];
-
-        //pinnedCertificates,校验服务器返回证书的证书,AF自动寻找
-        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey withPinnedCertificates:certSet];
-
-        //因为使用自建证书，所以要开启允许非法证书
-        policy.allowInvalidCertificates = YES;
-
-        //检验证书omain字段和服务器的是否匹配
-        policy.validatesDomainName = YES;
-
-        //af2.6之后拿掉了validatesCertificateChain：检验证书链条
-        httpManagersharedClient.securityPolicy = policy;
+        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+        securityPolicy.validatesDomainName = NO;
+        securityPolicy.allowInvalidCertificates = YES;
+        httpManagersharedClient.securityPolicy = securityPolicy;
+//        NSString *certFilePath = [[NSBundle mainBundle] pathForResource:@"app" ofType:@"cer"];
+//        NSData *certData = [NSData dataWithContentsOfFile:certFilePath];
+//        NSSet *certSet = [NSSet setWithObject:certData];
+//
+//        //pinnedCertificates,校验服务器返回证书的证书,AF自动寻找
+//        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey withPinnedCertificates:certSet];
+//
+//        //因为使用自建证书，所以要开启允许非法证书
+//        policy.allowInvalidCertificates = YES;
+//
+//        //检验证书omain字段和服务器的是否匹配
+//        policy.validatesDomainName = YES;
+//
+//        //af2.6之后拿掉了validatesCertificateChain：检验证书链条
+//        httpManagersharedClient.securityPolicy = policy;
         
     });
     return httpManagersharedClient;
